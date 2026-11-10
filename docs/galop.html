@@ -39,15 +39,15 @@ img.silk{height:72px;width:61px}.tag{display:inline;margin-left:5px}
 </style></head>
 <body><main class="wrap"><h1>Effectif Galop</h1><div class="bar"></div>
 <p class="intro">Les galopeurs de l'Écurie Initial, leurs casaques, leurs valeurs handicap, leurs gains et leurs entraîneurs.</p>
-<div class="notice"><strong>Effectif de 16 chevaux, dont 2 momentanément blessés.</strong> Les valeurs indiquées proviennent du tableau transmis par l'Écurie Initial le 10 novembre 2026, ou d'anciennes archives signalées. Les gains marqués « archive » sont d'anciens relevés qui ne sont pas encore vérifiés auprès de France Galop.</div>
+<p class="intro">16 chevaux dans notre effectif galop, dont 2 momentanément blessés.</p>
 <div class="scroll"><table><thead><tr><th>Cheval</th><th>Casaque</th><th>Valeur</th><th>Gains</th><th>Entraîneur</th></tr></thead><tbody id="rows"></tbody></table></div>
-<p class="status" id="status">Chargement des données...</p>
-<small>Valeur : indice de handicap en kilogrammes, distinct du poids porté en course. Les valeurs du site et les gains archivés ne sont pas des relevés officiels actualisés. Un éleveur n'est pas nécessairement l'entraîneur. Les entraîneurs non confirmés restent non renseignés.</small></main>
+<p class="status" id="status" aria-live="polite"></p>
+</main>
 <script>
 const tbody=document.getElementById('rows'),status=document.getElementById('status');
 const euros=n=>new Intl.NumberFormat('fr-FR').format(n)+' €';
 function el(tag,txt){const x=document.createElement(tag);if(txt!==undefined)x.textContent=txt;return x;}
-function cell(label,value,subtitle){const td=el('td',value);td.dataset.label=label;if(subtitle){const sub=el('span',subtitle);sub.className='tag';td.append(sub);}return td;}
+function cell(label,value){const td=el('td',value);td.dataset.label=label;return td;}
 function draw(data){tbody.replaceChildren();
 for(const h of data.horses||[]){
 const tr=el('tr'),name=el('td');let label=h.name;
@@ -56,13 +56,11 @@ if(h.horseLink){const a=el('a',label);a.href=h.horseLink;a.rel='noopener norefer
 if(h.status==='blessé'){const injury=el('span','Blessé · momentanément éloigné des pistes');injury.className='tag injured';name.append(injury);}
 tr.append(name);
 const silk=el('td'),img=el('img');img.className='silk';img.src='assets/casaque-galop.svg';img.alt='Casaque galop Écurie Initial';silk.append(img);tr.append(silk);
-const vsub=h.value_status==='verified'&&h.value_verified_at?'vérifié le '+h.value_verified_at:Number.isFinite(h.value)?(h.value_status==='archive'?'archive':'valeur du site'):'';
-tr.append(cell('Valeur',Number.isFinite(h.value)?String(h.value).replace('.',','):'—',vsub));
-const gsub=h.gains_status==='verified'&&h.gains_verified_at?'vérifié le '+h.gains_verified_at:Number.isFinite(h.gains)?'archive':'';
-const gains=cell('Gains',Number.isFinite(h.gains)?euros(h.gains):'—',gsub);gains.className='gains';tr.append(gains);
-tr.append(cell('Entraîneur',h.trainer||'—',h.trainer?'':'à confirmer'));tbody.append(tr);
+tr.append(cell('Valeur',Number.isFinite(h.value)?String(h.value).replace('.',','):'—'));
+const gains=cell('Gains',Number.isFinite(h.gains)?euros(h.gains):'—');gains.className='gains';tr.append(gains);
+tr.append(cell('Entraîneur',h.trainer||'—'));tbody.append(tr);
 }}
 fetch('data/effectif-galop.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('HTTP '+r.status);return r.json();})
-.then(d=>{draw(d);status.textContent='Effectif : '+(d.horses?.length||0)+' chevaux, dont '+(d.horses||[]).filter(x=>x.status==='blessé').length+' blessés. Données chiffrées en attente de vérification France Galop.';})
+.then(d=>{draw(d);status.textContent='';})
 .catch(()=>{status.textContent='Données indisponibles. Réessayez ultérieurement.';});
 </script></body></html>
