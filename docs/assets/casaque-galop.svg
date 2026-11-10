@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 122" width="100" height="122" role="img" aria-labelledby="t d">
+<title id="t">Casaque galop Écurie Initial</title><desc id="d">Corps orange, croix de Saint-André noire, manches blanches à étoiles orange, toque blanche à étoiles noires.</desc>
+<defs><g id="star"><path d="M0 -5 L1.47 -1.55 L5 -1.55 L2.3 1.2 L3.4 4.6 L0 2.5 L-3.4 4.6 L-2.3 1.2 L-5 -1.55 L-1.47 -1.55Z"/></g></defs>
+<path d="M34 22 L40 18 L60 18 L66 22 L80 25 L95 60 L87 65 L74 49 L75 106 L25 106 L26 49 L13 65 L5 60 L20 25Z" fill="#fff" stroke="#111" stroke-width="2.5" stroke-linejoin="round"/>
+<path d="M31 22 L40 18 L60 18 L69 22 L74 48 L74 106 L26 106 L26 48Z" fill="#f36a21"/>
+<path d="M32 22 L43 22 L68 106 L58 106 Z M68 22 L57 22 L32 106 L42 106 Z" fill="#111"/>
+<path d="M40 18 Q50 29 60 18 L58 12 L42 12Z" fill="#111" stroke="#111" stroke-width="1"/>
+<path d="M50 22 V106 M26 106 H74" stroke="#111" stroke-width="1.7" fill="none"/>
+<g fill="#f36a21"><use href="#star" transform="translate(18 36) scale(1.16)"/><use href="#star" transform="translate(13 51) scale(.95)"/><use href="#star" transform="translate(82 36) scale(1.16)"/><use href="#star" transform="translate(87 51) scale(.95)"/></g>
+<path d="M30 8 Q50 -8 70 8 L75 14 Q50 24 25 14Z" fill="#fff" stroke="#111" stroke-width="2.7"/>
+<path d="M25 14 Q50 24 75 14 Q69 26 50 24 Q30 26 25 14Z" fill="#111"/>
+<g fill="#111"><use href="#star" transform="translate(37 7) scale(.85)"/><use href="#star" transform="translate(50 4) scale(.85)"/><use href="#star" transform="translate(63 7) scale(.85)"/><use href="#star" transform="translate(45 13) scale(.7)"/><use href="#star" transform="translate(56 13) scale(.7)"/></g>
+</svg>
