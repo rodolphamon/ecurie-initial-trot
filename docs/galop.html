@@ -23,7 +23,6 @@
     td:nth-child(5){min-width:160px}
     th:nth-child(4){text-align:right}
     .silk{width:59px;height:72px;object-fit:contain;vertical-align:middle}
-    a{color:#a94a0a;text-decoration:underline;text-underline-offset:3px}
     .rest{display:block;color:#aa5519;font-size:12px;font-weight:600;margin-top:3px}
     @media(max-width:600px){th,td{padding:7px 9px}table{min-width:620px}}
   </style>
@@ -46,9 +45,7 @@
         const tr=el('tr');
         const c=addCell(tr);
         const label=h.name+(h.sex&&h.age?' '+h.sex+'. PS '+h.age+' ans':'');
-        if(h.horseLink){
-          const a=el('a',label);a.href=h.horseLink;a.target='_blank';a.rel='noopener noreferrer';c.append(a);
-        } else {c.append(el('span',label));}
+        c.append(el('span',label));
         if(h.status==='au repos'){const rest=el('span','Au repos');rest.className='rest';c.append(rest);}
         const silkCell=addCell(tr);
         const img=el('img');img.className='silk';img.src='assets/casaque-galop.svg';img.alt='Casaque galop Écurie Initial';
