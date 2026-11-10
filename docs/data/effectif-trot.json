@@ -1,6 +1,6 @@
 {
   "updated_at": "2026-11-10",
-  "source": "Données transmises par Écurie Initial — sans synchronisation externe",
+  "source": "Relevé transmis par Écurie Initial, MEMPHIS BELLE vérifiée dans programme Graignes du 11/11/2026 (Zone-Turf)",
   "horses": {
     "indice-deladou": {
       "record": "1'11\"6",
@@ -24,7 +24,7 @@
     },
     "memphis-belle": {
       "record": null,
-      "gains": 4890
+      "gains": 6990
     },
     "mona-lisa-stardust": {
       "record": "1'16\"6",
