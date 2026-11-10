@@ -3,7 +3,7 @@
   "updated_at": null,
   "roster_snapshot_at": "2026-11-10",
   "value_snapshot_at": "2026-11-10",
-  "note": "Les valeurs proviennent du tableau du site Écurie Initial, pas d'une vérification directe France Galop. Gains archivés et entraîneurs non confirmés affichés comme tels. Éleveur n'est pas entraîneur.",
+  "note": "Effectif confirmé par le gérant : 16 galopeurs dont BOBROVKHA et VYBORG blessés. CORONADO appartient à un ami et ne fait pas partie de l'Écurie Initial. Les chiffres marqués archive restent à vérifier; les 14 valeurs de la capture du 10/11/2026 ne sont pas des mises à jour officielles France Galop.",
   "horses": [
     {
       "id": "andresy",
@@ -44,6 +44,27 @@
       "data_status": "manquant"
     },
     {
+      "id": "bobrovkha",
+      "name": "BOBROVKHA",
+      "sex": null,
+      "age": null,
+      "race": "PS",
+      "discipline": "Plat",
+      "trainer": null,
+      "horseLink": "https://pro.france-galop.com/EspacePro/Cheval/FicheCheval?numSIRE=22165191",
+      "value": 27,
+      "value_status": "archive",
+      "value_source_date": null,
+      "value_verified_at": null,
+      "gains": 30848,
+      "gains_status": "archive",
+      "gains_verified_at": null,
+      "verified_at": null,
+      "data_status": "archive",
+      "status": "blessé",
+      "status_source": "Déclaration du gérant le 10/11/2026"
+    },
+    {
       "id": "douriann",
       "name": "DOURIANN",
       "sex": "H",
@@ -57,6 +78,25 @@
       "value_source_date": "2026-11-10",
       "value_verified_at": null,
       "gains": 182378,
+      "gains_status": "archive",
+      "gains_verified_at": null,
+      "verified_at": null,
+      "data_status": "archive"
+    },
+    {
+      "id": "giorgiana",
+      "name": "GIORGIANA",
+      "sex": "F",
+      "age": 6,
+      "race": "PS",
+      "discipline": "Plat",
+      "trainer": null,
+      "horseLink": "https://pro.france-galop.com/EspacePro/Cheval/FicheCheval?numSIRE=20750165",
+      "value": 33,
+      "value_status": "releve-site-ecurie",
+      "value_source_date": "2026-11-10",
+      "value_verified_at": null,
+      "gains": 119000,
       "gains_status": "archive",
       "gains_verified_at": null,
       "verified_at": null,
@@ -80,25 +120,6 @@
       "gains_verified_at": null,
       "verified_at": null,
       "data_status": "manquant"
-    },
-    {
-      "id": "giorgiana",
-      "name": "GIORGIANA",
-      "sex": "F",
-      "age": 6,
-      "race": "PS",
-      "discipline": "Plat",
-      "trainer": null,
-      "horseLink": "https://pro.france-galop.com/EspacePro/Cheval/FicheCheval?numSIRE=20750165",
-      "value": 33,
-      "value_status": "releve-site-ecurie",
-      "value_source_date": "2026-11-10",
-      "value_verified_at": null,
-      "gains": 119000,
-      "gains_status": "archive",
-      "gains_verified_at": null,
-      "verified_at": null,
-      "data_status": "archive"
     },
     {
       "id": "le-roi-leon",
@@ -253,6 +274,27 @@
       "data_status": "manquant"
     },
     {
+      "id": "vyborg",
+      "name": "VYBORG",
+      "sex": null,
+      "age": null,
+      "race": "PS",
+      "discipline": "Plat",
+      "trainer": null,
+      "horseLink": "https://pro.france-galop.com/EspacePro/Cheval/FicheCheval?numSIRE=19302641",
+      "value": 23.5,
+      "value_status": "archive",
+      "value_source_date": null,
+      "value_verified_at": null,
+      "gains": 63648,
+      "gains_status": "archive",
+      "gains_verified_at": null,
+      "verified_at": null,
+      "data_status": "archive",
+      "status": "blessé",
+      "status_source": "Déclaration du gérant le 10/11/2026"
+    },
+    {
       "id": "zartop",
       "name": "ZARTOP",
       "sex": "H",
@@ -272,21 +314,5 @@
       "data_status": "archive"
     }
   ],
-  "excluded_pending_review": [
-    {
-      "id": "bobrovkha",
-      "name": "BOBROVKHA",
-      "reason": "Absent de la capture du tableau Galop à 14 chevaux; statut dans l'effectif à confirmer"
-    },
-    {
-      "id": "coronado",
-      "name": "CORONADO",
-      "reason": "Absent de la capture du tableau Galop à 14 chevaux; statut dans l'effectif à confirmer"
-    },
-    {
-      "id": "vyborg",
-      "name": "VYBORG",
-      "reason": "Absent de la capture du tableau Galop à 14 chevaux; statut dans l'effectif à confirmer"
-    }
-  ]
+  "excluded_pending_review": []
 }
