@@ -1,0 +1,30 @@
+name: Contrôle quotidien du tableau Trot
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '30 6 * * *'
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Vérifier le JSON et les images
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          root=Path('docs')
+          data=json.loads((root/'data/effectif-trot.json').read_text(encoding='utf-8'))
+          assert isinstance(data.get('horses'),dict)
+          assert len(data['horses'])==18, 'L’effectif doit contenir 18 chevaux'
+          for horse,vals in data['horses'].items():
+              assert vals['gains'] is None or isinstance(vals['gains'],int) and vals['gains']>=0,horse
+              assert vals['record'] is None or isinstance(vals['record'],str),horse
+          assert (root/'index.html').is_file()
+          assert (root/'assets/casaque-orange.svg').is_file()
+          assert (root/'assets/casaque-blanche.svg').is_file()
+          print('Contrôle réussi : 18 chevaux, JSON et éléments graphiques présents.')
+          print('Aucune source extérieure consultée ; aucune mise à jour de gains ou records.')
+          PY
