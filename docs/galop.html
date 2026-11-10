@@ -1,66 +1,68 @@
 <!doctype html>
-<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light">
-<title>Effectif Galop — Écurie Initial</title>
-<meta name="description" content="Les galopeurs de l'Écurie Initial, leurs casaques, leur valeur handicap et leurs gains.">
-<style>
-:root{--orange:#f47721;--dark:#171717}*{box-sizing:border-box}
-body{font:15px/1.5 Arial,Helvetica,sans-serif;color:#252525;margin:0;background:#fafafa}
-.wrap{max-width:1180px;margin:auto;padding:30px 16px}
-h1{font-size:clamp(28px,4vw,42px);margin:0 0 2px}
-.bar{background:var(--orange);width:76px;height:5px;border-radius:4px;margin:12px 0 20px}
-.intro{margin:0 0 20px;color:#555}
-.scroll{overflow-x:auto;border:1px solid #e5e0da;border-radius:12px;box-shadow:0 8px 28px #0001}
-table{border-collapse:collapse;width:100%;min-width:760px;background:white}
-thead{background:var(--dark);color:white}
-th,td{padding:9px 14px;text-align:left;border-bottom:1px solid #eee;vertical-align:middle}
-th{font-weight:700}tbody tr:nth-child(even){background:#fff7f0}tbody tr:hover{background:#ffebdb}
-img.silk{height:72px;width:61px;object-fit:contain}
-td:nth-child(3),td:nth-child(4){white-space:nowrap}
-a{color:#ba510e;text-underline-offset:3px}a:hover{color:#803307}
-td:first-child{font-weight:bold}td.gains{text-align:right;font-variant-numeric:tabular-nums}
-small{color:#656565;display:block;margin-top:14px}
-.status{font-size:13px;color:#666;margin-top:12px}
-.notice{padding:10px 14px;background:#fff3e9;border-left:4px solid var(--orange);border-radius:4px;color:#623b1e;margin:16px 0}
-.tag{display:block;font-size:11px;font-weight:400;color:#835d42;line-height:1.3}.injured{font-size:12px;font-weight:700;color:#9b3a1a;margin-top:4px}
-@media(max-width:600px){
-.wrap{padding:18px 10px}.scroll{overflow:visible;border:0;box-shadow:none}
-table{min-width:0;display:block;background:transparent}thead{display:none}tbody{display:block}
-tbody tr{display:grid;grid-template-columns:minmax(0,1fr) 64px;gap:5px 10px;margin:0 0 10px;padding:12px;border:1px solid #e8e4e0;border-radius:10px;background:#fff!important;box-shadow:0 2px 8px #0001}
-tbody tr:hover{background:#fff7f0!important}
-td{display:block;min-width:0;padding:0;border:0!important;font-size:14px;white-space:normal!important}
-td:first-child{grid-area:1 / 1 / 2 / 2;font-size:15px}
-td:nth-child(2){grid-area:1 / 2 / 5 / 3;display:flex;align-items:center;justify-content:center}
-td:nth-child(3){grid-area:2 / 1 / 3 / 2}
-td:nth-child(4){grid-area:3 / 1 / 4 / 2;text-align:left}
-td:nth-child(5){grid-area:4 / 1 / 5 / 2}
-td:nth-child(n+3)::before{content:attr(data-label) " : ";font-weight:bold;color:#444}
-img.silk{height:72px;width:61px}.tag{display:inline;margin-left:5px}
-}
-</style></head>
-<body><main class="wrap"><h1>Effectif Galop</h1><div class="bar"></div>
-<p class="intro">Les galopeurs de l'Écurie Initial, leurs casaques, leurs valeurs handicap, leurs gains et leurs entraîneurs.</p>
-<p class="intro">16 chevaux dans notre effectif galop, dont 2 momentanément blessés.</p>
-<div class="scroll"><table><thead><tr><th>Cheval</th><th>Casaque</th><th>Valeur</th><th>Gains</th><th>Entraîneur</th></tr></thead><tbody id="rows"></tbody></table></div>
-<p class="status" id="status" aria-live="polite"></p>
-</main>
-<script>
-const tbody=document.getElementById('rows'),status=document.getElementById('status');
-const euros=n=>new Intl.NumberFormat('fr-FR').format(n)+' €';
-function el(tag,txt){const x=document.createElement(tag);if(txt!==undefined)x.textContent=txt;return x;}
-function cell(label,value){const td=el('td',value);td.dataset.label=label;return td;}
-function draw(data){tbody.replaceChildren();
-for(const h of data.horses||[]){
-const tr=el('tr'),name=el('td');let label=h.name;
-if(h.sex&&h.age)label+=' '+h.sex+'. PS '+h.age+' ans';
-if(h.horseLink){const a=el('a',label);a.href=h.horseLink;a.rel='noopener noreferrer';a.target='_blank';name.append(a);}else name.textContent=label;
-if(h.status==='blessé'){const injury=el('span','Blessé · momentanément éloigné des pistes');injury.className='tag injured';name.append(injury);}
-tr.append(name);
-const silk=el('td'),img=el('img');img.className='silk';img.src='assets/casaque-galop.svg';img.alt='Casaque galop Écurie Initial';silk.append(img);tr.append(silk);
-tr.append(cell('Valeur',Number.isFinite(h.value)?String(h.value).replace('.',','):'—'));
-const gains=cell('Gains',Number.isFinite(h.gains)?euros(h.gains):'—');gains.className='gains';tr.append(gains);
-tr.append(cell('Entraîneur',h.trainer||'—'));tbody.append(tr);
-}}
-fetch('data/effectif-galop.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('HTTP '+r.status);return r.json();})
-.then(d=>{draw(d);status.textContent='';})
-.catch(()=>{status.textContent='Données indisponibles. Réessayez ultérieurement.';});
-</script></body></html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Effectif Galop — Écurie Initial</title>
+  <meta name="description" content="Effectif Galop Écurie Initial : chevaux, casaques, valeurs, gains et entraîneurs.">
+  <style>
+    :root{--orange:#f47721;--dark:#171717}
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:#fff;color:#222;font-family:Arial,Helvetica,sans-serif;font-size:15px}
+    .scroll{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+    table{width:100%;min-width:650px;border-collapse:collapse;background:#fff}
+    thead{background:var(--dark);color:#fff}
+    th,td{padding:8px 12px;border-bottom:1px solid #ececec;text-align:left;vertical-align:middle}
+    th{font-weight:700;font-size:14px}
+    tbody tr:nth-child(even){background:#fff7f0}
+    tbody tr:hover{background:#ffecdc}
+    td:first-child{font-weight:700;min-width:185px}
+    td:nth-child(2){width:82px;text-align:center}
+    td:nth-child(3){width:70px;white-space:nowrap}
+    td:nth-child(4){width:125px;white-space:nowrap;text-align:right;font-variant-numeric:tabular-nums}
+    td:nth-child(5){min-width:160px}
+    th:nth-child(4){text-align:right}
+    .silk{width:59px;height:72px;object-fit:contain;vertical-align:middle}
+    a{color:#a94a0a;text-decoration:underline;text-underline-offset:3px}
+    .rest{display:block;color:#aa5519;font-size:12px;font-weight:600;margin-top:3px}
+    @media(max-width:600px){th,td{padding:7px 9px}table{min-width:620px}}
+  </style>
+</head>
+<body>
+  <main class="scroll" aria-label="Tableau de l'effectif Galop">
+    <table>
+      <thead><tr><th>Cheval</th><th>Casaque</th><th>Valeur</th><th>Gains</th><th>Entraîneur</th></tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </main>
+  <script>
+    const tbody=document.getElementById('rows');
+    const euros=n=>new Intl.NumberFormat('fr-FR').format(n)+' €';
+    const el=(tag,label)=>{const x=document.createElement(tag);if(label!==undefined)x.textContent=label;return x;};
+    const addCell=(tr,value)=>{const td=el('td',value);tr.append(td);return td;};
+    function display(data){
+      tbody.replaceChildren();
+      for(const h of (data.horses||[])){
+        const tr=el('tr');
+        const c=addCell(tr);
+        const label=h.name+(h.sex&&h.age?' '+h.sex+'. PS '+h.age+' ans':'');
+        if(h.horseLink){
+          const a=el('a',label);a.href=h.horseLink;a.target='_blank';a.rel='noopener noreferrer';c.append(a);
+        } else {c.append(el('span',label));}
+        if(h.status==='au repos'){const rest=el('span','Au repos');rest.className='rest';c.append(rest);}
+        const silkCell=addCell(tr);
+        const img=el('img');img.className='silk';img.src='assets/casaque-galop.svg';img.alt='Casaque galop Écurie Initial';
+        silkCell.append(img);
+        addCell(tr,Number.isFinite(h.value)?String(h.value).replace('.',','):'—');
+        addCell(tr,Number.isFinite(h.gains)?euros(h.gains):'—');
+        addCell(tr,h.trainer||'—');
+        tbody.append(tr);
+      }
+    }
+    fetch('data/effectif-galop.json',{cache:'no-store'})
+      .then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);return r.json();})
+      .then(display)
+      .catch(()=>{tbody.replaceChildren();});
+  </script>
+</body>
+</html>
