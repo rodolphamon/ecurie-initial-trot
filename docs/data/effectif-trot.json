@@ -1,0 +1,78 @@
+{
+  "updated_at": "2026-11-10",
+  "source": "Données transmises par Écurie Initial — sans synchronisation externe",
+  "horses": {
+    "indice-deladou": {
+      "record": "1'11\"6",
+      "gains": 274450
+    },
+    "isolee-du-bouillon": {
+      "record": "1'12\"1",
+      "gains": 187555
+    },
+    "lord-on-way": {
+      "record": "1'13\"8",
+      "gains": 56595
+    },
+    "lucky-des-gaudines": {
+      "record": "1'14\"4",
+      "gains": 34600
+    },
+    "mandragora-fleury": {
+      "record": "1'11\"9",
+      "gains": 48780
+    },
+    "memphis-belle": {
+      "record": null,
+      "gains": 4890
+    },
+    "mona-lisa-stardust": {
+      "record": "1'16\"6",
+      "gains": 21040
+    },
+    "moondance-okina": {
+      "record": "1'11\"8",
+      "gains": 35185
+    },
+    "myrtille-marboula": {
+      "record": "1'12\"2",
+      "gains": 72115
+    },
+    "nebraska-fleury": {
+      "record": "1'15\"3",
+      "gains": 29550
+    },
+    "nelson-star": {
+      "record": "1'25\"4",
+      "gains": 5500
+    },
+    "nostalgie-dairpet": {
+      "record": "1'16\"1",
+      "gains": 15140
+    },
+    "odacieuse-fleury": {
+      "record": null,
+      "gains": null
+    },
+    "olano-de-la-vallee": {
+      "record": null,
+      "gains": null
+    },
+    "palazzo-grassi": {
+      "record": null,
+      "gains": null
+    },
+    "phacelie-bilou": {
+      "record": null,
+      "gains": null
+    },
+    "popstar-d-eri": {
+      "record": null,
+      "gains": null
+    },
+    "prince-gio": {
+      "record": null,
+      "gains": null
+    }
+  }
+}
