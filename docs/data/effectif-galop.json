@@ -1,0 +1,129 @@
+{
+  "source": "Archives de l'ancien site Écurie Initial (/60.html), consultation du 10/11/2026. Données anciennes, sans validation de leur actualité.",
+  "updated_at": null,
+  "archived_checked_on": "2026-11-10",
+  "note": "Effectif provisoire : présence actuelle de chaque cheval et données chiffrées à confirmer. CORONADO ajouté depuis résultat confirmé à Deauville du 07/11/2026.",
+  "horses": [
+    {
+      "id": "andresy",
+      "name": "ANDRESY",
+      "trainer": "Gilles PANNIER",
+      "discipline": "Plat",
+      "horseLink": "https://pro.france-galop.com/EspacePro/Cheval/FicheCheval?numSIRE=23318863",
+      "value": 31,
+      "gains": 8737,
+      "verified_at": null,
+      "data_status": "archive"
+    },
+    {
+      "id": "bobrovkha",
+      "name": "BOBROVKHA",
+      "trainer": "Gilles PANNIER",
+      "discipline": "Plat",
+      "horseLink": "https://pro.france-galop.com/EspacePro/Cheval/FicheCheval?numSIRE=22165191",
+      "value": 27,
+      "gains": 30848,
+      "verified_at": null,
+      "data_status": "archive"
+    },
+    {
+      "id": "coronado",
+      "name": "CORONADO",
+      "trainer": "Gilles PANNIER",
+      "discipline": "Plat",
+      "horseLink": null,
+      "value": null,
+      "gains": null,
+      "verified_at": null,
+      "data_status": "manquant"
+    },
+    {
+      "id": "douriann",
+      "name": "DOURIANN",
+      "trainer": "Gilles PANNIER",
+      "discipline": "Plat",
+      "horseLink": null,
+      "value": 37,
+      "gains": 182378,
+      "verified_at": null,
+      "data_status": "archive"
+    },
+    {
+      "id": "giorgiana",
+      "name": "GIORGIANA",
+      "trainer": "Gilles PANNIER",
+      "discipline": "Plat",
+      "horseLink": "https://pro.france-galop.com/EspacePro/Cheval/FicheCheval?numSIRE=20750165",
+      "value": 29,
+      "gains": 119000,
+      "verified_at": null,
+      "data_status": "archive"
+    },
+    {
+      "id": "master-pat",
+      "name": "MASTER PAT",
+      "trainer": "Gilles PANNIER",
+      "discipline": "Plat",
+      "horseLink": "https://www.geny.com/cheval/2817411-master-pat",
+      "value": 31.5,
+      "gains": 70181,
+      "verified_at": null,
+      "data_status": "archive"
+    },
+    {
+      "id": "on-lockdown",
+      "name": "ON LOCKDOWN",
+      "trainer": "Gilles PANNIER",
+      "discipline": "Plat",
+      "horseLink": "https://pro.france-galop.com/EspacePro/Cheval/FicheCheval?numSIRE=21319800",
+      "value": 35,
+      "gains": 159784,
+      "verified_at": null,
+      "data_status": "archive"
+    },
+    {
+      "id": "rosa-mia",
+      "name": "ROSA MIA",
+      "trainer": "Gilles PANNIER",
+      "discipline": "Obstacle",
+      "horseLink": null,
+      "value": 30.5,
+      "gains": 14369,
+      "verified_at": null,
+      "data_status": "archive"
+    },
+    {
+      "id": "singapor-initial",
+      "name": "SINGAPOR INITIAL",
+      "trainer": "Gilles PANNIER",
+      "discipline": "Plat",
+      "horseLink": null,
+      "value": null,
+      "gains": null,
+      "verified_at": null,
+      "data_status": "manquant"
+    },
+    {
+      "id": "vyborg",
+      "name": "VYBORG",
+      "trainer": "Gilles PANNIER",
+      "discipline": "Plat",
+      "horseLink": "https://pro.france-galop.com/EspacePro/Cheval/FicheCheval?numSIRE=19302641",
+      "value": 23.5,
+      "gains": 63648,
+      "verified_at": null,
+      "data_status": "archive"
+    },
+    {
+      "id": "zartop",
+      "name": "ZARTOP",
+      "trainer": "Gilles PANNIER",
+      "discipline": "Plat",
+      "horseLink": "https://pro.france-galop.com/EspacePro/Cheval/FicheCheval?numSIRE=22163793",
+      "value": 26,
+      "gains": 32764,
+      "verified_at": null,
+      "data_status": "archive"
+    }
+  ]
+}
