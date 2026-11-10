@@ -61,8 +61,8 @@
       "gains_verified_at": null,
       "verified_at": null,
       "data_status": "archive",
-      "status": "blessé",
-      "status_source": "Déclaration du gérant le 10/11/2026"
+      "status": "au repos",
+      "status_source": "Indication du gérant le 10/11/2026"
     },
     {
       "id": "douriann",
@@ -291,8 +291,8 @@
       "gains_verified_at": null,
       "verified_at": null,
       "data_status": "archive",
-      "status": "blessé",
-      "status_source": "Déclaration du gérant le 10/11/2026"
+      "status": "au repos",
+      "status_source": "Indication du gérant le 10/11/2026"
     },
     {
       "id": "zartop",
