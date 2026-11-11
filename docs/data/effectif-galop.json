@@ -1,5 +1,5 @@
 {
-  "source": "Valeurs handicap de MASTER PAT, DOURIANN et ZARTOP recoupées le 11/11/2026 sur fiches Zone-Turf datées par leurs dernières performances. Gains archives non validés ni modifiés. Autres valeurs issues du relevé Écurie Initial, non confirmées officiellement France Galop.",
+  "source": "Valeurs handicap de MASTER PAT, DOURIANN et ZARTOP recoupées le 11/11/2026 sur fiches Zone-Turf datées par leurs dernières performances. Gains archives non validés ni modifiés. Autres valeurs issues du relevé Écurie Initial, non confirmées officiellement France Galop. Gains de SATURDAY NIGHT vérifiés le 11/11/2026 sur Zone-Turf : 46 308 €.",
   "updated_at": "2026-11-11",
   "roster_snapshot_at": "2026-11-10",
   "value_snapshot_at": "2026-11-10",
@@ -231,11 +231,12 @@
       "value_status": "releve-site-ecurie",
       "value_source_date": "2026-11-10",
       "value_verified_at": null,
-      "gains": null,
-      "gains_status": "non-renseignes",
-      "gains_verified_at": null,
+      "gains": 46308,
+      "gains_status": "verified",
+      "gains_verified_at": "2026-11-11",
       "verified_at": null,
-      "data_status": "manquant"
+      "data_status": "manquant",
+      "gains_source_url": "https://www.zone-turf.fr/cheval/saturday-night-2048690/"
     },
     {
       "id": "singapor-initial",
