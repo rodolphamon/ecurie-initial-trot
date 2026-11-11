@@ -1,9 +1,9 @@
 {
-  "source": "Valeurs handicap de MASTER PAT, DOURIANN et ZARTOP recoupées le 11/11/2026 sur fiches Zone-Turf datées par leurs dernières performances. Gains archives non validés ni modifiés. Autres valeurs issues du relevé Écurie Initial, non confirmées officiellement France Galop. Gains de SATURDAY NIGHT vérifiés le 11/11/2026 sur Zone-Turf : 46 308 €. Gains vérifiés le 11/11/2026 pour BAILYCHKA, GONAFOOT, LE ROI LEON, LIMPIDE et VICTORIA SECRET (sources individuelles dans les fiches).",
+  "source": "Gains vérifiés sur fiches individuelles Zone-Turf, Geny et autres sources référencées, le 11/11/2026. ROSA MIA : gains cumulés plat et obstacle (Geny). Valeurs handicap issues des relevés Écurie Initial sauf valeurs vérifiées individuellement. Les montants de gains peuvent différer selon les périmètres des sites tiers.",
   "updated_at": "2026-11-11",
   "roster_snapshot_at": "2026-11-10",
   "value_snapshot_at": "2026-11-10",
-  "note": "Effectif confirmé par le gérant : 16 galopeurs dont BOBROVKHA et VYBORG blessés. CORONADO appartient à un ami et ne fait pas partie de l'Écurie Initial. Les chiffres marqués archive restent à vérifier; les 14 valeurs de la capture du 10/11/2026 ne sont pas des mises à jour officielles France Galop.",
+  "note": "Effectif confirmé par le gérant : 16 galopeurs, dont BOBROVKHA et VYBORG au repos. CORONADO n'appartient pas à l'Écurie Initial. SINGAPOR INITIAL n'a pas encore débuté.",
   "horses": [
     {
       "id": "andresy",
@@ -18,11 +18,12 @@
       "value_status": "releve-site-ecurie",
       "value_source_date": "2026-11-10",
       "value_verified_at": null,
-      "gains": 8737,
-      "gains_status": "archive",
-      "gains_verified_at": null,
+      "gains": 9651,
+      "gains_status": "verified",
+      "gains_verified_at": "2026-11-11",
       "verified_at": null,
-      "data_status": "archive"
+      "data_status": "verified",
+      "gains_source_url": "https://www.zone-turf.fr/cheval/andresy-2100847/"
     },
     {
       "id": "bailychka",
@@ -53,17 +54,19 @@
       "discipline": "Plat",
       "trainer": "Gilles PANNIER",
       "horseLink": "https://pro.france-galop.com/EspacePro/Cheval/FicheCheval?numSIRE=22165191",
-      "value": 27,
-      "value_status": "archive",
+      "value": 25,
+      "value_status": "verified",
       "value_source_date": null,
-      "value_verified_at": null,
-      "gains": 30848,
-      "gains_status": "archive",
-      "gains_verified_at": null,
+      "value_verified_at": "2026-11-11",
+      "gains": 24028,
+      "gains_status": "verified",
+      "gains_verified_at": "2026-11-11",
       "verified_at": null,
-      "data_status": "archive",
+      "data_status": "verified",
       "status": "au repos",
-      "status_source": "Indication du gérant le 10/11/2026"
+      "status_source": "Indication du gérant le 10/11/2026",
+      "gains_source_url": "https://www.zone-turf.fr/cheval/bobrovkha-2072139/",
+      "value_source_url": "https://www.zone-turf.fr/cheval/bobrovkha-2072139/"
     },
     {
       "id": "douriann",
@@ -78,12 +81,13 @@
       "value_status": "verified",
       "value_source_date": "2026-11-10",
       "value_verified_at": "2026-11-11",
-      "gains": 182378,
-      "gains_status": "archive",
-      "gains_verified_at": null,
+      "gains": 170128,
+      "gains_status": "verified",
+      "gains_verified_at": "2026-11-11",
       "verified_at": null,
-      "data_status": "archive",
-      "value_source_url": "https://www.zone-turf.fr/cheval/douriann-1806116/"
+      "data_status": "verified",
+      "value_source_url": "https://www.zone-turf.fr/cheval/douriann-1806116/",
+      "gains_source_url": "https://www.zone-turf.fr/cheval/douriann-1806116/"
     },
     {
       "id": "giorgiana",
@@ -98,11 +102,12 @@
       "value_status": "releve-site-ecurie",
       "value_source_date": "2026-11-10",
       "value_verified_at": null,
-      "gains": 119000,
-      "gains_status": "archive",
-      "gains_verified_at": null,
+      "gains": 97309,
+      "gains_status": "verified",
+      "gains_verified_at": "2026-11-11",
       "verified_at": null,
-      "data_status": "archive"
+      "data_status": "verified",
+      "gains_source_url": "https://www.zone-turf.fr/cheval/giorgiana-1811642/"
     },
     {
       "id": "gonafoot",
@@ -177,12 +182,13 @@
       "value_status": "verified",
       "value_source_date": "2026-11-10",
       "value_verified_at": "2026-11-11",
-      "gains": 70181,
-      "gains_status": "archive",
-      "gains_verified_at": null,
+      "gains": 59020,
+      "gains_status": "verified",
+      "gains_verified_at": "2026-11-11",
       "verified_at": null,
-      "data_status": "archive",
-      "value_source_url": "https://www.zone-turf.fr/cheval/master-pat-2039658/"
+      "data_status": "verified",
+      "value_source_url": "https://www.zone-turf.fr/cheval/master-pat-2039658/",
+      "gains_source_url": "https://www.zone-turf.fr/cheval/master-pat-2039658/"
     },
     {
       "id": "on-lockdown",
@@ -197,11 +203,12 @@
       "value_status": "releve-site-ecurie",
       "value_source_date": "2026-11-10",
       "value_verified_at": null,
-      "gains": 159784,
-      "gains_status": "archive",
-      "gains_verified_at": null,
+      "gains": 108305,
+      "gains_status": "verified",
+      "gains_verified_at": "2026-11-11",
       "verified_at": null,
-      "data_status": "archive"
+      "data_status": "verified",
+      "gains_source_url": "https://www.zone-turf.fr/cheval/on-lockdown-1708512/"
     },
     {
       "id": "rosa-mia",
@@ -216,11 +223,12 @@
       "value_status": "releve-site-ecurie",
       "value_source_date": "2026-11-10",
       "value_verified_at": null,
-      "gains": 14369,
-      "gains_status": "archive",
-      "gains_verified_at": null,
+      "gains": 18378,
+      "gains_status": "verified",
+      "gains_verified_at": "2026-11-11",
       "verified_at": null,
-      "data_status": "archive"
+      "data_status": "verified",
+      "gains_source_url": "https://www.geny.com/cheval/2859514-rosa-mia/course/1682831"
     },
     {
       "id": "saturday-night",
@@ -290,17 +298,19 @@
       "discipline": "Plat",
       "trainer": "Gilles PANNIER",
       "horseLink": "https://pro.france-galop.com/EspacePro/Cheval/FicheCheval?numSIRE=19302641",
-      "value": 23.5,
-      "value_status": "archive",
+      "value": 21.5,
+      "value_status": "verified",
       "value_source_date": null,
-      "value_verified_at": null,
-      "gains": 63648,
-      "gains_status": "archive",
-      "gains_verified_at": null,
+      "value_verified_at": "2026-11-11",
+      "gains": 44472,
+      "gains_status": "verified",
+      "gains_verified_at": "2026-11-11",
       "verified_at": null,
-      "data_status": "archive",
+      "data_status": "verified",
       "status": "au repos",
-      "status_source": "Indication du gérant le 10/11/2026"
+      "status_source": "Indication du gérant le 10/11/2026",
+      "gains_source_url": "https://www.zone-turf.fr/cheval/vyborg-1649396/",
+      "value_source_url": "https://www.zone-turf.fr/cheval/vyborg-1649396/"
     },
     {
       "id": "zartop",
@@ -315,12 +325,13 @@
       "value_status": "verified",
       "value_source_date": "2026-11-10",
       "value_verified_at": "2026-11-11",
-      "gains": 32764,
-      "gains_status": "archive",
-      "gains_verified_at": null,
+      "gains": 27349,
+      "gains_status": "verified",
+      "gains_verified_at": "2026-11-11",
       "verified_at": null,
-      "data_status": "archive",
-      "value_source_url": "https://www.zone-turf.fr/cheval/zartop-2037318/"
+      "data_status": "verified",
+      "value_source_url": "https://www.zone-turf.fr/cheval/zartop-2037318/",
+      "gains_source_url": "https://www.zone-turf.fr/cheval/zartop-2037318/"
     }
   ],
   "excluded_pending_review": []
