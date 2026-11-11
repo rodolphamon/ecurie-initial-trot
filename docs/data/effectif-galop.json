@@ -1,5 +1,5 @@
 {
-  "source": "Valeurs handicap de MASTER PAT, DOURIANN et ZARTOP recoupées le 11/11/2026 sur fiches Zone-Turf datées par leurs dernières performances. Gains archives non validés ni modifiés. Autres valeurs issues du relevé Écurie Initial, non confirmées officiellement France Galop. Gains de SATURDAY NIGHT vérifiés le 11/11/2026 sur Zone-Turf : 46 308 €.",
+  "source": "Valeurs handicap de MASTER PAT, DOURIANN et ZARTOP recoupées le 11/11/2026 sur fiches Zone-Turf datées par leurs dernières performances. Gains archives non validés ni modifiés. Autres valeurs issues du relevé Écurie Initial, non confirmées officiellement France Galop. Gains de SATURDAY NIGHT vérifiés le 11/11/2026 sur Zone-Turf : 46 308 €. Gains vérifiés le 11/11/2026 pour BAILYCHKA, GONAFOOT, LE ROI LEON, LIMPIDE et VICTORIA SECRET (sources individuelles dans les fiches).",
   "updated_at": "2026-11-11",
   "roster_snapshot_at": "2026-11-10",
   "value_snapshot_at": "2026-11-10",
@@ -37,11 +37,12 @@
       "value_status": "non-renseignee",
       "value_source_date": "2026-11-10",
       "value_verified_at": null,
-      "gains": null,
-      "gains_status": "non-renseignes",
-      "gains_verified_at": null,
+      "gains": 1080,
+      "gains_status": "verified",
+      "gains_verified_at": "2026-11-11",
       "verified_at": null,
-      "data_status": "manquant"
+      "data_status": "manquant",
+      "gains_source_url": "https://www.genybet.fr/cheval/Bailychka/2895974/1682827"
     },
     {
       "id": "bobrovkha",
@@ -116,11 +117,12 @@
       "value_status": "non-renseignee",
       "value_source_date": "2026-11-10",
       "value_verified_at": null,
-      "gains": null,
-      "gains_status": "non-renseignes",
-      "gains_verified_at": null,
+      "gains": 9846,
+      "gains_status": "verified",
+      "gains_verified_at": "2026-11-11",
       "verified_at": null,
-      "data_status": "manquant"
+      "data_status": "manquant",
+      "gains_source_url": "https://www.zone-turf.fr/cheval/gonafoot-2162147/"
     },
     {
       "id": "le-roi-leon",
@@ -135,11 +137,12 @@
       "value_status": "releve-site-ecurie",
       "value_source_date": "2026-11-10",
       "value_verified_at": null,
-      "gains": null,
-      "gains_status": "non-renseignes",
-      "gains_verified_at": null,
+      "gains": 65278,
+      "gains_status": "verified",
+      "gains_verified_at": "2026-11-11",
       "verified_at": null,
-      "data_status": "manquant"
+      "data_status": "manquant",
+      "gains_source_url": "https://www.zone-turf.fr/cheval/le-roi-leon-2048676/"
     },
     {
       "id": "limpide",
@@ -154,11 +157,12 @@
       "value_status": "releve-site-ecurie",
       "value_source_date": "2026-11-10",
       "value_verified_at": null,
-      "gains": null,
-      "gains_status": "non-renseignes",
-      "gains_verified_at": null,
+      "gains": 50570,
+      "gains_status": "verified",
+      "gains_verified_at": "2026-11-11",
       "verified_at": null,
-      "data_status": "manquant"
+      "data_status": "manquant",
+      "gains_source_url": "https://www.zone-turf.fr/cheval/limpide-2078693/"
     },
     {
       "id": "master-pat",
@@ -270,11 +274,12 @@
       "value_status": "releve-site-ecurie",
       "value_source_date": "2026-11-10",
       "value_verified_at": null,
-      "gains": null,
-      "gains_status": "non-renseignes",
-      "gains_verified_at": null,
+      "gains": 49330,
+      "gains_status": "verified",
+      "gains_verified_at": "2026-11-11",
       "verified_at": null,
-      "data_status": "manquant"
+      "data_status": "manquant",
+      "gains_source_url": "https://www.zone-turf.fr/cheval/victoria-secret-2100249/"
     },
     {
       "id": "vyborg",
