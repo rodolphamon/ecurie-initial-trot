@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-10",
-  "source": "Relevé transmis par Écurie Initial, MEMPHIS BELLE vérifiée dans programme Graignes du 11/11/2026 (Zone-Turf)",
+  "updated_at": "2026-11-11",
+  "source": "Contrôle du 11/11/2026 : LORD ON WAY 67 395 € (Zone-Turf https://www.zone-turf.fr/cheval/lord-on-way-2075153/) ; NOSTALGIE DAIRPET 17 980 € (Geny https://www.geny.com/cheval/2863611-nostalgie-dairpet/course/1691905 et Zone-Turf https://www.zone-turf.fr/cheval/nostalgie-dairpet-2117011/). Autres valeurs historiques conservées sans validation nouvelle.",
   "horses": {
     "indice-deladou": {
       "record": "1'11\"6",
@@ -12,7 +12,7 @@
     },
     "lord-on-way": {
       "record": "1'13\"8",
-      "gains": 56595
+      "gains": 67395
     },
     "lucky-des-gaudines": {
       "record": "1'14\"4",
@@ -48,7 +48,7 @@
     },
     "nostalgie-dairpet": {
       "record": "1'16\"1",
-      "gains": 15140
+      "gains": 17980
     },
     "odacieuse-fleury": {
       "record": null,
