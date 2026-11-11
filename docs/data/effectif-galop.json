@@ -1,6 +1,6 @@
 {
-  "source": "Capture fournie par l'Écurie Initial le 10/11/2026 : effectif Galop de 14 chevaux, sexes, âges et valeurs. Gains éventuellement présents : archives anciennes non vérifiées auprès de France Galop.",
-  "updated_at": null,
+  "source": "Valeurs handicap de MASTER PAT, DOURIANN et ZARTOP recoupées le 11/11/2026 sur fiches Zone-Turf datées par leurs dernières performances. Gains archives non validés ni modifiés. Autres valeurs issues du relevé Écurie Initial, non confirmées officiellement France Galop.",
+  "updated_at": "2026-11-11",
   "roster_snapshot_at": "2026-11-10",
   "value_snapshot_at": "2026-11-10",
   "note": "Effectif confirmé par le gérant : 16 galopeurs dont BOBROVKHA et VYBORG blessés. CORONADO appartient à un ami et ne fait pas partie de l'Écurie Initial. Les chiffres marqués archive restent à vérifier; les 14 valeurs de la capture du 10/11/2026 ne sont pas des mises à jour officielles France Galop.",
@@ -74,14 +74,15 @@
       "trainer": "Gilles PANNIER",
       "horseLink": null,
       "value": 38,
-      "value_status": "releve-site-ecurie",
+      "value_status": "verified",
       "value_source_date": "2026-11-10",
-      "value_verified_at": null,
+      "value_verified_at": "2026-11-11",
       "gains": 182378,
       "gains_status": "archive",
       "gains_verified_at": null,
       "verified_at": null,
-      "data_status": "archive"
+      "data_status": "archive",
+      "value_source_url": "https://www.zone-turf.fr/cheval/douriann-1806116/"
     },
     {
       "id": "giorgiana",
@@ -169,14 +170,15 @@
       "trainer": "Gilles PANNIER",
       "horseLink": "https://www.geny.com/cheval/2817411-master-pat",
       "value": 31.5,
-      "value_status": "releve-site-ecurie",
+      "value_status": "verified",
       "value_source_date": "2026-11-10",
-      "value_verified_at": null,
+      "value_verified_at": "2026-11-11",
       "gains": 70181,
       "gains_status": "archive",
       "gains_verified_at": null,
       "verified_at": null,
-      "data_status": "archive"
+      "data_status": "archive",
+      "value_source_url": "https://www.zone-turf.fr/cheval/master-pat-2039658/"
     },
     {
       "id": "on-lockdown",
@@ -304,14 +306,15 @@
       "trainer": "Gilles PANNIER",
       "horseLink": "https://pro.france-galop.com/EspacePro/Cheval/FicheCheval?numSIRE=22163793",
       "value": 24.5,
-      "value_status": "releve-site-ecurie",
+      "value_status": "verified",
       "value_source_date": "2026-11-10",
-      "value_verified_at": null,
+      "value_verified_at": "2026-11-11",
       "gains": 32764,
       "gains_status": "archive",
       "gains_verified_at": null,
       "verified_at": null,
-      "data_status": "archive"
+      "data_status": "archive",
+      "value_source_url": "https://www.zone-turf.fr/cheval/zartop-2037318/"
     }
   ],
   "excluded_pending_review": []
