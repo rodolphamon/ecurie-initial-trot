@@ -34,7 +34,7 @@ function horse(s){
     ?'<div class="table-wrap"><table class="perf-table"><thead><tr><th>Date</th><th>Hippodrome</th><th>Classement</th><th>Driver / Jockey</th></tr></thead><tbody>'+perf.map(x=>'<tr><td>'+esc(dateFR(x.date))+'</td><td>'+esc(x.hippodrome)+'</td><td><span class="rank">'+esc(x.rang||'—')+'</span></td><td>'+esc(x.driver||x.jockey||'—')+'</td></tr>').join('')+'</tbody></table></div>'
     :'<div class="empty">Aucune performance détaillée renseignée pour le moment.</div>';
   const te=eng.length
-    ?'<div class="table-wrap"><table class="perf-table"><thead><tr><th>Date</th><th>Hippodrome</th><th>Heure</th><th>Épreuve</th></tr></thead><tbody>'+eng.map(x=>'<tr><td>'+esc(dateFR(x.date))+'</td><td>'+esc(x.hippodrome)+'</td><td><span class="rank">'+esc(x.heure||'—')+'</span></td><td>'+esc(x.type||'Course')+'</td></tr>').join('')+'</tbody></table></div>'
+    ?'<div class="table-wrap"><table class="perf-table"><thead><tr><th>Date</th><th>Hippodrome</th><th>Heure</th><th>Épreuve</th><th>Statut</th><th>Driver / Jockey</th></tr></thead><tbody>'+eng.map(x=>'<tr><td>'+esc(dateFR(x.date))+'</td><td>'+esc(x.hippodrome)+'</td><td><span class="rank">'+esc(x.heure||'—')+'</span></td><td>'+esc([x.course,x.prix||x.type].filter(Boolean).join(' · ')||'Course')+'</td><td>'+esc(({"partant":"Partant confirmé","declare":"Déclaré partant","engage":"Engagé","non-partant":"Non-partant","forfait":"Forfait","elimine":"Éliminé","qualification":"Qualification"})[x.statut]||(x.type==='Qualification'?'Qualification':'Engagé'))+'</td><td>'+esc(x.driver||x.jockey||'—')+'</td></tr>').join('')+'</tbody></table></div>'
     :'<div class="empty">Aucun prochain engagement renseigné.</div>';
   document.title=p.name+' | Écurie Initial';
   $('#app').innerHTML=header()
