@@ -40,7 +40,8 @@
       "discipline": "Trot",
       "trainer": "Vincent HÉBERT",
       "casaque": "blanche",
-      "horseLink": "https://www.letrot.com/stats/chevaux/MANDRAGORA-FLEURY/ZmBbYgoHBgQf/courses"
+      "horseLink": "https://www.letrot.com/stats/chevaux/MANDRAGORA-FLEURY/ZmBbYgoHBgQf/courses",
+      "photoVersion": "20261112-19"
     },
     {
       "id": "memphis-belle",
@@ -48,7 +49,8 @@
       "discipline": "Trot",
       "trainer": "Laurent BARASSIN",
       "casaque": "blanche",
-      "horseLink": "https://www.letrot.com/stats/chevaux/memphis-belle/ZmB9ZwMIAQYY/courses"
+      "horseLink": "https://www.letrot.com/stats/chevaux/memphis-belle/ZmB9ZwMIAQYY/courses",
+      "photoVersion": "20261112-19"
     },
     {
       "id": "mona-lisa-stardust",
@@ -56,7 +58,8 @@
       "discipline": "Trot",
       "trainer": "Michel HANQUIER",
       "casaque": "orange",
-      "horseLink": null
+      "horseLink": null,
+      "photoVersion": "20261112-19"
     },
     {
       "id": "moondance-okina",
@@ -64,7 +67,8 @@
       "discipline": "Trot",
       "trainer": "Bruno MARIE",
       "casaque": "blanche",
-      "horseLink": "https://www.letrot.com/stats/chevaux/MOONDANCE-OKINA/ZmBbbAMIAQUc/courses"
+      "horseLink": "https://www.letrot.com/stats/chevaux/MOONDANCE-OKINA/ZmBbbAMIAQUc/courses",
+      "photoVersion": "20261112-19"
     },
     {
       "id": "myrtille-marboula",
@@ -80,7 +84,8 @@
       "discipline": "Trot",
       "trainer": "Vincent HÉBERT",
       "casaque": "blanche",
-      "horseLink": "https://www.letrot.com/stats/chevaux/NEBRASKA-FLEURY/ZmF8ZQUGBwQB/courses"
+      "horseLink": "https://www.letrot.com/stats/chevaux/NEBRASKA-FLEURY/ZmF8ZQUGBwQB/courses",
+      "photoVersion": "20261112-19"
     },
     {
       "id": "nelson-star",
@@ -88,7 +93,8 @@
       "discipline": "Trot",
       "trainer": "Michel HANQUIER",
       "casaque": "blanche",
-      "horseLink": null
+      "horseLink": null,
+      "photoVersion": "20261112-19"
     },
     {
       "id": "nostalgie-dairpet",
@@ -96,7 +102,8 @@
       "discipline": "Trot",
       "trainer": "Laurent BARASSIN",
       "casaque": "blanche",
-      "horseLink": null
+      "horseLink": null,
+      "photoVersion": "20261112-19"
     },
     {
       "id": "odacieuse-fleury",
@@ -104,7 +111,8 @@
       "discipline": "Trot",
       "trainer": "Vincent HÉBERT",
       "casaque": "blanche",
-      "horseLink": "https://www.letrot.com/stats/chevaux/ODACIEUSE-FLEURY/ZmZbYgsEBAYG/courses"
+      "horseLink": "https://www.letrot.com/stats/chevaux/ODACIEUSE-FLEURY/ZmZbYgsEBAYG/courses",
+      "photoVersion": "20261112-19"
     },
     {
       "id": "olano-de-la-vallee",
@@ -112,7 +120,8 @@
       "discipline": "Trot",
       "trainer": "Vincent HÉBERT",
       "casaque": "blanche",
-      "horseLink": "https://www.letrot.com/stats/chevaux/OLANO-DE-LA-VALLEE/ZmZbbAIBAwcG/courses"
+      "horseLink": "https://www.letrot.com/stats/chevaux/OLANO-DE-LA-VALLEE/ZmZbbAIBAwcG/courses",
+      "photoVersion": "20261112-19"
     },
     {
       "id": "palazzo-grassi",
@@ -128,7 +137,8 @@
       "discipline": "Trot",
       "trainer": "A. RIPOLL RIGO",
       "casaque": "blanche",
-      "horseLink": "https://www.letrot.com/stats/chevaux/phacelie-bilou/Zmd8ZAYABQMV/elevage"
+      "horseLink": "https://www.letrot.com/stats/chevaux/phacelie-bilou/Zmd8ZAYABQMV/elevage",
+      "photoVersion": "20261112-19"
     },
     {
       "id": "popstar-d-eri",
@@ -144,7 +154,8 @@
       "discipline": "Trot",
       "trainer": "Laurent BARASSIN",
       "casaque": "blanche",
-      "horseLink": null
+      "horseLink": null,
+      "photoVersion": "20261112-19"
     },
     {
       "id": "andresy",
@@ -216,7 +227,8 @@
       "discipline": "Plat",
       "trainer": "Gilles PANNIER",
       "casaque": "galop",
-      "horseLink": "https://www.geny.com/cheval/2817411-master-pat"
+      "horseLink": "https://www.geny.com/cheval/2817411-master-pat",
+      "photoVersion": "20261112-19"
     },
     {
       "id": "on-lockdown",
@@ -224,7 +236,8 @@
       "discipline": "Plat",
       "trainer": "Gilles PANNIER",
       "casaque": "galop",
-      "horseLink": "https://pro.france-galop.com/EspacePro/Cheval/FicheCheval?numSIRE=21319800"
+      "horseLink": "https://pro.france-galop.com/EspacePro/Cheval/FicheCheval?numSIRE=21319800",
+      "photoVersion": "20261112-19"
     },
     {
       "id": "rosa-mia",
@@ -232,7 +245,8 @@
       "discipline": "Obstacle",
       "trainer": "Gilles PANNIER",
       "casaque": "galop",
-      "horseLink": null
+      "horseLink": null,
+      "photoVersion": "20261112-19"
     },
     {
       "id": "saturday-night",
@@ -240,7 +254,8 @@
       "discipline": "Plat",
       "trainer": "Gilles PANNIER",
       "casaque": "galop",
-      "horseLink": null
+      "horseLink": null,
+      "photoVersion": "20261112-19"
     },
     {
       "id": "singapor-initial",
@@ -248,7 +263,8 @@
       "discipline": "Plat",
       "trainer": "Gilles PANNIER",
       "casaque": "galop",
-      "horseLink": null
+      "horseLink": null,
+      "photoVersion": "20261112-19"
     },
     {
       "id": "victoria-secret",
@@ -256,7 +272,8 @@
       "discipline": "Plat",
       "trainer": "Gilles PANNIER",
       "casaque": "galop",
-      "horseLink": null
+      "horseLink": null,
+      "photoVersion": "20261112-19"
     },
     {
       "id": "vyborg",
@@ -264,7 +281,8 @@
       "discipline": "Plat",
       "trainer": "Gilles PANNIER",
       "casaque": "galop",
-      "horseLink": "https://pro.france-galop.com/EspacePro/Cheval/FicheCheval?numSIRE=19302641"
+      "horseLink": "https://pro.france-galop.com/EspacePro/Cheval/FicheCheval?numSIRE=19302641",
+      "photoVersion": "20261112-19"
     },
     {
       "id": "zartop",
@@ -272,7 +290,8 @@
       "discipline": "Plat",
       "trainer": "Gilles PANNIER",
       "casaque": "galop",
-      "horseLink": "https://pro.france-galop.com/EspacePro/Cheval/FicheCheval?numSIRE=22163793"
+      "horseLink": "https://pro.france-galop.com/EspacePro/Cheval/FicheCheval?numSIRE=22163793",
+      "photoVersion": "20261112-19"
     }
   ]
 }
