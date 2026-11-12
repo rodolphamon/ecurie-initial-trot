@@ -31,6 +31,13 @@
     ],
     "gonafoot": [
       {
+        "date": "2026-10-31",
+        "hippodrome": "Deauville",
+        "rang": "5e",
+        "jockey": "A. MADAMET",
+        "source_url": "https://www.geny.com/course/1695242-2026-10-31-deauville-prix-la-bamba/arrivee-rapports?orga=PMH"
+      },
+      {
         "date": "2026-10-22",
         "hippodrome": "Les Sables-d'Olonne",
         "rang": "3e"
@@ -115,6 +122,52 @@
         "rang": "4e",
         "jockey": "A. LEMAITRE",
         "source_url": "https://www.canalturf.com/courses_fiche_cheval.php?idcheval=412006"
+      }
+    ],
+    "rosa-mia": [
+      {
+        "date": "2026-10-29",
+        "hippodrome": "Fontainebleau",
+        "rang": "7e",
+        "jockey": "T. BLAINVILLE",
+        "source_url": "https://www.journalduturf.com/fiche-cheval/rosa_mia.html"
+      },
+      {
+        "date": "2026-09-11",
+        "hippodrome": "Le Mans",
+        "rang": "—",
+        "jockey": "A. MOLINS",
+        "source_url": "https://www.journalduturf.com/fiche-cheval/rosa_mia.html"
+      },
+      {
+        "date": "2026-08-20",
+        "hippodrome": "Le Lion-d'Angers",
+        "rang": "—",
+        "jockey": "O. D'ANDIGNÉ",
+        "source_url": "https://www.journalduturf.com/fiche-cheval/rosa_mia.html"
+      },
+      {
+        "date": "2026-07-22",
+        "hippodrome": "Clairefontaine",
+        "rang": "5e",
+        "jockey": "T. BLAINVILLE",
+        "source_url": "https://www.journalduturf.com/fiche-cheval/rosa_mia.html"
+      },
+      {
+        "date": "2026-07-02",
+        "hippodrome": "ParisLongchamp",
+        "rang": "—",
+        "jockey": "L. BOISSEAU",
+        "source_url": "https://www.journalduturf.com/fiche-cheval/rosa_mia.html"
+      }
+    ],
+    "le-roi-leon": [
+      {
+        "date": "2026-10-28",
+        "hippodrome": "Le Mans",
+        "rang": "6e",
+        "jockey": "L. ROUSSEL",
+        "source_url": "https://www.journalduturf.com/arrivees-rapports-pmu/574980_grand-prix-du-mans.html?tab=resultat"
       }
     ]
   },
