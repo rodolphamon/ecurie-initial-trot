@@ -32,7 +32,8 @@
       "discipline": "Trot",
       "trainer": "Mathieu DAOUGABEL",
       "casaque": "orange",
-      "horseLink": "https://www.letrot.com/stats/chevaux/LUCKY-DES-GAUDINES/ZmN8ZwMFAwoF/courses"
+      "horseLink": "https://www.letrot.com/stats/chevaux/LUCKY-DES-GAUDINES/ZmN8ZwMFAwoF/courses",
+      "photoVersion": "20261112-lot5"
     },
     {
       "id": "mandragora-fleury",
@@ -50,7 +51,7 @@
       "trainer": "Laurent BARASSIN",
       "casaque": "blanche",
       "horseLink": "https://www.letrot.com/stats/chevaux/memphis-belle/ZmB9ZwMIAQYY/courses",
-      "photoVersion": "20261112-19"
+      "photoVersion": "20261112-lot5"
     },
     {
       "id": "mona-lisa-stardust",
@@ -179,7 +180,8 @@
       "discipline": "Plat",
       "trainer": "Gilles PANNIER",
       "casaque": "galop",
-      "horseLink": "https://pro.france-galop.com/EspacePro/Cheval/FicheCheval?numSIRE=22165191"
+      "horseLink": "https://pro.france-galop.com/EspacePro/Cheval/FicheCheval?numSIRE=22165191",
+      "photoVersion": "20261112-lot5"
     },
     {
       "id": "douriann",
@@ -211,7 +213,8 @@
       "discipline": "Plat",
       "trainer": "Gilles PANNIER",
       "casaque": "galop",
-      "horseLink": null
+      "horseLink": null,
+      "photoVersion": "20261112-lot5"
     },
     {
       "id": "limpide",
@@ -219,7 +222,8 @@
       "discipline": "Plat",
       "trainer": "Gilles PANNIER",
       "casaque": "galop",
-      "horseLink": null
+      "horseLink": null,
+      "photoVersion": "20261112-lot5"
     },
     {
       "id": "master-pat",
