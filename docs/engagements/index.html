@@ -2,92 +2,104 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#151515">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#fffaf5">
 <title>Prochains engagements | Écurie Initial</title>
 <style>
-:root{color-scheme:dark;--orange:#ff802e;--bg:#141414;--card:#212121;--line:#404040;--white:#f7f7f7;--muted:#bdbdbd}
+:root{color-scheme:light;--orange:#ed741e;--orange-deep:#ad4c11;--ink:#282521;--sub:#665c54;--paper:#fff;--cream:#fff9f2;--line:#ecdccd;--warm:#fff0e1;--green:#1b7347;--green-bg:#e5f5ea}
 *{box-sizing:border-box}
-html,body{margin:0;min-height:100%;background:var(--bg);color:var(--white);font:15px/1.5 Arial,Helvetica,sans-serif}
-.wrap{padding:22px 16px 35px;max-width:1100px;margin:0 auto}
-.kicker{font-size:11px;letter-spacing:2.8px;font-weight:800;color:var(--orange)}
-h1{margin:6px 0 10px;font-size:clamp(23px,4vw,36px);letter-spacing:-.5px;line-height:1.2}
-.rule{width:56px;height:4px;background:var(--orange);border-radius:5px;margin-bottom:20px}
-.lead{margin:0 0 16px;color:var(--muted);font-size:13px}
-.list{display:grid;gap:12px}
-.entry{border:1px solid var(--line);border-left:5px solid var(--orange);border-radius:11px;background:var(--card);padding:16px 17px;display:grid;grid-template-columns:115px minmax(130px,1.4fr) minmax(130px,1fr) minmax(145px,1fr);align-items:center;gap:14px}
-.when{line-height:1.28}.date{font-size:15px;font-weight:800}.time{font-weight:900;color:var(--orange);font-size:20px;margin-top:4px;font-variant-numeric:tabular-nums}
-.name{font-weight:900;font-size:18px;letter-spacing:.1px}.name a{color:var(--white);text-decoration:none}.name a:hover{text-decoration:underline;text-decoration-color:var(--orange)}
-.meta{color:var(--muted);font-size:12px;margin-top:4px}.track{font-size:16px;font-weight:800}.race{color:var(--muted);font-size:12px;margin-top:4px}
-.status{display:inline-flex;max-width:100%;font-size:11px;padding:5px 8px;border:1px solid #626262;border-radius:5px;letter-spacing:.3px;text-transform:uppercase;font-weight:900;line-height:1.3}
-.status.partant{background:#173824;color:#a6f0c2;border-color:#44875c}
-.status.declare{background:#172e49;color:#a5d3fb;border-color:#406891}
-.status.engage{background:#303030;color:#f5f5f5;border-color:#656565}
-.status.non-partant,.status.forfait,.status.elimine{background:#482222;color:#ffbebc;border-color:#a14b49}
-.status.qualification{background:#54411e;color:#ffe3a1;border-color:#93733b}
-.small{font-size:12px;color:var(--muted);margin:13px 0 0}
-.empty{padding:25px 18px;background:var(--card);border:1px solid var(--line);border-radius:10px;color:var(--muted)}
-a:focus-visible{outline:3px solid var(--orange);outline-offset:3px}
-@media(max-width:730px){.entry{grid-template-columns:90px minmax(0,1fr);gap:9px 15px}.horse{grid-column:2}.place{grid-column:2}.details{grid-column:2}.date{font-size:13px}.time{font-size:18px}}
-@media(max-width:420px){.wrap{padding:16px 12px 24px}.entry{padding:13px;grid-template-columns:77px minmax(0,1fr);gap:6px 12px}.name{font-size:16px}.track{font-size:15px}}
+html,body{margin:0;padding:0;background:var(--cream);color:var(--ink);font:15px/1.5 Arial,Helvetica,sans-serif}
+.container{max-width:1080px;margin:0 auto;padding:21px 16px 18px}
+.head{background:#fff;border:1px solid var(--line);border-top:5px solid var(--orange);border-radius:15px;padding:19px 21px 18px;margin-bottom:16px;box-shadow:0 8px 20px rgba(81,52,28,.045)}
+.eyebrow{font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:900;color:var(--orange-deep)}
+h1{font-size:clamp(23px,4vw,35px);line-height:1.12;letter-spacing:-.6px;margin:6px 0 9px}
+.subtitle{margin:0;color:var(--sub);font-size:13px}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 17px;align-items:center}
+.filter{cursor:pointer;appearance:none;border:1px solid #e8d2bd;background:#fff;color:#4b423b;border-radius:24px;padding:9px 14px;font-size:12px;font-weight:800;white-space:nowrap}
+.filter[aria-pressed="true"]{color:#fff;background:var(--orange);border-color:var(--orange)}
+.filter:hover:not([aria-pressed="true"]){background:#fff1e3}
+.filter:focus-visible,.horse a:focus-visible{outline:3px solid #f39a5a;outline-offset:3px}
+.day{margin:20px 0 10px;display:flex;align-items:center;gap:12px}
+.day h2{font-size:14px;text-transform:capitalize;margin:0;font-weight:900;color:#503e31}
+.day:after{content:"";height:1px;flex:1;background:#e9daca}
+.events{display:grid;gap:10px}
+.event{background:var(--paper);border:1px solid var(--line);border-radius:12px;display:grid;grid-template-columns:88px minmax(0,1fr) auto;align-items:center;gap:12px;box-shadow:0 5px 16px rgba(69,45,19,.045);overflow:hidden;padding:15px 16px;border-left:5px solid var(--orange)}
+.event.is-partant{border-left-color:#43a46c}
+.when{font-variant-numeric:tabular-nums;color:#8c6e54;font-weight:900;text-align:center;font-size:13px;min-width:0}
+.when .time{display:block;font-size:19px;color:#c55e16;line-height:1.25;margin-top:3px}
+.when .unknown{font-size:12px;font-weight:700;color:#968679}
+.horse{min-width:0}
+.horse strong{font-size:17px;line-height:1.2;display:block;font-weight:900;letter-spacing:.2px}
+.horse a{color:var(--ink);text-decoration:none}.horse a:hover{color:var(--orange-deep);text-decoration:underline}
+.place{margin-top:4px;font-size:13px;color:#51473f;font-weight:700}
+.race{margin-top:3px;color:#81746a;font-size:12px}
+.flag{justify-self:end;text-align:right;min-width:126px;max-width:198px}
+.pill{display:inline-block;padding:6px 9px;border-radius:999px;background:var(--warm);color:#a44b0b;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.25px;border:1px solid #f2d2b4}
+.pill.partant{background:var(--green-bg);border-color:#bde3c9;color:var(--green)}
+.pill.declare{background:#e8efff;border-color:#cdd9f4;color:#345b9d}
+.pill.non-partant,.pill.forfait,.pill.elimine{background:#ffebea;border-color:#f2cccc;color:#a52f2f}
+.pill.qualification{background:#fff4d6;border-color:#eddbac;color:#805d1f}
+.person{font-size:12px;color:#6e6053;margin-top:6px;font-weight:700}
+.empty{border-radius:13px;background:#fff;border:1px solid var(--line);padding:22px;color:#786959;text-align:center}
+@media(max-width:720px){.event{grid-template-columns:72px minmax(0,1fr);gap:7px 13px;padding:12px}.flag{grid-column:2;justify-self:start;text-align:left;max-width:none;min-width:0;margin-top:4px}.horse strong{font-size:16px}.when .time{font-size:16px}.pill{font-size:10px;padding:5px 8px}}
+@media(max-width:390px){.container{padding:13px 8px}.head{padding:15px}.event{grid-template-columns:58px minmax(0,1fr);gap:6px 9px}.when{font-size:11px}.horse strong{font-size:15px}.race{font-size:11px}.filter{padding:8px 10px}}
 </style>
 </head>
 <body>
-<main class="wrap">
-<div class="kicker">ÉCURIE INITIAL</div>
-<h1>Prochains engagements</h1>
-<div class="rule"></div>
-<p class="lead">Engagements et partants de nos trotteurs et galopeurs, par ordre chronologique.</p>
-<div id="list" class="list" aria-live="polite"><div class="empty">Chargement des prochains engagements…</div></div>
-<p class="small">Les engagements sont susceptibles de modifications jusqu'à la course. Les événements terminés disparaissent automatiquement.</p>
-</main>
+<div class="container">
+<header class="head"><div class="eyebrow">Écurie Initial</div><h1>Prochains engagements</h1><p class="subtitle">Les courses et engagements de nos trotteurs et galopeurs, dans l'ordre des dates.</p></header>
+<nav class="filters" aria-label="Filtrer le calendrier">
+<button class="filter" type="button" data-filter="tous" aria-pressed="true">Tous <span id="n-tous"></span></button>
+<button class="filter" type="button" data-filter="partants" aria-pressed="false">Partants <span id="n-partants"></span></button>
+<button class="filter" type="button" data-filter="engagements" aria-pressed="false">Engagements <span id="n-engagements"></span></button>
+</nav>
+<main id="calendar" aria-live="polite"><div class="empty">Chargement du calendrier…</div></main>
+</div>
 <script>
 (()=>{
-'use strict';
-const $=sel=>document.querySelector(sel);
-const esc=v=>String(v==null?'':v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const statusMap={
-"engage":{label:"Engagé",cls:"engage"},
-"declare":{label:"Déclaré partant",cls:"declare"},
-"partant":{label:"Partant confirmé",cls:"partant"},
-"non-partant":{label:"Non-partant",cls:"non-partant"},
-"forfait":{label:"Forfait",cls:"forfait"},
-"elimine":{label:"Éliminé",cls:"elimine"},
-"qualification":{label:"Qualification",cls:"qualification"}
-};
-const parsian=()=>new Intl.DateTimeFormat('sv-SE',{timeZone:'Europe/Paris',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).format(new Date()).replace(' ','T');
-const day=date=>{let dt=new Date(date+'T12:00:00Z');return Number.isNaN(dt.valueOf())?date:new Intl.DateTimeFormat('fr-FR',{weekday:'short',day:'numeric',month:'short',year:'numeric',timeZone:'Europe/Paris'}).format(dt)};
-const hour=h=>/^\d\d:\d\d$/.test(h||'')?h.replace(':',' h '):'Horaire à confirmer';
-async function start(){
-const [ep,cp]=await Promise.all(['../chevaux/data/editorial.json','../chevaux/data/chevaux.json'].map(async url=>{
-const r=await fetch(url+'?t='+Date.now(),{cache:'no-store'});if(!r.ok)throw Error('Chargement des données indisponible');return r.json();
-}));
-const horses=new Map((cp.horses||[]).map(h=>[h.id,h]));
-const now=parsian();
-const events=[],seen=new Set();
-for(const [id,rows] of Object.entries(ep.engagements||{})){
-const horse=horses.get(id);if(!horse)continue;
-for(const e of Array.isArray(rows)?rows:[]){
-if(!/^\d{4}-\d{2}-\d{2}$/.test(e.date||''))continue;
-if(e.date+'T'+(/^\d{2}:\d{2}$/.test(e.heure||'')?e.heure:'23:59')<now)continue;
-const key=[id,e.date,e.hippodrome,e.course||e.prix||e.type||''].join('|').toLowerCase();
-if(seen.has(key))continue;
-seen.add(key);events.push({horse,id,e});
-}}
-events.sort((a,b)=>{let d=(a.e.date+(a.e.heure||'23:59')).localeCompare(b.e.date+(b.e.heure||'23:59'));return d||a.horse.name.localeCompare(b.horse.name,'fr')});
-if(!events.length){$('#list').innerHTML='<div class="empty">Aucun engagement à venir renseigné pour le moment.</div>';return;}
-$('#list').innerHTML=events.map(({horse,id,e})=>{
-const stat=statusMap[e.statut]||(e.type==='Qualification'?statusMap.qualification:statusMap.engage);
-const race=[e.course,e.prix||e.type].filter(Boolean).join(' · ');
-const person=e.driver||e.jockey||'';
-return '<article class="entry">'
-+'<div class="when"><div class="date">'+esc(day(e.date))+'</div><div class="time">'+esc(hour(e.heure))+'</div></div>'
-+'<div class="horse"><div class="name"><a href="../chevaux/'+encodeURIComponent(id)+'/" target="_blank" rel="noopener noreferrer">'+esc(horse.name)+'</a></div><div class="meta">'+esc(horse.discipline||'')+(e.numero?' · N° '+esc(e.numero):'')+'</div></div>'
-+'<div class="place"><div class="track">'+esc(e.hippodrome||'Hippodrome à confirmer')+'</div><div class="race">'+esc(race)+'</div></div>'
-+'<div class="details"><span class="status '+stat.cls+'">'+stat.label+'</span>'+(person?'<div class="meta">'+esc(person)+'</div>':'')+'</div>'
-+'</article>'}).join('');
+"use strict";
+const BASE="../chevaux/";
+const labels={"engage":"Engagé","declare":"Déclaré partant","partant":"Partant confirmé","non-partant":"Non-partant","forfait":"Forfait","elimine":"Éliminé","qualification":"Qualification"};
+const esc=v=>String(v==null?"":v).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const paris=()=>new Intl.DateTimeFormat("sv-SE",{timeZone:"Europe/Paris",year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit",hourCycle:"h23"}).format(new Date()).replace(" ","T");
+const day=s=>new Intl.DateTimeFormat("fr-FR",{weekday:"long",day:"numeric",month:"long",year:"numeric",timeZone:"Europe/Paris"}).format(new Date(s+"T12:00:00Z"));
+let rows=[],filter="tous";
+const isPartant=e=>e.statut==="partant"||e.statut==="declare";
+const subset=x=>filter==="tous"||filter==="partants"&&isPartant(x.e)||filter==="engagements"&&!isPartant(x.e);
+function render(){
+document.getElementById("n-tous").textContent="("+rows.length+")";
+document.getElementById("n-partants").textContent="("+rows.filter(x=>isPartant(x.e)).length+")";
+document.getElementById("n-engagements").textContent="("+rows.filter(x=>!isPartant(x.e)).length+")";
+const visible=rows.filter(subset),calendar=document.getElementById("calendar");
+if(!visible.length){calendar.innerHTML='<div class="empty">Aucun événement à venir dans cette catégorie.</div>';resize();return;}
+const byDate=new Map();
+for(const x of visible){if(!byDate.has(x.e.date))byDate.set(x.e.date,[]);byDate.get(x.e.date).push(x);}
+calendar.innerHTML=Array.from(byDate,([date,ev])=>'<section><div class="day"><h2>'+esc(day(date))+'</h2></div><div class="events">'+ev.map(({horse,id,e})=>{
+const label=labels[e.statut]||labels.engage;
+const time=/^\d{2}:\d{2}$/.test(e.heure||"")?e.heure.replace(":"," h "):null;
+const detail=[e.course,e.prix||e.type,e.distance].filter(Boolean).join(" · ");
+const person=e.driver||e.jockey||"";
+return '<article class="event'+(isPartant(e)?' is-partant':'')+'">'
++'<div class="when">'+(time?'<span class="time">'+esc(time)+'</span>':'<span class="unknown">Horaire<br>à confirmer</span>')+'</div>'
++'<div class="horse"><strong><a target="_blank" rel="noopener noreferrer" href="'+BASE+encodeURIComponent(id)+'/">'+esc(horse.name)+'</a></strong><div class="place">'+esc(e.hippodrome||"Hippodrome à confirmer")+' · '+esc(horse.discipline||"")+(e.numero?' · N° '+esc(e.numero):'')+'</div><div class="race">'+esc(detail)+'</div></div>'
++'<div class="flag"><span class="pill '+esc(e.statut||"engage")+'">'+esc(label)+'</span>'+(person?'<div class="person">'+esc(person)+'</div>':'')+'</div></article>'}).join("")+'</div></section>').join("");
+resize();
 }
-start().catch(e=>{$('#list').innerHTML='<div class="empty">Impossible de charger le calendrier pour le moment. Actualisez la page pour réessayer.</div>';console.error(e)});
+function resize(){try{window.parent.postMessage({kind:"ecurie-initial-engagements-height",height:document.documentElement.scrollHeight}, "*")}catch(_){}}
+document.querySelectorAll("[data-filter]").forEach(b=>b.addEventListener("click",()=>{filter=b.dataset.filter;document.querySelectorAll("[data-filter]").forEach(a=>a.setAttribute("aria-pressed",String(a===b)));render()}));
+Promise.all(["../chevaux/data/editorial.json","../chevaux/data/chevaux.json"].map(async path=>{const r=await fetch(path+"?v="+Date.now(),{cache:"no-store"});if(!r.ok)throw Error("Accès aux données indisponible");return r.json()})).then(([data,profiles])=>{
+const ids=new Map((profiles.horses||[]).map(x=>[x.id,x])),seen=new Set(),now=paris();
+for(const [id,engs] of Object.entries(data.engagements||{})){const horse=ids.get(id);if(!horse)continue;for(const e of Array.isArray(engs)?engs:[]){
+if(!/^\d{4}-\d{2}-\d{2}$/.test(e.date||""))continue;
+const t=/^\d{2}:\d{2}$/.test(e.heure||"")?e.heure:"23:59";
+if(e.date+"T"+t<now)continue;
+const key=[id,e.date,e.hippodrome||"",e.course||e.prix||e.type||""].join("|").toLowerCase();if(seen.has(key))continue;seen.add(key);rows.push({id,horse,e});
+}}
+rows.sort((a,b)=>(a.e.date+(a.e.heure||"23:59")).localeCompare(b.e.date+(b.e.heure||"23:59"))||a.horse.name.localeCompare(b.horse.name,"fr"));
+render();
+}).catch(err=>{console.error(err);document.getElementById("calendar").innerHTML='<div class="empty">Calendrier temporairement indisponible.</div>';resize()});
+window.addEventListener("resize",resize);
 })();
 </script>
 </body></html>

@@ -1,7 +1,7 @@
 {
   "schema": "ecurie-initial-profils-v1",
   "updated_at": "2026-11-12",
-  "note": "Résultats et engagements de chevaux communiqués par l'écurie ou contrôlés sur des sources hippiques publiques. Pour les engagements: statut 'engage', 'declare', 'partant', 'non-partant', 'forfait', 'elimine' ou 'qualification'; ne pas confondre simple engagement et partant confirmé. Les événements passés sont filtrés côté affichage. Les URL sources restent internes et ne sont pas affichées sous les performances.",
+  "note": "Résultats et engagements reçus de l'écurie ou vérifiés sur des sources publiques ; les URLs de vérification sont conservées en interne. Les huit nouveaux engagements galop/trot datés du 16 au 19/11/2026 proviennent des captures de l'espace propriétaire de l'écurie transmises le 12/11/2026. Leur statut est ENGAGÉ et ne doit pas être affiché comme partant confirmé. Les horaires non confirmés restent vides. Les engagements passés sont cachés sur les pages.",
   "performances": {
     "memphis-belle": [
       {
@@ -199,6 +199,110 @@
         "statut": "partant",
         "jockey": "L. ROUSSEL",
         "source_url": "https://www.turf-fr.com/partants-programmes/r4-saint-cloud-44605"
+      }
+    ],
+    "on-lockdown": [
+      {
+        "date": "2026-11-16",
+        "heure": "",
+        "hippodrome": "Le Mans",
+        "type": "Plat",
+        "prix": "Prix du Mesnil",
+        "allocation": 19200,
+        "distance": "1400 m",
+        "statut": "engage",
+        "source_description": "Capture espace propriétaire France Galop 12/11/2026"
+      }
+    ],
+    "zartop": [
+      {
+        "date": "2026-11-16",
+        "heure": "",
+        "hippodrome": "Le Mans",
+        "type": "Plat",
+        "prix": "Prix Saint-Georges",
+        "allocation": 11900,
+        "distance": "3200 m",
+        "statut": "engage",
+        "source_description": "Capture espace propriétaire France Galop 12/11/2026"
+      }
+    ],
+    "master-pat": [
+      {
+        "date": "2026-11-17",
+        "heure": "",
+        "hippodrome": "Chantilly",
+        "type": "Plat",
+        "prix": "Prix de Beauvais",
+        "allocation": 50900,
+        "distance": "1600 m",
+        "statut": "engage",
+        "source_description": "Capture espace propriétaire France Galop 12/11/2026"
+      }
+    ],
+    "nostalgie-dairpet": [
+      {
+        "date": "2026-11-17",
+        "heure": "",
+        "hippodrome": "Vincennes - Grande Piste",
+        "type": "Trot monté",
+        "prix": "Prix de Montargis",
+        "allocation": 40000,
+        "distance": "2200 m",
+        "statut": "engage",
+        "source_description": "Capture prochains engagements 12/11/2026"
+      }
+    ],
+    "andresy": [
+      {
+        "date": "2026-11-18",
+        "heure": "",
+        "hippodrome": "Amiens",
+        "type": "Plat",
+        "prix": "Prix de Péronne",
+        "allocation": 13700,
+        "distance": "1650 m",
+        "statut": "engage",
+        "source_description": "Capture espace propriétaire France Galop 12/11/2026"
+      }
+    ],
+    "giorgiana": [
+      {
+        "date": "2026-11-19",
+        "heure": "",
+        "hippodrome": "Saint-Cloud",
+        "type": "Plat",
+        "prix": "Prix du Tunnel de Saint-Cloud",
+        "allocation": 22100,
+        "distance": "1200 m",
+        "statut": "engage",
+        "source_description": "Capture espace propriétaire France Galop 12/11/2026"
+      }
+    ],
+    "le-roi-leon": [
+      {
+        "date": "2026-11-19",
+        "heure": "",
+        "hippodrome": "Saint-Cloud",
+        "type": "Plat",
+        "prix": "Prix de Windsor",
+        "allocation": 50900,
+        "distance": "2000 m",
+        "statut": "engage",
+        "source_description": "Capture espace propriétaire France Galop 12/11/2026"
+      }
+    ],
+    "douriann": [
+      {
+        "date": "2026-11-19",
+        "heure": "",
+        "hippodrome": "Saint-Cloud",
+        "type": "Plat",
+        "prix": "Prix de Windsor",
+        "allocation": 50900,
+        "distance": "2000 m",
+        "statut": "engage",
+        "source_description": "Capture espace propriétaire France Galop 12/11/2026"
       }
     ]
   }
