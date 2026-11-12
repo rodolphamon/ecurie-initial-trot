@@ -1,7 +1,7 @@
 {
   "schema": "ecurie-initial-profils-v1",
   "updated_at": "2026-11-12",
-  "note": "Résultats et engagements reçus de l'écurie ou vérifiés sur des sources publiques ; les URLs de vérification sont conservées en interne. Les huit nouveaux engagements galop/trot datés du 16 au 19/11/2026 proviennent des captures de l'espace propriétaire de l'écurie transmises le 12/11/2026. Leur statut est ENGAGÉ et ne doit pas être affiché comme partant confirmé. Les horaires non confirmés restent vides. Les engagements passés sont cachés sur les pages.",
+  "note": "Pour les performances : au maximum les cinq dernières sorties documentées, dont les sources sont conservées en interne pour contrôle. Les classements exacts n'ont été indiqués que lorsqu'ils étaient disponibles. Les jeunes chevaux inédits n'ont pas de performances inventées. Engagements et partants conservés sans modification.",
   "performances": {
     "memphis-belle": [
       {
@@ -14,19 +14,67 @@
       {
         "date": "2026-11-01",
         "hippodrome": "Lisieux",
-        "rang": "3e"
+        "rang": "3e",
+        "source_url": "https://www.geny.com/cheval/2884884-memphis-belle",
+        "driver": "A. ANGOT"
+      },
+      {
+        "date": "2026-09-27",
+        "hippodrome": "Gournay-en-Bray",
+        "rang": "Dai",
+        "source_url": "https://www.geny.com/cheval/2884884-memphis-belle",
+        "driver": "Y. LEBOURGEOIS"
+      },
+      {
+        "date": "2026-09-13",
+        "hippodrome": "Villeneuve-sur-Lot",
+        "rang": "Dai",
+        "source_url": "https://www.geny.com/cheval/2884884-memphis-belle",
+        "driver": "A. BOURGOIN-TIMBERT"
+      },
+      {
+        "date": "2026-08-30",
+        "hippodrome": "Villeneuve-sur-Lot",
+        "rang": "Dai",
+        "source_url": "https://www.geny.com/cheval/2884884-memphis-belle",
+        "driver": "J. CHAVATTE"
       }
     ],
     "lucky-des-gaudines": [
       {
         "date": "2026-10-30",
         "hippodrome": "Toulouse",
-        "rang": "2e"
+        "rang": "2e",
+        "source_url": "https://www.geny.com/cheval/2798166-lucky-des-gaudines",
+        "driver": "M. DAOUGABEL"
       },
       {
         "date": "2026-10-25",
         "hippodrome": "Montauban",
-        "rang": "2e"
+        "rang": "2e",
+        "source_url": "https://www.geny.com/cheval/2798166-lucky-des-gaudines",
+        "driver": "M. DAOUGABEL"
+      },
+      {
+        "date": "2026-10-03",
+        "hippodrome": "Beaumont-de-Lomagne",
+        "rang": "2e",
+        "source_url": "https://www.geny.com/cheval/2798166-lucky-des-gaudines",
+        "driver": "M. DAOUGABEL"
+      },
+      {
+        "date": "2026-09-18",
+        "hippodrome": "Toulouse",
+        "rang": "7e",
+        "source_url": "https://www.geny.com/cheval/2798166-lucky-des-gaudines",
+        "driver": "M. DAOUGABEL"
+      },
+      {
+        "date": "2026-08-24",
+        "hippodrome": "Castéra-Verduzan",
+        "rang": "10e",
+        "source_url": "https://www.geny.com/cheval/2798166-lucky-des-gaudines",
+        "driver": "L. QUESNEL"
       }
     ],
     "gonafoot": [
@@ -40,14 +88,67 @@
       {
         "date": "2026-10-22",
         "hippodrome": "Les Sables-d'Olonne",
-        "rang": "3e"
+        "rang": "3e",
+        "source_url": "https://www.zone-turf.fr/cheval/gonafoot-2162147/",
+        "jockey": "O. D'ANDIGNÉ"
+      },
+      {
+        "date": "2026-10-05",
+        "hippodrome": "Deauville",
+        "rang": "2e",
+        "source_url": "https://www.zone-turf.fr/cheval/gonafoot-2162147/",
+        "jockey": "M. VELON"
+      },
+      {
+        "date": "2026-09-22",
+        "hippodrome": "Vichy",
+        "rang": "2e",
+        "source_url": "https://www.zone-turf.fr/cheval/gonafoot-2162147/",
+        "jockey": "M. GRANDIN"
+      },
+      {
+        "date": "2026-09-03",
+        "hippodrome": "Vichy",
+        "rang": "11e",
+        "source_url": "https://www.zone-turf.fr/cheval/gonafoot-2162147/",
+        "jockey": "L. PLOMMÉE"
       }
     ],
     "zartop": [
       {
         "date": "2026-10-20",
         "hippodrome": "Clairefontaine",
-        "rang": "2e"
+        "rang": "2e",
+        "source_url": "https://www.canalturf.com/courses_fiche_cheval.php?idcheval=484772",
+        "jockey": "C. DEMURO"
+      },
+      {
+        "date": "2026-08-24",
+        "hippodrome": "Dieppe",
+        "rang": "6e",
+        "source_url": "https://www.canalturf.com/courses_fiche_cheval.php?idcheval=484772",
+        "jockey": "L. BOISSEAU"
+      },
+      {
+        "date": "2026-08-03",
+        "hippodrome": "Clairefontaine",
+        "rang": "2e",
+        "source_url": "https://www.canalturf.com/courses_fiche_cheval.php?idcheval=484772",
+        "jockey": "L. BOISSEAU"
+      },
+      {
+        "date": "2026-07-18",
+        "hippodrome": "Dieppe",
+        "rang": "7e",
+        "source_url": "https://www.canalturf.com/courses_fiche_cheval.php?idcheval=484772",
+        "jockey": "M. FAVRIAUX"
+      },
+      {
+        "date": "2026-07-09",
+        "hippodrome": "Dieppe",
+        "rang": "4e",
+        "source_url": "https://www.canalturf.com/courses_fiche_cheval.php?idcheval=484772",
+        "jockey": "M. FAVRIAUX"
       }
     ],
     "lord-on-way": [
@@ -135,16 +236,16 @@
       {
         "date": "2026-09-11",
         "hippodrome": "Le Mans",
-        "rang": "—",
+        "rang": "11e",
         "jockey": "A. MOLINS",
-        "source_url": "https://www.journalduturf.com/fiche-cheval/rosa_mia.html"
+        "source_url": "https://www.zone-turf.fr/cheval/rosa-mia-2109187/"
       },
       {
         "date": "2026-08-20",
         "hippodrome": "Le Lion-d'Angers",
-        "rang": "—",
+        "rang": "6e",
         "jockey": "O. D'ANDIGNÉ",
-        "source_url": "https://www.journalduturf.com/fiche-cheval/rosa_mia.html"
+        "source_url": "https://www.zone-turf.fr/cheval/rosa-mia-2109187/"
       },
       {
         "date": "2026-07-22",
@@ -156,9 +257,9 @@
       {
         "date": "2026-07-02",
         "hippodrome": "ParisLongchamp",
-        "rang": "—",
+        "rang": "10e",
         "jockey": "L. BOISSEAU",
-        "source_url": "https://www.journalduturf.com/fiche-cheval/rosa_mia.html"
+        "source_url": "https://www.zone-turf.fr/cheval/rosa-mia-2109187/"
       }
     ],
     "le-roi-leon": [
@@ -168,6 +269,708 @@
         "rang": "6e",
         "jockey": "L. ROUSSEL",
         "source_url": "https://www.journalduturf.com/arrivees-rapports-pmu/574980_grand-prix-du-mans.html?tab=resultat"
+      },
+      {
+        "date": "2026-10-23",
+        "hippodrome": "Clairefontaine",
+        "rang": "Non placé",
+        "source_url": "https://www.canalturf.com/courses_fiche_cheval.php?idcheval=491275",
+        "jockey": "A. MOLINS"
+      },
+      {
+        "date": "2026-09-25",
+        "hippodrome": "Saint-Cloud",
+        "rang": "5e",
+        "source_url": "https://www.canalturf.com/courses_fiche_cheval.php?idcheval=491275",
+        "jockey": "A. MOLINS"
+      },
+      {
+        "date": "2026-09-13",
+        "hippodrome": "ParisLongchamp",
+        "rang": "3e",
+        "source_url": "https://www.canalturf.com/courses_fiche_cheval.php?idcheval=491275",
+        "jockey": "A. MOLINS"
+      },
+      {
+        "date": "2026-08-27",
+        "hippodrome": "Deauville",
+        "rang": "14e",
+        "source_url": "https://www.canalturf.com/courses_fiche_cheval.php?idcheval=491275",
+        "jockey": "C. DEMURO"
+      }
+    ],
+    "indice-deladou": [
+      {
+        "date": "2026-10-21",
+        "hippodrome": "Toulouse",
+        "rang": "Dai",
+        "source_url": "https://www.iturf.fr/courses/indice-deladou.html",
+        "driver": "E. BOUCLET"
+      },
+      {
+        "date": "2026-10-10",
+        "hippodrome": "Caen",
+        "rang": "Dai",
+        "source_url": "https://www.iturf.fr/courses/indice-deladou.html",
+        "driver": "E. ALLARD"
+      },
+      {
+        "date": "2026-03-06",
+        "hippodrome": "Enghien",
+        "rang": "7e",
+        "source_url": "https://www.iturf.fr/courses/indice-deladou.html",
+        "driver": "E. BOUCLET"
+      },
+      {
+        "date": "2026-02-20",
+        "hippodrome": "Vincennes",
+        "rang": "4e",
+        "source_url": "https://www.iturf.fr/courses/indice-deladou.html",
+        "driver": "E. BOUCLET"
+      },
+      {
+        "date": "2026-01-25",
+        "hippodrome": "Vincennes",
+        "rang": "2e",
+        "source_url": "https://www.iturf.fr/courses/indice-deladou.html",
+        "driver": "E. BOUCLET"
+      }
+    ],
+    "isolee-du-bouillon": [
+      {
+        "date": "2026-11-07",
+        "hippodrome": "Laval",
+        "rang": "6e",
+        "source_url": "https://iturf.b-cdn.net/courses/isolee-du-bouillon.html",
+        "driver": "T. BELLET"
+      },
+      {
+        "date": "2026-10-15",
+        "hippodrome": "Enghien",
+        "rang": "Tombée",
+        "source_url": "https://iturf.b-cdn.net/courses/isolee-du-bouillon.html",
+        "driver": "S.-E. PASQUIER"
+      },
+      {
+        "date": "2026-09-27",
+        "hippodrome": "Vincennes",
+        "rang": "Non placée",
+        "source_url": "https://iturf.b-cdn.net/courses/isolee-du-bouillon.html",
+        "driver": "M. LEGROS"
+      },
+      {
+        "date": "2026-09-12",
+        "hippodrome": "Vincennes",
+        "rang": "9e",
+        "source_url": "https://iturf.b-cdn.net/courses/isolee-du-bouillon.html",
+        "driver": "M. LEGROS"
+      },
+      {
+        "date": "2026-06-27",
+        "hippodrome": "Enghien",
+        "rang": "5e",
+        "source_url": "https://iturf.b-cdn.net/courses/isolee-du-bouillon.html",
+        "driver": "M. LEGROS"
+      }
+    ],
+    "mandragora-fleury": [
+      {
+        "date": "2026-09-28",
+        "hippodrome": "Craon",
+        "rang": "3e",
+        "source_url": "https://www.canalturf.com/courses_fiche_cheval.php?idcheval=503598",
+        "driver": "P. PACAUD"
+      },
+      {
+        "date": "2026-09-11",
+        "hippodrome": "Vincennes",
+        "rang": "14e",
+        "source_url": "https://www.canalturf.com/courses_fiche_cheval.php?idcheval=503598",
+        "driver": "V. HÉBERT"
+      },
+      {
+        "date": "2026-08-28",
+        "hippodrome": "Cabourg",
+        "rang": "Non placée",
+        "source_url": "https://www.canalturf.com/courses_fiche_cheval.php?idcheval=503598",
+        "driver": "P. PACAUD"
+      },
+      {
+        "date": "2026-07-12",
+        "hippodrome": "Clairefontaine",
+        "rang": "2e",
+        "source_url": "https://www.canalturf.com/courses_fiche_cheval.php?idcheval=503598",
+        "driver": "P. PACAUD"
+      },
+      {
+        "date": "2026-06-16",
+        "hippodrome": "Vincennes",
+        "rang": "9e",
+        "source_url": "https://www.canalturf.com/courses_fiche_cheval.php?idcheval=503598",
+        "driver": "V. HÉBERT"
+      }
+    ],
+    "mona-lisa-stardust": [
+      {
+        "date": "2026-09-18",
+        "hippodrome": "Toulouse",
+        "rang": "9e",
+        "source_url": "https://www.iturf.fr/courses/mona-lisa-stardust.html",
+        "driver": "M. GERGOUIL"
+      },
+      {
+        "date": "2026-04-03",
+        "hippodrome": "Toulouse",
+        "rang": "8e",
+        "source_url": "https://www.iturf.fr/courses/mona-lisa-stardust.html",
+        "driver": "M. HANQUIER"
+      },
+      {
+        "date": "2026-03-26",
+        "hippodrome": "Toulouse",
+        "rang": "4e",
+        "source_url": "https://www.iturf.fr/courses/mona-lisa-stardust.html",
+        "driver": "M. HANQUIER"
+      },
+      {
+        "date": "2026-03-15",
+        "hippodrome": "Agen",
+        "rang": "1re",
+        "source_url": "https://www.iturf.fr/courses/mona-lisa-stardust.html",
+        "driver": "M. HANQUIER"
+      },
+      {
+        "date": "2026-01-30",
+        "hippodrome": "Toulouse",
+        "rang": "7e",
+        "source_url": "https://www.iturf.fr/courses/mona-lisa-stardust.html",
+        "driver": "M. GRASSET"
+      }
+    ],
+    "moondance-okina": [
+      {
+        "date": "2026-06-16",
+        "hippodrome": "Vincennes",
+        "rang": "6e",
+        "source_url": "https://www.geny.com/cheval/2842128-moondance-okina/course/1654891",
+        "driver": "M. LEGROS"
+      },
+      {
+        "date": "2026-06-02",
+        "hippodrome": "Vincennes",
+        "rang": "4e",
+        "source_url": "https://www.geny.com/cheval/2842128-moondance-okina/course/1654891",
+        "driver": "M. LEGROS"
+      },
+      {
+        "date": "2026-05-26",
+        "hippodrome": "Vincennes",
+        "rang": "3e",
+        "source_url": "https://www.geny.com/cheval/2842128-moondance-okina/course/1654891",
+        "driver": "F. LAGADEUC"
+      },
+      {
+        "date": "2026-04-30",
+        "hippodrome": "Saint-Brieuc",
+        "rang": "5e",
+        "source_url": "https://www.geny.com/cheval/2842128-moondance-okina/course/1654891",
+        "driver": "R. LAMY"
+      },
+      {
+        "date": "2026-04-12",
+        "hippodrome": "Graignes",
+        "rang": "2e",
+        "source_url": "https://www.geny.com/cheval/2842128-moondance-okina/course/1654891",
+        "driver": "S. ERNAULT"
+      }
+    ],
+    "myrtille-marboula": [
+      {
+        "date": "2026-10-23",
+        "hippodrome": "Vincennes",
+        "rang": "Non placée",
+        "source_url": "https://www.canalturf.com/courses_fiche_cheval.php?idcheval=485255",
+        "driver": "R. LAMY"
+      },
+      {
+        "date": "2026-10-06",
+        "hippodrome": "Vincennes",
+        "rang": "9e",
+        "source_url": "https://www.canalturf.com/courses_fiche_cheval.php?idcheval=485255",
+        "driver": "M. CHAMPENOIS"
+      },
+      {
+        "date": "2026-09-22",
+        "hippodrome": "Vincennes",
+        "rang": "1re",
+        "source_url": "https://www.canalturf.com/courses_fiche_cheval.php?idcheval=485255",
+        "driver": "G. GELORMINI"
+      },
+      {
+        "date": "2026-08-26",
+        "hippodrome": "Vincennes",
+        "rang": "Non placée",
+        "source_url": "https://www.canalturf.com/courses_fiche_cheval.php?idcheval=485255",
+        "driver": "F. LAGADEUC"
+      },
+      {
+        "date": "2026-08-08",
+        "hippodrome": "Enghien",
+        "rang": "1re",
+        "source_url": "https://www.canalturf.com/courses_fiche_cheval.php?idcheval=485255",
+        "driver": "G. GELORMINI"
+      }
+    ],
+    "nebraska-fleury": [
+      {
+        "date": "2026-08-25",
+        "hippodrome": "Cabourg",
+        "rang": "2e",
+        "source_url": "https://www.zone-turf.fr/cheval/nebraska-fleury-2141335/resume-de-carriere/",
+        "driver": "A. ANDRÉ"
+      },
+      {
+        "date": "2026-08-02",
+        "hippodrome": "Aix-les-Bains",
+        "rang": "1er",
+        "source_url": "https://www.zone-turf.fr/cheval/nebraska-fleury-2141335/resume-de-carriere/",
+        "driver": "Th. BRIAND"
+      },
+      {
+        "date": "2026-07-19",
+        "hippodrome": "Clairefontaine",
+        "rang": "1er",
+        "source_url": "https://www.zone-turf.fr/cheval/nebraska-fleury-2141335/resume-de-carriere/",
+        "driver": "M. LEGROS"
+      },
+      {
+        "date": "2026-07-12",
+        "hippodrome": "Bernay",
+        "rang": "Dai",
+        "source_url": "https://www.zone-turf.fr/cheval/nebraska-fleury-2141335/resume-de-carriere/"
+      },
+      {
+        "date": "2026-05-24",
+        "hippodrome": "Royan-La Palmyre",
+        "rang": "2e",
+        "source_url": "https://www.zone-turf.fr/cheval/nebraska-fleury-2141335/resume-de-carriere/"
+      }
+    ],
+    "nelson-star": [
+      {
+        "date": "2026-08-09",
+        "hippodrome": "Fleurance",
+        "rang": "Dai",
+        "source_url": "https://www.zone-turf.fr/cheval/nelson-star-2151766/resume-de-carriere/"
+      },
+      {
+        "date": "2026-08-02",
+        "hippodrome": "Eauze",
+        "rang": "Dai",
+        "source_url": "https://www.zone-turf.fr/cheval/nelson-star-2151766/resume-de-carriere/"
+      },
+      {
+        "date": "2026-07-14",
+        "hippodrome": "Le Dorat",
+        "rang": "Dai",
+        "source_url": "https://www.zone-turf.fr/cheval/nelson-star-2151766/resume-de-carriere/"
+      },
+      {
+        "date": "2026-07-01",
+        "hippodrome": "Biarritz",
+        "rang": "Arrêté",
+        "source_url": "https://www.zone-turf.fr/cheval/nelson-star-2151766/resume-de-carriere/"
+      },
+      {
+        "date": "2026-06-07",
+        "hippodrome": "Eauze",
+        "rang": "Dai",
+        "source_url": "https://www.zone-turf.fr/cheval/nelson-star-2151766/resume-de-carriere/"
+      }
+    ],
+    "nostalgie-dairpet": [
+      {
+        "date": "2026-10-17",
+        "hippodrome": "Enghien",
+        "rang": "2e",
+        "source_url": "https://www.geny.com/cheval/2863611-nostalgie-dairpet/course/1691905",
+        "driver": "A. LAMY"
+      },
+      {
+        "date": "2026-10-08",
+        "hippodrome": "Enghien",
+        "rang": "4e",
+        "source_url": "https://www.geny.com/cheval/2863611-nostalgie-dairpet/course/1691905",
+        "driver": "A. LAMY"
+      },
+      {
+        "date": "2026-09-20",
+        "hippodrome": "Vire",
+        "rang": "3e",
+        "source_url": "https://www.geny.com/cheval/2863611-nostalgie-dairpet/course/1691905",
+        "driver": "A.-G. MAILLARD"
+      },
+      {
+        "date": "2026-08-28",
+        "hippodrome": "Les Sables-d'Olonne",
+        "rang": "3e",
+        "source_url": "https://www.geny.com/cheval/2863611-nostalgie-dairpet/course/1691905",
+        "driver": "A. WIELS"
+      },
+      {
+        "date": "2026-08-04",
+        "hippodrome": "Cabourg",
+        "rang": "8e",
+        "source_url": "https://www.geny.com/cheval/2863611-nostalgie-dairpet/course/1691905",
+        "driver": "V. SAUSSAYE"
+      }
+    ],
+    "andresy": [
+      {
+        "date": "2026-11-05",
+        "hippodrome": "Chantilly",
+        "rang": "12e",
+        "source_url": "https://www.zone-turf.fr/cheval/andresy-2100847/",
+        "jockey": "L. ROUSSEL"
+      },
+      {
+        "date": "2026-10-23",
+        "hippodrome": "Clairefontaine",
+        "rang": "Non placé",
+        "source_url": "https://www.zone-turf.fr/cheval/andresy-2100847/",
+        "jockey": "H. LEBOUC"
+      },
+      {
+        "date": "2026-09-20",
+        "hippodrome": "Sablé-sur-Sarthe",
+        "rang": "3e",
+        "source_url": "https://www.zone-turf.fr/cheval/andresy-2100847/",
+        "jockey": "H. LEBOUC"
+      },
+      {
+        "date": "2026-08-23",
+        "hippodrome": "Deauville",
+        "rang": "2e",
+        "source_url": "https://www.zone-turf.fr/cheval/andresy-2100847/",
+        "jockey": "L. BOISSEAU"
+      },
+      {
+        "date": "2026-08-11",
+        "hippodrome": "Deauville",
+        "rang": "13e",
+        "source_url": "https://www.zone-turf.fr/cheval/andresy-2100847/",
+        "jockey": "L. ROUSSEL"
+      }
+    ],
+    "bailychka": [
+      {
+        "date": "2026-09-11",
+        "hippodrome": "Le Mans",
+        "rang": "5e",
+        "source_url": "https://www.iturf.fr/courses/bailychka.html",
+        "jockey": "R. MANGIONE"
+      },
+      {
+        "date": "2026-08-03",
+        "hippodrome": "Vichy",
+        "rang": "4e",
+        "source_url": "https://www.iturf.fr/courses/bailychka.html",
+        "jockey": "I. MENDIZABAL"
+      }
+    ],
+    "bobrovkha": [
+      {
+        "date": "2026-05-29",
+        "hippodrome": "Nantes",
+        "rang": "7e",
+        "source_url": "https://www.canalturf.com/courses_fiche_cheval.php?idcheval=505932",
+        "jockey": "L. ROUSSEL"
+      },
+      {
+        "date": "2026-05-03",
+        "hippodrome": "ParisLongchamp",
+        "rang": "10e",
+        "source_url": "https://www.canalturf.com/courses_fiche_cheval.php?idcheval=505932",
+        "jockey": "D. PROVOST"
+      },
+      {
+        "date": "2026-04-11",
+        "hippodrome": "Fontainebleau",
+        "rang": "14e",
+        "source_url": "https://www.canalturf.com/courses_fiche_cheval.php?idcheval=505932",
+        "jockey": "L. ROUSSEL"
+      },
+      {
+        "date": "2026-03-31",
+        "hippodrome": "Nantes",
+        "rang": "1re",
+        "source_url": "https://www.canalturf.com/courses_fiche_cheval.php?idcheval=505932",
+        "jockey": "L. ROUSSEL"
+      },
+      {
+        "date": "2026-03-04",
+        "hippodrome": "Le Mans",
+        "rang": "12e",
+        "source_url": "https://www.canalturf.com/courses_fiche_cheval.php?idcheval=505932",
+        "jockey": "H. LEBOUC"
+      }
+    ],
+    "giorgiana": [
+      {
+        "date": "2026-10-26",
+        "hippodrome": "Toulouse",
+        "rang": "7e",
+        "source_url": "https://www.turfostats.com/cheval.php?id=703477",
+        "jockey": "L. BOISSEAU"
+      },
+      {
+        "date": "2026-10-01",
+        "hippodrome": "Argentan",
+        "rang": "7e",
+        "source_url": "https://www.turfostats.com/cheval.php?id=703477"
+      },
+      {
+        "date": "2026-09-01",
+        "hippodrome": "Deauville",
+        "rang": "3e",
+        "source_url": "https://www.turfostats.com/cheval.php?id=703477",
+        "jockey": "L. BOISSEAU"
+      },
+      {
+        "date": "2026-07-31",
+        "hippodrome": "Senonnes-Pouancé",
+        "rang": "8e",
+        "source_url": "https://www.turfostats.com/cheval.php?id=703477",
+        "jockey": "L. ROUSSEL"
+      },
+      {
+        "date": "2026-07-03",
+        "hippodrome": "Tarbes",
+        "rang": "1re",
+        "source_url": "https://www.turfostats.com/cheval.php?id=703477",
+        "jockey": "I. MENDIZABAL"
+      }
+    ],
+    "limpide": [
+      {
+        "date": "2026-05-17",
+        "hippodrome": "Le Croisé-Laroche",
+        "rang": "3e",
+        "source_url": "https://hippigold.fr/chevaux/limpide/",
+        "jockey": "L. BOISSEAU"
+      },
+      {
+        "date": "2026-05-05",
+        "hippodrome": "Saint-Cloud",
+        "rang": "7e",
+        "source_url": "https://hippigold.fr/chevaux/limpide/",
+        "jockey": "H. LEBOUC"
+      },
+      {
+        "date": "2026-04-21",
+        "hippodrome": "Le Mans",
+        "rang": "4e",
+        "source_url": "https://hippigold.fr/chevaux/limpide/",
+        "jockey": "H. LEBOUC"
+      },
+      {
+        "date": "2026-04-04",
+        "hippodrome": "Le Croisé-Laroche",
+        "rang": "2e",
+        "source_url": "https://hippigold.fr/chevaux/limpide/",
+        "jockey": "H. LEBOUC"
+      },
+      {
+        "date": "2026-03-30",
+        "hippodrome": "Chantilly",
+        "rang": "1re",
+        "source_url": "https://hippigold.fr/chevaux/limpide/",
+        "jockey": "H. LEBOUC"
+      }
+    ],
+    "master-pat": [
+      {
+        "date": "2026-10-21",
+        "hippodrome": "Deauville",
+        "rang": "9e",
+        "source_url": "https://www.canalturf.com/courses_fiche_cheval.php?idcheval=485967",
+        "jockey": "M. GUYON"
+      },
+      {
+        "date": "2026-10-09",
+        "hippodrome": "Compiègne",
+        "rang": "11e",
+        "source_url": "https://www.canalturf.com/courses_fiche_cheval.php?idcheval=485967",
+        "jockey": "M. GUYON"
+      },
+      {
+        "date": "2026-09-14",
+        "hippodrome": "Chantilly",
+        "rang": "2e",
+        "source_url": "https://www.canalturf.com/courses_fiche_cheval.php?idcheval=485967",
+        "jockey": "M. GUYON"
+      },
+      {
+        "date": "2026-09-01",
+        "hippodrome": "Deauville",
+        "rang": "7e",
+        "source_url": "https://www.canalturf.com/courses_fiche_cheval.php?idcheval=485967",
+        "jockey": "D. PROVOST"
+      },
+      {
+        "date": "2026-08-20",
+        "hippodrome": "Deauville",
+        "rang": "4e",
+        "source_url": "https://www.canalturf.com/courses_fiche_cheval.php?idcheval=485967",
+        "jockey": "D. PROVOST"
+      }
+    ],
+    "on-lockdown": [
+      {
+        "date": "2026-10-28",
+        "hippodrome": "Le Mans",
+        "rang": "7e",
+        "source_url": "https://www.canalturf.com/courses_fiche_cheval.php?idcheval=385290",
+        "jockey": "L. ROUSSEL"
+      },
+      {
+        "date": "2026-10-09",
+        "hippodrome": "Compiègne",
+        "rang": "4e",
+        "source_url": "https://www.canalturf.com/courses_fiche_cheval.php?idcheval=385290",
+        "jockey": "L. BOISSEAU"
+      },
+      {
+        "date": "2026-09-04",
+        "hippodrome": "Le Lion-d'Angers",
+        "rang": "7e",
+        "source_url": "https://www.canalturf.com/courses_fiche_cheval.php?idcheval=385290",
+        "jockey": "L. BOISSEAU"
+      },
+      {
+        "date": "2026-04-05",
+        "hippodrome": "ParisLongchamp",
+        "rang": "Non placé",
+        "source_url": "https://www.canalturf.com/courses_fiche_cheval.php?idcheval=385290",
+        "jockey": "L. BOISSEAU"
+      },
+      {
+        "date": "2026-03-20",
+        "hippodrome": "Le Mans",
+        "rang": "1er",
+        "source_url": "https://www.canalturf.com/courses_fiche_cheval.php?idcheval=385290",
+        "jockey": "L. BOISSEAU"
+      }
+    ],
+    "saturday-night": [
+      {
+        "date": "2026-11-03",
+        "hippodrome": "Deauville",
+        "rang": "5e",
+        "source_url": "https://www.ornecourses.com/course.php?id=7752",
+        "jockey": "M. GRANDIN"
+      },
+      {
+        "date": "2026-09-29",
+        "hippodrome": "Chantilly",
+        "rang": "7e",
+        "source_url": "https://www.ornecourses.com/course.php?id=7752",
+        "jockey": "M. GRANDIN"
+      },
+      {
+        "date": "2026-08-28",
+        "hippodrome": "Saint-Malo",
+        "rang": "2e",
+        "source_url": "https://www.ornecourses.com/course.php?id=7752",
+        "jockey": "M. GRANDIN"
+      },
+      {
+        "date": "2026-08-16",
+        "hippodrome": "Le Touquet",
+        "rang": "2e",
+        "source_url": "https://www.ornecourses.com/course.php?id=7752",
+        "jockey": "M. VELON"
+      },
+      {
+        "date": "2026-07-19",
+        "hippodrome": "Chantilly",
+        "rang": "10e",
+        "source_url": "https://www.ornecourses.com/course.php?id=7752",
+        "jockey": "C. LECOEUVRE"
+      }
+    ],
+    "victoria-secret": [
+      {
+        "date": "2026-09-18",
+        "hippodrome": "Saint-Cloud",
+        "rang": "Non placée",
+        "source_url": "https://www.france-sire.com/cheval-543238-victoria_secret.php",
+        "jockey": "M. GUYON"
+      },
+      {
+        "date": "2026-08-31",
+        "hippodrome": "Saint-Cloud",
+        "rang": "5e",
+        "source_url": "https://www.france-sire.com/cheval-543238-victoria_secret.php",
+        "jockey": "M. GUYON"
+      },
+      {
+        "date": "2026-08-24",
+        "hippodrome": "Dieppe",
+        "rang": "2e",
+        "source_url": "https://www.france-sire.com/cheval-543238-victoria_secret.php",
+        "jockey": "M. GUYON"
+      },
+      {
+        "date": "2026-08-03",
+        "hippodrome": "Clairefontaine",
+        "rang": "2e",
+        "source_url": "https://www.france-sire.com/cheval-543238-victoria_secret.php",
+        "jockey": "T. BACHELOT"
+      },
+      {
+        "date": "2026-07-19",
+        "hippodrome": "Vittel",
+        "rang": "3e",
+        "source_url": "https://www.france-sire.com/cheval-543238-victoria_secret.php",
+        "jockey": "L. GALLO"
+      }
+    ],
+    "vyborg": [
+      {
+        "date": "2026-08-31",
+        "hippodrome": "Saint-Cloud",
+        "rang": "12e",
+        "source_url": "https://www.canalturf.com/courses_fiche_cheval.php?idcheval=370898",
+        "jockey": "L. ROUSSEL"
+      },
+      {
+        "date": "2026-08-16",
+        "hippodrome": "Deauville",
+        "rang": "2e",
+        "source_url": "https://www.canalturf.com/courses_fiche_cheval.php?idcheval=370898",
+        "jockey": "M. BARZALONA"
+      },
+      {
+        "date": "2026-07-26",
+        "hippodrome": "Le Touquet",
+        "rang": "4e",
+        "source_url": "https://www.canalturf.com/courses_fiche_cheval.php?idcheval=370898",
+        "jockey": "L. BOISSEAU"
+      },
+      {
+        "date": "2026-06-25",
+        "hippodrome": "Deauville",
+        "rang": "Non placé",
+        "source_url": "https://www.canalturf.com/courses_fiche_cheval.php?idcheval=370898",
+        "jockey": "O. D'ANDIGNÉ"
+      },
+      {
+        "date": "2026-06-10",
+        "hippodrome": "Argentan",
+        "rang": "9e",
+        "source_url": "https://www.canalturf.com/courses_fiche_cheval.php?idcheval=370898",
+        "jockey": "O. D'ANDIGNÉ"
       }
     ]
   },
