@@ -3,7 +3,7 @@
 const $=sel=>document.querySelector(sel),formatEuro=new Intl.NumberFormat('fr-FR'),base=document.body.dataset.page==='fiche'?'../':'./';
 const esc=v=>String(v===undefined||v===null?'':v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const absoluteUrl=u=>{try{let v=new URL(u);return v.protocol==='https:'?v.href:''}catch{return ''}};
-const dateFR=s=>{if(!/^\\d{4}-\\d{2}-\\d{2}$/.test(s||''))return s||'';let [y,m,d]=s.split('-');return d+'/'+m+'/'+y};
+const dateFR=s=>{if(!/^\d{4}-\d{2}-\d{2}$/.test(s||''))return s||'';let [y,m,d]=s.split('-');return d+'/'+m+'/'+y};
 const money=n=>Number.isFinite(n)?formatEuro.format(n)+' €':'—';
 const formatValue=n=>Number.isFinite(n)?String(n).replace('.',','):'—';
 const currentParis=()=>new Intl.DateTimeFormat('sv-SE',{timeZone:'Europe/Paris',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).format(new Date()).replace(' ','T');
