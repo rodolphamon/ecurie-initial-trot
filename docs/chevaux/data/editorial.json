@@ -1,0 +1,66 @@
+{
+  "schema": "ecurie-initial-profils-v1",
+  "updated_at": "2026-11-12",
+  "note": "Résultats et engagements saisis à partir des informations communiquées par l'écurie. Ils ne constituent pas un flux officiel automatisé. Les engagements sont retirés de l'affichage lorsque leur horaire est dépassé.",
+  "performances": {
+    "memphis-belle": [
+      {
+        "date": "2026-11-01",
+        "hippodrome": "Lisieux",
+        "rang": "3e"
+      }
+    ],
+    "lucky-des-gaudines": [
+      {
+        "date": "2026-10-30",
+        "hippodrome": "Toulouse",
+        "rang": "2e"
+      },
+      {
+        "date": "2026-10-25",
+        "hippodrome": "Montauban",
+        "rang": "2e"
+      }
+    ],
+    "gonafoot": [
+      {
+        "date": "2026-10-22",
+        "hippodrome": "Les Sables-d'Olonne",
+        "rang": "3e"
+      }
+    ],
+    "zartop": [
+      {
+        "date": "2026-10-20",
+        "hippodrome": "Clairefontaine",
+        "rang": "2e"
+      }
+    ]
+  },
+  "engagements": {
+    "olano-de-la-vallee": [
+      {
+        "date": "2026-11-12",
+        "heure": "09:48",
+        "hippodrome": "Caen",
+        "type": "Qualification"
+      }
+    ],
+    "mona-lisa-stardust": [
+      {
+        "date": "2026-11-13",
+        "heure": "15:45",
+        "hippodrome": "Toulouse",
+        "type": "Course"
+      }
+    ],
+    "victoria-secret": [
+      {
+        "date": "2026-11-13",
+        "heure": "14:18",
+        "hippodrome": "Saint-Cloud",
+        "type": "Course"
+      }
+    ]
+  }
+}

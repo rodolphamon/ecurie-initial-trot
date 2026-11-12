@@ -1,0 +1,277 @@
+{
+  "updated_at": "2026-11-12",
+  "horses": [
+    {
+      "id": "indice-deladou",
+      "name": "INDICE DELADOU",
+      "discipline": "Trot",
+      "trainer": "Charley HESLOUIN",
+      "casaque": "blanche",
+      "horseLink": "https://www.letrot.com/stats/chevaux/INDICE-DELADOU/ZWpbZwsDBgMV/courses"
+    },
+    {
+      "id": "isolee-du-bouillon",
+      "name": "ISOLÉE DU BOUILLON",
+      "discipline": "Trot",
+      "trainer": "Bruno MARIE",
+      "casaque": "blanche",
+      "horseLink": "https://www.letrot.com/stats/chevaux/ISOLEE-DU-BOUILLON/ZWpbZQQJAgMG/courses"
+    },
+    {
+      "id": "lord-on-way",
+      "name": "LORD ON WAY",
+      "discipline": "Trot",
+      "trainer": "Bruno MARIE",
+      "casaque": "blanche",
+      "horseLink": "https://www.letrot.com/stats/chevaux/LORD-ON-WAY/ZmN8ZgYHAQUa/courses"
+    },
+    {
+      "id": "lucky-des-gaudines",
+      "name": "LUCKY DES GAUDINES",
+      "discipline": "Trot",
+      "trainer": "Mathieu DAOUGABEL",
+      "casaque": "orange",
+      "horseLink": "https://www.letrot.com/stats/chevaux/LUCKY-DES-GAUDINES/ZmN8ZwMFAwoF/courses"
+    },
+    {
+      "id": "mandragora-fleury",
+      "name": "MANDRAGORA FLEURY",
+      "discipline": "Trot",
+      "trainer": "Vincent HÉBERT",
+      "casaque": "blanche",
+      "horseLink": "https://www.letrot.com/stats/chevaux/MANDRAGORA-FLEURY/ZmBbYgoHBgQf/courses"
+    },
+    {
+      "id": "memphis-belle",
+      "name": "MEMPHIS BELLE",
+      "discipline": "Trot",
+      "trainer": "Laurent BARASSIN",
+      "casaque": "blanche",
+      "horseLink": "https://www.letrot.com/stats/chevaux/memphis-belle/ZmB9ZwMIAQYY/courses"
+    },
+    {
+      "id": "mona-lisa-stardust",
+      "name": "MONA LISA STARDUST",
+      "discipline": "Trot",
+      "trainer": "Michel HANQUIER",
+      "casaque": "orange",
+      "horseLink": null
+    },
+    {
+      "id": "moondance-okina",
+      "name": "MOONDANCE OKINA",
+      "discipline": "Trot",
+      "trainer": "Bruno MARIE",
+      "casaque": "blanche",
+      "horseLink": "https://www.letrot.com/stats/chevaux/MOONDANCE-OKINA/ZmBbbAMIAQUc/courses"
+    },
+    {
+      "id": "myrtille-marboula",
+      "name": "MYRTILLE MARBOULA",
+      "discipline": "Trot",
+      "trainer": "Bruno MARIE",
+      "casaque": "orange",
+      "horseLink": "https://www.letrot.com/stats/chevaux/myrtille-marboula/ZmBbYgAAAwQV/courses"
+    },
+    {
+      "id": "nebraska-fleury",
+      "name": "NEBRASKA FLEURY",
+      "discipline": "Trot",
+      "trainer": "Vincent HÉBERT",
+      "casaque": "blanche",
+      "horseLink": "https://www.letrot.com/stats/chevaux/NEBRASKA-FLEURY/ZmF8ZQUGBwQB/courses"
+    },
+    {
+      "id": "nelson-star",
+      "name": "NELSON STAR",
+      "discipline": "Trot",
+      "trainer": "Michel HANQUIER",
+      "casaque": "blanche",
+      "horseLink": null
+    },
+    {
+      "id": "nostalgie-dairpet",
+      "name": "NOSTALGIE DAIRPET",
+      "discipline": "Trot",
+      "trainer": "Laurent BARASSIN",
+      "casaque": "blanche",
+      "horseLink": null
+    },
+    {
+      "id": "odacieuse-fleury",
+      "name": "ODACIEUSE FLEURY",
+      "discipline": "Trot",
+      "trainer": "Vincent HÉBERT",
+      "casaque": "blanche",
+      "horseLink": "https://www.letrot.com/stats/chevaux/ODACIEUSE-FLEURY/ZmZbYgsEBAYG/courses"
+    },
+    {
+      "id": "olano-de-la-vallee",
+      "name": "OLANO DE LA VALLÉE",
+      "discipline": "Trot",
+      "trainer": "Vincent HÉBERT",
+      "casaque": "blanche",
+      "horseLink": "https://www.letrot.com/stats/chevaux/OLANO-DE-LA-VALLEE/ZmZbbAIBAwcG/courses"
+    },
+    {
+      "id": "palazzo-grassi",
+      "name": "PALAZZO GRASSI",
+      "discipline": "Trot",
+      "trainer": "Laurent BARASSIN",
+      "casaque": "blanche",
+      "horseLink": null
+    },
+    {
+      "id": "phacelie-bilou",
+      "name": "PHACÉLIE BILOU",
+      "discipline": "Trot",
+      "trainer": "A. RIPOLL RIGO",
+      "casaque": "blanche",
+      "horseLink": "https://www.letrot.com/stats/chevaux/phacelie-bilou/Zmd8ZAYABQMV/elevage"
+    },
+    {
+      "id": "popstar-d-eri",
+      "name": "POPSTAR D'ERI",
+      "discipline": "Trot",
+      "trainer": "Vincent HÉBERT",
+      "casaque": "blanche",
+      "horseLink": "https://www.letrot.com/stats/chevaux/popstar-d%27eri/Zmd8ZQECBwYG/elevage"
+    },
+    {
+      "id": "prince-gio",
+      "name": "PRINCE GIO",
+      "discipline": "Trot",
+      "trainer": "Laurent BARASSIN",
+      "casaque": "blanche",
+      "horseLink": null
+    },
+    {
+      "id": "andresy",
+      "name": "ANDRESY",
+      "discipline": "Plat",
+      "trainer": "Gilles PANNIER",
+      "casaque": "galop",
+      "horseLink": "https://pro.france-galop.com/EspacePro/Cheval/FicheCheval?numSIRE=23318863"
+    },
+    {
+      "id": "bailychka",
+      "name": "BAILYCHKA",
+      "discipline": "Plat",
+      "trainer": "Gilles PANNIER",
+      "casaque": "galop",
+      "horseLink": null
+    },
+    {
+      "id": "bobrovkha",
+      "name": "BOBROVKHA",
+      "discipline": "Plat",
+      "trainer": "Gilles PANNIER",
+      "casaque": "galop",
+      "horseLink": "https://pro.france-galop.com/EspacePro/Cheval/FicheCheval?numSIRE=22165191"
+    },
+    {
+      "id": "douriann",
+      "name": "DOURIANN",
+      "discipline": "Plat",
+      "trainer": "Gilles PANNIER",
+      "casaque": "galop",
+      "horseLink": null
+    },
+    {
+      "id": "giorgiana",
+      "name": "GIORGIANA",
+      "discipline": "Plat",
+      "trainer": "Gilles PANNIER",
+      "casaque": "galop",
+      "horseLink": "https://pro.france-galop.com/EspacePro/Cheval/FicheCheval?numSIRE=20750165"
+    },
+    {
+      "id": "gonafoot",
+      "name": "GONAFOOT",
+      "discipline": "Plat",
+      "trainer": "Gilles PANNIER",
+      "casaque": "galop",
+      "horseLink": null
+    },
+    {
+      "id": "le-roi-leon",
+      "name": "LE ROI LEON",
+      "discipline": "Plat",
+      "trainer": "Gilles PANNIER",
+      "casaque": "galop",
+      "horseLink": null
+    },
+    {
+      "id": "limpide",
+      "name": "LIMPIDE",
+      "discipline": "Plat",
+      "trainer": "Gilles PANNIER",
+      "casaque": "galop",
+      "horseLink": null
+    },
+    {
+      "id": "master-pat",
+      "name": "MASTER PAT",
+      "discipline": "Plat",
+      "trainer": "Gilles PANNIER",
+      "casaque": "galop",
+      "horseLink": "https://www.geny.com/cheval/2817411-master-pat"
+    },
+    {
+      "id": "on-lockdown",
+      "name": "ON LOCKDOWN",
+      "discipline": "Plat",
+      "trainer": "Gilles PANNIER",
+      "casaque": "galop",
+      "horseLink": "https://pro.france-galop.com/EspacePro/Cheval/FicheCheval?numSIRE=21319800"
+    },
+    {
+      "id": "rosa-mia",
+      "name": "ROSA MIA",
+      "discipline": "Obstacle",
+      "trainer": "Gilles PANNIER",
+      "casaque": "galop",
+      "horseLink": null
+    },
+    {
+      "id": "saturday-night",
+      "name": "SATURDAY NIGHT",
+      "discipline": "Plat",
+      "trainer": "Gilles PANNIER",
+      "casaque": "galop",
+      "horseLink": null
+    },
+    {
+      "id": "singapor-initial",
+      "name": "SINGAPOR INITIAL",
+      "discipline": "Plat",
+      "trainer": "Gilles PANNIER",
+      "casaque": "galop",
+      "horseLink": null
+    },
+    {
+      "id": "victoria-secret",
+      "name": "VICTORIA SECRET",
+      "discipline": "Plat",
+      "trainer": "Gilles PANNIER",
+      "casaque": "galop",
+      "horseLink": null
+    },
+    {
+      "id": "vyborg",
+      "name": "VYBORG",
+      "discipline": "Plat",
+      "trainer": "Gilles PANNIER",
+      "casaque": "galop",
+      "horseLink": "https://pro.france-galop.com/EspacePro/Cheval/FicheCheval?numSIRE=19302641"
+    },
+    {
+      "id": "zartop",
+      "name": "ZARTOP",
+      "discipline": "Plat",
+      "trainer": "Gilles PANNIER",
+      "casaque": "galop",
+      "horseLink": "https://pro.france-galop.com/EspacePro/Cheval/FicheCheval?numSIRE=22163793"
+    }
+  ]
+}
