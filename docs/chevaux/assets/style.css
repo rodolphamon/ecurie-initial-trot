@@ -4,3 +4,6 @@
 .summary-card{padding:22px 25px;min-width:0}
 .summary-card strong{overflow-wrap:normal;word-break:normal;font-size:clamp(23px,3.3vw,36px);white-space:normal}
 @media(max-width:590px){.summary{gap:10px}.summary-card{padding:17px 14px}.summary-card strong{font-size:clamp(20px,5vw,27px)}}
+
+/* Lien discret vers la source de chaque résultat vérifié */
+.perf-source{display:block;font-size:11px;margin-top:4px}.perf-source a{color:#a94c11;text-decoration:underline;text-underline-offset:2px}.perf-source a:hover{color:#6d2c05}

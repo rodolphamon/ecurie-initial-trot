@@ -1,7 +1,7 @@
 {
   "schema": "ecurie-initial-profils-v1",
   "updated_at": "2026-11-12",
-  "note": "Résultats et engagements saisis à partir des informations communiquées par l'écurie. Ils ne constituent pas un flux officiel automatisé. Les engagements sont retirés de l'affichage lorsque leur horaire est dépassé.",
+  "note": "Résultats saisis à partir des informations communiquées par l'écurie et de vérifications ponctuelles de sources hippiques publiques, avec liens de provenance quand disponibles. Pas de collecte automatique officielle ni de garantie d'actualisation quotidienne. Les engagements sont retirés de l'affichage une fois leur horaire dépassé.",
   "performances": {
     "memphis-belle": [
       {
@@ -34,6 +34,80 @@
         "date": "2026-10-20",
         "hippodrome": "Clairefontaine",
         "rang": "2e"
+      }
+    ],
+    "lord-on-way": [
+      {
+        "date": "2026-10-05",
+        "hippodrome": "Enghien",
+        "rang": "Dai",
+        "driver": "M. LEGROS",
+        "source_url": "https://www.geny.com/cheval/2837238-lord-on-way"
+      },
+      {
+        "date": "2026-09-21",
+        "hippodrome": "La Capelle",
+        "rang": "1er",
+        "driver": "M. LEGROS",
+        "source_url": "https://www.geny.com/cheval/2837238-lord-on-way"
+      },
+      {
+        "date": "2026-09-04",
+        "hippodrome": "Lyon-Parilly",
+        "rang": "1er",
+        "driver": "M. LEGROS",
+        "source_url": "https://www.geny.com/cheval/2837238-lord-on-way"
+      },
+      {
+        "date": "2026-08-27",
+        "hippodrome": "Pornichet",
+        "rang": "1er",
+        "driver": "M. LEGROS",
+        "source_url": "https://www.geny.com/cheval/2837238-lord-on-way"
+      },
+      {
+        "date": "2026-08-20",
+        "hippodrome": "Divonne-les-Bains",
+        "rang": "3e",
+        "driver": "M. LEGROS",
+        "source_url": "https://www.geny.com/cheval/2837238-lord-on-way"
+      }
+    ],
+    "douriann": [
+      {
+        "date": "2026-10-26",
+        "hippodrome": "Toulouse",
+        "rang": "7e",
+        "jockey": "I. MENDIZABAL",
+        "source_url": "https://www.canalturf.com/courses_fiche_cheval.php?idcheval=412006"
+      },
+      {
+        "date": "2026-09-29",
+        "hippodrome": "Chantilly",
+        "rang": "11e",
+        "jockey": "C. DEMURO",
+        "source_url": "https://www.canalturf.com/courses_fiche_cheval.php?idcheval=412006"
+      },
+      {
+        "date": "2026-08-18",
+        "hippodrome": "Deauville",
+        "rang": "13e",
+        "jockey": "M. BARZALONA",
+        "source_url": "https://www.canalturf.com/courses_fiche_cheval.php?idcheval=412006"
+      },
+      {
+        "date": "2026-07-30",
+        "hippodrome": "Dieppe",
+        "rang": "4e",
+        "jockey": "C. DEMURO",
+        "source_url": "https://www.canalturf.com/courses_fiche_cheval.php?idcheval=412006"
+      },
+      {
+        "date": "2026-06-22",
+        "hippodrome": "Lyon-Parilly",
+        "rang": "4e",
+        "jockey": "A. LEMAITRE",
+        "source_url": "https://www.canalturf.com/courses_fiche_cheval.php?idcheval=412006"
       }
     ]
   },
