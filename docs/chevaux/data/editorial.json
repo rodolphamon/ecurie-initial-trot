@@ -5,6 +5,13 @@
   "performances": {
     "memphis-belle": [
       {
+        "date": "2026-11-11",
+        "hippodrome": "Graignes",
+        "rang": "5e",
+        "jockey": "A. LAMY",
+        "source_url": "https://www.geny.com/course/1697686-2026-11-11-graignes-prix-pierre-massieu/arrivee-rapports"
+      },
+      {
         "date": "2026-11-01",
         "hippodrome": "Lisieux",
         "rang": "3e"

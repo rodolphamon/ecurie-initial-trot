@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-11",
-  "source": "Contrôle du 11/11/2026 : LORD ON WAY 67 395 € (Zone-Turf https://www.zone-turf.fr/cheval/lord-on-way-2075153/) ; NOSTALGIE DAIRPET 17 980 € (Geny https://www.geny.com/cheval/2863611-nostalgie-dairpet/course/1691905 et Zone-Turf https://www.zone-turf.fr/cheval/nostalgie-dairpet-2117011/). Autres valeurs historiques conservées sans validation nouvelle.",
+  "updated_at": "2026-11-12",
+  "source": "Contrôle du 11/11/2026 : LORD ON WAY 67 395 € (Zone-Turf https://www.zone-turf.fr/cheval/lord-on-way-2075153/) ; NOSTALGIE DAIRPET 17 980 € (Geny https://www.geny.com/cheval/2863611-nostalgie-dairpet/course/1691905 et Zone-Turf https://www.zone-turf.fr/cheval/nostalgie-dairpet-2117011/). Autres valeurs historiques conservées sans validation nouvelle. ; MEMPHIS BELLE record absolu 1'16\"8 au monté le 11/11/2026 à Graignes vérifié sur Geny https://www.geny.com/cheval/2884884-memphis-belle. Gains MEMPHIS BELLE 6 990 € maintenus faute de cumul post-course explicitement confirmé.",
   "horses": {
     "indice-deladou": {
       "record": "1'11\"6",
@@ -23,8 +23,10 @@
       "gains": 48780
     },
     "memphis-belle": {
-      "record": null,
-      "gains": 6990
+      "record": "1'16\"8",
+      "gains": 6990,
+      "record_source_url": "https://www.geny.com/cheval/2884884-memphis-belle",
+      "record_verified_at": "2026-11-12"
     },
     "mona-lisa-stardust": {
       "record": "1'16\"6",
