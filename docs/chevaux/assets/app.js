@@ -31,12 +31,11 @@ function horse(s){
   const perf=(s.editor.performances[id]||[]).slice().sort((a,b)=>b.date.localeCompare(a.date));
   const eng=(s.editor.engagements[id]||[]).filter(x=>x.date+'T'+(x.heure||'00:00')>=currentParis()).sort((a,b)=>(a.date+a.heure).localeCompare(b.date+b.heure));
   const tr=perf.length
-    ?'<div class="table-wrap"><table class="perf-table"><thead><tr><th>Date</th><th>Hippodrome</th><th>Classement</th><th>Driver / Jockey</th></tr></thead><tbody>'+perf.map(x=>'<tr><td>'+esc(dateFR(x.date))+'</td><td>'+esc(x.hippodrome)+(absoluteUrl(x.source_url||'')?'<small class="perf-source"><a href="'+esc(absoluteUrl(x.source_url))+'" target="_blank" rel="noopener noreferrer">Source ↗</a></small>':'')+'</td><td><span class="rank">'+esc(x.rang||'—')+'</span></td><td>'+esc(x.driver||x.jockey||'—')+'</td></tr>').join('')+'</tbody></table></div>'
+    ?'<div class="table-wrap"><table class="perf-table"><thead><tr><th>Date</th><th>Hippodrome</th><th>Classement</th><th>Driver / Jockey</th></tr></thead><tbody>'+perf.map(x=>'<tr><td>'+esc(dateFR(x.date))+'</td><td>'+esc(x.hippodrome)+'</td><td><span class="rank">'+esc(x.rang||'—')+'</span></td><td>'+esc(x.driver||x.jockey||'—')+'</td></tr>').join('')+'</tbody></table></div>'
     :'<div class="empty">Aucune performance détaillée renseignée pour le moment.</div>';
   const te=eng.length
     ?'<div class="table-wrap"><table class="perf-table"><thead><tr><th>Date</th><th>Hippodrome</th><th>Heure</th><th>Épreuve</th></tr></thead><tbody>'+eng.map(x=>'<tr><td>'+esc(dateFR(x.date))+'</td><td>'+esc(x.hippodrome)+'</td><td><span class="rank">'+esc(x.heure||'—')+'</span></td><td>'+esc(x.type||'Course')+'</td></tr>').join('')+'</tbody></table></div>'
     :'<div class="empty">Aucun prochain engagement renseigné.</div>';
-  const external=absoluteUrl(p.horseLink||p.gains_source_url||'');
   document.title=p.name+' | Écurie Initial';
   $('#app').innerHTML=header()
     +'<main class="shell">'
@@ -56,7 +55,6 @@ function horse(s){
       +'<section class="section">'
         +'<h2 class="section-title">Dernières performances</h2>'
         +'<div class="paper">'+tr+'</div>'
-        +(external?'<a class="external" rel="noopener noreferrer" target="_blank" href="'+esc(external)+'">Voir la fiche hippique ↗</a>':'')
       +'</section>'
       +'<section class="section">'
         +'<h2 class="section-title">Prochains engagements</h2>'
