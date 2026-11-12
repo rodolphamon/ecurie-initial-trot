@@ -2,6 +2,57 @@
   "updated_at": "2026-11-12",
   "horses": [
     {
+      "id": "andresy",
+      "name": "ANDRESY",
+      "discipline": "Plat",
+      "trainer": "Gilles PANNIER",
+      "casaque": "galop",
+      "horseLink": "https://pro.france-galop.com/EspacePro/Cheval/FicheCheval?numSIRE=23318863",
+      "photoVersion": "20261112-andresy2"
+    },
+    {
+      "id": "bailychka",
+      "name": "BAILYCHKA",
+      "discipline": "Plat",
+      "trainer": "Gilles PANNIER",
+      "casaque": "galop",
+      "horseLink": null,
+      "photoVersion": "20261112-bailychka"
+    },
+    {
+      "id": "bobrovkha",
+      "name": "BOBROVKHA",
+      "discipline": "Plat",
+      "trainer": "Gilles PANNIER",
+      "casaque": "galop",
+      "horseLink": "https://pro.france-galop.com/EspacePro/Cheval/FicheCheval?numSIRE=22165191",
+      "photoVersion": "20261112-lot5"
+    },
+    {
+      "id": "douriann",
+      "name": "DOURIANN",
+      "discipline": "Plat",
+      "trainer": "Gilles PANNIER",
+      "casaque": "galop",
+      "horseLink": null
+    },
+    {
+      "id": "giorgiana",
+      "name": "GIORGIANA",
+      "discipline": "Plat",
+      "trainer": "Gilles PANNIER",
+      "casaque": "galop",
+      "horseLink": "https://pro.france-galop.com/EspacePro/Cheval/FicheCheval?numSIRE=20750165"
+    },
+    {
+      "id": "gonafoot",
+      "name": "GONAFOOT",
+      "discipline": "Plat",
+      "trainer": "Gilles PANNIER",
+      "casaque": "galop",
+      "horseLink": null
+    },
+    {
       "id": "indice-deladou",
       "name": "INDICE DELADOU",
       "discipline": "Trot",
@@ -17,6 +68,24 @@
       "trainer": "Bruno MARIE",
       "casaque": "blanche",
       "horseLink": "https://www.letrot.com/stats/chevaux/ISOLEE-DU-BOUILLON/ZWpbZQQJAgMG/courses"
+    },
+    {
+      "id": "le-roi-leon",
+      "name": "LE ROI LEON",
+      "discipline": "Plat",
+      "trainer": "Gilles PANNIER",
+      "casaque": "galop",
+      "horseLink": null,
+      "photoVersion": "20261112-lot5"
+    },
+    {
+      "id": "limpide",
+      "name": "LIMPIDE",
+      "discipline": "Plat",
+      "trainer": "Gilles PANNIER",
+      "casaque": "galop",
+      "horseLink": null,
+      "photoVersion": "20261112-lot5"
     },
     {
       "id": "lord-on-way",
@@ -42,6 +111,15 @@
       "trainer": "Vincent HÉBERT",
       "casaque": "blanche",
       "horseLink": "https://www.letrot.com/stats/chevaux/MANDRAGORA-FLEURY/ZmBbYgoHBgQf/courses",
+      "photoVersion": "20261112-19"
+    },
+    {
+      "id": "master-pat",
+      "name": "MASTER PAT",
+      "discipline": "Plat",
+      "trainer": "Gilles PANNIER",
+      "casaque": "galop",
+      "horseLink": "https://www.geny.com/cheval/2817411-master-pat",
       "photoVersion": "20261112-19"
     },
     {
@@ -125,6 +203,15 @@
       "photoVersion": "20261112-19"
     },
     {
+      "id": "on-lockdown",
+      "name": "ON LOCKDOWN",
+      "discipline": "Plat",
+      "trainer": "Gilles PANNIER",
+      "casaque": "galop",
+      "horseLink": "https://pro.france-galop.com/EspacePro/Cheval/FicheCheval?numSIRE=21319800",
+      "photoVersion": "20261112-19"
+    },
+    {
       "id": "palazzo-grassi",
       "name": "PALAZZO GRASSI",
       "discipline": "Trot",
@@ -156,93 +243,6 @@
       "trainer": "Laurent BARASSIN",
       "casaque": "blanche",
       "horseLink": null,
-      "photoVersion": "20261112-19"
-    },
-    {
-      "id": "andresy",
-      "name": "ANDRESY",
-      "discipline": "Plat",
-      "trainer": "Gilles PANNIER",
-      "casaque": "galop",
-      "horseLink": "https://pro.france-galop.com/EspacePro/Cheval/FicheCheval?numSIRE=23318863",
-      "photoVersion": "20261112-andresy2"
-    },
-    {
-      "id": "bailychka",
-      "name": "BAILYCHKA",
-      "discipline": "Plat",
-      "trainer": "Gilles PANNIER",
-      "casaque": "galop",
-      "horseLink": null,
-      "photoVersion": "20261112-bailychka"
-    },
-    {
-      "id": "bobrovkha",
-      "name": "BOBROVKHA",
-      "discipline": "Plat",
-      "trainer": "Gilles PANNIER",
-      "casaque": "galop",
-      "horseLink": "https://pro.france-galop.com/EspacePro/Cheval/FicheCheval?numSIRE=22165191",
-      "photoVersion": "20261112-lot5"
-    },
-    {
-      "id": "douriann",
-      "name": "DOURIANN",
-      "discipline": "Plat",
-      "trainer": "Gilles PANNIER",
-      "casaque": "galop",
-      "horseLink": null
-    },
-    {
-      "id": "giorgiana",
-      "name": "GIORGIANA",
-      "discipline": "Plat",
-      "trainer": "Gilles PANNIER",
-      "casaque": "galop",
-      "horseLink": "https://pro.france-galop.com/EspacePro/Cheval/FicheCheval?numSIRE=20750165"
-    },
-    {
-      "id": "gonafoot",
-      "name": "GONAFOOT",
-      "discipline": "Plat",
-      "trainer": "Gilles PANNIER",
-      "casaque": "galop",
-      "horseLink": null
-    },
-    {
-      "id": "le-roi-leon",
-      "name": "LE ROI LEON",
-      "discipline": "Plat",
-      "trainer": "Gilles PANNIER",
-      "casaque": "galop",
-      "horseLink": null,
-      "photoVersion": "20261112-lot5"
-    },
-    {
-      "id": "limpide",
-      "name": "LIMPIDE",
-      "discipline": "Plat",
-      "trainer": "Gilles PANNIER",
-      "casaque": "galop",
-      "horseLink": null,
-      "photoVersion": "20261112-lot5"
-    },
-    {
-      "id": "master-pat",
-      "name": "MASTER PAT",
-      "discipline": "Plat",
-      "trainer": "Gilles PANNIER",
-      "casaque": "galop",
-      "horseLink": "https://www.geny.com/cheval/2817411-master-pat",
-      "photoVersion": "20261112-19"
-    },
-    {
-      "id": "on-lockdown",
-      "name": "ON LOCKDOWN",
-      "discipline": "Plat",
-      "trainer": "Gilles PANNIER",
-      "casaque": "galop",
-      "horseLink": "https://pro.france-galop.com/EspacePro/Cheval/FicheCheval?numSIRE=21319800",
       "photoVersion": "20261112-19"
     },
     {
