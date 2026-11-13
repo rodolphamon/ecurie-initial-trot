@@ -981,13 +981,13 @@
         "date": "2026-11-13",
         "heure": "15:10",
         "hippodrome": "Toulouse",
-        "type": "Course",
+        "type": "Trot attelé",
         "course": "R5C1",
         "prix": "Prix de l'Hippodrome d'Eauze",
         "numero": "11",
         "statut": "partant",
         "driver": "A. HONORÉ",
-        "source_url": "https://hippigold.fr/courses/2026-11-13/r5c1/"
+        "source_url": "https://www.letrot.com/courses/2026-11-13/3103/1"
       }
     ],
     "victoria-secret": [
@@ -995,7 +995,7 @@
         "date": "2026-11-13",
         "heure": "14:18",
         "hippodrome": "Saint-Cloud",
-        "type": "Course",
+        "type": "Plat",
         "course": "R4C5",
         "prix": "Prix de la Goubinière",
         "numero": "2",
@@ -1046,14 +1046,15 @@
     "nostalgie-dairpet": [
       {
         "date": "2026-11-17",
-        "heure": "",
         "hippodrome": "Vincennes - Grande Piste",
         "type": "Trot monté",
         "prix": "Prix de Montargis",
         "allocation": 40000,
         "distance": "2200 m",
         "statut": "engage",
-        "source_description": "Capture prochains engagements 12/11/2026"
+        "source_description": "Capture prochains engagements 12/11/2026",
+        "course": "R3C1",
+        "source_url": "https://www.letrot.com/courses/2026-11-17/7500/1"
       },
       {
         "date": "2026-11-19",
