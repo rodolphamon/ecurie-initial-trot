@@ -3,34 +3,72 @@
 <title>Palmarès historique | Écurie Initial</title>
 <style>
 :root{--orange:#f47721;--ink:#191919;--muted:#667085;--line:#ececee;--soft:#fff6ef}
-*{box-sizing:border-box}html,body{margin:0;background:transparent;color:var(--ink);font-family:Arial,Helvetica,sans-serif}body{padding:clamp(10px,2.4vw,26px)}
-.palmares{max-width:1140px;margin:auto}.top{background:#191919;color:#fff;padding:24px clamp(18px,3.5vw,38px);border-radius:16px;border-top:6px solid var(--orange);display:flex;align-items:center;justify-content:space-between;gap:16px}
+*{box-sizing:border-box}html,body{margin:0;background:transparent;color:var(--ink);font-family:Arial,Helvetica,sans-serif;max-width:100%;overflow-x:hidden}body{padding:clamp(10px,2.4vw,26px)}
+.palmares{max-width:1140px;width:100%;margin:auto;min-width:0}.top{background:#191919;color:#fff;padding:24px clamp(18px,3.5vw,38px);border-radius:16px;border-top:6px solid var(--orange);display:flex;align-items:center;justify-content:space-between;gap:16px}
 .top h1{font-size:clamp(26px,5vw,41px);line-height:1;letter-spacing:.035em;margin:0;font-weight:900}
 #counter{font-size:clamp(39px,7vw,70px);font-weight:900;line-height:1;letter-spacing:-.055em;color:#ff862c;font-variant-numeric:tabular-nums}
 .controls{margin-top:24px;display:grid;grid-template-columns:minmax(0,2.2fr) minmax(110px,1fr) minmax(140px,1.15fr) minmax(130px,1fr);gap:10px}
 .controls input,.controls select{width:100%;padding:13px 12px;border:1px solid #d7d7dc;background:white;border-radius:9px;font:inherit;color:#252525;min-width:0;outline-color:var(--orange);font-size:14px}
 .caption-line{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:12px 1px 10px}.result{font-size:13px;color:#595959}.legend{display:flex;flex-wrap:wrap;gap:6px}
-.tag{display:inline-flex;align-items:center;gap:4px;padding:5px 8px;background:#f8f8f8;border:1px solid #ebebeb;border-radius:99px;font-size:11px;font-weight:700}.tag svg{width:22px;height:16px;display:block}
+.tag{display:inline-flex;align-items:center;gap:4px;padding:5px 8px;background:#f8f8f8;border:1px solid #ebebeb;border-radius:99px;font-size:11px;font-weight:700}.tag .disc-img{width:36px;height:25px;margin-right:2px}.tag .disc-text{font-size:12px}
 .tablewrap{border:1px solid #e9e9ea;border-radius:12px;overflow-x:auto;background:#fff}
 table{width:100%;border-collapse:collapse;min-width:740px;text-align:left}thead{background:#262626;color:#fff}th{padding:14px 12px;font-size:12px;text-transform:uppercase;letter-spacing:.04em;font-weight:800;white-space:nowrap}td{padding:9px 12px;border-bottom:1px solid var(--line);font-size:13px;line-height:1.3}tbody tr:nth-child(even){background:#fff9f5}tbody tr:hover{background:#fff0e3}tbody tr:last-child td{border-bottom:0}
 td:first-child,th:first-child{text-align:center;width:75px}td.date{white-space:nowrap;font-variant-numeric:tabular-nums;color:#515151;font-weight:650}td.place{color:#454545}td.horse{font-weight:850;color:#161616}td.person{color:#5d5d62}td.discipline{white-space:nowrap;font-weight:700}
 .robe{width:43px;height:52px;object-fit:contain;vertical-align:middle}.disc-img{width:43px;height:31px;object-fit:contain;vertical-align:middle;margin-right:6px}.disc-text{vertical-align:middle}
 .empty{padding:32px;text-align:center;color:var(--muted)}.nav{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:15px}.nav button{padding:10px 16px;background:#232323;color:#fff;border:0;border-radius:9px;font-weight:700;cursor:pointer}.nav button:disabled{opacity:.3;cursor:default}.nav span{font-size:13px;color:#555;min-width:94px;text-align:center}
 .fineprint{margin:17px 0 0;font-size:12px;line-height:1.65;color:#686868}.fineprint strong{color:#494949}abbr{border:0;text-decoration:none;cursor:help}
-@media(max-width:690px){body{padding:9px}.top{padding:19px 17px}.robe{width:37px;height:47px}.disc-img{width:38px;height:27px}.controls{grid-template-columns:1fr 1fr;gap:8px}.controls label:first-child{grid-column:1/-1}.caption-line{align-items:flex-start;flex-direction:column}.legend{gap:4px}th,td{padding:9px 8px}.fineprint{font-size:11px}}
+/* La table reste dédiée aux ordinateurs; sur téléphone chaque victoire possède une vraie fiche. */
+.cards{display:none}
+.pal-card{display:grid;grid-template-columns:64px minmax(0,1fr);gap:13px;align-items:start;padding:16px;background:#fff;border:1px solid #e9e7e5;border-left:4px solid var(--orange);border-radius:12px;box-shadow:0 3px 12px rgba(33,24,16,.035);min-width:0}
+.pal-card:nth-child(even){background:#fffbf8}
+.pal-card-silk{display:flex;align-items:center;justify-content:center;min-height:78px}
+.pal-card-silk .robe{height:67px;width:56px;object-fit:contain}
+.pal-card-main{min-width:0}
+.pal-card-head{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:7px;margin-bottom:5px}
+.pal-card-date{font-size:12px;font-weight:800;color:#b95819;font-variant-numeric:tabular-nums}
+.pal-card-name{font-size:17px;font-weight:900;line-height:1.25;color:#1d1d1d;overflow-wrap:anywhere}
+.pal-card-place{font-size:13px;color:#66616a;margin-top:5px;line-height:1.35;overflow-wrap:anywhere}
+.pal-card-jockey{font-size:13px;color:#37383e;margin-top:8px;line-height:1.35;font-weight:600}
+.pal-card-jockey-label{font-weight:500;color:#7d7d83;margin-right:5px}
+.pal-card-disc{display:inline-flex;align-items:center;gap:2px;white-space:nowrap;padding:4px 8px;border-radius:20px;background:#fff5ec;border:1px solid #f5e5d7;color:#8f4517;font-size:12px;font-weight:800}
+.pal-card-disc .disc-img{width:25px;height:19px;margin:0;object-fit:contain}
+.pal-card-disc.is-unclassified{background:#f4f4f4;border-color:#ececec;color:#636363}
+@media(max-width:790px){
+ body{padding:9px}
+ .top{padding:16px 18px;border-radius:12px}
+ .top h1{font-size:clamp(24px,7vw,34px)}
+ #counter{font-size:clamp(39px,10vw,58px)}
+ .controls{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:14px}
+ .controls label:first-child,.controls label:last-child{grid-column:1/-1}
+ .controls input,.controls select{padding:12px 10px;min-width:0;font-size:13px}
+ .caption-line{align-items:flex-start;flex-direction:column;margin:13px 1px 12px;gap:10px}
+ .legend{gap:5px}
+ .tag{padding:4px 8px}
+ .tablewrap{display:none}
+ .cards{display:grid;grid-template-columns:minmax(0,1fr);gap:9px}
+ .fineprint{font-size:11px}
+ .nav{gap:10px}
+}
+@media(max-width:370px){
+ .pal-card{grid-template-columns:52px minmax(0,1fr);gap:10px;padding:12px}
+ .pal-card-silk .robe{height:55px;width:46px}
+ .pal-card-name{font-size:16px}
+ .pal-card-disc{font-size:11px}
+ .top{padding:15px 12px}
+}
 </style></head><body>
 <main class="palmares">
 <header class="top"><h1>VICTOIRES</h1><output id="counter" aria-label="Nombre de victoires validées" aria-live="polite">174</output></header>
 <section aria-label="Filtrer les victoires" class="controls">
 <label><input id="search" type="search" placeholder="Rechercher un cheval, une ville, un jockey…" aria-label="Rechercher"></label>
 <label><select id="year" aria-label="Année"><option value="">Toutes les années</option></select></label>
-<label><select id="type" aria-label="Discipline"><option value="">Toutes disciplines</option><option value="attele">Attelé</option><option value="monte">Monté</option><option value="galop">Galop</option><option value="trot">Trot (à préciser)</option></select></label>
+<label><select id="type" aria-label="Discipline"><option value="">Toutes disciplines</option><option value="attele">Attelé</option><option value="monte">Monté</option><option value="galop">Galop</option><option value="trot">Trot (discipline non renseignée)</option></select></label>
 <label><select id="order" aria-label="Classement"><option value="desc">Plus récentes d'abord</option><option value="asc">Plus anciennes d'abord</option></select></label>
 </section>
 <div class="caption-line"><div class="result" id="count" aria-live="polite"></div><div class="legend" id="legend"></div></div>
 <div class="tablewrap"><table aria-label="Historique des victoires">
 <thead><tr><th>Casaque</th><th>Date</th><th>Hippodrome</th><th>Cheval</th><th>Jockey / Driver</th><th>Discipline</th></tr></thead>
-<tbody id="rows"></tbody></table><div id="empty" class="empty" hidden>Aucune victoire ne correspond à cette recherche.</div></div>
+<tbody id="rows"></tbody></table></div><div class="cards" id="cards" aria-label="Victoires affichées sur téléphone"></div><div id="empty" class="empty" hidden>Aucune victoire ne correspond à cette recherche.</div>
 <nav class="nav" aria-label="Pagination"><button type="button" id="prev">Précédent</button><span id="page"></span><button type="button" id="next">Suivant</button></nav>
 <p class="fineprint"><strong>Archives :</strong> 174 victoires validées au 13/11/2026 ; 182 lignes historiques, dont 8 à rapprocher des statistiques officielles. Les nouvelles victoires validées sont ajoutées au compteur et au tableau après mise à jour des résultats. Les jockeys/drivers non vérifiés restent vides.</p><p class="fineprint">Pictogrammes attelé, monté et galop : <a href="https://commons.wikimedia.org/wiki/User:Historicair" target="_blank" rel="noopener">Historicair</a> — <a href="https://creativecommons.org/licenses/by-sa/2.5/" target="_blank" rel="noopener">CC BY-SA 2.5</a> (<a href="https://commons.wikimedia.org/wiki/File:Trot_sulky_racing_clipart.svg" target="_blank" rel="noopener">attelé</a> · <a href="https://commons.wikimedia.org/wiki/File:Trot_mounted_racing_clipart.svg" target="_blank" rel="noopener">monté</a> · <a href="https://commons.wikimedia.org/wiki/File:Flat_racing_clipart.svg" target="_blank" rel="noopener">galop</a>).</p>
 </main>
@@ -55,16 +93,30 @@ function disc(type){
  const names={attele:"Attelé",monte:"Monté",galop:"Galop",trot:"Trot"};
  const label=names[type]||"Trot";
  const src=disciplineFiles[type];
- return (src?'<img class="disc-img" src="'+src+'" alt="" loading="lazy">':'')+'<span class="disc-text"'+(type==="trot"?' title="Discipline exacte à confirmer"':'')+'>'+label+(type==="trot"?' · à préciser':'')+'</span>';
+ return (src?'<img class="disc-img" src="'+src+'" alt="" loading="lazy">':'')+'<span class="disc-text"'+(type==="trot"?' title="Discipline exacte à confirmer"':'')+'>'+label+'</span>';
 }
 const state={page:1,perPage:25};
 function render(){
- const q=$("search").value.trim().toLocaleLowerCase("fr");const year=$("year").value;const type=$("type").value;
- const data=results.filter(r=>(!year||r.date.slice(0,4)===year)&&(!type||r.discipline===type)&&(!q||[r.cheval,r.hippodrome,r.jockey,r.date].some(s=>String(s).toLocaleLowerCase("fr").includes(q)))).sort((a,b)=>$("order").value==="desc"?b.date.localeCompare(a.date):a.date.localeCompare(b.date));
- const pages=Math.max(1,Math.ceil(data.length/state.perPage));state.page=Math.min(state.page,pages);const list=data.slice((state.page-1)*state.perPage,state.page*state.perPage);
- $("rows").innerHTML=list.map(r=>'<tr><td>'+jersey(r.casaque)+'</td><td class="date">'+esc(r.date.split("-").reverse().join("/"))+'</td><td class="place">'+esc(r.hippodrome)+'</td><td class="horse">'+esc(r.cheval)+'</td><td class="person">'+(r.jockey?esc(r.jockey):'—')+'</td><td class="discipline">'+disc(r.discipline)+'</td></tr>').join("");
- $("empty").hidden=data.length>0;$("count").textContent=data.length+' résultat'+(data.length>1?'s':'')+' dans les archives';
- $("page").textContent="Page "+state.page+" / "+pages;$("prev").disabled=state.page===1;$("next").disabled=state.page===pages;postHeight();
+ const q=$("search").value.trim().toLocaleLowerCase("fr"),year=$("year").value,type=$("type").value;
+ const data=results.filter(r=>(!year||r.date.slice(0,4)===year)&&(!type||r.discipline===type)&&(!q||[r.cheval,r.hippodrome,r.jockey,r.date].some(v=>String(v).toLocaleLowerCase("fr").includes(q))))
+ .sort((a,b)=>$("order").value==="desc"?b.date.localeCompare(a.date):a.date.localeCompare(b.date));
+ const pages=Math.max(1,Math.ceil(data.length/state.perPage));
+ state.page=Math.min(state.page,pages);
+ const list=data.slice((state.page-1)*state.perPage,state.page*state.perPage);
+ const dateFR=d=>d.split("-").reverse().join("/");
+ // Affichage de la table sur ordinateur : colonnes classiques.
+ $("rows").innerHTML=list.map(r=>'<tr><td>'+jersey(r.casaque)+'</td><td class="date">'+esc(dateFR(r.date))+'</td><td class="place">'+esc(r.hippodrome)+'</td><td class="horse">'+esc(r.cheval)+'</td><td class="person">'+(r.jockey?esc(r.jockey):'—')+'</td><td class="discipline">'+disc(r.discipline)+'</td></tr>').join("");
+ // Sur mobile : vraies fiches sans défilement horizontal, ni texte coupé.
+ $("cards").innerHTML=list.map(r=>{
+  const label=r.discipline==="galop"||r.discipline==="monte"?"Jockey":r.discipline==="attele"?"Driver":"Jockey / Driver";
+  const jockey=r.jockey?'<div class="pal-card-jockey"><span class="pal-card-jockey-label">'+label+' :</span>'+esc(r.jockey)+'</div>':"";
+  return '<article class="pal-card"><div class="pal-card-silk">'+jersey(r.casaque)+'</div><div class="pal-card-main"><div class="pal-card-head"><time class="pal-card-date" datetime="'+esc(r.date)+'">'+esc(dateFR(r.date))+'</time><span class="pal-card-disc'+(r.discipline==="trot"?' is-unclassified':'')+'">'+disc(r.discipline)+'</span></div><div class="pal-card-name">'+esc(r.cheval)+'</div><div class="pal-card-place">'+esc(r.hippodrome)+'</div>'+jockey+'</div></article>';
+ }).join("");
+ $("empty").hidden=data.length>0;
+ $("count").textContent=data.length+' course'+(data.length>1?'s':'')+' répertoriée'+(data.length>1?'s':'');
+ $("page").textContent="Page "+state.page+" / "+pages;
+ $("prev").disabled=state.page===1;$("next").disabled=state.page===pages;
+ postHeight();
 }
 function refreshYears(){
  const yearSelect=$("year"),previous=yearSelect.value;
