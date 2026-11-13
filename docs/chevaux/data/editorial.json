@@ -1,7 +1,7 @@
 {
   "schema": "ecurie-initial-profils-v1",
-  "updated_at": "2026-11-12",
-  "note": "Pour les performances : au maximum les cinq dernières sorties documentées, dont les sources sont conservées en interne pour contrôle. Les classements exacts n'ont été indiqués que lorsqu'ils étaient disponibles. Les jeunes chevaux inédits n'ont pas de performances inventées. Engagements et partants conservés sans modification.",
+  "updated_at": "2026-11-13",
+  "note": "Pour les performances : au maximum les cinq dernières sorties documentées, dont les sources sont conservées en interne pour contrôle. Les classements exacts n'ont été indiqués que lorsqu'ils étaient disponibles. Les jeunes chevaux inédits n'ont pas de performances inventées. Les engagements existants sont conservés ; les nouveaux engagements au trot du 13/11/2026 sont ajoutés sans reprendre les horaires.",
   "performances": {
     "memphis-belle": [
       {
@@ -1054,6 +1054,27 @@
         "distance": "2200 m",
         "statut": "engage",
         "source_description": "Capture prochains engagements 12/11/2026"
+      },
+      {
+        "date": "2026-11-19",
+        "hippodrome": "Vincennes",
+        "type": "Trot attelé",
+        "statut": "engage",
+        "source_description": "Capture des engagements Trot transmise le 13/11/2026 (horaires non retenus)"
+      },
+      {
+        "date": "2026-11-25",
+        "hippodrome": "Vincennes",
+        "type": "Trot attelé",
+        "statut": "engage",
+        "source_description": "Capture des engagements Trot transmise le 13/11/2026 (horaires non retenus)"
+      },
+      {
+        "date": "2026-12-03",
+        "hippodrome": "Vincennes",
+        "type": "Trot monté",
+        "statut": "engage",
+        "source_description": "Capture des engagements Trot transmise le 13/11/2026 (horaires non retenus)"
       }
     ],
     "andresy": [
@@ -1106,6 +1127,96 @@
         "distance": "2000 m",
         "statut": "engage",
         "source_description": "Capture espace propriétaire France Galop 12/11/2026"
+      }
+    ],
+    "moondance-okina": [
+      {
+        "date": "2026-11-26",
+        "hippodrome": "Mauquenchy",
+        "type": "Trot attelé",
+        "statut": "engage",
+        "source_description": "Capture des engagements Trot transmise le 13/11/2026 (horaires non retenus)"
+      },
+      {
+        "date": "2026-12-09",
+        "hippodrome": "Lyon (La Soie)",
+        "type": "Trot attelé",
+        "statut": "engage",
+        "source_description": "Capture des engagements Trot transmise le 13/11/2026 (horaires non retenus)"
+      },
+      {
+        "date": "2026-12-21",
+        "hippodrome": "Cagnes-sur-Mer",
+        "type": "Trot attelé",
+        "statut": "engage",
+        "source_description": "Capture des engagements Trot transmise le 13/11/2026 (horaires non retenus)"
+      }
+    ],
+    "memphis-belle": [
+      {
+        "date": "2026-11-29",
+        "hippodrome": "Reims",
+        "type": "Trot monté",
+        "statut": "engage",
+        "source_description": "Capture des engagements Trot transmise le 13/11/2026 (horaires non retenus)"
+      },
+      {
+        "date": "2026-12-13",
+        "hippodrome": "Cherbourg",
+        "type": "Trot attelé",
+        "statut": "engage",
+        "source_description": "Capture des engagements Trot transmise le 13/11/2026 (horaires non retenus)"
+      }
+    ],
+    "isolee-du-bouillon": [
+      {
+        "date": "2026-11-30",
+        "hippodrome": "Vincennes",
+        "type": "Trot attelé",
+        "statut": "engage",
+        "source_description": "Capture des engagements Trot transmise le 13/11/2026 (horaires non retenus)"
+      },
+      {
+        "date": "2026-12-04",
+        "hippodrome": "Mauquenchy",
+        "type": "Trot attelé",
+        "statut": "engage",
+        "source_description": "Capture des engagements Trot transmise le 13/11/2026 (horaires non retenus)"
+      },
+      {
+        "date": "2026-12-07",
+        "hippodrome": "Vincennes",
+        "type": "Trot attelé",
+        "statut": "engage",
+        "source_description": "Capture des engagements Trot transmise le 13/11/2026 (horaires non retenus)"
+      },
+      {
+        "date": "2026-12-10",
+        "hippodrome": "Vincennes",
+        "type": "Trot attelé",
+        "statut": "engage",
+        "source_description": "Capture des engagements Trot transmise le 13/11/2026 (horaires non retenus)"
+      },
+      {
+        "date": "2026-12-24",
+        "hippodrome": "Vincennes",
+        "type": "Trot attelé",
+        "statut": "engage",
+        "source_description": "Capture des engagements Trot transmise le 13/11/2026 (horaires non retenus)"
+      },
+      {
+        "date": "2026-12-25",
+        "hippodrome": "Vincennes",
+        "type": "Trot attelé",
+        "statut": "engage",
+        "source_description": "Capture des engagements Trot transmise le 13/11/2026 (horaires non retenus)"
+      },
+      {
+        "date": "2027-01-02",
+        "hippodrome": "Vincennes",
+        "type": "Trot attelé",
+        "statut": "engage",
+        "source_description": "Capture des engagements Trot transmise le 13/11/2026 (horaires non retenus)"
       }
     ]
   }
