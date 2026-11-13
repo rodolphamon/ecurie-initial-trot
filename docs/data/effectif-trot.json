@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-12",
-  "source": "Contrôle du 11/11/2026 : LORD ON WAY 67 395 € (Zone-Turf https://www.zone-turf.fr/cheval/lord-on-way-2075153/) ; NOSTALGIE DAIRPET 17 980 € (Geny https://www.geny.com/cheval/2863611-nostalgie-dairpet/course/1691905 et Zone-Turf https://www.zone-turf.fr/cheval/nostalgie-dairpet-2117011/). Autres valeurs historiques conservées sans validation nouvelle. ; MEMPHIS BELLE record absolu 1'16\"8 au monté le 11/11/2026 à Graignes vérifié sur Geny https://www.geny.com/cheval/2884884-memphis-belle. Gains MEMPHIS BELLE 6 990 € maintenus faute de cumul post-course explicitement confirmé.",
+  "updated_at": "2026-11-13",
+  "source": "Contrôle du 11/11/2026 : LORD ON WAY 67 395 € (Zone-Turf https://www.zone-turf.fr/cheval/lord-on-way-2075153/) ; NOSTALGIE DAIRPET 17 980 € (Geny https://www.geny.com/cheval/2863611-nostalgie-dairpet/course/1691905 et Zone-Turf https://www.zone-turf.fr/cheval/nostalgie-dairpet-2117011/). Autres valeurs historiques conservées sans validation nouvelle. ; MEMPHIS BELLE record absolu 1'16\"8 au monté le 11/11/2026 à Graignes vérifié sur Geny https://www.geny.com/cheval/2884884-memphis-belle. Gains MEMPHIS BELLE 6 990 € maintenus faute de cumul post-course explicitement confirmé. ; 13/11/2026 : LORD ON WAY record absolu attelé 1'13\"1 (21/09/2026 La Capelle, 2700m autostart), fiche Geny https://www.geny.com/cheval/2837238-lord-on-way (ancien 1'13\"8).",
   "horses": {
     "indice-deladou": {
       "record": "1'11\"6",
@@ -11,8 +11,10 @@
       "gains": 187555
     },
     "lord-on-way": {
-      "record": "1'13\"8",
-      "gains": 67395
+      "record": "1'13\"1",
+      "gains": 67395,
+      "record_source_url": "https://www.geny.com/cheval/2837238-lord-on-way",
+      "record_verified_at": "2026-11-13"
     },
     "lucky-des-gaudines": {
       "record": "1'14\"4",
