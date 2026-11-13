@@ -1007,27 +1007,29 @@
     "on-lockdown": [
       {
         "date": "2026-11-16",
-        "heure": "",
+        "heure": "15:57",
         "hippodrome": "Le Mans",
         "type": "Plat",
         "prix": "Prix du Mesnil",
         "allocation": 19200,
         "distance": "1400 m",
-        "statut": "engage",
-        "source_description": "Capture espace propriétaire France Galop 12/11/2026"
+        "statut": "partant",
+        "source_description": "Partants France Galop transmis le 13/11/2026 ; horaires confirmés par le gérant",
+        "jockey": "L. ROUSSEL"
       }
     ],
     "zartop": [
       {
         "date": "2026-11-16",
-        "heure": "",
+        "heure": "14:47",
         "hippodrome": "Le Mans",
         "type": "Plat",
         "prix": "Prix Saint-Georges",
         "allocation": 11900,
         "distance": "3200 m",
-        "statut": "engage",
-        "source_description": "Capture espace propriétaire France Galop 12/11/2026"
+        "statut": "partant",
+        "source_description": "Partants France Galop transmis le 13/11/2026 ; horaires confirmés par le gérant",
+        "jockey": "L. ROUSSEL"
       }
     ],
     "master-pat": [
