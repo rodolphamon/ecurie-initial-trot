@@ -1,7 +1,7 @@
 {
   "schema": "ecurie-initial-profils-v1",
   "updated_at": "2026-11-13",
-  "note": "Pour les performances : au maximum les cinq dernières sorties documentées, dont les sources sont conservées en interne pour contrôle. Les classements exacts n'ont été indiqués que lorsqu'ils étaient disponibles. Les jeunes chevaux inédits n'ont pas de performances inventées. Les engagements existants sont conservés ; les nouveaux engagements au trot du 13/11/2026 sont ajoutés sans reprendre les horaires.",
+  "note": "Pour les performances : au maximum les cinq dernières sorties documentées, dont les sources sont conservées en interne pour contrôle. Les classements exacts n'ont été indiqués que lorsqu'ils étaient disponibles. Les jeunes chevaux inédits n'ont pas de performances inventées. Les engagements existants sont conservés ; les nouveaux engagements au trot du 13/11/2026 sont ajoutés sans reprendre les horaires. Résultats du 13/11/2026 (MONA LISA STARDUST 7e, VICTORIA SECRET non placée) communiqués par l'Écurie Initial.",
   "performances": {
     "memphis-belle": [
       {
@@ -412,6 +412,12 @@
     ],
     "mona-lisa-stardust": [
       {
+        "date": "2026-11-13",
+        "hippodrome": "Toulouse",
+        "rang": "7e",
+        "driver": "A. HONORÉ"
+      },
+      {
         "date": "2026-09-18",
         "hippodrome": "Toulouse",
         "rang": "9e",
@@ -438,13 +444,6 @@
         "rang": "1re",
         "source_url": "https://www.iturf.fr/courses/mona-lisa-stardust.html",
         "driver": "M. HANQUIER"
-      },
-      {
-        "date": "2026-01-30",
-        "hippodrome": "Toulouse",
-        "rang": "7e",
-        "source_url": "https://www.iturf.fr/courses/mona-lisa-stardust.html",
-        "driver": "M. GRASSET"
       }
     ],
     "moondance-okina": [
@@ -901,6 +900,12 @@
     ],
     "victoria-secret": [
       {
+        "date": "2026-11-13",
+        "hippodrome": "Saint-Cloud",
+        "rang": "Non placée",
+        "jockey": "L. ROUSSEL"
+      },
+      {
         "date": "2026-09-18",
         "hippodrome": "Saint-Cloud",
         "rang": "Non placée",
@@ -927,13 +932,6 @@
         "rang": "2e",
         "source_url": "https://www.france-sire.com/cheval-543238-victoria_secret.php",
         "jockey": "T. BACHELOT"
-      },
-      {
-        "date": "2026-07-19",
-        "hippodrome": "Vittel",
-        "rang": "3e",
-        "source_url": "https://www.france-sire.com/cheval-543238-victoria_secret.php",
-        "jockey": "L. GALLO"
       }
     ],
     "vyborg": [
@@ -976,34 +974,8 @@
   },
   "engagements": {
     "olano-de-la-vallee": [],
-    "mona-lisa-stardust": [
-      {
-        "date": "2026-11-13",
-        "heure": "15:10",
-        "hippodrome": "Toulouse",
-        "type": "Trot attelé",
-        "course": "R5C1",
-        "prix": "Prix de l'Hippodrome d'Eauze",
-        "numero": "11",
-        "statut": "partant",
-        "driver": "A. HONORÉ",
-        "source_url": "https://www.letrot.com/courses/2026-11-13/3103/1"
-      }
-    ],
-    "victoria-secret": [
-      {
-        "date": "2026-11-13",
-        "heure": "14:18",
-        "hippodrome": "Saint-Cloud",
-        "type": "Plat",
-        "course": "R4C5",
-        "prix": "Prix de la Goubinière",
-        "numero": "2",
-        "statut": "partant",
-        "jockey": "L. ROUSSEL",
-        "source_url": "https://www.turf-fr.com/partants-programmes/r4-saint-cloud-44605"
-      }
-    ],
+    "mona-lisa-stardust": [],
+    "victoria-secret": [],
     "on-lockdown": [
       {
         "date": "2026-11-16",
