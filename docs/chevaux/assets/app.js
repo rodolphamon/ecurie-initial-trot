@@ -65,7 +65,7 @@ function horse(s){
         +'<div class="paper">'+tr+'</div>'
       +'</section>'
       +'<section class="section">'
-        +'<h2 class="section-title">Prochains engagements</h2>'
+        +'<h2 class="section-title">'+(eng.length===1?'Prochain engagement':'Prochains engagements')+'</h2>'
         +'<div class="paper">'+te+'</div>'
       +'</section>'
       +'<div class="bottom-actions">'
