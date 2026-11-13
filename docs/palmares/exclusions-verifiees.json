@@ -1,0 +1,15 @@
+{
+  "date_controle": "2026-11-13",
+  "origine": "Anciennes archives reprises dans le palmarès",
+  "evenements_exclus": [
+    {
+      "date": "2018-04-02",
+      "cheval": "VALMIN DE GUEUDE",
+      "hippodrome": "VILLEDIEU-LES-POELES",
+      "classement_reel": "2e",
+      "raison": "Ancienne archive étiquetée comme victoire, alors qu'il s'agit d'une deuxième place",
+      "source": "https://www.zone-turf.fr/cheval/valmin-de-gueude-187252/"
+    }
+  ],
+  "note": "Le palmarès public conserve les victoires et retire les résultats vérifiés comme non gagnants. Le total historique communiqué de 174 reste soumis à rapprochement comptable des casaques et résultats."
+}
