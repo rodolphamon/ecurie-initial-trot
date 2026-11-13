@@ -113,7 +113,7 @@ function render(){
   return '<article class="pal-card"><div class="pal-card-silk">'+jersey(r.casaque)+'</div><div class="pal-card-main"><div class="pal-card-head"><time class="pal-card-date" datetime="'+esc(r.date)+'">'+esc(dateFR(r.date))+'</time><span class="pal-card-disc'+(r.discipline==="trot"?' is-unclassified':'')+'">'+disc(r.discipline)+'</span></div><div class="pal-card-name">'+esc(r.cheval)+'</div><div class="pal-card-place">'+esc(r.hippodrome)+'</div>'+jockey+'</div></article>';
  }).join("");
  $("empty").hidden=data.length>0;
- $("count").textContent=data.length+' course'+(data.length>1?'s':'')+' répertoriée'+(data.length>1?'s':'');
+ $("count").textContent=(!q&&!year&&!type)?"Toutes les courses de nos archives":data.length+" course"+(data.length>1?"s":"")+" trouvée"+(data.length>1?"s":"");
  $("page").textContent="Page "+state.page+" / "+pages;
  $("prev").disabled=state.page===1;$("next").disabled=state.page===pages;
  postHeight();
