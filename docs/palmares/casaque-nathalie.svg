@@ -1,10 +1,22 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="84" height="100" viewBox="0 0 84 100" role="img" aria-label="Casaque jaune et noire de Nathalie HAMON">
-<title>Casaque jaune et noire - Nathalie HAMON</title>
-<g stroke="#222" stroke-width="1.8" stroke-linejoin="round">
-<path d="M29 19L26 13Q28 7 40 5Q55 4 58 13L56 19Z" fill="#ffcb1c"/>
-<path d="M38 5L34 18M46 5L48 18M27 13L57 13" stroke="#1d1d1d" stroke-width="4" fill="none"/>
-<path d="M30 25L18 29Q10 31 7 44L3 62Q8 69 21 68L26 58L25 85L59 85L58 58L63 68Q76 69 81 62L77 44Q74 31 66 29L54 25L47 21L37 21Z" fill="#ffcf26"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="84" height="100" viewBox="0 0 84 100" role="img" aria-label="Casaque Initiale orange de Nathalie HAMON">
+<title>Initiale orange — corps orange, croix noire, manches orange à étoiles noires, toque orange et noire</title>
+<g stroke="#1b1b1b" stroke-width="1.8" stroke-linejoin="round">
+<!-- Toque orange et noire : panneaux orange, panneau noir central et visière noire, comme sur le logo officiel. -->
+<path d="M29 19L26 13Q28 7 40 5Q55 4 58 13L56 19Z" fill="#f47721"/>
+<path d="M39 6Q43 4 47 6L51 20H35Z" fill="#171717" stroke="none"/>
+<path d="M27 18Q42 21 57 18L61 21Q42 26 25 21Z" fill="#171717" stroke="none"/>
+<circle cx="42" cy="4.5" r="2.4" fill="#171717" stroke="none"/>
+<!-- Corps orange, manches orange. -->
+<path d="M30 25L18 29Q10 31 7 44L3 62Q8 69 21 68L26 58L25 85L59 85L58 58L63 68Q76 69 81 62L77 44Q74 31 66 29L54 25L47 21L37 21Z" fill="#f47721"/>
+<!-- Croix de Saint-André noire. -->
 <path d="M24 28L59 84M60 28L25 84" stroke="#171717" stroke-width="9"/>
 <path d="M30 25L18 29Q10 31 7 44L3 62Q8 69 21 68L26 58L25 85L59 85L58 58L63 68Q76 69 81 62L77 44Q74 31 66 29L54 25" fill="none" stroke="#222" stroke-width="1.8"/>
-<g fill="#171717" stroke="none"><path d="M12 36l2 4 4 .6-3 3 .8 4-3.8-1.9-3.8 1.9 .8-4-3-3 4-.6Z"/><path d="M7 51l2 4 4 .6-3 3 .8 4L9 61l-3.8 2 .8-4-3-3 4-.6Z"/><path d="M70 36l2 4 4 .6-3 3 .8 4-3.8-1.9-3.8 1.9 .8-4-3-3 4-.6Z"/><path d="M75 51l2 4 4 .6-3 3 .8 4-3.8-1.9-3.8 1.9 .8-4-3-3 4-.6Z"/></g>
-</g></svg>
+<!-- Étoiles noires sur les manches. -->
+<g fill="#171717" stroke="none">
+<path d="M12 36l2 4 4 .6-3 3 .8 4-3.8-1.9-3.8 1.9 .8-4-3-3 4-.6Z"/>
+<path d="M7 51l2 4 4 .6-3 3 .8 4L9 61l-3.8 2 .8-4-3-3 4-.6Z"/>
+<path d="M70 36l2 4 4 .6-3 3 .8 4-3.8-1.9-3.8 1.9 .8-4-3-3 4-.6Z"/>
+<path d="M75 51l2 4 4 .6-3 3 .8 4-3.8-1.9-3.8 1.9 .8-4-3-3 4-.6Z"/>
+</g>
+</g>
+</svg>
