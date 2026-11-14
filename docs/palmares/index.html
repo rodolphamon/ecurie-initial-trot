@@ -62,7 +62,7 @@ td:first-child,th:first-child{text-align:center;width:75px}td.date{white-space:n
 }
 </style></head><body>
 <main class="palmares">
-<header class="top"><h1>VICTOIRES</h1><output id="counter" aria-label="Total des victoires de Rodolphe HAMON, Nathalie HAMON et Écurie Initial selon la discipline" aria-live="polite">174</output></header>
+<header class="top"><h1>VICTOIRES</h1><output id="counter" aria-label="Total des victoires de Rodolphe HAMON, Nathalie HAMON et Écurie Initial selon la discipline" aria-live="polite">172</output></header>
 <section aria-label="Filtrer les victoires" class="controls">
 <label><input id="search" type="search" placeholder="Rechercher un cheval, une ville, un jockey…" aria-label="Rechercher"></label>
 <label><select id="year" aria-label="Année"><option value="">Année</option></select></label>
@@ -207,7 +207,19 @@ function refreshNameFilters(){
  fill(pilotSelect,results.map(r=>r.jockey),"Jockey / Driver",bySurname);
 }
 refreshNameFilters();
-function updateCounter(){$("counter").textContent=new Intl.NumberFormat("fr-FR").format(results.filter(victoireAdmiseAuCompteur).length);}
+// Référence validée par le propriétaire. Deux lignes anciennes avec casaque blanche
+// restent à rapprocher : ne pas supprimer une course ni inventer laquelle est hors total.
+const victoiresValideesBase={
+ trotRodolphe:6,
+ trotNathalie:17,
+ trotEcurieInitial:130,
+ galopRodolpheEtEcurie:19
+};
+function updateCounter(){
+ const totalBase=Object.values(victoiresValideesBase).reduce((total,n)=>total+n,0);
+ const nouvellesValidees=results.filter(r=>!archivesInitiales.has(r)&&victoireAdmiseAuCompteur(r)).length;
+ $("counter").textContent=new Intl.NumberFormat("fr-FR").format(totalBase+nouvellesValidees);
+}
 async function loadNewVictories(){
  // Une ligne du fichier = un nouveau succès approuvé après la date de référence.
  try{
