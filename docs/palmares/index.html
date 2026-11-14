@@ -111,6 +111,50 @@ function jersey(type){
  const file=silkFiles[type]||silkFiles.blanche;
  return '<img class="robe" src="'+file+'" alt="'+(type==="galop_rodolphe"?"Casaque galop Rodolphe HAMON, une étoile sur la toque":type==="julien"?"Casaque bleu-violet et rose, hors Écurie Initial":"Casaque Écurie Initial")+'" loading="lazy">';
 }
+// L'ancien visuel galop a un fond gris intégré aux pixels de l'image.
+// On retire seulement les gris extérieurs, sans redessiner la casaque.
+function fondTransparentCasaqueGalop(){
+ const img=new Image();
+ img.onload=()=>{
+  try{
+   const canvas=document.createElement("canvas");
+   canvas.width=160;canvas.height=190;
+   const ctx=canvas.getContext("2d",{willReadFrequently:true});
+   ctx.drawImage(img,0,0,canvas.width,canvas.height);
+   const pixels=ctx.getImageData(0,0,canvas.width,canvas.height);
+   const d=pixels.data,w=canvas.width,h=canvas.height;
+   const seen=new Uint8Array(w*h),queue=new Int32Array(w*h);
+   let head=0,tail=0;
+   function visit(i){
+    if(seen[i])return;
+    seen[i]=1;
+    const p=i*4,r=d[p],g=d[p+1],b=d[p+2];
+    const light=(r+g+b)/3;
+    // Le fond gris est neutre et relié aux bords de l'image.
+    if(d[p+3]>0 && light>105 && light<246 && Math.max(r,g,b)-Math.min(r,g,b)<25){
+     d[p+3]=0;
+     queue[tail++]=i;
+    }
+   }
+   for(let x=0;x<w;x++){visit(x);visit((h-1)*w+x)}
+   for(let y=0;y<h;y++){visit(y*w);visit(y*w+w-1)}
+   while(head<tail){
+    const i=queue[head++],x=i%w,y=(i/w)|0;
+    for(let dy=-1;dy<=1;dy++)for(let dx=-1;dx<=1;dx++){
+     if(!dx&&!dy)continue;
+     const nx=x+dx,ny=y+dy;
+     if(nx>=0&&nx<w&&ny>=0&&ny<h)visit(ny*w+nx);
+    }
+   }
+   // Préserve le fichier original s'il est déjà sur fond transparent.
+   if(tail<w*h*0.08)return;
+   ctx.putImageData(pixels,0,0);
+   silkFiles.galop=canvas.toDataURL("image/png");
+   render();
+  }catch(e){/* Conserve l'image d'origine en cas d'échec. */}
+ };
+ img.src=silkFiles.galop;
+}
 // Pictogrammes de courses par Historicair (Wikimedia Commons, CC BY-SA 2.5).
 const disciplineFiles={
  attele:"https://upload.wikimedia.org/wikipedia/commons/7/77/Trot_sulky_racing_clipart.svg",
@@ -259,5 +303,5 @@ $("legend").addEventListener("click",event=>{
 $("prev").addEventListener("click",()=>{state.page--;render()});$("next").addEventListener("click",()=>{state.page++;render()});
 function postHeight(){window.parent.postMessage({kind:"ecurie-initial-palmares-height",height:document.documentElement.scrollHeight+12},"*")}
 if("ResizeObserver" in window)new ResizeObserver(postHeight).observe(document.body);
-render();loadNewVictories().finally(loadReplays);window.addEventListener("load",postHeight);
+render();fondTransparentCasaqueGalop();loadNewVictories().finally(loadReplays);window.addEventListener("load",postHeight);
 </script></body></html>
