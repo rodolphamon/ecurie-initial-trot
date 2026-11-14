@@ -1024,14 +1024,15 @@
     "master-pat": [
       {
         "date": "2026-11-17",
-        "heure": "",
+        "heure": "15:40",
         "hippodrome": "Chantilly",
         "type": "Plat",
-        "prix": "Prix de Beauvais",
-        "allocation": 50900,
+        "prix": "Prix du Plan d'Eau Canadien",
+        "allocation": 21100,
         "distance": "1600 m",
-        "statut": "engage",
-        "source_description": "Capture espace propriétaire France Galop 12/11/2026"
+        "statut": "partant",
+        "jockey": "C. BELMONT",
+        "source_description": "Capture espace propriétaire France Galop transmise le 14/11/2026 ; horaire 15h40 confirmé par le gérant"
       }
     ],
     "nostalgie-dairpet": [
