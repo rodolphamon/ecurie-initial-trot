@@ -104,7 +104,10 @@ function disc(type){
 function replayUrl(value){
  try{
   const url=new URL(String(value||""));
-  return url.protocol==="https:"&&url.hostname==="www.letrot.com"&&url.pathname.startsWith("/fr/courses/replay-courses/")?url.href:"";
+  if(url.protocol!=="https:")return "";
+  const letrot=url.hostname==="www.letrot.com"&&url.pathname.startsWith("/fr/courses/replay-courses/");
+  const archive=url.hostname==="www.dailymotion.com"&&/^\/video\/[a-zA-Z0-9]+\/?$/.test(url.pathname);
+  return letrot||archive?url.href:"";
  }catch{return ""}
 }
 function replayButton(result,mobile){
@@ -112,7 +115,7 @@ function replayButton(result,mobile){
  if(!url)return "";
  const svg='<svg viewBox="0 0 24 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="1.5" y="1.5" width="21" height="17" rx="4" stroke="currentColor" stroke-width="1.7"/><path d="m10 6 6.2 4L10 14V6Z" fill="currentColor"/></svg>';
  const title="Voir le replay de "+result.cheval+" du "+result.date.split("-").reverse().join("/");
- const link='<a class="replay-link" href="'+esc(url)+'" target="_blank" rel="noopener noreferrer" title="Voir la course sur LeTROT" aria-label="'+esc(title)+'">'+svg+'<span>Vidéo</span></a>';
+ const link='<a class="replay-link" href="'+esc(url)+'" target="_blank" rel="noopener noreferrer" title="Voir la vidéo de la course" aria-label="'+esc(title)+'">'+svg+'<span>Vidéo</span></a>';
  return mobile?'<div class="pal-card-replay">'+link+'</div>':link;
 }
 async function loadReplays(){
