@@ -1,5 +1,5 @@
 {
-  "version": 14,
+  "version": 15,
   "note": "Liens vers les pages de courses sur Equidia ou LeTROT, avec références de résultats ayant permis d'identifier date, hippodrome, réunion et numéro de course. Les liens Equidia sont calculés d'après le format d'URL et leur lecture, ainsi que la disponibilité du replay, n'ont pas été testées automatiquement. Les victoires historiques ne sont pas modifiées.",
   "replays": [
     {
@@ -945,6 +945,42 @@
       "url": "https://www.equidia.fr/courses/2020-08-08/R5/C4",
       "preuve_identification_course": "https://www.gbet.fr/courses/cagnes-mer/2020-08-08/r5/c4/prix-miroiterie-aurore-prix-ouragon/",
       "controle": "Date, cheval gagnant et réunion/course R/C identifiés dans les résultats publics. Replay Equidia non testé depuis cet environnement."
+    },
+    {
+      "date": "2018-11-28",
+      "cheval": "CRYSTAL GIRL",
+      "hippodrome": "LE CROISE-LAROCHE",
+      "url": "https://www.equidia.fr/courses/2018-11-28/R5/C8",
+      "preuve_identification_course": "https://www.canalturf.com/cotes/2018-11-28/le-croise-laroche/179742_prix-des-recollets.html",
+      "preuve_arrivee": "https://www.sportinglife.com/racing/results/2018-11-28/le-croise-laroche/502350/prix-des-recollets-attele",
+      "controle": "Numéro R/C confirmé dans le programme et victoire dans le résultat ; lien Equidia de la course, lecture vidéo non testée automatiquement"
+    },
+    {
+      "date": "2013-03-15",
+      "cheval": "ACTRICE DE CERISY",
+      "hippodrome": "CAEN",
+      "url": "https://www.equidia.fr/courses/2013-03-15/R1/C8",
+      "preuve_identification_course": "https://www.zone-turf.fr/rapports/r1-c3-prix-de-sourdeval-190187.html",
+      "preuve_arrivee": "https://www.zone-turf.fr/cheval/actrice-de-cerisy-208673/archives-2.html",
+      "controle": "Numéro R/C confirmé dans le programme et victoire dans le résultat ; lien Equidia de la course, lecture vidéo non testée automatiquement"
+    },
+    {
+      "date": "2021-04-05",
+      "cheval": "FLEUR VIVANCIERE",
+      "hippodrome": "BEAUMONT DE LOMAGNE",
+      "url": "https://www.equidia.fr/courses/2021-04-05/R7/C7",
+      "preuve_identification_course": "https://www.turf-fr.com//partants-programmes/r7-beaumont-de-lomagne-25895",
+      "preuve_arrivee": "https://www.zone-turf.fr/cheval/fleur-vivanciere-692598/",
+      "controle": "Numéro R/C confirmé dans le programme et victoire dans le résultat ; lien Equidia de la course, lecture vidéo non testée automatiquement"
+    },
+    {
+      "date": "2021-11-21",
+      "cheval": "HIP HOP JULRY",
+      "hippodrome": "AGEN-LA GARENNE",
+      "url": "https://www.equidia.fr/courses/2021-11-21/R8/C3",
+      "preuve_identification_course": "https://www.turf-fr.com/arrivees-rapports-pmu/2021-11-21",
+      "preuve_arrivee": "https://www.zone-turf.fr/cheval/histoire-d-attaque-925174/",
+      "controle": "Numéro R/C confirmé dans le programme et victoire dans le résultat ; lien Equidia de la course, lecture vidéo non testée automatiquement"
     }
   ]
 }
