@@ -1210,33 +1210,8 @@
         "source_description": "Capture des engagements Trot transmise le 13/11/2026 (horaires non retenus)"
       }
     ],
-    "lord-on-way": [
-      {
-        "date": "2026-11-20",
-        "hippodrome": "Vincennes",
-        "type": "Trot attelé",
-        "prix": "Prix Florentina",
-        "statut": "engage",
-        "source_description": "Capture engagements LeTROT transmise le 14/11/2026"
-      }
-    ],
+    "lord-on-way": [],
     "lucky-des-gaudines": [
-      {
-        "date": "2026-11-22",
-        "hippodrome": "Bordeaux",
-        "type": "Trot attelé",
-        "prix": "Prix de Talence",
-        "statut": "engage",
-        "source_description": "Capture engagements LeTROT transmise le 14/11/2026"
-      },
-      {
-        "date": "2026-11-27",
-        "hippodrome": "Toulouse",
-        "type": "Trot attelé",
-        "prix": "Prix de la Rhune",
-        "statut": "engage",
-        "source_description": "Capture engagements LeTROT transmise le 14/11/2026"
-      },
       {
         "date": "2026-11-29",
         "hippodrome": "Beaumont-de-Lomagne",
