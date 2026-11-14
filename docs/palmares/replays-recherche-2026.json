@@ -1,19 +1,7 @@
 {
   "date_controle": "2026-11-14",
-  "description": "Toutes les 12 victoires 2026 restantes disposent maintenant de leur numéro de course, mais aucun lien direct LeTROT ne sera ajouté sans confirmation de l’URL exacte du replay.",
+  "description": "Suivi des victoires 2026 : 8 pages résultats LeTROT restent à retrouver ; 4 pages ont été ajoutées en utilisant des codes hippodromes SETF et des numéros de course confirmés, mais la lecture du replay n'a pas pu être testée.",
   "victoires_sans_replay": [
-    {
-      "date": "2026-02-14",
-      "cheval": "JUNINIO FLEURY",
-      "hippodrome": "AGEN-LA-GARENNE",
-      "reunion_source": "R4",
-      "numero_course": "C1",
-      "resultat_source": "https://www.zeturf.sn/en/course-du-jour/2026-02-14/R4C1-agen-prix-de-sauvagnas",
-      "lien_replay_letrot": null,
-      "statut": "URL LeTROT à retrouver et à vérifier",
-      "nom_prix": "Prix de Sauvagnas",
-      "source_confirmation_course": "https://www.geny.com/course/1633107-2026-02-14-agen-le-passage-prix-de-sauvagnas/arrivee-rapports"
-    },
     {
       "date": "2026-03-01",
       "cheval": "JETHAN DE MONGOCHY",
@@ -24,29 +12,6 @@
       "lien_replay_letrot": null,
       "statut": "Date, hippodrome et numéro de course confirmés. URL et lecture de vidéo LeTROT encore non vérifiées.",
       "nom_prix": "Prix He And Me"
-    },
-    {
-      "date": "2026-03-15",
-      "cheval": "MONA LISA STARDUST",
-      "hippodrome": "AGEN-LA-GARENNE",
-      "reunion_source": "R10",
-      "numero_course": "C2",
-      "resultat_source": "https://www.zeturf.fr/fr/course-du-jour/2026-03-15/R10C2-agen-prix-de-l-hippodrome-de-manacor",
-      "lien_replay_letrot": null,
-      "statut": "Date, hippodrome et numéro de course confirmés. URL et lecture de vidéo LeTROT encore non vérifiées.",
-      "nom_prix": "Prix de l'Hippodrome de Manacor",
-      "source_confirmation_course": "https://www.canalturf.com/resultats-PMU/2026-03-15/agen-le-passage/400149_prix-de-l-hippodrome-de-manacor.html"
-    },
-    {
-      "date": "2026-04-19",
-      "cheval": "JUNINIO FLEURY",
-      "hippodrome": "AGEN-LA-GARENNE",
-      "reunion_source": "R9",
-      "numero_course": "C7",
-      "resultat_source": "https://www.zeturf.es/en/course-du-jour/2026-04-19/R9C7-agen-prix-max-gerbeaud",
-      "lien_replay_letrot": null,
-      "statut": "URL LeTROT à retrouver et à vérifier",
-      "nom_prix": "Prix Max Gerbeaud"
     },
     {
       "date": "2026-04-26",
@@ -127,6 +92,44 @@
       "lien_replay_letrot": null,
       "statut": "URL LeTROT à retrouver et à vérifier",
       "nom_prix": "Prix Anim's PG"
+    }
+  ],
+  "note_verification": "Numéros et noms de courses croisés avec les résultats publics ; identifiants R des sites PMU/ZEturf non convertibles automatiquement en codes hippodromes LeTROT. LeTROT refuse actuellement la consultation automatisée de ses replays (403) ; aucun lien direct inventé.",
+  "fiches_resultats_ajoutees_a_tester": [
+    {
+      "date": "2026-02-14",
+      "cheval": "JUNINIO FLEURY",
+      "hippodrome": "AGEN-LA-GARENNE",
+      "reunion_source": "R4",
+      "numero_course": "C1",
+      "resultat_source": "https://www.zeturf.sn/en/course-du-jour/2026-02-14/R4C1-agen-prix-de-sauvagnas",
+      "lien_replay_letrot": "https://www.letrot.com/courses/2026-02-14/4701/1",
+      "statut": "Fiche résultat LeTROT ajoutée au palmarès ; présence/lecture du replay non vérifiée",
+      "nom_prix": "Prix de Sauvagnas",
+      "source_confirmation_course": "https://www.geny.com/course/1633107-2026-02-14-agen-le-passage-prix-de-sauvagnas/arrivee-rapports"
+    },
+    {
+      "date": "2026-03-15",
+      "cheval": "MONA LISA STARDUST",
+      "hippodrome": "AGEN-LA-GARENNE",
+      "reunion_source": "R10",
+      "numero_course": "C2",
+      "resultat_source": "https://www.zeturf.fr/fr/course-du-jour/2026-03-15/R10C2-agen-prix-de-l-hippodrome-de-manacor",
+      "lien_replay_letrot": "https://www.letrot.com/courses/2026-03-15/4701/2",
+      "statut": "Fiche résultat LeTROT ajoutée au palmarès ; présence/lecture du replay non vérifiée",
+      "nom_prix": "Prix de l'Hippodrome de Manacor",
+      "source_confirmation_course": "https://www.canalturf.com/resultats-PMU/2026-03-15/agen-le-passage/400149_prix-de-l-hippodrome-de-manacor.html"
+    },
+    {
+      "date": "2026-04-19",
+      "cheval": "JUNINIO FLEURY",
+      "hippodrome": "AGEN-LA-GARENNE",
+      "reunion_source": "R9",
+      "numero_course": "C7",
+      "resultat_source": "https://www.zeturf.es/en/course-du-jour/2026-04-19/R9C7-agen-prix-max-gerbeaud",
+      "lien_replay_letrot": "https://www.letrot.com/courses/2026-04-19/4701/7",
+      "statut": "Fiche résultat LeTROT ajoutée au palmarès ; présence/lecture du replay non vérifiée",
+      "nom_prix": "Prix Max Gerbeaud"
     },
     {
       "date": "2026-09-04",
@@ -135,11 +138,10 @@
       "reunion_source": "R3",
       "numero_course": "C6",
       "resultat_source": "https://www.zeturf.fr/fr/course-du-jour/2026-09-04/R3C6-lyon-parilly-prix-yvan-berger?prefill=15",
-      "lien_replay_letrot": null,
-      "statut": "URL LeTROT à retrouver et à vérifier",
+      "lien_replay_letrot": "https://www.letrot.com/courses/2026-09-04/6901/6",
+      "statut": "Fiche résultat LeTROT ajoutée au palmarès ; présence/lecture du replay non vérifiée",
       "nom_prix": "Prix Yvan Berger",
       "source_confirmation_course": "https://www.geny.com/course/1681432-2026-09-04-lyon-parilly-prix-yvan-berger/arrivee-rapports"
     }
-  ],
-  "note_verification": "Numéros et noms de courses croisés avec les résultats publics ; identifiants R des sites PMU/ZEturf non convertibles automatiquement en codes hippodromes LeTROT. LeTROT refuse actuellement la consultation automatisée de ses replays (403) ; aucun lien direct inventé."
+  ]
 }
