@@ -1,5 +1,5 @@
 {
-  "version": 11,
+  "version": 12,
   "note": "Liens vers les pages de courses sur Equidia ou LeTROT, avec références de résultats ayant permis d'identifier date, hippodrome, réunion et numéro de course. Les liens Equidia sont calculés d'après le format d'URL et leur lecture, ainsi que la disponibilité du replay, n'ont pas été testées automatiquement. Les victoires historiques ne sont pas modifiées.",
   "replays": [
     {
@@ -809,6 +809,38 @@
       "url": "https://www.equidia.fr/courses/2022-05-08/R8/C7",
       "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2022-05-08/R8C7-rambouillet-prix-de-la-foret-groupe-b",
       "controle": "Date, R/C et cheval gagnant confirmés dans le résultat officiel reproduit par ZEturf/Canalturf ; lien Equidia construit, lecture du replay non testée."
+    },
+    {
+      "date": "2022-01-15",
+      "cheval": "ILLAM DE MONGOCHY",
+      "hippodrome": "ANGERS",
+      "url": "https://www.equidia.fr/courses/2022-01-15/R2/C2",
+      "preuve_identification_course": "https://www.canalturf.com/courses_fiche_jockey.php?date=2022-01-15&idjockey=495",
+      "controle": "R2 C2 identifiés dans les engagements et victoire confirmée par récit rétrospectif ; disponibilité vidéo non testée"
+    },
+    {
+      "date": "2022-06-10",
+      "cheval": "HOMAYA DU BOCAGE",
+      "hippodrome": "NANTES",
+      "url": "https://www.equidia.fr/courses/2022-06-10/R3/C4",
+      "preuve_identification_course": "https://www.oneturf.fr/arrive/FR/10-06-2022/163022%2C1331075%2CNANTES%2C4-PRIX-DES-CAMELIAS.html",
+      "controle": "Victoire et numéro de réunion/course R3C4 confirmés dans l'arrivée ; replay Equidia non testé"
+    },
+    {
+      "date": "2023-06-26",
+      "cheval": "FANTOMAS DU VAL",
+      "hippodrome": "HYERES",
+      "url": "https://www.equidia.fr/courses/2023-06-26/R4/C2",
+      "preuve_identification_course": "https://www.oneturf.fr/arrive/FR/26-06-2023/177888%2C1461040%2CHYERES%2C2-PRIX-PLACE-DE-L-AUDIT.html",
+      "controle": "Victoire et numéro de réunion/course R4C2 confirmés dans l'arrivée ; replay Equidia non testé"
+    },
+    {
+      "date": "2021-07-18",
+      "cheval": "HOMA",
+      "hippodrome": "AVRANCHES",
+      "url": "https://www.letrot.com/courses/2021-07-18/5002/8",
+      "preuve_identification_course": "https://www.letrot.com/courses/2021-07-18/5002/8",
+      "controle": "Lien officiel LeTROT déjà inscrit comme source dans la ligne du palmarès, lecture replay non vérifiée"
     }
   ]
 }
