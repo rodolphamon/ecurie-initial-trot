@@ -1,5 +1,5 @@
 {
-  "version": 10,
+  "version": 11,
   "note": "Liens vers les pages de courses sur Equidia ou LeTROT, avec références de résultats ayant permis d'identifier date, hippodrome, réunion et numéro de course. Les liens Equidia sont calculés d'après le format d'URL et leur lecture, ainsi que la disponibilité du replay, n'ont pas été testées automatiquement. Les victoires historiques ne sont pas modifiées.",
   "replays": [
     {
@@ -737,6 +737,78 @@
       "url": "https://www.equidia.fr/courses/2014-09-19/R2/C4",
       "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2014-09-19/R2C4-cabourg-prix-de-rollon",
       "controle": "Arrivée et réunion R2C4 vérifiées sur ZEturf ; lien Equidia construit, disponibilité du replay ancien non vérifiée"
+    },
+    {
+      "date": "2021-03-24",
+      "cheval": "GOSPEL",
+      "hippodrome": "LISIEUX",
+      "url": "https://www.equidia.fr/courses/2021-03-24/R1/C3",
+      "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2021-03-24/R1C3-lisieux-prix-le-bistrot-gourmand",
+      "controle": "Date, R/C et cheval gagnant confirmés dans le résultat officiel reproduit par ZEturf/Canalturf ; lien Equidia construit, lecture du replay non testée."
+    },
+    {
+      "date": "2021-05-02",
+      "cheval": "GOSPEL",
+      "hippodrome": "CHOLET",
+      "url": "https://www.equidia.fr/courses/2021-05-02/R5/C7",
+      "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2021-05-02/R5C7-cholet-prix-quarlos",
+      "controle": "Date, R/C et cheval gagnant confirmés dans le résultat officiel reproduit par ZEturf/Canalturf ; lien Equidia construit, lecture du replay non testée."
+    },
+    {
+      "date": "2021-05-27",
+      "cheval": "JAZZY WOOD",
+      "hippodrome": "PARISLONGCHAMP",
+      "url": "https://www.equidia.fr/courses/2021-05-27/R1/C6",
+      "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2021-05-27/R1C6-paris-longchamp-prix-du-cedre",
+      "controle": "Date, R/C et cheval gagnant confirmés dans le résultat officiel reproduit par ZEturf/Canalturf ; lien Equidia construit, lecture du replay non testée."
+    },
+    {
+      "date": "2021-06-11",
+      "cheval": "CAID DORE",
+      "hippodrome": "NANTES",
+      "url": "https://www.equidia.fr/courses/2021-06-11/R2/C8",
+      "preuve_identification_course": "https://www.zeturf.be/fr/course-du-jour/2021-06-11/R2C8-nantes-prix-rca-la-radio",
+      "controle": "Date, R/C et cheval gagnant confirmés dans le résultat officiel reproduit par ZEturf/Canalturf ; lien Equidia construit, lecture du replay non testée."
+    },
+    {
+      "date": "2022-02-22",
+      "cheval": "CABALLO D'AURE",
+      "hippodrome": "CAGNES-SUR-MER",
+      "url": "https://www.equidia.fr/courses/2022-02-22/R4/C6",
+      "preuve_identification_course": "https://www.canalturf.com/resultats-PMU/2022-02-22/cagnes-sur-mer/266723_prix-de-cognac.html",
+      "controle": "Date, R/C et cheval gagnant confirmés dans le résultat officiel reproduit par ZEturf/Canalturf ; lien Equidia construit, lecture du replay non testée."
+    },
+    {
+      "date": "2022-03-20",
+      "cheval": "GOSPEL",
+      "hippodrome": "VIRE NORMANDIE",
+      "url": "https://www.equidia.fr/courses/2022-03-20/R11/C8",
+      "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2022-03-20/R11C8-vire-prix-de-ste-des-courses-vire-normandie",
+      "controle": "Date, R/C et cheval gagnant confirmés dans le résultat officiel reproduit par ZEturf/Canalturf ; lien Equidia construit, lecture du replay non testée."
+    },
+    {
+      "date": "2022-04-18",
+      "cheval": "GOSPEL",
+      "hippodrome": "CHOLET",
+      "url": "https://www.equidia.fr/courses/2022-04-18/R7/C8",
+      "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2022-04-18/R7C8-cholet-prix-val-de-l-aube",
+      "controle": "Date, R/C et cheval gagnant confirmés dans le résultat officiel reproduit par ZEturf/Canalturf ; lien Equidia construit, lecture du replay non testée."
+    },
+    {
+      "date": "2022-04-30",
+      "cheval": "GOSPEL",
+      "hippodrome": "ARGENTAN",
+      "url": "https://www.equidia.fr/courses/2022-04-30/R5/C5",
+      "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2022-04-30/R5C5-argentan-prix-ce-bello-romain",
+      "controle": "Date, R/C et cheval gagnant confirmés dans le résultat officiel reproduit par ZEturf/Canalturf ; lien Equidia construit, lecture du replay non testée."
+    },
+    {
+      "date": "2022-05-08",
+      "cheval": "HERMES PLANCHETTE",
+      "hippodrome": "RAMBOUILLET",
+      "url": "https://www.equidia.fr/courses/2022-05-08/R8/C7",
+      "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2022-05-08/R8C7-rambouillet-prix-de-la-foret-groupe-b",
+      "controle": "Date, R/C et cheval gagnant confirmés dans le résultat officiel reproduit par ZEturf/Canalturf ; lien Equidia construit, lecture du replay non testée."
     }
   ]
 }
