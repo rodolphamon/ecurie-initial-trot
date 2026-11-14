@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="84" height="100" viewBox="0 0 84 100" role="img" aria-label="Casaque bleu-violet, épaulettes et brassards roses, toque bleu-violet">
+  <title>Casaque de Florian Julien — bleu-violet et rose</title>
+  <g stroke="#22243c" stroke-width="1.5" stroke-linejoin="round">
+    <path d="M32 22 L52 22 L55 31 Q42 36 29 31 Z" fill="#f5f4fa"/>
+    <path d="M30 14 Q31 3 42 3 Q53 3 54 14 L54 20 Q42 24 30 20 Z" fill="#272850"/>
+    <path d="M30 18 Q42 22 54 18 L56 22 Q42 27 28 22 Z" fill="#272850"/>
+    <path d="M26 30 L14 35 L2 57 L13 81 L27 75 L29 95 L55 95 L57 75 L71 81 L82 57 L70 35 L58 30 L51 28 L42 35 L33 28 Z" fill="#282651"/>
+    <path d="M26 30 L15 35 L11 43 L25 48 L34 33 Z" fill="#e975a4" stroke="none"/>
+    <path d="M58 30 L69 35 L73 43 L59 48 L50 33 Z" fill="#e975a4" stroke="none"/>
+    <path d="M8 46 L20 51 L17 58 L5 54 Z M13 65 L25 68 L23 75 L15 76 Z M76 46 L64 51 L67 58 L79 54 Z M71 65 L59 68 L61 75 L69 76 Z" fill="#e975a4" stroke="none"/>
+    <path d="M34 29 Q42 36 50 29" fill="none" stroke="#f6eaf0" stroke-width="2"/>
+    <path d="M29 95 L55 95" stroke="#1d1b39"/>
+  </g>
+</svg>
