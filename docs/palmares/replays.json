@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "note": "Lien direct vers le replay officiel LeTROT ; un pictogramme n'est affiché que si l'URL a été identifiée et rattachée à la bonne course.",
+  "note": "Replays des victoires : source LeTROT ou vidéos d'archives publiées sur la chaîne Ecurie-Initial (Dailymotion). Le bouton Vidéo apparaît uniquement lorsque l'URL exacte a été retrouvée et rapprochée de la course (cheval, date, hippodrome).",
   "replays": [
     {
       "date": "2026-09-21",
@@ -15,6 +15,102 @@
       "hippodrome": "ENGHIEN",
       "url": "https://www.letrot.com/fr/courses/replay-courses/2025-10-08/7502/6",
       "justificatif": "https://province-courses.fr/24H/article_PDF.php?id=35853"
+    },
+    {
+      "date": "2017-03-04",
+      "cheval": "DJANGO DE MONGOCHY",
+      "hippodrome": "VINCENNES",
+      "url": "https://www.dailymotion.com/video/x5dxub9",
+      "source": "Vidéos historiques publiées sur la chaîne Ecurie-Initial (Dailymotion)",
+      "justificatif": "https://www.dailymotion.com/video/x5dxub9"
+    },
+    {
+      "date": "2016-11-01",
+      "cheval": "CALIE DE POMMERAYE",
+      "hippodrome": "VINCENNES",
+      "url": "https://www.dailymotion.com/video/x50j15e",
+      "source": "Vidéos historiques publiées sur la chaîne Ecurie-Initial (Dailymotion)",
+      "justificatif": "https://www.dailymotion.com/video/x50j15e"
+    },
+    {
+      "date": "2015-06-07",
+      "cheval": "CALIE DE POMMERAYE",
+      "hippodrome": "GOURNAY-EN-BRAY",
+      "url": "https://www.dailymotion.com/video/x2uf4xc",
+      "source": "Vidéos historiques publiées sur la chaîne Ecurie-Initial (Dailymotion)",
+      "justificatif": "https://www.dailymotion.com/video/x2uf4xc"
+    },
+    {
+      "date": "2015-04-05",
+      "cheval": "ACTRICE DE CERISY",
+      "hippodrome": "BEAUMONT DE LOMAGNE",
+      "url": "https://www.dailymotion.com/video/x2v4jft",
+      "source": "Vidéos historiques publiées sur la chaîne Ecurie-Initial (Dailymotion)",
+      "justificatif": "https://www.dailymotion.com/video/x2v4jft"
+    },
+    {
+      "date": "2014-07-15",
+      "cheval": "UKAPI DE GODISSON",
+      "hippodrome": "BIARRITZ",
+      "url": "https://www.dailymotion.com/video/x2erxld",
+      "source": "Vidéos historiques publiées sur la chaîne Ecurie-Initial (Dailymotion)",
+      "justificatif": "https://www.dailymotion.com/video/x2erxld"
+    },
+    {
+      "date": "2014-06-15",
+      "cheval": "UKAPI DE GODISSON",
+      "hippodrome": "LUXE",
+      "url": "https://www.dailymotion.com/video/x2erwj3",
+      "source": "Vidéos historiques publiées sur la chaîne Ecurie-Initial (Dailymotion)",
+      "justificatif": "https://www.dailymotion.com/video/x2erwj3"
+    },
+    {
+      "date": "2013-12-27",
+      "cheval": "ADAMS",
+      "hippodrome": "VINCENNES",
+      "url": "https://www.dailymotion.com/video/x190dh8",
+      "source": "Vidéos historiques publiées sur la chaîne Ecurie-Initial (Dailymotion)",
+      "justificatif": "https://www.dailymotion.com/video/x190dh8"
+    },
+    {
+      "date": "2013-10-18",
+      "cheval": "ADAMS",
+      "hippodrome": "AMIENS",
+      "url": "https://www.dailymotion.com/video/x190tvu",
+      "source": "Vidéos historiques publiées sur la chaîne Ecurie-Initial (Dailymotion)",
+      "justificatif": "https://www.dailymotion.com/video/x190tvu"
+    },
+    {
+      "date": "2013-09-08",
+      "cheval": "RHEA SILVIA",
+      "hippodrome": "COMPIEGNE",
+      "url": "https://www.dailymotion.com/video/x156ld4",
+      "source": "Vidéos historiques publiées sur la chaîne Ecurie-Initial (Dailymotion)",
+      "justificatif": "https://www.dailymotion.com/video/x156ld4"
+    },
+    {
+      "date": "2013-08-15",
+      "cheval": "RHEA SILVIA",
+      "hippodrome": "CARENTAN",
+      "url": "https://www.dailymotion.com/video/x13dp6v",
+      "source": "Vidéos historiques publiées sur la chaîne Ecurie-Initial (Dailymotion)",
+      "justificatif": "https://www.dailymotion.com/video/x13dp6v"
+    },
+    {
+      "date": "2013-06-23",
+      "cheval": "RHUM BARBES",
+      "hippodrome": "LES ANDELYS",
+      "url": "https://www.dailymotion.com/video/x190vj6",
+      "source": "Vidéos historiques publiées sur la chaîne Ecurie-Initial (Dailymotion)",
+      "justificatif": "https://www.dailymotion.com/video/x190vj6"
+    },
+    {
+      "date": "2013-05-19",
+      "cheval": "RHUM BARBES",
+      "hippodrome": "LE NEUBOURG",
+      "url": "https://www.dailymotion.com/video/x190v4m",
+      "source": "Vidéos historiques publiées sur la chaîne Ecurie-Initial (Dailymotion)",
+      "justificatif": "https://www.dailymotion.com/video/x190v4m"
     }
   ]
 }
