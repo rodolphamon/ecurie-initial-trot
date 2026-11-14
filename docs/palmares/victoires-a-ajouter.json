@@ -1,12 +1,52 @@
 {
   "date_reference": "2026-11-13",
   "base_victoires_validees": 172,
-  "commentaire": "Compteur validé : trot = Rodolphe HAMON (6), Nathalie HAMON (17), Écurie Initial (130 affirmés par le propriétaire); galop = Rodolphe HAMON + Écurie Initial (19), total 172. Le tableau d'archives présente 132 courses au trot avec la casaque blanche Initial, soit 2 lignes à rapprocher du décompte réel : ne supprimer ni désigner arbitrairement ces lignes sans vérification. Les victoires HOMA et celles sous casaque bleu/rose de JETHAN/JUNINIO restent visibles et hors compteur. Pour les nouvelles victoires, renseigner 'proprietaire' vérifié; les victoires autorisées s'ajoutent au compteur, les autres restent hors compteur.",
+  "commentaire": "Réconciliation vérifiée avec le PDF LeTROT remis par le propriétaire (14/11/2026) : Écurie Initial compte 130 victoires au trot, et le compteur global Rodolphe HAMON + Nathalie HAMON + Écurie Initial (selon discipline) est de 172. Les archives conservent également les victoires d'autres propriétaires, hors compteur. Le compteur du site est désormais recalculé depuis les lignes admissibles et non maintenu par un nombre constant. Pour chaque nouvelle victoire, saisir obligatoirement le champ 'proprietaire' exact et vérifier l'attribution.",
   "victoires": [],
   "decompte_valide": {
     "trot_hamon_rodolphe": 6,
     "trot_hamon_nathalie": 17,
     "trot_ecurie_initial": 130,
     "galop_hamon_rodolphe_et_ecurie_initial": 19
+  },
+  "reconciliation_letrot": {
+    "reference": "PDF utilisateur - Écurie INITIAL (propriétaire), fiche LeTROT, 14/11/2026",
+    "trot_ecurie_initial_officiel": 130,
+    "ajoutees": [
+      {
+        "date": "2023-07-23",
+        "cheval": "GUEPARD DE MONE",
+        "hippodrome": "SAINT-OMER"
+      },
+      {
+        "date": "2025-12-08",
+        "cheval": "MACLANDER",
+        "hippodrome": "BORDEAUX - LE BOUSCAT"
+      }
+    ],
+    "conservees_hors_compteur": [
+      {
+        "date": "2023-08-10",
+        "cheval": "JUNINIO FLEURY",
+        "proprietaire": "Arnaud PUSKAS"
+      },
+      {
+        "date": "2024-04-01",
+        "cheval": "JUNINIO FLEURY",
+        "proprietaire": "Arnaud PUSKAS"
+      },
+      {
+        "date": "2024-12-17",
+        "cheval": "JUNINIO FLEURY",
+        "proprietaire": "Arnaud PUSKAS"
+      },
+      {
+        "date": "2026-04-26",
+        "cheval": "NOSTALGIE DAIRPET",
+        "proprietaire": "Thomas LEVESQUE"
+      }
+    ],
+    "solde": "132 - 4 + 2 = 130",
+    "total_victoires_comptees": 172
   }
 }
