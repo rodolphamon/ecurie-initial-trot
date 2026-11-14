@@ -58,7 +58,7 @@ td:first-child,th:first-child{text-align:center;width:75px}td.date{white-space:n
 }
 </style></head><body>
 <main class="palmares">
-<header class="top"><h1>VICTOIRES</h1><output id="counter" aria-label="Nombre de victoires validées" aria-live="polite">174</output></header>
+<header class="top"><h1>VICTOIRES</h1><output id="counter" aria-label="Nombre de victoires validées" aria-live="polite">172</output></header>
 <section aria-label="Filtrer les victoires" class="controls">
 <label><input id="search" type="search" placeholder="Rechercher un cheval, une ville, un jockey…" aria-label="Rechercher"></label>
 <label><select id="year" aria-label="Année"><option value="">Toutes les années</option></select></label>
@@ -70,7 +70,7 @@ td:first-child,th:first-child{text-align:center;width:75px}td.date{white-space:n
 <thead><tr><th>Casaque</th><th>Date</th><th>Hippodrome</th><th>Cheval</th><th>Jockey / Driver</th><th>Discipline</th></tr></thead>
 <tbody id="rows"></tbody></table></div><div class="cards" id="cards" aria-label="Victoires affichées sur téléphone"></div><div id="empty" class="empty" hidden>Aucune victoire ne correspond à cette recherche.</div>
 <nav class="nav" aria-label="Pagination"><button type="button" id="prev">Précédent</button><span id="page"></span><button type="button" id="next">Suivant</button></nav>
-<p class="fineprint"><strong>Archives :</strong> Les relevés officiels donnent 153 victoires au trot (LeTROT) et 19 au plat (France Galop), soit 172 succès dans ces deux catégories. Le compteur historique de 174 est conservé provisoirement jusqu’au contrôle des éventuelles victoires à l’obstacle. La liste historique comprend 182 lignes qui restent à rapprocher du total officiel. VALMIN DE GUEUDE (02/04/2018) a été rétabli gagnant sur tapis vert après disqualification ultérieure du premier, selon confirmation du propriétaire. Les nouvelles victoires validées sont ajoutées au compteur et au tableau après mise à jour des résultats. Les jockeys/drivers non vérifiés restent vides.</p><p class="fineprint">Pictogrammes attelé, monté et galop : <a href="https://commons.wikimedia.org/wiki/User:Historicair" target="_blank" rel="noopener">Historicair</a> — <a href="https://creativecommons.org/licenses/by-sa/2.5/" target="_blank" rel="noopener">CC BY-SA 2.5</a> (<a href="https://commons.wikimedia.org/wiki/File:Trot_sulky_racing_clipart.svg" target="_blank" rel="noopener">attelé</a> · <a href="https://commons.wikimedia.org/wiki/File:Trot_mounted_racing_clipart.svg" target="_blank" rel="noopener">monté</a> · <a href="https://commons.wikimedia.org/wiki/File:Flat_racing_clipart.svg" target="_blank" rel="noopener">galop</a>).</p>
+<p class="fineprint"><strong>Archives :</strong> Bilan confirmé : 172 victoires (153 au trot, 19 au plat, 0 à l’obstacle), d’après LeTROT, France Galop Pro et le propriétaire. L’historique rassemble actuellement 182 lignes ; 10 lignes de différence restent à rapprocher des statistiques officielles. Les résultats historiques non rapprochés ne sont pas ajoutés au compteur. VALMIN DE GUEUDE (02/04/2018) a été rétabli gagnant sur tapis vert après disqualification ultérieure du premier, selon confirmation du propriétaire. Les nouvelles victoires validées sont ajoutées au compteur et au tableau après mise à jour des résultats. Les jockeys/drivers non vérifiés restent vides.</p><p class="fineprint">Pictogrammes attelé, monté et galop : <a href="https://commons.wikimedia.org/wiki/User:Historicair" target="_blank" rel="noopener">Historicair</a> — <a href="https://creativecommons.org/licenses/by-sa/2.5/" target="_blank" rel="noopener">CC BY-SA 2.5</a> (<a href="https://commons.wikimedia.org/wiki/File:Trot_sulky_racing_clipart.svg" target="_blank" rel="noopener">attelé</a> · <a href="https://commons.wikimedia.org/wiki/File:Trot_mounted_racing_clipart.svg" target="_blank" rel="noopener">monté</a> · <a href="https://commons.wikimedia.org/wiki/File:Flat_racing_clipart.svg" target="_blank" rel="noopener">galop</a>).</p>
 </main>
 <script>
 "use strict";
@@ -142,8 +142,8 @@ async function loadNewVictories(){
   }));
   const keys=new Set(results.map(v=>[v.date,v.cheval,v.hippodrome].join("|").toUpperCase()));
   const unique=add.filter(v=>{const key=[v.date,v.cheval,v.hippodrome].join("|").toUpperCase();if(keys.has(key))return false;keys.add(key);return true});
-  results.push(...unique);updateCounter(174+unique.length);refreshYears();render();
- }catch(err){updateCounter(174)}
+  results.push(...unique);updateCounter(172+unique.length);refreshYears();render();
+ }catch(err){updateCounter(172)}
 }
 $("legend").innerHTML=["attele","monte","galop"].map(t=>'<span class="tag">'+disc(t)+'</span>').join("");
 ["search","year","type","order"].forEach(id=>$(id).addEventListener("input",()=>{state.page=1;render()}));
