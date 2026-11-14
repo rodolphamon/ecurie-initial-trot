@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "note": "Les boutons ouvrent les pages de résultats LeTROT (/courses/date/code-hippodrome/numero-course), où le replay peut être proposé. Ces 31 correspondances date, hippodrome et numéro de course proviennent de sources de résultats, mais l'accès automatisé à LeTROT ne permet pas de contrôler individuellement la lecture des vidéos. Liens replay anciens conservés dans lien_replay_original pour réversibilité. Aucune vidéo externe.",
+  "note": "Liens vers les fiches de résultats LeTROT (/courses/date/code-hippodrome/numéro-course), où un replay peut être proposé. Date, code hippodrome SETF et numéro de course croisés ; l'accès automatisé à LeTROT bloque la vérification du chargement des pages et de la lecture des vidéos. Conserver la distinction entre lien proposé et vidéo effectivement testée. Les anciennes URL vidéo restent sauvegardées dans lien_replay_original.",
   "replays": [
     {
       "date": "2026-09-21",
@@ -9,6 +9,42 @@
       "url": "https://www.letrot.com/courses/2026-09-21/202/7",
       "justificatif": "https://www.province-courses.fr/24H/article_PDF.php?id=43211",
       "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2026-09-21/202/7"
+    },
+    {
+      "date": "2026-09-04",
+      "cheval": "LORD ON WAY",
+      "hippodrome": "LYON-PARILLY",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2026-09-04/R3C6-lyon-parilly-prix-yvan-berger",
+      "url": "https://www.letrot.com/courses/2026-09-04/6901/6",
+      "justificatif_code_hippodrome": "https://www.leshippodromesdelyon.fr/wp-content/uploads/2019/04/2019BROCHUREsem1.pdf",
+      "controle": "Lien vers la page officielle des résultats construit à partir du code hippodrome SETF et du numéro de course confirmé ; ouverture de la page et présence du replay restent à tester"
+    },
+    {
+      "date": "2026-04-19",
+      "cheval": "JUNINIO FLEURY",
+      "hippodrome": "AGEN-LA-GARENNE",
+      "justificatif": "https://www.zeturf.es/en/course-du-jour/2026-04-19/R9C7-agen-prix-max-gerbeaud",
+      "url": "https://www.letrot.com/courses/2026-04-19/4701/7",
+      "justificatif_code_hippodrome": "https://pro.letrot.com/siteletrotws-LMeiJS3SZYjkmC1qpyBvHCsYjfwGkj/publication?annee=2025&semaine=44&type=BULLETIN",
+      "controle": "Lien vers la page officielle des résultats construit à partir du code hippodrome SETF et du numéro de course confirmé ; ouverture de la page et présence du replay restent à tester"
+    },
+    {
+      "date": "2026-03-15",
+      "cheval": "MONA LISA STARDUST",
+      "hippodrome": "AGEN-LA-GARENNE",
+      "justificatif": "https://www.canalturf.com/resultats-PMU/2026-03-15/agen-le-passage/400149_prix-de-l-hippodrome-de-manacor.html",
+      "url": "https://www.letrot.com/courses/2026-03-15/4701/2",
+      "justificatif_code_hippodrome": "https://pro.letrot.com/siteletrotws-LMeiJS3SZYjkmC1qpyBvHCsYjfwGkj/publication?annee=2025&semaine=44&type=BULLETIN",
+      "controle": "Lien vers la page officielle des résultats construit à partir du code hippodrome SETF et du numéro de course confirmé ; ouverture de la page et présence du replay restent à tester"
+    },
+    {
+      "date": "2026-02-14",
+      "cheval": "JUNINIO FLEURY",
+      "hippodrome": "AGEN-LA-GARENNE",
+      "justificatif": "https://www.geny.com/course/1633107-2026-02-14-agen-le-passage-prix-de-sauvagnas/arrivee-rapports",
+      "url": "https://www.letrot.com/courses/2026-02-14/4701/1",
+      "justificatif_code_hippodrome": "https://pro.letrot.com/siteletrotws-LMeiJS3SZYjkmC1qpyBvHCsYjfwGkj/publication?annee=2025&semaine=44&type=BULLETIN",
+      "controle": "Lien vers la page officielle des résultats construit à partir du code hippodrome SETF et du numéro de course confirmé ; ouverture de la page et présence du replay restent à tester"
     },
     {
       "date": "2026-01-30",
