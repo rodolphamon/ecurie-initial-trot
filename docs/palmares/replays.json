@@ -1,6 +1,6 @@
 {
-  "version": 7,
-  "note": "Liens des courses Equidia avec date, réunion, numéro de course recoupés (Turfin/Geny/Canalturf/ZEturf/Gbet/eloturf). Les URL Equidia construites sur ce format ne garantissent pas la disponibilité ni la lecture du replay. Anciennes URL LeTROT sauvegardées. Aucun résultat du palmarès modifié.",
+  "version": 8,
+  "note": "Liens vers les pages de courses sur Equidia ou LeTROT, avec références de résultats ayant permis d'identifier date, hippodrome, réunion et numéro de course. Les liens Equidia sont calculés d'après le format d'URL et leur lecture, ainsi que la disponibilité du replay, n'ont pas été testées automatiquement. Les victoires historiques ne sont pas modifiées.",
   "replays": [
     {
       "date": "2026-09-21",
@@ -569,6 +569,110 @@
       "url": "https://www.equidia.fr/courses/2023-07-06/R4/C1",
       "preuve_identification_course": "https://www.canalturf.com/resultats-PMU/2023-07-06/lisieux/311103_prix-les-bruyeres-carre.html",
       "controle": "Résultat, cheval gagnant, date et R/C vérifiés ; lien de course Equidia construit, disponibilité vidéo à confirmer"
+    },
+    {
+      "date": "2023-08-10",
+      "cheval": "JUNINIO FLEURY",
+      "hippodrome": "CHATEAUBRIANT",
+      "url": "https://www.equidia.fr/courses/2023-08-10/R2/C4",
+      "preuve_identification_course": "https://www.oneturf.fr/arrive/FR/10-08-2023/179791%2C1478731%2CCHATEAUBRIANT%2C4-PRIX-DU-PARC.html",
+      "controle": "Course et victoire explicitement confirmées par l'arrivée publiée ; lien Equidia construit à partir du R/C vérifié, lecture vidéo non testée."
+    },
+    {
+      "date": "2023-08-10",
+      "cheval": "ILLAM DE MONGOCHY",
+      "hippodrome": "CHATEAUBRIANT",
+      "url": "https://www.equidia.fr/courses/2023-08-10/R2/C7",
+      "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2023-08-10/R2C7-chateaubriant-prix-ready-cash",
+      "controle": "Course et victoire explicitement confirmées par l'arrivée publiée ; lien Equidia construit à partir du R/C vérifié, lecture vidéo non testée."
+    },
+    {
+      "date": "2023-11-13",
+      "cheval": "ON LOCKDOWN",
+      "hippodrome": "LE MANS",
+      "url": "https://www.equidia.fr/courses/2023-11-13/R3/C8",
+      "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2023-11-13/R3C8-le-mans-prix-du-conseil-departemental",
+      "controle": "Course et victoire explicitement confirmées par l'arrivée publiée ; lien Equidia construit à partir du R/C vérifié, lecture vidéo non testée."
+    },
+    {
+      "date": "2023-12-03",
+      "cheval": "INDICE DELADOU",
+      "hippodrome": "BEAUMONT DE LOMAGNE",
+      "url": "https://www.equidia.fr/courses/2023-12-03/R4/C2",
+      "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2023-12-03/R4C2-beaumont-de-lomagne-prix-maurice-de-folleville",
+      "controle": "Course et victoire explicitement confirmées par l'arrivée publiée ; lien Equidia construit à partir du R/C vérifié, lecture vidéo non testée."
+    },
+    {
+      "date": "2023-11-03",
+      "cheval": "HAMPTON AMERICA",
+      "hippodrome": "AMIENS",
+      "url": "https://www.equidia.fr/courses/2023-11-03/R4/C1",
+      "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2023-11-03/R4C1-amiens-prix-du-musee-somme-1916-albert",
+      "controle": "Course et victoire explicitement confirmées par l'arrivée publiée ; lien Equidia construit à partir du R/C vérifié, lecture vidéo non testée."
+    },
+    {
+      "date": "2023-07-22",
+      "cheval": "HAMPTON AMERICA",
+      "hippodrome": "SAINT-GALMIER",
+      "url": "https://www.equidia.fr/courses/2023-07-22/R4/C1",
+      "preuve_identification_course": "https://www.zeturf.be/fr/course-du-jour/2023-07-22/R4C1-saint-galmier-prix-des-campanules-france-bleu",
+      "controle": "Course et victoire explicitement confirmées par l'arrivée publiée ; lien Equidia construit à partir du R/C vérifié, lecture vidéo non testée."
+    },
+    {
+      "date": "2023-08-01",
+      "cheval": "GOSPEL",
+      "hippodrome": "MESLAY-DU-MAINE",
+      "url": "https://www.equidia.fr/courses/2023-08-01/R4/C3",
+      "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2023-08-01/R4C3-meslay-du-maine-prix-groupama",
+      "controle": "Course et victoire explicitement confirmées par l'arrivée publiée ; lien Equidia construit à partir du R/C vérifié, lecture vidéo non testée."
+    },
+    {
+      "date": "2023-09-28",
+      "cheval": "MYMAP",
+      "hippodrome": "LE MANS",
+      "url": "https://www.equidia.fr/courses/2023-09-28/R3/C1",
+      "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2023-09-28/R3C1-le-mans-prix-de-coulaines",
+      "controle": "Course et victoire explicitement confirmées par l'arrivée publiée ; lien Equidia construit à partir du R/C vérifié, lecture vidéo non testée."
+    },
+    {
+      "date": "2024-07-04",
+      "cheval": "ISOLEE DU BOUILLON",
+      "hippodrome": "LISIEUX",
+      "url": "https://www.equidia.fr/courses/2024-07-04/R4/C1",
+      "preuve_identification_course": "https://www.zeturf.es/fr/course-du-jour/2024-07-04/R4C1-lisieux-prix-saint-desir-lisieux",
+      "controle": "Course et victoire explicitement confirmées par l'arrivée publiée ; lien Equidia construit à partir du R/C vérifié, lecture vidéo non testée."
+    },
+    {
+      "date": "2025-01-19",
+      "cheval": "JOHANNA ELEVEN",
+      "hippodrome": "SAINT-GALMIER",
+      "url": "https://www.equidia.fr/courses/2025-01-19/R8/C7",
+      "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2025-01-19/R8C7-saint-galmier-prix-des-camelias",
+      "controle": "Course et victoire explicitement confirmées par l'arrivée publiée ; lien Equidia construit à partir du R/C vérifié, lecture vidéo non testée."
+    },
+    {
+      "date": "2025-05-03",
+      "cheval": "LOVE ME MAZELI",
+      "hippodrome": "AMIENS",
+      "url": "https://www.equidia.fr/courses/2025-05-03/R12/C7",
+      "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2025-05-03/R12C7-amiens-prix-ici-picardie-groupe-a",
+      "controle": "Course et victoire explicitement confirmées par l'arrivée publiée ; lien Equidia construit à partir du R/C vérifié, lecture vidéo non testée."
+    },
+    {
+      "date": "2025-08-20",
+      "cheval": "LARGO DE JOUDES",
+      "hippodrome": "LES SABLES D'OLONNES",
+      "url": "https://www.equidia.fr/courses/2025-08-20/R8/C7",
+      "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2025-08-20/R8C7-les-sables-d-olonne-prix-de-cayola",
+      "controle": "Course et victoire explicitement confirmées par l'arrivée publiée ; lien Equidia construit à partir du R/C vérifié, lecture vidéo non testée."
+    },
+    {
+      "date": "2022-07-08",
+      "cheval": "HANANE MONTAVAL",
+      "hippodrome": "CABOURG",
+      "url": "https://www.equidia.fr/courses/2022-07-08/R1/C3",
+      "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2022-07-08/R1C3-cabourg-prix-paul-viel",
+      "controle": "Course et victoire explicitement confirmées par l'arrivée publiée ; lien Equidia construit à partir du R/C vérifié, lecture vidéo non testée."
     }
   ]
 }
