@@ -1,6 +1,6 @@
 {
-  "version": 4,
-  "note": "Liens vers les fiches de course correspondantes. Les 5 premiers liens Equidia sont recoupés avec des fiches Turfin comportant un lien « Le replay sur Equidia » (date, réunion, numéro de course). Le chargement et la lecture des vidéos Equidia et LeTROT restent à confirmer dans un navigateur utilisateur ; ne pas présenter ces liens comme des vidéos lues/testées. Les anciens liens LeTROT sont conservés lorsqu'ils sont remplacés.",
+  "version": 5,
+  "note": "Liens des courses Equidia avec date, réunion, numéro de course recoupés (Turfin/Geny/Canalturf/ZEturf/Gbet/eloturf). Les URL Equidia construites sur ce format ne garantissent pas la disponibilité ni la lecture du replay. Anciennes URL LeTROT sauvegardées. Aucun résultat du palmarès modifié.",
   "replays": [
     {
       "date": "2026-09-21",
@@ -29,27 +29,33 @@
       "cheval": "JUNINIO FLEURY",
       "hippodrome": "AGEN-LA-GARENNE",
       "justificatif": "https://www.zeturf.es/en/course-du-jour/2026-04-19/R9C7-agen-prix-max-gerbeaud",
-      "url": "https://www.letrot.com/courses/2026-04-19/4701/7",
+      "url": "https://www.equidia.fr/courses/2026-04-19/R9/C7",
       "justificatif_code_hippodrome": "https://pro.letrot.com/siteletrotws-LMeiJS3SZYjkmC1qpyBvHCsYjfwGkj/publication?annee=2025&semaine=44&type=BULLETIN",
-      "controle": "Lien vers la page officielle des résultats construit à partir du code hippodrome SETF et du numéro de course confirmé ; ouverture de la page et présence du replay restent à tester"
+      "controle": "Course référencée par Turfin (R et C concordants) ; lecture du replay Equidia non testée ici",
+      "lien_letrot_precedent": "https://www.letrot.com/courses/2026-04-19/4701/7",
+      "preuve_identification_course": "https://turfin.fr/course/2026-04-19/r9c7-agen-la-garenne"
     },
     {
       "date": "2026-03-15",
       "cheval": "MONA LISA STARDUST",
       "hippodrome": "AGEN-LA-GARENNE",
       "justificatif": "https://www.canalturf.com/resultats-PMU/2026-03-15/agen-le-passage/400149_prix-de-l-hippodrome-de-manacor.html",
-      "url": "https://www.letrot.com/courses/2026-03-15/4701/2",
+      "url": "https://www.equidia.fr/courses/2026-03-15/R8/C2",
       "justificatif_code_hippodrome": "https://pro.letrot.com/siteletrotws-LMeiJS3SZYjkmC1qpyBvHCsYjfwGkj/publication?annee=2025&semaine=44&type=BULLETIN",
-      "controle": "Lien vers la page officielle des résultats construit à partir du code hippodrome SETF et du numéro de course confirmé ; ouverture de la page et présence du replay restent à tester"
+      "controle": "Course référencée par Turfin (R et C concordants) ; lecture du replay Equidia non testée ici",
+      "lien_letrot_precedent": "https://www.letrot.com/courses/2026-03-15/4701/2",
+      "preuve_identification_course": "https://turfin.fr/course/2026-03-15/r8c2-agen-la-garenne-prix-de-l-hippodrome-de-manacor"
     },
     {
       "date": "2026-02-14",
       "cheval": "JUNINIO FLEURY",
       "hippodrome": "AGEN-LA-GARENNE",
       "justificatif": "https://www.geny.com/course/1633107-2026-02-14-agen-le-passage-prix-de-sauvagnas/arrivee-rapports",
-      "url": "https://www.letrot.com/courses/2026-02-14/4701/1",
+      "url": "https://www.equidia.fr/courses/2026-02-14/R4/C1",
       "justificatif_code_hippodrome": "https://pro.letrot.com/siteletrotws-LMeiJS3SZYjkmC1qpyBvHCsYjfwGkj/publication?annee=2025&semaine=44&type=BULLETIN",
-      "controle": "Lien vers la page officielle des résultats construit à partir du code hippodrome SETF et du numéro de course confirmé ; ouverture de la page et présence du replay restent à tester"
+      "controle": "Course référencée par Turfin (R et C concordants) ; lecture du replay Equidia non testée ici",
+      "lien_letrot_precedent": "https://www.letrot.com/courses/2026-02-14/4701/1",
+      "preuve_identification_course": "https://turfin.fr/course/2026-02-14/r4c1-agen-la-garenne"
     },
     {
       "date": "2026-01-30",
@@ -363,6 +369,142 @@
       "url": "https://www.equidia.fr/courses/2026-04-04/R4/C4",
       "preuve_lien_equidia": "https://turfin.fr/course/2026-04-04/r4c4-le-croise-laroche-prix-du-parc-barbieux",
       "controle": "Lien direct vers la fiche de course Equidia indiqué sur Turfin ; lecture du replay non testée depuis cet environnement"
+    },
+    {
+      "date": "2026-08-27",
+      "cheval": "LORD ON WAY",
+      "hippodrome": "PORNICHET-LA-BAULE",
+      "url": "https://www.equidia.fr/courses/2026-08-27/R5/C5",
+      "preuve_identification_course": "https://turfin.fr/course/2026-08-27/r5c5-pornichet-prix-anim-s-pg",
+      "controle": "Course référencée par Turfin (R et C concordants) ; lecture du replay Equidia non testée ici"
+    },
+    {
+      "date": "2026-07-19",
+      "cheval": "NEBRASKA FLEURY",
+      "hippodrome": "CLAIREFONTAINE",
+      "url": "https://www.equidia.fr/courses/2026-07-19/R11/C5",
+      "preuve_identification_course": "https://turfin.fr/course/2026-07-19/r11c5-clairefontaine-prix-etalon-otello-pierji",
+      "controle": "Course référencée par Turfin (R et C concordants) ; lecture du replay Equidia non testée ici"
+    },
+    {
+      "date": "2026-07-02",
+      "cheval": "LORD ON WAY",
+      "hippodrome": "PORNICHET-LA-BAULE",
+      "url": "https://www.equidia.fr/courses/2026-07-02/R5/C6",
+      "preuve_identification_course": "https://turfin.fr/course/2026-07-02/r5c6-pornichet",
+      "controle": "Course référencée par Turfin (R et C concordants) ; lecture du replay Equidia non testée ici"
+    },
+    {
+      "date": "2026-08-02",
+      "cheval": "NEBRASKA FLEURY",
+      "hippodrome": "AIX-LES-BAINS",
+      "url": "https://www.equidia.fr/courses/2026-08-02/R9/C2",
+      "preuve_identification_course": "https://turfin.fr/course/2026-08-02/r9c2-aix-les-bains",
+      "controle": "Course référencée par Turfin (R et C concordants) ; lecture du replay Equidia non testée ici"
+    },
+    {
+      "date": "2026-03-20",
+      "cheval": "ON LOCKDOWN",
+      "hippodrome": "LE MANS",
+      "url": "https://www.equidia.fr/courses/2026-03-20/R3/C8",
+      "preuve_identification_course": "https://turfin.fr/course/2026-03-20/r3c8-le-mans-prix-alexandre-roussel-prix-de-la-soc-des-courses-de-mamers",
+      "controle": "Course référencée par Turfin (R et C concordants) ; lecture du replay Equidia non testée ici"
+    },
+    {
+      "date": "2026-03-31",
+      "cheval": "BOBROVKHA",
+      "hippodrome": "NANTES",
+      "url": "https://www.equidia.fr/courses/2026-03-31/R2/C2",
+      "preuve_identification_course": "https://www.canalturf.com/resultats-PMU/2026-03-31/nantes/401568_prix-de-vieillevigne.html",
+      "controle": "Numéros de réunion et course recoupés par source de résultats ; lien Equidia construit, lecture du replay à confirmer"
+    },
+    {
+      "date": "2026-08-09",
+      "cheval": "LORD ON WAY",
+      "hippodrome": "DIVONNE-LES-BAINS",
+      "url": "https://www.equidia.fr/courses/2026-08-09/R3/C4",
+      "preuve_identification_course": "https://www.geny.com/course/1675262/cotes",
+      "controle": "Numéros de réunion et course recoupés par source de résultats ; lien Equidia construit, lecture du replay à confirmer"
+    },
+    {
+      "date": "2026-08-10",
+      "cheval": "LARGO DE JOUDES",
+      "hippodrome": "DIVONNE-LES-BAINS",
+      "url": "https://www.equidia.fr/courses/2026-08-10/R6/C6",
+      "preuve_identification_course": "https://www.zeturf.be/fr/course-du-jour/2026-08-10/R6C6-divonne-les-bains-prix-de-crassy-prix-credit-mutuel",
+      "controle": "Numéros de réunion et course recoupés par source de résultats ; lien Equidia construit, lecture du replay à confirmer"
+    },
+    {
+      "date": "2025-11-17",
+      "cheval": "ON LOCKDOWN",
+      "hippodrome": "LE MANS",
+      "url": "https://www.equidia.fr/courses/2025-11-17/R3/C8",
+      "preuve_identification_course": "https://www.elo-turf.fr/cheval/on-lockdown",
+      "controle": "Numéros de réunion et course recoupés par source de résultats ; lien Equidia construit, lecture du replay à confirmer"
+    },
+    {
+      "date": "2025-10-10",
+      "cheval": "ON LOCKDOWN",
+      "hippodrome": "COMPIEGNE",
+      "url": "https://www.equidia.fr/courses/2025-10-10/R4/C7",
+      "preuve_identification_course": "https://www.elo-turf.fr/cheval/on-lockdown",
+      "controle": "Numéros de réunion et course recoupés par source de résultats ; lien Equidia construit, lecture du replay à confirmer"
+    },
+    {
+      "date": "2025-04-09",
+      "cheval": "GIORGIANA",
+      "hippodrome": "ARGENTAN",
+      "url": "https://www.equidia.fr/courses/2025-04-09/R4/C6",
+      "preuve_identification_course": "https://www.canalturf.com/resultats-PMU/2025-04-09/argentan/368262_prix-du-pays-d-argentan.html",
+      "controle": "Numéros de réunion et course recoupés par source de résultats ; lien Equidia construit, lecture du replay à confirmer"
+    },
+    {
+      "date": "2025-10-06",
+      "cheval": "GIORGIANA",
+      "hippodrome": "LE CROISE-LAROCHE",
+      "url": "https://www.equidia.fr/courses/2025-10-06/R4/C6",
+      "preuve_identification_course": "https://www.canalturf.com/resultats-PMU/2025-10-06/le-croise-laroche/385496_prix-des-weppes.html",
+      "controle": "Numéros de réunion et course recoupés par source de résultats ; lien Equidia construit, lecture du replay à confirmer"
+    },
+    {
+      "date": "2025-09-18",
+      "cheval": "GIORGIANA",
+      "hippodrome": "LE CROISE-LAROCHE",
+      "url": "https://www.equidia.fr/courses/2025-09-18/R4/C7",
+      "preuve_identification_course": "https://www.canalturf.com/resultats-PMU/2025-09-18/le-croise-laroche/383775_prix-de-lille.html",
+      "controle": "Numéros de réunion et course recoupés par source de résultats ; lien Equidia construit, lecture du replay à confirmer"
+    },
+    {
+      "date": "2025-06-19",
+      "cheval": "VYBORG",
+      "hippodrome": "PARISLONGCHAMP",
+      "url": "https://www.equidia.fr/courses/2025-06-19/R1/C5",
+      "preuve_identification_course": "https://www.canalturf.com/resultats-PMU/2025-06-19/longchamp/374892_prix-du-passage-du-prado.html",
+      "controle": "Numéros de réunion et course recoupés par source de résultats ; lien Equidia construit, lecture du replay à confirmer"
+    },
+    {
+      "date": "2024-05-09",
+      "cheval": "ON LOCKDOWN",
+      "hippodrome": "LE LION D'ANGERS",
+      "url": "https://www.equidia.fr/courses/2024-05-09/R4/C6",
+      "preuve_identification_course": "https://www.gbet.fr/courses/le-lion-d-angers/2024-05-09/r4/c6/px-de-la-reg-pays-de-la-loire-3e-ep-chal-apgo-px-de-la-grosse-pierre/",
+      "controle": "Numéros de réunion et course recoupés par source de résultats ; lien Equidia construit, lecture du replay à confirmer"
+    },
+    {
+      "date": "2024-07-15",
+      "cheval": "GIORGIANA",
+      "hippodrome": "SAINT-MALO",
+      "url": "https://www.equidia.fr/courses/2024-07-15/R2/C8",
+      "preuve_identification_course": "https://www.geny.com/course/1503651-2024-07-15-saint-malo-prix-des-iles-anglo-normandes/arrivee-rapports",
+      "controle": "Numéros de réunion et course recoupés par source de résultats ; lien Equidia construit, lecture du replay à confirmer"
+    },
+    {
+      "date": "2024-12-17",
+      "cheval": "JUNINIO FLEURY",
+      "hippodrome": "CABOURG",
+      "url": "https://www.equidia.fr/courses/2024-12-17/R4/C1",
+      "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2024-12-17/R4C1-cabourg-prix-des-mirabilis",
+      "controle": "Numéros de réunion et course recoupés par source de résultats ; lien Equidia construit, lecture du replay à confirmer"
     }
   ]
 }
