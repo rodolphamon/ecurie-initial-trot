@@ -19,13 +19,13 @@ td:first-child,th:first-child{text-align:center;width:75px}td.date{white-space:n
 .fineprint{margin:17px 0 0;font-size:12px;line-height:1.65;color:#686868}.fineprint strong{color:#494949}abbr{border:0;text-decoration:none;cursor:help}
 /* La table reste dédiée aux ordinateurs; sur téléphone chaque victoire possède une vraie fiche. */
 .cards{display:none}
-.pal-card{display:grid;grid-template-columns:60px minmax(0,1fr);gap:12px;align-items:start;padding:10px 14px;background:#fff;border:1px solid #e9e7e5;border-left:4px solid var(--orange);border-radius:12px;box-shadow:0 3px 12px rgba(33,24,16,.035);min-width:0}
+.pal-card{display:grid;grid-template-columns:52px minmax(0,1fr) auto;gap:12px;align-items:center;padding:12px 14px;background:#fff;border:1px solid #e9e7e5;border-left:4px solid var(--orange);border-radius:12px;box-shadow:0 3px 12px rgba(33,24,16,.035);min-width:0}
 .pal-card:nth-child(even){background:#fffbf8}
-.pal-card-silk{display:flex;align-items:center;justify-content:center;min-height:68px;padding-top:17px}
+.pal-card-silk{display:flex;align-items:center;justify-content:center;min-height:0;padding-top:0}
 .pal-card-silk .robe{height:54px;width:46px;object-fit:contain}
-.pal-card-main{min-width:0}
-.pal-card-head{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:5px;margin-bottom:3px}
-.pal-card-date{font-size:12px;font-weight:800;color:#b95819;font-variant-numeric:tabular-nums}
+.pal-card-main{min-width:0;display:flex;flex-direction:column;justify-content:center}
+.pal-card-head{display:contents}
+.pal-card-date{display:block;margin-bottom:9px;font-size:12px;font-weight:800;color:#b95819;font-variant-numeric:tabular-nums}
 .pal-card-name{font-size:17px;font-weight:900;line-height:1.25;color:#1d1d1d;overflow-wrap:anywhere}
 .pal-card-place{font-size:13px;color:#66616a;margin-top:5px;line-height:1.35;overflow-wrap:anywhere}
 .pal-card-jockey{font-size:13px;color:#37383e;margin-top:6px;line-height:1.35;font-weight:600}
@@ -33,7 +33,7 @@ td:first-child,th:first-child{text-align:center;width:75px}td.date{white-space:n
 .replay-link{display:inline-flex;align-items:center;justify-content:center;gap:5px;padding:7px 10px;border:1px solid #e5ba92;border-radius:999px;background:#fff5ed;color:#9c4712;font-size:12px;font-weight:800;text-decoration:none;line-height:1;white-space:nowrap}
 .replay-link svg{width:21px;height:19px;flex-shrink:0}
 .replay-link:hover,.replay-link:focus-visible{background:#f9d8bf;color:#72310c}
-.pal-card-replay{margin:0}.pal-card-actions{display:flex;flex-direction:column;align-items:flex-end;gap:5px;flex-shrink:0;margin-top:15px}.pal-card-actions .replay-link{padding:5px 8px;font-size:11px}.video-cell{text-align:center;width:94px}.video-cell .replay-link{padding:6px 9px}
+.pal-card-replay{margin:0}.pal-card-actions{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;flex-shrink:0;align-self:center;margin-top:0}.pal-card-actions .replay-link{padding:5px 8px;font-size:11px}.video-cell{text-align:center;width:94px}.video-cell .replay-link{padding:6px 9px}
 .pal-card-disc{display:inline-flex;align-items:center;gap:2px;white-space:nowrap;padding:4px 8px;border-radius:20px;background:#fff5ec;border:1px solid #f5e5d7;color:#8f4517;font-size:12px;font-weight:800}
 .pal-card-disc .disc-img{width:25px;height:19px;margin:0;object-fit:contain}
 .pal-card-disc.is-unclassified{background:#f4f4f4;border-color:#ececec;color:#636363}
@@ -54,10 +54,10 @@ td:first-child,th:first-child{text-align:center;width:75px}td.date{white-space:n
  .nav{gap:10px}
 }
 @media(max-width:370px){
- .pal-card{grid-template-columns:48px minmax(0,1fr);gap:9px;padding:10px 12px}
- .pal-card-silk .robe{height:49px;width:42px}
+ .pal-card{grid-template-columns:42px minmax(0,1fr) auto;gap:7px;padding:10px 9px}
+ .pal-card-silk .robe{height:49px;width:40px}
  .pal-card-name{font-size:16px}
- .pal-card-disc{font-size:11px}
+ .pal-card-disc{font-size:11px;padding:4px 6px}
  .top{padding:15px 12px}
 }
 </style></head><body>
@@ -149,7 +149,7 @@ function render(){
  $("cards").innerHTML=list.map(r=>{
   const label=r.discipline==="galop"||r.discipline==="monte"?"Jockey":r.discipline==="attele"?"Driver":"Jockey / Driver";
   const jockey=r.jockey?'<div class="pal-card-jockey"><span class="pal-card-jockey-label">'+label+' :</span>'+esc(r.jockey)+'</div>':"";
-  return '<article class="pal-card"><div class="pal-card-silk">'+jersey(r.casaque)+'</div><div class="pal-card-main"><div class="pal-card-head"><time class="pal-card-date" datetime="'+esc(r.date)+'">'+esc(dateFR(r.date))+'</time><div class="pal-card-actions"><span class="pal-card-disc'+(r.discipline==="trot"?' is-unclassified':'')+'">'+disc(r.discipline)+'</span>'+replayButton(r,true)+'</div></div><div class="pal-card-name">'+esc(r.cheval)+'</div><div class="pal-card-place">'+esc(r.hippodrome)+'</div>'+jockey+'</div></article>';
+  return '<article class="pal-card"><div class="pal-card-silk">'+jersey(r.casaque)+'</div><div class="pal-card-main"><time class="pal-card-date" datetime="'+esc(r.date)+'">'+esc(dateFR(r.date))+'</time><div class="pal-card-name">'+esc(r.cheval)+'</div><div class="pal-card-place">'+esc(r.hippodrome)+'</div>'+jockey+'</div><div class="pal-card-actions"><span class="pal-card-disc'+(r.discipline==="trot"?' is-unclassified':'')+'">'+disc(r.discipline)+'</span>'+replayButton(r,true)+'</div></article>';
  }).join("");
  $("empty").hidden=data.length>0;
  $("count").textContent=(!q&&!year&&!type&&!horse&&!pilot)?"Toutes les courses de nos archives":data.length+" course"+(data.length>1?"s":"")+" trouvée"+(data.length>1?"s":"");
