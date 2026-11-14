@@ -31,6 +31,9 @@ h1{font-size:clamp(23px,4vw,35px);line-height:1.12;letter-spacing:-.6px;margin:6
 .when .unknown{font-size:12px;font-weight:700;color:#968679}
 .when .silk{display:block;width:58px;height:68px;object-fit:contain;margin:8px auto 0}
 .horse{min-width:0}
+.horse-heading{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.start-time{font-size:19px;line-height:1.25;font-weight:900;color:#c55e16;white-space:nowrap;font-variant-numeric:tabular-nums}
+@media(max-width:390px){.horse-heading{gap:6px}.start-time{font-size:16px}}
 .horse strong{font-size:17px;line-height:1.2;display:block;font-weight:900;letter-spacing:.2px}
 .horse a{color:var(--ink);text-decoration:none}.horse a:hover{color:var(--orange-deep);text-decoration:underline}
 .place{margin-top:4px;font-size:13px;color:#51473f;font-weight:700}
@@ -83,8 +86,8 @@ const detail=[e.course,e.prix||e.type,e.distance].filter(Boolean).join(" · ");
 const person=e.driver||e.jockey||"";
 const silkFile=horse.casaque==="galop"?"casaque-galop.svg":horse.casaque==="orange"?"casaque-orange.svg":"casaque-blanche.svg";
 return '<article class="event'+(isPartant(e)?' is-partant':'')+'">'
-+'<div class="when">'+(isPartant(e)&&time?'<span class="time">'+esc(time)+'</span>':'')+'<img class="silk" src="../assets/'+silkFile+'" alt="Casaque de '+esc(horse.name)+'" loading="lazy"></div>'
-+'<div class="horse"><strong><a target="_blank" rel="noopener noreferrer" href="'+BASE+encodeURIComponent(id)+'/">'+esc(horse.name)+'</a></strong><div class="place">'+esc(e.hippodrome||"Hippodrome à confirmer")+' · '+esc(horse.discipline||"")+(e.numero?' · N° '+esc(e.numero):'')+'</div><div class="race">'+esc(detail)+'</div></div>'
++'<div class="when"><img class="silk" src="../assets/'+silkFile+'" alt="Casaque de '+esc(horse.name)+'" loading="lazy"></div>'
++'<div class="horse"><div class="horse-heading">'+(isPartant(e)&&time?'<span class="start-time">'+esc(time)+'</span>':'')+'<strong><a target="_blank" rel="noopener noreferrer" href="'+BASE+encodeURIComponent(id)+'/">'+esc(horse.name)+'</a></strong></div><div class="place">'+esc(e.hippodrome||"Hippodrome à confirmer")+' · '+esc(horse.discipline||"")+(e.numero?' · N° '+esc(e.numero):'')+'</div><div class="race">'+esc(detail)+'</div></div>'
 +'<div class="flag"><span class="pill '+esc(e.statut||"engage")+'">'+esc(label)+'</span>'+(person?'<div class="person">'+esc(person)+'</div>':'')+'</div></article>'}).join("")+'</div></section>').join("");
 resize();
 }
