@@ -81,7 +81,7 @@ const time=/^\d{2}:\d{2}$/.test(e.heure||"")?e.heure.replace(":"," h "):null;
 const detail=[e.course,e.prix||e.type,e.distance].filter(Boolean).join(" · ");
 const person=e.driver||e.jockey||"";
 return '<article class="event'+(isPartant(e)?' is-partant':'')+'">'
-+'<div class="when">'+(time?'<span class="time">'+esc(time)+'</span>':'<span class="unknown">Horaire<br>à confirmer</span>')+'</div>'
++'<div class="when">'+(isPartant(e)&&time?'<span class="time">'+esc(time)+'</span>':'')+'</div>'
 +'<div class="horse"><strong><a target="_blank" rel="noopener noreferrer" href="'+BASE+encodeURIComponent(id)+'/">'+esc(horse.name)+'</a></strong><div class="place">'+esc(e.hippodrome||"Hippodrome à confirmer")+' · '+esc(horse.discipline||"")+(e.numero?' · N° '+esc(e.numero):'')+'</div><div class="race">'+esc(detail)+'</div></div>'
 +'<div class="flag"><span class="pill '+esc(e.statut||"engage")+'">'+esc(label)+'</span>'+(person?'<div class="person">'+esc(person)+'</div>':'')+'</div></article>'}).join("")+'</div></section>').join("");
 resize();
