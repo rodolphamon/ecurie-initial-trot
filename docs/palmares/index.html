@@ -33,7 +33,7 @@ td:first-child,th:first-child{text-align:center;width:75px}td.date{white-space:n
 .replay-link{display:inline-flex;align-items:center;justify-content:center;gap:5px;padding:7px 10px;border:1px solid #e5ba92;border-radius:999px;background:#fff5ed;color:#9c4712;font-size:12px;font-weight:800;text-decoration:none;line-height:1;white-space:nowrap}
 .replay-link svg{width:21px;height:19px;flex-shrink:0}
 .replay-link:hover,.replay-link:focus-visible{background:#f9d8bf;color:#72310c}
-.pal-card-replay{margin-top:9px}.video-cell{text-align:center;width:94px}.video-cell .replay-link{padding:6px 9px}
+.pal-card-replay{margin:0}.pal-card-actions{display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex-shrink:0}.pal-card-actions .replay-link{padding:6px 9px;font-size:11px}.video-cell{text-align:center;width:94px}.video-cell .replay-link{padding:6px 9px}
 .pal-card-disc{display:inline-flex;align-items:center;gap:2px;white-space:nowrap;padding:4px 8px;border-radius:20px;background:#fff5ec;border:1px solid #f5e5d7;color:#8f4517;font-size:12px;font-weight:800}
 .pal-card-disc .disc-img{width:25px;height:19px;margin:0;object-fit:contain}
 .pal-card-disc.is-unclassified{background:#f4f4f4;border-color:#ececec;color:#636363}
@@ -146,7 +146,7 @@ function render(){
  $("cards").innerHTML=list.map(r=>{
   const label=r.discipline==="galop"||r.discipline==="monte"?"Jockey":r.discipline==="attele"?"Driver":"Jockey / Driver";
   const jockey=r.jockey?'<div class="pal-card-jockey"><span class="pal-card-jockey-label">'+label+' :</span>'+esc(r.jockey)+'</div>':"";
-  return '<article class="pal-card"><div class="pal-card-silk">'+jersey(r.casaque)+'</div><div class="pal-card-main"><div class="pal-card-head"><time class="pal-card-date" datetime="'+esc(r.date)+'">'+esc(dateFR(r.date))+'</time><span class="pal-card-disc'+(r.discipline==="trot"?' is-unclassified':'')+'">'+disc(r.discipline)+'</span></div><div class="pal-card-name">'+esc(r.cheval)+'</div><div class="pal-card-place">'+esc(r.hippodrome)+'</div>'+jockey+replayButton(r,true)+'</div></article>';
+  return '<article class="pal-card"><div class="pal-card-silk">'+jersey(r.casaque)+'</div><div class="pal-card-main"><div class="pal-card-head"><time class="pal-card-date" datetime="'+esc(r.date)+'">'+esc(dateFR(r.date))+'</time><div class="pal-card-actions"><span class="pal-card-disc'+(r.discipline==="trot"?' is-unclassified':'')+'">'+disc(r.discipline)+'</span>'+replayButton(r,true)+'</div></div><div class="pal-card-name">'+esc(r.cheval)+'</div><div class="pal-card-place">'+esc(r.hippodrome)+'</div>'+jockey+'</div></article>';
  }).join("");
  $("empty").hidden=data.length>0;
  $("count").textContent=(!q&&!year&&!type&&!horse&&!pilot)?"Toutes les courses de nos archives":data.length+" course"+(data.length>1?"s":"")+" trouvée"+(data.length>1?"s":"");
