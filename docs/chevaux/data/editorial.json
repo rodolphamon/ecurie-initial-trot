@@ -1,6 +1,6 @@
 {
   "schema": "ecurie-initial-profils-v1",
-  "updated_at": "2026-11-13",
+  "updated_at": "2026-11-14",
   "note": "Pour les performances : au maximum les cinq dernières sorties documentées, dont les sources sont conservées en interne pour contrôle. Les classements exacts n'ont été indiqués que lorsqu'ils étaient disponibles. Les jeunes chevaux inédits n'ont pas de performances inventées. Les engagements existants sont conservés ; les nouveaux engagements au trot du 13/11/2026 sont ajoutés sans reprendre les horaires. Résultats du 13/11/2026 (MONA LISA STARDUST 7e, VICTORIA SECRET non placée) communiqués par l'Écurie Initial.",
   "performances": {
     "memphis-belle": [
@@ -415,7 +415,8 @@
         "date": "2026-11-13",
         "hippodrome": "Toulouse",
         "rang": "7e",
-        "driver": "A. HONORÉ"
+        "driver": "A. HONORÉ",
+        "source_url": "https://www.geny.com/course/1698176-2026-11-13-toulouse-prix-de-l-hippodrome-d-eauze/arrivee-rapports"
       },
       {
         "date": "2026-09-18",
@@ -902,8 +903,9 @@
       {
         "date": "2026-11-13",
         "hippodrome": "Saint-Cloud",
-        "rang": "Non placée",
-        "jockey": "L. ROUSSEL"
+        "rang": "10e",
+        "jockey": "L. ROUSSEL",
+        "source_url": "https://www.geny.com/course/1698171-2026-11-13-saint-cloud-prix-de-la-goubiniere/arrivee-rapports"
       },
       {
         "date": "2026-09-18",
@@ -970,6 +972,15 @@
         "source_url": "https://www.canalturf.com/courses_fiche_cheval.php?idcheval=370898",
         "jockey": "O. D'ANDIGNÉ"
       }
+    ],
+    "olano-de-la-vallee": [
+      {
+        "date": "2026-11-12",
+        "hippodrome": "Caen",
+        "rang": "Qualifié (1'19\"8)",
+        "driver": "V. HÉBERT",
+        "source_url": "https://www.letrot.com/courses/qualifications/2026-11-12/1400/26669?lot=8"
+      }
     ]
   },
   "engagements": {
@@ -987,7 +998,10 @@
         "distance": "1400 m",
         "statut": "partant",
         "source_description": "Partants France Galop transmis le 13/11/2026 ; horaires confirmés par le gérant",
-        "jockey": "L. ROUSSEL"
+        "jockey": "L. ROUSSEL",
+        "course": "R3C8",
+        "numero": "4",
+        "source_url": "https://hippigold.fr/courses/2026-11-16/r3c8/"
       }
     ],
     "zartop": [
@@ -996,12 +1010,15 @@
         "heure": "14:47",
         "hippodrome": "Le Mans",
         "type": "Plat",
-        "prix": "Prix Saint-Georges",
+        "prix": "Prix de Saint-Georges-du-Bois",
         "allocation": 11900,
         "distance": "3200 m",
         "statut": "partant",
         "source_description": "Partants France Galop transmis le 13/11/2026 ; horaires confirmés par le gérant",
-        "jockey": "L. ROUSSEL"
+        "jockey": "L. ROUSSEL",
+        "course": "R3C6",
+        "numero": "3",
+        "source_url": "https://hippigold.fr/courses/2026-11-16/r3c6/"
       }
     ],
     "master-pat": [
