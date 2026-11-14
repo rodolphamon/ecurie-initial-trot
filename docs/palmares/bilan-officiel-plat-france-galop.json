@@ -1,0 +1,52 @@
+{
+  "date_rapprochement": "2026-11-14",
+  "source": "Captures France Galop Pro, onglet Espace Propriétaire / Mon palmarès, spécialité Plat, fournies par le propriétaire",
+  "specialite": "Plat",
+  "comptes": [
+    {
+      "titulaire": "ECURIE INITIAL",
+      "annees": {
+        "2025": 1,
+        "2026": 7
+      },
+      "total": 8
+    },
+    {
+      "titulaire": "MR RODOLPH HAMON",
+      "annees": {
+        "2015": 0,
+        "2016": 0,
+        "2017": 0,
+        "2019": 0,
+        "2020": 0,
+        "2021": 2,
+        "2022": 0,
+        "2023": 2,
+        "2024": 2,
+        "2025": 5
+      },
+      "total": 11
+    }
+  ],
+  "total_plat_officiel": 19,
+  "historique_site_plat": {
+    "annees": {
+      "2021": 2,
+      "2023": 2,
+      "2024": 2,
+      "2025": 6,
+      "2026": 7
+    },
+    "total": 19
+  },
+  "controle": "Correspondance exacte des totaux annuels 2021, 2023, 2024, 2025 et 2026 avec le tableau historique en discipline galop",
+  "rectification": "Deux victoires de JOHANNA ELEVEN en 2025 étaient rangées sous la casaque galop malgré la discipline attelé; réattribuées à la casaque Écurie Initial trot.",
+  "galop_restant_a_verifier": "Les captures sont réglées sur Plat et n'attestent pas d'un total de victoires à l'obstacle.",
+  "rapprochement_general": {
+    "trot_officiel": 153,
+    "plat_officiel": 19,
+    "somme_trot_plus_plat": 172,
+    "compteur_public_historique_provisoire": 174,
+    "lignes_archive": 182
+  }
+}
