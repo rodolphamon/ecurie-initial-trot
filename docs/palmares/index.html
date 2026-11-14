@@ -10,7 +10,7 @@
 .controls{margin-top:24px;display:grid;grid-template-columns:minmax(0,2.2fr) minmax(110px,1fr) minmax(140px,1.15fr) minmax(130px,1fr);gap:10px}
 .controls input,.controls select{width:100%;padding:13px 12px;border:1px solid #d7d7dc;background:white;border-radius:9px;font:inherit;color:#252525;min-width:0;outline-color:var(--orange);font-size:14px}
 .caption-line{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:12px 1px 10px}.result{font-size:13px;color:#595959}.legend{display:flex;flex-wrap:wrap;gap:6px}
-.tag{display:inline-flex;align-items:center;gap:4px;padding:5px 8px;background:#f8f8f8;border:1px solid #ebebeb;border-radius:99px;font-size:11px;font-weight:700}.tag .disc-img{width:36px;height:25px;margin-right:2px}.tag .disc-text{font-size:12px}
+.tag{display:inline-flex;align-items:center;gap:4px;padding:5px 8px;background:#f8f8f8;border:1px solid #ebebeb;border-radius:99px;font-size:11px;font-weight:700}.legend .tag{color:inherit;text-decoration:none}.legend .tag:focus-visible{outline:2px solid var(--orange);outline-offset:2px}.tag .disc-img{width:36px;height:25px;margin-right:2px}.tag .disc-text{font-size:12px}
 .tablewrap{border:1px solid #e9e9ea;border-radius:12px;overflow-x:auto;background:#fff}
 table{width:100%;border-collapse:collapse;min-width:740px;text-align:left}thead{background:#262626;color:#fff}th{padding:14px 12px;font-size:12px;text-transform:uppercase;letter-spacing:.04em;font-weight:800;white-space:nowrap}td{padding:9px 12px;border-bottom:1px solid var(--line);font-size:13px;line-height:1.3}tbody tr:nth-child(even){background:#fff9f5}tbody tr:hover{background:#fff0e3}tbody tr:last-child td{border-bottom:0}
 td:first-child,th:first-child{text-align:center;width:75px}td.date{white-space:nowrap;font-variant-numeric:tabular-nums;color:#515151;font-weight:650}td.place{color:#454545}td.horse{font-weight:850;color:#161616}td.person{color:#5d5d62}td.discipline{white-space:nowrap;font-weight:700}
@@ -70,7 +70,6 @@ td:first-child,th:first-child{text-align:center;width:75px}td.date{white-space:n
 <thead><tr><th>Casaque</th><th>Date</th><th>Hippodrome</th><th>Cheval</th><th>Jockey / Driver</th><th>Discipline</th></tr></thead>
 <tbody id="rows"></tbody></table></div><div class="cards" id="cards" aria-label="Victoires affichées sur téléphone"></div><div id="empty" class="empty" hidden>Aucune victoire ne correspond à cette recherche.</div>
 <nav class="nav" aria-label="Pagination"><button type="button" id="prev">Précédent</button><span id="page"></span><button type="button" id="next">Suivant</button></nav>
-<p class="fineprint"><strong>Archives :</strong> Bilan confirmé : 172 victoires (153 au trot, 19 au plat, 0 à l’obstacle), d’après LeTROT, France Galop Pro et le propriétaire. L’historique rassemble actuellement 182 lignes ; 10 lignes de différence restent à rapprocher des statistiques officielles. Les résultats historiques non rapprochés ne sont pas ajoutés au compteur. VALMIN DE GUEUDE (02/04/2018) a été rétabli gagnant sur tapis vert après disqualification ultérieure du premier, selon confirmation du propriétaire. Les nouvelles victoires validées sont ajoutées au compteur et au tableau après mise à jour des résultats. Les jockeys/drivers non vérifiés restent vides.</p><p class="fineprint">Pictogrammes attelé, monté et galop : <a href="https://commons.wikimedia.org/wiki/User:Historicair" target="_blank" rel="noopener">Historicair</a> — <a href="https://creativecommons.org/licenses/by-sa/2.5/" target="_blank" rel="noopener">CC BY-SA 2.5</a> (<a href="https://commons.wikimedia.org/wiki/File:Trot_sulky_racing_clipart.svg" target="_blank" rel="noopener">attelé</a> · <a href="https://commons.wikimedia.org/wiki/File:Trot_mounted_racing_clipart.svg" target="_blank" rel="noopener">monté</a> · <a href="https://commons.wikimedia.org/wiki/File:Flat_racing_clipart.svg" target="_blank" rel="noopener">galop</a>).</p>
 </main>
 <script>
 "use strict";
@@ -145,7 +144,13 @@ async function loadNewVictories(){
   results.push(...unique);updateCounter(172+unique.length);refreshYears();render();
  }catch(err){updateCounter(172)}
 }
-$("legend").innerHTML=["attele","monte","galop"].map(t=>'<span class="tag">'+disc(t)+'</span>').join("");
+const attributionUrls={
+ attele:"https://commons.wikimedia.org/wiki/File:Trot_sulky_racing_clipart.svg",
+ monte:"https://commons.wikimedia.org/wiki/File:Trot_mounted_racing_clipart.svg",
+ galop:"https://commons.wikimedia.org/wiki/File:Flat_racing_clipart.svg"
+};
+// Chaque légende donne accès au nom de l'auteur Historicair et à la licence CC BY-SA 2.5.
+$("legend").innerHTML=["attele","monte","galop"].map(t=>'<a class="tag" href="'+attributionUrls[t]+'" target="_blank" rel="noopener" title="Illustration : Historicair, CC BY-SA 2.5 — Wikimedia Commons">'+disc(t)+'</a>').join("");
 ["search","year","type","order"].forEach(id=>$(id).addEventListener("input",()=>{state.page=1;render()}));
 $("prev").addEventListener("click",()=>{state.page--;render()});$("next").addEventListener("click",()=>{state.page++;render()});
 function postHeight(){window.parent.postMessage({kind:"ecurie-initial-palmares-height",height:document.documentElement.scrollHeight+12},"*")}
