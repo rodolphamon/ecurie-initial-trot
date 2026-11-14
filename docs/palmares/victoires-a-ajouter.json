@@ -1,6 +1,12 @@
 {
   "date_reference": "2026-11-13",
-  "base_victoires_validees": 174,
-  "commentaire": "Le compteur regroupe les victoires au trot (attelé et monté) de Rodolphe HAMON, Nathalie HAMON et Écurie Initial, ainsi que les victoires au galop de Rodolphe HAMON et Écurie Initial. Base issue des 181 lignes des archives : 6 trot Rodolphe, 17 trot Nathalie, 132 trot Écurie Initial, 19 galop Rodolphe/Écurie Initial = 174. Sept lignes hors périmètre restent visibles mais ne comptent pas (HOMA 2021, JETHAN 2025-2026, JUNINIO 2026). Chaque nouvelle victoire doit inclure le champ « proprietaire » avec l'un des propriétaires admis pour sa discipline; ne pas ajouter de nouvelle ligne sans attribution vérifiée.",
-  "victoires": []
+  "base_victoires_validees": 172,
+  "commentaire": "Compteur validé : trot = Rodolphe HAMON (6), Nathalie HAMON (17), Écurie Initial (130 affirmés par le propriétaire); galop = Rodolphe HAMON + Écurie Initial (19), total 172. Le tableau d'archives présente 132 courses au trot avec la casaque blanche Initial, soit 2 lignes à rapprocher du décompte réel : ne supprimer ni désigner arbitrairement ces lignes sans vérification. Les victoires HOMA et celles sous casaque bleu/rose de JETHAN/JUNINIO restent visibles et hors compteur. Pour les nouvelles victoires, renseigner 'proprietaire' vérifié; les victoires autorisées s'ajoutent au compteur, les autres restent hors compteur.",
+  "victoires": [],
+  "decompte_valide": {
+    "trot_hamon_rodolphe": 6,
+    "trot_hamon_nathalie": 17,
+    "trot_ecurie_initial": 130,
+    "galop_hamon_rodolphe_et_ecurie_initial": 19
+  }
 }
