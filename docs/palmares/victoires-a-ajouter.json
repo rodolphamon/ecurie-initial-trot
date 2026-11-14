@@ -1,6 +1,6 @@
 {
   "date_reference": "2026-11-13",
-  "base_victoires_validees": 165,
-  "commentaire": "N'ajouter au compteur que les nouvelles victoires validées courues sous la casaque Écurie Initial : base 146 trot + 19 galop + 0 obstacle = 165. Les succès de JETHAN DE MONGOCHY et JUNINIO FLEURY en 2025-2026 sous les couleurs F. JULIEN restent visibles dans les archives sans être comptés. Déclarer « compteInitial\": false sur toute future victoire hors casaque Écurie Initial. JETHAN du 30/11/2025 n'est plus classé gagnant (disqualification officielle SETF).",
+  "base_victoires_validees": 174,
+  "commentaire": "Le compteur regroupe les victoires au trot (attelé et monté) de Rodolphe HAMON, Nathalie HAMON et Écurie Initial, ainsi que les victoires au galop de Rodolphe HAMON et Écurie Initial. Base issue des 181 lignes des archives : 6 trot Rodolphe, 17 trot Nathalie, 132 trot Écurie Initial, 19 galop Rodolphe/Écurie Initial = 174. Sept lignes hors périmètre restent visibles mais ne comptent pas (HOMA 2021, JETHAN 2025-2026, JUNINIO 2026). Chaque nouvelle victoire doit inclure le champ « proprietaire » avec l'un des propriétaires admis pour sa discipline; ne pas ajouter de nouvelle ligne sans attribution vérifiée.",
   "victoires": []
 }
