@@ -12,6 +12,12 @@
 html,body{margin:0;padding:0;background:var(--cream);color:var(--ink);font:15px/1.5 Arial,Helvetica,sans-serif}
 .container{max-width:1080px;margin:0 auto;padding:21px 16px 18px}
 .head{background:#fff;border:1px solid var(--line);border-top:5px solid var(--orange);border-radius:15px;padding:19px 21px 18px;margin-bottom:16px;box-shadow:0 8px 20px rgba(81,52,28,.045)}
+
+.head-layout{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.head-titles{min-width:0;flex:1}
+.head-emblem{display:block;width:88px;height:88px;max-width:25%;object-fit:contain;flex:0 0 auto}
+@media(max-width:720px){.head-emblem{width:80px;height:80px}.head-layout{gap:9px}h1{font-size:clamp(20px,5.5vw,29px)}}
+@media(max-width:390px){.head-emblem{width:68px;height:68px}.head-layout{gap:7px}h1{font-size:21px;letter-spacing:-.5px}}
 .eyebrow{font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:900;color:var(--orange-deep)}
 h1{font-size:clamp(23px,4vw,35px);line-height:1.12;letter-spacing:-.6px;margin:6px 0 9px}
 .subtitle{margin:0;color:var(--sub);font-size:13px}
@@ -52,7 +58,7 @@ h1{font-size:clamp(23px,4vw,35px);line-height:1.12;letter-spacing:-.6px;margin:6
 </head>
 <body>
 <div class="container">
-<header class="head"><div class="eyebrow">Écurie Initial</div><h1>Prochains engagements</h1></header>
+<header class="head"><div class="head-layout"><div class="head-titles"><div class="eyebrow">Écurie Initial</div><h1>Prochains engagements</h1></div><img class="head-emblem" src="../chevaux/assets/embleme-ei.png" width="88" height="88" alt="" aria-hidden="true" decoding="async"></div></header>
 <nav class="filters" aria-label="Filtrer le calendrier">
 <button class="filter" type="button" data-filter="tous" aria-pressed="true">Tous <span id="n-tous"></span></button>
 <button class="filter" type="button" data-filter="partants" aria-pressed="false">Partants <span id="n-partants"></span></button>
