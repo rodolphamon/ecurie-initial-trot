@@ -1,5 +1,5 @@
 {
-  "version": 5,
+  "version": 6,
   "note": "Liens des courses Equidia avec date, réunion, numéro de course recoupés (Turfin/Geny/Canalturf/ZEturf/Gbet/eloturf). Les URL Equidia construites sur ce format ne garantissent pas la disponibilité ni la lecture du replay. Anciennes URL LeTROT sauvegardées. Aucun résultat du palmarès modifié.",
   "replays": [
     {
@@ -505,6 +505,46 @@
       "url": "https://www.equidia.fr/courses/2024-12-17/R4/C1",
       "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2024-12-17/R4C1-cabourg-prix-des-mirabilis",
       "controle": "Numéros de réunion et course recoupés par source de résultats ; lien Equidia construit, lecture du replay à confirmer"
+    },
+    {
+      "date": "2025-04-01",
+      "cheval": "JOHANNA ELEVEN",
+      "hippodrome": "LYON (PARILLY)",
+      "url": "https://www.equidia.fr/courses/2025-04-01/R3/C7",
+      "preuve_identification_course": "https://www.canalturf.com/resultats-PMU/2025-04-01/lyon-parilly/367452_prix-du-lannemezan.html",
+      "controle": "Course et numéro R/C identifiés dans les résultats publics ; replay Equidia à confirmer dans le navigateur"
+    },
+    {
+      "date": "2025-06-19",
+      "cheval": "INDICE DELADOU",
+      "hippodrome": "VICHY",
+      "url": "https://www.equidia.fr/courses/2025-06-19/R4/C7",
+      "preuve_identification_course": "https://hippigold.fr/courses/2025-06-19/r4c7/",
+      "controle": "Course et numéro R/C identifiés dans les résultats publics ; replay Equidia à confirmer dans le navigateur"
+    },
+    {
+      "date": "2025-06-30",
+      "cheval": "INDICE DELADOU",
+      "hippodrome": "LE MONT ST MICHEL",
+      "url": "https://www.equidia.fr/courses/2025-06-30/R3/C6",
+      "preuve_identification_course": "https://www.canalturf.com/resultats-PMU/2025-06-30/le-mont-saint-michel/375869_prix-de-pontorson.html",
+      "controle": "Course et numéro R/C identifiés dans les résultats publics ; replay Equidia à confirmer dans le navigateur"
+    },
+    {
+      "date": "2025-07-26",
+      "cheval": "ISOLEE DU BOUILLON",
+      "hippodrome": "LE MANS",
+      "url": "https://www.equidia.fr/courses/2025-07-26/R4/C2",
+      "preuve_identification_course": "https://www.geny.com/course/1587999-2025-07-26-le-mans-prix-jean-claude-rivault/arrivee-rapports",
+      "controle": "Course et numéro R/C identifiés dans les résultats publics ; replay Equidia à confirmer dans le navigateur"
+    },
+    {
+      "date": "2025-12-08",
+      "cheval": "MACLANDER",
+      "hippodrome": "BORDEAUX - LE BOUSCAT",
+      "url": "https://www.equidia.fr/courses/2025-12-08/R6/C1",
+      "preuve_identification_course": "https://www.canalturf.com/resultats-PMU/2025-12-08/bordeaux-le-bouscat/391442_prix-une-de-mai.html",
+      "controle": "Course et numéro R/C identifiés dans les résultats publics ; replay Equidia à confirmer dans le navigateur"
     }
   ]
 }
