@@ -61,10 +61,10 @@ td:first-child,th:first-child{text-align:center;width:75px}td.date{white-space:n
 <header class="top"><h1>VICTOIRES</h1><output id="counter" aria-label="Nombre de victoires validées" aria-live="polite">172</output></header>
 <section aria-label="Filtrer les victoires" class="controls">
 <label><input id="search" type="search" placeholder="Rechercher un cheval, une ville, un jockey…" aria-label="Rechercher"></label>
-<label><select id="year" aria-label="Année"><option value="">Toutes les années</option></select></label>
-<label><select id="type" aria-label="Discipline"><option value="">Toutes disciplines</option><option value="attele">Attelé</option><option value="monte">Monté</option><option value="galop">Galop</option></select></label>
-<label><select id="horse" aria-label="Filtrer par cheval"><option value="">Tous les chevaux</option></select></label>
-<label><select id="pilot" aria-label="Filtrer par jockey ou driver"><option value="">Tous les jockeys / drivers</option></select></label>
+<label><select id="year" aria-label="Année"><option value="">Année</option></select></label>
+<label><select id="type" aria-label="Discipline"><option value="">Discipline</option><option value="attele">Attelé</option><option value="monte">Monté</option><option value="galop">Galop</option></select></label>
+<label><select id="horse" aria-label="Filtrer par cheval"><option value="">Cheval</option></select></label>
+<label><select id="pilot" aria-label="Filtrer par jockey ou driver"><option value="">Jockey / Driver</option></select></label>
 <label><select id="order" aria-label="Classement"><option value="desc">Plus récentes d'abord</option><option value="asc">Plus anciennes d'abord</option></select></label>
 </section>
 <div class="caption-line"><div class="result" id="count" aria-live="polite"></div><div class="legend" id="legend"></div></div>
@@ -121,7 +121,7 @@ function render(){
 }
 function refreshYears(){
  const yearSelect=$("year"),previous=yearSelect.value;
- yearSelect.innerHTML='<option value="">Toutes les années</option>';
+ yearSelect.innerHTML='<option value="">Année</option>';
  const years=[...new Set(results.map(r=>r.date.slice(0,4)))].sort((a,b)=>b.localeCompare(a));
  for(const year of years){const o=document.createElement("option");o.value=year;o.textContent=year;yearSelect.appendChild(o)}
  yearSelect.value=years.includes(previous)?previous:"";
@@ -142,8 +142,8 @@ function refreshNameFilters(){
   const family=name=>name.trim().split(/\s+/).at(-1);
   return alphabetic(family(a),family(b))||alphabetic(a,b);
  };
- fill(horseSelect,results.map(r=>r.cheval),"Tous les chevaux",alphabetic);
- fill(pilotSelect,results.map(r=>r.jockey),"Tous les jockeys / drivers",bySurname);
+ fill(horseSelect,results.map(r=>r.cheval),"Cheval",alphabetic);
+ fill(pilotSelect,results.map(r=>r.jockey),"Jockey / Driver",bySurname);
 }
 refreshNameFilters();
 function updateCounter(n){$("counter").textContent=new Intl.NumberFormat("fr-FR").format(n);}
