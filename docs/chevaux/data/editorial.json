@@ -1245,6 +1245,24 @@
         "statut": "engage",
         "source_description": "Capture engagements LeTROT transmise le 14/11/2026"
       }
+    ],
+    "myrtille-marboula": [
+      {
+        "date": "2026-12-12",
+        "hippodrome": "Cagnes-sur-Mer",
+        "type": "Trot attelé",
+        "prix": "Prix Fortunato II",
+        "statut": "engage",
+        "source_description": "Capture engagements LeTROT transmise le 14/11/2026"
+      },
+      {
+        "date": "2026-12-27",
+        "hippodrome": "Cagnes-sur-Mer",
+        "type": "Trot attelé",
+        "prix": "Prix Valmiki",
+        "statut": "engage",
+        "source_description": "Capture engagements LeTROT transmise le 14/11/2026"
+      }
     ]
   }
 }
