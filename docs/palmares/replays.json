@@ -1,5 +1,5 @@
 {
-  "version": 8,
+  "version": 9,
   "note": "Liens vers les pages de courses sur Equidia ou LeTROT, avec références de résultats ayant permis d'identifier date, hippodrome, réunion et numéro de course. Les liens Equidia sont calculés d'après le format d'URL et leur lecture, ainsi que la disponibilité du replay, n'ont pas été testées automatiquement. Les victoires historiques ne sont pas modifiées.",
   "replays": [
     {
@@ -673,6 +673,62 @@
       "url": "https://www.equidia.fr/courses/2022-07-08/R1/C3",
       "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2022-07-08/R1C3-cabourg-prix-paul-viel",
       "controle": "Course et victoire explicitement confirmées par l'arrivée publiée ; lien Equidia construit à partir du R/C vérifié, lecture vidéo non testée."
+    },
+    {
+      "date": "2019-05-10",
+      "cheval": "FETICHE ATOUT",
+      "hippodrome": "LAVAL",
+      "url": "https://www.equidia.fr/courses/2019-05-10/R6/C4",
+      "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2019-05-10/R6C4-laval-prix-des-jonquilles-groupe-a",
+      "controle": "Réunion et course confirmées dans une fiche de résultat montrant le cheval gagnant ; lien Equidia au format de course, lecture non testée ici."
+    },
+    {
+      "date": "2019-11-11",
+      "cheval": "DJANGO DE MONGOCHY",
+      "hippodrome": "GRAIGNES",
+      "url": "https://www.equidia.fr/courses/2019-11-11/R9/C6",
+      "preuve_identification_course": "https://www.zeturf.sn/fr/course-du-jour/2019-11-11/R9C6-graignes-prix-scauto-renault-coutances",
+      "controle": "Réunion et course confirmées dans une fiche de résultat montrant le cheval gagnant ; lien Equidia au format de course, lecture non testée ici."
+    },
+    {
+      "date": "2019-11-22",
+      "cheval": "FETICHE ATOUT",
+      "hippodrome": "GRAIGNES",
+      "url": "https://www.equidia.fr/courses/2019-11-22/R4/C2",
+      "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2019-11-22/R4C2-graignes-prix-intermarche",
+      "controle": "Réunion et course confirmées dans une fiche de résultat montrant le cheval gagnant ; lien Equidia au format de course, lecture non testée ici."
+    },
+    {
+      "date": "2020-03-05",
+      "cheval": "FETICHE ATOUT",
+      "hippodrome": "LAVAL",
+      "url": "https://www.equidia.fr/courses/2020-03-05/R4/C6",
+      "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2020-03-05/R4C6-laval-prix-jean-chouan",
+      "controle": "Réunion et course confirmées dans une fiche de résultat montrant le cheval gagnant ; lien Equidia au format de course, lecture non testée ici."
+    },
+    {
+      "date": "2020-06-16",
+      "cheval": "FLEUR VIVANCIERE",
+      "hippodrome": "TOULOUSE",
+      "url": "https://www.equidia.fr/courses/2020-06-16/R2/C1",
+      "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2020-06-16/R2C1-toulouse-prix-de-la-cartoucherie-groupe-a",
+      "controle": "Réunion et course confirmées dans une fiche de résultat montrant le cheval gagnant ; lien Equidia au format de course, lecture non testée ici."
+    },
+    {
+      "date": "2020-11-15",
+      "cheval": "FETICHE ATOUT",
+      "hippodrome": "LAVAL",
+      "url": "https://www.equidia.fr/courses/2020-11-15/R4/C6",
+      "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2020-11-15/R4C6-laval-prix-georges-lambert",
+      "controle": "Réunion et course confirmées dans une fiche de résultat montrant le cheval gagnant ; lien Equidia au format de course, lecture non testée ici."
+    },
+    {
+      "date": "2021-05-13",
+      "cheval": "CAID DORE",
+      "hippodrome": "NANTES",
+      "url": "https://www.equidia.fr/courses/2021-05-13/R2/C8",
+      "preuve_identification_course": "https://www.zeturf.be/fr/course-du-jour/2021-05-13/R2C8-nantes-grand-prix-de-la-compa",
+      "controle": "Réunion et course confirmées dans une fiche de résultat montrant le cheval gagnant ; lien Equidia au format de course, lecture non testée ici."
     }
   ]
 }
