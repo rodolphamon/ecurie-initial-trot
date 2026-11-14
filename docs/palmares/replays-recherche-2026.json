@@ -10,7 +10,9 @@
       "numero_course": "C1",
       "resultat_source": "https://www.zeturf.sn/en/course-du-jour/2026-02-14/R4C1-agen-prix-de-sauvagnas",
       "lien_replay_letrot": null,
-      "statut": "URL LeTROT à retrouver et à vérifier"
+      "statut": "URL LeTROT à retrouver et à vérifier",
+      "nom_prix": "Prix de Sauvagnas",
+      "source_confirmation_course": "https://www.geny.com/course/1633107-2026-02-14-agen-le-passage-prix-de-sauvagnas/arrivee-rapports"
     },
     {
       "date": "2026-03-01",
@@ -32,7 +34,8 @@
       "resultat_source": "https://www.zeturf.fr/fr/course-du-jour/2026-03-15/R10C2-agen-prix-de-l-hippodrome-de-manacor",
       "lien_replay_letrot": null,
       "statut": "Date, hippodrome et numéro de course confirmés. URL et lecture de vidéo LeTROT encore non vérifiées.",
-      "nom_prix": "Prix de l'Hippodrome de Manacor"
+      "nom_prix": "Prix de l'Hippodrome de Manacor",
+      "source_confirmation_course": "https://www.canalturf.com/resultats-PMU/2026-03-15/agen-le-passage/400149_prix-de-l-hippodrome-de-manacor.html"
     },
     {
       "date": "2026-04-19",
@@ -42,7 +45,8 @@
       "numero_course": "C7",
       "resultat_source": "https://www.zeturf.es/en/course-du-jour/2026-04-19/R9C7-agen-prix-max-gerbeaud",
       "lien_replay_letrot": null,
-      "statut": "URL LeTROT à retrouver et à vérifier"
+      "statut": "URL LeTROT à retrouver et à vérifier",
+      "nom_prix": "Prix Max Gerbeaud"
     },
     {
       "date": "2026-04-26",
@@ -52,7 +56,8 @@
       "numero_course": "C1",
       "resultat_source": "https://www.zeturf.fr/fr/course-du-jour/2026-04-26/R12C1-le-mont-saint-michel-prix-des-benevoles",
       "lien_replay_letrot": null,
-      "statut": "URL LeTROT à retrouver et à vérifier"
+      "statut": "URL LeTROT à retrouver et à vérifier",
+      "nom_prix": "Prix des Bénévoles"
     },
     {
       "date": "2026-07-02",
@@ -62,7 +67,8 @@
       "numero_course": "C6",
       "resultat_source": "https://www.zeturf.fr/fr/course-du-jour/2026-07-02/R5C6-pornichet-la-baule-prix-des-partenaires-pmu?theme=turf",
       "lien_replay_letrot": null,
-      "statut": "URL LeTROT à retrouver et à vérifier"
+      "statut": "URL LeTROT à retrouver et à vérifier",
+      "nom_prix": "Prix des Partenaires PMU"
     },
     {
       "date": "2026-07-19",
@@ -72,7 +78,9 @@
       "numero_course": "C5",
       "resultat_source": "https://www.zeturf.fr/fr/course-du-jour/2026-07-19/R10C5-clairefontaine-prix-etalon-otello-pierji",
       "lien_replay_letrot": null,
-      "statut": "URL LeTROT à retrouver et à vérifier"
+      "statut": "URL LeTROT à retrouver et à vérifier",
+      "nom_prix": "Prix Étalon Otello Pierji",
+      "source_confirmation_course": "https://www.oneturf.fr/arrive/FR/19-07-2026/223568%2C1862636%2CCLAIREFONTAINE%2C5-PRIX-ETALON-OTELLO-PIERJI.html"
     },
     {
       "date": "2026-08-02",
@@ -82,7 +90,9 @@
       "numero_course": "C2",
       "resultat_source": "https://www.zeturf.fr/fr/course-du-jour/2026-08-02/R9C2-equidia",
       "lien_replay_letrot": null,
-      "statut": "URL LeTROT à retrouver et à vérifier"
+      "statut": "URL LeTROT à retrouver et à vérifier",
+      "nom_prix": "Prix de la Tour du Pin",
+      "source_confirmation_course": "https://www.zone-turf.fr/cheval/nebraska-fleury-2141335/"
     },
     {
       "date": "2026-08-09",
@@ -92,7 +102,8 @@
       "numero_course": "C4",
       "resultat_source": "https://www.zeturf.fr/fr/course-du-jour/2026-08-09/R3C4-divonne-les-bains-prix-de-saint-genis-pouilly-prix-du-departement-de-l-ain?prefill=15",
       "lien_replay_letrot": null,
-      "statut": "URL LeTROT à retrouver et à vérifier"
+      "statut": "URL LeTROT à retrouver et à vérifier",
+      "nom_prix": "Prix de Saint-Genis-Pouilly - Prix du Département de l'Ain"
     },
     {
       "date": "2026-08-10",
@@ -103,7 +114,8 @@
       "resultat_source": "https://www.zeturf.be/fr/course-du-jour/2026-08-10/R6C6-divonne-les-bains-prix-de-crassy-prix-credit-mutuel?prefill=6",
       "lien_replay_letrot": null,
       "statut": "Date, hippodrome et numéro de course confirmés. URL et lecture de vidéo LeTROT encore non vérifiées.",
-      "nom_prix": "Prix de Crassy - Prix Crédit Mutuel"
+      "nom_prix": "Prix de Crassy - Prix Crédit Mutuel",
+      "source_confirmation_course": "https://www.canalturf.com/resultats-PMU/2026-08-10/divonne-les-bains/414531_prix-de-crassy-prix-credit-mutuel.html"
     },
     {
       "date": "2026-08-27",
@@ -113,7 +125,8 @@
       "numero_course": "C5",
       "resultat_source": "https://zeturf.fr/fr/course-du-jour/2026-08-27/R5C5-pornichet-la-baule-prix-anim-s-pg?prefill=13",
       "lien_replay_letrot": null,
-      "statut": "URL LeTROT à retrouver et à vérifier"
+      "statut": "URL LeTROT à retrouver et à vérifier",
+      "nom_prix": "Prix Anim's PG"
     },
     {
       "date": "2026-09-04",
@@ -123,7 +136,10 @@
       "numero_course": "C6",
       "resultat_source": "https://www.zeturf.fr/fr/course-du-jour/2026-09-04/R3C6-lyon-parilly-prix-yvan-berger?prefill=15",
       "lien_replay_letrot": null,
-      "statut": "URL LeTROT à retrouver et à vérifier"
+      "statut": "URL LeTROT à retrouver et à vérifier",
+      "nom_prix": "Prix Yvan Berger",
+      "source_confirmation_course": "https://www.geny.com/course/1681432-2026-09-04-lyon-parilly-prix-yvan-berger/arrivee-rapports"
     }
-  ]
+  ],
+  "note_verification": "Numéros et noms de courses croisés avec les résultats publics ; identifiants R des sites PMU/ZEturf non convertibles automatiquement en codes hippodromes LeTROT. LeTROT refuse actuellement la consultation automatisée de ses replays (403) ; aucun lien direct inventé."
 }
