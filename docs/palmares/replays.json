@@ -1,5 +1,5 @@
 {
-  "version": 6,
+  "version": 7,
   "note": "Liens des courses Equidia avec date, réunion, numéro de course recoupés (Turfin/Geny/Canalturf/ZEturf/Gbet/eloturf). Les URL Equidia construites sur ce format ne garantissent pas la disponibilité ni la lecture du replay. Anciennes URL LeTROT sauvegardées. Aucun résultat du palmarès modifié.",
   "replays": [
     {
@@ -545,6 +545,30 @@
       "url": "https://www.equidia.fr/courses/2025-12-08/R6/C1",
       "preuve_identification_course": "https://www.canalturf.com/resultats-PMU/2025-12-08/bordeaux-le-bouscat/391442_prix-une-de-mai.html",
       "controle": "Course et numéro R/C identifiés dans les résultats publics ; replay Equidia à confirmer dans le navigateur"
+    },
+    {
+      "date": "2023-03-23",
+      "cheval": "JETHAN DE MONGOCHY",
+      "hippodrome": "CAEN",
+      "url": "https://www.equidia.fr/courses/2023-03-23/R3/C5",
+      "preuve_identification_course": "https://www.geny.com/course/1389977-2023-03-23-caen-prix-d-herouvillette/arrivee-rapports",
+      "controle": "Résultat, cheval gagnant, date et R/C vérifiés ; lien de course Equidia construit, disponibilité vidéo à confirmer"
+    },
+    {
+      "date": "2023-05-24",
+      "cheval": "KOBLENZA DAIRPET",
+      "hippodrome": "LE CROISE-LAROCHE",
+      "url": "https://www.equidia.fr/courses/2023-05-24/R1/C1",
+      "preuve_identification_course": "https://www.geny.com/course/1405741-2023-05-24-le-croise-laroche-prix-du-pmu-l-arc-de-triomphe-lille/arrivee-rapports",
+      "controle": "Résultat, cheval gagnant, date et R/C vérifiés ; lien de course Equidia construit, disponibilité vidéo à confirmer"
+    },
+    {
+      "date": "2023-07-06",
+      "cheval": "HAMPTON AMERICA",
+      "hippodrome": "LISIEUX",
+      "url": "https://www.equidia.fr/courses/2023-07-06/R4/C1",
+      "preuve_identification_course": "https://www.canalturf.com/resultats-PMU/2023-07-06/lisieux/311103_prix-les-bruyeres-carre.html",
+      "controle": "Résultat, cheval gagnant, date et R/C vérifiés ; lien de course Equidia construit, disponibilité vidéo à confirmer"
     }
   ]
 }
