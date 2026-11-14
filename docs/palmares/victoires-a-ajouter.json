@@ -53,5 +53,17 @@
         "motif": "Victoire antérieure à l'achat de la pouliche par l'Écurie Initial (confirmation du propriétaire)"
       }
     ]
-  }
+  },
+  "champs_pour_nouvelles_victoires": [
+    "date",
+    "cheval",
+    "hippodrome",
+    "discipline",
+    "jockey",
+    "entraineur",
+    "proprietaire",
+    "casaque",
+    "compteInitial"
+  ],
+  "consigne_entraineur": "Renseigner l'entraîneur qui entraînait effectivement le cheval à la date de chaque course ; ne pas déduire automatiquement ce nom de l'entraîneur actuel. Le filtre du palmarès utilise le champ entraineur."
 }
