@@ -1,5 +1,5 @@
 {
-  "version": 9,
+  "version": 10,
   "note": "Liens vers les pages de courses sur Equidia ou LeTROT, avec références de résultats ayant permis d'identifier date, hippodrome, réunion et numéro de course. Les liens Equidia sont calculés d'après le format d'URL et leur lecture, ainsi que la disponibilité du replay, n'ont pas été testées automatiquement. Les victoires historiques ne sont pas modifiées.",
   "replays": [
     {
@@ -729,6 +729,14 @@
       "url": "https://www.equidia.fr/courses/2021-05-13/R2/C8",
       "preuve_identification_course": "https://www.zeturf.be/fr/course-du-jour/2021-05-13/R2C8-nantes-grand-prix-de-la-compa",
       "controle": "Réunion et course confirmées dans une fiche de résultat montrant le cheval gagnant ; lien Equidia au format de course, lecture non testée ici."
+    },
+    {
+      "date": "2014-09-19",
+      "cheval": "ACTRICE DE CERISY",
+      "hippodrome": "CABOURG",
+      "url": "https://www.equidia.fr/courses/2014-09-19/R2/C4",
+      "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2014-09-19/R2C4-cabourg-prix-de-rollon",
+      "controle": "Arrivée et réunion R2C4 vérifiées sur ZEturf ; lien Equidia construit, disponibilité du replay ancien non vérifiée"
     }
   ]
 }
