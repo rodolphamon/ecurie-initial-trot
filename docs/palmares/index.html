@@ -128,7 +128,7 @@ function replayUrl(value){
  try{
   const url=new URL(String(value||""));
   if(url.protocol!=="https:")return "";
-  const letrot=url.hostname==="www.letrot.com"&&url.pathname.startsWith("/fr/courses/replay-courses/");
+  const letrot=url.hostname==="www.letrot.com"&&(/^\/courses\/\d{4}-\d{2}-\d{2}\/\d+\/\d+\/?$/.test(url.pathname)||/^\/fr\/courses\/replay-courses\/\d{4}-\d{2}-\d{2}\/\d+\/\d+\/?$/.test(url.pathname));
   const archive=url.hostname==="www.dailymotion.com"&&/^\/video\/[a-zA-Z0-9]+\/?$/.test(url.pathname);
   return letrot||archive?url.href:"";
  }catch{return ""}
