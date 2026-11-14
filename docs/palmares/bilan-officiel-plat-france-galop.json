@@ -41,12 +41,14 @@
   },
   "controle": "Correspondance exacte des totaux annuels 2021, 2023, 2024, 2025 et 2026 avec le tableau historique en discipline galop",
   "rectification": "Deux victoires de JOHANNA ELEVEN en 2025 étaient rangées sous la casaque galop malgré la discipline attelé; réattribuées à la casaque Écurie Initial trot.",
-  "galop_restant_a_verifier": "Les captures sont réglées sur Plat et n'attestent pas d'un total de victoires à l'obstacle.",
+  "galop_restant_a_verifier": "Obstacle : aucune victoire, confirmé par le propriétaire le 14 novembre 2026.",
   "rapprochement_general": {
     "trot_officiel": 153,
     "plat_officiel": 19,
-    "somme_trot_plus_plat": 172,
-    "compteur_public_historique_provisoire": 174,
-    "lignes_archive": 182
+    "obstacle_confirme": 0,
+    "total_victoires_confirmees": 172,
+    "lignes_archive": 182,
+    "ecart_a_rapprocher": 10,
+    "ancien_total_174": "Corrigé à 172 après validation des 19 victoires au plat et zéro à l'obstacle"
   }
 }
