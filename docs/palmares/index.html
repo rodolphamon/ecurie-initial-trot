@@ -7,13 +7,13 @@
 .palmares{max-width:1140px;width:100%;margin:auto;min-width:0}.top{background:#191919;color:#fff;padding:24px clamp(18px,3.5vw,38px);border-radius:16px;border-top:6px solid var(--orange);display:flex;align-items:center;justify-content:space-between;gap:16px}
 .top h1{font-size:clamp(26px,5vw,41px);line-height:1;letter-spacing:.035em;margin:0;font-weight:900}
 #counter{font-size:clamp(39px,7vw,70px);font-weight:900;line-height:1;letter-spacing:-.055em;color:#ff862c;font-variant-numeric:tabular-nums}
-.controls{margin-top:24px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.controls label{min-width:0}.controls label:first-child,.controls label:nth-child(4){grid-column:span 2}
+.controls{margin-top:24px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.controls label{min-width:0}.controls label:first-child,.controls label:nth-child(4),.controls .trainer-filter{grid-column:span 2}
 .controls input,.controls select{width:100%;padding:13px 12px;border:1px solid #d7d7dc;background:white;border-radius:9px;font:inherit;color:#252525;min-width:0;outline-color:var(--orange);font-size:14px}
 .caption-line{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:12px 1px 10px}.result{font-size:13px;color:#595959}.legend{display:flex;flex-wrap:wrap;gap:6px}
 .tag{display:inline-flex;align-items:center;gap:4px;padding:5px 8px;background:#f8f8f8;border:1px solid #ebebeb;border-radius:99px;font-size:11px;font-weight:700}.legend .tag{color:inherit;text-decoration:none}.legend .tag:focus-visible{outline:2px solid var(--orange);outline-offset:2px}.tag .disc-img{width:36px;height:25px;margin-right:2px}.tag .disc-text{font-size:12px}
 .tablewrap{border:1px solid #e9e9ea;border-radius:12px;overflow-x:auto;background:#fff}
 table{width:100%;border-collapse:collapse;min-width:840px;text-align:left}thead{background:#262626;color:#fff}th{padding:14px 12px;font-size:12px;text-transform:uppercase;letter-spacing:.04em;font-weight:800;white-space:nowrap}td{padding:9px 12px;border-bottom:1px solid var(--line);font-size:13px;line-height:1.3}tbody tr:nth-child(even){background:#fff9f5}tbody tr:hover{background:#fff0e3}tbody tr:last-child td{border-bottom:0}
-td:first-child,th:first-child{text-align:center;width:75px}td.date{white-space:nowrap;font-variant-numeric:tabular-nums;color:#515151;font-weight:650}td.place{color:#454545}td.horse{font-weight:850;color:#161616}td.person{color:#5d5d62}td.discipline{white-space:nowrap;font-weight:700}
+td:first-child,th:first-child{text-align:center;width:75px}td.date{white-space:nowrap;font-variant-numeric:tabular-nums;color:#515151;font-weight:650}td.place{color:#454545}td.horse{font-weight:850;color:#161616}td.person{color:#5d5d62}.table-trainer{display:block;color:#727277;font-size:12px;margin-top:5px;white-space:normal}td.discipline{white-space:nowrap;font-weight:700}
 .robe{width:43px;height:52px;object-fit:contain;vertical-align:middle}.disc-img{width:43px;height:31px;object-fit:contain;vertical-align:middle;margin-right:6px}.disc-text{vertical-align:middle}
 .empty{padding:32px;text-align:center;color:var(--muted)}.nav{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:15px}.nav button{padding:10px 16px;background:#232323;color:#fff;border:0;border-radius:9px;font-weight:700;cursor:pointer}.nav button:disabled{opacity:.3;cursor:default}.nav span{font-size:13px;color:#555;min-width:94px;text-align:center}
 .fineprint{margin:17px 0 0;font-size:12px;line-height:1.65;color:#686868}.fineprint strong{color:#494949}abbr{border:0;text-decoration:none;cursor:help}
@@ -29,7 +29,7 @@ td:first-child,th:first-child{text-align:center;width:75px}td.date{white-space:n
 .pal-card-name{font-size:17px;font-weight:900;line-height:1.25;color:#1d1d1d;overflow-wrap:anywhere}
 .pal-card-place{font-size:13px;color:#66616a;margin-top:5px;line-height:1.35;overflow-wrap:anywhere}
 .pal-card-jockey{font-size:13px;color:#37383e;margin-top:6px;line-height:1.35;font-weight:600}
-.pal-card-jockey-label{font-weight:500;color:#7d7d83;margin-right:5px}
+.pal-card-jockey-label{font-weight:500;color:#7d7d83;margin-right:5px}.pal-card-trainer{font-size:12px;line-height:1.35;color:#5f6065;margin-top:5px;overflow-wrap:anywhere}.pal-card-trainer-label{font-weight:500;color:#7d7d83;margin-right:5px}
 .replay-link{display:inline-flex;align-items:center;justify-content:center;gap:5px;padding:7px 10px;border:1px solid #e5ba92;border-radius:999px;background:#fff5ed;color:#9c4712;font-size:12px;font-weight:800;text-decoration:none;line-height:1;white-space:nowrap}
 .replay-link svg{width:21px;height:19px;flex-shrink:0}
 .replay-link:hover,.replay-link:focus-visible{background:#f9d8bf;color:#72310c}
@@ -43,7 +43,7 @@ td:first-child,th:first-child{text-align:center;width:75px}td.date{white-space:n
  .top h1{font-size:clamp(24px,7vw,34px)}
  #counter{font-size:clamp(39px,10vw,58px)}
  .controls{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:14px}
- .controls label:first-child,.controls label:nth-child(4),.controls label:nth-child(5),.controls label:last-child{grid-column:1/-1}
+ .controls label:first-child,.controls label:nth-child(4),.controls label:nth-child(5),.controls .trainer-filter,.controls label:last-child{grid-column:1/-1}
  .controls input,.controls select{padding:12px 10px;min-width:0;font-size:13px}
  .caption-line{align-items:flex-start;flex-direction:column;margin:13px 1px 12px;gap:10px}
  .legend{gap:5px}
@@ -69,6 +69,7 @@ td:first-child,th:first-child{text-align:center;width:75px}td.date{white-space:n
 <label><select id="type" aria-label="Discipline"><option value="">Discipline</option><option value="attele">Attelé</option><option value="monte">Monté</option><option value="galop">Galop</option></select></label>
 <label><select id="horse" aria-label="Filtrer par cheval"><option value="">Cheval</option></select></label>
 <label><select id="pilot" aria-label="Filtrer par jockey ou driver"><option value="">Jockey / Driver</option></select></label>
+<label class="trainer-filter"><input id="trainer" type="search" list="trainer-suggestions" placeholder="Rechercher un entraîneur…" aria-label="Rechercher un entraîneur" autocomplete="off"><datalist id="trainer-suggestions"></datalist></label>
 <label><select id="order" aria-label="Classement"><option value="desc">Plus récentes d'abord</option><option value="asc">Plus anciennes d'abord</option></select></label>
 </section>
 <div class="caption-line"><div class="result" id="count" aria-live="polite"></div><div class="legend" id="legend"></div></div>
@@ -159,23 +160,25 @@ async function loadReplays(){
 }
 const state={page:1,perPage:25};
 function render(){
- const q=$("search").value.trim().toLocaleLowerCase("fr"),year=$("year").value,type=$("type").value,horse=$("horse").value,pilot=$("pilot").value;
- const data=results.filter(r=>(!year||r.date.slice(0,4)===year)&&(!type||r.discipline===type)&&(!horse||r.cheval===horse)&&(!pilot||r.jockey===pilot)&&(!q||[r.cheval,r.hippodrome,r.jockey,r.date].some(v=>String(v).toLocaleLowerCase("fr").includes(q))))
+ const fold=s=>String(s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLocaleLowerCase("fr");
+ const q=fold($("search").value.trim()),year=$("year").value,type=$("type").value,horse=$("horse").value,pilot=$("pilot").value,trainerQuery=fold($("trainer").value.trim());
+ const data=results.filter(r=>(!year||r.date.slice(0,4)===year)&&(!type||r.discipline===type)&&(!horse||r.cheval===horse)&&(!pilot||r.jockey===pilot)&&(!trainerQuery||fold(r.entraineur).includes(trainerQuery))&&(!q||[r.cheval,r.hippodrome,r.jockey,r.entraineur,r.date].some(v=>fold(v).includes(q))))
  .sort((a,b)=>$("order").value==="desc"?b.date.localeCompare(a.date):a.date.localeCompare(b.date));
  const pages=Math.max(1,Math.ceil(data.length/state.perPage));
  state.page=Math.min(state.page,pages);
  const list=data.slice((state.page-1)*state.perPage,state.page*state.perPage);
  const dateFR=d=>d.split("-").reverse().join("/");
  // Affichage de la table sur ordinateur : colonnes classiques.
- $("rows").innerHTML=list.map(r=>'<tr><td>'+jersey(r.casaque)+'</td><td class="date">'+esc(dateFR(r.date))+'</td><td class="place">'+esc(r.hippodrome)+'</td><td class="horse">'+esc(r.cheval)+'</td><td class="person">'+(r.jockey?esc(r.jockey):'—')+'</td><td class="discipline">'+disc(r.discipline)+'</td><td class="video-cell">'+replayButton(r,false)+'</td></tr>').join("");
+ $("rows").innerHTML=list.map(r=>'<tr><td>'+jersey(r.casaque)+'</td><td class="date">'+esc(dateFR(r.date))+'</td><td class="place">'+esc(r.hippodrome)+'</td><td class="horse">'+esc(r.cheval)+'</td><td class="person">'+(r.jockey?esc(r.jockey):'—')+'<div class="table-trainer">Entraîneur : '+esc(r.entraineur||'—')+'</div></td><td class="discipline">'+disc(r.discipline)+'</td><td class="video-cell">'+replayButton(r,false)+'</td></tr>').join("");
  // Sur mobile : vraies fiches sans défilement horizontal, ni texte coupé.
  $("cards").innerHTML=list.map(r=>{
   const label=r.discipline==="galop"||r.discipline==="monte"?"Jockey":r.discipline==="attele"?"Driver":"Jockey / Driver";
   const jockey=r.jockey?'<div class="pal-card-jockey"><span class="pal-card-jockey-label">'+label+' :</span>'+esc(r.jockey)+'</div>':"";
-  return '<article class="pal-card"><div class="pal-card-silk">'+jersey(r.casaque)+'</div><div class="pal-card-main"><time class="pal-card-date" datetime="'+esc(r.date)+'">'+esc(dateFR(r.date))+'</time><div class="pal-card-name">'+esc(r.cheval)+'</div><div class="pal-card-place">'+esc(r.hippodrome)+'</div>'+jockey+'</div><div class="pal-card-actions"><span class="pal-card-disc'+(r.discipline==="trot"?' is-unclassified':'')+'">'+disc(r.discipline)+'</span>'+replayButton(r,true)+'</div></article>';
+  const trainer='<div class="pal-card-trainer"><span class="pal-card-trainer-label">Entraîneur :</span>'+esc(r.entraineur||"—")+'</div>';
+  return '<article class="pal-card"><div class="pal-card-silk">'+jersey(r.casaque)+'</div><div class="pal-card-main"><time class="pal-card-date" datetime="'+esc(r.date)+'">'+esc(dateFR(r.date))+'</time><div class="pal-card-name">'+esc(r.cheval)+'</div><div class="pal-card-place">'+esc(r.hippodrome)+'</div>'+jockey+trainer+'</div><div class="pal-card-actions"><span class="pal-card-disc'+(r.discipline==="trot"?' is-unclassified':'')+'">'+disc(r.discipline)+'</span>'+replayButton(r,true)+'</div></article>';
  }).join("");
  $("empty").hidden=data.length>0;
- $("count").textContent=(!q&&!year&&!type&&!horse&&!pilot)?"Toutes les courses de nos archives":data.length+" course"+(data.length>1?"s":"")+" trouvée"+(data.length>1?"s":"");
+ $("count").textContent=(!q&&!year&&!type&&!horse&&!pilot&&!trainerQuery)?"Toutes les courses de nos archives":data.length+" course"+(data.length>1?"s":"")+" trouvée"+(data.length>1?"s":"");
  $("page").textContent="Page "+state.page+" / "+pages;
  $("prev").disabled=state.page===1;$("next").disabled=state.page===pages;
  postHeight();
@@ -205,6 +208,11 @@ function refreshNameFilters(){
  };
  fill(horseSelect,results.map(r=>r.cheval),"Cheval",alphabetic);
  fill(pilotSelect,results.map(r=>r.jockey),"Jockey / Driver",bySurname);
+ const trainerList=$("trainer-suggestions");
+ trainerList.replaceChildren();
+ for(const name of [...new Set(results.map(r=>r.entraineur).filter(Boolean))].sort(alphabetic)){
+  const option=document.createElement("option");option.value=name;trainerList.appendChild(option);
+ }
 }
 refreshNameFilters();
 // Référence validée par le propriétaire. Deux lignes anciennes avec casaque blanche
@@ -226,6 +234,7 @@ async function loadNewVictories(){
    date:v.date,cheval:v.cheval.trim(),hippodrome:v.hippodrome.trim(),
    discipline:["attele","monte","galop","trot"].includes(v.discipline)?v.discipline:"trot",
    jockey:typeof v.jockey==="string"?v.jockey.trim():"",
+   entraineur:typeof v.entraineur==="string"?v.entraineur.trim():"",
    casaque:Object.hasOwn(silkFiles,v.casaque)?v.casaque:"blanche",
    proprietaire:typeof v.proprietaire==="string"?v.proprietaire.trim():"",
    compteInitial:v.compteInitial!==false
@@ -242,7 +251,7 @@ const attributionUrls={
 };
 // Chaque légende donne accès au nom de l'auteur Historicair et à la licence CC BY-SA 2.5.
 $("legend").innerHTML=["attele","monte","galop"].map(t=>'<a class="tag" href="'+attributionUrls[t]+'" target="_blank" rel="noopener" title="Illustration : Historicair, CC BY-SA 2.5 — Wikimedia Commons">'+disc(t)+'</a>').join("");
-["search","year","type","horse","pilot","order"].forEach(id=>$(id).addEventListener("input",()=>{state.page=1;render()}));
+["search","year","type","horse","pilot","trainer","order"].forEach(id=>$(id).addEventListener("input",()=>{state.page=1;render()}));
 $("prev").addEventListener("click",()=>{state.page--;render()});$("next").addEventListener("click",()=>{state.page++;render()});
 function postHeight(){window.parent.postMessage({kind:"ecurie-initial-palmares-height",height:document.documentElement.scrollHeight+12},"*")}
 if("ResizeObserver" in window)new ResizeObserver(postHeight).observe(document.body);
