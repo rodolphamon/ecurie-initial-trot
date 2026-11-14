@@ -7,7 +7,7 @@
 .palmares{max-width:1140px;width:100%;margin:auto;min-width:0}.top{background:#191919;color:#fff;padding:24px clamp(18px,3.5vw,38px);border-radius:16px;border-top:6px solid var(--orange);display:flex;align-items:center;justify-content:space-between;gap:16px}
 .top h1{font-size:clamp(26px,5vw,41px);line-height:1;letter-spacing:.035em;margin:0;font-weight:900}
 #counter{font-size:clamp(39px,7vw,70px);font-weight:900;line-height:1;letter-spacing:-.055em;color:#ff862c;font-variant-numeric:tabular-nums}
-.controls{margin-top:24px;display:grid;grid-template-columns:minmax(0,2.2fr) minmax(110px,1fr) minmax(140px,1.15fr) minmax(130px,1fr);gap:10px}
+.controls{margin-top:24px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.controls label{min-width:0}.controls label:first-child,.controls label:nth-child(4){grid-column:span 2}
 .controls input,.controls select{width:100%;padding:13px 12px;border:1px solid #d7d7dc;background:white;border-radius:9px;font:inherit;color:#252525;min-width:0;outline-color:var(--orange);font-size:14px}
 .caption-line{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:12px 1px 10px}.result{font-size:13px;color:#595959}.legend{display:flex;flex-wrap:wrap;gap:6px}
 .tag{display:inline-flex;align-items:center;gap:4px;padding:5px 8px;background:#f8f8f8;border:1px solid #ebebeb;border-radius:99px;font-size:11px;font-weight:700}.legend .tag{color:inherit;text-decoration:none}.legend .tag:focus-visible{outline:2px solid var(--orange);outline-offset:2px}.tag .disc-img{width:36px;height:25px;margin-right:2px}.tag .disc-text{font-size:12px}
@@ -39,7 +39,7 @@ td:first-child,th:first-child{text-align:center;width:75px}td.date{white-space:n
  .top h1{font-size:clamp(24px,7vw,34px)}
  #counter{font-size:clamp(39px,10vw,58px)}
  .controls{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:14px}
- .controls label:first-child,.controls label:last-child{grid-column:1/-1}
+ .controls label:first-child,.controls label:nth-child(4),.controls label:nth-child(5),.controls label:last-child{grid-column:1/-1}
  .controls input,.controls select{padding:12px 10px;min-width:0;font-size:13px}
  .caption-line{align-items:flex-start;flex-direction:column;margin:13px 1px 12px;gap:10px}
  .legend{gap:5px}
@@ -63,6 +63,8 @@ td:first-child,th:first-child{text-align:center;width:75px}td.date{white-space:n
 <label><input id="search" type="search" placeholder="Rechercher un cheval, une ville, un jockey…" aria-label="Rechercher"></label>
 <label><select id="year" aria-label="Année"><option value="">Toutes les années</option></select></label>
 <label><select id="type" aria-label="Discipline"><option value="">Toutes disciplines</option><option value="attele">Attelé</option><option value="monte">Monté</option><option value="galop">Galop</option></select></label>
+<label><select id="horse" aria-label="Filtrer par cheval"><option value="">Tous les chevaux</option></select></label>
+<label><select id="pilot" aria-label="Filtrer par jockey ou driver"><option value="">Tous les jockeys / drivers</option></select></label>
 <label><select id="order" aria-label="Classement"><option value="desc">Plus récentes d'abord</option><option value="asc">Plus anciennes d'abord</option></select></label>
 </section>
 <div class="caption-line"><div class="result" id="count" aria-live="polite"></div><div class="legend" id="legend"></div></div>
@@ -96,8 +98,8 @@ function disc(type){
 }
 const state={page:1,perPage:25};
 function render(){
- const q=$("search").value.trim().toLocaleLowerCase("fr"),year=$("year").value,type=$("type").value;
- const data=results.filter(r=>(!year||r.date.slice(0,4)===year)&&(!type||r.discipline===type)&&(!q||[r.cheval,r.hippodrome,r.jockey,r.date].some(v=>String(v).toLocaleLowerCase("fr").includes(q))))
+ const q=$("search").value.trim().toLocaleLowerCase("fr"),year=$("year").value,type=$("type").value,horse=$("horse").value,pilot=$("pilot").value;
+ const data=results.filter(r=>(!year||r.date.slice(0,4)===year)&&(!type||r.discipline===type)&&(!horse||r.cheval===horse)&&(!pilot||r.jockey===pilot)&&(!q||[r.cheval,r.hippodrome,r.jockey,r.date].some(v=>String(v).toLocaleLowerCase("fr").includes(q))))
  .sort((a,b)=>$("order").value==="desc"?b.date.localeCompare(a.date):a.date.localeCompare(b.date));
  const pages=Math.max(1,Math.ceil(data.length/state.perPage));
  state.page=Math.min(state.page,pages);
@@ -125,6 +127,25 @@ function refreshYears(){
  yearSelect.value=years.includes(previous)?previous:"";
 }
 refreshYears();
+function refreshNameFilters(){
+ const horseSelect=$("horse"),pilotSelect=$("pilot");
+ function fill(select,values,allLabel,sortFn){
+  const previous=select.value;
+  select.replaceChildren(new Option(allLabel,""));
+  for(const value of [...new Set(values.filter(Boolean))].sort(sortFn)){
+   select.add(new Option(value,value));
+  }
+  select.value=[...select.options].some(o=>o.value===previous)?previous:"";
+ }
+ const alphabetic=(a,b)=>a.localeCompare(b,"fr",{sensitivity:"base"});
+ const bySurname=(a,b)=>{
+  const family=name=>name.trim().split(/\s+/).at(-1);
+  return alphabetic(family(a),family(b))||alphabetic(a,b);
+ };
+ fill(horseSelect,results.map(r=>r.cheval),"Tous les chevaux",alphabetic);
+ fill(pilotSelect,results.map(r=>r.jockey),"Tous les jockeys / drivers",bySurname);
+}
+refreshNameFilters();
 function updateCounter(n){$("counter").textContent=new Intl.NumberFormat("fr-FR").format(n);}
 async function loadNewVictories(){
  // Une ligne du fichier = un nouveau succès approuvé après la date de référence.
@@ -141,7 +162,7 @@ async function loadNewVictories(){
   }));
   const keys=new Set(results.map(v=>[v.date,v.cheval,v.hippodrome].join("|").toUpperCase()));
   const unique=add.filter(v=>{const key=[v.date,v.cheval,v.hippodrome].join("|").toUpperCase();if(keys.has(key))return false;keys.add(key);return true});
-  results.push(...unique);updateCounter(172+unique.length);refreshYears();render();
+  results.push(...unique);updateCounter(172+unique.length);refreshYears();refreshNameFilters();render();
  }catch(err){updateCounter(172)}
 }
 const attributionUrls={
@@ -151,7 +172,7 @@ const attributionUrls={
 };
 // Chaque légende donne accès au nom de l'auteur Historicair et à la licence CC BY-SA 2.5.
 $("legend").innerHTML=["attele","monte","galop"].map(t=>'<a class="tag" href="'+attributionUrls[t]+'" target="_blank" rel="noopener" title="Illustration : Historicair, CC BY-SA 2.5 — Wikimedia Commons">'+disc(t)+'</a>').join("");
-["search","year","type","order"].forEach(id=>$(id).addEventListener("input",()=>{state.page=1;render()}));
+["search","year","type","horse","pilot","order"].forEach(id=>$(id).addEventListener("input",()=>{state.page=1;render()}));
 $("prev").addEventListener("click",()=>{state.page--;render()});$("next").addEventListener("click",()=>{state.page++;render()});
 function postHeight(){window.parent.postMessage({kind:"ecurie-initial-palmares-height",height:document.documentElement.scrollHeight+12},"*")}
 if("ResizeObserver" in window)new ResizeObserver(postHeight).observe(document.body);
