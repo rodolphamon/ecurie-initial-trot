@@ -1,6 +1,6 @@
 {
   "date_reference": "2026-11-13",
-  "base_victoires_validees": 174,
-  "commentaire": "Ajouter ici une ligne par victoire nouvelle et validée après le 13 novembre 2026; le compteur s'incrémente automatiquement à la prochaine consultation.",
+  "base_victoires_validees": 172,
+  "commentaire": "Ajouter uniquement les nouvelles victoires officiellement validées après le 13 novembre 2026. Base : 153 trot + 19 plat + 0 obstacle = 172. Les 10 lignes d'écart des archives existantes ne doivent pas être additionnées.",
   "victoires": []
 }
