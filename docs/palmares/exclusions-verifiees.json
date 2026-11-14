@@ -1,15 +1,20 @@
 {
-  "date_controle": "2026-11-13",
+  "date_controle": "2026-11-14",
   "origine": "Anciennes archives reprises dans le palmarès",
-  "evenements_exclus": [
+  "evenements_exclus": [],
+  "note": "VALMIN DE GUEUDE a été rétabli au palmarès sur la base du résultat définitif communiqué par le propriétaire. Ne pas déduire d'une arrivée initiale affichée en ligne qu'aucune décision de déclassement ultérieure n'existe.",
+  "corrections_du_classement": [
     {
       "date": "2018-04-02",
       "cheval": "VALMIN DE GUEUDE",
       "hippodrome": "VILLEDIEU-LES-POELES",
-      "classement_reel": "2e",
-      "raison": "Ancienne archive étiquetée comme victoire, alors qu'il s'agit d'une deuxième place",
+      "classement_initial": "2e à l'arrivée",
+      "classement_definitif": "1er sur tapis vert",
+      "motif": "Disqualification ultérieure du premier, environ un mois après",
+      "driver": "G. MONTHULE",
+      "discipline": "Attelé",
+      "justificatif": "Confirmation du propriétaire ; Zone-Turf présente encore l'arrivée initiale",
       "source": "https://www.zone-turf.fr/cheval/valmin-de-gueude-187252/"
     }
-  ],
-  "note": "Le palmarès public conserve les victoires et retire les résultats vérifiés comme non gagnants. Le total historique communiqué de 174 reste soumis à rapprochement comptable des casaques et résultats."
+  ]
 }
