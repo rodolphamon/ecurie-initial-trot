@@ -1,6 +1,6 @@
 {
   "date_controle": "2026-11-14",
-  "description": "Suivi interne des victoires 2026 sans replay LeTROT ; aucun lien n'est publié avant de pouvoir identifier l'adresse de la vidéo.",
+  "description": "Toutes les 12 victoires 2026 restantes disposent maintenant de leur numéro de course, mais aucun lien direct LeTROT ne sera ajouté sans confirmation de l’URL exacte du replay.",
   "victoires_sans_replay": [
     {
       "date": "2026-02-14",
@@ -16,21 +16,23 @@
       "date": "2026-03-01",
       "cheval": "JETHAN DE MONGOCHY",
       "hippodrome": "CHALLANS",
-      "reunion_source": null,
-      "numero_course": null,
-      "resultat_source": "https://www.zone-turf.fr/cheval/jethan-de-mongochy-1749902/",
+      "reunion_source": "PHH (code opérateur PMU local, non code LeTROT)",
+      "numero_course": "C6",
+      "resultat_source": "https://www.zone-turf.fr/rapports/pmufr/phh-c6-prix-he-and-me-1132740.html",
       "lien_replay_letrot": null,
-      "statut": "URL LeTROT à retrouver et à vérifier"
+      "statut": "Date, hippodrome et numéro de course confirmés. URL et lecture de vidéo LeTROT encore non vérifiées.",
+      "nom_prix": "Prix He And Me"
     },
     {
       "date": "2026-03-15",
       "cheval": "MONA LISA STARDUST",
       "hippodrome": "AGEN-LA-GARENNE",
-      "reunion_source": null,
-      "numero_course": null,
-      "resultat_source": "https://www.zone-turf.fr/cheval/mona-lisa-stardust-2048715/",
+      "reunion_source": "R10",
+      "numero_course": "C2",
+      "resultat_source": "https://www.zeturf.fr/fr/course-du-jour/2026-03-15/R10C2-agen-prix-de-l-hippodrome-de-manacor",
       "lien_replay_letrot": null,
-      "statut": "URL LeTROT à retrouver et à vérifier"
+      "statut": "Date, hippodrome et numéro de course confirmés. URL et lecture de vidéo LeTROT encore non vérifiées.",
+      "nom_prix": "Prix de l'Hippodrome de Manacor"
     },
     {
       "date": "2026-04-19",
@@ -96,11 +98,12 @@
       "date": "2026-08-10",
       "cheval": "LARGO DE JOUDES",
       "hippodrome": "DIVONNE-LES-BAINS",
-      "reunion_source": null,
-      "numero_course": null,
-      "resultat_source": "https://www.zone-turf.fr/cheval/largo-de-joudes-2003109/",
+      "reunion_source": "R6",
+      "numero_course": "C6",
+      "resultat_source": "https://www.zeturf.be/fr/course-du-jour/2026-08-10/R6C6-divonne-les-bains-prix-de-crassy-prix-credit-mutuel?prefill=6",
       "lien_replay_letrot": null,
-      "statut": "URL LeTROT à retrouver et à vérifier"
+      "statut": "Date, hippodrome et numéro de course confirmés. URL et lecture de vidéo LeTROT encore non vérifiées.",
+      "nom_prix": "Prix de Crassy - Prix Crédit Mutuel"
     },
     {
       "date": "2026-08-27",
