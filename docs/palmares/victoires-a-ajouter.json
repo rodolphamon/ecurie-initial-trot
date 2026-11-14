@@ -1,7 +1,7 @@
 {
   "date_reference": "2026-11-13",
   "base_victoires_validees": 172,
-  "commentaire": "Réconciliation vérifiée avec le PDF LeTROT remis par le propriétaire (14/11/2026) : Écurie Initial compte 130 victoires au trot, et le compteur global Rodolphe HAMON + Nathalie HAMON + Écurie Initial (selon discipline) est de 172. Les archives conservent également les victoires d'autres propriétaires, hors compteur. Le compteur du site est désormais recalculé depuis les lignes admissibles et non maintenu par un nombre constant. Pour chaque nouvelle victoire, saisir obligatoirement le champ 'proprietaire' exact et vérifier l'attribution.",
+  "commentaire": "Victoires admissibles au compteur : trot Rodolphe HAMON (6), Nathalie HAMON (17), Écurie Initial (130) ; galop Rodolphe HAMON et Écurie Initial (19), soit 172. Les victoires de JUNINIO FLEURY de 2023 et 2024 sous la casaque HOMA sont visibles dans l'historique mais exclues du compteur. La victoire de NOSTALGIE DAIRPET au Mont-Saint-Michel le 26/04/2026 a été entièrement retirée du palmarès : achat postérieur à la course. Le compteur est calculé depuis les victoires admissibles.",
   "victoires": [],
   "decompte_valide": {
     "trot_hamon_rodolphe": 6,
@@ -28,25 +28,30 @@
       {
         "date": "2023-08-10",
         "cheval": "JUNINIO FLEURY",
-        "proprietaire": "Arnaud PUSKAS"
+        "proprietaire": "Arnaud PUSKAS",
+        "casaque": "HOMA"
       },
       {
         "date": "2024-04-01",
         "cheval": "JUNINIO FLEURY",
-        "proprietaire": "Arnaud PUSKAS"
+        "proprietaire": "Arnaud PUSKAS",
+        "casaque": "HOMA"
       },
       {
         "date": "2024-12-17",
         "cheval": "JUNINIO FLEURY",
-        "proprietaire": "Arnaud PUSKAS"
-      },
-      {
-        "date": "2026-04-26",
-        "cheval": "NOSTALGIE DAIRPET",
-        "proprietaire": "Thomas LEVESQUE"
+        "proprietaire": "Arnaud PUSKAS",
+        "casaque": "HOMA"
       }
     ],
     "solde": "132 - 4 + 2 = 130",
-    "total_victoires_comptees": 172
+    "total_victoires_comptees": 172,
+    "retirées_du_palmares": [
+      {
+        "date": "2026-04-26",
+        "cheval": "NOSTALGIE DAIRPET",
+        "motif": "Victoire antérieure à l'achat de la pouliche par l'Écurie Initial (confirmation du propriétaire)"
+      }
+    ]
   }
 }
