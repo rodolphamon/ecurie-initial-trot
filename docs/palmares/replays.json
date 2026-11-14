@@ -1,5 +1,5 @@
 {
-  "version": 12,
+  "version": 13,
   "note": "Liens vers les pages de courses sur Equidia ou LeTROT, avec références de résultats ayant permis d'identifier date, hippodrome, réunion et numéro de course. Les liens Equidia sont calculés d'après le format d'URL et leur lecture, ainsi que la disponibilité du replay, n'ont pas été testées automatiquement. Les victoires historiques ne sont pas modifiées.",
   "replays": [
     {
@@ -841,6 +841,30 @@
       "url": "https://www.letrot.com/courses/2021-07-18/5002/8",
       "preuve_identification_course": "https://www.letrot.com/courses/2021-07-18/5002/8",
       "controle": "Lien officiel LeTROT déjà inscrit comme source dans la ligne du palmarès, lecture replay non vérifiée"
+    },
+    {
+      "date": "2024-04-15",
+      "cheval": "ISOLEE DU BOUILLON",
+      "hippodrome": "LE CROISE-LAROCHE",
+      "url": "https://www.equidia.fr/courses/2024-04-15/R8/C2",
+      "preuve_identification_course": "https://www.canalturf.com/resultats-PMU/2024-04-15/le-croise-laroche/336055_prix-des-vosges.html",
+      "controle": "Date, cheval gagnant et numéro R/C concordants dans la source ; lien Equidia de la course, disponibilité du replay non vérifiée automatiquement"
+    },
+    {
+      "date": "2025-09-21",
+      "cheval": "LARGO DE JOUDES",
+      "hippodrome": "VIRE NORMANDIE",
+      "url": "https://www.equidia.fr/courses/2025-09-21/R13/C6",
+      "preuve_identification_course": "https://www.elo-turf.fr/cheval/largo-de-joudes",
+      "controle": "Date, cheval gagnant et numéro R/C concordants dans la source ; lien Equidia de la course, disponibilité du replay non vérifiée automatiquement"
+    },
+    {
+      "date": "2025-10-05",
+      "cheval": "LARGO DE JOUDES",
+      "hippodrome": "LISIEUX",
+      "url": "https://www.equidia.fr/courses/2025-10-05/R11/C7",
+      "preuve_identification_course": "https://www.elo-turf.fr/cheval/largo-de-joudes",
+      "controle": "Date, cheval gagnant et numéro R/C concordants dans la source ; lien Equidia de la course, disponibilité du replay non vérifiée automatiquement"
     }
   ]
 }
