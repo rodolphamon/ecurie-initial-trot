@@ -155,18 +155,19 @@ function fondTransparentCasaqueGalop(){
  };
  img.src=silkFiles.galop;
 }
-// Pictogrammes de courses par Historicair (Wikimedia Commons, CC BY-SA 2.5).
+// Pictogrammes originaux par Historicair (Wikimedia Commons, CC BY-SA 2.5), mêmes auteur et style pour les 4 disciplines.
+// Sources : https://commons.wikimedia.org/wiki/File:Obstacles_racing_clipart.svg (et les 3 autres fichiers homonymes de la série).
 const disciplineFiles={
  attele:"https://upload.wikimedia.org/wikipedia/commons/7/77/Trot_sulky_racing_clipart.svg",
  monte:"https://upload.wikimedia.org/wikipedia/commons/c/c3/Trot_mounted_racing_clipart.svg",
- galop:"https://upload.wikimedia.org/wikipedia/commons/4/40/Flat_racing_clipart.svg"
+ galop:"https://upload.wikimedia.org/wikipedia/commons/4/40/Flat_racing_clipart.svg",
+ obstacle:"https://upload.wikimedia.org/wikipedia/commons/a/a8/Obstacles_racing_clipart.svg"
 };
 function disc(type){
  const names={attele:"Attelé",monte:"Monté",galop:"Galop",obstacle:"Obstacle",trot:"Trot"};
  const label=names[type]||"Trot";
  const src=disciplineFiles[type];
- const jumpIcon=type==="obstacle"?'<svg class="disc-img" viewBox="0 0 80 45" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g fill="currentColor"><ellipse cx="39" cy="19" rx="16" ry="7" transform="rotate(-14 39 19)"/><path d="M48 16 54 5 62 7 67 12 61 15 55 12 50 24 44 23ZM25 17 13 10 10 14 22 25ZM28 22 19 40 24 40 36 25ZM42 21 56 40 62 40 49 19Z"/><circle cx="37" cy="4" r="4"/><path d="M37 7 44 16 40 20 33 10Z"/></g><path d="M62 29V44M74 29V44M60 31H76" stroke="currentColor" stroke-width="3" stroke-linecap="round" fill="none"/></svg>':"";
- return (src?'<img class="disc-img" src="'+src+'" alt="" loading="lazy">':jumpIcon)+'<span class="disc-text"'+(type==="trot"?' title="Discipline exacte à confirmer"':'')+'>'+label+'</span>';
+ return (src?'<img class="disc-img" src="'+src+'" alt="" loading="lazy">':'')+'<span class="disc-text"'+(type==="trot"?' title="Discipline exacte à confirmer"':'')+'>'+label+'</span>';
 }
 // Les vidéos restent hébergées par LeTROT : nous ne stockons que les liens.
 function replayUrl(value){
