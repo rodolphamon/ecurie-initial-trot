@@ -10,7 +10,7 @@
 .controls{margin-top:24px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.controls label{min-width:0}.controls label:first-child,.controls label:nth-child(4),.controls .trainer-filter{grid-column:span 2}
 .controls input,.controls select{width:100%;padding:13px 12px;border:1px solid #d7d7dc;background:white;border-radius:9px;font:inherit;color:#252525;min-width:0;outline-color:var(--orange);font-size:14px}
 .caption-line{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:12px 1px 10px}.result{font-size:13px;color:#595959}.legend{display:flex;flex-wrap:wrap;gap:6px}
-.tag{display:inline-flex;align-items:center;gap:4px;padding:5px 8px;background:#f8f8f8;border:1px solid #ebebeb;border-radius:99px;font-size:11px;font-weight:700}.legend .tag{color:inherit;text-decoration:none}.legend .tag:focus-visible{outline:2px solid var(--orange);outline-offset:2px}.tag .disc-img{width:36px;height:25px;margin-right:2px}.tag .disc-text{font-size:12px}
+.tag{display:inline-flex;align-items:center;gap:4px;padding:5px 8px;background:#f8f8f8;border:1px solid #ebebeb;border-radius:99px;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit;color:inherit;transition:background .16s ease,border-color .16s ease}.legend .tag[aria-pressed="true"]{border-color:var(--orange);background:var(--soft);color:#9c4712;box-shadow:0 0 0 1px var(--orange)}.legend .tag:hover{background:#fff0e3}.legend .tag:focus-visible{outline:2px solid var(--orange);outline-offset:2px}.tag .disc-img{width:36px;height:25px;margin-right:2px}.tag .disc-text{font-size:12px}
 .tablewrap{border:1px solid #e9e9ea;border-radius:12px;overflow-x:auto;background:#fff}
 table{width:100%;border-collapse:collapse;min-width:840px;text-align:left}thead{background:#262626;color:#fff}th{padding:14px 12px;font-size:12px;text-transform:uppercase;letter-spacing:.04em;font-weight:800;white-space:nowrap}td{padding:9px 12px;border-bottom:1px solid var(--line);font-size:13px;line-height:1.3}tbody tr:nth-child(even){background:#fff9f5}tbody tr:hover{background:#fff0e3}tbody tr:last-child td{border-bottom:0}
 td:first-child,th:first-child{text-align:center;width:75px}td.date{white-space:nowrap;font-variant-numeric:tabular-nums;color:#515151;font-weight:650}td.place{color:#454545}td.horse{font-weight:850;color:#161616}td.person{color:#5d5d62}.table-trainer{display:block;color:#727277;font-size:12px;margin-top:5px;white-space:normal}td.discipline{white-space:nowrap;font-weight:700}
@@ -66,13 +66,12 @@ td:first-child,th:first-child{text-align:center;width:75px}td.date{white-space:n
 <section aria-label="Filtrer les victoires" class="controls">
 <label><input id="search" type="search" placeholder="Rechercher un cheval, une ville, un jockey…" aria-label="Rechercher"></label>
 <label><select id="year" aria-label="Année"><option value="">Année</option></select></label>
-<label><select id="type" aria-label="Discipline"><option value="">Discipline</option><option value="attele">Attelé</option><option value="monte">Monté</option><option value="galop">Galop</option></select></label>
 <label><select id="horse" aria-label="Filtrer par cheval"><option value="">Cheval</option></select></label>
 <label><select id="pilot" aria-label="Filtrer par jockey ou driver"><option value="">Jockey / Driver</option></select></label>
 <label class="trainer-filter"><input id="trainer" type="search" list="trainer-suggestions" placeholder="Rechercher un entraîneur…" aria-label="Rechercher un entraîneur" autocomplete="off"><datalist id="trainer-suggestions"></datalist></label>
 <label><select id="order" aria-label="Classement"><option value="desc">Plus récentes d'abord</option><option value="asc">Plus anciennes d'abord</option></select></label>
 </section>
-<div class="caption-line"><div class="result" id="count" aria-live="polite"></div><div class="legend" id="legend"></div></div>
+<div class="caption-line"><div class="result" id="count" aria-live="polite"></div><div class="legend" id="legend" role="group" aria-label="Filtrer les victoires par discipline"></div></div>
 <div class="tablewrap"><table aria-label="Historique des victoires">
 <thead><tr><th>Casaque</th><th>Date</th><th>Hippodrome</th><th>Cheval</th><th>Jockey / Driver</th><th>Discipline</th><th>Vidéo</th></tr></thead>
 <tbody id="rows"></tbody></table></div><div class="cards" id="cards" aria-label="Victoires affichées sur téléphone"></div><div id="empty" class="empty" hidden>Aucune victoire ne correspond à cette recherche.</div>
@@ -94,7 +93,7 @@ function nomProprietaire(s){
 }
 function victoireAdmiseAuCompteur(r){
  if(r.compteInitial===false)return false;
- const discipline=r.discipline==="galop"?"galop":["attele","monte","trot"].includes(r.discipline)?"trot":null;
+ const discipline=["galop","obstacle"].includes(r.discipline)?"galop":["attele","monte","trot"].includes(r.discipline)?"trot":null;
  if(!discipline)return false;
  // Si le propriétaire est identifié, sa valeur fait foi, pas la casaque ni le jockey.
  if(r.proprietaire)return proprietairesAdmis[discipline].has(nomProprietaire(r.proprietaire));
@@ -119,10 +118,11 @@ const disciplineFiles={
  galop:"https://upload.wikimedia.org/wikipedia/commons/4/40/Flat_racing_clipart.svg"
 };
 function disc(type){
- const names={attele:"Attelé",monte:"Monté",galop:"Galop",trot:"Trot"};
+ const names={attele:"Attelé",monte:"Monté",galop:"Galop",obstacle:"Obstacle",trot:"Trot"};
  const label=names[type]||"Trot";
  const src=disciplineFiles[type];
- return (src?'<img class="disc-img" src="'+src+'" alt="" loading="lazy">':'')+'<span class="disc-text"'+(type==="trot"?' title="Discipline exacte à confirmer"':'')+'>'+label+'</span>';
+ const jumpIcon=type==="obstacle"?'<svg class="disc-img" viewBox="0 0 80 45" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g fill="currentColor"><ellipse cx="39" cy="19" rx="16" ry="7" transform="rotate(-14 39 19)"/><path d="M48 16 54 5 62 7 67 12 61 15 55 12 50 24 44 23ZM25 17 13 10 10 14 22 25ZM28 22 19 40 24 40 36 25ZM42 21 56 40 62 40 49 19Z"/><circle cx="37" cy="4" r="4"/><path d="M37 7 44 16 40 20 33 10Z"/></g><path d="M62 29V44M74 29V44M60 31H76" stroke="currentColor" stroke-width="3" stroke-linecap="round" fill="none"/></svg>':"";
+ return (src?'<img class="disc-img" src="'+src+'" alt="" loading="lazy">':jumpIcon)+'<span class="disc-text"'+(type==="trot"?' title="Discipline exacte à confirmer"':'')+'>'+label+'</span>';
 }
 // Les vidéos restent hébergées par LeTROT : nous ne stockons que les liens.
 function replayUrl(value){
@@ -158,10 +158,10 @@ async function loadReplays(){
   render();
  }catch(err){/* Aucun pictogramme tant que le lien direct n'est pas vérifié. */}
 }
-const state={page:1,perPage:25};
+const state={page:1,perPage:25,discipline:""};
 function render(){
  const fold=s=>String(s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLocaleLowerCase("fr");
- const q=fold($("search").value.trim()),year=$("year").value,type=$("type").value,horse=$("horse").value,pilot=$("pilot").value,trainerQuery=fold($("trainer").value.trim());
+ const q=fold($("search").value.trim()),year=$("year").value,type=state.discipline,horse=$("horse").value,pilot=$("pilot").value,trainerQuery=fold($("trainer").value.trim());
  const data=results.filter(r=>(!year||r.date.slice(0,4)===year)&&(!type||r.discipline===type)&&(!horse||r.cheval===horse)&&(!pilot||r.jockey===pilot)&&(!trainerQuery||fold(r.entraineur).includes(trainerQuery))&&(!q||[r.cheval,r.hippodrome,r.jockey,r.entraineur,r.date].some(v=>fold(v).includes(q))))
  .sort((a,b)=>$("order").value==="desc"?b.date.localeCompare(a.date):a.date.localeCompare(b.date));
  const pages=Math.max(1,Math.ceil(data.length/state.perPage));
@@ -172,11 +172,12 @@ function render(){
  $("rows").innerHTML=list.map(r=>'<tr><td>'+jersey(r.casaque)+'</td><td class="date">'+esc(dateFR(r.date))+'</td><td class="place">'+esc(r.hippodrome)+'</td><td class="horse">'+esc(r.cheval)+'</td><td class="person">'+(r.jockey?esc(r.jockey):'—')+'<div class="table-trainer">Entraîneur : '+esc(r.entraineur||'—')+'</div></td><td class="discipline">'+disc(r.discipline)+'</td><td class="video-cell">'+replayButton(r,false)+'</td></tr>').join("");
  // Sur mobile : vraies fiches sans défilement horizontal, ni texte coupé.
  $("cards").innerHTML=list.map(r=>{
-  const label=r.discipline==="galop"||r.discipline==="monte"?"Jockey":r.discipline==="attele"?"Driver":"Jockey / Driver";
+  const label=(r.discipline==="galop"||r.discipline==="obstacle"||r.discipline==="monte")?"Jockey":r.discipline==="attele"?"Driver":"Jockey / Driver";
   const jockey=r.jockey?'<div class="pal-card-jockey"><span class="pal-card-jockey-label">'+label+' :</span>'+esc(r.jockey)+'</div>':"";
   const trainer='<div class="pal-card-trainer"><span class="pal-card-trainer-label">Entraîneur :</span>'+esc(r.entraineur||"—")+'</div>';
   return '<article class="pal-card"><div class="pal-card-silk">'+jersey(r.casaque)+'</div><div class="pal-card-main"><time class="pal-card-date" datetime="'+esc(r.date)+'">'+esc(dateFR(r.date))+'</time><div class="pal-card-name">'+esc(r.cheval)+'</div><div class="pal-card-place">'+esc(r.hippodrome)+'</div>'+jockey+trainer+'</div><div class="pal-card-actions"><span class="pal-card-disc'+(r.discipline==="trot"?' is-unclassified':'')+'">'+disc(r.discipline)+'</span>'+replayButton(r,true)+'</div></article>';
  }).join("");
+ for(const button of $("legend").querySelectorAll("button[data-discipline]"))button.setAttribute("aria-pressed",button.dataset.discipline===state.discipline?"true":"false");
  $("empty").hidden=data.length>0;
  $("count").textContent=(!q&&!year&&!type&&!horse&&!pilot&&!trainerQuery)?"Toutes les courses de nos archives":data.length+" course"+(data.length>1?"s":"")+" trouvée"+(data.length>1?"s":"");
  $("page").textContent="Page "+state.page+" / "+pages;
@@ -232,7 +233,7 @@ async function loadNewVictories(){
   const raw=Array.isArray(json.victoires)?json.victoires:[];
   const add=raw.filter(v=>v && /^\d{4}-\d{2}-\d{2}$/.test(v.date||"") && typeof v.cheval==="string" && v.cheval.trim() && typeof v.hippodrome==="string" && v.hippodrome.trim()).map(v=>({
    date:v.date,cheval:v.cheval.trim(),hippodrome:v.hippodrome.trim(),
-   discipline:["attele","monte","galop","trot"].includes(v.discipline)?v.discipline:"trot",
+   discipline:["attele","monte","galop","obstacle","trot"].includes(v.discipline)?v.discipline:"trot",
    jockey:typeof v.jockey==="string"?v.jockey.trim():"",
    entraineur:typeof v.entraineur==="string"?v.entraineur.trim():"",
    casaque:Object.hasOwn(silkFiles,v.casaque)?v.casaque:"blanche",
@@ -244,14 +245,17 @@ async function loadNewVictories(){
   results.push(...unique);updateCounter();refreshYears();refreshNameFilters();render();
  }catch(err){updateCounter()}
 }
-const attributionUrls={
- attele:"https://commons.wikimedia.org/wiki/File:Trot_sulky_racing_clipart.svg",
- monte:"https://commons.wikimedia.org/wiki/File:Trot_mounted_racing_clipart.svg",
- galop:"https://commons.wikimedia.org/wiki/File:Flat_racing_clipart.svg"
-};
-// Chaque légende donne accès au nom de l'auteur Historicair et à la licence CC BY-SA 2.5.
-$("legend").innerHTML=["attele","monte","galop"].map(t=>'<a class="tag" href="'+attributionUrls[t]+'" target="_blank" rel="noopener" title="Illustration : Historicair, CC BY-SA 2.5 — Wikimedia Commons">'+disc(t)+'</a>').join("");
-["search","year","type","horse","pilot","trainer","order"].forEach(id=>$(id).addEventListener("input",()=>{state.page=1;render()}));
+// Ces boutons sont des filtres locaux, jamais des liens vers un site extérieur.
+$("legend").innerHTML=["attele","monte","galop","obstacle"].map(t=>'<button type="button" class="tag" data-discipline="'+t+'" aria-pressed="false" title="Filtrer par '+{attele:"Attelé",monte:"Monté",galop:"Galop",obstacle:"Obstacle"}[t]+'">'+disc(t)+'</button>').join("");
+$("legend").addEventListener("click",event=>{
+ const button=event.target.closest("button[data-discipline]");
+ if(!button)return;
+ state.discipline=state.discipline===button.dataset.discipline?"":button.dataset.discipline;
+ state.page=1;
+ render();
+});
+// Pictogrammes Attelé, Monté et Galop : Historicair, CC BY-SA 2.5 (Wikimedia Commons).
+["search","year","horse","pilot","trainer","order"].forEach(id=>$(id).addEventListener("input",()=>{state.page=1;render()}));
 $("prev").addEventListener("click",()=>{state.page--;render()});$("next").addEventListener("click",()=>{state.page++;render()});
 function postHeight(){window.parent.postMessage({kind:"ecurie-initial-palmares-height",height:document.documentElement.scrollHeight+12},"*")}
 if("ResizeObserver" in window)new ResizeObserver(postHeight).observe(document.body);
