@@ -1,5 +1,5 @@
 {
-  "version": 13,
+  "version": 14,
   "note": "Liens vers les pages de courses sur Equidia ou LeTROT, avec références de résultats ayant permis d'identifier date, hippodrome, réunion et numéro de course. Les liens Equidia sont calculés d'après le format d'URL et leur lecture, ainsi que la disponibilité du replay, n'ont pas été testées automatiquement. Les victoires historiques ne sont pas modifiées.",
   "replays": [
     {
@@ -865,6 +865,86 @@
       "url": "https://www.equidia.fr/courses/2025-10-05/R11/C7",
       "preuve_identification_course": "https://www.elo-turf.fr/cheval/largo-de-joudes",
       "controle": "Date, cheval gagnant et numéro R/C concordants dans la source ; lien Equidia de la course, disponibilité du replay non vérifiée automatiquement"
+    },
+    {
+      "date": "2013-03-19",
+      "cheval": "ALIOTA DE CABERT",
+      "hippodrome": "HYERES",
+      "url": "https://www.equidia.fr/courses/2013-03-19/R2/C7",
+      "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2013-03-19/R2C7-hyeres-prix-de-lagoubran",
+      "controle": "Date, cheval gagnant et réunion/course R/C identifiés dans les résultats publics. Replay Equidia non testé depuis cet environnement."
+    },
+    {
+      "date": "2016-01-11",
+      "cheval": "DJANGO DE MONGOCHY",
+      "hippodrome": "CHATEAUBRIANT",
+      "url": "https://www.equidia.fr/courses/2016-01-11/R7/C1",
+      "preuve_identification_course": "https://www.gbet.fr/courses/chateaubriant/2016-01-11/r7/c1/prix-goetmals-wood/",
+      "controle": "Date, cheval gagnant et réunion/course R/C identifiés dans les résultats publics. Replay Equidia non testé depuis cet environnement."
+    },
+    {
+      "date": "2016-01-20",
+      "cheval": "DJANGO DE MONGOCHY",
+      "hippodrome": "AGEN-LA GARENNE",
+      "url": "https://www.equidia.fr/courses/2016-01-20/R3/C1",
+      "preuve_identification_course": "https://www.gbet.fr/courses/agen-la-garenne/2016-01-20/r3/c1/prix-marmont-pachas/",
+      "controle": "Date, cheval gagnant et réunion/course R/C identifiés dans les résultats publics. Replay Equidia non testé depuis cet environnement."
+    },
+    {
+      "date": "2016-02-16",
+      "cheval": "ADAMS",
+      "hippodrome": "CAGNES-SUR-MER",
+      "url": "https://www.equidia.fr/courses/2016-02-16/R5/C1",
+      "preuve_identification_course": "https://www.gbet.fr/courses/cagnes-mer/2016-02-16/r5/c1/prix-des-gorges-de-pennafort/",
+      "controle": "Date, cheval gagnant et réunion/course R/C identifiés dans les résultats publics. Replay Equidia non testé depuis cet environnement."
+    },
+    {
+      "date": "2017-01-09",
+      "cheval": "VALMIN DE GUEUDE",
+      "hippodrome": "TOULOUSE",
+      "url": "https://www.equidia.fr/courses/2017-01-09/R6/C8",
+      "preuve_identification_course": "https://www.gbet.fr/chevaux/valmin-de-gueude-109016/",
+      "controle": "Date, cheval gagnant et réunion/course R/C identifiés dans les résultats publics. Replay Equidia non testé depuis cet environnement."
+    },
+    {
+      "date": "2017-02-26",
+      "cheval": "VALMIN DE GUEUDE",
+      "hippodrome": "AMIENS",
+      "url": "https://www.equidia.fr/courses/2017-02-26/R7/C8",
+      "preuve_identification_course": "https://www.gbet.fr/chevaux/valmin-de-gueude-109016/",
+      "controle": "Date, cheval gagnant et réunion/course R/C identifiés dans les résultats publics. Replay Equidia non testé depuis cet environnement."
+    },
+    {
+      "date": "2018-08-06",
+      "cheval": "ELFE ATOUT",
+      "hippodrome": "MESLAY-DU-MAINE",
+      "url": "https://www.equidia.fr/courses/2018-08-06/R3/C2",
+      "preuve_identification_course": "https://www.gbet.fr/courses/meslay-du-maine/2018-08-06/r3/c2/prix-marcel-gautier/",
+      "controle": "Date, cheval gagnant et réunion/course R/C identifiés dans les résultats publics. Replay Equidia non testé depuis cet environnement."
+    },
+    {
+      "date": "2020-02-01",
+      "cheval": "FETICHE ATOUT",
+      "hippodrome": "MAUQUENCHY",
+      "url": "https://www.equidia.fr/courses/2020-02-01/R4/C1",
+      "preuve_identification_course": "https://www.canalturf.com/resultats-PMU/2020-02-01/mauquenchy/202906_prix-de-l-hippodrome-des-bruyeres.html",
+      "controle": "Date, cheval gagnant et réunion/course R/C identifiés dans les résultats publics. Replay Equidia non testé depuis cet environnement."
+    },
+    {
+      "date": "2020-05-22",
+      "cheval": "FETICHE ATOUT",
+      "hippodrome": "LAVAL",
+      "url": "https://www.equidia.fr/courses/2020-05-22/R4/C2",
+      "preuve_identification_course": "https://www.gbet.fr/courses/laval/2020-05-22/r4/c2/prix-de-nuille-sur-vicoin/",
+      "controle": "Date, cheval gagnant et réunion/course R/C identifiés dans les résultats publics. Replay Equidia non testé depuis cet environnement."
+    },
+    {
+      "date": "2020-08-08",
+      "cheval": "FETICHE ATOUT",
+      "hippodrome": "CAGNES-SUR-MER",
+      "url": "https://www.equidia.fr/courses/2020-08-08/R5/C4",
+      "preuve_identification_course": "https://www.gbet.fr/courses/cagnes-mer/2020-08-08/r5/c4/prix-miroiterie-aurore-prix-ouragon/",
+      "controle": "Date, cheval gagnant et réunion/course R/C identifiés dans les résultats publics. Replay Equidia non testé depuis cet environnement."
     }
   ]
 }
