@@ -1,6 +1,6 @@
 {
   "date_reference": "2026-11-13",
-  "base_victoires_validees": 172,
-  "commentaire": "Ajouter uniquement les nouvelles victoires officiellement validées après le 13 novembre 2026. Base : 153 trot + 19 plat + 0 obstacle = 172. Les 10 lignes d'écart des archives existantes ne doivent pas être additionnées.",
+  "base_victoires_validees": 165,
+  "commentaire": "N'ajouter au compteur que les nouvelles victoires validées courues sous la casaque Écurie Initial : base 146 trot + 19 galop + 0 obstacle = 165. Les succès de JETHAN DE MONGOCHY et JUNINIO FLEURY en 2025-2026 sous les couleurs F. JULIEN restent visibles dans les archives sans être comptés. Déclarer « compteInitial\": false sur toute future victoire hors casaque Écurie Initial. JETHAN du 30/11/2025 n'est plus classé gagnant (disqualification officielle SETF).",
   "victoires": []
 }
