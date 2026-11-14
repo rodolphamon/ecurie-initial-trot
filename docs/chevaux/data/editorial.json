@@ -1037,18 +1037,6 @@
     ],
     "nostalgie-dairpet": [
       {
-        "date": "2026-11-17",
-        "hippodrome": "Vincennes - Grande Piste",
-        "type": "Trot monté",
-        "prix": "Prix de Montargis",
-        "allocation": 40000,
-        "distance": "2200 m",
-        "statut": "engage",
-        "source_description": "Capture prochains engagements 12/11/2026",
-        "course": "R3C1",
-        "source_url": "https://www.letrot.com/courses/2026-11-17/7500/1"
-      },
-      {
         "date": "2026-11-19",
         "hippodrome": "Vincennes",
         "type": "Trot attelé",
