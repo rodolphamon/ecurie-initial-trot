@@ -1,23 +1,28 @@
 {
-  "version": 3,
-  "note": "Liens vers les fiches de résultats LeTROT (/courses/date/code-hippodrome/numéro-course), où un replay peut être proposé. Date, code hippodrome SETF et numéro de course croisés ; l'accès automatisé à LeTROT bloque la vérification du chargement des pages et de la lecture des vidéos. Conserver la distinction entre lien proposé et vidéo effectivement testée. Les anciennes URL vidéo restent sauvegardées dans lien_replay_original.",
+  "version": 4,
+  "note": "Liens vers les fiches de course correspondantes. Les 5 premiers liens Equidia sont recoupés avec des fiches Turfin comportant un lien « Le replay sur Equidia » (date, réunion, numéro de course). Le chargement et la lecture des vidéos Equidia et LeTROT restent à confirmer dans un navigateur utilisateur ; ne pas présenter ces liens comme des vidéos lues/testées. Les anciens liens LeTROT sont conservés lorsqu'ils sont remplacés.",
   "replays": [
     {
       "date": "2026-09-21",
       "cheval": "LORD ON WAY",
       "hippodrome": "LA CAPELLE",
-      "url": "https://www.letrot.com/courses/2026-09-21/202/7",
+      "url": "https://www.equidia.fr/courses/2026-09-21/R1/C7",
       "justificatif": "https://www.province-courses.fr/24H/article_PDF.php?id=43211",
-      "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2026-09-21/202/7"
+      "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2026-09-21/202/7",
+      "lien_letrot_precedent": "https://www.letrot.com/courses/2026-09-21/202/7",
+      "preuve_lien_equidia": "https://turfin.fr/course/2026-09-21/r1c7-la-capelle-prix-office-de-tourisme-de-thierache",
+      "controle": "Lien direct vers la fiche de course Equidia indiqué sur Turfin ; lecture du replay non testée depuis cet environnement"
     },
     {
       "date": "2026-09-04",
       "cheval": "LORD ON WAY",
       "hippodrome": "LYON-PARILLY",
       "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2026-09-04/R3C6-lyon-parilly-prix-yvan-berger",
-      "url": "https://www.letrot.com/courses/2026-09-04/6901/6",
+      "url": "https://www.equidia.fr/courses/2026-09-04/R3/C6",
       "justificatif_code_hippodrome": "https://www.leshippodromesdelyon.fr/wp-content/uploads/2019/04/2019BROCHUREsem1.pdf",
-      "controle": "Lien vers la page officielle des résultats construit à partir du code hippodrome SETF et du numéro de course confirmé ; ouverture de la page et présence du replay restent à tester"
+      "controle": "Lien direct vers la fiche de course Equidia indiqué sur Turfin ; lecture du replay non testée depuis cet environnement",
+      "lien_letrot_precedent": "https://www.letrot.com/courses/2026-09-04/6901/6",
+      "preuve_lien_equidia": "https://turfin.fr/course/2026-09-04/r3c6-lyon-parilly-prix-yvan-berger"
     },
     {
       "date": "2026-04-19",
@@ -50,19 +55,23 @@
       "date": "2026-01-30",
       "cheval": "LARIFLETTE",
       "hippodrome": "VINCENNES",
-      "url": "https://www.letrot.com/courses/2026-01-30/7500/3",
+      "url": "https://www.equidia.fr/courses/2026-01-30/R3/C3",
       "justificatif": "https://www.canalturf.com/resultats-PMU/2026-01-30/paris-vincennes/396123_prix-de-figeac.html",
-      "controle": "Hippodrome, date et numéro de course vérifiés ; URL construite au format LeTROT, lecture non testée automatiquement",
-      "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2026-01-30/7500/3"
+      "controle": "Lien direct vers la fiche de course Equidia indiqué sur Turfin ; lecture du replay non testée depuis cet environnement",
+      "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2026-01-30/7500/3",
+      "lien_letrot_precedent": "https://www.letrot.com/courses/2026-01-30/7500/3",
+      "preuve_lien_equidia": "https://turfin.fr/course/2026-01-30/r3c3-vincennes-prix-de-figeac"
     },
     {
       "date": "2025-11-07",
       "cheval": "INDICE DELADOU",
       "hippodrome": "VINCENNES",
-      "url": "https://www.letrot.com/courses/2025-11-07/7500/2",
+      "url": "https://www.equidia.fr/courses/2025-11-07/R1/C2",
       "justificatif": "https://www.geny.com/course/1613944-2025-11-07-vincennes-prix-nemesis/arrivee-rapports",
-      "controle": "Hippodrome, date et numéro de course vérifiés ; URL construite au format LeTROT, lecture non testée automatiquement",
-      "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2025-11-07/7500/2"
+      "controle": "Lien direct vers la fiche de course Equidia indiqué sur Turfin ; lecture du replay non testée depuis cet environnement",
+      "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2025-11-07/7500/2",
+      "lien_letrot_precedent": "https://www.letrot.com/courses/2025-11-07/7500/2",
+      "preuve_lien_equidia": "https://turfin.fr/course/2025-11-07/r1c2-vincennes-prix-nemesis"
     },
     {
       "date": "2025-10-08",
@@ -314,6 +323,14 @@
       "justificatif": "https://www.canalturf.com/resultats-PMU/2013-12-27_resultats-rapports-des-courses-du-vendredi-27-decembre-2013.html",
       "controle": "Hippodrome, date et numéro de course vérifiés ; URL construite au format LeTROT, lecture non testée automatiquement",
       "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2013-12-27/7500/8"
+    },
+    {
+      "date": "2026-07-03",
+      "cheval": "GIORGIANA",
+      "hippodrome": "TARBES",
+      "url": "https://www.equidia.fr/courses/2026-07-03/R5/C1",
+      "preuve_lien_equidia": "https://turfin.fr/course/2026-07-03/r5c1-tarbes-prix-max-daguzan-garros",
+      "controle": "Lien direct vers la fiche de course Equidia indiqué sur Turfin ; lecture du replay non testée depuis cet environnement"
     }
   ]
 }
