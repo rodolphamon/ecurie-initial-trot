@@ -985,7 +985,16 @@
   },
   "engagements": {
     "olano-de-la-vallee": [],
-    "mona-lisa-stardust": [],
+    "mona-lisa-stardust": [
+      {
+        "date": "2026-12-07",
+        "hippodrome": "Bordeaux",
+        "type": "Trot attelé",
+        "prix": "Prix de Margaux",
+        "statut": "engage",
+        "source_description": "Capture engagements LeTROT transmise le 14/11/2026"
+      }
+    ],
     "victoria-secret": [],
     "on-lockdown": [
       {
@@ -1139,7 +1148,8 @@
         "hippodrome": "Reims",
         "type": "Trot monté",
         "statut": "engage",
-        "source_description": "Capture des engagements Trot transmise le 13/11/2026 (horaires non retenus)"
+        "source_description": "Capture engagements LeTROT transmise le 14/11/2026",
+        "prix": "Prix de l'Hippodrome de Reims"
       },
       {
         "date": "2026-12-13",
@@ -1198,6 +1208,42 @@
         "type": "Trot attelé",
         "statut": "engage",
         "source_description": "Capture des engagements Trot transmise le 13/11/2026 (horaires non retenus)"
+      }
+    ],
+    "lord-on-way": [
+      {
+        "date": "2026-11-20",
+        "hippodrome": "Vincennes",
+        "type": "Trot attelé",
+        "prix": "Prix Florentina",
+        "statut": "engage",
+        "source_description": "Capture engagements LeTROT transmise le 14/11/2026"
+      }
+    ],
+    "lucky-des-gaudines": [
+      {
+        "date": "2026-11-22",
+        "hippodrome": "Bordeaux",
+        "type": "Trot attelé",
+        "prix": "Prix de Talence",
+        "statut": "engage",
+        "source_description": "Capture engagements LeTROT transmise le 14/11/2026"
+      },
+      {
+        "date": "2026-11-27",
+        "hippodrome": "Toulouse",
+        "type": "Trot attelé",
+        "prix": "Prix de la Rhune",
+        "statut": "engage",
+        "source_description": "Capture engagements LeTROT transmise le 14/11/2026"
+      },
+      {
+        "date": "2026-11-29",
+        "hippodrome": "Beaumont-de-Lomagne",
+        "type": "Trot attelé",
+        "prix": "Prix Jean-François Maury",
+        "statut": "engage",
+        "source_description": "Capture engagements LeTROT transmise le 14/11/2026"
       }
     ]
   }
