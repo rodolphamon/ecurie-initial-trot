@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "note": "Lien direct vers le replay officiel LeTROT ; un pictogramme n'est affiché que si l'URL a été identifiée et rattachée à la bonne course.",
+  "replays": [
+    {
+      "date": "2026-09-21",
+      "cheval": "LORD ON WAY",
+      "hippodrome": "LA CAPELLE",
+      "url": "https://www.letrot.com/fr/courses/replay-courses/2026-09-21/202/7",
+      "justificatif": "https://www.province-courses.fr/24H/article_PDF.php?id=43211"
+    },
+    {
+      "date": "2025-10-08",
+      "cheval": "ISOLEE DU BOUILLON",
+      "hippodrome": "ENGHIEN",
+      "url": "https://www.letrot.com/fr/courses/replay-courses/2025-10-08/7502/6",
+      "justificatif": "https://province-courses.fr/24H/article_PDF.php?id=35853"
+    }
+  ]
+}
