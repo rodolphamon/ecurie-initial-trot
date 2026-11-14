@@ -331,6 +331,38 @@
       "url": "https://www.equidia.fr/courses/2026-07-03/R5/C1",
       "preuve_lien_equidia": "https://turfin.fr/course/2026-07-03/r5c1-tarbes-prix-max-daguzan-garros",
       "controle": "Lien direct vers la fiche de course Equidia indiqué sur Turfin ; lecture du replay non testée depuis cet environnement"
+    },
+    {
+      "date": "2026-06-02",
+      "cheval": "DOURIANN",
+      "hippodrome": "SAINT-CLOUD",
+      "url": "https://www.equidia.fr/courses/2026-06-02/R1/C1",
+      "preuve_lien_equidia": "https://turfin.fr/course/2026-06-02/r1c1-saint-cloud",
+      "controle": "Lien direct vers la fiche de course Equidia indiqué sur Turfin ; lecture du replay non testée depuis cet environnement"
+    },
+    {
+      "date": "2026-06-10",
+      "cheval": "ROSA MIA",
+      "hippodrome": "ARGENTAN",
+      "url": "https://www.equidia.fr/courses/2026-06-10/R3/C3",
+      "preuve_lien_equidia": "https://turfin.fr/course/2026-06-10/r3c3-argentan-prix-des-terres-d-argentan",
+      "controle": "Lien direct vers la fiche de course Equidia indiqué sur Turfin ; lecture du replay non testée depuis cet environnement"
+    },
+    {
+      "date": "2026-02-20",
+      "cheval": "MASTER PAT",
+      "hippodrome": "CHANTILLY",
+      "url": "https://www.equidia.fr/courses/2026-02-20/R4/C7",
+      "preuve_lien_equidia": "https://turfin.fr/course/2026-02-20/r4c7-chantilly",
+      "controle": "Lien direct vers la fiche de course Equidia indiqué sur Turfin ; lecture du replay non testée depuis cet environnement"
+    },
+    {
+      "date": "2026-04-04",
+      "cheval": "GIORGIANA",
+      "hippodrome": "LE CROISÉ-LAROCHE",
+      "url": "https://www.equidia.fr/courses/2026-04-04/R4/C4",
+      "preuve_lien_equidia": "https://turfin.fr/course/2026-04-04/r4c4-le-croise-laroche-prix-du-parc-barbieux",
+      "controle": "Lien direct vers la fiche de course Equidia indiqué sur Turfin ; lecture du replay non testée depuis cet environnement"
     }
   ]
 }
