@@ -15,7 +15,52 @@ function header(){return '<header class="top"><div class="shell top-inner"><a cl
 function footer(){return '<footer class="footer"><div class="shell">© Écurie Initial · Des chevaux, des associés, une passion commune.</div></footer>'}
 function metric(p,data){return p.casaque==='galop'?formatValue(data.value):(data.record||'—')}
 function currentData(p,s){return p.casaque==='galop'?p:(s.trot[p.id]||{})}
-function catalog(s){let host=$('#app');host.innerHTML=header()+'<main class="shell"><div class="breadcrumb"><a href="https://www.ecurie-initial.com/">Accueil</a> / Nos chevaux</div><span class="eyebrow">Effectif de l’Écurie Initial</span><h1 class="page-title">Nos chevaux</h1><div class="orange-line"></div><p class="lead">Découvrez les chevaux de l’écurie, leurs performances, leurs gains et leurs prochains engagements.</p><div class="filter-strip"><input type="search" aria-label="Rechercher un cheval" id="q" placeholder="Rechercher un cheval ou un entraîneur..."><div class="filter-buttons"><button data-filter="Tous" aria-pressed="true">Tous les chevaux</button><button data-filter="Trot" aria-pressed="false">Trot</button><button data-filter="Galop" aria-pressed="false">Galop et obstacle</button></div></div><div class="grid" id="cards"></div></main>'+footer();let filter='Tous',input=$('#q'),buttons=[...document.querySelectorAll('[data-filter]')];function redraw(){let q=input.value.toLocaleLowerCase('fr').trim();let shown=s.profiles.filter(p=>(filter==='Tous'||(filter==='Trot'?p.casaque!=='galop':p.casaque==='galop'))&&(p.name+' '+p.trainer).toLocaleLowerCase('fr').includes(q)).sort((a,b)=>a.name.localeCompare(b.name,'fr',{sensitivity:'base'}));$('#cards').innerHTML=shown.map(p=>{let d=currentData(p,s),key=p.casaque==='galop'?'Valeur':'Record';return '<a class="horse-card" href="'+encodeURIComponent(p.id)+'/">'+photoMarkup(p,'card')+'<div class="horse-card-body"><h2>'+esc(p.name)+'</h2><p>'+esc(p.trainer||'Entraîneur non renseigné')+'</p><div class="card-bottom"><span>'+key+' : <b>'+esc(metric(p,d))+'</b></span><span>Découvrir la fiche →</span></div></div></a>'}).join('')||'<p class="empty">Aucun cheval ne correspond à cette recherche.</p>'}input.addEventListener('input',redraw);buttons.forEach(b=>b.addEventListener('click',()=>{filter=b.dataset.filter;buttons.forEach(x=>x.setAttribute('aria-pressed',String(x===b)));redraw()}));redraw()}
+
+/* Recherche souple : accents, fautes de frappe et lettres inversées.
+   Les correspondances exactes restent prioritaires. */
+function normalizeSearch(value){
+ return String(value||'').toLocaleLowerCase('fr').normalize('NFD')
+ .replace(/[\u0300-\u036f]/g,'').replace(/œ/g,'oe').replace(/æ/g,'ae')
+ .replace(/[^a-z0-9]+/g,' ').trim().replace(/\s+/g,' ');
+}
+function searchDistance(a,b){
+ if(a===b)return 0;
+ const n=a.length,m=b.length;
+ if(!n)return m;
+ if(!m)return n;
+ let priorPrior=[],prior=Array.from({length:m+1},(_,j)=>j);
+ for(let i=1;i<=n;i++){
+  const current=[i];
+  for(let j=1;j<=m;j++){
+   const substitution=a[i-1]===b[j-1]?0:1;
+   let cost=Math.min(prior[j]+1,current[j-1]+1,prior[j-1]+substitution);
+   if(i>1&&j>1&&a[i-1]===b[j-2]&&a[i-2]===b[j-1])cost=Math.min(cost,priorPrior[j-2]+1);
+   current.push(cost);
+  }
+  priorPrior=prior;prior=current;
+ }
+ return prior[m];
+}
+function searchScore(p,query){
+ if(!query)return 0;
+ const fields=[normalizeSearch(p.name),normalizeSearch(p.trainer)];
+ if(fields.some(field=>field.includes(query)))return 0;
+ const allowance=query.length>=6?2:query.length>=4?1:0;
+ if(!allowance)return Infinity;
+ const words=query.split(' ');
+ let best=Infinity;
+ for(const field of fields){
+  const tokens=field.split(' ');
+  for(let i=0;i+words.length<=tokens.length;i++){
+   const candidate=tokens.slice(i,i+words.length).join(' ');
+   if(Math.abs(candidate.length-query.length)>allowance)continue;
+   best=Math.min(best,searchDistance(query,candidate));
+  }
+ }
+ return best<=allowance?best:Infinity;
+}
+
+function catalog(s){let host=$('#app');host.innerHTML=header()+'<main class="shell"><div class="breadcrumb"><a href="https://www.ecurie-initial.com/">Accueil</a> / Nos chevaux</div><span class="eyebrow">Effectif de l’Écurie Initial</span><h1 class="page-title">Nos chevaux</h1><div class="orange-line"></div><p class="lead">Découvrez les chevaux de l’écurie, leurs performances, leurs gains et leurs prochains engagements.</p><div class="filter-strip"><input type="search" aria-label="Rechercher un cheval" id="q" placeholder="Rechercher un cheval ou un entraîneur..."><div class="filter-buttons"><button data-filter="Tous" aria-pressed="true">Tous les chevaux</button><button data-filter="Trot" aria-pressed="false">Trot</button><button data-filter="Galop" aria-pressed="false">Galop et obstacle</button></div></div><div class="grid" id="cards"></div></main>'+footer();let filter='Tous',input=$('#q'),buttons=[...document.querySelectorAll('[data-filter]')];function redraw(){let q=normalizeSearch(input.value);let shown=s.profiles.filter(p=>(filter==='Tous'||(filter==='Trot'?p.casaque!=='galop':p.casaque==='galop'))).map(p=>({p,score:searchScore(p,q)})).filter(x=>Number.isFinite(x.score)).sort((a,b)=>a.score-b.score||a.p.name.localeCompare(b.p.name,'fr',{sensitivity:'base'})).map(x=>x.p);$('#cards').innerHTML=shown.map(p=>{let d=currentData(p,s),key=p.casaque==='galop'?'Valeur':'Record';return '<a class="horse-card" href="'+encodeURIComponent(p.id)+'/">'+photoMarkup(p,'card')+'<div class="horse-card-body"><h2>'+esc(p.name)+'</h2><p>'+esc(p.trainer||'Entraîneur non renseigné')+'</p><div class="card-bottom"><span>'+key+' : <b>'+esc(metric(p,d))+'</b></span><span>Découvrir la fiche →</span></div></div></a>'}).join('')||'<p class="empty">Aucun cheval ne correspond à cette recherche.</p>'}input.addEventListener('input',redraw);buttons.forEach(b=>b.addEventListener('click',()=>{filter=b.dataset.filter;buttons.forEach(x=>x.setAttribute('aria-pressed',String(x===b)));redraw()}));redraw()}
 function info(label,value){return '<div class="info-item"><span>'+esc(label)+'</span><strong>'+esc(value||'—')+'</strong></div>'}
 function stats(label,value){return '<div class="summary-card"><span>'+esc(label)+'</span><strong>'+esc(value||'—')+'</strong></div>'}
 function horse(s){
