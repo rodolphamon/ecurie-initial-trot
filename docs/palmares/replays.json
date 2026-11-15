@@ -1,5 +1,5 @@
 {
-  "version": 18,
+  "version": 19,
   "note": "Liens vers les pages de courses sur Equidia ou LeTROT, avec références de résultats ayant permis d'identifier date, hippodrome, réunion et numéro de course. Les liens Equidia sont calculés d'après le format d'URL et leur lecture, ainsi que la disponibilité du replay, n'ont pas été testées automatiquement. Les victoires historiques ne sont pas modifiées.",
   "replays": [
     {
@@ -152,19 +152,23 @@
       "date": "2024-10-19",
       "cheval": "LARIFLETTE",
       "hippodrome": "ENGHIEN",
-      "url": "https://www.letrot.com/courses/2024-10-19/7502/7",
+      "url": "https://www.equidia.fr/courses/2024-10-19/R4/C7",
       "justificatif": "https://www.canalturf.com/resultats-PMU/2024-10-19/enghien/352926_prix-du-maine.html",
-      "controle": "Hippodrome, date et numéro de course vérifiés ; URL construite au format LeTROT, lecture non testée automatiquement",
-      "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2024-10-19/7502/7"
+      "controle": "Résultat public : date, cheval gagnant, hippodrome et R/C confirmés ; lecture vidéo Equidia non testée",
+      "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2024-10-19/7502/7",
+      "lien_letrot_precedent": "https://www.letrot.com/courses/2024-10-19/7502/7",
+      "preuve_identification_course": "https://www.canalturf.com/resultats-PMU/2024-10-19/enghien/352926_prix-du-maine.html"
     },
     {
       "date": "2024-10-10",
       "cheval": "LARIFLETTE",
       "hippodrome": "ENGHIEN",
-      "url": "https://www.letrot.com/courses/2024-10-10/7502/7",
+      "url": "https://www.equidia.fr/courses/2024-10-10/R4/C7",
       "justificatif": "https://www.canalturf.com/resultats-PMU/2024-10-10/enghien/352078_prix-de-mauron.html",
-      "controle": "Hippodrome, date et numéro de course vérifiés ; URL construite au format LeTROT, lecture non testée automatiquement",
-      "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2024-10-10/7502/7"
+      "controle": "Résultat public : date, cheval gagnant, hippodrome et R/C confirmés ; lecture vidéo Equidia non testée",
+      "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2024-10-10/7502/7",
+      "lien_letrot_precedent": "https://www.letrot.com/courses/2024-10-10/7502/7",
+      "preuve_identification_course": "https://www.canalturf.com/resultats-PMU/2024-10-10/enghien/352078_prix-de-mauron.html"
     },
     {
       "date": "2024-10-01",
@@ -197,10 +201,12 @@
       "date": "2023-09-07",
       "cheval": "KOBLENZA DAIRPET",
       "hippodrome": "VINCENNES",
-      "url": "https://www.letrot.com/courses/2023-09-07/7500/6",
+      "url": "https://www.equidia.fr/courses/2023-09-07/R4/C6",
       "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2023-09-07/R4C6-vincennes-prix-de-givors",
-      "controle": "Hippodrome, date et numéro de course vérifiés ; URL construite au format LeTROT, lecture non testée automatiquement",
-      "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2023-09-07/7500/6"
+      "controle": "Résultat public : date, cheval gagnant, hippodrome et R/C confirmés ; lecture vidéo Equidia non testée",
+      "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2023-09-07/7500/6",
+      "lien_letrot_precedent": "https://www.letrot.com/courses/2023-09-07/7500/6",
+      "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2023-09-07/R4C6-vincennes-prix-de-givors"
     },
     {
       "date": "2022-10-12",
