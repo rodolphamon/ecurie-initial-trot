@@ -105,7 +105,7 @@ function horse(s){
         +'</div>'
       +'</div>'
       +'<div class="summary">'+stats(valueLabel,value)+stats('Gains en carrière',gains)+'</div>'
-      +(p.origines?'<section class="section"><h2 class="section-title">Origines</h2><div class="paper info-grid">'+info('Père',p.origines.pere)+info('Mère',p.origines.mere)+info('Père de mère',p.origines.pere_de_mere)+'</div></section>':'')
+      +(p.origines?'<section class="section"><h2 class="section-title">Origines</h2><div class="paper info-grid">'+(p.birth_year?info('Année de naissance',String(p.birth_year)):'')+info('Père',p.origines.pere)+info('Mère',p.origines.mere)+info('Père de mère',p.origines.pere_de_mere)+'</div></section>':'')
       +'<section class="section">'
         +'<h2 class="section-title">Dernières performances</h2>'
         +'<div class="paper">'+tr+'</div>'
