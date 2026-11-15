@@ -1,5 +1,5 @@
 {
-  "version": 25,
+  "version": 26,
   "note": "Liens vers les pages de courses sur Equidia ou LeTROT, avec références de résultats ayant permis d'identifier date, hippodrome, réunion et numéro de course. Les liens Equidia sont calculés d'après le format d'URL et leur lecture, ainsi que la disponibilité du replay, n'ont pas été testées automatiquement. Les victoires historiques ne sont pas modifiées.",
   "replays": [
     {
@@ -83,9 +83,12 @@
       "date": "2025-10-08",
       "cheval": "ISOLEE DU BOUILLON",
       "hippodrome": "ENGHIEN",
-      "url": "https://www.letrot.com/courses/2025-10-08/7502/6",
+      "url": "https://www.equidia.fr/courses/2025-10-08/R1/C6",
       "justificatif": "https://province-courses.fr/24H/article_PDF.php?id=35853",
-      "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2025-10-08/7502/6"
+      "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2025-10-08/7502/6",
+      "lien_letrot_precedent": "https://www.letrot.com/courses/2025-10-08/7502/6",
+      "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2025-10-08/R1C6-enghien-soisy-prix-des-gobelins",
+      "controle": "Course et R/C confirmés par résultats publiés ; disponibilité de la vidéo Equidia non vérifiée"
     },
     {
       "date": "2025-09-23",
@@ -145,10 +148,12 @@
       "date": "2025-02-07",
       "cheval": "LARIFLETTE",
       "hippodrome": "VINCENNES",
-      "url": "https://www.letrot.com/courses/2025-02-07/7500/1",
+      "url": "https://www.equidia.fr/courses/2025-02-07/R1/C1",
       "justificatif": "https://province-courses.fr/redirection_24h.php?id-journal=2652",
-      "controle": "Hippodrome, date et numéro de course vérifiés ; URL construite au format LeTROT, lecture non testée automatiquement",
-      "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2025-02-07/7500/1"
+      "controle": "Course et R/C confirmés par résultats publiés ; disponibilité de la vidéo Equidia non vérifiée",
+      "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2025-02-07/7500/1",
+      "lien_letrot_precedent": "https://www.letrot.com/courses/2025-02-07/7500/1",
+      "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2025-02-07/R1C1-vincennes-prix-jacques-orliaguet"
     },
     {
       "date": "2024-10-19",
@@ -253,10 +258,12 @@
       "date": "2022-05-17",
       "cheval": "HERMES PLANCHETTE",
       "hippodrome": "VINCENNES",
-      "url": "https://www.letrot.com/courses/2022-05-17/7500/7",
+      "url": "https://www.equidia.fr/courses/2022-05-17/R4/C7",
       "justificatif": "https://www.gbet.fr/chevaux/hermes-planchette-49226/",
-      "controle": "Hippodrome, date et numéro de course vérifiés ; URL construite au format LeTROT, lecture non testée automatiquement",
-      "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2022-05-17/7500/7"
+      "controle": "Course et R/C confirmés par résultats publiés ; disponibilité de la vidéo Equidia non vérifiée",
+      "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2022-05-17/7500/7",
+      "lien_letrot_precedent": "https://www.letrot.com/courses/2022-05-17/7500/7",
+      "preuve_identification_course": "https://www.gbet.fr/chevaux/hermes-planchette-49226/"
     },
     {
       "date": "2022-02-22",
