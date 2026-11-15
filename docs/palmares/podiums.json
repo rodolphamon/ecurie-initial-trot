@@ -187,7 +187,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Antonin ANDRE",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Pierre-Louis DESAUNETTE",
+      "source_entraineur": "https://turfoo.fr/fiches/chevaux/nebraska-fleury/"
     },
     {
       "date": "2026-08-23",
@@ -411,7 +413,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Pierre-Louis DESAUNETTE",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Pierre-Louis DESAUNETTE",
+      "source_entraineur": "https://turfoo.fr/fiches/chevaux/nebraska-fleury/"
     },
     {
       "date": "2026-05-17",
@@ -499,7 +503,9 @@
       "discipline": "attele",
       "casaque": "blanche",
       "proprietaire": "Écurie Initial",
-      "jockey": "Pierre-Louis DESAUNETTE"
+      "jockey": "Pierre-Louis DESAUNETTE",
+      "entraineur": "Pierre-Louis DESAUNETTE",
+      "source_entraineur": "https://turfoo.fr/fiches/chevaux/nebraska-fleury/"
     },
     {
       "date": "2026-04-09",
@@ -559,7 +565,9 @@
       "discipline": "attele",
       "casaque": "blanche",
       "proprietaire": "Écurie Initial",
-      "jockey": "Vincent HEBERT"
+      "jockey": "Vincent HEBERT",
+      "entraineur": "Vincent HEBERT",
+      "source_entraineur": "https://turfoo.fr/fiches/chevaux/nebraska-fleury/"
     },
     {
       "date": "2026-02-27",
