@@ -1,5 +1,5 @@
 {
-  "version": 47,
+  "version": 48,
   "note": "Fiches de courses Equidia ou LeTROT avec sources identifiant les courses. Les URLs Equidia sont déduites du format date/R/C ; la disponibilité et la lecture des vidéos ne sont pas garanties. HOMA reste sur LeTROT faute de fiche Equidia vérifiée.",
   "replays": [
     {
@@ -829,6 +829,15 @@
       "url": "https://www.equidia.fr/courses/2025-05-31/R4/C2",
       "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2025-05-31/R4C2-agen-prix-radio-bulle",
       "controle": "Arrivée ZEturf confirme le cheval, le classement et R/C ; accès à la vidéo Equidia non testé individuellement"
+    },
+    {
+      "date": "2025-05-27",
+      "cheval": "GIORGIANA",
+      "hippodrome": "EVREUX",
+      "url": "https://www.equidia.fr/courses/2025-05-27/R3/C8",
+      "justificatif": "https://www.geny.com/chevaux-reperes/2025-05-27",
+      "preuve_classement": "https://www.trafonline.pl/storage/files/2025/7/27/26067d0b-2010-4bea-a258-611c429be018/PG_2025-07-27_FRA.pdf",
+      "controle": "Giorgiana 3e à Evreux le 27/05/2025 ; R3C8 vérifiée sur Geny. Lecture du replay Equidia non testée individuellement"
     },
     {
       "date": "2025-05-20",
