@@ -1408,7 +1408,9 @@
       "classement": 3,
       "discipline": "attele",
       "casaque": "blanche",
-      "jockey": "Alexis MARIE"
+      "jockey": "Alexis MARIE",
+      "entraineur": "Alexis MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Ripoll Rigo, Bruno MARIE à partir du 25/12/2021, Dominik LOCQUENEUX à partir du 10/06/2022, Alexis MARIE à partir du 20/06/2023"
     },
     {
       "date": "2024-05-25",
@@ -1499,7 +1501,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Alexis MARIE",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Alexis MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Ripoll Rigo, Bruno MARIE à partir du 25/12/2021, Dominik LOCQUENEUX à partir du 10/06/2022, Alexis MARIE à partir du 20/06/2023"
     },
     {
       "date": "2024-02-15",
@@ -1657,7 +1661,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Alexis MARIE",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Alexis MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Ripoll Rigo, Bruno MARIE à partir du 25/12/2021, Dominik LOCQUENEUX à partir du 10/06/2022, Alexis MARIE à partir du 20/06/2023"
     },
     {
       "date": "2023-09-10",
@@ -2042,7 +2048,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Dominik LOCQUENEUX",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Dominik LOCQUENEUX",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Ripoll Rigo, Bruno MARIE à partir du 25/12/2021, Dominik LOCQUENEUX à partir du 10/06/2022, Alexis MARIE à partir du 20/06/2023"
     },
     {
       "date": "2022-11-11",
