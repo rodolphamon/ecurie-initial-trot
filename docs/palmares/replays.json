@@ -1,5 +1,5 @@
 {
-  "version": 48,
+  "version": 49,
   "note": "Fiches de courses Equidia ou LeTROT avec sources identifiant les courses. Les URLs Equidia sont déduites du format date/R/C ; la disponibilité et la lecture des vidéos ne sont pas garanties. HOMA reste sur LeTROT faute de fiche Equidia vérifiée.",
   "replays": [
     {
@@ -955,6 +955,14 @@
       "controle": "Course et référence R/C recoupées avec les résultats publiés ; disponibilité de la vidéo Equidia non vérifiée individuellement"
     },
     {
+      "date": "2025-03-23",
+      "cheval": "LOVE ME MAZELI",
+      "hippodrome": "LA CAPELLE",
+      "url": "https://www.equidia.fr/courses/2025-03-23/R8/C4",
+      "justificatif": "https://www.zone-turf.fr/rapports/zeturf/z8-c4-prix-d-aubenton-gr-c-1083761.html",
+      "controle": "Date, hippodrome, numéro R/C et classement recoupés dans les résultats publiés ; lecture du replay Equidia non testée individuellement"
+    },
+    {
       "date": "2025-03-21",
       "cheval": "JOHANNA ELEVEN",
       "hippodrome": "MARSEILLE (A BORELY)",
@@ -1038,12 +1046,28 @@
       "controle": "Course R/C et arrivée confirmées sur ZEturf ; lecture du replay Equidia non contrôlée individuellement"
     },
     {
+      "date": "2024-12-23",
+      "cheval": "IT'S EAGLE COGLAIS",
+      "hippodrome": "CAGNES-SUR-MER",
+      "url": "https://www.equidia.fr/courses/2024-12-23/R6/C3",
+      "justificatif": "https://www.turfoo.fr/programmes-courses/241223/reunion6-cagnes-sur-mer/course3-prix-du-baou/",
+      "controle": "Date, hippodrome, numéro R/C et classement recoupés dans les résultats publiés ; lecture du replay Equidia non testée individuellement"
+    },
+    {
       "date": "2024-12-17",
       "cheval": "JUNINIO FLEURY",
       "hippodrome": "CABOURG",
       "url": "https://www.equidia.fr/courses/2024-12-17/R4/C1",
       "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2024-12-17/R4C1-cabourg-prix-des-mirabilis",
       "controle": "Numéros de réunion et course recoupés par source de résultats ; lien Equidia construit, lecture du replay à confirmer"
+    },
+    {
+      "date": "2024-12-05",
+      "cheval": "JOHANNA ELEVEN",
+      "hippodrome": "MARSEILLE (A VIVAUX)",
+      "url": "https://www.equidia.fr/courses/2024-12-05/R4/C3",
+      "justificatif": "https://www.turfoo.fr/resultats-courses/241205/reunion4-marseille-vivaux/course3-prix-de-port-cros/",
+      "controle": "Date, hippodrome, numéro R/C et classement recoupés dans les résultats publiés ; lecture du replay Equidia non testée individuellement"
     },
     {
       "date": "2024-10-19",
@@ -1074,6 +1098,14 @@
       "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2024-10-10/7502/7",
       "lien_letrot_precedent": "https://www.letrot.com/courses/2024-10-10/7502/7",
       "preuve_identification_course": "https://www.canalturf.com/resultats-PMU/2024-10-10/enghien/352078_prix-de-mauron.html"
+    },
+    {
+      "date": "2024-10-05",
+      "cheval": "JEHAN",
+      "hippodrome": "CABOURG",
+      "url": "https://www.equidia.fr/courses/2024-10-05/R3/C6",
+      "justificatif": "https://www.zeturf.be/fr/course-du-jour/2024-10-05/R3C6-cabourg-prix-des-pelicans",
+      "controle": "Date, hippodrome, numéro R/C et classement recoupés dans les résultats publiés ; lecture du replay Equidia non testée individuellement"
     },
     {
       "date": "2024-10-01",
@@ -1187,6 +1219,14 @@
       "url": "https://www.equidia.fr/courses/2024-05-07/R4/C8",
       "justificatif": "https://www.turf-fr.com//partants-programmes/r4-vincennes-37131",
       "controle": "Date, course R/C et classement vérifiés dans les résultats publiés ; visionnage Equidia non testé individuellement"
+    },
+    {
+      "date": "2024-04-23",
+      "cheval": "ISOLEE DU BOUILLON",
+      "hippodrome": "VINCENNES - GP",
+      "url": "https://www.equidia.fr/courses/2024-04-23/R4/C8",
+      "justificatif": "https://www.turfoo.fr/programmes-courses/240423/",
+      "controle": "Date, hippodrome, numéro R/C et classement recoupés dans les résultats publiés ; lecture du replay Equidia non testée individuellement"
     },
     {
       "date": "2024-04-18",
