@@ -12,3 +12,9 @@
 @media all and (display-mode: standalone) {
   .bottom-actions { display: none !important; }
 }
+
+/* App installée : supprimer la barre Nos chevaux / Trot / Galop / Site officiel. */
+@media (display-mode: standalone) {
+  .top .top-nav { display: none !important; }
+  .bottom-actions { display: none !important; }
+}
