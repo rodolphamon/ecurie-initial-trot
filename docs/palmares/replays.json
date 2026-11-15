@@ -1,5 +1,5 @@
 {
-  "version": 54,
+  "version": 55,
   "note": "Fiches de courses Equidia ou LeTROT avec sources identifiant les courses. Les URLs Equidia sont déduites du format date/R/C ; la disponibilité et la lecture des vidéos ne sont pas garanties. HOMA reste sur LeTROT faute de fiche Equidia vérifiée.",
   "replays": [
     {
@@ -1343,6 +1343,14 @@
       "controle": "Cheval, classement et R/C confirmés dans l'arrivée publiée ; replay Equidia non visionné individuellement"
     },
     {
+      "date": "2023-12-17",
+      "cheval": "HAMPTON AMERICA",
+      "hippodrome": "ARGENTAN",
+      "url": "https://www.equidia.fr/courses/2023-12-17/R10/C9",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2023-12-17/R10C9-argentan-prix-d-helsinski",
+      "controle": "2e (n°3), Prix d'Helsinski ; fiche R/C et arrivée confirmées sur ZEturf ; lecture effective de la vidéo Equidia non testée"
+    },
+    {
       "date": "2023-12-03",
       "cheval": "INDICE DELADOU",
       "hippodrome": "BEAUMONT DE LOMAGNE",
@@ -1498,6 +1506,14 @@
       "controle": "Cheval, classement et R/C confirmés dans l'arrivée publiée ; replay Equidia non visionné individuellement"
     },
     {
+      "date": "2023-03-10",
+      "cheval": "IT'S EAGLE COGLAIS",
+      "hippodrome": "CORDEMAIS",
+      "url": "https://www.equidia.fr/courses/2023-03-10/R3/C6",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2023-03-10/R3C6-cordemais-prix-glt-le-temps",
+      "controle": "2e (n°10), Prix GLT Le Temps ; fiche R/C et arrivée confirmées sur ZEturf ; lecture effective de la vidéo Equidia non testée"
+    },
+    {
       "date": "2023-02-24",
       "cheval": "IBERIK DE MONGOCHY",
       "hippodrome": "VINCENNES - GP",
@@ -1558,6 +1574,14 @@
       "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2022-08-31/7500/2",
       "lien_letrot_precedent": "https://www.letrot.com/courses/2022-08-31/7500/2",
       "preuve_identification_course": "https://www.canalturf.com/resultats-PMU/2022-08-31/paris-vincennes/283728_prix-de-bosc-renoult.html"
+    },
+    {
+      "date": "2022-08-16",
+      "cheval": "JACKPOT DES BORDES",
+      "hippodrome": "ENGHIEN",
+      "url": "https://www.equidia.fr/courses/2022-08-16/R4/C7",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2022-08-16/R4C7-enghien-soisy-prix-d-excideuil",
+      "controle": "3e (n°7), Prix d'Excideuil ; fiche R/C et arrivée confirmées sur ZEturf ; lecture effective de la vidéo Equidia non testée"
     },
     {
       "date": "2022-08-13",
