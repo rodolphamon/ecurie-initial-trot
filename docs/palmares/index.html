@@ -321,10 +321,10 @@ function render(){
  const hippodrome=$("search").value,year=$("year").value,type=state.discipline,horse=$("horse").value,pilot=$("pilot").value,trainer=$("trainer").value;
  const data=results.filter(r=>(!state.videoOnly||!!replayUrl(r.video))&&(state.placing==="all"||(state.placing==="win"?(r.classement||1)===1:state.placing==="second"?(r.classement||1)===2:(r.classement||1)===3))&&(!year||r.date.slice(0,4)===year)&&(!type||r.discipline===type)&&(!horse||r.cheval===horse)&&(!pilot||jockeyUnifie(r.jockey)===pilot)&&(!trainer||entraineurUnifie(r.entraineur)===trainer)&&(!hippodrome||hippodromeUnifie(r.hippodrome)===hippodrome))
  .sort((a,b)=>{
-   // Pour un cheval, un entraîneur ou un jockey/driver sélectionné :
+   // Pour un cheval, un entraîneur, un jockey/driver ou un hippodrome sélectionné :
    // les victoires d'abord, puis les deuxièmes et troisièmes places.
    // À classement égal, conserver le sens chronologique choisi.
-   if(horse || trainer || pilot){
+   if(horse || trainer || pilot || hippodrome){
      const differenceClassement=(a.classement||1)-(b.classement||1);
      if(differenceClassement!==0)return differenceClassement;
    }
