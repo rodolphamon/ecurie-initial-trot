@@ -1,5 +1,5 @@
 {
-  "version": 62,
+  "version": 63,
   "note": "Fiches de courses Equidia ou LeTROT avec sources identifiant les courses. Les URLs Equidia sont déduites du format date/R/C ; la disponibilité et la lecture des vidéos ne sont pas garanties. HOMA reste sur LeTROT faute de fiche Equidia vérifiée.",
   "replays": [
     {
@@ -2036,6 +2036,14 @@
       "controle": "Réunion et course confirmées dans une fiche de résultat montrant le cheval gagnant ; lien Equidia au format de course, lecture non testée ici."
     },
     {
+      "date": "2021-05-08",
+      "cheval": "IBERIK DE MONGOCHY",
+      "hippodrome": "GRAIGNES",
+      "url": "https://www.equidia.fr/courses/2021-05-08/R11/C5",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2021-05-08/R11C5-graignes-prix-groupama",
+      "controle": "Arrivée publiée contrôlée : 2e, n°1 ; R11C5. Lecture effective du replay Equidia non testée."
+    },
+    {
       "date": "2021-05-02",
       "cheval": "GOSPEL",
       "hippodrome": "CHOLET",
@@ -2050,6 +2058,14 @@
       "url": "https://www.equidia.fr/courses/2021-04-24/R4/C1",
       "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2021-04-24/R4C1-fontainebleau-prix-des-noisetiers",
       "controle": "Arrivée vérifiée : 3e, n°5 ; date, hippodrome et R/C confirmés par la source. Replay Equidia non visionné individuellement."
+    },
+    {
+      "date": "2021-04-22",
+      "cheval": "INTREPID ITALIAN",
+      "hippodrome": "MOULINS",
+      "url": "https://www.equidia.fr/courses/2021-04-22/R3/C1",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2021-04-22/R3C1-moulins-prix-brioche",
+      "controle": "Arrivée publiée contrôlée : 2e, n°2 ; R3C1. Lecture effective du replay Equidia non testée."
     },
     {
       "date": "2021-04-05",
@@ -2067,6 +2083,14 @@
       "url": "https://www.equidia.fr/courses/2021-03-24/R1/C3",
       "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2021-03-24/R1C3-lisieux-prix-le-bistrot-gourmand",
       "controle": "Date, R/C et cheval gagnant confirmés dans le résultat officiel reproduit par ZEturf/Canalturf ; lien Equidia construit, lecture du replay non testée."
+    },
+    {
+      "date": "2021-01-01",
+      "cheval": "FETICHE ATOUT",
+      "hippodrome": "VINCENNES - PP",
+      "url": "https://www.equidia.fr/courses/2021-01-01/R1/C6",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2021-01-01/R1C6-vincennes-prix-de-tournon",
+      "controle": "Arrivée publiée contrôlée : 2e, n°14 ; R1C6. Lecture effective du replay Equidia non testée."
     },
     {
       "date": "2020-12-06",
@@ -2109,12 +2133,28 @@
       "controle": "Réunion et course confirmées dans une fiche de résultat montrant le cheval gagnant ; lien Equidia au format de course, lecture non testée ici."
     },
     {
+      "date": "2020-06-04",
+      "cheval": "GINKO",
+      "hippodrome": "CAEN",
+      "url": "https://www.equidia.fr/courses/2020-06-04/R2/C6",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2020-06-04/R2C6-caen-prix-de-clarbec",
+      "controle": "Arrivée publiée contrôlée : 3e, n°6 ; R2C6. Lecture effective du replay Equidia non testée."
+    },
+    {
       "date": "2020-05-22",
       "cheval": "FETICHE ATOUT",
       "hippodrome": "LAVAL",
       "url": "https://www.equidia.fr/courses/2020-05-22/R4/C2",
       "preuve_identification_course": "https://www.gbet.fr/courses/laval/2020-05-22/r4/c2/prix-de-nuille-sur-vicoin/",
       "controle": "Date, cheval gagnant et réunion/course R/C identifiés dans les résultats publics. Replay Equidia non testé depuis cet environnement."
+    },
+    {
+      "date": "2020-05-15",
+      "cheval": "GOSPEL",
+      "hippodrome": "TOULOUSE",
+      "url": "https://www.equidia.fr/courses/2020-05-15/R5/C3",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2020-05-15/R5C3-toulouse-prix-de-la-croix-de-pierre",
+      "controle": "Arrivée publiée contrôlée : 3e, n°10 ; R5C3. Lecture effective du replay Equidia non testée."
     },
     {
       "date": "2020-03-05",
