@@ -147,6 +147,16 @@
       "casaque": "blanche"
     },
     {
+      "date": "2026-08-03",
+      "cheval": "ZARTOP",
+      "hippodrome": "CLAIREFONTAINE",
+      "classement": 2,
+      "discipline": "galop",
+      "entraineur": "Gilles PANNIER",
+      "casaque": "galop",
+      "jockey": "L. BOISSEAU"
+    },
+    {
       "date": "2026-07-30",
       "cheval": "LE ROI LEON",
       "hippodrome": "DIEPPE",
@@ -193,6 +203,16 @@
       "entraineur": "Gilles PANNIER",
       "casaque": "galop",
       "jockey": "A. MOLINS"
+    },
+    {
+      "date": "2026-06-10",
+      "cheval": "ZARTOP",
+      "hippodrome": "ARGENTAN",
+      "classement": 3,
+      "discipline": "galop",
+      "entraineur": "Gilles PANNIER",
+      "casaque": "galop",
+      "jockey": "L. ROUSSEL"
     },
     {
       "date": "2026-05-29",
@@ -328,6 +348,16 @@
       "entraineur": "Gilles PANNIER",
       "casaque": "galop",
       "jockey": "H. LEBOUC"
+    },
+    {
+      "date": "2026-02-27",
+      "cheval": "ZARTOP",
+      "hippodrome": "PORNICHET",
+      "classement": 2,
+      "discipline": "galop",
+      "entraineur": "Gilles PANNIER",
+      "casaque": "galop",
+      "jockey": "L. ROUSSEL"
     },
     {
       "date": "2026-02-23",
@@ -472,6 +502,16 @@
       "entraineur": "Gilles PANNIER",
       "casaque": "galop",
       "jockey": "L. BOISSEAU"
+    },
+    {
+      "date": "2025-08-29",
+      "cheval": "ZARTOP",
+      "hippodrome": "SAINT-MALO",
+      "classement": 2,
+      "discipline": "galop",
+      "entraineur": "Gilles PANNIER",
+      "casaque": "galop",
+      "jockey": "A. MOLINS"
     },
     {
       "date": "2025-08-27",
