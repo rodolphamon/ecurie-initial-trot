@@ -333,7 +333,13 @@
       "trainer": "Laurent BARASSIN",
       "casaque": "blanche",
       "horseLink": null,
-      "photoVersion": "20261112-19"
+      "photoVersion": "20261112-19",
+      "birth_year": 2025,
+      "origines": {
+        "pere": "IDEAL DU POMMEAU",
+        "mere": "HEIDA IMPERIALE",
+        "pere_de_mere": "PRINCE GEDE"
+      }
     },
     {
       "id": "rosa-mia",
