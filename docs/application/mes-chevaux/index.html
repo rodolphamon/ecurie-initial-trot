@@ -189,7 +189,7 @@ async function setup(){
     const q=$('horse-search').value.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim();
     let shown=0;
     for(const n of nodes){n.block.hidden=!!q&&!n.name.includes(q);if(!n.block.hidden)shown++}
-    $('horse-shown').textContent=shown+' cheval'+(shown===1?'':'ux');
+    $('horse-shown').textContent=shown+' '+(shown===1?'cheval':'chevaux');
   };
   $('horse-search').addEventListener('input',filter);filter();
   if(!mine.length)$('horses').append(el('p','Aucune participation enregistrée.','muted'));
