@@ -64,7 +64,8 @@
         "pere": "TIEGO D'ETANG",
         "mere": "ROMY DE CHAUMIERE",
         "pere_de_mere": "L'AS DE VIRETAUTE"
-      }
+      },
+      "birth_year": 2018
     },
     {
       "id": "isolee-du-bouillon",
@@ -77,7 +78,8 @@
         "pere": "DOLLAR MACKER",
         "mere": "URGELE",
         "pere_de_mere": "OTELLO PIERJI"
-      }
+      },
+      "birth_year": 2018
     },
     {
       "id": "le-roi-leon",
@@ -108,7 +110,8 @@
         "pere": "FABULOUS WOOD",
         "mere": "ONLY WAY",
         "pere_de_mere": "VIKING'S WAY"
-      }
+      },
+      "birth_year": 2021
     },
     {
       "id": "lucky-des-gaudines",
@@ -131,7 +134,8 @@
         "pere": "DJANGO RIFF",
         "mere": "ERYA KALOUMA",
         "pere_de_mere": "ROYAL DREAM"
-      }
+      },
+      "birth_year": 2022
     },
     {
       "id": "master-pat",
@@ -154,7 +158,8 @@
         "pere": "GOSPEL PAT",
         "mere": "DIVINE ESPERANCE",
         "pere_de_mere": "GOB DE LOUMADE"
-      }
+      },
+      "birth_year": 2022
     },
     {
       "id": "mona-lisa-stardust",
@@ -177,7 +182,8 @@
         "pere": "EUGENITO DU NOYER",
         "mere": "GODIVA OKINA",
         "pere_de_mere": "TAG WOOD"
-      }
+      },
+      "birth_year": 2022
     },
     {
       "id": "myrtille-marboula",
@@ -199,7 +205,8 @@
         "pere": "BRILLANTISSIME",
         "mere": "ERYA KALOUMA",
         "pere_de_mere": "ROYAL DREAM"
-      }
+      },
+      "birth_year": 2023
     },
     {
       "id": "nelson-star",
@@ -213,7 +220,8 @@
         "pere": "ITALIANO VERO",
         "mere": "BEST STAR",
         "pere_de_mere": "LOOK DE STAR"
-      }
+      },
+      "birth_year": 2023
     },
     {
       "id": "nostalgie-dairpet",
@@ -227,7 +235,8 @@
         "pere": "SEVERINO",
         "mere": "GARDEN CITY",
         "pere_de_mere": "QUAKER JET"
-      }
+      },
+      "birth_year": 2023
     },
     {
       "id": "odacieuse-fleury",
@@ -241,7 +250,8 @@
         "pere": "DOLLAR MACKER",
         "mere": "GIRL STAR EMGE",
         "pere_de_mere": "TIMOKO"
-      }
+      },
+      "birth_year": 2024
     },
     {
       "id": "olano-de-la-vallee",
@@ -255,7 +265,8 @@
         "pere": "UN AMOUR D'HAUFOR",
         "mere": "GENNY DE LA VALLEE",
         "pere_de_mere": "TEXAS CHARM"
-      }
+      },
+      "birth_year": 2024
     },
     {
       "id": "on-lockdown",
@@ -286,7 +297,8 @@
         "pere": "ERIDAN",
         "mere": "FLORETTE BILOU",
         "pere_de_mere": "PRINCE D'ESPACE"
-      }
+      },
+      "birth_year": 2025
     },
     {
       "id": "popstar-d-eri",
