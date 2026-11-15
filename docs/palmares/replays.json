@@ -1,5 +1,5 @@
 {
-  "version": 85,
+  "version": 86,
   "note": "Fiches de courses Equidia ou LeTROT avec sources identifiant les courses. Les URLs Equidia sont déduites du format date/R/C ; la disponibilité et la lecture des vidéos ne sont pas garanties. HOMA reste sur LeTROT faute de fiche Equidia vérifiée.",
   "replays": [
     {
@@ -2797,9 +2797,13 @@
       "date": "2016-01-11",
       "cheval": "DJANGO DE MONGOCHY",
       "hippodrome": "CHATEAUBRIANT",
-      "url": "https://www.equidia.fr/courses/2016-01-11/R7/C1",
+      "url": "https://www.dailymotion.com/video/x3teqjp",
       "preuve_identification_course": "https://www.gbet.fr/courses/chateaubriant/2016-01-11/r7/c1/prix-goetmals-wood/",
-      "controle": "Date, cheval gagnant et réunion/course R/C identifiés dans les résultats publics. Replay Equidia non testé depuis cet environnement."
+      "controle": "Description Dailymotion confirme première victoire à Châteaubriant le 11/01/2016 ; le titre « 21022016 » est trompeur, utiliser la date citée dans la description. Vidéo accessible, lecture intégrale non testée.",
+      "lien_fiche_course_precedent": "https://www.equidia.fr/courses/2016-01-11/R7/C1",
+      "preuve_video": "https://www.dailymotion.com/video/x3teqjp",
+      "source_video": "https://www.dailymotion.com/user/Ecurie-Initial",
+      "nature_lien": "video_course_dailymotion"
     },
     {
       "date": "2015-12-06",
