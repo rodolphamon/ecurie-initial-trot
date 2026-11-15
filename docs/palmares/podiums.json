@@ -608,7 +608,9 @@
       "classement": 3,
       "discipline": "attele",
       "jockey": "Michel HANQUIER",
-      "casaque": "nathalie"
+      "casaque": "nathalie",
+      "entraineur": "Michel HANQUIER",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2026-02-16",
@@ -744,7 +746,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Michel HANQUIER",
-      "casaque": "nathalie"
+      "casaque": "nathalie",
+      "entraineur": "Michel HANQUIER",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2025-10-17",
@@ -876,7 +880,9 @@
       "classement": 3,
       "discipline": "attele",
       "jockey": "Michel-Xavier CHARLOT",
-      "casaque": "nathalie"
+      "casaque": "nathalie",
+      "entraineur": "Michel HANQUIER",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2025-07-22",
