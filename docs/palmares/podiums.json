@@ -1374,17 +1374,6 @@
       "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Bruno MARIE avant le 04/06/2024, Michel HANQUIER à partir du 04/06/2024"
     },
     {
-      "date": "2024-07-01",
-      "cheval": "HANANE MONTAVAL",
-      "hippodrome": "STRASBOURG",
-      "classement": 2,
-      "discipline": "attele",
-      "jockey": "Joachim-Brandon LELIEVRE",
-      "casaque": "nathalie",
-      "entraineur": "Pierre-Louis DESAUNETTE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
-    },
-    {
       "date": "2024-06-27",
       "cheval": "FANTOMAS DU VAL",
       "hippodrome": "ENGHIEN",
@@ -1525,6 +1514,18 @@
       "jockey": "Alexis MARIE",
       "entraineur": "Alexis MARIE",
       "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+    },
+    {
+      "date": "2024-04-01",
+      "cheval": "HANANE MONTAVAL",
+      "hippodrome": "STRASBOURG",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Joachim-Brandon LELIEVRE",
+      "casaque": "nathalie",
+      "entraineur": "Pierre-Louis DESAUNETTE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_correction": "https://www.zeturf.fr/fr/course-du-jour/2024-04-01/R8C8-strasbourg-prix-de-marmoutier"
     },
     {
       "date": "2024-03-24",
@@ -2084,6 +2085,18 @@
       "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
+      "date": "2022-12-11",
+      "cheval": "IBERIK DE MONGOCHY",
+      "hippodrome": "VINCENNES - GP",
+      "classement": 2,
+      "discipline": "monte",
+      "jockey": "François LAGADEUC",
+      "casaque": "blanche",
+      "entraineur": "Pierre-Louis DESAUNETTE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_correction": "https://www.zeturf.fr/fr/course-du-jour/2022-12-11/R1C9-vincennes-prix-de-rostrenen"
+    },
+    {
       "date": "2022-11-27",
       "cheval": "HARRISON GEDE",
       "hippodrome": "VIRE NORMANDIE",
@@ -2104,17 +2117,6 @@
       "casaque": "blanche",
       "entraineur": "Dominik LOCQUENEUX",
       "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Ripoll Rigo, Bruno MARIE à partir du 25/12/2021, Dominik LOCQUENEUX à partir du 10/06/2022, Alexis MARIE à partir du 20/06/2023"
-    },
-    {
-      "date": "2022-11-11",
-      "cheval": "IBERIK DE MONGOCHY",
-      "hippodrome": "VINCENNES - GP",
-      "classement": 2,
-      "discipline": "attele",
-      "jockey": "François LAGADEUC",
-      "casaque": "blanche",
-      "entraineur": "Pierre-Louis DESAUNETTE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2022-10-21",
@@ -2278,17 +2280,6 @@
       "entraineur": "Charley HESLOUIN"
     },
     {
-      "date": "2022-07-01",
-      "cheval": "ISBA QUICK",
-      "hippodrome": "BORDEAUX",
-      "classement": 2,
-      "discipline": "attele",
-      "jockey": "Bruno MARIE",
-      "casaque": "nathalie",
-      "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
-    },
-    {
       "date": "2022-06-30",
       "cheval": "JACKPOT DES BORDES",
       "hippodrome": "ENGHIEN",
@@ -2440,6 +2431,18 @@
       "casaque": "blanche",
       "entraineur": "Pierre-Louis DESAUNETTE",
       "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+    },
+    {
+      "date": "2022-02-01",
+      "cheval": "ISBA QUICK",
+      "hippodrome": "BORDEAUX",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Bruno MARIE",
+      "casaque": "nathalie",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_correction": "https://www.zeturf.fr/fr/course-du-jour/2022-02-01/R3C2-bordeaux-le-bouscat-prix-de-l-hippodrome-de-villereal"
     },
     {
       "date": "2022-01-16",
