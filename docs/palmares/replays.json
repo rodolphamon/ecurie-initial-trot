@@ -1,5 +1,5 @@
 {
-  "version": 77,
+  "version": 78,
   "note": "Fiches de courses Equidia ou LeTROT avec sources identifiant les courses. Les URLs Equidia sont déduites du format date/R/C ; la disponibilité et la lecture des vidéos ne sont pas garanties. HOMA reste sur LeTROT faute de fiche Equidia vérifiée.",
   "replays": [
     {
@@ -1366,6 +1366,15 @@
       "controle": "Date, cheval gagnant et numéro R/C concordants dans la source ; lien Equidia de la course, disponibilité du replay non vérifiée automatiquement"
     },
     {
+      "date": "2024-04-01",
+      "cheval": "HANANE MONTAVAL",
+      "hippodrome": "STRASBOURG",
+      "url": "https://www.equidia.fr/courses/2024-04-01/R8/C8",
+      "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2024-04-01/R8C8-strasbourg-prix-de-marmoutier",
+      "preuve_arrivee": "https://www.zeturf.fr/fr/course-du-jour/2024-04-01/R8C8-strasbourg-prix-de-marmoutier",
+      "controle": "2e du Prix de Marmoutier (R8C8) le 01/04/2024. Date corrigée depuis 01/07/2024 d'après l'arrivée officielle ; R/C et cheval recoupés ; replay Equidia non visionné."
+    },
+    {
       "date": "2024-02-15",
       "cheval": "HANANE MONTAVAL",
       "hippodrome": "GRAIGNES",
@@ -1739,6 +1748,15 @@
       "controle": "3e, n°7. Réunion et course vérifiées ; disponibilité du replay Equidia non testée"
     },
     {
+      "date": "2022-12-11",
+      "cheval": "IBERIK DE MONGOCHY",
+      "hippodrome": "VINCENNES - GP",
+      "url": "https://www.equidia.fr/courses/2022-12-11/R1/C9",
+      "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2022-12-11/R1C9-vincennes-prix-de-rostrenen",
+      "preuve_arrivee": "https://www.zeturf.fr/fr/course-du-jour/2022-12-11/R1C9-vincennes-prix-de-rostrenen",
+      "controle": "2e du Prix de Rostrenen (R1C9) le 11/12/2022 au trot monté. Date corrigée depuis 11/11/2022 et discipline attelé corrigée en monté selon arrivée officielle. Replay Equidia non visionné."
+    },
+    {
       "date": "2022-11-27",
       "cheval": "HARRISON GEDE",
       "hippodrome": "VIRE NORMANDIE",
@@ -1984,6 +2002,15 @@
       "url": "https://www.equidia.fr/courses/2022-02-03/R1/C4",
       "justificatif": "https://www.zeturf.sn/fr/course-du-jour/2022-02-03/R1C4-vincennes-prix-de-dozule",
       "controle": "2e, n°6 ; résultat et numéro R1C4 confirmés par source citée ; lecture du replay Equidia non vérifiée."
+    },
+    {
+      "date": "2022-02-01",
+      "cheval": "ISBA QUICK",
+      "hippodrome": "BORDEAUX",
+      "url": "https://www.equidia.fr/courses/2022-02-01/R3/C2",
+      "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2022-02-01/R3C2-bordeaux-le-bouscat-prix-de-l-hippodrome-de-villereal",
+      "preuve_arrivee": "https://www.zeturf.fr/fr/course-du-jour/2022-02-01/R3C2-bordeaux-le-bouscat-prix-de-l-hippodrome-de-villereal",
+      "controle": "2e du Prix de l'Hippodrome de Villeréal (R3C2) le 01/02/2022. Date corrigée depuis 01/07/2022 d'après l'arrivée officielle ; lecture Equidia non testée."
     },
     {
       "date": "2022-01-29",
