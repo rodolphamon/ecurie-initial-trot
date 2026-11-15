@@ -81,6 +81,14 @@ using (
  )
 );
 
+-- L'administrateur peut nettoyer un fichier si la publication échoue après l'upload.
+drop policy if exists "ei media suppression admin" on storage.objects;
+create policy "ei media suppression admin" on storage.objects for delete to authenticated
+using (
+  bucket_id = 'ei-chevaux-prives'
+  and public.est_administrateur()
+);
+
 -- La nouvelle catégorie n'est NI publique NI soumise à "Tous les chevaux".
 -- Seuls les associés ayant une participation au cheval peuvent la recevoir.
 alter table public.ei_push_alerts
