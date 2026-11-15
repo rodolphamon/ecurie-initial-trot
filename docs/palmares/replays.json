@@ -1,6 +1,6 @@
 {
-  "version": 26,
-  "note": "Liens vers les pages de courses sur Equidia ou LeTROT, avec références de résultats ayant permis d'identifier date, hippodrome, réunion et numéro de course. Les liens Equidia sont calculés d'après le format d'URL et leur lecture, ainsi que la disponibilité du replay, n'ont pas été testées automatiquement. Les victoires historiques ne sont pas modifiées.",
+  "version": 27,
+  "note": "Fiches de courses Equidia ou LeTROT avec sources identifiant les courses. Les URLs Equidia sont déduites du format date/R/C ; la disponibilité et la lecture des vidéos ne sont pas garanties. HOMA reste sur LeTROT faute de fiche Equidia vérifiée.",
   "replays": [
     {
       "date": "2026-09-21",
@@ -379,10 +379,12 @@
       "date": "2013-12-27",
       "cheval": "ADAMS",
       "hippodrome": "VINCENNES",
-      "url": "https://www.letrot.com/courses/2013-12-27/7500/8",
+      "url": "https://www.equidia.fr/courses/2013-12-27/R1/C8",
       "justificatif": "https://www.canalturf.com/resultats-PMU/2013-12-27_resultats-rapports-des-courses-du-vendredi-27-decembre-2013.html",
-      "controle": "Hippodrome, date et numéro de course vérifiés ; URL construite au format LeTROT, lecture non testée automatiquement",
-      "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2013-12-27/7500/8"
+      "controle": "ADAMS gagnant du Prix d'Erbray Gr A, R1C8 à Vincennes le 27/12/2013 ; replay Equidia non testé",
+      "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2013-12-27/7500/8",
+      "lien_letrot_precedent": "https://www.letrot.com/courses/2013-12-27/7500/8",
+      "preuve_identification_course": "https://www.zone-turf.fr/cheval/agitateur-250028/archives-2.html"
     },
     {
       "date": "2026-07-03",
@@ -893,8 +895,8 @@
       "cheval": "HOMA",
       "hippodrome": "AVRANCHES",
       "url": "https://www.letrot.com/courses/2021-07-18/5002/8",
-      "preuve_identification_course": "https://www.letrot.com/courses/2021-07-18/5002/8",
-      "controle": "Lien officiel LeTROT déjà inscrit comme source dans la ligne du palmarès, lecture replay non vérifiée"
+      "preuve_identification_course": "https://www.zone-turf.fr/cheval/homa-921660/",
+      "controle": "HOMA gagnante du Prix Briere Motoculture à Avranches le 18/07/2021 ; référence LeTROT conservée, fiche Equidia non identifiée et lecture vidéo non testée"
     },
     {
       "date": "2024-04-15",
