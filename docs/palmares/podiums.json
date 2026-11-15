@@ -89,6 +89,16 @@
       "casaque": "julien"
     },
     {
+      "date": "2026-09-20",
+      "cheval": "ANDRESY",
+      "hippodrome": "SABLE-SUR-SARTHE",
+      "classement": 3,
+      "discipline": "galop",
+      "entraineur": "Gilles PANNIER",
+      "casaque": "galop",
+      "jockey": "H. LEBOUC"
+    },
+    {
       "date": "2026-09-14",
       "cheval": "MASTER PAT",
       "hippodrome": "CHANTILLY",
@@ -126,6 +136,16 @@
       "discipline": "attele",
       "jockey": "Antonin ANDRE",
       "casaque": "blanche"
+    },
+    {
+      "date": "2026-08-23",
+      "cheval": "ANDRESY",
+      "hippodrome": "DEAUVILLE",
+      "classement": 2,
+      "discipline": "galop",
+      "entraineur": "Gilles PANNIER",
+      "casaque": "galop",
+      "jockey": "L. BOISSEAU"
     },
     {
       "date": "2026-08-18",
