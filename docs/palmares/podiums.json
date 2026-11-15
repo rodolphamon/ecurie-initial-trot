@@ -1,0 +1,46 @@
+{
+  "podiums": [
+    {
+      "date": "2026-10-20",
+      "cheval": "ZARTOP",
+      "hippodrome": "CLAIREFONTAINE",
+      "classement": 2,
+      "discipline": "galop",
+      "entraineur": "Gilles PANNIER",
+      "casaque": "galop"
+    },
+    {
+      "date": "2026-10-22",
+      "cheval": "GONAFOOT",
+      "hippodrome": "LES SABLES-D'OLONNE",
+      "classement": 3,
+      "discipline": "galop",
+      "entraineur": "Gilles PANNIER",
+      "casaque": "galop"
+    },
+    {
+      "date": "2026-10-25",
+      "cheval": "LUCKY DES GAUDINES",
+      "hippodrome": "MONTAUBAN",
+      "classement": 2,
+      "discipline": "attele",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2026-10-30",
+      "cheval": "LUCKY DES GAUDINES",
+      "hippodrome": "TOULOUSE",
+      "classement": 2,
+      "discipline": "attele",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2026-11-01",
+      "cheval": "MEMPHIS BELLE",
+      "hippodrome": "LISIEUX",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche"
+    }
+  ]
+}
