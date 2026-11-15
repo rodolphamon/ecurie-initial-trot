@@ -1,5 +1,5 @@
 {
-  "version": 16,
+  "version": 17,
   "note": "Liens vers les pages de courses sur Equidia ou LeTROT, avec références de résultats ayant permis d'identifier date, hippodrome, réunion et numéro de course. Les liens Equidia sont calculés d'après le format d'URL et leur lecture, ainsi que la disponibilité du replay, n'ont pas été testées automatiquement. Les victoires historiques ne sont pas modifiées.",
   "replays": [
     {
@@ -961,9 +961,9 @@
       "cheval": "ACTRICE DE CERISY",
       "hippodrome": "CAEN",
       "url": "https://www.equidia.fr/courses/2013-03-15/R1/C8",
-      "preuve_identification_course": "https://www.zone-turf.fr/rapports/r1-c3-prix-de-sourdeval-190187.html",
+      "preuve_identification_course": "https://www.zone-turf.fr/cheval/actrice-de-cerisy-208673/archives-2.html",
       "preuve_arrivee": "https://www.zone-turf.fr/cheval/actrice-de-cerisy-208673/archives-2.html",
-      "controle": "Numéro R/C confirmé dans le programme et victoire dans le résultat ; lien Equidia de la course, lecture vidéo non testée automatiquement"
+      "controle": "R1C8 Prix de Saint-Wandrille confirmé par programme du 15/03/2013 et résultat Actrice de Cerisy gagnante ; vidéo Equidia non testée"
     },
     {
       "date": "2021-04-05",
