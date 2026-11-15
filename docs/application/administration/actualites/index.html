@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="fr"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#171717">
+<title>Publier une actualité privée · Écurie Initial</title>
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="icon" href="../../icon-ei-192.png">
+<link rel="apple-touch-icon" href="../../icon-ei-192.png">
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f7f5f2;color:#242424;font:15px/1.55 Arial,Helvetica,sans-serif}
+header{background:#171717;padding:20px 17px;color:white}header strong{font-size:22px;letter-spacing:.4px}header strong span{color:#f47721}
+main{max-width:740px;margin:auto;padding:17px 13px 105px}
+h1{font-size:26px;margin:14px 0 4px}h2{font-size:19px;margin:0 0 12px}
+a{color:#a44a0e}.card{background:#fff;border-radius:15px;border:1px solid #e9e2da;padding:20px;margin:16px 0}
+label{display:block;font-weight:700;margin:14px 0 6px}
+input[type=text],select,textarea,input[type=file]{font:inherit;width:100%;border:1px solid #d5cec8;border-radius:9px;padding:12px;background:#fff}
+textarea{min-height:135px;resize:vertical}
+select{appearance:auto}
+input[type=checkbox]{width:20px;height:20px;accent-color:#f47721;flex:0 0 auto}
+.checkline{display:flex;gap:12px;align-items:flex-start;padding:14px 12px;background:#fff7f0;border:1px solid #f2d8bf;border-radius:10px}
+.checkline label{margin:0;cursor:pointer}
+button{cursor:pointer;background:#f47721;border:0;border-radius:10px;padding:13px 18px;font-size:15px;font-weight:700;color:#171717}
+button:disabled{opacity:.5;cursor:not-allowed}
+.muted{color:#68625e;font-size:13px}.status{font-weight:600;white-space:pre-line}.status.bad{color:#a12c1e}.status.good{color:#17603d}
+#preview{margin:10px 0}#preview img,#preview video{max-width:100%;width:auto;max-height:300px;border-radius:12px;background:#171717}
+[hidden]{display:none!important}
+</style></head>
+<body><header><strong>ÉCURIE <span>INITIAL</span></strong><div style="font-size:12px;color:#ddd">Administration · Publications privées</div></header>
+<main>
+<p><a href="../">← Administration</a></p>
+<h1>✍️ Informer les associés d'un cheval</h1>
+<p class="muted">Cette publication sera visible uniquement par les associés propriétaires du cheval sélectionné, dans « Mes chevaux ».</p>
+<p id="loading" role="status">Vérification de vos droits…</p>
+<section class="card" id="denied" hidden><h2>🔒 Accès réservé</h2><p>Connectez-vous avec un compte administrateur actif.</p><a href="../../connexion/">Se connecter</a></section>
+<section class="card" id="publisher" hidden>
+  <h2>Nouvelle publication</h2>
+  <form id="form">
+    <label for="horse">Cheval concerné</label>
+    <select id="horse" required><option value="">Choisir le cheval…</option></select>
+    <label for="title">Titre (facultatif)</label>
+    <input id="title" type="text" maxlength="160" placeholder="Ex. Des nouvelles de l'entraînement">
+    <label for="body">Votre information</label>
+    <textarea id="body" maxlength="6000" placeholder="Compte rendu de l'entraîneur, nouvelles du cheval, informations aux associés…"></textarea>
+    <label for="media">Ajouter une photo ou une vidéo (facultatif)</label>
+    <input id="media" type="file" accept="image/jpeg,image/png,image/webp,video/mp4,video/webm,video/quicktime">
+    <div class="muted">Formats : JPG, PNG, WEBP, MP4, WEBM ou MOV. Photo 12 Mo maximum, vidéo 45 Mo maximum. Un fichier par publication.</div>
+    <div id="preview"></div>
+    <p class="checkline"><input type="checkbox" id="notify" checked><label for="notify">🔔 <strong>Prévenir les associés du cheval</strong><span class="muted" style="display:block">Uniquement les associés propriétaires de ce cheval ayant activé les notifications privées. Jamais les visiteurs ni les associés des autres chevaux.</span></label></p>
+    <button type="submit" id="send">Publier l'information</button>
+    <p class="status" id="status" role="status" aria-live="polite"></p>
+  </form>
+</section>
+<section class="card"><h2>Confidentialité</h2>
+<p class="muted">Les médias sont stockés dans un espace privé Supabase. Une notification n'inclut ni le texte privé ni le fichier ; elle invite le propriétaire à consulter son espace sécurisé.</p>
+<p class="muted">L'envoi Push nécessite que le service de notifications soit activé dans Supabase. Publier ici ne garantit pas la réception d'une alerte tant que ce service n'est pas opérationnel.</p>
+</section></main>
+<script type="module">
+import {createClient} from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+const db=createClient('https://yeecwaaizmvrhwobukfa.supabase.co','sb_publishable_xUy2EJA3u3cKWl8BB4GNPQ_qhV9Pes3');
+const $=id=>document.getElementById(id);
+const types={'image/jpeg':{kind:'image',ext:'jpg',max:12*1024*1024},'image/png':{kind:'image',ext:'png',max:12*1024*1024},'image/webp':{kind:'image',ext:'webp',max:12*1024*1024},'video/mp4':{kind:'video',ext:'mp4',max:45*1024*1024},'video/webm':{kind:'video',ext:'webm',max:45*1024*1024},'video/quicktime':{kind:'video',ext:'mov',max:45*1024*1024}};
+let objectURL=null;
+function status(msg,error=false){$('status').textContent=msg;$('status').className='status '+(error?'bad':'good')}
+function clearPreview(){if(objectURL){URL.revokeObjectURL(objectURL);objectURL=null}$('preview').replaceChildren()}
+$('media').addEventListener('change',()=>{
+ clearPreview();
+ const file=$('media').files?.[0];
+ if(!file)return;
+ const type=types[file.type];
+ if(!type||file.size>type.max){status('Format non autorisé ou fichier trop volumineux.',true);$('media').value='';return}
+ objectURL=URL.createObjectURL(file);
+ const media=document.createElement(type.kind==='image'?'img':'video');
+ media.src=objectURL;
+ if(type.kind==='video'){media.controls=true;media.preload='metadata';media.playsInline=true}
+ media.alt='Aperçu du fichier choisi';
+ $('preview').append(media);
+});
+async function setup(){
+ try{
+   const{data:{user},error:authError}=await db.auth.getUser();
+   if(authError||!user){$('denied').hidden=false;return}
+   const{data:me,error:roleError}=await db.from('associes').select('administrateur,actif')
+      .eq('user_id',user.id).maybeSingle();
+   if(roleError||!me?.actif||!me.administrateur){$('denied').hidden=false;return}
+   const res=await fetch('../../../chevaux/data/chevaux.json?v='+Date.now(),{cache:'no-store'});
+   if(!res.ok)throw Error('Impossible de charger la liste des chevaux.');
+   const json=await res.json();
+   const horses=(json.horses||[]).filter(h=>/^[a-z0-9]+(-[a-z0-9]+)*$/.test(h.id||''))
+     .sort((a,b)=>a.name.localeCompare(b.name,'fr'));
+   for(const h of horses){
+     const o=document.createElement('option');o.value=h.id;o.textContent=h.name;$('horse').append(o);
+   }
+   const query=new URLSearchParams(location.search).get('cheval');
+   if(query&&horses.some(h=>h.id===query))$('horse').value=query;
+   $('publisher').hidden=false;
+ }catch(e){status(e?.message||'Impossible de charger le formulaire.',true)}
+ finally{$('loading').hidden=true}
+}
+$('form').addEventListener('submit',async e=>{
+ e.preventDefault();
+ const btn=$('send');btn.disabled=true;status('Publication en cours…');
+ let uploaded=null;
+ try{
+   const slug=$('horse').value;
+   if(!/^[a-z0-9]+(-[a-z0-9]+)*$/.test(slug))throw Error('Sélectionnez un cheval.');
+   const body=$('body').value.trim();
+   const file=$('media').files?.[0]||null;
+   if(!body&&!file)throw Error('Rédigez une information ou ajoutez une photo/vidéo.');
+   const type=file?types[file.type]:null;
+   if(file&&(!type||file.size>type.max))throw Error('Le format ou la taille du fichier est incorrect.');
+   const title=$('title').value.trim()||(type?.kind==='image'?'Nouvelle photo':type?.kind==='video'?'Nouvelle vidéo':'Informations de l’écurie');
+   if(title.length>160)throw Error('Titre trop long.');
+   if(file){
+     uploaded=slug+'/'+crypto.randomUUID()+'.'+type.ext;
+     const {error:uploadError}=await db.storage.from('ei-chevaux-prives')
+       .upload(uploaded,file,{contentType:file.type,cacheControl:'3600',upsert:false});
+     if(uploadError)throw uploadError;
+   }
+   const {error:insertError}=await db.from('actualites_chevaux_privees').insert({
+     cheval_slug:slug,titre:title,contenu:body,
+     media_path:uploaded,media_type:type?.kind||null,
+     notifier_associes:$('notify').checked
+   });
+   if(insertError)throw insertError;
+   status($('notify').checked
+     ?'Information publiée pour les propriétaires du cheval. Notification demandée : elle sera envoyée si le service Push est actif et les destinataires inscrits.'
+     :'Information publiée pour les propriétaires du cheval, sans demande de notification.');
+   $('title').value='';$('body').value='';$('media').value='';$('notify').checked=true;clearPreview();
+   uploaded=null;
+ }catch(err){
+   // Ne pas laisser de fichier orphelin si l'insertion échoue après l'upload.
+   if(uploaded)await db.storage.from('ei-chevaux-prives').remove([uploaded]).catch(()=>{});
+   status((err?.message||'Publication impossible.')+' Vérifiez que la migration Supabase a été appliquée.',true);
+ }finally{btn.disabled=false}
+});
+setup();
+</script><script defer src="../../nav.js?v=20261115b"></script></body></html>
