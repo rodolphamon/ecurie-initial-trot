@@ -1,0 +1,128 @@
+{
+  "schema_version": 1,
+  "note": "Suivi de recherches. Ces URLs justifient les courses, PAS leur vidéo. Le statut signifie que la recherche publique effectuée n'a pas identifié de lien replay fiable; cela ne prouve pas qu'aucun replay n'existe. Ne jamais importer ces URLs dans replays.json automatiquement.",
+  "statut": "course_identifiee_replay_a_rechercher",
+  "verifie_le": "2026-11-15",
+  "courses": [
+    {
+      "date": "2024-03-24",
+      "cheval": "JESSIE DES LANDES",
+      "hippodrome": "LA GUERCHE-DE-BRETAGNE",
+      "classement": 2,
+      "course": "Prix Société Bonnier Forages (Gr B)",
+      "source_resultat": "https://www.zone-turf.fr/cheval/joy-d-ourville-1698800/archives-1.html",
+      "etat_video": "non_identifiee",
+      "commentaire": "Arrivée recoupée ; vérifier LeTROT/Equidia/ZEturf avant ajout d'un lien vidéo."
+    },
+    {
+      "date": "2024-09-22",
+      "cheval": "GUEPARD DE MONE",
+      "hippodrome": "VILLENEUVE-SUR-LOT",
+      "classement": 3,
+      "course": "Prix de Miramont de Guyenne",
+      "source_resultat": "https://www.zone-turf.fr/cheval/guepard-de-mone-751746/",
+      "etat_video": "non_identifiee",
+      "commentaire": "Arrivée recoupée ; vérifier LeTROT/Equidia/ZEturf avant ajout d'un lien vidéo."
+    },
+    {
+      "date": "2023-02-25",
+      "cheval": "ISBA QUICK",
+      "hippodrome": "MONTAUBAN",
+      "classement": 2,
+      "course": "Prix Kairos",
+      "source_resultat": "https://www.zone-turf.fr/cheval/isba-quick-1369022/",
+      "etat_video": "non_identifiee",
+      "commentaire": "Arrivée recoupée ; vérifier LeTROT/Equidia/ZEturf avant ajout d'un lien vidéo."
+    },
+    {
+      "date": "2022-06-18",
+      "cheval": "JETHAN DE MONGOCHY",
+      "hippodrome": "LISIEUX",
+      "classement": 2,
+      "course": "Prix Immersive Display (Gr A), course 1, PHH",
+      "source_resultat": "https://www.zone-turf.fr/programmes/phh-lisieux-151106.html",
+      "etat_video": "non_identifiee",
+      "commentaire": "Arrivée recoupée ; vérifier LeTROT/Equidia/ZEturf avant ajout d'un lien vidéo."
+    },
+    {
+      "date": "2020-12-14",
+      "cheval": "FLEUR VIVANCIERE",
+      "hippodrome": "BORDEAUX",
+      "classement": 3,
+      "course": "Prix Narquois, course 4, PHH",
+      "source_resultat": "https://www.zone-turf.fr/programmes/phh-bordeaux-le-bouscat-122594.html",
+      "etat_video": "non_identifiee",
+      "commentaire": "Arrivée recoupée ; vérifier LeTROT/Equidia/ZEturf avant ajout d'un lien vidéo."
+    },
+    {
+      "date": "2020-05-17",
+      "cheval": "GINKO",
+      "hippodrome": "MAUQUENCHY",
+      "classement": 2,
+      "course": "Prix de St Aubin Les Elbeuf (Gr B)",
+      "source_resultat": "https://www.zone-turf.fr/cheval/get-ready-761360/archives-2.html",
+      "etat_video": "non_identifiee",
+      "commentaire": "Arrivée recoupée ; vérifier LeTROT/Equidia/ZEturf avant ajout d'un lien vidéo."
+    },
+    {
+      "date": "2017-03-19",
+      "cheval": "VALMIN DE GUEUDE",
+      "hippodrome": "CHOLET",
+      "classement": 2,
+      "course": "Prix Asia Store",
+      "source_resultat": "https://www.zone-turf.fr/cheval/alliance-de-chenu-257155/archives-2.html",
+      "etat_video": "non_identifiee",
+      "commentaire": "Arrivée recoupée ; vérifier LeTROT/Equidia/ZEturf avant ajout d'un lien vidéo."
+    },
+    {
+      "date": "2016-09-18",
+      "cheval": "ACTRICE DE CERISY",
+      "hippodrome": "AGEN-LA-GARENNE",
+      "classement": 2,
+      "course": "Prix d'Angoulême",
+      "source_resultat": "https://www.zone-turf.fr/cheval/actrice-de-cerisy-208673/",
+      "etat_video": "non_identifiee",
+      "commentaire": "Arrivée recoupée ; vérifier LeTROT/Equidia/ZEturf avant ajout d'un lien vidéo."
+    },
+    {
+      "date": "2015-07-21",
+      "cheval": "BEAUTE D'ONDEE",
+      "hippodrome": "PORNICHET",
+      "classement": 3,
+      "course": "Prix Association Commerçants Et A (Gr A)",
+      "source_resultat": "https://www.zone-turf.fr/cheval/balzac-375560/archives-2.html",
+      "etat_video": "non_identifiee",
+      "commentaire": "Arrivée recoupée ; vérifier LeTROT/Equidia/ZEturf avant ajout d'un lien vidéo."
+    },
+    {
+      "date": "2015-03-29",
+      "cheval": "TYCOZ DE LADY",
+      "hippodrome": "GRAIGNES",
+      "classement": 3,
+      "course": "Prix Yver de la Vigne Bernard",
+      "source_resultat": "https://province-courses.fr/fiche_cheval.php?id=07317443G",
+      "etat_video": "non_identifiee",
+      "commentaire": "Arrivée recoupée ; vérifier LeTROT/Equidia/ZEturf avant ajout d'un lien vidéo."
+    },
+    {
+      "date": "2014-06-01",
+      "cheval": "RHEA SILVIA",
+      "hippodrome": "LIGNIERES EN BERRY",
+      "classement": 2,
+      "course": "Prix Quokine Berry (trot monté)",
+      "source_resultat": "https://www.zone-turf.fr/cheval/rhea-silvia-43685/",
+      "etat_video": "non_identifiee",
+      "commentaire": "Arrivée recoupée ; vérifier LeTROT/Equidia/ZEturf avant ajout d'un lien vidéo."
+    },
+    {
+      "date": "2013-01-13",
+      "cheval": "ADAMS",
+      "hippodrome": "ARGENTAN",
+      "classement": 2,
+      "course": "Prix Jorky",
+      "source_resultat": "https://www.zone-turf.fr/cheval/amiral-du-pre-225322/archives-2.html",
+      "etat_video": "non_identifiee",
+      "commentaire": "Arrivée recoupée ; vérifier LeTROT/Equidia/ZEturf avant ajout d'un lien vidéo."
+    }
+  ]
+}
