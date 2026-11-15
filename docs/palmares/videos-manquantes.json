@@ -1,0 +1,1425 @@
+{
+  "mise_a_jour": "2026-11-15",
+  "description": "Inventaire exhaustif des podiums validés ne disposant pas encore d'une correspondance dans replays.json. Ne pas inventer de liens vidéos ; rechercher et confirmer la réunion, le numéro de course et la disponibilité de la vidéo avant ajout.",
+  "total_podiums": 347,
+  "total_references_replays": 308,
+  "podiums_avec_reference": 192,
+  "podiums_sans_reference": 155,
+  "repartition_par_annee": {
+    "2008": 1,
+    "2009": 5,
+    "2011": 4,
+    "2012": 5,
+    "2013": 10,
+    "2014": 6,
+    "2015": 11,
+    "2016": 4,
+    "2017": 6,
+    "2018": 1,
+    "2019": 8,
+    "2020": 6,
+    "2021": 12,
+    "2022": 19,
+    "2023": 17,
+    "2024": 14,
+    "2025": 9,
+    "2026": 17
+  },
+  "resultats_a_traiter": [
+    {
+      "date": "2026-11-08",
+      "cheval": "JUNINIO FLEURY",
+      "hippodrome": "CASTELSARRASIN",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2026-10-25",
+      "cheval": "LUCKY DES GAUDINES",
+      "hippodrome": "MONTAUBAN",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2026-10-03",
+      "cheval": "LUCKY DES GAUDINES",
+      "hippodrome": "BEAUMONT-DE-LOMAGNE",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2026-09-27",
+      "cheval": "JUNINIO FLEURY",
+      "hippodrome": "VILLENEUVE-SUR-LOT",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2026-09-20",
+      "cheval": "ANDRESY",
+      "hippodrome": "SABLE-SUR-SARTHE",
+      "classement": 3,
+      "discipline": "galop",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2026-08-20",
+      "cheval": "LORD ON WAY",
+      "hippodrome": "DIVONNE-LES-BAINS",
+      "classement": 3,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2026-08-15",
+      "cheval": "MANDRAGORA FLEURY",
+      "hippodrome": "CARENTAN",
+      "classement": 3,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2026-08-03",
+      "cheval": "MANDRAGORA FLEURY",
+      "hippodrome": "ROCHEFORT-SUR-LOIRE",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2026-07-12",
+      "cheval": "MANDRAGORA FLEURY",
+      "hippodrome": "DEAUVILLE-CLAIREFONTAINE",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2026-07-12",
+      "cheval": "MEMPHIS BELLE",
+      "hippodrome": "RANES",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2026-07-12",
+      "cheval": "LORD ON WAY",
+      "hippodrome": "MONTMIRAIL",
+      "classement": 3,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2026-05-25",
+      "cheval": "NELSON STAR",
+      "hippodrome": "MIRAMONT-DE-GUYENNE",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2026-05-24",
+      "cheval": "NEBRASKA FLEURY",
+      "hippodrome": "ROYAN-ATLANTIQUE",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2026-05-03",
+      "cheval": "JETHAN DE MONGOCHY",
+      "hippodrome": "MONPAZIER",
+      "classement": 3,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2026-04-12",
+      "cheval": "NEBRASKA FLEURY",
+      "hippodrome": "TOURS-CHAMBRAY",
+      "classement": 3,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2026-04-06",
+      "cheval": "JUNINIO FLEURY",
+      "hippodrome": "CASTILLONNES",
+      "classement": 3,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2026-02-23",
+      "cheval": "MONA LISA STARDUST",
+      "hippodrome": "MONTAUBAN",
+      "classement": 3,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2025-12-21",
+      "cheval": "JETHAN DE MONGOCHY",
+      "hippodrome": "GRENADE-SUR-GARONNE",
+      "classement": 3,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2025-11-16",
+      "cheval": "JETHAN DE MONGOCHY",
+      "hippodrome": "AGEN-LA-GARENNE",
+      "classement": 3,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2025-08-23",
+      "cheval": "JETHAN DE MONGOCHY",
+      "hippodrome": "VILLEREAL",
+      "classement": 3,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2025-08-11",
+      "cheval": "HAMPTON AMERICA",
+      "hippodrome": "CASTERA-VERDUZAN",
+      "classement": 3,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2025-08-03",
+      "cheval": "JETHAN DE MONGOCHY",
+      "hippodrome": "GRAMAT",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2025-08-02",
+      "cheval": "MONA LISA STARDUST",
+      "hippodrome": "VILLEREAL",
+      "classement": 3,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2025-07-13",
+      "cheval": "LARKY PERRINE",
+      "hippodrome": "RANES",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2025-03-02",
+      "cheval": "KEENNESS",
+      "hippodrome": "AGEN-LA GARENNE",
+      "classement": 3,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2025-02-15",
+      "cheval": "HAMPTON AMERICA",
+      "hippodrome": "AGEN-LA GARENNE",
+      "classement": 3,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2024-10-06",
+      "cheval": "MANDRAGORA FLEURY",
+      "hippodrome": "ALENCON",
+      "classement": 3,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2024-09-22",
+      "cheval": "GUEPARD DE MONE",
+      "hippodrome": "VILLENEUVE-SUR-LOT",
+      "classement": 3,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2024-08-04",
+      "cheval": "ISOLEE DU BOUILLON",
+      "hippodrome": "LA FERTE-VIDAME",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2024-07-14",
+      "cheval": "FANTOMAS DU VAL",
+      "hippodrome": "BAGNOLES DE L'ORNE",
+      "classement": 3,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2024-07-01",
+      "cheval": "HANANE MONTAVAL",
+      "hippodrome": "STRASBOURG",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2024-06-16",
+      "cheval": "JAMAIS SANS ELLE",
+      "hippodrome": "RAMBOUILLET",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2024-06-09",
+      "cheval": "JETHAN DE MONGOCHY",
+      "hippodrome": "ARRAS",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2024-06-03",
+      "cheval": "HOMAYA DU BOCAGE",
+      "hippodrome": "EAUZE",
+      "classement": 3,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2024-05-27",
+      "cheval": "ILLAM DE MONGOCHY",
+      "hippodrome": "BERNAY",
+      "classement": 3,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2024-05-09",
+      "cheval": "JAMAIS SANS ELLE",
+      "hippodrome": "VALOGNES",
+      "classement": 3,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2024-04-27",
+      "cheval": "JODEON",
+      "hippodrome": "GOURNAY-EN-BRAY",
+      "classement": 3,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2024-04-06",
+      "cheval": "JESSIE DES LANDES",
+      "hippodrome": "SAUMUR",
+      "classement": 3,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2024-03-24",
+      "cheval": "JESSIE DES LANDES",
+      "hippodrome": "LA GUERCHE-DE-BRETAGNE",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2024-02-25",
+      "cheval": "ILLAM DE MONGOCHY",
+      "hippodrome": "SAUMUR",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2023-11-05",
+      "cheval": "GUEPARD DE MONE",
+      "hippodrome": "GRENADE-SUR-GARONNE",
+      "classement": 3,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2023-11-05",
+      "cheval": "JAMAIS SANS ELLE",
+      "hippodrome": "LA CAPELLE",
+      "classement": 3,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2023-09-17",
+      "cheval": "ILLAM DE MONGOCHY",
+      "hippodrome": "BLAIN-BOUVRON-LE GAVRE",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2023-09-10",
+      "cheval": "JUNINIO FLEURY",
+      "hippodrome": "BERNAY",
+      "classement": 3,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2023-09-02",
+      "cheval": "FIESTA TEJY",
+      "hippodrome": "LANGON-LIBOURNE",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2023-08-08",
+      "cheval": "HERMES DU PRESSOIR",
+      "hippodrome": "TRIE-SUR-BAISE",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2023-08-06",
+      "cheval": "ISOLEE DU BOUILLON",
+      "hippodrome": "BREHAL",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2023-07-30",
+      "cheval": "ISOLEE DU BOUILLON",
+      "hippodrome": "BERNAY",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2023-07-04",
+      "cheval": "HERMES DU PRESSOIR",
+      "hippodrome": "BIARRITZ",
+      "classement": 3,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2023-07-02",
+      "cheval": "GOSPEL",
+      "hippodrome": "ECOMMOY",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2023-06-26",
+      "cheval": "HOMAYA DU BOCAGE",
+      "hippodrome": "CHARTRES",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2023-05-29",
+      "cheval": "HANANE MONTAVAL",
+      "hippodrome": "DURTAL",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2023-05-14",
+      "cheval": "ISOLEE DU BOUILLON",
+      "hippodrome": "ALENCON",
+      "classement": 3,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2023-05-01",
+      "cheval": "KOBLENZA DAIRPET",
+      "hippodrome": "BERNAY",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2023-05-01",
+      "cheval": "JUNINIO FLEURY",
+      "hippodrome": "FOUGERES",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2023-04-23",
+      "cheval": "JUNINIO FLEURY",
+      "hippodrome": "SAINT-AUBIN-LES-ELBEUF",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2023-02-25",
+      "cheval": "ISBA QUICK",
+      "hippodrome": "MONTAUBAN",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2022-11-27",
+      "cheval": "HARRISON GEDE",
+      "hippodrome": "VIRE NORMANDIE",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2022-11-11",
+      "cheval": "IBERIK DE MONGOCHY",
+      "hippodrome": "VINCENNES - GP",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2022-09-11",
+      "cheval": "HANANE MONTAVAL",
+      "hippodrome": "CHATEAUBRIANT",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2022-08-28",
+      "cheval": "HANANE MONTAVAL",
+      "hippodrome": "ROYAN-ATLANTIQUE",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2022-08-17",
+      "cheval": "JETHAN DE MONGOCHY",
+      "hippodrome": "ROYAN-ATLANTIQUE",
+      "classement": 3,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2022-08-09",
+      "cheval": "DARWIN LA MESANGE",
+      "hippodrome": "TRIE-SUR-BAISE",
+      "classement": 3,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2022-08-08",
+      "cheval": "HANANE MONTAVAL",
+      "hippodrome": "DIEPPE",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2022-07-31",
+      "cheval": "IVAN DRAGO",
+      "hippodrome": "VILLENEUVE-SUR-LOT",
+      "classement": 3,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2022-07-17",
+      "cheval": "HOMAYA DU BOCAGE",
+      "hippodrome": "BAGNOLES DE L'ORNE",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2022-07-11",
+      "cheval": "IVAN DRAGO",
+      "hippodrome": "BIARRITZ",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2022-07-03",
+      "cheval": "JETHAN DE MONGOCHY",
+      "hippodrome": "LE TOUQUET",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2022-07-01",
+      "cheval": "ISBA QUICK",
+      "hippodrome": "BORDEAUX",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2022-06-18",
+      "cheval": "JETHAN DE MONGOCHY",
+      "hippodrome": "LISIEUX",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2022-06-05",
+      "cheval": "IVAN DRAGO",
+      "hippodrome": "MONTAUBAN",
+      "classement": 3,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2022-04-17",
+      "cheval": "HOMAYA DU BOCAGE",
+      "hippodrome": "ECOMMOY",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2022-04-17",
+      "cheval": "JULY DU GUESNE",
+      "hippodrome": "LES ANDELYS",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2022-04-10",
+      "cheval": "HERMES PLANCHETTE",
+      "hippodrome": "RAMBOUILLET",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2022-04-03",
+      "cheval": "JULY DU GUESNE",
+      "hippodrome": "VIRE NORMANDIE",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2022-04-03",
+      "cheval": "HOMAYA DU BOCAGE",
+      "hippodrome": "VIRE NORMANDIE",
+      "classement": 3,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2021-11-26",
+      "cheval": "HERMES DU FOSSE",
+      "hippodrome": "REIMS",
+      "classement": 3,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2021-09-27",
+      "cheval": "FLEUR VIVANCIERE",
+      "hippodrome": "VIC-FEZENSAC",
+      "classement": 3,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2021-09-26",
+      "cheval": "HIP HOP JULRY",
+      "hippodrome": "VILLENEUVE-SUR-LOT",
+      "classement": 3,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2021-08-07",
+      "cheval": "IBERIK DE MONGOCHY",
+      "hippodrome": "CARENTAN",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2021-08-01",
+      "cheval": "CAID DORE",
+      "hippodrome": "COMPIEGNE",
+      "classement": 3,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2021-07-31",
+      "cheval": "IDEE FLORALE",
+      "hippodrome": "RANES",
+      "classement": 3,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2021-07-26",
+      "cheval": "CAID DORE",
+      "hippodrome": "CHATELAILLON-LA ROCHELLE",
+      "classement": 3,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2021-07-05",
+      "cheval": "CAID DORE",
+      "hippodrome": "EAUZE",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2021-07-05",
+      "cheval": "IBERIK DE MONGOCHY",
+      "hippodrome": "SABLE-SUR-SARTHE",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2021-04-11",
+      "cheval": "GINKO",
+      "hippodrome": "RAMBOUILLET",
+      "classement": 3,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2021-03-07",
+      "cheval": "GOSPEL",
+      "hippodrome": "CHALLANS",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2021-01-12",
+      "cheval": "GOSPEL",
+      "hippodrome": "BORDEAUX",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2020-12-14",
+      "cheval": "FLEUR VIVANCIERE",
+      "hippodrome": "BORDEAUX",
+      "classement": 3,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2020-12-06",
+      "cheval": "GOSPEL",
+      "hippodrome": "CHATEAUBRIANT",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2020-10-31",
+      "cheval": "FETICHE ATOUT",
+      "hippodrome": "CHATELAILLON-LA ROCHELLE",
+      "classement": 3,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2020-09-20",
+      "cheval": "FEEL SO GOOD",
+      "hippodrome": "VILLEDIEU-LES-POELES",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2020-08-15",
+      "cheval": "GREAT FIRE",
+      "hippodrome": "FRANCHEVILLE-LA BARRE",
+      "classement": 3,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2020-05-17",
+      "cheval": "GINKO",
+      "hippodrome": "MAUQUENCHY",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2019-09-15",
+      "cheval": "CRYSTAL GIRL",
+      "hippodrome": "LAON",
+      "classement": 3,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2019-08-12",
+      "cheval": "ETOILE DE MONGOCHY",
+      "hippodrome": "LANGON-LIBOURNE",
+      "classement": 3,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2019-08-06",
+      "cheval": "ETOILE DE MONGOCHY",
+      "hippodrome": "TRIE-SUR-BAISE",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2019-07-31",
+      "cheval": "GOSPEL",
+      "hippodrome": "DOZULE",
+      "classement": 3,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2019-07-07",
+      "cheval": "ETOILE DE MONGOCHY",
+      "hippodrome": "MONPAZIER",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2019-06-30",
+      "cheval": "ETOILE DE MONGOCHY",
+      "hippodrome": "BEAUMONT-DE-LOMAGNE",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2019-06-16",
+      "cheval": "CRYSTAL GIRL",
+      "hippodrome": "LES ANDELYS",
+      "classement": 3,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2019-06-10",
+      "cheval": "CRYSTAL GIRL",
+      "hippodrome": "VILLEDIEU-LES-POELES",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2018-09-16",
+      "cheval": "ELFE ATOUT",
+      "hippodrome": "CHERBOURG",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2017-06-17",
+      "cheval": "ELFE ATOUT",
+      "hippodrome": "LISIEUX",
+      "classement": 3,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2017-06-05",
+      "cheval": "ETOILE DE MONGOCHY",
+      "hippodrome": "VILLEDIEU-LES-POELES",
+      "classement": 3,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2017-05-25",
+      "cheval": "ETOILE DE MONGOCHY",
+      "hippodrome": "BIHOREL-LES-ROUEN",
+      "classement": 3,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2017-04-09",
+      "cheval": "ACTRICE DE CERISY",
+      "hippodrome": "BEAUMONT-DE-LOMAGNE",
+      "classement": 3,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2017-03-19",
+      "cheval": "VALMIN DE GUEUDE",
+      "hippodrome": "CHOLET",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2017-03-05",
+      "cheval": "VALMIN DE GUEUDE",
+      "hippodrome": "SEICHES-SUR-LE-LOIR",
+      "classement": 3,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2016-10-15",
+      "cheval": "VALMIN DE GUEUDE",
+      "hippodrome": "PARAY-LE-MONIAL",
+      "classement": 3,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2016-09-18",
+      "cheval": "ACTRICE DE CERISY",
+      "hippodrome": "AGEN-LA-GARENNE",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2016-09-11",
+      "cheval": "ETOILE DE MONGOCHY",
+      "hippodrome": "BERNAY",
+      "classement": 3,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2016-08-01",
+      "cheval": "BEAUTE D'ONDEE",
+      "hippodrome": "BREHAL",
+      "classement": 3,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2015-12-06",
+      "cheval": "TYCOZ DE LADY",
+      "hippodrome": "ARGENTAN",
+      "classement": 3,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2015-09-13",
+      "cheval": "VALMIN DE GUEUDE",
+      "hippodrome": "LANGON-LIBOURNE",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2015-08-01",
+      "cheval": "VALMIN DE GUEUDE",
+      "hippodrome": "VILLEREAL",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2015-07-31",
+      "cheval": "BEAUTE D'ONDEE",
+      "hippodrome": "PORNICHET",
+      "classement": 3,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2015-07-26",
+      "cheval": "ADAMS",
+      "hippodrome": "ENGHIEN",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2015-07-21",
+      "cheval": "BEAUTE D'ONDEE",
+      "hippodrome": "PORNICHET",
+      "classement": 3,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2015-06-21",
+      "cheval": "BEAUTE D'ONDEE",
+      "hippodrome": "QUESTEMBERT",
+      "classement": 3,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2015-06-13",
+      "cheval": "UKAPI DE GODISSON",
+      "hippodrome": "LE TOUQUET",
+      "classement": 3,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2015-04-19",
+      "cheval": "CALIE DE POMMERAYE",
+      "hippodrome": "JULLOUVILLE-LES-PINS",
+      "classement": 3,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2015-04-06",
+      "cheval": "VALMIN DE GUEUDE",
+      "hippodrome": "CASTILLONNES",
+      "classement": 3,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2015-03-29",
+      "cheval": "TYCOZ DE LADY",
+      "hippodrome": "GRAIGNES",
+      "classement": 3,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2014-11-02",
+      "cheval": "BEAUTE D'ONDEE",
+      "hippodrome": "MAUQUENCHY",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2014-10-26",
+      "cheval": "VALMIN DE GUEUDE",
+      "hippodrome": "GRENADE-SUR-GARONNE",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2014-09-07",
+      "cheval": "ACTRICE DE CERISY",
+      "hippodrome": "BEAUMONT-DE-LOMAGNE",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2014-07-20",
+      "cheval": "RHEA SILVIA",
+      "hippodrome": "LES ANDELYS",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2014-06-01",
+      "cheval": "RHEA SILVIA",
+      "hippodrome": "LIGNIERES EN BERRY",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2014-04-16",
+      "cheval": "RHEA SILVIA",
+      "hippodrome": "PONTCHATEAU",
+      "classement": 3,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2013-12-30",
+      "cheval": "ACTRICE DE CERISY",
+      "hippodrome": "TOULOUSE",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2013-11-10",
+      "cheval": "ACTRICE DE CERISY",
+      "hippodrome": "BORDEAUX",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2013-09-22",
+      "cheval": "TENOR DEBOUT",
+      "hippodrome": "ALENCON",
+      "classement": 3,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2013-08-31",
+      "cheval": "RHEA SILVIA",
+      "hippodrome": "EAUZE",
+      "classement": 3,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2013-08-22",
+      "cheval": "TENOR DEBOUT",
+      "hippodrome": "MONTIGNAC-CHARENTE",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2013-08-06",
+      "cheval": "RHEA SILVIA",
+      "hippodrome": "AVRANCHES",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2013-07-27",
+      "cheval": "RHUM BARBES",
+      "hippodrome": "COMPIEGNE",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2013-07-14",
+      "cheval": "RHEA SILVIA",
+      "hippodrome": "FRANCHEVILLE-LA BARRE",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2013-02-17",
+      "cheval": "URANUS DU COURS",
+      "hippodrome": "MONTAUBAN",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2013-01-13",
+      "cheval": "ADAMS",
+      "hippodrome": "ARGENTAN",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2012-08-19",
+      "cheval": "TENDRESSE DE RHISA",
+      "hippodrome": "SAINT-PIERRE-EN-AUGE",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2012-08-06",
+      "cheval": "URANUS DU COURS",
+      "hippodrome": "AUCH",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2012-07-30",
+      "cheval": "URANUS DU COURS",
+      "hippodrome": "GABARRET",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2012-05-13",
+      "cheval": "RHEA SILVIA",
+      "hippodrome": "DREUX",
+      "classement": 3,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2012-04-15",
+      "cheval": "RHEA SILVIA",
+      "hippodrome": "SAINT-AUBIN-LES-ELBEUF",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2011-08-30",
+      "cheval": "SURCOUF BREIZH",
+      "hippodrome": "PORNICHET",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2011-08-21",
+      "cheval": "ROMEO LAP",
+      "hippodrome": "SAINT-PIERRE-EN-AUGE",
+      "classement": 3,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2011-08-20",
+      "cheval": "SURCOUF BREIZH",
+      "hippodrome": "GRAIGNES",
+      "classement": 3,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2011-08-15",
+      "cheval": "ROMEO LAP",
+      "hippodrome": "DIEPPE",
+      "classement": 3,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2009-09-27",
+      "cheval": "OLGA DE LA FONTE",
+      "hippodrome": "AVIGNON-LE PONTET",
+      "classement": 3,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2009-08-22",
+      "cheval": "OLGA DE LA FONTE",
+      "hippodrome": "SAINT-PIERRE-EN-AUGE",
+      "classement": 3,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2009-08-16",
+      "cheval": "OLGA DE LA FONTE",
+      "hippodrome": "BACQUEVILLE-EN-CAUX",
+      "classement": 3,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2009-05-31",
+      "cheval": "OLGA DE LA FONTE",
+      "hippodrome": "GOURNAY-EN-BRAY",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2009-05-10",
+      "cheval": "OLGA DE LA FONTE",
+      "hippodrome": "ARRAS",
+      "classement": 2,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    },
+    {
+      "date": "2008-10-27",
+      "cheval": "OLGA DE LA FONTE",
+      "hippodrome": "LE CROISE-LAROCHE",
+      "classement": 3,
+      "discipline": "attele",
+      "etat": "numero_reunion_course_non_confirme_pour_replay",
+      "video": "non_identifiee"
+    }
+  ]
+}
