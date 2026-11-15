@@ -1,0 +1,8 @@
+# Écurie Initial — vérification des appels réalisée par le code de chaque fonction.
+# notifications : contrôle du jeton de l'appareil + Supabase Auth facultative.
+# push-dispatch : contrôle obligatoire du secret PUSH_JOB_SECRET.
+[functions.notifications]
+verify_jwt = false
+
+[functions.push-dispatch]
+verify_jwt = false
