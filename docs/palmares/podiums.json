@@ -315,6 +315,18 @@
     },
     {
       "date": "2026-07-12",
+      "cheval": "LORD ON WAY",
+      "hippodrome": "MONTMIRAIL",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "proprietaire": "Écurie Initial",
+      "jockey": "Mathias LEGROS",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "https://www.geny.com/cheval/2837238-lord-on-way/course/1679027"
+    },
+    {
+      "date": "2026-07-12",
       "cheval": "MANDRAGORA FLEURY",
       "hippodrome": "DEAUVILLE-CLAIREFONTAINE",
       "classement": 2,
@@ -334,18 +346,6 @@
       "casaque": "blanche",
       "entraineur": "Bruno MARIE",
       "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
-    },
-    {
-      "date": "2026-07-12",
-      "cheval": "LORD ON WAY",
-      "hippodrome": "MONTMIRAIL",
-      "classement": 3,
-      "discipline": "attele",
-      "casaque": "blanche",
-      "proprietaire": "Écurie Initial",
-      "jockey": "Mathias LEGROS",
-      "entraineur": "Bruno MARIE",
-      "source_entraineur": "https://www.geny.com/cheval/2837238-lord-on-way/course/1679027"
     },
     {
       "date": "2026-07-02",
@@ -404,6 +404,16 @@
     },
     {
       "date": "2026-05-25",
+      "cheval": "MASTER PAT",
+      "hippodrome": "COMPIEGNE",
+      "classement": 3,
+      "discipline": "galop",
+      "entraineur": "Gilles PANNIER",
+      "casaque": "galop",
+      "jockey": "L. BOISSEAU"
+    },
+    {
+      "date": "2026-05-25",
       "cheval": "NELSON STAR",
       "hippodrome": "MIRAMONT-DE-GUYENNE",
       "classement": 2,
@@ -412,16 +422,6 @@
       "casaque": "blanche",
       "entraineur": "Michel HANQUIER",
       "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
-    },
-    {
-      "date": "2026-05-25",
-      "cheval": "MASTER PAT",
-      "hippodrome": "COMPIEGNE",
-      "classement": 3,
-      "discipline": "galop",
-      "entraineur": "Gilles PANNIER",
-      "casaque": "galop",
-      "jockey": "L. BOISSEAU"
     },
     {
       "date": "2026-05-24",
@@ -436,16 +436,6 @@
     },
     {
       "date": "2026-05-17",
-      "cheval": "LIMPIDE",
-      "hippodrome": "LE CROISE-LAROCHE",
-      "classement": 3,
-      "discipline": "galop",
-      "entraineur": "Gilles PANNIER",
-      "casaque": "galop",
-      "jockey": "L. BOISSEAU"
-    },
-    {
-      "date": "2026-05-17",
       "cheval": "GIORGIANA",
       "hippodrome": "LE CROISE-LAROCHE",
       "classement": 3,
@@ -453,6 +443,16 @@
       "entraineur": "Gilles PANNIER",
       "casaque": "galop",
       "jockey": "A. MOLINS"
+    },
+    {
+      "date": "2026-05-17",
+      "cheval": "LIMPIDE",
+      "hippodrome": "LE CROISE-LAROCHE",
+      "classement": 3,
+      "discipline": "galop",
+      "entraineur": "Gilles PANNIER",
+      "casaque": "galop",
+      "jockey": "L. BOISSEAU"
     },
     {
       "date": "2026-05-10",
@@ -1782,17 +1782,6 @@
     },
     {
       "date": "2023-07-30",
-      "cheval": "ISOLEE DU BOUILLON",
-      "hippodrome": "BERNAY",
-      "classement": 2,
-      "discipline": "attele",
-      "jockey": "Bruno MARIE",
-      "casaque": "blanche",
-      "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
-    },
-    {
-      "date": "2023-07-30",
       "cheval": "INDICE DELADOU",
       "hippodrome": "ENGHIEN",
       "classement": 3,
@@ -1800,6 +1789,17 @@
       "casaque": "blanche",
       "jockey": "Eva BOUCLET",
       "entraineur": "Charley HESLOUIN",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+    },
+    {
+      "date": "2023-07-30",
+      "cheval": "ISOLEE DU BOUILLON",
+      "hippodrome": "BERNAY",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Bruno MARIE",
+      "casaque": "blanche",
+      "entraineur": "Bruno MARIE",
       "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
@@ -1870,6 +1870,16 @@
     },
     {
       "date": "2023-05-01",
+      "cheval": "JUNINIO FLEURY",
+      "hippodrome": "FOUGERES",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Jérémy CONDETTE",
+      "entraineur": "Vincent HEBERT",
+      "casaque": "homa"
+    },
+    {
+      "date": "2023-05-01",
       "cheval": "KOBLENZA DAIRPET",
       "hippodrome": "BERNAY",
       "classement": 2,
@@ -1878,16 +1888,6 @@
       "casaque": "nathalie",
       "entraineur": "Bruno MARIE",
       "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
-    },
-    {
-      "date": "2023-05-01",
-      "cheval": "JUNINIO FLEURY",
-      "hippodrome": "FOUGERES",
-      "classement": 2,
-      "discipline": "attele",
-      "jockey": "Jérémy CONDETTE",
-      "entraineur": "Vincent HEBERT",
-      "casaque": "homa"
     },
     {
       "date": "2023-04-30",
@@ -2359,17 +2359,6 @@
     },
     {
       "date": "2022-04-03",
-      "cheval": "JULY DU GUESNE",
-      "hippodrome": "VIRE NORMANDIE",
-      "classement": 2,
-      "discipline": "attele",
-      "jockey": "Alexandre GUILLEMIN",
-      "casaque": "blanche",
-      "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
-    },
-    {
-      "date": "2022-04-03",
       "cheval": "HOMAYA DU BOCAGE",
       "hippodrome": "VIRE NORMANDIE",
       "classement": 3,
@@ -2378,6 +2367,17 @@
       "jockey": "Bruno MARIE",
       "entraineur": "Bruno MARIE",
       "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Bruno MARIE sans changement"
+    },
+    {
+      "date": "2022-04-03",
+      "cheval": "JULY DU GUESNE",
+      "hippodrome": "VIRE NORMANDIE",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Alexandre GUILLEMIN",
+      "casaque": "blanche",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2022-03-22",
@@ -3805,6 +3805,76 @@
       "proprietaire": "Rodolphe HAMON",
       "entraineur": "Hervé BIHEL",
       "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+    },
+    {
+      "date": "2008-08-24",
+      "cheval": "OLGA DE LA FONTE",
+      "hippodrome": "GOURNAY-EN-BRAY",
+      "classement": 3,
+      "discipline": "attele",
+      "jockey": "Rodolphe HAMON",
+      "entraineur": "Hervé BIHEL",
+      "casaque": "historique",
+      "compteInitial": false,
+      "source": "https://www.zone-turf.fr/cheval/olga-de-la-fonte-47870/",
+      "source_classement": "Résultats de courses historiques Zone-Turf et capture LeTROT transmise le 15/11/2026",
+      "note_classement": "Podium confirmé. Propriétaire déclaré à cette date non vérifié : ne pas compter dans le total Écurie Initial avant confirmation."
+    },
+    {
+      "date": "2008-07-28",
+      "cheval": "OLGA DE LA FONTE",
+      "hippodrome": "BRÉHAL",
+      "classement": 3,
+      "discipline": "attele",
+      "jockey": "Rodolphe HAMON",
+      "entraineur": "Hervé BIHEL",
+      "casaque": "historique",
+      "compteInitial": false,
+      "source": "https://www.zone-turf.fr/cheval/olga-de-la-fonte-47870/",
+      "source_classement": "Résultats de courses historiques Zone-Turf et capture LeTROT transmise le 15/11/2026",
+      "note_classement": "Podium confirmé. Propriétaire déclaré à cette date non vérifié : ne pas compter dans le total Écurie Initial avant confirmation."
+    },
+    {
+      "date": "2008-07-20",
+      "cheval": "OLGA DE LA FONTE",
+      "hippodrome": "AVRANCHES",
+      "classement": 3,
+      "discipline": "attele",
+      "jockey": "Nicolas BIHEL",
+      "entraineur": "Hervé BIHEL",
+      "casaque": "historique",
+      "compteInitial": false,
+      "source": "https://www.zone-turf.fr/cheval/olga-de-la-fonte-47870/",
+      "source_classement": "Résultats de courses historiques Zone-Turf et capture LeTROT transmise le 15/11/2026",
+      "note_classement": "Podium confirmé. Propriétaire déclaré à cette date non vérifié : ne pas compter dans le total Écurie Initial avant confirmation."
+    },
+    {
+      "date": "2008-07-06",
+      "cheval": "OLGA DE LA FONTE",
+      "hippodrome": "GOURNAY-EN-BRAY",
+      "classement": 3,
+      "discipline": "attele",
+      "jockey": "Delphine BEAUFILS ERNAULT",
+      "entraineur": "Hervé BIHEL",
+      "casaque": "historique",
+      "compteInitial": false,
+      "source": "https://www.zone-turf.fr/cheval/olga-de-la-fonte-47870/",
+      "source_classement": "Résultats de courses historiques Zone-Turf et capture LeTROT transmise le 15/11/2026",
+      "note_classement": "Podium confirmé. Propriétaire déclaré à cette date non vérifié : ne pas compter dans le total Écurie Initial avant confirmation."
+    },
+    {
+      "date": "2008-06-15",
+      "cheval": "OLGA DE LA FONTE",
+      "hippodrome": "ELBEUF",
+      "classement": 3,
+      "discipline": "attele",
+      "jockey": "Hervé BIHEL",
+      "entraineur": "Hervé BIHEL",
+      "casaque": "historique",
+      "compteInitial": false,
+      "source": "https://www.zone-turf.fr/cheval/olga-de-la-fonte-47870/",
+      "source_classement": "Résultats de courses historiques Zone-Turf et capture LeTROT transmise le 15/11/2026",
+      "note_classement": "Podium confirmé. Propriétaire déclaré à cette date non vérifié : ne pas compter dans le total Écurie Initial avant confirmation."
     }
   ]
 }
