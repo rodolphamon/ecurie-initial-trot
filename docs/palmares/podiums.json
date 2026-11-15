@@ -1367,7 +1367,9 @@
       "classement": 3,
       "discipline": "attele",
       "casaque": "blanche",
-      "jockey": "Maxence VAUDOIT"
+      "jockey": "Maxence VAUDOIT",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Bruno MARIE sans changement"
     },
     {
       "date": "2024-05-27",
@@ -1665,7 +1667,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Léo JORDAN-GUENET",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Bruno MARIE sans changement"
     },
     {
       "date": "2023-08-06",
@@ -1725,7 +1729,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Alexandre GUILLEMIN",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Bruno MARIE sans changement"
     },
     {
       "date": "2023-05-31",
@@ -1799,7 +1805,9 @@
       "classement": 3,
       "discipline": "attele",
       "casaque": "blanche",
-      "jockey": "Sébastien LABOUTIQUE"
+      "jockey": "Sébastien LABOUTIQUE",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Bruno MARIE sans changement"
     },
     {
       "date": "2023-04-24",
@@ -2113,7 +2121,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Christophe THOUROUDE",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Bruno MARIE sans changement"
     },
     {
       "date": "2022-07-11",
@@ -2189,7 +2199,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Adrien ERNAULT",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Bruno MARIE sans changement"
     },
     {
       "date": "2022-04-17",
@@ -2229,7 +2241,9 @@
       "classement": 3,
       "discipline": "attele",
       "casaque": "blanche",
-      "jockey": "Bruno MARIE"
+      "jockey": "Bruno MARIE",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Bruno MARIE sans changement"
     },
     {
       "date": "2022-03-22",
