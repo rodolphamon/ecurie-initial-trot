@@ -1,5 +1,5 @@
 {
-  "version": 37,
+  "version": 38,
   "note": "Fiches de courses Equidia ou LeTROT avec sources identifiant les courses. Les URLs Equidia sont déduites du format date/R/C ; la disponibilité et la lecture des vidéos ne sont pas garanties. HOMA reste sur LeTROT faute de fiche Equidia vérifiée.",
   "replays": [
     {
@@ -136,6 +136,14 @@
       "url": "https://www.equidia.fr/courses/2026-08-25/R5/C5",
       "preuve_identification_course": "https://turfin.fr/course/2026-08-25/r5c5-cabourg-prix-paristurf-fete-ses-80-ans",
       "controle": "Course, hippodrome et R/C identifiés dans les résultats Turfin ; consultation de la vidéo Equidia non testée"
+    },
+    {
+      "date": "2026-08-23",
+      "cheval": "ANDRESY",
+      "hippodrome": "DEAUVILLE",
+      "url": "https://www.equidia.fr/courses/2026-08-23/R1/C8",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2026-08-23/R1C8-equidia",
+      "controle": "Date, hippodrome, classement et R/C vérifiés sur l'arrivée ZEturf ; la vidéo Equidia n'a pas été visionnée individuellement"
     },
     {
       "date": "2026-08-18",
@@ -357,6 +365,14 @@
       "controle": "R/C, cheval et place confirmés dans l'arrivée de course ; replay Equidia non visionné individuellement"
     },
     {
+      "date": "2026-04-09",
+      "cheval": "ROSA MIA",
+      "hippodrome": "ARGENTAN",
+      "url": "https://www.equidia.fr/courses/2026-04-09/R4/C6",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2026-04-09/R4C6-argentan-prix-du-pays-d-houlme",
+      "controle": "Date, hippodrome, classement et R/C vérifiés sur l'arrivée ZEturf ; la vidéo Equidia n'a pas été visionnée individuellement"
+    },
+    {
       "date": "2026-04-06",
       "cheval": "MOONDANCE OKINA",
       "hippodrome": "CHERBOURG",
@@ -451,6 +467,14 @@
       "preuve_identification_course": "https://turfin.fr/course/2026-02-14/r4c1-agen-la-garenne"
     },
     {
+      "date": "2026-02-05",
+      "cheval": "MASTER PAT",
+      "hippodrome": "PORNICHET",
+      "url": "https://www.equidia.fr/courses/2026-02-05/R4/C1",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2026-02-05/R4C1-pornichet-la-baule-prix-fleur-de-sel",
+      "controle": "Date, hippodrome, classement et R/C vérifiés sur l'arrivée ZEturf ; la vidéo Equidia n'a pas été visionnée individuellement"
+    },
+    {
       "date": "2026-02-02",
       "cheval": "LOVE ME MAZELI",
       "hippodrome": "GRAIGNES",
@@ -484,6 +508,14 @@
       "url": "https://www.equidia.fr/courses/2026-01-25/R1/C2",
       "preuve_identification_course": "https://turfin.fr/course/2026-01-25/r1c2-vincennes-prix-rmc-prix-tidalium-pelo",
       "controle": "Course, hippodrome et R/C identifiés dans les résultats Turfin ; consultation de la vidéo Equidia non testée"
+    },
+    {
+      "date": "2025-12-13",
+      "cheval": "MASTER PAT",
+      "hippodrome": "DEAUVILLE",
+      "url": "https://www.equidia.fr/courses/2025-12-13/R4/C4",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2025-12-13/R4C4-deauville-prix-du-chalet-mozin",
+      "controle": "Date, hippodrome, classement et R/C vérifiés sur l'arrivée ZEturf ; la vidéo Equidia n'a pas été visionnée individuellement"
     },
     {
       "date": "2025-12-12",
