@@ -1,7 +1,16 @@
 {
-  "version": 27,
+  "version": 28,
   "note": "Fiches de courses Equidia ou LeTROT avec sources identifiant les courses. Les URLs Equidia sont déduites du format date/R/C ; la disponibilité et la lecture des vidéos ne sont pas garanties. HOMA reste sur LeTROT faute de fiche Equidia vérifiée.",
   "replays": [
+    {
+      "date": "2026-11-01",
+      "cheval": "MEMPHIS BELLE",
+      "hippodrome": "LISIEUX",
+      "url": "https://www.equidia.fr/courses/2026-11-01/R16/C2",
+      "justificatif": "https://turfin.fr/course/2026-11-01/r16c2-lisieux-prix-d-orbec",
+      "preuve_lien_equidia": "https://turfin.fr/course/2026-11-01/r16c2-lisieux-prix-d-orbec",
+      "controle": "3e Prix d'Orbec R16C2 confirmée ; lien replay Equidia annoncé par Turfin ; lecture vidéo non testée depuis cet environnement"
+    },
     {
       "date": "2026-09-21",
       "cheval": "LORD ON WAY",
