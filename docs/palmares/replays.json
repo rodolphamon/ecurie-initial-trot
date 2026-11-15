@@ -1,5 +1,5 @@
 {
-  "version": 73,
+  "version": 74,
   "note": "Fiches de courses Equidia ou LeTROT avec sources identifiant les courses. Les URLs Equidia sont déduites du format date/R/C ; la disponibilité et la lecture des vidéos ne sont pas garanties. HOMA reste sur LeTROT faute de fiche Equidia vérifiée.",
   "replays": [
     {
@@ -2505,6 +2505,14 @@
       "controle": "Classement 3e, date et numéro de course R5C4 recoupés dans les résultats publiés ; lecture effective du replay Equidia non testée."
     },
     {
+      "date": "2017-04-09",
+      "cheval": "ACTRICE DE CERISY",
+      "hippodrome": "BEAUMONT-DE-LOMAGNE",
+      "url": "https://www.equidia.fr/courses/2017-04-09/R2/C3",
+      "justificatif": "https://www.gbet.fr/courses/beaumont-de-lomagne/2017-04-09/r2/c3/prix-dollar-maker/",
+      "controle": "Classement 3e, hippodrome et course R2C3 recoupés dans les résultats publiés. Visionnage du replay Equidia non testé individuellement."
+    },
+    {
       "date": "2017-04-07",
       "cheval": "CALIE DE POMMERAYE",
       "hippodrome": "VINCENNES - PP",
@@ -2685,6 +2693,14 @@
       "url": "https://www.equidia.fr/courses/2016-01-11/R7/C1",
       "preuve_identification_course": "https://www.gbet.fr/courses/chateaubriant/2016-01-11/r7/c1/prix-goetmals-wood/",
       "controle": "Date, cheval gagnant et réunion/course R/C identifiés dans les résultats publics. Replay Equidia non testé depuis cet environnement."
+    },
+    {
+      "date": "2015-12-06",
+      "cheval": "TYCOZ DE LADY",
+      "hippodrome": "ARGENTAN",
+      "url": "https://www.equidia.fr/courses/2015-12-06/R7/C9",
+      "justificatif": "https://www.canalturf.com/lignes-PMU/2015-12-06/argentan/128507_prix-des-frenes.html",
+      "controle": "Classement 3e, hippodrome et course R7C9 recoupés dans les résultats publiés. Visionnage du replay Equidia non testé individuellement."
     },
     {
       "date": "2015-07-31",
