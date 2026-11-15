@@ -217,24 +217,30 @@ async function loadReplays(){
   render();
  }catch(err){/* Aucun pictogramme tant que le lien direct n'est pas vérifié. */}
 }
+// Vincennes est un seul hippodrome : GP et PP sont deux pistes, pas deux établissements.
+function hippodromeUnifie(v){
+ const value=String(v||"").trim();
+ return /^VINCENNES(?:\s*[-–()]\s*(?:G\.?P\.?|P\.?P\.?|GRANDE\s+PISTE|PETITE\s+PISTE)\s*\)?)?$/i.test(value)
+   ? "VINCENNES" : value;
+}
 const state={page:1,perPage:25,discipline:"",placing:"all",videoOnly:false};
 function render(){
  const fold=s=>String(s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLocaleLowerCase("fr");
  const hippodrome=$("search").value,year=$("year").value,type=state.discipline,horse=$("horse").value,pilot=$("pilot").value,trainer=$("trainer").value;
- const data=results.filter(r=>(!state.videoOnly||!!replayUrl(r.video))&&(state.placing==="all"||(state.placing==="win"?(r.classement||1)===1:state.placing==="second"?(r.classement||1)===2:(r.classement||1)===3))&&(!year||r.date.slice(0,4)===year)&&(!type||r.discipline===type)&&(!horse||r.cheval===horse)&&(!pilot||r.jockey===pilot)&&(!trainer||r.entraineur===trainer)&&(!hippodrome||r.hippodrome===hippodrome))
+ const data=results.filter(r=>(!state.videoOnly||!!replayUrl(r.video))&&(state.placing==="all"||(state.placing==="win"?(r.classement||1)===1:state.placing==="second"?(r.classement||1)===2:(r.classement||1)===3))&&(!year||r.date.slice(0,4)===year)&&(!type||r.discipline===type)&&(!horse||r.cheval===horse)&&(!pilot||r.jockey===pilot)&&(!trainer||r.entraineur===trainer)&&(!hippodrome||hippodromeUnifie(r.hippodrome)===hippodrome))
  .sort((a,b)=>$("order").value==="desc"?b.date.localeCompare(a.date):a.date.localeCompare(b.date));
  const pages=Math.max(1,Math.ceil(data.length/state.perPage));
  state.page=Math.min(state.page,pages);
  const list=data.slice((state.page-1)*state.perPage,state.page*state.perPage);
  const dateFR=d=>d.split("-").reverse().join("/");
  // Affichage de la table sur ordinateur : colonnes classiques.
- $("rows").innerHTML=list.map(r=>'<tr><td>'+jersey(casaquePourCourse(r))+'</td><td class="rank-cell" aria-label="'+(r.classement||1)+'e place">'+medaille(r)+'</td><td class="date">'+esc(dateFR(r.date))+'</td><td class="place">'+esc(r.hippodrome)+'</td><td class="horse">'+esc(r.cheval)+'</td><td class="person">'+(r.jockey?esc(r.jockey):'—')+'<div class="table-trainer">Entraîneur : '+esc(r.entraineur||'—')+'</div></td><td class="discipline">'+disc(r.discipline)+'</td><td class="video-cell">'+replayButton(r,false)+'</td></tr>').join("");
+ $("rows").innerHTML=list.map(r=>'<tr><td>'+jersey(casaquePourCourse(r))+'</td><td class="rank-cell" aria-label="'+(r.classement||1)+'e place">'+medaille(r)+'</td><td class="date">'+esc(dateFR(r.date))+'</td><td class="place">'+esc(hippodromeUnifie(r.hippodrome))+'</td><td class="horse">'+esc(r.cheval)+'</td><td class="person">'+(r.jockey?esc(r.jockey):'—')+'<div class="table-trainer">Entraîneur : '+esc(r.entraineur||'—')+'</div></td><td class="discipline">'+disc(r.discipline)+'</td><td class="video-cell">'+replayButton(r,false)+'</td></tr>').join("");
  // Sur mobile : vraies fiches sans défilement horizontal, ni texte coupé.
  $("cards").innerHTML=list.map(r=>{
   const label=(r.discipline==="galop"||r.discipline==="obstacle"||r.discipline==="monte")?"Jockey":r.discipline==="attele"?"Driver":"Jockey / Driver";
   const jockey=r.jockey?'<div class="pal-card-jockey"><span class="pal-card-jockey-label">'+label+' :</span>'+esc(r.jockey)+'</div>':"";
   const trainer='<div class="pal-card-trainer"><span class="pal-card-trainer-label">Entraîneur :</span>'+esc(r.entraineur||"—")+'</div>';
-  return '<article class="pal-card"><div class="pal-card-silk">'+jersey(casaquePourCourse(r))+'</div><div class="pal-card-main"><time class="pal-card-date" datetime="'+esc(r.date)+'">'+esc(dateFR(r.date))+'</time><div class="pal-card-name">'+esc(r.cheval)+'</div><div class="pal-card-place">'+esc(r.hippodrome)+'</div>'+jockey+trainer+'</div><div class="pal-card-actions"><span class="pal-card-disc'+(r.discipline==="trot"?' is-unclassified':'')+'">'+disc(r.discipline)+'</span><span class="pal-card-medal" aria-label="Classement : '+(r.classement||1)+'">'+medaille(r)+'</span>'+replayButton(r,true)+'</div></article>';
+  return '<article class="pal-card"><div class="pal-card-silk">'+jersey(casaquePourCourse(r))+'</div><div class="pal-card-main"><time class="pal-card-date" datetime="'+esc(r.date)+'">'+esc(dateFR(r.date))+'</time><div class="pal-card-name">'+esc(r.cheval)+'</div><div class="pal-card-place">'+esc(hippodromeUnifie(r.hippodrome))+'</div>'+jockey+trainer+'</div><div class="pal-card-actions"><span class="pal-card-disc'+(r.discipline==="trot"?' is-unclassified':'')+'">'+disc(r.discipline)+'</span><span class="pal-card-medal" aria-label="Classement : '+(r.classement||1)+'">'+medaille(r)+'</span>'+replayButton(r,true)+'</div></article>';
  }).join("");
  for(const button of $("legend").querySelectorAll("button[data-discipline]"))button.setAttribute("aria-pressed",button.dataset.discipline===state.discipline?"true":"false");
  $("empty").hidden=data.length>0;
@@ -269,7 +275,7 @@ function refreshNameFilters(){
  fill(horseSelect,results.map(r=>r.cheval),"Cheval",alphabetic);
  fill(pilotSelect,results.map(r=>r.jockey),"Jockey / Driver",bySurname);
  fill(trainerSelect,results.map(r=>r.entraineur),"Entraîneur",alphabetic);
- fill(hippodromeSelect,results.map(r=>r.hippodrome),"Hippodrome",alphabetic);
+ fill(hippodromeSelect,results.map(r=>hippodromeUnifie(r.hippodrome)),"Hippodrome",alphabetic);
 }
 refreshNameFilters();
 // Référence validée par le propriétaire. Deux lignes anciennes avec casaque blanche
