@@ -1,5 +1,5 @@
 {
-  "version": 80,
+  "version": 81,
   "note": "Fiches de courses Equidia ou LeTROT avec sources identifiant les courses. Les URLs Equidia sont déduites du format date/R/C ; la disponibilité et la lecture des vidéos ne sont pas garanties. HOMA reste sur LeTROT faute de fiche Equidia vérifiée.",
   "replays": [
     {
@@ -2296,6 +2296,15 @@
       "url": "https://www.equidia.fr/courses/2021-04-22/R3/C1",
       "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2021-04-22/R3C1-moulins-prix-brioche",
       "controle": "Arrivée publiée contrôlée : 2e, n°2 ; R3C1. Lecture effective du replay Equidia non testée."
+    },
+    {
+      "date": "2021-04-11",
+      "cheval": "GINKO",
+      "hippodrome": "RAMBOUILLET",
+      "url": "https://www.zeturf.fr/fr/course-du-jour/2021-04-11/R10C4-rambouillet-prix-rambouillet-territoires-groupe-a",
+      "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2021-04-11/R10C4-rambouillet-prix-rambouillet-territoires-groupe-a",
+      "preuve_arrivee": "https://www.zeturf.fr/fr/course-du-jour/2021-04-11/R10C4-rambouillet-prix-rambouillet-territoires-groupe-a",
+      "controle": "3e, n°5 du Prix Rambouillet Territoires (Gr A), R10C4 le 11/04/2021 avec Q. Daougabel ; page ZEturf possède la section Replay ; lecture vidéo non testée."
     },
     {
       "date": "2021-04-05",
