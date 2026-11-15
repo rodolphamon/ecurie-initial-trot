@@ -3118,6 +3118,19 @@
       "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Bruno MARIE à partir du 15/10/2016, auparavant Romain LE CREPS"
     },
     {
+      "date": "2017-03-05",
+      "cheval": "VALMIN DE GUEUDE",
+      "hippodrome": "SEICHES-SUR-LE-LOIR",
+      "classement": 3,
+      "discipline": "attele",
+      "jockey": "Rodolphe HAMON",
+      "casaque": "blanche",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Bruno MARIE à partir du 15/10/2016, auparavant Romain LE CREPS",
+      "source_classement": "Capture de l'arrivée définitive LeTROT fournie par le propriétaire le 15/11/2026 : C8 Seiches-sur-le-Loir, 05/03/2017, 1er n°4 ANIS DE PLANCHETTE, 2e n°1 VOYOU DE LA CRIERE, 3e n°14 VALMIN DE GUEUDE",
+      "note_classement": "Vainqueur initial n°2 AYUMI DE CRAVANS ultérieurement disqualifié pour dopage selon le propriétaire. Une archive tierce affiche l'arrivée initiale 2-4-1-14 ; la capture LeTROT fournie atteste le reclassement 4-1-14 et VALMIN troisième."
+    },
+    {
       "date": "2017-02-19",
       "cheval": "VALMIN DE GUEUDE",
       "hippodrome": "VIRE NORMANDIE",
@@ -3786,18 +3799,6 @@
       "proprietaire": "Rodolphe HAMON",
       "entraineur": "Hervé BIHEL",
       "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
-    }
-  ],
-  "corrections_historique": [
-    {
-      "date": "2017-03-05",
-      "cheval": "VALMIN DE GUEUDE",
-      "hippodrome": "SEICHES-SUR-LE-LOIR",
-      "ancienne_mention": "3e place dans podiums",
-      "classement_verifie": 4,
-      "driver": "Rodolphe HAMON",
-      "source": "https://www.zone-turf.fr/rapports/phh-c8-prix-president-le-vexier-432362.html",
-      "motif": "Course Prix President le Vexier PHH C8, arrivée officielle 2-4-1-14-12, VALMIN n°14 quatrième; exclu des podiums mais historique conservé."
     }
   ]
 }
