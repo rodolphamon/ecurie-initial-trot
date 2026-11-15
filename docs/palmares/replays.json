@@ -1,5 +1,5 @@
 {
-  "version": 64,
+  "version": 65,
   "note": "Fiches de courses Equidia ou LeTROT avec sources identifiant les courses. Les URLs Equidia sont déduites du format date/R/C ; la disponibilité et la lecture des vidéos ne sont pas garanties. HOMA reste sur LeTROT faute de fiche Equidia vérifiée.",
   "replays": [
     {
@@ -1423,6 +1423,14 @@
       "controle": "Course et victoire explicitement confirmées par l'arrivée publiée ; lien Equidia construit à partir du R/C vérifié, lecture vidéo non testée."
     },
     {
+      "date": "2023-09-18",
+      "cheval": "FANTOMAS DU VAL",
+      "hippodrome": "CAVAILLON",
+      "url": "https://www.equidia.fr/courses/2023-09-18/R3/C3",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2023-09-18/R3C3-cavaillon-prix-liliane-saladin",
+      "controle": "Arrivée vérifiée sur ZEturf : 3e, n°7; réunion et course R3C3. Lien Equidia dérivé de l'identifiant de course ; vidéo non visionnée individuellement."
+    },
+    {
       "date": "2023-09-07",
       "cheval": "KOBLENZA DAIRPET",
       "hippodrome": "VINCENNES",
@@ -1456,6 +1464,14 @@
       "url": "https://www.equidia.fr/courses/2023-08-10/R2/C4",
       "preuve_identification_course": "https://www.oneturf.fr/arrive/FR/10-08-2023/179791%2C1478731%2CCHATEAUBRIANT%2C4-PRIX-DU-PARC.html",
       "controle": "Course et victoire explicitement confirmées par l'arrivée publiée ; lien Equidia construit à partir du R/C vérifié, lecture vidéo non testée."
+    },
+    {
+      "date": "2023-08-07",
+      "cheval": "HOMAYA DU BOCAGE",
+      "hippodrome": "LES SABLES D'OLONNE",
+      "url": "https://www.equidia.fr/courses/2023-08-07/R4/C8",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2023-08-07/R4C8-les-sables-d-olonne-prix-xavier-hoffmann",
+      "controle": "Arrivée vérifiée sur ZEturf : 2e, n°6; réunion et course R4C8. Lien Equidia dérivé de l'identifiant de course ; vidéo non visionnée individuellement."
     },
     {
       "date": "2023-08-01",
@@ -1520,6 +1536,14 @@
       "url": "https://www.equidia.fr/courses/2023-05-16/R4/C4",
       "justificatif": "https://www.zeturf.sn/fr/course-du-jour/2023-05-16/R4C4-vincennes-prix-circe",
       "controle": "Cheval, classement et R/C confirmés dans l'arrivée publiée ; replay Equidia non visionné individuellement"
+    },
+    {
+      "date": "2023-04-30",
+      "cheval": "HOMAYA DU BOCAGE",
+      "hippodrome": "CHARTRES",
+      "url": "https://www.equidia.fr/courses/2023-04-30/R6/C7",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2023-04-30/R6C7-chartres-prix-du-credit-agricole",
+      "controle": "Arrivée vérifiée sur ZEturf : 3e, n°7; réunion et course R6C7. Lien Equidia dérivé de l'identifiant de course ; vidéo non visionnée individuellement."
     },
     {
       "date": "2023-04-24",
@@ -1600,6 +1624,22 @@
       "url": "https://www.equidia.fr/courses/2023-01-29/R2/C2",
       "justificatif": "https://www.zeturf.fr/fr/reunion-du-jour/2023-01-29/R2-nantes",
       "controle": "Cheval et classement dans arrivée de course publiquement consultable ; R/C confirmés ; disponibilité du replay Equidia non testée individuellement"
+    },
+    {
+      "date": "2023-01-28",
+      "cheval": "JUNINIO FLEURY",
+      "hippodrome": "ARGENTAN",
+      "url": "https://www.equidia.fr/courses/2023-01-28/R9/C3",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2023-01-28/R9C3-argentan-prix-de-bourgogne",
+      "controle": "Arrivée vérifiée sur ZEturf : 2e, n°1; réunion et course R9C3. Lien Equidia dérivé de l'identifiant de course ; vidéo non visionnée individuellement."
+    },
+    {
+      "date": "2023-01-21",
+      "cheval": "ISBA QUICK",
+      "hippodrome": "ARGENTAN",
+      "url": "https://www.equidia.fr/courses/2023-01-21/R7/C7",
+      "justificatif": "https://www.zeturf.sn/en/course-du-jour/2023-01-21/R7C7-argentan-prix-de-sevigny-groupe-c",
+      "controle": "Arrivée vérifiée sur ZEturf : 3e, n°8; réunion et course R7C7. Lien Equidia dérivé de l'identifiant de course ; vidéo non visionnée individuellement."
     },
     {
       "date": "2023-01-07",
@@ -1737,6 +1777,14 @@
       "url": "https://www.equidia.fr/courses/2022-06-10/R3/C4",
       "preuve_identification_course": "https://www.oneturf.fr/arrive/FR/10-06-2022/163022%2C1331075%2CNANTES%2C4-PRIX-DES-CAMELIAS.html",
       "controle": "Victoire et numéro de réunion/course R3C4 confirmés dans l'arrivée ; replay Equidia non testé"
+    },
+    {
+      "date": "2022-05-19",
+      "cheval": "GOSPEL",
+      "hippodrome": "LISIEUX",
+      "url": "https://www.equidia.fr/courses/2022-05-19/R4/C2",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2022-05-19/R4C2-lisieux-prix-pmu-le-podosis-lisieux",
+      "controle": "Arrivée vérifiée sur ZEturf : 3e, n°12; réunion et course R4C2. Lien Equidia dérivé de l'identifiant de course ; vidéo non visionnée individuellement."
     },
     {
       "date": "2022-05-17",
