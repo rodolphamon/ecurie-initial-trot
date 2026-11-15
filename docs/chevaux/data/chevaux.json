@@ -330,7 +330,13 @@
       "discipline": "Trot",
       "trainer": "Vincent HÉBERT",
       "casaque": "blanche",
-      "horseLink": "https://www.letrot.com/stats/chevaux/popstar-d%27eri/Zmd8ZQECBwYG/elevage"
+      "horseLink": "https://www.letrot.com/stats/chevaux/popstar-d%27eri/Zmd8ZQECBwYG/elevage",
+      "birth_year": 2025,
+      "origines": {
+        "pere": "IZOARD VEDAQUAIS",
+        "mere": "CALICOBA",
+        "pere_de_mere": "COCKTAIL JET"
+      }
     },
     {
       "id": "prince-gio",
