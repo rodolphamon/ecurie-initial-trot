@@ -2168,6 +2168,15 @@
       "jockey": "Adrien LAMY"
     },
     {
+      "date": "2015-06-21",
+      "cheval": "BEAUTE D'ONDEE",
+      "hippodrome": "QUESTEMBERT",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Alexandre André THOUROUDE"
+    },
+    {
       "date": "2015-06-13",
       "cheval": "UKAPI DE GODISSON",
       "hippodrome": "LE TOUQUET",
@@ -2175,6 +2184,33 @@
       "discipline": "attele",
       "jockey": "Dwight PIETERS",
       "casaque": "nathalie"
+    },
+    {
+      "date": "2015-04-19",
+      "cheval": "CALIE DE POMMERAYE",
+      "hippodrome": "JULLOUVILLE-LES-PINS",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Guillaume CARDINE"
+    },
+    {
+      "date": "2015-04-06",
+      "cheval": "VALMIN DE GUEUDE",
+      "hippodrome": "CASTILLONNES",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Romain LE CREPS"
+    },
+    {
+      "date": "2015-03-29",
+      "cheval": "TYCOZ DE LADY",
+      "hippodrome": "GRAIGNES",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Sébastien ERNAULT"
     },
     {
       "date": "2014-11-02",
@@ -2222,6 +2258,15 @@
       "casaque": "blanche"
     },
     {
+      "date": "2014-04-16",
+      "cheval": "RHEA SILVIA",
+      "hippodrome": "PONTCHATEAU",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Lolita BALAYN"
+    },
+    {
       "date": "2013-12-30",
       "cheval": "ACTRICE DE CERISY",
       "hippodrome": "TOULOUSE",
@@ -2238,6 +2283,24 @@
       "discipline": "attele",
       "jockey": "Romain LE CREPS",
       "casaque": "blanche"
+    },
+    {
+      "date": "2013-09-22",
+      "cheval": "TENOR DEBOUT",
+      "hippodrome": "ALENCON",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Tom COMPAS"
+    },
+    {
+      "date": "2013-08-31",
+      "cheval": "RHEA SILVIA",
+      "hippodrome": "EAUZE",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Lolita BALAYN"
     },
     {
       "date": "2013-08-22",
@@ -2319,6 +2382,15 @@
       "discipline": "attele",
       "jockey": "Guillaume CARDINE",
       "casaque": "blanche"
+    },
+    {
+      "date": "2012-05-13",
+      "cheval": "RHEA SILVIA",
+      "hippodrome": "DREUX",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Marion LEMONNIER"
     },
     {
       "date": "2012-04-15",
