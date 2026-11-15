@@ -1,5 +1,5 @@
 {
-  "version": 43,
+  "version": 44,
   "note": "Fiches de courses Equidia ou LeTROT avec sources identifiant les courses. Les URLs Equidia sont déduites du format date/R/C ; la disponibilité et la lecture des vidéos ne sont pas garanties. HOMA reste sur LeTROT faute de fiche Equidia vérifiée.",
   "replays": [
     {
@@ -823,12 +823,36 @@
       "controle": "Course R/C et arrivée confirmées sur ZEturf ; lecture du replay Equidia non contrôlée individuellement"
     },
     {
+      "date": "2025-05-09",
+      "cheval": "SAMAPY",
+      "hippodrome": "SAINT-CLOUD",
+      "url": "https://www.equidia.fr/courses/2025-05-09/R4/C8",
+      "justificatif": "https://www.geny.com/course/1568079-2025-05-09-saint-cloud-prix-de-la-lomagne/arrivee-rapports",
+      "controle": "Course et référence R/C recoupées avec les résultats publiés ; disponibilité de la vidéo Equidia non vérifiée individuellement"
+    },
+    {
+      "date": "2025-05-04",
+      "cheval": "ON LOCKDOWN",
+      "hippodrome": "PARISLONGCHAMP",
+      "url": "https://www.equidia.fr/courses/2025-05-04/R1/C8",
+      "justificatif": "https://www.genybet.fr/bons-coups/1000243707/ParisLongchamp-04-05-2025",
+      "controle": "Course et référence R/C recoupées avec les résultats publiés ; disponibilité de la vidéo Equidia non vérifiée individuellement"
+    },
+    {
       "date": "2025-05-03",
       "cheval": "LOVE ME MAZELI",
       "hippodrome": "AMIENS",
       "url": "https://www.equidia.fr/courses/2025-05-03/R12/C7",
       "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2025-05-03/R12C7-amiens-prix-ici-picardie-groupe-a",
       "controle": "Course et victoire explicitement confirmées par l'arrivée publiée ; lien Equidia construit à partir du R/C vérifié, lecture vidéo non testée."
+    },
+    {
+      "date": "2025-04-18",
+      "cheval": "VYBORG",
+      "hippodrome": "SAINT-CLOUD",
+      "url": "https://www.equidia.fr/courses/2025-04-18/R4/C6",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2025-04-18/R4C6-saint-cloud-prix-des-pyrenees-orientales",
+      "controle": "Course et référence R/C recoupées avec les résultats publiés ; disponibilité de la vidéo Equidia non vérifiée individuellement"
     },
     {
       "date": "2025-04-17",
@@ -866,12 +890,28 @@
       "controle": "Course et numéro R/C identifiés dans les résultats publics ; replay Equidia à confirmer dans le navigateur"
     },
     {
+      "date": "2025-03-28",
+      "cheval": "VYBORG",
+      "hippodrome": "COMPIEGNE",
+      "url": "https://www.equidia.fr/courses/2025-03-28/R4/C5",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2025-03-28/R4C5-compiegne-prix-du-vivier-frere-robert",
+      "controle": "Course et référence R/C recoupées avec les résultats publiés ; disponibilité de la vidéo Equidia non vérifiée individuellement"
+    },
+    {
       "date": "2025-03-21",
       "cheval": "JOHANNA ELEVEN",
       "hippodrome": "MARSEILLE (A BORELY)",
       "url": "https://www.equidia.fr/courses/2025-03-21/R2/C5",
       "justificatif": "https://www.canalturf.com/resultats-PMU/2025-03-21/marseille-borely/366386_prix-de-l-ile-de-ratonneau.html",
       "controle": "Date, hippodrome, cheval et R/C retrouvés dans les résultats ; lecture du replay Equidia non vérifiée séparément"
+    },
+    {
+      "date": "2025-03-16",
+      "cheval": "VYBORG",
+      "hippodrome": "SAINT-CLOUD",
+      "url": "https://www.equidia.fr/courses/2025-03-16/R1/C7",
+      "justificatif": "https://www.horise.com/track/saint-cloud/2025-03-16/",
+      "controle": "Course et référence R/C recoupées avec les résultats publiés ; disponibilité de la vidéo Equidia non vérifiée individuellement"
     },
     {
       "date": "2025-03-11",
@@ -996,6 +1036,14 @@
       "url": "https://www.equidia.fr/courses/2024-08-30/R1/C7",
       "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2024-08-30/R1C7-vincennes-prix-danae",
       "controle": "Arrivée officielle et identifiants R/C vérifiés sur la source ; ouverture vidéo Equidia non testée individuellement"
+    },
+    {
+      "date": "2024-07-30",
+      "cheval": "ON LOCKDOWN",
+      "hippodrome": "DEAUVILLE",
+      "url": "https://www.equidia.fr/courses/2024-07-30/R1/C6",
+      "justificatif": "https://www.studioturf.fr/Chevaux/On%20Lockdown",
+      "controle": "Course et référence R/C recoupées avec les résultats publiés ; disponibilité de la vidéo Equidia non vérifiée individuellement"
     },
     {
       "date": "2024-07-15",
