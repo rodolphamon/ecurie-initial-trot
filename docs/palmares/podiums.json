@@ -693,6 +693,17 @@
       "jockey": "A. MOLINS"
     },
     {
+      "date": "2025-05-09",
+      "cheval": "SAMAPY",
+      "hippodrome": "SAINT-CLOUD",
+      "classement": 3,
+      "discipline": "galop",
+      "entraineur": "Gilles PANNIER",
+      "casaque": "galop",
+      "jockey": "A. MOLINS",
+      "proprietaire": "Écurie Initial"
+    },
+    {
       "date": "2025-05-04",
       "cheval": "ON LOCKDOWN",
       "hippodrome": "PARISLONGCHAMP",
@@ -701,6 +712,17 @@
       "entraineur": "Gilles PANNIER",
       "casaque": "galop",
       "jockey": "L. ROUSSEL"
+    },
+    {
+      "date": "2025-04-25",
+      "cheval": "SAMAPY",
+      "hippodrome": "COMPIEGNE",
+      "classement": 3,
+      "discipline": "galop",
+      "entraineur": "Gilles PANNIER",
+      "casaque": "galop",
+      "jockey": "A. MOLINS",
+      "proprietaire": "Écurie Initial"
     },
     {
       "date": "2025-04-18",
@@ -1023,6 +1045,17 @@
       "discipline": "attele",
       "casaque": "blanche",
       "jockey": "Alexis MARIE"
+    },
+    {
+      "date": "2024-05-25",
+      "cheval": "SAMAPY",
+      "hippodrome": "SAINT-CLOUD",
+      "classement": 1,
+      "discipline": "galop",
+      "entraineur": "Gilles PANNIER",
+      "casaque": "galop",
+      "jockey": "C. PACAUT",
+      "proprietaire": "Écurie Initial"
     },
     {
       "date": "2024-05-09",
