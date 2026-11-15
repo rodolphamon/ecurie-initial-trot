@@ -1,5 +1,5 @@
 {
-  "version": 49,
+  "version": 50,
   "note": "Fiches de courses Equidia ou LeTROT avec sources identifiant les courses. Les URLs Equidia sont déduites du format date/R/C ; la disponibilité et la lecture des vidéos ne sont pas garanties. HOMA reste sur LeTROT faute de fiche Equidia vérifiée.",
   "replays": [
     {
@@ -1261,6 +1261,24 @@
       "controle": "Cheval et classement confirmés sur l'arrivée ZEturf de la course R/C ; ouverture du replay Equidia non vérifiée individuellement"
     },
     {
+      "date": "2024-01-31",
+      "cheval": "HANANE MONTAVAL",
+      "hippodrome": "ANGERS",
+      "url": "https://www.equidia.fr/courses/2024-01-31/R3/C8",
+      "justificatif": "https://www.turfoo.fr/programmes-courses/240131/",
+      "controle": "Hippodrome, R/C et résultat recoupés sur les résultats publiés ; replay Equidia non visionné individuellement",
+      "preuve_classement": "https://www.zone-turf.fr/cheval/hanane-montaval-895528/archives-1.html"
+    },
+    {
+      "date": "2024-01-16",
+      "cheval": "HANANE MONTAVAL",
+      "hippodrome": "TOULOUSE",
+      "url": "https://www.equidia.fr/courses/2024-01-16/R4/C4",
+      "justificatif": "https://www.turfoo.fr/programmes-courses/240116/",
+      "controle": "Hippodrome, R/C et résultat recoupés sur les résultats publiés ; replay Equidia non visionné individuellement",
+      "preuve_classement": "https://www.zone-turf.fr/cheval/hanane-montaval-895528/"
+    },
+    {
       "date": "2023-12-03",
       "cheval": "INDICE DELADOU",
       "hippodrome": "BEAUMONT DE LOMAGNE",
@@ -1275,6 +1293,14 @@
       "url": "https://www.equidia.fr/courses/2023-11-13/R3/C8",
       "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2023-11-13/R3C8-le-mans-prix-du-conseil-departemental",
       "controle": "Course et victoire explicitement confirmées par l'arrivée publiée ; lien Equidia construit à partir du R/C vérifié, lecture vidéo non testée."
+    },
+    {
+      "date": "2023-11-10",
+      "cheval": "INDICE DELADOU",
+      "hippodrome": "LE CROISE-LAROCHE",
+      "url": "https://www.equidia.fr/courses/2023-11-10/R5/C1",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2023-11-10/R5C1-le-croise-laroche-prix-des-jeunes",
+      "controle": "Hippodrome, R/C et résultat recoupés sur les résultats publiés ; replay Equidia non visionné individuellement"
     },
     {
       "date": "2023-11-03",
