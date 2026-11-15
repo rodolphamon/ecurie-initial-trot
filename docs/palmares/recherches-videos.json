@@ -5,14 +5,34 @@
   "verifie_le": "2026-11-15",
   "courses": [
     {
-      "date": "2024-03-24",
-      "cheval": "JESSIE DES LANDES",
-      "hippodrome": "LA GUERCHE-DE-BRETAGNE",
+      "date": "2026-11-08",
+      "cheval": "JUNINIO FLEURY",
+      "hippodrome": "CASTELSARRASIN",
       "classement": 2,
-      "course": "Prix Société Bonnier Forages (Gr B)",
-      "source_resultat": "https://www.zone-turf.fr/cheval/joy-d-ourville-1698800/archives-1.html",
+      "course": "Prix Leclerc Castelsarrasin (PHH C8)",
+      "source_resultat": "https://www.zone-turf.fr/rapports/phh-c8-prix-leclerc-castelsarrasin-1168981.html",
       "etat_video": "non_identifiee",
-      "commentaire": "Arrivée recoupée ; vérifier LeTROT/Equidia/ZEturf avant ajout d'un lien vidéo."
+      "commentaire": "Arrivée confirmée ; aucune URL de replay spécifique établie lors des recherches. Ne pas afficher comme vidéo tant que le replay est introuvable."
+    },
+    {
+      "date": "2026-10-25",
+      "cheval": "LUCKY DES GAUDINES",
+      "hippodrome": "MONTAUBAN",
+      "classement": 2,
+      "course": "Prix de Toulouse",
+      "source_resultat": "https://www.turf-fr.com/fiche-cheval/lucky-des-gaudines-965541",
+      "etat_video": "non_identifiee",
+      "commentaire": "Arrivée confirmée ; aucune URL de replay spécifique établie lors des recherches. Ne pas afficher comme vidéo tant que le replay est introuvable."
+    },
+    {
+      "date": "2026-02-23",
+      "cheval": "MONA LISA STARDUST",
+      "hippodrome": "MONTAUBAN",
+      "classement": 3,
+      "course": "Prix Chambon P",
+      "source_resultat": "https://www.geny.com/course/1634717/arrivee-rapports",
+      "etat_video": "non_identifiee",
+      "commentaire": "Arrivée confirmée ; aucune URL de replay spécifique établie lors des recherches. Ne pas afficher comme vidéo tant que le replay est introuvable."
     },
     {
       "date": "2024-09-22",
@@ -21,6 +41,16 @@
       "classement": 3,
       "course": "Prix de Miramont de Guyenne",
       "source_resultat": "https://www.zone-turf.fr/cheval/guepard-de-mone-751746/",
+      "etat_video": "non_identifiee",
+      "commentaire": "Arrivée recoupée ; vérifier LeTROT/Equidia/ZEturf avant ajout d'un lien vidéo."
+    },
+    {
+      "date": "2024-03-24",
+      "cheval": "JESSIE DES LANDES",
+      "hippodrome": "LA GUERCHE-DE-BRETAGNE",
+      "classement": 2,
+      "course": "Prix Société Bonnier Forages (Gr B)",
+      "source_resultat": "https://www.zone-turf.fr/cheval/joy-d-ourville-1698800/archives-1.html",
       "etat_video": "non_identifiee",
       "commentaire": "Arrivée recoupée ; vérifier LeTROT/Equidia/ZEturf avant ajout d'un lien vidéo."
     },
