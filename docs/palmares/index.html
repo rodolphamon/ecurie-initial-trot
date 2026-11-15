@@ -60,10 +60,10 @@ td:first-child,th:first-child{text-align:center;width:75px}td.date{white-space:n
  .pal-card-disc{font-size:11px;padding:4px 6px}
  .top{padding:15px 12px}
 }
-</style></head><body>
+.placing-tabs{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}.placing-tabs button{padding:10px 16px;border:1px solid #ddd;border-radius:9px;background:white;font:700 13px Arial;cursor:pointer}.placing-tabs button[aria-pressed="true"]{background:#191919;color:#fff;border-color:#191919}.placing-stats{margin-top:12px;font-size:13px;font-weight:700;color:#565656}.placing{display:inline-block;background:#fff0df;color:#a34c0e;border-radius:6px;padding:3px 6px;font-size:12px;white-space:nowrap}</style></head><body>
 <main class="palmares">
-<header class="top"><h1>VICTOIRES</h1><output id="counter" aria-label="Total des victoires de Rodolphe HAMON, Nathalie HAMON et Écurie Initial selon la discipline" aria-live="polite">172</output></header>
-<section aria-label="Filtrer les victoires" class="controls">
+<header class="top"><h1>VICTOIRES & PODIUMS</h1><output id="counter" aria-label="Total des victoires de Rodolphe HAMON, Nathalie HAMON et Écurie Initial selon la discipline" aria-live="polite">172</output></header>
+<div class="placing-tabs" role="group" aria-label="Filtrer par classement"><button type="button" data-placing="all" aria-pressed="true">Tous</button><button type="button" data-placing="win" aria-pressed="false">🥇 Victoires</button><button type="button" data-placing="podium" aria-pressed="false">🥈🥉 Podiums</button></div><div class="placing-stats" id="placingStats"></div><section aria-label="Filtrer les performances" class="controls">
 <label><input id="search" type="search" placeholder="Rechercher un cheval, une ville, un jockey…" aria-label="Rechercher"></label>
 <label><select id="year" aria-label="Année"><option value="">Année</option></select></label>
 <label><select id="horse" aria-label="Filtrer par cheval"><option value="">Cheval</option></select></label>
@@ -72,9 +72,9 @@ td:first-child,th:first-child{text-align:center;width:75px}td.date{white-space:n
 <label><select id="order" aria-label="Classement"><option value="desc">Plus récentes d'abord</option><option value="asc">Plus anciennes d'abord</option></select></label>
 </section>
 <div class="caption-line"><div class="result" id="count" aria-live="polite"></div><div class="legend" id="legend" role="group" aria-label="Filtrer les victoires par discipline"></div></div>
-<div class="tablewrap"><table aria-label="Historique des victoires">
+<div class="tablewrap"><table aria-label="Historique des victoires et podiums">
 <thead><tr><th>Casaque</th><th>Date</th><th>Hippodrome</th><th>Cheval</th><th>Jockey / Driver</th><th>Discipline</th><th>Vidéo</th></tr></thead>
-<tbody id="rows"></tbody></table></div><div class="cards" id="cards" aria-label="Victoires affichées sur téléphone"></div><div id="empty" class="empty" hidden>Aucune victoire ne correspond à cette recherche.</div>
+<tbody id="rows"></tbody></table></div><div class="cards" id="cards" aria-label="Victoires et podiums affichés sur téléphone"></div><div id="empty" class="empty" hidden>Aucune performance ne correspond à cette recherche.</div>
 <nav class="nav" aria-label="Pagination"><button type="button" id="prev">Précédent</button><span id="page"></span><button type="button" id="next">Suivant</button></nav>
 </main>
 <script>
@@ -204,11 +204,11 @@ async function loadReplays(){
   render();
  }catch(err){/* Aucun pictogramme tant que le lien direct n'est pas vérifié. */}
 }
-const state={page:1,perPage:25,discipline:""};
+const state={page:1,perPage:25,discipline:"",placing:"all"};
 function render(){
  const fold=s=>String(s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLocaleLowerCase("fr");
  const q=fold($("search").value.trim()),year=$("year").value,type=state.discipline,horse=$("horse").value,pilot=$("pilot").value,trainerQuery=fold($("trainer").value.trim());
- const data=results.filter(r=>(!year||r.date.slice(0,4)===year)&&(!type||r.discipline===type)&&(!horse||r.cheval===horse)&&(!pilot||r.jockey===pilot)&&(!trainerQuery||fold(r.entraineur).includes(trainerQuery))&&(!q||[r.cheval,r.hippodrome,r.jockey,r.entraineur,r.date].some(v=>fold(v).includes(q))))
+ const data=results.filter(r=>(state.placing==="all"||(state.placing==="win"?(r.classement||1)===1:(r.classement||1)>1))&&(!year||r.date.slice(0,4)===year)&&(!type||r.discipline===type)&&(!horse||r.cheval===horse)&&(!pilot||r.jockey===pilot)&&(!trainerQuery||fold(r.entraineur).includes(trainerQuery))&&(!q||[r.cheval,r.hippodrome,r.jockey,r.entraineur,r.date].some(v=>fold(v).includes(q))))
  .sort((a,b)=>$("order").value==="desc"?b.date.localeCompare(a.date):a.date.localeCompare(b.date));
  const pages=Math.max(1,Math.ceil(data.length/state.perPage));
  state.page=Math.min(state.page,pages);
@@ -268,8 +268,9 @@ refreshNameFilters();
 // vérifiées individuellement contre la liste officielle des 130 succès de l'Écurie Initial au trot.
 function updateCounter(){
  const total=results.filter(victoireAdmiseAuCompteur).length;
- $("counter").textContent=new Intl.NumberFormat("fr-FR").format(total);
+ $("counter").textContent=new Intl.NumberFormat("fr-FR").format(total);const seconds=results.filter(r=>r.classement===2).length,thirds=results.filter(r=>r.classement===3).length;$("placingStats").textContent="🥇 "+total+" victoires · 🥈 "+seconds+" deuxièmes places · 🥉 "+thirds+" troisièmes places";
 }
+async function loadPodiums(){try{const response=await fetch("./podiums.json",{cache:"no-store"});if(!response.ok)throw Error();const json=await response.json();const keys=new Set(results.map(v=>[v.date,v.cheval,v.hippodrome].join("|").toUpperCase()));for(const p of json.podiums||[]){if(!p||![2,3].includes(p.classement)||!/^\d{4}-\d{2}-\d{2}$/.test(p.date||"")||!p.cheval||!p.hippodrome)continue;const key=[p.date,p.cheval,p.hippodrome].join("|").toUpperCase();if(keys.has(key))continue;keys.add(key);results.push({...p,jockey:p.jockey||"",entraineur:p.entraineur||"",casaque:p.casaque||"blanche"})}refreshYears();refreshNameFilters();updateCounter();render()}catch(e){/* Le palmarès des victoires reste disponible. */}}
 async function loadNewVictories(){
  // Une ligne du fichier = un nouveau succès approuvé après la date de référence.
  try{
@@ -305,5 +306,6 @@ $("legend").addEventListener("click",event=>{
 $("prev").addEventListener("click",()=>{state.page--;render()});$("next").addEventListener("click",()=>{state.page++;render()});
 function postHeight(){window.parent.postMessage({kind:"ecurie-initial-palmares-height",height:document.documentElement.scrollHeight+12},"*")}
 if("ResizeObserver" in window)new ResizeObserver(postHeight).observe(document.body);
-render();fondTransparentCasaqueGalop();loadNewVictories().finally(loadReplays);window.addEventListener("load",postHeight);
+document.querySelectorAll("[data-placing]").forEach(button=>button.addEventListener("click",()=>{state.placing=button.dataset.placing;state.page=1;document.querySelectorAll("[data-placing]").forEach(b=>b.setAttribute("aria-pressed",String(b===button)));render()}));
+render();fondTransparentCasaqueGalop();loadPodiums();loadNewVictories().finally(loadReplays);window.addEventListener("load",postHeight);
 </script></body></html>
