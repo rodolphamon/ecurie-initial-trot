@@ -2741,7 +2741,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Bruno MARIE",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Bruno MARIE à partir du 15/10/2016, auparavant Romain LE CREPS"
     },
     {
       "date": "2017-03-05",
@@ -2750,7 +2752,9 @@
       "classement": 3,
       "discipline": "attele",
       "casaque": "blanche",
-      "jockey": "Rodolphe HAMON"
+      "jockey": "Rodolphe HAMON",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Bruno MARIE à partir du 15/10/2016, auparavant Romain LE CREPS"
     },
     {
       "date": "2017-02-19",
@@ -2759,7 +2763,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Charley MOTTIER",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Bruno MARIE à partir du 15/10/2016, auparavant Romain LE CREPS"
     },
     {
       "date": "2017-02-14",
@@ -2804,7 +2810,9 @@
       "classement": 3,
       "discipline": "attele",
       "casaque": "blanche",
-      "jockey": "Charley HESLOUIN"
+      "jockey": "Charley HESLOUIN",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Bruno MARIE à partir du 15/10/2016, auparavant Romain LE CREPS"
     },
     {
       "date": "2016-12-04",
@@ -2813,7 +2821,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Charley HESLOUIN",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Bruno MARIE à partir du 15/10/2016, auparavant Romain LE CREPS"
     },
     {
       "date": "2016-11-21",
@@ -2822,7 +2832,9 @@
       "classement": 3,
       "discipline": "attele",
       "casaque": "blanche",
-      "jockey": "Michel POIRIER"
+      "jockey": "Michel POIRIER",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Bruno MARIE à partir du 15/10/2016, auparavant Romain LE CREPS"
     },
     {
       "date": "2016-11-06",
@@ -2831,7 +2843,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Rodolphe HAMON",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Bruno MARIE à partir du 15/10/2016, auparavant Romain LE CREPS"
     },
     {
       "date": "2016-10-15",
@@ -2840,7 +2854,9 @@
       "classement": 3,
       "discipline": "attele",
       "casaque": "blanche",
-      "jockey": "Adrien LAMY"
+      "jockey": "Adrien LAMY",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Bruno MARIE à partir du 15/10/2016, auparavant Romain LE CREPS"
     },
     {
       "date": "2016-10-10",
@@ -2930,7 +2946,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Romain LE CREPS",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Romain LE CREPS",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Bruno MARIE à partir du 15/10/2016, auparavant Romain LE CREPS"
     },
     {
       "date": "2015-08-01",
@@ -2939,7 +2957,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Jérôme PAILLE",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Romain LE CREPS",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Bruno MARIE à partir du 15/10/2016, auparavant Romain LE CREPS"
     },
     {
       "date": "2015-07-31",
@@ -3002,7 +3022,9 @@
       "classement": 3,
       "discipline": "attele",
       "casaque": "blanche",
-      "jockey": "Romain LE CREPS"
+      "jockey": "Romain LE CREPS",
+      "entraineur": "Romain LE CREPS",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Bruno MARIE à partir du 15/10/2016, auparavant Romain LE CREPS"
     },
     {
       "date": "2015-03-29",
@@ -3029,7 +3051,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Romain LE CREPS",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Romain LE CREPS",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Bruno MARIE à partir du 15/10/2016, auparavant Romain LE CREPS"
     },
     {
       "date": "2014-09-07",
