@@ -516,6 +516,17 @@
       "commentaire": "Vérification des archives : page de course ou historique ; aucune URL vidéo directe confirmée. Rechercher replay officiel LeTROT, Equidia ou ZEturf sans créer d'URL hypothétique."
     },
     {
+      "date": "2022-04-10",
+      "cheval": "JULY DU GUESNE",
+      "hippodrome": "LE MONT-SAINT-MICHEL",
+      "classement": 1,
+      "course": "Prix des Bénévoles (réclamer, attelé)",
+      "source_resultat": "https://www.zone-turf.fr/cheval/jet-set-evening-1712184/",
+      "etat_source": "resultat_confirme",
+      "etat_video": "non_identifiee",
+      "commentaire": "July du Guesne première avec Bruno Marie. Aucun replay identifié dans les résultats publics consultés, ne pas générer de numéro R/C hypothétique."
+    },
+    {
       "date": "2022-04-03",
       "cheval": "JULY DU GUESNE",
       "hippodrome": "VIRE NORMANDIE",
@@ -606,6 +617,17 @@
       "commentaire": "Arrivée recoupée ; vérifier LeTROT/Equidia/ZEturf avant ajout d'un lien vidéo."
     },
     {
+      "date": "2015-12-20",
+      "cheval": "TYCOZ DE LADY",
+      "hippodrome": "MESLAY-DU-MAINE",
+      "classement": 1,
+      "course": "Prix des Ambulances Saint-Denis-d'Anjou (monté, R2C6)",
+      "source_resultat": "https://www.zone-turf.fr/cheval/un-beau-jour-114914/",
+      "etat_source": "resultat_confirme_R2C6",
+      "etat_video": "replay_liste_non_accessible",
+      "commentaire": "Fiche ZEturf indexée https://www.zeturf.sn/en/course-du-jour/2015-12-20/R2C6-meslay-du-maine-prix-des-ambulances-saint-denis-d-anjou comporte Replay et confirme n°7 gagnant avec H. Guérot, MAIS URL actuelle renvoie 404 depuis navigateur ; ne pas publier de lien mort. Également fiche historique officielle sur ecurie-initial.com/8.html."
+    },
+    {
       "date": "2015-07-21",
       "cheval": "BEAUTE D'ONDEE",
       "hippodrome": "PORNICHET",
@@ -634,6 +656,17 @@
       "source_resultat": "https://www.zone-turf.fr/cheval/rhea-silvia-43685/",
       "etat_video": "non_identifiee",
       "commentaire": "Arrivée recoupée ; vérifier LeTROT/Equidia/ZEturf avant ajout d'un lien vidéo."
+    },
+    {
+      "date": "2014-01-29",
+      "cheval": "ADAMS",
+      "hippodrome": "BORDEAUX",
+      "classement": 1,
+      "course": "Prix Ourasi (attelé)",
+      "source_resultat": "https://www.zone-turf.fr/cheval/adams-221098/",
+      "etat_source": "resultat_confirme",
+      "etat_video": "non_identifiee",
+      "commentaire": "Vainqueur avec Éric Raffin ; réunion/course non déterminées, ne pas attribuer une fiche Equidia sans vérification."
     },
     {
       "date": "2013-11-10",
