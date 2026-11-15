@@ -1,5 +1,5 @@
 {
-  "version": 78,
+  "version": 79,
   "note": "Fiches de courses Equidia ou LeTROT avec sources identifiant les courses. Les URLs Equidia sont déduites du format date/R/C ; la disponibilité et la lecture des vidéos ne sont pas garanties. HOMA reste sur LeTROT faute de fiche Equidia vérifiée.",
   "replays": [
     {
@@ -1286,6 +1286,15 @@
       "url": "https://www.equidia.fr/courses/2024-06-27/R4/C6",
       "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2024-06-27/R4C6-enghien-soisy-prix-de-lunel",
       "controle": "Course R/C et arrivée confirmées sur ZEturf ; lecture du replay Equidia non contrôlée individuellement"
+    },
+    {
+      "date": "2024-06-16",
+      "cheval": "JAMAIS SANS ELLE",
+      "hippodrome": "RAMBOUILLET",
+      "url": "https://www.zeturf.fr/fr/course-du-jour/2024-06-16/R7C3-rambouillet-prix-de-bonnelles-groupe-a",
+      "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2024-06-16/R7C3-rambouillet-prix-de-bonnelles-groupe-a",
+      "preuve_arrivee": "https://www.zeturf.fr/fr/course-du-jour/2024-06-16/R7C3-rambouillet-prix-de-bonnelles-groupe-a",
+      "controle": "Prix de Bonnelles (Gr A), Rambouillet R7C3 le 16/06/2024 ; JAMAIS SANS ELLE 2e n°7 avec A. Lamy ; page ZEturf identifiée comportant section Replay, lecture vidéo non testée."
     },
     {
       "date": "2024-06-15",
