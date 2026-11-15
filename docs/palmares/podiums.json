@@ -2813,7 +2813,9 @@
       "classement": 3,
       "discipline": "attele",
       "casaque": "blanche",
-      "jockey": "Oscar PLACIER"
+      "jockey": "Oscar PLACIER",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2020-06-24",
