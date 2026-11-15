@@ -71,7 +71,7 @@ Deno.serve(async (request) => {
     if (action === "status") {
       if (!validEndpoint(body.endpoint)) return respond({ error: "Abonnement invalide." }, 400, origin);
       const { data, error } = await db.from("ei_push_subscriptions")
-        .select("audience,scope,confirmed,daily,before15,results,withdrawn")
+        .select("audience,scope,confirmed,daily,before15,results,withdrawn,private_news")
         .eq("endpoint", body.endpoint).eq("token_hash", tokenHash).maybeSingle();
       if (error) throw error;
       return respond({ ok: true, active: !!data, preferences: data }, 200, origin);
@@ -103,6 +103,8 @@ Deno.serve(async (request) => {
       before15: member && p.before15 !== false,
       results: p.results !== false,
       withdrawn: member && p.withdrawn !== false,
+      // Une actualité privée reste strictement limitée aux propriétaires.
+      private_news: member && p.private_news === true,
       updated_at: new Date().toISOString(),
       last_error: null,
     };
