@@ -2728,11 +2728,13 @@
       "cheval": "GOSPEL",
       "hippodrome": "CHALLANS",
       "classement": 2,
-      "discipline": "attele",
+      "discipline": "monte",
       "jockey": "Paul-Philippe PLOQUIN",
       "casaque": "blanche",
       "entraineur": "Pierre-Louis DESAUNETTE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Benoît BARASSIN jusqu'au 17/08/2019, puis Bruno MARIE, puis Pierre-Louis DESAUNETTE après le 03/08/2020"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Benoît BARASSIN jusqu'au 17/08/2019, puis Bruno MARIE, puis Pierre-Louis DESAUNETTE après le 03/08/2020",
+      "source_discipline": "https://www.zone-turf.fr/cheval/gospel-767128/",
+      "correction_discipline": "Prix de Nort-sur-Erdre, Challans, 07/03/2021 : deuxième au monté avec Paul-Philippe Ploquin, confirmé sur l'arrivée Zone-Turf."
     },
     {
       "date": "2021-01-12",
