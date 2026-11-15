@@ -1,5 +1,5 @@
 {
-  "version": 36,
+  "version": 37,
   "note": "Fiches de courses Equidia ou LeTROT avec sources identifiant les courses. Les URLs Equidia sont déduites du format date/R/C ; la disponibilité et la lecture des vidéos ne sont pas garanties. HOMA reste sur LeTROT faute de fiche Equidia vérifiée.",
   "replays": [
     {
@@ -266,6 +266,14 @@
       "controle": "Lien direct vers la fiche de course Equidia indiqué sur Turfin ; lecture du replay non testée depuis cet environnement"
     },
     {
+      "date": "2026-06-10",
+      "cheval": "ZARTOP",
+      "hippodrome": "ARGENTAN",
+      "url": "https://www.equidia.fr/courses/2026-06-10/R3/C6",
+      "justificatif": "https://www.canalturf.com/resultats-PMU/2026-06-10/argentan/408633_prix-de-la-plaine-d-argentan.html",
+      "controle": "Course, classement et numéro R/C confirmés dans les arrivées ; disponibilité de la vidéo Equidia non vérifiée individuellement"
+    },
+    {
       "date": "2026-06-02",
       "cheval": "DOURIANN",
       "hippodrome": "SAINT-CLOUD",
@@ -296,6 +304,14 @@
       "url": "https://www.equidia.fr/courses/2026-05-25/R1/C6",
       "justificatif": "https://www.canalturf.com/resultats-PMU/2026-05-25/compiegne/407009_prix-de-picardie.html",
       "controle": "R/C, cheval et place confirmés dans l'arrivée de course ; replay Equidia non visionné individuellement"
+    },
+    {
+      "date": "2026-05-17",
+      "cheval": "GIORGIANA",
+      "hippodrome": "LE CROISE-LAROCHE",
+      "url": "https://www.equidia.fr/courses/2026-05-17/R6/C2",
+      "justificatif": "https://www.canalturf.com/resultats-PMU/2026-05-17/le-croise-laroche/406312_prix-gonzague-flipo.html",
+      "controle": "Course, classement et numéro R/C confirmés dans les arrivées ; disponibilité de la vidéo Equidia non vérifiée individuellement"
     },
     {
       "date": "2026-05-10",
@@ -357,6 +373,14 @@
       "controle": "Lien direct vers la fiche de course Equidia indiqué sur Turfin ; lecture du replay non testée depuis cet environnement"
     },
     {
+      "date": "2026-04-04",
+      "cheval": "LIMPIDE",
+      "hippodrome": "LE CROISE-LAROCHE",
+      "url": "https://www.equidia.fr/courses/2026-04-04/R4/C8",
+      "justificatif": "https://www.canalturf.com/resultats-PMU/2026-04-04/le-croise-laroche/402018_prix-de-la-vieille-bourse.html",
+      "controle": "Course, classement et numéro R/C confirmés dans les arrivées ; disponibilité de la vidéo Equidia non vérifiée individuellement"
+    },
+    {
       "date": "2026-03-31",
       "cheval": "BOBROVKHA",
       "hippodrome": "NANTES",
@@ -390,6 +414,14 @@
       "url": "https://www.equidia.fr/courses/2026-03-12/R3/C2",
       "preuve_identification_course": "https://turfin.fr/course/2026-03-12/r3c2-caen-prix-de-saint-wandrille",
       "controle": "Correspondance de course identifiée dans les résultats Turfin ; lecture vidéo Equidia non vérifiée"
+    },
+    {
+      "date": "2026-02-27",
+      "cheval": "ZARTOP",
+      "hippodrome": "PORNICHET",
+      "url": "https://www.equidia.fr/courses/2026-02-27/R4/C7",
+      "justificatif": "https://www.canalturf.com/resultats-PMU/2026-02-27/pornichet/398674_prix-du-chateau-de-tesson.html",
+      "controle": "Course, classement et numéro R/C confirmés dans les arrivées ; disponibilité de la vidéo Equidia non vérifiée individuellement"
     },
     {
       "date": "2026-02-20",
@@ -436,6 +468,14 @@
       "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2026-01-30/7500/3",
       "lien_letrot_precedent": "https://www.letrot.com/courses/2026-01-30/7500/3",
       "preuve_lien_equidia": "https://turfin.fr/course/2026-01-30/r3c3-vincennes-prix-de-figeac"
+    },
+    {
+      "date": "2026-01-30",
+      "cheval": "ON LOCKDOWN",
+      "hippodrome": "DEAUVILLE",
+      "url": "https://www.equidia.fr/courses/2026-01-30/R1/C4",
+      "justificatif": "https://www.canalturf.com/resultats-PMU/2026-01-30/deauville/396108_prix-du-funiculaire.html",
+      "controle": "Course, classement et numéro R/C confirmés dans les arrivées ; disponibilité de la vidéo Equidia non vérifiée individuellement"
     },
     {
       "date": "2026-01-25",
