@@ -1,5 +1,5 @@
 {
-  "version": 58,
+  "version": 59,
   "note": "Fiches de courses Equidia ou LeTROT avec sources identifiant les courses. Les URLs Equidia sont déduites du format date/R/C ; la disponibilité et la lecture des vidéos ne sont pas garanties. HOMA reste sur LeTROT faute de fiche Equidia vérifiée.",
   "replays": [
     {
@@ -1626,6 +1626,14 @@
       "controle": "Prix de Castres R3C4 corroboré par historique; classement deuxième sur Province Courses https://province-courses.fr/fiche_cheval.php?id=18137138T ; lecture effective du replay non testée"
     },
     {
+      "date": "2022-10-21",
+      "cheval": "VYBORG",
+      "hippodrome": "CLAIREFONTAINE",
+      "url": "https://www.equidia.fr/courses/2022-10-21/R4/C5",
+      "justificatif": "https://www.oneturf.fr/arrive/FR/21-10-2022/168298%2C1377036%2CCLAIREFONTAINE%2C5-PRIX-TRUFFAUT-DEAUVILLE-PRIX-DE-LA-CROIX-FERRET.html",
+      "controle": "Arrivée identifiée : 3e, n°9 ; R4C5. Page Equidia déduite de date/R/C, lecture vidéo non testée."
+    },
+    {
       "date": "2022-10-12",
       "cheval": "ILLAM DE MONGOCHY",
       "hippodrome": "ENGHIEN",
@@ -1637,6 +1645,14 @@
       "preuve_identification_course": "https://www.canalturf.com/resultats-PMU/2022-10-12/enghien/287560_prix-de-la-tour-montparnasse.html"
     },
     {
+      "date": "2022-10-09",
+      "cheval": "JACKPOT DES BORDES",
+      "hippodrome": "CHERBOURG",
+      "url": "https://www.equidia.fr/courses/2022-10-09/R9/C2",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2022-10-09/R9C2-cherbourg-prix-le-cotentin",
+      "controle": "Arrivée identifiée : 3e, n°16 ; R9C2. Page Equidia déduite de date/R/C, lecture vidéo non testée."
+    },
+    {
       "date": "2022-08-31",
       "cheval": "HELIOS BONBON",
       "hippodrome": "VINCENNES",
@@ -1646,6 +1662,14 @@
       "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2022-08-31/7500/2",
       "lien_letrot_precedent": "https://www.letrot.com/courses/2022-08-31/7500/2",
       "preuve_identification_course": "https://www.canalturf.com/resultats-PMU/2022-08-31/paris-vincennes/283728_prix-de-bosc-renoult.html"
+    },
+    {
+      "date": "2022-08-30",
+      "cheval": "JACKPOT DES BORDES",
+      "hippodrome": "CABOURG",
+      "url": "https://www.equidia.fr/courses/2022-08-30/R5/C7",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2022-08-30/R5C7-cabourg-prix-des-gaillets-des-sables",
+      "controle": "Arrivée identifiée : 3e, n°13 ; R5C7. Page Equidia déduite de date/R/C, lecture vidéo non testée."
     },
     {
       "date": "2022-08-16",
