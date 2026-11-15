@@ -1,5 +1,5 @@
 {
-  "version": 86,
+  "version": 87,
   "note": "Fiches de courses Equidia ou LeTROT avec sources identifiant les courses. Les URLs Equidia sont déduites du format date/R/C ; la disponibilité et la lecture des vidéos ne sont pas garanties. HOMA reste sur LeTROT faute de fiche Equidia vérifiée.",
   "replays": [
     {
@@ -1818,6 +1818,14 @@
       "controle": "Arrivée identifiée : 3e, n°16 ; R9C2. Page Equidia déduite de date/R/C, lecture vidéo non testée."
     },
     {
+      "date": "2022-10-09",
+      "cheval": "JETHAN DE MONGOCHY",
+      "hippodrome": "REIMS",
+      "url": "https://www.zeturf.fr/fr/course-du-jour/2022-10-09/R10C4-reims-prix-de-betheny-groupe-b",
+      "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2022-10-09/R10C4-reims-prix-de-betheny-groupe-b",
+      "controle": "Gagnant n°9 Prix de Betheny (Groupe B) R10C4, Reims 09/10/2022 avec L. Koubiche ; fiche ZEturf exacte comporte section Replay, lecture non testée."
+    },
+    {
       "date": "2022-10-07",
       "cheval": "VYBORG",
       "hippodrome": "COMPIEGNE",
@@ -2102,6 +2110,14 @@
       "url": "https://www.equidia.fr/courses/2021-12-13/R4/C7",
       "justificatif": "https://www.gbet.fr/chevaux/hermes-planchette-49226/",
       "controle": "2e Prix de Clamart, R4C7 confirmé par arrivée ou historique détaillé des courses ; disponibilité effective du replay Equidia non testée individuellement."
+    },
+    {
+      "date": "2021-12-04",
+      "cheval": "HERMES DU FOSSE",
+      "hippodrome": "REIMS",
+      "url": "https://www.zeturf.fr/fr/course-du-jour/2021-12-04/R8C7-reims-grand-prix-du-champagne-michel-go-groupe-b",
+      "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2021-12-04/R8C7-reims-grand-prix-du-champagne-michel-go-groupe-b",
+      "controle": "Gagnant n°8 Grand Prix du Champagne Michel Go (Groupe B) R8C7 Reims 04/12/2021 avec B. Marie ; fiche ZEturf exacte comporte Replay, lecture non testée."
     },
     {
       "date": "2021-11-26",
