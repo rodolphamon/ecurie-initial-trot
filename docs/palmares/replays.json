@@ -1,5 +1,5 @@
 {
-  "version": 60,
+  "version": 61,
   "note": "Fiches de courses Equidia ou LeTROT avec sources identifiant les courses. Les URLs Equidia sont déduites du format date/R/C ; la disponibilité et la lecture des vidéos ne sont pas garanties. HOMA reste sur LeTROT faute de fiche Equidia vérifiée.",
   "replays": [
     {
@@ -1407,6 +1407,14 @@
       "controle": "Course et victoire explicitement confirmées par l'arrivée publiée ; lien Equidia construit à partir du R/C vérifié, lecture vidéo non testée."
     },
     {
+      "date": "2023-10-24",
+      "cheval": "MYMAP",
+      "hippodrome": "LE MANS",
+      "url": "https://www.equidia.fr/courses/2023-10-24/R3/C3",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2023-10-24/R3C3-le-mans-prix-de-saint-saturnin",
+      "controle": "2e n°1, R3C3 confirmé par arrivée ou historique détaillé des courses ; disponibilité effective du replay Equidia non testée individuellement."
+    },
+    {
       "date": "2023-09-28",
       "cheval": "MYMAP",
       "hippodrome": "LE MANS",
@@ -1836,6 +1844,14 @@
       "preuve_identification_course": "https://www.infos-entrainement.fr/reunions-pmu-courses-du-jour/2022-01-29/r1/c8"
     },
     {
+      "date": "2022-01-16",
+      "cheval": "ISBA QUICK",
+      "hippodrome": "ARGENTAN",
+      "url": "https://www.equidia.fr/courses/2022-01-16/R8/C3",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2022-01-16/R8C3-argentan-prix-etienne-panthou-groupe-a",
+      "controle": "2e n°5, R8C3 confirmé par arrivée ou historique détaillé des courses ; disponibilité effective du replay Equidia non testée individuellement."
+    },
+    {
       "date": "2022-01-15",
       "cheval": "ILLAM DE MONGOCHY",
       "hippodrome": "ANGERS",
@@ -1853,6 +1869,14 @@
       "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2021-12-31/7500/1",
       "lien_letrot_precedent": "https://www.letrot.com/courses/2021-12-31/7500/1",
       "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2021-12-31/R1C1-vincennes-prix-de-saint-germain"
+    },
+    {
+      "date": "2021-12-13",
+      "cheval": "HERMES PLANCHETTE",
+      "hippodrome": "VINCENNES - GP",
+      "url": "https://www.equidia.fr/courses/2021-12-13/R4/C7",
+      "justificatif": "https://www.gbet.fr/chevaux/hermes-planchette-49226/",
+      "controle": "2e Prix de Clamart, R4C7 confirmé par arrivée ou historique détaillé des courses ; disponibilité effective du replay Equidia non testée individuellement."
     },
     {
       "date": "2021-11-21",
@@ -1873,6 +1897,14 @@
       "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2021-11-16/7500/7",
       "lien_letrot_precedent": "https://www.letrot.com/courses/2021-11-16/7500/7",
       "preuve_identification_course": "https://www.canalturf.com/resultats-PMU/2021-11-16/paris-vincennes/258468_prix-unitas.html"
+    },
+    {
+      "date": "2021-10-26",
+      "cheval": "HERMES PLANCHETTE",
+      "hippodrome": "VINCENNES",
+      "url": "https://www.equidia.fr/courses/2021-10-26/R4/C7",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2021-10-26/R4C7-vincennes-prix-ariadne",
+      "controle": "3e n°9, R4C7 confirmé par arrivée ou historique détaillé des courses ; disponibilité effective du replay Equidia non testée individuellement."
     },
     {
       "date": "2021-10-19",
@@ -1897,6 +1929,14 @@
       "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2021-09-23/R1C2-vincennes-prix-de-bagneres"
     },
     {
+      "date": "2021-09-17",
+      "cheval": "JAZZY WOOD",
+      "hippodrome": "CHANTILLY",
+      "url": "https://www.equidia.fr/courses/2021-09-17/R4/C2",
+      "justificatif": "https://www.gbet.fr/chevaux/jazzy-wood-214779/",
+      "controle": "2e Prix de Saint-Firmin, R4C2 confirmé par arrivée ou historique détaillé des courses ; disponibilité effective du replay Equidia non testée individuellement."
+    },
+    {
       "date": "2021-08-30",
       "cheval": "IBERIK DE MONGOCHY",
       "hippodrome": "VINCENNES",
@@ -1908,6 +1948,14 @@
       "preuve_identification_course": "https://www.zone-turf.fr/rapports/r1-c2-prix-andre-choisselet-759028.html"
     },
     {
+      "date": "2021-08-03",
+      "cheval": "JAZZY WOOD",
+      "hippodrome": "DEAUVILLE",
+      "url": "https://www.equidia.fr/courses/2021-08-03/R1/C7",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2021-08-03/R1C7-equidia",
+      "controle": "2e n°7 Prix de la Cauvinière, R1C7 confirmé par arrivée ou historique détaillé des courses ; disponibilité effective du replay Equidia non testée individuellement."
+    },
+    {
       "date": "2021-07-18",
       "cheval": "HOMA",
       "hippodrome": "AVRANCHES",
@@ -1916,12 +1964,28 @@
       "controle": "HOMA gagnante du Prix Briere Motoculture à Avranches le 18/07/2021 ; référence LeTROT conservée, fiche Equidia non identifiée et lecture vidéo non testée"
     },
     {
+      "date": "2021-07-14",
+      "cheval": "JAZZY WOOD",
+      "hippodrome": "PARISLONGCHAMP",
+      "url": "https://www.equidia.fr/courses/2021-07-14/R1/C6",
+      "justificatif": "https://www.gbet.fr/chevaux/jazzy-wood-214779/",
+      "controle": "2e Prix du Val Profond, R1C6 confirmé par arrivée ou historique détaillé des courses ; disponibilité effective du replay Equidia non testée individuellement."
+    },
+    {
       "date": "2021-06-11",
       "cheval": "CAID DORE",
       "hippodrome": "NANTES",
       "url": "https://www.equidia.fr/courses/2021-06-11/R2/C8",
       "preuve_identification_course": "https://www.zeturf.be/fr/course-du-jour/2021-06-11/R2C8-nantes-prix-rca-la-radio",
       "controle": "Date, R/C et cheval gagnant confirmés dans le résultat officiel reproduit par ZEturf/Canalturf ; lien Equidia construit, lecture du replay non testée."
+    },
+    {
+      "date": "2021-06-10",
+      "cheval": "JAZZY WOOD",
+      "hippodrome": "PARISLONGCHAMP",
+      "url": "https://www.equidia.fr/courses/2021-06-10/R1/C8",
+      "justificatif": "https://www.gbet.fr/chevaux/jazzy-wood-214779/",
+      "controle": "2e Prix de l'Avenir, R1C8 confirmé par arrivée ou historique détaillé des courses ; disponibilité effective du replay Equidia non testée individuellement."
     },
     {
       "date": "2021-05-27",
