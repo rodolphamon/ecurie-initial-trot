@@ -1049,13 +1049,6 @@
     ],
     "nostalgie-dairpet": [
       {
-        "date": "2026-11-19",
-        "hippodrome": "Vincennes",
-        "type": "Trot attelé",
-        "statut": "engage",
-        "source_description": "Capture des engagements Trot transmise le 13/11/2026 (horaires non retenus)"
-      },
-      {
         "date": "2026-11-25",
         "hippodrome": "Vincennes",
         "type": "Trot attelé",
