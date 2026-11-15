@@ -1522,7 +1522,9 @@
       "classement": 3,
       "discipline": "attele",
       "casaque": "blanche",
-      "jockey": "Alexis MARIE"
+      "jockey": "Alexis MARIE",
+      "entraineur": "Alexis MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2024-03-24",
@@ -1531,7 +1533,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Alexis MARIE",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Alexis MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2024-02-25",
