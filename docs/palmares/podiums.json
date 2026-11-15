@@ -400,7 +400,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Maxime GRASSET",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Michel HANQUIER",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2026-05-25",
@@ -470,7 +472,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Benjamin ROCHARD",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Pierre-Louis DESAUNETTE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2026-04-19",
@@ -884,7 +888,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Sébastien ERNAULT",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2025-06-13",
@@ -1081,7 +1087,9 @@
       "classement": 3,
       "discipline": "attele",
       "casaque": "blanche",
-      "jockey": "Michel HANQUIER"
+      "jockey": "Michel HANQUIER",
+      "entraineur": "Michel HANQUIER",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2025-02-20",
@@ -1090,7 +1098,9 @@
       "classement": 3,
       "discipline": "attele",
       "casaque": "blanche",
-      "jockey": "Mathias LEGROS"
+      "jockey": "Mathias LEGROS",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2025-02-15",
@@ -1231,7 +1241,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Bruno MARIE",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2024-08-03",
@@ -1381,7 +1393,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Benjamin-Thomas MARIE",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2024-04-27",
@@ -1399,7 +1413,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Benjamin-Thomas MARIE",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2024-04-18",
@@ -1455,7 +1471,9 @@
       "classement": 3,
       "discipline": "attele",
       "casaque": "blanche",
-      "jockey": "Matthias LEGROS"
+      "jockey": "Matthias LEGROS",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2024-02-12",
@@ -1500,7 +1518,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Matthias LEGROS",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2023-12-27",
@@ -1630,7 +1650,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Bruno MARIE",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2023-07-30",
@@ -1639,7 +1661,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Bruno MARIE",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2023-07-30",
@@ -1702,7 +1726,9 @@
       "classement": 3,
       "discipline": "attele",
       "jockey": "Bruno MARIE",
-      "casaque": "nathalie"
+      "casaque": "nathalie",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2023-05-14",
@@ -1711,7 +1737,9 @@
       "classement": 3,
       "discipline": "attele",
       "casaque": "blanche",
-      "jockey": "Alexandre GUILLEMIN"
+      "jockey": "Alexandre GUILLEMIN",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2023-05-01",
@@ -1720,7 +1748,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Bruno MARIE",
-      "casaque": "nathalie"
+      "casaque": "nathalie",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2023-05-01",
@@ -2124,7 +2154,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Alexandre GUILLEMIN",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2022-04-10",
@@ -2142,7 +2174,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Alexandre GUILLEMIN",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2022-04-03",
@@ -2999,7 +3033,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Franck NIVARD",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Hervé BIHEL",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2015-07-21",
@@ -3201,7 +3237,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Nicolas BIHEL",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Hervé BIHEL",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2012-08-19",
