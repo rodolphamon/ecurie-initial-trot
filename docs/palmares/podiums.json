@@ -124,6 +124,16 @@
       "casaque": "blanche"
     },
     {
+      "date": "2026-05-03",
+      "cheval": "JETHAN DE MONGOCHY",
+      "hippodrome": "MONPAZIER",
+      "classement": 3,
+      "discipline": "attele",
+      "jockey": "Florian JULIEN",
+      "entraineur": "Florian JULIEN",
+      "casaque": "julien"
+    },
+    {
       "date": "2026-04-21",
       "cheval": "MOSCANTIDA PEAL",
       "hippodrome": "VINCENNES - GP",
@@ -131,6 +141,16 @@
       "discipline": "attele",
       "jockey": "Benjamin ROCHARD",
       "casaque": "blanche"
+    },
+    {
+      "date": "2026-04-19",
+      "cheval": "JETHAN DE MONGOCHY",
+      "hippodrome": "AGEN-LA-GARENNE",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Florian JULIEN",
+      "entraineur": "Florian JULIEN",
+      "casaque": "julien"
     },
     {
       "date": "2026-04-12",
@@ -169,6 +189,16 @@
       "casaque": "blanche"
     },
     {
+      "date": "2025-12-21",
+      "cheval": "JETHAN DE MONGOCHY",
+      "hippodrome": "GRENADE-SUR-GARONNE",
+      "classement": 3,
+      "discipline": "attele",
+      "jockey": "Frédéric CLOZIER",
+      "entraineur": "Florian JULIEN",
+      "casaque": "julien"
+    },
+    {
       "date": "2025-12-12",
       "cheval": "LARIFLETTE",
       "hippodrome": "VINCENNES - GP",
@@ -176,6 +206,16 @@
       "discipline": "attele",
       "jockey": "Matthias LEGROS",
       "casaque": "blanche"
+    },
+    {
+      "date": "2025-11-16",
+      "cheval": "JETHAN DE MONGOCHY",
+      "hippodrome": "AGEN-LA-GARENNE",
+      "classement": 3,
+      "discipline": "attele",
+      "jockey": "Florian JULIEN",
+      "entraineur": "Florian JULIEN",
+      "casaque": "julien"
     },
     {
       "date": "2025-11-03",
@@ -205,6 +245,16 @@
       "casaque": "blanche"
     },
     {
+      "date": "2025-08-23",
+      "cheval": "JETHAN DE MONGOCHY",
+      "hippodrome": "VILLEREAL",
+      "classement": 3,
+      "discipline": "attele",
+      "jockey": "Tristan BORD",
+      "entraineur": "Florian JULIEN",
+      "casaque": "julien"
+    },
+    {
       "date": "2025-08-19",
       "cheval": "L'ARTISTE DE GAGOU",
       "hippodrome": "DIVONNE-LES-BAINS",
@@ -230,6 +280,16 @@
       "discipline": "attele",
       "jockey": "Matthias LEGROS",
       "casaque": "blanche"
+    },
+    {
+      "date": "2025-08-03",
+      "cheval": "JETHAN DE MONGOCHY",
+      "hippodrome": "GRAMAT",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Florian JULIEN",
+      "entraineur": "Florian JULIEN",
+      "casaque": "julien"
     },
     {
       "date": "2025-08-02",
@@ -293,6 +353,16 @@
       "discipline": "attele",
       "jockey": "Vincent HEBERT",
       "casaque": "blanche"
+    },
+    {
+      "date": "2025-04-13",
+      "cheval": "JETHAN DE MONGOCHY",
+      "hippodrome": "AGEN-LA-GARENNE",
+      "classement": 3,
+      "discipline": "attele",
+      "jockey": "Florian JULIEN",
+      "entraineur": "Jackie JULIEN",
+      "casaque": "julien"
     },
     {
       "date": "2025-03-23",
@@ -436,7 +506,8 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Jordan MINEE",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Charley HESLOUIN"
     },
     {
       "date": "2024-05-07",
@@ -763,6 +834,16 @@
       "casaque": "nathalie"
     },
     {
+      "date": "2022-08-17",
+      "cheval": "JETHAN DE MONGOCHY",
+      "hippodrome": "ROYAN-ATLANTIQUE",
+      "classement": 3,
+      "discipline": "attele",
+      "jockey": "Charley HESLOUIN",
+      "entraineur": "Charley HESLOUIN",
+      "casaque": "blanche"
+    },
+    {
       "date": "2022-08-08",
       "cheval": "HANANE MONTAVAL",
       "hippodrome": "DIEPPE",
@@ -796,7 +877,8 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Charley HESLOUIN",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Charley HESLOUIN"
     },
     {
       "date": "2022-07-01",
@@ -823,7 +905,8 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Charley HESLOUIN",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Charley HESLOUIN"
     },
     {
       "date": "2022-04-17",
