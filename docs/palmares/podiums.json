@@ -43,6 +43,15 @@
       "casaque": "galop"
     },
     {
+      "date": "2026-10-17",
+      "cheval": "NOSTALGIE DAIRPET",
+      "hippodrome": "ENGHIEN",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Adrien LAMY",
+      "casaque": "blanche"
+    },
+    {
       "date": "2026-10-03",
       "cheval": "LUCKY DES GAUDINES",
       "hippodrome": "BEAUMONT-DE-LOMAGNE",
@@ -50,6 +59,87 @@
       "discipline": "attele",
       "jockey": "Mathieu DAOUGABEL",
       "casaque": "nathalie"
+    },
+    {
+      "date": "2026-08-25",
+      "cheval": "NEBRASKA FLEURY",
+      "hippodrome": "CABOURG",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Antonin ANDRE",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2026-08-03",
+      "cheval": "MANDRAGORA FLEURY",
+      "hippodrome": "ROCHEFORT-SUR-LOIRE",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Patrice PACAUD",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2026-07-12",
+      "cheval": "MANDRAGORA FLEURY",
+      "hippodrome": "DEAUVILLE-CLAIREFONTAINE",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Patrice PACAUD",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2026-07-12",
+      "cheval": "MEMPHIS BELLE",
+      "hippodrome": "RANES",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Matthias LEGROS",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2026-05-29",
+      "cheval": "ISOLEE DU BOUILLON",
+      "hippodrome": "VINCENNES - GP",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "François LAGADEUC",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2026-05-25",
+      "cheval": "NELSON STAR",
+      "hippodrome": "MIRAMONT-DE-GUYENNE",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Maxime GRASSET",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2026-05-24",
+      "cheval": "NEBRASKA FLEURY",
+      "hippodrome": "ROYAN-ATLANTIQUE",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Pierre-Louis DESAUNETTE",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2026-04-21",
+      "cheval": "MOSCANTIDA PEAL",
+      "hippodrome": "VINCENNES - GP",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Benjamin ROCHARD",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2026-04-12",
+      "cheval": "MOONDANCE OKINA",
+      "hippodrome": "GRAIGNES",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Sébastien ERNAULT",
+      "casaque": "blanche"
     },
     {
       "date": "2026-02-23",
@@ -61,6 +151,33 @@
       "casaque": "nathalie"
     },
     {
+      "date": "2026-02-02",
+      "cheval": "LOVE ME MAZELI",
+      "hippodrome": "GRAIGNES",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Matthias LEGROS",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2026-01-25",
+      "cheval": "INDICE DELADOU",
+      "hippodrome": "VINCENNES - GP",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Eva BOUCLET",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2025-12-12",
+      "cheval": "LARIFLETTE",
+      "hippodrome": "VINCENNES - GP",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Matthias LEGROS",
+      "casaque": "blanche"
+    },
+    {
       "date": "2025-11-03",
       "cheval": "MONA LISA STARDUST",
       "hippodrome": "AGEN-LA-GARENNE",
@@ -68,6 +185,51 @@
       "discipline": "attele",
       "jockey": "Michel HANQUIER",
       "casaque": "nathalie"
+    },
+    {
+      "date": "2025-09-23",
+      "cheval": "LARIFLETTE",
+      "hippodrome": "VINCENNES - GP",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Matthias LEGROS",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2025-08-27",
+      "cheval": "LARIFLETTE",
+      "hippodrome": "VINCENNES - GP",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Matthias LEGROS",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2025-08-19",
+      "cheval": "L'ARTISTE DE GAGOU",
+      "hippodrome": "DIVONNE-LES-BAINS",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Matthias LEGROS",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2025-08-14",
+      "cheval": "MACLANDER",
+      "hippodrome": "ENGHIEN",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Matthias LEGROS",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2025-08-09",
+      "cheval": "LARIFLETTE",
+      "hippodrome": "ENGHIEN",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Matthias LEGROS",
+      "casaque": "blanche"
     },
     {
       "date": "2025-08-02",
@@ -79,6 +241,168 @@
       "casaque": "nathalie"
     },
     {
+      "date": "2025-07-13",
+      "cheval": "LARKY PERRINE",
+      "hippodrome": "RANES",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Vincent HEBERT",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2025-06-15",
+      "cheval": "ISOLEE DU BOUILLON",
+      "hippodrome": "CHERBOURG",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Sébastien ERNAULT",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2025-06-08",
+      "cheval": "LOVE ME MAZELI",
+      "hippodrome": "SAINT-MALO",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Matthias LEGROS",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2025-05-31",
+      "cheval": "HAMPTON AMERICA",
+      "hippodrome": "AGEN-LA-GARENNE",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Michel HANQUIER",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2025-05-20",
+      "cheval": "INDICE DELADOU",
+      "hippodrome": "VICHY",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Eva BOUCLET",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2025-05-17",
+      "cheval": "MANDRAGORA FLEURY",
+      "hippodrome": "CAEN",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Vincent HEBERT",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2025-03-23",
+      "cheval": "LOVE ME MAZELI",
+      "hippodrome": "LA CAPELLE",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Charley HESLOUIN",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2025-03-21",
+      "cheval": "JOHANNA ELEVEN",
+      "hippodrome": "MARSEILLE (A BORELY)",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Jean-Christophe SOREL",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2025-01-20",
+      "cheval": "LARIFLETTE",
+      "hippodrome": "VINCENNES - GP",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Matthias LEGROS",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2025-01-12",
+      "cheval": "IT'S EAGLE COGLAIS",
+      "hippodrome": "CAGNES-SUR-MER",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Benjamin-Thomas MARIE",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2024-12-23",
+      "cheval": "IT'S EAGLE COGLAIS",
+      "hippodrome": "CAGNES-SUR-MER",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Maxence VAUDOIT",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2024-12-05",
+      "cheval": "JOHANNA ELEVEN",
+      "hippodrome": "MARSEILLE (A VIVAUX)",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "David BEKAERT",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2024-10-10",
+      "cheval": "IT'S EAGLE COGLAIS",
+      "hippodrome": "ENGHIEN",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Maxence VAUDOIT",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2024-10-05",
+      "cheval": "JEHAN",
+      "hippodrome": "CABOURG",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Antonin ANDRE",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2024-09-05",
+      "cheval": "LARIFLETTE",
+      "hippodrome": "VINCENNES - GP",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Matthias LEGROS",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2024-08-04",
+      "cheval": "ISOLEE DU BOUILLON",
+      "hippodrome": "LA FERTE-VIDAME",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Bruno MARIE",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2024-08-03",
+      "cheval": "JODEON",
+      "hippodrome": "LES SABLES D'OLONNE",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Maxence VAUDOIT",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2024-07-27",
+      "cheval": "JODEON",
+      "hippodrome": "COMPIEGNE",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Matthias LEGROS",
+      "casaque": "blanche"
+    },
+    {
       "date": "2024-07-01",
       "cheval": "HANANE MONTAVAL",
       "hippodrome": "STRASBOURG",
@@ -88,6 +412,78 @@
       "casaque": "nathalie"
     },
     {
+      "date": "2024-06-16",
+      "cheval": "JAMAIS SANS ELLE",
+      "hippodrome": "RAMBOUILLET",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Adrien LAMY",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2024-06-15",
+      "cheval": "HAMPTON AMERICA",
+      "hippodrome": "AGEN-LA-GARENNE",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Michel HANQUIER",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2024-06-09",
+      "cheval": "JETHAN DE MONGOCHY",
+      "hippodrome": "ARRAS",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Jordan MINEE",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2024-05-07",
+      "cheval": "ISOLEE DU BOUILLON",
+      "hippodrome": "VINCENNES - GP",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Benjamin-Thomas MARIE",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2024-04-23",
+      "cheval": "ISOLEE DU BOUILLON",
+      "hippodrome": "VINCENNES - GP",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Benjamin-Thomas MARIE",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2024-04-18",
+      "cheval": "LARIFLETTE",
+      "hippodrome": "ENGHIEN",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Matthias LEGROS",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2024-03-24",
+      "cheval": "JESSIE DES LANDES",
+      "hippodrome": "LA GUERCHE-DE-BRETAGNE",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Alexis MARIE",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2024-02-25",
+      "cheval": "ILLAM DE MONGOCHY",
+      "hippodrome": "SAUMUR",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Alexis MARIE",
+      "casaque": "blanche"
+    },
+    {
       "date": "2024-02-15",
       "cheval": "HANANE MONTAVAL",
       "hippodrome": "GRAIGNES",
@@ -95,6 +491,15 @@
       "discipline": "attele",
       "jockey": "François LAGADEUC",
       "casaque": "nathalie"
+    },
+    {
+      "date": "2024-02-04",
+      "cheval": "IBERIK DE MONGOCHY",
+      "hippodrome": "VINCENNES - GP",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Benjamin ROCHARD",
+      "casaque": "blanche"
     },
     {
       "date": "2024-01-31",
@@ -113,6 +518,105 @@
       "discipline": "attele",
       "jockey": "Adrien MERIEL",
       "casaque": "nathalie"
+    },
+    {
+      "date": "2024-01-05",
+      "cheval": "ISOLEE DU BOUILLON",
+      "hippodrome": "PONTCHATEAU",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Matthias LEGROS",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2023-12-17",
+      "cheval": "HAMPTON AMERICA",
+      "hippodrome": "ARGENTAN",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Barbara GUENET",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2023-11-10",
+      "cheval": "INDICE DELADOU",
+      "hippodrome": "LE CROISE-LAROCHE",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Eva BOUCLET",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2023-09-17",
+      "cheval": "ILLAM DE MONGOCHY",
+      "hippodrome": "BLAIN-BOUVRON-LE GAVRE",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Alexis MARIE",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2023-09-02",
+      "cheval": "FIESTA TEJY",
+      "hippodrome": "LANGON-LIBOURNE",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Florian JULIEN",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2023-08-08",
+      "cheval": "HERMES DU PRESSOIR",
+      "hippodrome": "TRIE-SUR-BAISE",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Maiana MENDIBOURE",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2023-08-07",
+      "cheval": "HOMAYA DU BOCAGE",
+      "hippodrome": "LES SABLES D'OLONNE",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Léo JORDAN-GUENET",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2023-08-06",
+      "cheval": "ISOLEE DU BOUILLON",
+      "hippodrome": "BREHAL",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Bruno MARIE",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2023-07-30",
+      "cheval": "ISOLEE DU BOUILLON",
+      "hippodrome": "BERNAY",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Bruno MARIE",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2023-07-02",
+      "cheval": "GOSPEL",
+      "hippodrome": "ECOMMOY",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Paul-Philippe PLOQUIN",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2023-06-26",
+      "cheval": "HOMAYA DU BOCAGE",
+      "hippodrome": "CHARTRES",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Alexandre GUILLEMIN",
+      "casaque": "blanche"
     },
     {
       "date": "2023-05-29",
@@ -142,6 +646,15 @@
       "casaque": "nathalie"
     },
     {
+      "date": "2023-03-10",
+      "cheval": "IT'S EAGLE COGLAIS",
+      "hippodrome": "CORDEMAIS",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Bruno MARIE",
+      "casaque": "blanche"
+    },
+    {
       "date": "2023-02-25",
       "cheval": "ISBA QUICK",
       "hippodrome": "MONTAUBAN",
@@ -151,6 +664,42 @@
       "casaque": "nathalie"
     },
     {
+      "date": "2023-02-24",
+      "cheval": "IBERIK DE MONGOCHY",
+      "hippodrome": "VINCENNES - GP",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "François LAGADEUC",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2023-02-14",
+      "cheval": "IT'S EAGLE COGLAIS",
+      "hippodrome": "VINCENNES - GP",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Adrien LAMY",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2023-02-05",
+      "cheval": "IBERIK DE MONGOCHY",
+      "hippodrome": "VINCENNES - GP",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "François LAGADEUC",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2023-01-29",
+      "cheval": "IT'S EAGLE COGLAIS",
+      "hippodrome": "NANTES",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Bruno MARIE",
+      "casaque": "blanche"
+    },
+    {
       "date": "2023-01-21",
       "cheval": "ISBA QUICK",
       "hippodrome": "ARGENTAN",
@@ -158,6 +707,42 @@
       "discipline": "attele",
       "jockey": "Alexandre GUILLEMIN",
       "casaque": "nathalie"
+    },
+    {
+      "date": "2023-01-07",
+      "cheval": "CAID DORE",
+      "hippodrome": "CAGNES-SUR-MER",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "François TUGEND",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2022-11-27",
+      "cheval": "HARRISON GEDE",
+      "hippodrome": "VIRE NORMANDIE",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "François LAGADEUC",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2022-11-15",
+      "cheval": "ILLAM DE MONGOCHY",
+      "hippodrome": "VINCENNES - GP",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Dominik LOCQUENEUX",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2022-11-11",
+      "cheval": "IBERIK DE MONGOCHY",
+      "hippodrome": "VINCENNES - GP",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "François LAGADEUC",
+      "casaque": "blanche"
     },
     {
       "date": "2022-09-11",
@@ -187,6 +772,33 @@
       "casaque": "nathalie"
     },
     {
+      "date": "2022-07-17",
+      "cheval": "HOMAYA DU BOCAGE",
+      "hippodrome": "BAGNOLES DE L'ORNE",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Christophe THOUROUDE",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2022-07-11",
+      "cheval": "IVAN DRAGO",
+      "hippodrome": "BIARRITZ",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Romain LE CREPS",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2022-07-03",
+      "cheval": "JETHAN DE MONGOCHY",
+      "hippodrome": "LE TOUQUET",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Charley HESLOUIN",
+      "casaque": "blanche"
+    },
+    {
       "date": "2022-07-01",
       "cheval": "ISBA QUICK",
       "hippodrome": "BORDEAUX",
@@ -194,6 +806,60 @@
       "discipline": "attele",
       "jockey": "Bruno MARIE",
       "casaque": "nathalie"
+    },
+    {
+      "date": "2022-06-30",
+      "cheval": "JACKPOT DES BORDES",
+      "hippodrome": "ENGHIEN",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Bruno MARIE",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2022-06-18",
+      "cheval": "JETHAN DE MONGOCHY",
+      "hippodrome": "LISIEUX",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Charley HESLOUIN",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2022-04-17",
+      "cheval": "HOMAYA DU BOCAGE",
+      "hippodrome": "ECOMMOY",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Adrien ERNAULT",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2022-04-17",
+      "cheval": "JULY DU GUESNE",
+      "hippodrome": "LES ANDELYS",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Alexandre GUILLEMIN",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2022-04-10",
+      "cheval": "HERMES PLANCHETTE",
+      "hippodrome": "RAMBOUILLET",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Adrien ERNAULT",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2022-04-03",
+      "cheval": "JULY DU GUESNE",
+      "hippodrome": "VIRE NORMANDIE",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Alexandre GUILLEMIN",
+      "casaque": "blanche"
     },
     {
       "date": "2022-03-20",
@@ -214,6 +880,15 @@
       "casaque": "nathalie"
     },
     {
+      "date": "2022-02-03",
+      "cheval": "IBERIK DE MONGOCHY",
+      "hippodrome": "VINCENNES - GP",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "François LAGADEUC",
+      "casaque": "blanche"
+    },
+    {
       "date": "2022-01-16",
       "cheval": "ISBA QUICK",
       "hippodrome": "ARGENTAN",
@@ -221,6 +896,24 @@
       "discipline": "attele",
       "jockey": "Bruno MARIE",
       "casaque": "nathalie"
+    },
+    {
+      "date": "2021-12-13",
+      "cheval": "HERMES PLANCHETTE",
+      "hippodrome": "VINCENNES - GP",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Jean-Philippe MONCLIN",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2021-08-07",
+      "cheval": "IBERIK DE MONGOCHY",
+      "hippodrome": "CARENTAN",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "François LECANU",
+      "casaque": "blanche"
     },
     {
       "date": "2021-08-01",
@@ -250,6 +943,33 @@
       "casaque": "nathalie"
     },
     {
+      "date": "2021-07-05",
+      "cheval": "IBERIK DE MONGOCHY",
+      "hippodrome": "SABLE-SUR-SARTHE",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "François LAGADEUC",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2021-05-22",
+      "cheval": "GOSPEL",
+      "hippodrome": "CAEN",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Paul-Philippe PLOQUIN",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2021-05-08",
+      "cheval": "IBERIK DE MONGOCHY",
+      "hippodrome": "GRAIGNES",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "François LAGADEUC",
+      "casaque": "blanche"
+    },
+    {
       "date": "2021-05-02",
       "cheval": "CAID DORE",
       "hippodrome": "RAMBOUILLET",
@@ -259,6 +979,51 @@
       "casaque": "nathalie"
     },
     {
+      "date": "2021-03-07",
+      "cheval": "GOSPEL",
+      "hippodrome": "CHALLANS",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Paul-Philippe PLOQUIN",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2021-01-12",
+      "cheval": "GOSPEL",
+      "hippodrome": "BORDEAUX",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Benjamin ROCHARD",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2021-01-01",
+      "cheval": "FETICHE ATOUT",
+      "hippodrome": "VINCENNES - PP",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "François LAGADEUC",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2020-12-06",
+      "cheval": "FETICHE ATOUT",
+      "hippodrome": "VINCENNES - GP",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "François LAGADEUC",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2020-12-06",
+      "cheval": "GOSPEL",
+      "hippodrome": "CHATEAUBRIANT",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Paul-Philippe PLOQUIN",
+      "casaque": "blanche"
+    },
+    {
       "date": "2020-09-20",
       "cheval": "FEEL SO GOOD",
       "hippodrome": "VILLEDIEU-LES-POELES",
@@ -266,6 +1031,60 @@
       "discipline": "attele",
       "jockey": "Florian TABESSE",
       "casaque": "nathalie"
+    },
+    {
+      "date": "2020-06-24",
+      "cheval": "FETICHE ATOUT",
+      "hippodrome": "ENGHIEN",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Yoann LEBOURGEOIS",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2020-05-17",
+      "cheval": "GINKO",
+      "hippodrome": "MAUQUENCHY",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Adrien LAMY",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2019-08-06",
+      "cheval": "ETOILE DE MONGOCHY",
+      "hippodrome": "TRIE-SUR-BAISE",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Cyril GAZENGEL",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2019-07-07",
+      "cheval": "ETOILE DE MONGOCHY",
+      "hippodrome": "MONPAZIER",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Cyril GAZENGEL",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2019-06-30",
+      "cheval": "ETOILE DE MONGOCHY",
+      "hippodrome": "BEAUMONT-DE-LOMAGNE",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Gregory TOQUE",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2019-06-10",
+      "cheval": "CRYSTAL GIRL",
+      "hippodrome": "VILLEDIEU-LES-POELES",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Luc-Jérôme LEGROS",
+      "casaque": "blanche"
     },
     {
       "date": "2018-09-16",
@@ -295,6 +1114,24 @@
       "casaque": "nathalie"
     },
     {
+      "date": "2018-04-28",
+      "cheval": "DJANGO DE MONGOCHY",
+      "hippodrome": "ARGENTAN",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Bruno MARIE",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2017-07-18",
+      "cheval": "ETOILE DE MONGOCHY",
+      "hippodrome": "CABOURG",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Benoît BARASSIN",
+      "casaque": "blanche"
+    },
+    {
       "date": "2017-06-17",
       "cheval": "ELFE ATOUT",
       "hippodrome": "LISIEUX",
@@ -302,6 +1139,150 @@
       "discipline": "attele",
       "jockey": "Charley HESLOUIN",
       "casaque": "nathalie"
+    },
+    {
+      "date": "2017-04-07",
+      "cheval": "CALIE DE POMMERAYE",
+      "hippodrome": "VINCENNES - PP",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Pierre HOUEL",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2017-03-19",
+      "cheval": "VALMIN DE GUEUDE",
+      "hippodrome": "CHOLET",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Bruno MARIE",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2017-02-19",
+      "cheval": "VALMIN DE GUEUDE",
+      "hippodrome": "VIRE NORMANDIE",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Charley MOTTIER",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2017-02-14",
+      "cheval": "DJANGO DE MONGOCHY",
+      "hippodrome": "VINCENNES - GP",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Bruno MARIE",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2017-02-02",
+      "cheval": "DJANGO DE MONGOCHY",
+      "hippodrome": "VINCENNES - PP",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Bruno MARIE",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2016-12-04",
+      "cheval": "VALMIN DE GUEUDE",
+      "hippodrome": "LYON (A PARILLY)",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Charley HESLOUIN",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2016-11-06",
+      "cheval": "VALMIN DE GUEUDE",
+      "hippodrome": "LISIEUX",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Rodolphe HAMON",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2016-10-10",
+      "cheval": "CALIE DE POMMERAYE",
+      "hippodrome": "ENGHIEN",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Pierre HOUEL",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2016-09-20",
+      "cheval": "CALIE DE POMMERAYE",
+      "hippodrome": "VINCENNES - PP",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Eric RAFFIN",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2016-09-18",
+      "cheval": "ACTRICE DE CERISY",
+      "hippodrome": "AGEN-LA-GARENNE",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Romain LE CREPS",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2016-09-08",
+      "cheval": "CALIE DE POMMERAYE",
+      "hippodrome": "MAUQUENCHY",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Pierre HOUEL",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2016-08-30",
+      "cheval": "CALIE DE POMMERAYE",
+      "hippodrome": "CABOURG",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Pierre HOUEL",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2016-04-02",
+      "cheval": "CALIE DE POMMERAYE",
+      "hippodrome": "CAEN",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "François LAGADEUC",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2015-09-13",
+      "cheval": "VALMIN DE GUEUDE",
+      "hippodrome": "LANGON-LIBOURNE",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Romain LE CREPS",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2015-08-01",
+      "cheval": "VALMIN DE GUEUDE",
+      "hippodrome": "VILLEREAL",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Jérôme PAILLE",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2015-07-26",
+      "cheval": "ADAMS",
+      "hippodrome": "ENGHIEN",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Franck NIVARD",
+      "casaque": "blanche"
     },
     {
       "date": "2015-06-13",
@@ -313,6 +1294,87 @@
       "casaque": "nathalie"
     },
     {
+      "date": "2014-11-02",
+      "cheval": "BEAUTE D'ONDEE",
+      "hippodrome": "MAUQUENCHY",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Hervé BIHEL",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2014-10-26",
+      "cheval": "VALMIN DE GUEUDE",
+      "hippodrome": "GRENADE-SUR-GARONNE",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Romain LE CREPS",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2014-09-07",
+      "cheval": "ACTRICE DE CERISY",
+      "hippodrome": "BEAUMONT-DE-LOMAGNE",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Romain LE CREPS",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2014-07-20",
+      "cheval": "RHEA SILVIA",
+      "hippodrome": "LES ANDELYS",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Lolita BALAYN",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2014-06-01",
+      "cheval": "RHEA SILVIA",
+      "hippodrome": "LIGNIERES EN BERRY",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Lolita BALAYN",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2013-12-30",
+      "cheval": "ACTRICE DE CERISY",
+      "hippodrome": "TOULOUSE",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Romain LE CREPS",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2013-11-10",
+      "cheval": "ACTRICE DE CERISY",
+      "hippodrome": "BORDEAUX",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Romain LE CREPS",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2013-08-22",
+      "cheval": "TENOR DEBOUT",
+      "hippodrome": "MONTIGNAC-CHARENTE",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Tom COMPAS",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2013-08-06",
+      "cheval": "RHEA SILVIA",
+      "hippodrome": "AVRANCHES",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Lolita BALAYN",
+      "casaque": "blanche"
+    },
+    {
       "date": "2013-07-27",
       "cheval": "RHUM BARBES",
       "hippodrome": "COMPIEGNE",
@@ -320,6 +1382,69 @@
       "discipline": "attele",
       "jockey": "Elisabeth ALLAIRE",
       "casaque": "nathalie"
+    },
+    {
+      "date": "2013-07-14",
+      "cheval": "RHEA SILVIA",
+      "hippodrome": "FRANCHEVILLE-LA BARRE",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Lolita BALAYN",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2013-02-17",
+      "cheval": "URANUS DU COURS",
+      "hippodrome": "MONTAUBAN",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Mickaël BACHELOT",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2013-01-13",
+      "cheval": "ADAMS",
+      "hippodrome": "ARGENTAN",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Nicolas BIHEL",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2012-08-19",
+      "cheval": "TENDRESSE DE RHISA",
+      "hippodrome": "SAINT-PIERRE-EN-AUGE",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Marlène BEDOUET",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2012-08-06",
+      "cheval": "URANUS DU COURS",
+      "hippodrome": "AUCH",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Guillaume CARDINE",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2012-07-30",
+      "cheval": "URANUS DU COURS",
+      "hippodrome": "GABARRET",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Guillaume CARDINE",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2012-04-15",
+      "cheval": "RHEA SILVIA",
+      "hippodrome": "SAINT-AUBIN-LES-ELBEUF",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Amandine BROUEL",
+      "casaque": "blanche"
     },
     {
       "date": "2011-08-30",
