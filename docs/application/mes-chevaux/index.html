@@ -18,6 +18,7 @@
 .card-heading{display:flex;justify-content:space-between;align-items:center;gap:9px;flex-wrap:wrap}
 .card-heading a{font-size:13px}
 #newsSection .news{border:0;border-left:3px solid var(--ei-orange)}
+#private-news img,#private-news video{display:block;max-width:100%;max-height:430px;border-radius:10px;margin:12px 0;background:#171717}
 </style><link rel="manifest" href="../manifest.webmanifest"><link rel="apple-touch-icon" href="../icon-ei-192.png"></head>
 <body><header><strong>ÉCURIE <span>INITIAL</span></strong><div style="font-size:12px;color:#ddd">Mon espace personnel</div></header><main>
 <p><a href="../">← Retour à l'application</a></p><h1>🐎 Mes chevaux</h1><p id="loading">Vérification de votre accès…</p>
@@ -33,7 +34,7 @@
   <div id="next-races"></div>
 </section>
 <section class="card" id="newsSection" hidden>
-  <h2>✉️ Nouvelles privées</h2><div id="private-news"></div>
+  <h2 id="nouvelles-privees">✉️ Nouvelles privées</h2><div id="private-news"></div>
 </section>
 <section class="card">
   <h2>🏆 Dernières performances</h2><div id="last-results"></div>
@@ -86,10 +87,14 @@ async function setup(){
     if(!r.ok)throw Error('Données publiques indisponibles');
     return r.json();
   }));
-  const privatePromise=mine.length
-    ?db.from('actualites_chevaux_privees').select('cheval_slug,titre,contenu,created_at')
-      .in('cheval_slug',mine.map(p=>p.cheval_slug)).order('created_at',{ascending:false}).limit(20)
-    :Promise.resolve({data:[],error:null});
+  const infoId=new URLSearchParams(location.search).get('info');
+  const isInfoId=/^[0-9]{1,18}$/.test(infoId||'');
+  let privateQuery=db.from('actualites_chevaux_privees')
+    .select('id,cheval_slug,titre,contenu,media_path,media_type,created_at')
+    .in('cheval_slug',mine.map(p=>p.cheval_slug))
+    .order('created_at',{ascending:false}).limit(30);
+  if(isInfoId)privateQuery=privateQuery.eq('id',infoId);
+  const privatePromise=mine.length?privateQuery:Promise.resolve({data:[],error:null});
   const [pubResult,privResult]=await Promise.allSettled([publicPromise,privatePromise]);
   let editorial=null,profiles=null;
   if(pubResult.status==='fulfilled'){[editorial,profiles]=pubResult.value}
@@ -129,13 +134,27 @@ async function setup(){
   }
   if(privResult.status==='fulfilled'&&!privResult.value.error){
     for(const n of privResult.value.data||[]){
+      if(!bySlug.has(n.cheval_slug))continue;
       const box=el('article',undefined,'news');
       box.append(el('strong',(bySlug.get(n.cheval_slug)?.cheval_nom||'Cheval')+' · '+n.titre));
-      box.append(el('p',n.contenu));
+      if(n.contenu)box.append(el('p',n.contenu));
+      if(n.media_path&&['image','video'].includes(n.media_type)){
+        const {data:media,error:mediaError}=await db.storage.from('ei-chevaux-prives')
+          .createSignedUrl(n.media_path,3600);
+        if(!mediaError&&media?.signedUrl){
+          const element=el(n.media_type==='image'?'img':'video');
+          element.src=media.signedUrl;
+          if(n.media_type==='image'){element.alt='Photo privée : '+n.titre;element.loading='lazy'}
+          else{element.controls=true;element.preload='metadata';element.playsInline=true}
+          box.append(element);
+        }else box.append(el('p','Média privé indisponible pour le moment.','muted'));
+      }
       box.append(el('small',formatDate(n.created_at)));
       $('private-news').append(box);
       $('newsSection').hidden=false;
     }
+    if(window.location.hash==='#nouvelles-privees'&&!$('newsSection').hidden)
+      $('newsSection').scrollIntoView({behavior:'smooth',block:'start'});
   }
   const profilesBySlug=new Map((profiles?.horses||[]).map(h=>[h.id,h]));
   const nodes=[];
