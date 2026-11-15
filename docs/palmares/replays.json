@@ -1,5 +1,5 @@
 {
-  "version": 83,
+  "version": 84,
   "note": "Fiches de courses Equidia ou LeTROT avec sources identifiant les courses. Les URLs Equidia sont déduites du format date/R/C ; la disponibilité et la lecture des vidéos ne sont pas garanties. HOMA reste sur LeTROT faute de fiche Equidia vérifiée.",
   "replays": [
     {
@@ -1868,6 +1868,15 @@
       "url": "https://www.equidia.fr/courses/2022-08-23/R5/C8",
       "justificatif": "https://www.canalturf.com/resultats-PMU/2022-08-23/cabourg/283043_prix-des-cardamines.html",
       "controle": "3e, n°8 ; résultat et numéro R5C8 confirmés par source citée ; lecture du replay Equidia non vérifiée."
+    },
+    {
+      "date": "2022-08-17",
+      "cheval": "JETHAN DE MONGOCHY",
+      "hippodrome": "ROYAN-ATLANTIQUE",
+      "url": "https://www.zeturf.fr/fr/course-du-jour/2022-08-17/R8C1-royan-la-palmyre-prix-ar-pub",
+      "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2022-08-17/R8C1-royan-la-palmyre-prix-ar-pub",
+      "preuve_arrivee": "https://www.zone-turf.fr/cheval/jethan-de-mongochy-1749902/",
+      "controle": "17/08/2022 Royan R8C1 Prix Ar Pub, JETHAN DE MONGOCHY 3e n°11 avec Charley Heslouin ; course et arrivée confirmées, page ZEturf avec rubrique Replay ; flux vidéo non testé."
     },
     {
       "date": "2022-08-16",
