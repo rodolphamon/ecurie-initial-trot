@@ -3498,11 +3498,13 @@
       "cheval": "RHEA SILVIA",
       "hippodrome": "LIGNIERES EN BERRY",
       "classement": 2,
-      "discipline": "attele",
+      "discipline": "monte",
       "jockey": "Lolita BALAYN",
       "casaque": "blanche",
       "entraineur": "Alexandre MARQUET",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Benoît CAILLIAU en 2013, Alexandre MARQUET à partir de 2014"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Benoît CAILLIAU en 2013, Alexandre MARQUET à partir de 2014",
+      "source_discipline": "https://www.zone-turf.fr/cheval/rhea-silvia-43685/",
+      "correction_discipline": "Prix Quokine Berry, Lignières 01/06/2014 : trot monté (2e avec Lolita BALAYN), source archives Zone-Turf."
     },
     {
       "date": "2014-04-16",
