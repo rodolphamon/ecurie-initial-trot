@@ -25,6 +25,56 @@
       "commentaire": "Arrivée confirmée ; aucune URL de replay spécifique établie lors des recherches. Ne pas afficher comme vidéo tant que le replay est introuvable."
     },
     {
+      "date": "2026-09-20",
+      "cheval": "ANDRESY",
+      "hippodrome": "SABLE-SUR-SARTHE",
+      "classement": 3,
+      "course": "Prix Crédit Mutuel (plat)",
+      "source_resultat": "https://www.geny.com/course/1685399-2026-09-20-sable-sur-sarthe-prix-credit-mutuel/arrivee-rapports",
+      "etat_video": "non_identifiee",
+      "commentaire": "Arrivée et classement vérifiés dans une source publique ; aucun replay spécifique trouvé lors de cette passe. Ne pas ajouter la page de résultat comme vidéo."
+    },
+    {
+      "date": "2026-08-15",
+      "cheval": "MANDRAGORA FLEURY",
+      "hippodrome": "CARENTAN",
+      "classement": 3,
+      "course": "Prix Opticien Krys Carentan (Gr A)",
+      "source_resultat": "https://www.turf-fr.com/fiche-cheval/mandragora-fleury-1016962",
+      "etat_video": "non_identifiee",
+      "commentaire": "Arrivée et classement vérifiés dans une source publique ; aucun replay spécifique trouvé lors de cette passe. Ne pas ajouter la page de résultat comme vidéo."
+    },
+    {
+      "date": "2026-07-12",
+      "cheval": "MEMPHIS BELLE",
+      "hippodrome": "RANES",
+      "classement": 2,
+      "course": "Prix des 1500 Victoires Franck Bl (Gr A)",
+      "source_resultat": "https://www.zone-turf.fr/cheval/memphis-belle-2148936/",
+      "etat_video": "non_identifiee",
+      "commentaire": "Arrivée et classement vérifiés dans une source publique ; aucun replay spécifique trouvé lors de cette passe. Ne pas ajouter la page de résultat comme vidéo."
+    },
+    {
+      "date": "2026-07-12",
+      "cheval": "LORD ON WAY",
+      "hippodrome": "MONTMIRAIL",
+      "classement": 3,
+      "course": "Prix Lecluse Automobiles",
+      "source_resultat": "https://www.zone-turf.fr/cheval/lord-on-way-2075153/",
+      "etat_video": "non_identifiee",
+      "commentaire": "Arrivée et classement vérifiés dans une source publique ; aucun replay spécifique trouvé lors de cette passe. Ne pas ajouter la page de résultat comme vidéo."
+    },
+    {
+      "date": "2026-05-03",
+      "cheval": "JETHAN DE MONGOCHY",
+      "hippodrome": "MONPAZIER",
+      "classement": 3,
+      "course": "Prix Jean-François Maury",
+      "source_resultat": "https://sd99.turf-fr.com/fiche-cheval/inopine-790683",
+      "etat_video": "non_identifiee",
+      "commentaire": "Arrivée et classement vérifiés dans une source publique ; aucun replay spécifique trouvé lors de cette passe. Ne pas ajouter la page de résultat comme vidéo."
+    },
+    {
       "date": "2026-02-23",
       "cheval": "MONA LISA STARDUST",
       "hippodrome": "MONTAUBAN",
@@ -35,6 +85,16 @@
       "commentaire": "Arrivée confirmée ; aucune URL de replay spécifique établie lors des recherches. Ne pas afficher comme vidéo tant que le replay est introuvable."
     },
     {
+      "date": "2025-08-03",
+      "cheval": "JETHAN DE MONGOCHY",
+      "hippodrome": "GRAMAT",
+      "classement": 2,
+      "course": "Prix du Conseil Regional",
+      "source_resultat": "https://www.zone-turf.fr/cheval/jethan-de-mongochy-1749902/",
+      "etat_video": "non_identifiee",
+      "commentaire": "Arrivée et classement vérifiés dans une source publique ; aucun replay spécifique trouvé lors de cette passe. Ne pas ajouter la page de résultat comme vidéo."
+    },
+    {
       "date": "2024-09-22",
       "cheval": "GUEPARD DE MONE",
       "hippodrome": "VILLENEUVE-SUR-LOT",
@@ -43,6 +103,16 @@
       "source_resultat": "https://www.zone-turf.fr/cheval/guepard-de-mone-751746/",
       "etat_video": "non_identifiee",
       "commentaire": "Arrivée recoupée ; vérifier LeTROT/Equidia/ZEturf avant ajout d'un lien vidéo."
+    },
+    {
+      "date": "2024-04-06",
+      "cheval": "JESSIE DES LANDES",
+      "hippodrome": "SAUMUR",
+      "classement": 3,
+      "course": "Prix Traiteur le Cygne - Airvault (Gr B)",
+      "source_resultat": "https://www.zone-turf.fr/cheval/jazz-passion-1765486/archives-1.html",
+      "etat_video": "non_identifiee",
+      "commentaire": "Arrivée et classement vérifiés dans une source publique ; aucun replay spécifique trouvé lors de cette passe. Ne pas ajouter la page de résultat comme vidéo."
     },
     {
       "date": "2024-03-24",
