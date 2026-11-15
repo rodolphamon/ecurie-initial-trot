@@ -1825,17 +1825,6 @@
       "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Benoît BARASSIN jusqu'au 17/08/2019, puis Bruno MARIE, puis Pierre-Louis DESAUNETTE après le 03/08/2020"
     },
     {
-      "date": "2023-06-26",
-      "cheval": "HOMAYA DU BOCAGE",
-      "hippodrome": "CHARTRES",
-      "classement": 2,
-      "discipline": "attele",
-      "jockey": "Alexandre GUILLEMIN",
-      "casaque": "blanche",
-      "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Bruno MARIE sans changement"
-    },
-    {
       "date": "2023-05-31",
       "cheval": "GOSPEL",
       "hippodrome": "CAEN",
@@ -1941,6 +1930,19 @@
       "jockey": "Jean Charles FERON",
       "entraineur": "Bruno MARIE",
       "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+    },
+    {
+      "date": "2023-03-26",
+      "cheval": "HOMAYA DU BOCAGE",
+      "hippodrome": "CHARTRES",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Alexandre GUILLEMIN",
+      "casaque": "blanche",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Bruno MARIE sans changement",
+      "source_correction": "https://www.zeturf.fr/fr/course-du-jour/2023-03-26/R11C8-chartres-prix-de-l-office-de-tourisme-chartres-me",
+      "note_correction": "Date initialement saisie 26/06/2023, corrigée au 26/03/2023 d'après l'arrivée ZEturf R11C8 et Zone-Turf : Homaya n°8 2e, A. Guillemin."
     },
     {
       "date": "2023-03-16",
