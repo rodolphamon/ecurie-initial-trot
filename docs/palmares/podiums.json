@@ -18,8 +18,8 @@
       "discipline": "monte",
       "casaque": "blanche",
       "jockey": "A. ANGOT",
-      "entraineur": "Thibaut BARASSIN",
-      "source_entraineur": "Correction confirmée par le propriétaire Écurie Initial, 15/11/2026 : Thibaut BARASSIN à partir du podium de Lisieux du 01/11/2026"
+      "entraineur": "Laurent BARASSIN",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Laurent BARASSIN à Lisieux"
     },
     {
       "date": "2026-10-30",
@@ -720,7 +720,9 @@
       "discipline": "attele",
       "casaque": "blanche",
       "proprietaire": "Écurie Initial",
-      "jockey": "Romain LE CREPS"
+      "jockey": "Romain LE CREPS",
+      "entraineur": "N. CATHERINE",
+      "source_entraineur": "https://www.infogoetz.fr/pronostics-du-23-11-2025-a-FR-CHERBOURG%2Ccourse-4-214061%2C1783072"
     },
     {
       "date": "2025-11-20",
@@ -834,7 +836,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Matthias LEGROS",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "https://www.zone-turf.fr/rapports/r2-c4-prix-boucherie-leonard-et-gerard-lievre-1107427.html"
     },
     {
       "date": "2025-08-14",
@@ -910,7 +914,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Vincent HEBERT",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Vincent HEBERT",
+      "source_entraineur": "https://www.zone-turf.fr/cheval/larky-perrine-1955670/"
     },
     {
       "date": "2025-06-15",
@@ -1089,7 +1095,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Jean-Christophe SOREL",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "G. TOURON",
+      "source_entraineur": "https://www.iturf.fr/courses/johanna-eleven.html"
     },
     {
       "date": "2025-03-20",
@@ -1208,7 +1216,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "David BEKAERT",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "G. TOURON",
+      "source_entraineur": "https://www.iturf.fr/courses/johanna-eleven.html"
     },
     {
       "date": "2024-10-10",
@@ -1239,7 +1249,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Antonin ANDRE",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Thibaut BARASSIN",
+      "source_entraineur": "https://www.journalduturf.com/fiche-cheval/jehan.html"
     },
     {
       "date": "2024-09-22",
