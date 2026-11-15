@@ -1,5 +1,5 @@
 {
-  "version": 61,
+  "version": 62,
   "note": "Fiches de courses Equidia ou LeTROT avec sources identifiant les courses. Les URLs Equidia sont déduites du format date/R/C ; la disponibilité et la lecture des vidéos ne sont pas garanties. HOMA reste sur LeTROT faute de fiche Equidia vérifiée.",
   "replays": [
     {
@@ -1899,6 +1899,14 @@
       "preuve_identification_course": "https://www.canalturf.com/resultats-PMU/2021-11-16/paris-vincennes/258468_prix-unitas.html"
     },
     {
+      "date": "2021-11-03",
+      "cheval": "IBERIK DE MONGOCHY",
+      "hippodrome": "VINCENNES",
+      "url": "https://www.equidia.fr/courses/2021-11-03/R1/C2",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2021-11-03/R1C2-vincennes-prix-de-bellerive",
+      "controle": "Arrivée vérifiée : 3e, n°8 ; date, hippodrome et R/C confirmés par la source. Replay Equidia non visionné individuellement."
+    },
+    {
       "date": "2021-10-26",
       "cheval": "HERMES PLANCHETTE",
       "hippodrome": "VINCENNES",
@@ -1916,6 +1924,14 @@
       "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2021-10-19/7500/4",
       "lien_letrot_precedent": "https://www.letrot.com/courses/2021-10-19/7500/4",
       "preuve_identification_course": "https://www.gbet.fr/courses/vincennes/2021-10-19/r1/c4/prix-phact/"
+    },
+    {
+      "date": "2021-09-28",
+      "cheval": "JUNINIO FLEURY",
+      "hippodrome": "VINCENNES",
+      "url": "https://www.equidia.fr/courses/2021-09-28/R4/C7",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2021-09-28/R4C7-vincennes-prix-hamale",
+      "controle": "Arrivée vérifiée : 2e, n°4 ; date, hippodrome et R/C confirmés par la source. Replay Equidia non visionné individuellement."
     },
     {
       "date": "2021-09-23",
@@ -1996,6 +2012,22 @@
       "controle": "Date, R/C et cheval gagnant confirmés dans le résultat officiel reproduit par ZEturf/Canalturf ; lien Equidia construit, lecture du replay non testée."
     },
     {
+      "date": "2021-05-22",
+      "cheval": "GOSPEL",
+      "hippodrome": "CAEN",
+      "url": "https://www.equidia.fr/courses/2021-05-22/R4/C6",
+      "justificatif": "https://www.zeturf.be/fr/course-du-jour/2021-05-22/R4C6-caen-prix-de-combray",
+      "controle": "Arrivée vérifiée : 2e, n°17 ; date, hippodrome et R/C confirmés par la source. Replay Equidia non visionné individuellement."
+    },
+    {
+      "date": "2021-05-14",
+      "cheval": "JAZZY WOOD",
+      "hippodrome": "SAINT-CLOUD",
+      "url": "https://www.equidia.fr/courses/2021-05-14/R5/C1",
+      "justificatif": "https://www.zeturf.be/fr/course-du-jour/2021-05-14/R5C1-saint-cloud-prix-de-vaureal",
+      "controle": "Arrivée vérifiée : 2e, n°4 ; date, hippodrome et R/C confirmés par la source. Replay Equidia non visionné individuellement."
+    },
+    {
       "date": "2021-05-13",
       "cheval": "CAID DORE",
       "hippodrome": "NANTES",
@@ -2010,6 +2042,14 @@
       "url": "https://www.equidia.fr/courses/2021-05-02/R5/C7",
       "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2021-05-02/R5C7-cholet-prix-quarlos",
       "controle": "Date, R/C et cheval gagnant confirmés dans le résultat officiel reproduit par ZEturf/Canalturf ; lien Equidia construit, lecture du replay non testée."
+    },
+    {
+      "date": "2021-04-24",
+      "cheval": "JAZZY WOOD",
+      "hippodrome": "FONTAINEBLEAU",
+      "url": "https://www.equidia.fr/courses/2021-04-24/R4/C1",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2021-04-24/R4C1-fontainebleau-prix-des-noisetiers",
+      "controle": "Arrivée vérifiée : 3e, n°5 ; date, hippodrome et R/C confirmés par la source. Replay Equidia non visionné individuellement."
     },
     {
       "date": "2021-04-05",
@@ -2029,6 +2069,14 @@
       "controle": "Date, R/C et cheval gagnant confirmés dans le résultat officiel reproduit par ZEturf/Canalturf ; lien Equidia construit, lecture du replay non testée."
     },
     {
+      "date": "2020-12-06",
+      "cheval": "FETICHE ATOUT",
+      "hippodrome": "VINCENNES - GP",
+      "url": "https://www.equidia.fr/courses/2020-12-06/R1/C5",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2020-12-06/R1C5-vincennes-letrot-open-des-regions-5-ans",
+      "controle": "Arrivée vérifiée : 2e, n°8 ; date, hippodrome et R/C confirmés par la source. Replay Equidia non visionné individuellement."
+    },
+    {
       "date": "2020-11-15",
       "cheval": "FETICHE ATOUT",
       "hippodrome": "LAVAL",
@@ -2043,6 +2091,14 @@
       "url": "https://www.equidia.fr/courses/2020-08-08/R5/C4",
       "preuve_identification_course": "https://www.gbet.fr/courses/cagnes-mer/2020-08-08/r5/c4/prix-miroiterie-aurore-prix-ouragon/",
       "controle": "Date, cheval gagnant et réunion/course R/C identifiés dans les résultats publics. Replay Equidia non testé depuis cet environnement."
+    },
+    {
+      "date": "2020-06-24",
+      "cheval": "FETICHE ATOUT",
+      "hippodrome": "ENGHIEN",
+      "url": "https://www.equidia.fr/courses/2020-06-24/R4/C2",
+      "justificatif": "https://www.zeturf.be/fr/course-du-jour/2020-06-24/R4C2-enghien-soisy-prix-de-la-place-du-commerce",
+      "controle": "Arrivée vérifiée : 2e, n°12 ; date, hippodrome et R/C confirmés par la source. Replay Equidia non visionné individuellement."
     },
     {
       "date": "2020-06-16",
