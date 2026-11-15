@@ -80,7 +80,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Mathieu DAOUGABEL",
-      "casaque": "nathalie"
+      "casaque": "nathalie",
+      "entraineur": "Mathieu DAOUGABEL",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2026-09-28",
@@ -328,7 +330,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Matthias LEGROS",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2026-07-12",
@@ -838,7 +842,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Matthias LEGROS",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2025-08-11",
@@ -1040,7 +1046,9 @@
       "discipline": "attele",
       "casaque": "blanche",
       "proprietaire": "Écurie Initial",
-      "jockey": "Mathias LEGROS"
+      "jockey": "Mathias LEGROS",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2025-04-13",
@@ -1706,7 +1714,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Florian JULIEN",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Virgile FOUCAULT",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2023-09-01",
