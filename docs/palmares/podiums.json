@@ -152,6 +152,16 @@
       "casaque": "blanche"
     },
     {
+      "date": "2026-05-17",
+      "cheval": "LIMPIDE",
+      "hippodrome": "LE CROISE-LAROCHE",
+      "classement": 3,
+      "discipline": "galop",
+      "entraineur": "Gilles PANNIER",
+      "casaque": "galop",
+      "jockey": "L. BOISSEAU"
+    },
+    {
       "date": "2026-05-10",
       "cheval": "DOURIANN",
       "hippodrome": "PARISLONGCHAMP",
@@ -208,6 +218,16 @@
       "jockey": "Cyril GAZENGEL",
       "entraineur": "Florian JULIEN",
       "casaque": "julien"
+    },
+    {
+      "date": "2026-04-04",
+      "cheval": "LIMPIDE",
+      "hippodrome": "LE CROISE-LAROCHE",
+      "classement": 2,
+      "discipline": "galop",
+      "entraineur": "Gilles PANNIER",
+      "casaque": "galop",
+      "jockey": "H. LEBOUC"
     },
     {
       "date": "2026-02-23",
