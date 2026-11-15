@@ -84,6 +84,7 @@ const results=[{"date":"2009-07-14","cheval":"OLGA DE LA FONTE","hippodrome":"FR
 // on conserve leur attribution par casaque telle qu'elle figure dans les archives.
 // Toutes les nouvelles lignes doivent renseigner "proprietaire".
 const archivesInitiales=new Set(results);
+const podiumsConfirmes=new Set();
 const proprietairesAdmis={
  trot:new Set(["RODOLPHE HAMON","HAMON RODOLPHE","NATHALIE HAMON","HAMON NATHALIE","ECURIE INITIAL","EURL ECURIE INITIAL"]),
  galop:new Set(["RODOLPHE HAMON","HAMON RODOLPHE","ECURIE INITIAL","EURL ECURIE INITIAL"])
@@ -101,7 +102,7 @@ function victoireAdmiseAuCompteur(r){
  if(r.proprietaire)return proprietairesAdmis[discipline].has(nomProprietaire(r.proprietaire));
  // Historique : attribution validée via la casaque de chaque victoire.
  // Les succès sous d'autres couleurs (JULIEN, HOMA, etc.) restent exclus.
- if(!archivesInitiales.has(r))return false;
+ if(!archivesInitiales.has(r)&&!podiumsConfirmes.has(r))return false;
  return discipline==="galop"?r.casaque==="galop":["historique","nathalie","blanche"].includes(r.casaque);
 }
 const $=id=>document.getElementById(id);
@@ -279,7 +280,7 @@ function updateCounter(){
  $("allPodiums").textContent=new Intl.NumberFormat("fr-FR").format(total+seconds+thirds);
  $("placingStats").textContent="Résultats attribués dans ce palmarès : "+total+" victoires, "+seconds+" deuxièmes places et "+thirds+" troisièmes places. Référence officielle LeTROT (trot uniquement) : 153 victoires et 434 podiums (Écurie Initial, Rodolphe et Nathalie HAMON).";
 }
-async function loadPodiums(){try{const response=await fetch("./podiums.json",{cache:"no-store"});if(!response.ok)throw Error();const json=await response.json();const keys=new Set(results.map(v=>[v.date,v.cheval,v.hippodrome].join("|").toUpperCase()));for(const p of json.podiums||[]){if(!p||![2,3].includes(p.classement)||!/^\d{4}-\d{2}-\d{2}$/.test(p.date||"")||!p.cheval||!p.hippodrome)continue;const key=[p.date,p.cheval,p.hippodrome].join("|").toUpperCase();if(keys.has(key))continue;keys.add(key);results.push({...p,jockey:p.jockey||"",entraineur:p.entraineur||"",casaque:p.casaque||"blanche"})}refreshYears();refreshNameFilters();updateCounter();render()}catch(e){/* Le palmarès des victoires reste disponible. */}}
+async function loadPodiums(){try{const response=await fetch("./podiums.json",{cache:"no-store"});if(!response.ok)throw Error();const json=await response.json();const keys=new Set(results.map(v=>[v.date,v.cheval,v.hippodrome].join("|").toUpperCase()));for(const p of json.podiums||[]){if(!p||![2,3].includes(p.classement)||!/^\d{4}-\d{2}-\d{2}$/.test(p.date||"")||!p.cheval||!p.hippodrome)continue;const key=[p.date,p.cheval,p.hippodrome].join("|").toUpperCase();if(keys.has(key))continue;keys.add(key);const podium={...p,jockey:p.jockey||"",entraineur:p.entraineur||"",casaque:p.casaque||"blanche"};results.push(podium);podiumsConfirmes.add(podium)}refreshYears();refreshNameFilters();updateCounter();render()}catch(e){/* Le palmarès des victoires reste disponible. */}}
 async function loadNewVictories(){
  // Une ligne du fichier = un nouveau succès approuvé après la date de référence.
  try{
