@@ -1,5 +1,5 @@
 {
-  "version": 75,
+  "version": 76,
   "note": "Fiches de courses Equidia ou LeTROT avec sources identifiant les courses. Les URLs Equidia sont déduites du format date/R/C ; la disponibilité et la lecture des vidéos ne sont pas garanties. HOMA reste sur LeTROT faute de fiche Equidia vérifiée.",
   "replays": [
     {
@@ -2750,6 +2750,15 @@
       "url": "https://www.equidia.fr/courses/2014-04-16/R1/C7",
       "justificatif": "https://www.zone-turf.fr/cheval/rhea-silvia-43685/",
       "controle": "Cheval 3e confirmé, date/hippodrome/réunion/course R1C7 recoupés dans les archives ; vidéo Equidia non visionnée individuellement"
+    },
+    {
+      "date": "2013-12-30",
+      "cheval": "ACTRICE DE CERISY",
+      "hippodrome": "TOULOUSE",
+      "url": "https://www.equidia.fr/courses/2013-12-30/R3/C1",
+      "preuve_identification_course": "https://www.zone-turf.fr/rapports/r3-c1-prix-de-blain-238936.html",
+      "preuve_arrivee": "https://www.zone-turf.fr/cheval/actrice-de-cerisy-208673/archives-2.html",
+      "controle": "2e Prix de Blain, Toulouse R3C1 le 30/12/2013 ; date, cheval, ordre d'arrivée et réunion/course vérifiés ; lecture du replay Equidia non testée."
     },
     {
       "date": "2013-12-27",
