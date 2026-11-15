@@ -1909,6 +1909,18 @@
       "jockey": "Dimitri CRESPEL"
     },
     {
+      "date": "2021-09-17",
+      "cheval": "JAZZY WOOD",
+      "hippodrome": "CHANTILLY",
+      "classement": 2,
+      "discipline": "galop",
+      "entraineur": "Gilles PANNIER",
+      "casaque": "galop_rodolphe",
+      "jockey": "J. MOBIAN",
+      "proprietaire": "R. HAMON / R. LE CREPS / N. BARRE",
+      "compteInitial": false
+    },
+    {
       "date": "2021-08-07",
       "cheval": "IBERIK DE MONGOCHY",
       "hippodrome": "CARENTAN",
@@ -1916,6 +1928,18 @@
       "discipline": "attele",
       "jockey": "François LECANU",
       "casaque": "blanche"
+    },
+    {
+      "date": "2021-08-03",
+      "cheval": "JAZZY WOOD",
+      "hippodrome": "DEAUVILLE",
+      "classement": 2,
+      "discipline": "galop",
+      "entraineur": "Gilles PANNIER",
+      "casaque": "galop_rodolphe",
+      "jockey": "M. GUYON",
+      "proprietaire": "R. HAMON / R. LE CREPS",
+      "compteInitial": false
     },
     {
       "date": "2021-08-01",
@@ -1945,6 +1969,18 @@
       "casaque": "nathalie"
     },
     {
+      "date": "2021-07-14",
+      "cheval": "JAZZY WOOD",
+      "hippodrome": "PARISLONGCHAMP",
+      "classement": 2,
+      "discipline": "galop",
+      "entraineur": "Gilles PANNIER",
+      "casaque": "galop_rodolphe",
+      "jockey": "M. GUYON",
+      "proprietaire": "R. HAMON / R. LE CREPS",
+      "compteInitial": false
+    },
+    {
       "date": "2021-07-05",
       "cheval": "CAID DORE",
       "hippodrome": "EAUZE",
@@ -1963,6 +1999,17 @@
       "casaque": "blanche"
     },
     {
+      "date": "2021-06-10",
+      "cheval": "JAZZY WOOD",
+      "hippodrome": "PARISLONGCHAMP",
+      "classement": 2,
+      "discipline": "galop",
+      "entraineur": "Gilles PANNIER",
+      "casaque": "galop_rodolphe",
+      "jockey": "B. MARIE",
+      "proprietaire": "Rodolphe HAMON"
+    },
+    {
       "date": "2021-05-22",
       "cheval": "GOSPEL",
       "hippodrome": "CAEN",
@@ -1970,6 +2017,17 @@
       "discipline": "attele",
       "jockey": "Paul-Philippe PLOQUIN",
       "casaque": "blanche"
+    },
+    {
+      "date": "2021-05-14",
+      "cheval": "JAZZY WOOD",
+      "hippodrome": "SAINT-CLOUD",
+      "classement": 2,
+      "discipline": "galop",
+      "entraineur": "Gilles PANNIER",
+      "casaque": "galop_rodolphe",
+      "jockey": "B. MARIE",
+      "proprietaire": "Rodolphe HAMON"
     },
     {
       "date": "2021-05-08",
@@ -1988,6 +2046,17 @@
       "discipline": "attele",
       "jockey": "Bruno MARIE",
       "casaque": "nathalie"
+    },
+    {
+      "date": "2021-04-24",
+      "cheval": "JAZZY WOOD",
+      "hippodrome": "FONTAINEBLEAU",
+      "classement": 3,
+      "discipline": "galop",
+      "entraineur": "Gilles PANNIER",
+      "casaque": "galop_rodolphe",
+      "jockey": "B. MARIE",
+      "proprietaire": "Rodolphe HAMON"
     },
     {
       "date": "2021-04-11",
