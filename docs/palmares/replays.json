@@ -1,5 +1,5 @@
 {
-  "version": 79,
+  "version": 80,
   "note": "Fiches de courses Equidia ou LeTROT avec sources identifiant les courses. Les URLs Equidia sont déduites du format date/R/C ; la disponibilité et la lecture des vidéos ne sont pas garanties. HOMA reste sur LeTROT faute de fiche Equidia vérifiée.",
   "replays": [
     {
@@ -1944,6 +1944,15 @@
       "url": "https://www.equidia.fr/courses/2022-04-18/R7/C8",
       "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2022-04-18/R7C8-cholet-prix-val-de-l-aube",
       "controle": "Date, R/C et cheval gagnant confirmés dans le résultat officiel reproduit par ZEturf/Canalturf ; lien Equidia construit, lecture du replay non testée."
+    },
+    {
+      "date": "2022-04-10",
+      "cheval": "HERMES PLANCHETTE",
+      "hippodrome": "RAMBOUILLET",
+      "url": "https://www.zeturf.fr/fr/course-du-jour/2022-04-10/R10C4-rambouillet-prix-office-de-tourisme-rambouillet-t",
+      "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2022-04-10/R10C4-rambouillet-prix-office-de-tourisme-rambouillet-t",
+      "preuve_arrivee": "https://www.zeturf.fr/fr/course-du-jour/2022-04-10/R10C4-rambouillet-prix-office-de-tourisme-rambouillet-t",
+      "controle": "2e du Prix Office de Tourisme Rambouillet T., Rambouillet R10C4 le 10/04/2022, n°12 et A. Ernault confirmés sur l'arrivée ; page ZEturf comporte une rubrique Replay, vidéo non visionnée."
     },
     {
       "date": "2022-03-22",
