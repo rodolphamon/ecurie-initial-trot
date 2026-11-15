@@ -308,6 +308,16 @@
       "casaque": "julien"
     },
     {
+      "date": "2026-01-30",
+      "cheval": "ON LOCKDOWN",
+      "hippodrome": "DEAUVILLE",
+      "classement": 3,
+      "discipline": "galop",
+      "entraineur": "Gilles PANNIER",
+      "casaque": "galop",
+      "jockey": "L. BOISSEAU"
+    },
+    {
       "date": "2026-01-25",
       "cheval": "INDICE DELADOU",
       "hippodrome": "VINCENNES - GP",
@@ -392,6 +402,16 @@
       "entraineur": "Gilles PANNIER",
       "casaque": "galop",
       "jockey": "D. PROVOST"
+    },
+    {
+      "date": "2025-09-12",
+      "cheval": "ON LOCKDOWN",
+      "hippodrome": "LE MANS",
+      "classement": 2,
+      "discipline": "galop",
+      "entraineur": "Gilles PANNIER",
+      "casaque": "galop",
+      "jockey": "L. BOISSEAU"
     },
     {
       "date": "2025-08-27",
@@ -543,6 +563,16 @@
       "jockey": "A. MOLINS"
     },
     {
+      "date": "2025-05-04",
+      "cheval": "ON LOCKDOWN",
+      "hippodrome": "PARISLONGCHAMP",
+      "classement": 3,
+      "discipline": "galop",
+      "entraineur": "Gilles PANNIER",
+      "casaque": "galop",
+      "jockey": "L. ROUSSEL"
+    },
+    {
       "date": "2025-04-13",
       "cheval": "JETHAN DE MONGOCHY",
       "hippodrome": "AGEN-LA-GARENNE",
@@ -614,6 +644,16 @@
       "discipline": "attele",
       "jockey": "Benjamin-Thomas MARIE",
       "casaque": "blanche"
+    },
+    {
+      "date": "2025-01-04",
+      "cheval": "ON LOCKDOWN",
+      "hippodrome": "DEAUVILLE",
+      "classement": 2,
+      "discipline": "galop",
+      "entraineur": "Gilles PANNIER",
+      "casaque": "galop",
+      "jockey": "A. MOLINS"
     },
     {
       "date": "2024-12-23",
@@ -713,6 +753,16 @@
       "discipline": "attele",
       "jockey": "Maxence VAUDOIT",
       "casaque": "blanche"
+    },
+    {
+      "date": "2024-07-30",
+      "cheval": "ON LOCKDOWN",
+      "hippodrome": "DEAUVILLE",
+      "classement": 2,
+      "discipline": "galop",
+      "entraineur": "Gilles PANNIER",
+      "casaque": "galop",
+      "jockey": "M. VELON"
     },
     {
       "date": "2024-07-27",
