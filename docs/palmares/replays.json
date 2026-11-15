@@ -1,5 +1,5 @@
 {
-  "version": 63,
+  "version": 64,
   "note": "Fiches de courses Equidia ou LeTROT avec sources identifiant les courses. Les URLs Equidia sont déduites du format date/R/C ; la disponibilité et la lecture des vidéos ne sont pas garanties. HOMA reste sur LeTROT faute de fiche Equidia vérifiée.",
   "replays": [
     {
@@ -1825,6 +1825,14 @@
       "preuve_identification_course": "https://www.zone-turf.fr/rapports/r1-c4-prix-d-avenches-812212.html"
     },
     {
+      "date": "2022-02-05",
+      "cheval": "DARWIN LA MESANGE",
+      "hippodrome": "MAUQUENCHY",
+      "url": "https://www.equidia.fr/courses/2022-02-05/R3/C1",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2022-02-05/R3C1-mauquenchy-prix-horse-winner",
+      "controle": "Arrivée vérifiée : 3e, n°10 ; course R3C1. Lien Equidia construit depuis l'identifiant de course, vidéo non visionnée."
+    },
+    {
       "date": "2022-02-03",
       "cheval": "IBERIK DE MONGOCHY",
       "hippodrome": "VINCENNES - GP",
@@ -2045,6 +2053,14 @@
     },
     {
       "date": "2021-05-02",
+      "cheval": "CAID DORE",
+      "hippodrome": "RAMBOUILLET",
+      "url": "https://www.equidia.fr/courses/2021-05-02/R4/C6",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2021-05-02/R4C6-rambouillet-prix-pmu-des-yvelines",
+      "controle": "Arrivée vérifiée : 2e, n°5 ; course R4C6. Lien Equidia construit depuis l'identifiant de course, vidéo non visionnée."
+    },
+    {
+      "date": "2021-05-02",
       "cheval": "GOSPEL",
       "hippodrome": "CHOLET",
       "url": "https://www.equidia.fr/courses/2021-05-02/R5/C7",
@@ -2139,6 +2155,14 @@
       "url": "https://www.equidia.fr/courses/2020-06-04/R2/C6",
       "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2020-06-04/R2C6-caen-prix-de-clarbec",
       "controle": "Arrivée publiée contrôlée : 3e, n°6 ; R2C6. Lecture effective du replay Equidia non testée."
+    },
+    {
+      "date": "2020-06-02",
+      "cheval": "FETICHE ATOUT",
+      "hippodrome": "LAVAL",
+      "url": "https://www.equidia.fr/courses/2020-06-02/R4/C2",
+      "justificatif": "https://www.zeturf.fr/fr/reunion-du-jour/2020-06-02/R4-laval",
+      "controle": "Arrivée vérifiée : 3e, n°16 ; course R4C2. Lien Equidia construit depuis l'identifiant de course, vidéo non visionnée."
     },
     {
       "date": "2020-05-22",
