@@ -1,5 +1,5 @@
 {
-  "version": 32,
+  "version": 33,
   "note": "Fiches de courses Equidia ou LeTROT avec sources identifiant les courses. Les URLs Equidia sont déduites du format date/R/C ; la disponibilité et la lecture des vidéos ne sont pas garanties. HOMA reste sur LeTROT faute de fiche Equidia vérifiée.",
   "replays": [
     {
@@ -326,6 +326,14 @@
       "controle": "Course, hippodrome et R/C identifiés dans les résultats Turfin ; consultation de la vidéo Equidia non testée"
     },
     {
+      "date": "2025-12-12",
+      "cheval": "LARIFLETTE",
+      "hippodrome": "VINCENNES - GP",
+      "url": "https://www.equidia.fr/courses/2025-12-12/R1/C7",
+      "justificatif": "https://www.oneturf.fr/arrive/FR/12-12-2025/214834%2C1789503%2CVINCENNES%2C7-PRIX-DE-CLAMART.html",
+      "controle": "Classement, réunion et course confirmés ; disponibilité effective de la vidéo non testée individuellement"
+    },
+    {
       "date": "2025-12-08",
       "cheval": "MACLANDER",
       "hippodrome": "BORDEAUX - LE BOUSCAT",
@@ -389,6 +397,14 @@
     },
     {
       "date": "2025-09-23",
+      "cheval": "LARIFLETTE",
+      "hippodrome": "VINCENNES - GP",
+      "url": "https://www.equidia.fr/courses/2025-09-23/R3/C5",
+      "justificatif": "https://hippigold.fr/courses/2025-09-23/r3c5/",
+      "controle": "Classement, réunion et course confirmés ; disponibilité effective de la vidéo non testée individuellement"
+    },
+    {
+      "date": "2025-09-23",
       "cheval": "MANDRAGORA FLEURY",
       "hippodrome": "VINCENNES",
       "url": "https://www.equidia.fr/courses/2025-09-23/R3/C6",
@@ -442,6 +458,14 @@
       "url": "https://www.equidia.fr/courses/2025-08-20/R8/C7",
       "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2025-08-20/R8C7-les-sables-d-olonne-prix-de-cayola",
       "controle": "Course et victoire explicitement confirmées par l'arrivée publiée ; lien Equidia construit à partir du R/C vérifié, lecture vidéo non testée."
+    },
+    {
+      "date": "2025-08-14",
+      "cheval": "MACLANDER",
+      "hippodrome": "ENGHIEN",
+      "url": "https://www.equidia.fr/courses/2025-08-14/R4/C2",
+      "justificatif": "https://www.canalturf.com/resultats-PMU/2025-08-14/enghien/380281_prix-d-excideuil.html",
+      "controle": "Classement, réunion et course confirmés ; disponibilité effective de la vidéo non testée individuellement"
     },
     {
       "date": "2025-07-26",
