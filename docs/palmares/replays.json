@@ -1,5 +1,5 @@
 {
-  "version": 69,
+  "version": 70,
   "note": "Fiches de courses Equidia ou LeTROT avec sources identifiant les courses. Les URLs Equidia sont déduites du format date/R/C ; la disponibilité et la lecture des vidéos ne sont pas garanties. HOMA reste sur LeTROT faute de fiche Equidia vérifiée.",
   "replays": [
     {
@@ -2637,6 +2637,14 @@
       "url": "https://www.equidia.fr/courses/2015-07-26/R3/C6",
       "justificatif": "https://www.zone-turf.fr/cheval/adams-221098/",
       "controle": "Cheval 2e confirmé, date/hippodrome/réunion/course R3C6 recoupés dans les archives ; vidéo Equidia non visionnée individuellement"
+    },
+    {
+      "date": "2014-11-02",
+      "cheval": "BEAUTE D'ONDEE",
+      "hippodrome": "MAUQUENCHY",
+      "url": "https://www.equidia.fr/courses/2014-11-02/R9/C5",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2014-11-02/R9C5-mauquenchy-prix-isidore-partouche-groupe-a",
+      "controle": "Cheval 2e du Prix Isidore Partouche Groupe A à Mauquenchy, réunion R9C5, confirmé ZEturf ; vidéo Equidia non visionnée individuellement"
     },
     {
       "date": "2014-09-19",
