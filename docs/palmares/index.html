@@ -220,6 +220,7 @@ async function loadReplays(){
 // Vincennes est un seul hippodrome : GP et PP sont deux pistes, pas deux établissements.
 function hippodromeUnifie(v){
  const value=String(v||"").trim();
+ if(/^VILLENEUVE(?:\s+|-)+SUR(?:\s+|-)+LOT$/i.test(value))return "VILLENEUVE-SUR-LOT";
  return /^VINCENNES(?:\s*[-–()]\s*(?:G\.?P\.?|P\.?P\.?|GRANDE\s+PISTE|PETITE\s+PISTE)\s*\)?)?$/i.test(value)
    ? "VINCENNES" : value;
 }
