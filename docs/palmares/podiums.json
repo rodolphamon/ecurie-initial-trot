@@ -3493,11 +3493,13 @@
       "cheval": "RHEA SILVIA",
       "hippodrome": "LES ANDELYS",
       "classement": 2,
-      "discipline": "attele",
+      "discipline": "monte",
       "jockey": "Lolita BALAYN",
       "casaque": "blanche",
       "entraineur": "Alexandre MARQUET",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Benoît CAILLIAU en 2013, Alexandre MARQUET à partir de 2014"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Benoît CAILLIAU en 2013, Alexandre MARQUET à partir de 2014",
+      "source_discipline": "https://www.zone-turf.fr/cheval/rhea-silvia-43685/",
+      "correction_discipline": "Course au trot monté, discipline vérifiée dans les archives de résultats Zone-Turf (rectification 15/11/2026)."
     },
     {
       "date": "2014-06-01",
@@ -3517,11 +3519,13 @@
       "cheval": "RHEA SILVIA",
       "hippodrome": "PONTCHATEAU",
       "classement": 3,
-      "discipline": "attele",
+      "discipline": "monte",
       "casaque": "blanche",
       "jockey": "Lolita BALAYN",
       "entraineur": "Alexandre MARQUET",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Benoît CAILLIAU en 2013, Alexandre MARQUET à partir de 2014"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Benoît CAILLIAU en 2013, Alexandre MARQUET à partir de 2014",
+      "source_discipline": "https://www.zone-turf.fr/cheval/rhea-silvia-43685/",
+      "correction_discipline": "Course au trot monté, discipline vérifiée dans les archives de résultats Zone-Turf (rectification 15/11/2026)."
     },
     {
       "date": "2013-12-30",
@@ -3561,11 +3565,13 @@
       "cheval": "RHEA SILVIA",
       "hippodrome": "EAUZE",
       "classement": 3,
-      "discipline": "attele",
+      "discipline": "monte",
       "casaque": "blanche",
       "jockey": "Lolita BALAYN",
       "entraineur": "Benoît CAILLIAU",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Benoît CAILLIAU en 2013, Alexandre MARQUET à partir de 2014"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Benoît CAILLIAU en 2013, Alexandre MARQUET à partir de 2014",
+      "source_discipline": "https://www.zone-turf.fr/cheval/rhea-silvia-43685/",
+      "correction_discipline": "Course au trot monté, discipline vérifiée dans les archives de résultats Zone-Turf (rectification 15/11/2026)."
     },
     {
       "date": "2013-08-22",
@@ -3583,11 +3589,13 @@
       "cheval": "RHEA SILVIA",
       "hippodrome": "AVRANCHES",
       "classement": 2,
-      "discipline": "attele",
+      "discipline": "monte",
       "jockey": "Lolita BALAYN",
       "casaque": "blanche",
       "entraineur": "Benoît CAILLIAU",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Benoît CAILLIAU en 2013, Alexandre MARQUET à partir de 2014"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Benoît CAILLIAU en 2013, Alexandre MARQUET à partir de 2014",
+      "source_discipline": "https://www.zone-turf.fr/cheval/rhea-silvia-43685/",
+      "correction_discipline": "Course au trot monté, discipline vérifiée dans les archives de résultats Zone-Turf (rectification 15/11/2026)."
     },
     {
       "date": "2013-07-27",
@@ -3605,11 +3613,13 @@
       "cheval": "RHEA SILVIA",
       "hippodrome": "FRANCHEVILLE-LA BARRE",
       "classement": 2,
-      "discipline": "attele",
+      "discipline": "monte",
       "jockey": "Lolita BALAYN",
       "casaque": "blanche",
       "entraineur": "Benoît CAILLIAU",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Benoît CAILLIAU en 2013, Alexandre MARQUET à partir de 2014"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Benoît CAILLIAU en 2013, Alexandre MARQUET à partir de 2014",
+      "source_discipline": "https://www.zone-turf.fr/cheval/rhea-silvia-43685/",
+      "correction_discipline": "Course au trot monté, discipline vérifiée dans les archives de résultats Zone-Turf (rectification 15/11/2026)."
     },
     {
       "date": "2013-02-17",
@@ -3671,22 +3681,26 @@
       "cheval": "RHEA SILVIA",
       "hippodrome": "DREUX",
       "classement": 3,
-      "discipline": "attele",
+      "discipline": "monte",
       "casaque": "blanche",
       "jockey": "Marion LEMONNIER",
       "entraineur": "Benoît CAILLIAU",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Benoît CAILLIAU en 2012-2013, Alexandre MARQUET à partir de 2014"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Benoît CAILLIAU en 2012-2013, Alexandre MARQUET à partir de 2014",
+      "source_discipline": "https://www.zone-turf.fr/cheval/rhea-silvia-43685/",
+      "correction_discipline": "Course au trot monté, discipline vérifiée dans les archives de résultats Zone-Turf (rectification 15/11/2026)."
     },
     {
       "date": "2012-04-15",
       "cheval": "RHEA SILVIA",
       "hippodrome": "SAINT-AUBIN-LES-ELBEUF",
       "classement": 2,
-      "discipline": "attele",
+      "discipline": "monte",
       "jockey": "Amandine BROUEL",
       "casaque": "blanche",
       "entraineur": "Benoît CAILLIAU",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Benoît CAILLIAU en 2012-2013, Alexandre MARQUET à partir de 2014"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Benoît CAILLIAU en 2012-2013, Alexandre MARQUET à partir de 2014",
+      "source_discipline": "https://www.zone-turf.fr/cheval/rhea-silvia-43685/",
+      "correction_discipline": "Course au trot monté, discipline vérifiée dans les archives de résultats Zone-Turf (rectification 15/11/2026)."
     },
     {
       "date": "2011-08-30",
