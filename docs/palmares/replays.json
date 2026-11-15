@@ -1,5 +1,5 @@
 {
-  "version": 65,
+  "version": 66,
   "note": "Fiches de courses Equidia ou LeTROT avec sources identifiant les courses. Les URLs Equidia sont déduites du format date/R/C ; la disponibilité et la lecture des vidéos ne sont pas garanties. HOMA reste sur LeTROT faute de fiche Equidia vérifiée.",
   "replays": [
     {
@@ -746,6 +746,14 @@
       "url": "https://www.equidia.fr/courses/2025-08-20/R8/C7",
       "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2025-08-20/R8C7-les-sables-d-olonne-prix-de-cayola",
       "controle": "Course et victoire explicitement confirmées par l'arrivée publiée ; lien Equidia construit à partir du R/C vérifié, lecture vidéo non testée."
+    },
+    {
+      "date": "2025-08-19",
+      "cheval": "L'ARTISTE DE GAGOU",
+      "hippodrome": "DIVONNE-LES-BAINS",
+      "url": "https://www.equidia.fr/courses/2025-08-19/R2/C4",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2025-08-19/R2C4-divonne-les-bains-prix-boucherie-leonard-et-gerard-lievre",
+      "controle": "Classement 2e, date et numéro de course R2C4 recoupés dans les résultats publiés ; lecture effective du replay Equidia non testée."
     },
     {
       "date": "2025-08-14",
@@ -2297,6 +2305,38 @@
       "controle": "Date, cheval gagnant et réunion/course R/C identifiés dans les résultats publics. Replay Equidia non testé depuis cet environnement."
     },
     {
+      "date": "2018-07-02",
+      "cheval": "ELFE ATOUT",
+      "hippodrome": "VICHY",
+      "url": "https://www.equidia.fr/courses/2018-07-02/R4/C6",
+      "justificatif": "https://www.gbet.fr/courses/vichy/2018-07-02/r4/c6/prix-de-chapeau/",
+      "controle": "Classement 2e, date et numéro de course R4C6 recoupés dans les résultats publiés ; lecture effective du replay Equidia non testée."
+    },
+    {
+      "date": "2018-06-19",
+      "cheval": "ELFE ATOUT",
+      "hippodrome": "VICHY",
+      "url": "https://www.equidia.fr/courses/2018-06-19/R4/C6",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2018-06-19/R4C6-vichy-prix-compagnons-la-ficelle-de-st-pourcain",
+      "controle": "Classement 2e, date et numéro de course R4C6 recoupés dans les résultats publiés ; lecture effective du replay Equidia non testée."
+    },
+    {
+      "date": "2017-05-23",
+      "cheval": "CALIE DE POMMERAYE",
+      "hippodrome": "VINCENNES",
+      "url": "https://www.equidia.fr/courses/2017-05-23/R5/C4",
+      "justificatif": "https://www.zeturf.sn/fr/reunion-du-jour/2017-05-23/R5-vincennes",
+      "controle": "Classement 3e, date et numéro de course R5C4 recoupés dans les résultats publiés ; lecture effective du replay Equidia non testée."
+    },
+    {
+      "date": "2017-04-07",
+      "cheval": "CALIE DE POMMERAYE",
+      "hippodrome": "VINCENNES - PP",
+      "url": "https://www.equidia.fr/courses/2017-04-07/R1/C3",
+      "justificatif": "https://www.geny.com/en/course/881858-2017-04-07-vincennes-prix-libra/partants-pronostics",
+      "controle": "Classement 2e, date et numéro de course R1C3 recoupés dans les résultats publiés ; lecture effective du replay Equidia non testée."
+    },
+    {
       "date": "2017-03-04",
       "cheval": "DJANGO DE MONGOCHY",
       "hippodrome": "VINCENNES",
@@ -2316,12 +2356,76 @@
       "controle": "Date, cheval gagnant et réunion/course R/C identifiés dans les résultats publics. Replay Equidia non testé depuis cet environnement."
     },
     {
+      "date": "2017-02-19",
+      "cheval": "VALMIN DE GUEUDE",
+      "hippodrome": "VIRE NORMANDIE",
+      "url": "https://www.equidia.fr/courses/2017-02-19/R9/C8",
+      "justificatif": "https://www.gbet.fr/chevaux/valmin-de-gueude-109016/",
+      "controle": "Classement 2e, date et numéro de course R9C8 recoupés dans les résultats publiés ; lecture effective du replay Equidia non testée."
+    },
+    {
+      "date": "2017-02-14",
+      "cheval": "DJANGO DE MONGOCHY",
+      "hippodrome": "VINCENNES - GP",
+      "url": "https://www.equidia.fr/courses/2017-02-14/R1/C2",
+      "justificatif": "https://www.gbet.fr/chevaux/django-de-mongochy-96448/",
+      "controle": "Classement 2e, date et numéro de course R1C2 recoupés dans les résultats publiés ; lecture effective du replay Equidia non testée."
+    },
+    {
+      "date": "2017-02-02",
+      "cheval": "DJANGO DE MONGOCHY",
+      "hippodrome": "VINCENNES - PP",
+      "url": "https://www.equidia.fr/courses/2017-02-02/R1/C8",
+      "justificatif": "https://www.gbet.fr/chevaux/django-de-mongochy-96448/",
+      "controle": "Classement 2e, date et numéro de course R1C8 recoupés dans les résultats publiés ; lecture effective du replay Equidia non testée."
+    },
+    {
+      "date": "2017-01-23",
+      "cheval": "DJANGO DE MONGOCHY",
+      "hippodrome": "VINCENNES",
+      "url": "https://www.equidia.fr/courses/2017-01-23/R3/C5",
+      "justificatif": "https://www.gbet.fr/chevaux/django-de-mongochy-96448/",
+      "controle": "Classement 3e, date et numéro de course R3C5 recoupés dans les résultats publiés ; lecture effective du replay Equidia non testée."
+    },
+    {
       "date": "2017-01-09",
       "cheval": "VALMIN DE GUEUDE",
       "hippodrome": "TOULOUSE",
       "url": "https://www.equidia.fr/courses/2017-01-09/R6/C8",
       "preuve_identification_course": "https://www.gbet.fr/chevaux/valmin-de-gueude-109016/",
       "controle": "Date, cheval gagnant et réunion/course R/C identifiés dans les résultats publics. Replay Equidia non testé depuis cet environnement."
+    },
+    {
+      "date": "2016-12-26",
+      "cheval": "VALMIN DE GUEUDE",
+      "hippodrome": "BORDEAUX",
+      "url": "https://www.equidia.fr/courses/2016-12-26/R3/C1",
+      "justificatif": "https://www.gbet.fr/chevaux/valmin-de-gueude-109016/",
+      "controle": "Classement 3e, date et numéro de course R3C1 recoupés dans les résultats publiés ; lecture effective du replay Equidia non testée."
+    },
+    {
+      "date": "2016-12-04",
+      "cheval": "VALMIN DE GUEUDE",
+      "hippodrome": "LYON (A PARILLY)",
+      "url": "https://www.equidia.fr/courses/2016-12-04/R7/C6",
+      "justificatif": "https://www.gbet.fr/chevaux/valmin-de-gueude-109016/",
+      "controle": "Classement 2e, date et numéro de course R7C6 recoupés dans les résultats publiés ; lecture effective du replay Equidia non testée."
+    },
+    {
+      "date": "2016-11-21",
+      "cheval": "VALMIN DE GUEUDE",
+      "hippodrome": "CHATEAUBRIANT",
+      "url": "https://www.equidia.fr/courses/2016-11-21/R7/C7",
+      "justificatif": "https://www.gbet.fr/chevaux/valmin-de-gueude-109016/",
+      "controle": "Classement 3e, date et numéro de course R7C7 recoupés dans les résultats publiés ; lecture effective du replay Equidia non testée."
+    },
+    {
+      "date": "2016-11-06",
+      "cheval": "VALMIN DE GUEUDE",
+      "hippodrome": "LISIEUX",
+      "url": "https://www.equidia.fr/courses/2016-11-06/R3/C2",
+      "justificatif": "https://www.gbet.fr/chevaux/valmin-de-gueude-109016/",
+      "controle": "Classement 2e, date et numéro de course R3C2 recoupés dans les résultats publiés ; lecture effective du replay Equidia non testée."
     },
     {
       "date": "2016-11-01",
@@ -2333,6 +2437,38 @@
       "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2016-11-01/7500/7",
       "lien_letrot_precedent": "https://www.letrot.com/courses/2016-11-01/7500/7",
       "preuve_identification_course": "https://www.canalturf.com/resultats-PMU/2016-11-01/paris-vincennes/143560_prix-justicia.html"
+    },
+    {
+      "date": "2016-10-10",
+      "cheval": "CALIE DE POMMERAYE",
+      "hippodrome": "ENGHIEN",
+      "url": "https://www.equidia.fr/courses/2016-10-10/R4/C6",
+      "justificatif": "https://www.geny.com/course/846913-2016-10-10-enghien-prix-de-pradelles/arrivee-rapports",
+      "controle": "Classement 2e, date et numéro de course R4C6 recoupés dans les résultats publiés ; lecture effective du replay Equidia non testée."
+    },
+    {
+      "date": "2016-09-20",
+      "cheval": "CALIE DE POMMERAYE",
+      "hippodrome": "VINCENNES - PP",
+      "url": "https://www.equidia.fr/courses/2016-09-20/R5/C7",
+      "justificatif": "https://www.gbet.fr/chevaux/celia-de-la-fonte-93667/",
+      "controle": "Classement 2e, date et numéro de course R5C7 recoupés dans les résultats publiés ; lecture effective du replay Equidia non testée."
+    },
+    {
+      "date": "2016-09-08",
+      "cheval": "CALIE DE POMMERAYE",
+      "hippodrome": "MAUQUENCHY",
+      "url": "https://www.equidia.fr/courses/2016-09-08/R3/C7",
+      "justificatif": "https://www.gbet.fr/courses/mauquenchy/2016-09-08/r3/c7/prix-de-la-foret-de-bray/",
+      "controle": "Classement 2e, date et numéro de course R3C7 recoupés dans les résultats publiés ; lecture effective du replay Equidia non testée."
+    },
+    {
+      "date": "2016-08-30",
+      "cheval": "CALIE DE POMMERAYE",
+      "hippodrome": "CABOURG",
+      "url": "https://www.equidia.fr/courses/2016-08-30/R5/C7",
+      "justificatif": "https://www.gbet.fr/courses/cabourg/2016-08-30/r5/c7/prix-du-tamaris/",
+      "controle": "Classement 2e, date et numéro de course R5C7 recoupés dans les résultats publiés ; lecture effective du replay Equidia non testée."
     },
     {
       "date": "2016-02-16",
