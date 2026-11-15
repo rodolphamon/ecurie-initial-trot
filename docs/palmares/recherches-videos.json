@@ -55,6 +55,17 @@
       "commentaire": "Arrivée et classement vérifiés dans une source publique ; aucun replay spécifique trouvé lors de cette passe. Ne pas ajouter la page de résultat comme vidéo."
     },
     {
+      "date": "2026-08-03",
+      "cheval": "MANDRAGORA FLEURY",
+      "hippodrome": "ROCHEFORT-SUR-LOIRE",
+      "classement": 2,
+      "course": "Prix Kyrielle (PHM C4)",
+      "source_resultat": "https://www.geny.com/course/1673495-2026-08-03-rochefort-sur-loire-prix-kyrielle/arrivee-rapports",
+      "etat_source": "resultat_confirme",
+      "etat_video": "non_identifiee",
+      "commentaire": "Vérification des archives : page de course ou historique ; aucune URL vidéo directe confirmée. Rechercher replay officiel LeTROT, Equidia ou ZEturf sans créer d'URL hypothétique."
+    },
+    {
       "date": "2026-07-12",
       "cheval": "MEMPHIS BELLE",
       "hippodrome": "RANES",
@@ -105,6 +116,28 @@
       "commentaire": "Arrivée et classement vérifiés dans une source publique ; aucun replay spécifique trouvé lors de cette passe. Ne pas ajouter la page de résultat comme vidéo."
     },
     {
+      "date": "2026-04-12",
+      "cheval": "NEBRASKA FLEURY",
+      "hippodrome": "TOURS-CHAMBRAY",
+      "classement": 3,
+      "course": "Prix de la Ville de Chambray Gr B, PHH C2",
+      "source_resultat": "https://www.geny.com/course/1644166-2026-04-12-tours-prix-de-la-ville-de-chambray-gr-b/arrivee-rapports?orga=PMH",
+      "etat_source": "resultat_confirme",
+      "etat_video": "non_identifiee",
+      "commentaire": "Vérification des archives : page de course ou historique ; aucune URL vidéo directe confirmée. Rechercher replay officiel LeTROT, Equidia ou ZEturf sans créer d'URL hypothétique."
+    },
+    {
+      "date": "2026-04-06",
+      "cheval": "JUNINIO FLEURY",
+      "hippodrome": "CASTILLONNES",
+      "classement": 3,
+      "course": "Prix des 4 Cantons",
+      "source_resultat": "https://www.infos-entrainement.fr/cheval/1900064105/juninio-fleury",
+      "etat_source": "resultat_confirme",
+      "etat_video": "non_identifiee",
+      "commentaire": "Vérification des archives : page de course ou historique ; aucune URL vidéo directe confirmée. Rechercher replay officiel LeTROT, Equidia ou ZEturf sans créer d'URL hypothétique."
+    },
+    {
       "date": "2026-02-23",
       "cheval": "MONA LISA STARDUST",
       "hippodrome": "MONTAUBAN",
@@ -115,6 +148,39 @@
       "commentaire": "Arrivée confirmée ; aucune URL de replay spécifique établie lors des recherches. Ne pas afficher comme vidéo tant que le replay est introuvable."
     },
     {
+      "date": "2025-12-21",
+      "cheval": "JETHAN DE MONGOCHY",
+      "hippodrome": "GRENADE-SUR-GARONNE",
+      "classement": 3,
+      "course": "Prix Olympique Toulouse 13 Champions 2025",
+      "source_resultat": "https://www.geny.com/course/1623134-2025-12-21-grenade-sur-garonne-prix-olympique-toulouse-13-champions-2025/arrivee-rapports",
+      "etat_source": "resultat_confirme",
+      "etat_video": "non_identifiee",
+      "commentaire": "Vérification des archives : page de course ou historique ; aucune URL vidéo directe confirmée. Rechercher replay officiel LeTROT, Equidia ou ZEturf sans créer d'URL hypothétique."
+    },
+    {
+      "date": "2025-08-23",
+      "cheval": "JETHAN DE MONGOCHY",
+      "hippodrome": "VILLEREAL",
+      "classement": 3,
+      "course": "Prix Genybet PHH C8",
+      "source_resultat": "https://www.geny.com/course/1595440-2025-08-23-villereal-prix-genybet/arrivee-rapports?orga=PMH",
+      "etat_source": "resultat_confirme",
+      "etat_video": "non_identifiee",
+      "commentaire": "Vérification des archives : page de course ou historique ; aucune URL vidéo directe confirmée. Rechercher replay officiel LeTROT, Equidia ou ZEturf sans créer d'URL hypothétique."
+    },
+    {
+      "date": "2025-08-11",
+      "cheval": "HAMPTON AMERICA",
+      "hippodrome": "CASTERA-VERDUZAN",
+      "classement": 3,
+      "course": "Prix de l'Amicale de Gascogne PHH C7",
+      "source_resultat": "https://www.geny.com/course/1592561-2025-08-11-castera-verduzan-prix-de-l-amicale-de-gascogne/arrivee-rapports?orga=PMH",
+      "etat_source": "resultat_confirme",
+      "etat_video": "non_identifiee",
+      "commentaire": "Vérification des archives : page de course ou historique ; aucune URL vidéo directe confirmée. Rechercher replay officiel LeTROT, Equidia ou ZEturf sans créer d'URL hypothétique."
+    },
+    {
       "date": "2025-08-03",
       "cheval": "JETHAN DE MONGOCHY",
       "hippodrome": "GRAMAT",
@@ -123,6 +189,17 @@
       "source_resultat": "https://www.zone-turf.fr/cheval/jethan-de-mongochy-1749902/",
       "etat_video": "non_identifiee",
       "commentaire": "Arrivée et classement vérifiés dans une source publique ; aucun replay spécifique trouvé lors de cette passe. Ne pas ajouter la page de résultat comme vidéo."
+    },
+    {
+      "date": "2025-07-13",
+      "cheval": "LARKY PERRINE",
+      "hippodrome": "RANES",
+      "classement": 2,
+      "course": "Prix de la Coulonche Gr A",
+      "source_resultat": "https://turfoo.fr/fiches/chevaux/larky-perrine/",
+      "etat_source": "resultat_confirme",
+      "etat_video": "non_identifiee",
+      "commentaire": "Vérification des archives : page de course ou historique ; aucune URL vidéo directe confirmée. Rechercher replay officiel LeTROT, Equidia ou ZEturf sans créer d'URL hypothétique."
     },
     {
       "date": "2024-10-06",
@@ -215,6 +292,39 @@
       "commentaire": "Arrivée recoupée ; vérifier LeTROT/Equidia/ZEturf avant ajout d'un lien vidéo."
     },
     {
+      "date": "2024-02-25",
+      "cheval": "ILLAM DE MONGOCHY",
+      "hippodrome": "SAUMUR",
+      "classement": 2,
+      "course": "Prix du Domaine de Bonnevaux",
+      "source_resultat": "https://www.province-courses.fr/fiche_cheval.php?id=18137138T",
+      "etat_source": "resultat_confirme",
+      "etat_video": "non_identifiee",
+      "commentaire": "Vérification des archives : page de course ou historique ; aucune URL vidéo directe confirmée. Rechercher replay officiel LeTROT, Equidia ou ZEturf sans créer d'URL hypothétique."
+    },
+    {
+      "date": "2023-09-17",
+      "cheval": "ILLAM DE MONGOCHY",
+      "hippodrome": "BLAIN-BOUVRON-LE GAVRE",
+      "classement": 2,
+      "course": "Prix de la Fête des Courses Gr B",
+      "source_resultat": "https://www.province-courses.fr/fiche_cheval.php?id=18137138T",
+      "etat_source": "resultat_confirme",
+      "etat_video": "non_identifiee",
+      "commentaire": "Vérification des archives : page de course ou historique ; aucune URL vidéo directe confirmée. Rechercher replay officiel LeTROT, Equidia ou ZEturf sans créer d'URL hypothétique."
+    },
+    {
+      "date": "2023-09-10",
+      "cheval": "JUNINIO FLEURY",
+      "hippodrome": "BERNAY",
+      "classement": 3,
+      "course": "Prix Brigitte Germain Gr A",
+      "source_resultat": "https://www.zone-turf.fr/cheval/juninio-fleury-1622784/",
+      "etat_source": "resultat_confirme",
+      "etat_video": "non_identifiee",
+      "commentaire": "Vérification des archives : page de course ou historique ; aucune URL vidéo directe confirmée. Rechercher replay officiel LeTROT, Equidia ou ZEturf sans créer d'URL hypothétique."
+    },
+    {
       "date": "2023-09-02",
       "cheval": "FIESTA TEJY",
       "hippodrome": "LANGON-LIBOURNE",
@@ -225,6 +335,50 @@
       "commentaire": "Résultat recoupé dans l'archive citée. Aucun lien individuel de replay trouvé par recherche publique dans cette passe; ne pas assimiler cette source à une vidéo."
     },
     {
+      "date": "2023-08-08",
+      "cheval": "HERMES DU PRESSOIR",
+      "hippodrome": "TRIE-SUR-BAISE",
+      "classement": 2,
+      "course": "Prix Ana Selection",
+      "source_resultat": "https://www.zone-turf.fr/cheval/heros-de-beaucamp-786030/archives-1.html",
+      "etat_source": "resultat_confirme",
+      "etat_video": "non_identifiee",
+      "commentaire": "Vérification des archives : page de course ou historique ; aucune URL vidéo directe confirmée. Rechercher replay officiel LeTROT, Equidia ou ZEturf sans créer d'URL hypothétique."
+    },
+    {
+      "date": "2023-08-06",
+      "cheval": "ISOLEE DU BOUILLON",
+      "hippodrome": "BREHAL",
+      "classement": 2,
+      "course": "Prix du PMU La Cale",
+      "source_resultat": "https://www.province-courses.fr/fiche_cheval.php?id=18116900R",
+      "etat_source": "resultat_confirme",
+      "etat_video": "non_identifiee",
+      "commentaire": "Vérification des archives : page de course ou historique ; aucune URL vidéo directe confirmée. Rechercher replay officiel LeTROT, Equidia ou ZEturf sans créer d'URL hypothétique."
+    },
+    {
+      "date": "2023-07-30",
+      "cheval": "ISOLEE DU BOUILLON",
+      "hippodrome": "BERNAY",
+      "classement": 2,
+      "course": "Prix du Centre Leclerc Menneval",
+      "source_resultat": "https://www.province-courses.fr/fiche_cheval.php?id=18116900R",
+      "etat_source": "resultat_confirme",
+      "etat_video": "non_identifiee",
+      "commentaire": "Vérification des archives : page de course ou historique ; aucune URL vidéo directe confirmée. Rechercher replay officiel LeTROT, Equidia ou ZEturf sans créer d'URL hypothétique."
+    },
+    {
+      "date": "2023-07-02",
+      "cheval": "GOSPEL",
+      "hippodrome": "ECOMMOY",
+      "classement": 2,
+      "course": "Prix France Bleu Maine (monté)",
+      "source_resultat": "https://www.zone-turf.fr/cheval/gospel-767128/",
+      "etat_source": "resultat_confirme",
+      "etat_video": "non_identifiee",
+      "commentaire": "Vérification des archives : page de course ou historique ; aucune URL vidéo directe confirmée. Rechercher replay officiel LeTROT, Equidia ou ZEturf sans créer d'URL hypothétique."
+    },
+    {
       "date": "2023-05-29",
       "cheval": "HANANE MONTAVAL",
       "hippodrome": "DURTAL",
@@ -233,6 +387,39 @@
       "source_resultat": "https://www.zone-turf.fr/cheval/gavroche-paulo-743958/",
       "etat_video": "non_identifiee",
       "commentaire": "Résultat recoupé dans l'archive citée. Aucun lien individuel de replay trouvé par recherche publique dans cette passe; ne pas assimiler cette source à une vidéo."
+    },
+    {
+      "date": "2023-05-01",
+      "cheval": "KOBLENZA DAIRPET",
+      "hippodrome": "BERNAY",
+      "classement": 2,
+      "course": "Prix de la Federation IDF et HN Gr B",
+      "source_resultat": "https://www.zone-turf.fr/cheval/koblenza-dairpet-1867046/",
+      "etat_source": "resultat_confirme",
+      "etat_video": "non_identifiee",
+      "commentaire": "Vérification des archives : page de course ou historique ; aucune URL vidéo directe confirmée. Rechercher replay officiel LeTROT, Equidia ou ZEturf sans créer d'URL hypothétique."
+    },
+    {
+      "date": "2023-05-01",
+      "cheval": "JUNINIO FLEURY",
+      "hippodrome": "FOUGERES",
+      "classement": 2,
+      "course": "Prix FFB Gr B",
+      "source_resultat": "https://www.zone-turf.fr/cheval/juninio-fleury-1622784/archives-2.html",
+      "etat_source": "resultat_confirme",
+      "etat_video": "non_identifiee",
+      "commentaire": "Vérification des archives : page de course ou historique ; aucune URL vidéo directe confirmée. Rechercher replay officiel LeTROT, Equidia ou ZEturf sans créer d'URL hypothétique."
+    },
+    {
+      "date": "2023-04-23",
+      "cheval": "JUNINIO FLEURY",
+      "hippodrome": "SAINT-AUBIN-LES-ELBEUF",
+      "classement": 2,
+      "course": "Course d'Elbeuf le 23 avril",
+      "source_resultat": "https://www.geny.com/cheval/2702429-juninio-fleury/course/1686312",
+      "etat_source": "resultat_confirme",
+      "etat_video": "non_identifiee",
+      "commentaire": "Vérification des archives : page de course ou historique ; aucune URL vidéo directe confirmée. Rechercher replay officiel LeTROT, Equidia ou ZEturf sans créer d'URL hypothétique."
     },
     {
       "date": "2023-02-25",
@@ -265,6 +452,28 @@
       "commentaire": "Résultat et course identifiés. L'absence de vidéo connue ne prouve pas l'inexistence d'un enregistrement."
     },
     {
+      "date": "2022-07-31",
+      "cheval": "IVAN DRAGO",
+      "hippodrome": "VILLENEUVE-SUR-LOT",
+      "classement": 3,
+      "course": "Prix de l'Amicale du Périgord Agenais",
+      "source_resultat": "https://www.zone-turf.fr/cheval/ivan-drago-1604830/",
+      "etat_source": "resultat_confirme",
+      "etat_video": "non_identifiee",
+      "commentaire": "Vérification des archives : page de course ou historique ; aucune URL vidéo directe confirmée. Rechercher replay officiel LeTROT, Equidia ou ZEturf sans créer d'URL hypothétique."
+    },
+    {
+      "date": "2022-07-17",
+      "cheval": "HOMAYA DU BOCAGE",
+      "hippodrome": "BAGNOLES DE L'ORNE",
+      "classement": 2,
+      "course": "Course du 17 juillet 2022",
+      "source_resultat": "https://www.zone-turf.fr/cheval/homaya-du-bocage-788862/",
+      "etat_source": "resultat_a_confirmer_dans_page",
+      "etat_video": "non_identifiee",
+      "commentaire": "Vérification des archives : page de course ou historique ; aucune URL vidéo directe confirmée. Rechercher replay officiel LeTROT, Equidia ou ZEturf sans créer d'URL hypothétique."
+    },
+    {
       "date": "2022-07-03",
       "cheval": "JETHAN DE MONGOCHY",
       "hippodrome": "LE TOUQUET",
@@ -283,6 +492,28 @@
       "source_resultat": "https://www.zone-turf.fr/programmes/phh-lisieux-151106.html",
       "etat_video": "non_identifiee",
       "commentaire": "Arrivée recoupée ; vérifier LeTROT/Equidia/ZEturf avant ajout d'un lien vidéo."
+    },
+    {
+      "date": "2022-04-17",
+      "cheval": "JULY DU GUESNE",
+      "hippodrome": "LES ANDELYS",
+      "classement": 2,
+      "course": "Prix Carrosserie Demoulins",
+      "source_resultat": "https://www.zone-turf.fr/cheval/juliadarche-1658196/",
+      "etat_source": "resultat_confirme",
+      "etat_video": "non_identifiee",
+      "commentaire": "Vérification des archives : page de course ou historique ; aucune URL vidéo directe confirmée. Rechercher replay officiel LeTROT, Equidia ou ZEturf sans créer d'URL hypothétique."
+    },
+    {
+      "date": "2022-04-17",
+      "cheval": "HOMAYA DU BOCAGE",
+      "hippodrome": "ECOMMOY",
+      "classement": 2,
+      "course": "Course du 17 avril 2022",
+      "source_resultat": "https://www.zone-turf.fr/cheval/homaya-du-bocage-788862/",
+      "etat_source": "resultat_a_confirmer_dans_page",
+      "etat_video": "non_identifiee",
+      "commentaire": "Vérification des archives : page de course ou historique ; aucune URL vidéo directe confirmée. Rechercher replay officiel LeTROT, Equidia ou ZEturf sans créer d'URL hypothétique."
     },
     {
       "date": "2022-04-03",
@@ -413,6 +644,17 @@
       "source_resultat": "https://www.zone-turf.fr/rapports/phh-c1-prix-fernand-monnereau-231968.html",
       "etat_video": "non_identifiee",
       "commentaire": "Résultat et course identifiés. L'absence de vidéo connue ne prouve pas l'inexistence d'un enregistrement."
+    },
+    {
+      "date": "2013-02-17",
+      "cheval": "URANUS DU COURS",
+      "hippodrome": "MONTAUBAN",
+      "classement": 2,
+      "course": "Prix Kairos",
+      "source_resultat": "https://www.zone-turf.fr/cheval/uranus-du-cours-130297/",
+      "etat_source": "resultat_confirme",
+      "etat_video": "non_identifiee",
+      "commentaire": "Vérification des archives : page de course ou historique ; aucune URL vidéo directe confirmée. Rechercher replay officiel LeTROT, Equidia ou ZEturf sans créer d'URL hypothétique."
     },
     {
       "date": "2013-01-13",
