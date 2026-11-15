@@ -1,5 +1,5 @@
 {
-  "version": 42,
+  "version": 43,
   "note": "Fiches de courses Equidia ou LeTROT avec sources identifiant les courses. Les URLs Equidia sont déduites du format date/R/C ; la disponibilité et la lecture des vidéos ne sont pas garanties. HOMA reste sur LeTROT faute de fiche Equidia vérifiée.",
   "replays": [
     {
@@ -815,6 +815,14 @@
       "controle": "Arrivée officielle et identifiants R/C vérifiés sur la source ; ouverture vidéo Equidia non testée individuellement"
     },
     {
+      "date": "2025-05-09",
+      "cheval": "GIORGIANA",
+      "hippodrome": "SAINT-CLOUD",
+      "url": "https://www.equidia.fr/courses/2025-05-09/R4/C6",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2025-05-09/R4C6-saint-cloud-prix-de-l-armorique",
+      "controle": "Course R/C et arrivée confirmées sur ZEturf ; lecture du replay Equidia non contrôlée individuellement"
+    },
+    {
       "date": "2025-05-03",
       "cheval": "LOVE ME MAZELI",
       "hippodrome": "AMIENS",
@@ -909,6 +917,14 @@
       "controle": "Course et victoire explicitement confirmées par l'arrivée publiée ; lien Equidia construit à partir du R/C vérifié, lecture vidéo non testée."
     },
     {
+      "date": "2025-01-04",
+      "cheval": "ON LOCKDOWN",
+      "hippodrome": "DEAUVILLE",
+      "url": "https://www.equidia.fr/courses/2025-01-04/R4/C4",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2025-01-04/R4C4-deauville-prix-du-val-de-reuil",
+      "controle": "Course R/C et arrivée confirmées sur ZEturf ; lecture du replay Equidia non contrôlée individuellement"
+    },
+    {
       "date": "2024-12-17",
       "cheval": "JUNINIO FLEURY",
       "hippodrome": "CABOURG",
@@ -996,6 +1012,14 @@
       "url": "https://www.equidia.fr/courses/2024-07-04/R4/C1",
       "preuve_identification_course": "https://www.zeturf.es/fr/course-du-jour/2024-07-04/R4C1-lisieux-prix-saint-desir-lisieux",
       "controle": "Course et victoire explicitement confirmées par l'arrivée publiée ; lien Equidia construit à partir du R/C vérifié, lecture vidéo non testée."
+    },
+    {
+      "date": "2024-06-27",
+      "cheval": "FANTOMAS DU VAL",
+      "hippodrome": "ENGHIEN",
+      "url": "https://www.equidia.fr/courses/2024-06-27/R4/C6",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2024-06-27/R4C6-enghien-soisy-prix-de-lunel",
+      "controle": "Course R/C et arrivée confirmées sur ZEturf ; lecture du replay Equidia non contrôlée individuellement"
     },
     {
       "date": "2024-05-17",
