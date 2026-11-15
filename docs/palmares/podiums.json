@@ -152,6 +152,16 @@
       "casaque": "blanche"
     },
     {
+      "date": "2026-05-10",
+      "cheval": "DOURIANN",
+      "hippodrome": "PARISLONGCHAMP",
+      "classement": 2,
+      "discipline": "galop",
+      "entraineur": "Gilles PANNIER",
+      "casaque": "galop",
+      "jockey": "C. DEMURO"
+    },
+    {
       "date": "2026-05-03",
       "cheval": "JETHAN DE MONGOCHY",
       "hippodrome": "MONPAZIER",
