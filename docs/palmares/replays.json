@@ -1,5 +1,5 @@
 {
-  "version": 24,
+  "version": 25,
   "note": "Liens vers les pages de courses sur Equidia ou LeTROT, avec références de résultats ayant permis d'identifier date, hippodrome, réunion et numéro de course. Les liens Equidia sont calculés d'après le format d'URL et leur lecture, ainsi que la disponibilité du replay, n'ont pas été testées automatiquement. Les victoires historiques ne sont pas modifiées.",
   "replays": [
     {
@@ -273,10 +273,12 @@
       "date": "2022-01-29",
       "cheval": "DARWIN LA MESANGE",
       "hippodrome": "VINCENNES",
-      "url": "https://www.letrot.com/courses/2022-01-29/7500/8",
+      "url": "https://www.equidia.fr/courses/2022-01-29/R1/C8",
       "justificatif": "https://www.canalturf.com/resultats-PMU/2022-01-29_resultats-rapports-des-courses-du-samedi-29-janvier-2022.html",
-      "controle": "Hippodrome, date et numéro de course vérifiés ; URL construite au format LeTROT, lecture non testée automatiquement",
-      "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2022-01-29/7500/8"
+      "controle": "Réunion, course et victoire confirmées dans les résultats publics ; lecture vidéo Equidia non testée",
+      "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2022-01-29/7500/8",
+      "lien_letrot_precedent": "https://www.letrot.com/courses/2022-01-29/7500/8",
+      "preuve_identification_course": "https://www.infos-entrainement.fr/reunions-pmu-courses-du-jour/2022-01-29/r1/c8"
     },
     {
       "date": "2021-12-31",
@@ -359,10 +361,12 @@
       "date": "2016-11-01",
       "cheval": "CALIE DE POMMERAYE",
       "hippodrome": "VINCENNES",
-      "url": "https://www.letrot.com/courses/2016-11-01/7500/7",
+      "url": "https://www.equidia.fr/courses/2016-11-01/R5/C7",
       "justificatif": "https://www.canalturf.com/resultats-PMU/2016-11-01/paris-vincennes/143560_prix-justicia.html",
-      "controle": "Hippodrome, date et numéro de course vérifiés ; URL construite au format LeTROT, lecture non testée automatiquement",
-      "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2016-11-01/7500/7"
+      "controle": "Réunion, course et victoire confirmées dans les résultats publics ; lecture vidéo Equidia non testée",
+      "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2016-11-01/7500/7",
+      "lien_letrot_precedent": "https://www.letrot.com/courses/2016-11-01/7500/7",
+      "preuve_identification_course": "https://www.canalturf.com/resultats-PMU/2016-11-01/paris-vincennes/143560_prix-justicia.html"
     },
     {
       "date": "2013-12-27",
