@@ -1,5 +1,5 @@
 {
-  "version": 67,
+  "version": 68,
   "note": "Fiches de courses Equidia ou LeTROT avec sources identifiant les courses. Les URLs Equidia sont déduites du format date/R/C ; la disponibilité et la lecture des vidéos ne sont pas garanties. HOMA reste sur LeTROT faute de fiche Equidia vérifiée.",
   "replays": [
     {
@@ -1407,6 +1407,14 @@
       "controle": "Hippodrome, R/C et résultat recoupés sur les résultats publiés ; replay Equidia non visionné individuellement"
     },
     {
+      "date": "2023-11-05",
+      "cheval": "JAMAIS SANS ELLE",
+      "hippodrome": "LA CAPELLE",
+      "url": "https://www.equidia.fr/courses/2023-11-05/R9/C3",
+      "justificatif": "https://www.canalturf.com/resultats-PMU/2023-11-05/la-capelle/321864_prix-de-la-fere-groupe-b.html",
+      "controle": "Cheval 3e confirmé dans l'arrivée du 2023-11-05, course R9C3. La lecture effective de la vidéo Equidia n'a pas été testée."
+    },
+    {
       "date": "2023-11-03",
       "cheval": "HAMPTON AMERICA",
       "hippodrome": "AMIENS",
@@ -1715,6 +1723,14 @@
       "url": "https://www.equidia.fr/courses/2022-10-07/R4/C6",
       "justificatif": "https://www.geny.com/course/1352202-2022-10-07-compiegne-prix-des-etangs-de-batigny/arrivee-rapports",
       "controle": "3e, n°6 ; résultat et numéro R4C6 confirmés par source citée ; lecture du replay Equidia non vérifiée."
+    },
+    {
+      "date": "2022-09-11",
+      "cheval": "HANANE MONTAVAL",
+      "hippodrome": "CHATEAUBRIANT",
+      "url": "https://www.equidia.fr/courses/2022-09-11/R11/C7",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2022-09-11/R11C7-chateaubriant-prix-henri-sauvager",
+      "controle": "Cheval 2e confirmé dans l'arrivée du 2022-09-11, course R11C7. La lecture effective de la vidéo Equidia n'a pas été testée."
     },
     {
       "date": "2022-08-31",
@@ -2157,6 +2173,14 @@
       "controle": "Date, R/C et cheval gagnant confirmés dans le résultat officiel reproduit par ZEturf/Canalturf ; lien Equidia construit, lecture du replay non testée."
     },
     {
+      "date": "2021-01-12",
+      "cheval": "GOSPEL",
+      "hippodrome": "BORDEAUX",
+      "url": "https://www.equidia.fr/courses/2021-01-12/R3/C1",
+      "justificatif": "https://www.canalturf.com/resultats-PMU/2021-01-12/bordeaux-le-bouscat/230535_prix-ogorek.html",
+      "controle": "Cheval 2e confirmé dans l'arrivée du 2021-01-12, course R3C1. La lecture effective de la vidéo Equidia n'a pas été testée."
+    },
+    {
       "date": "2021-01-01",
       "cheval": "FETICHE ATOUT",
       "hippodrome": "VINCENNES - PP",
@@ -2179,6 +2203,14 @@
       "url": "https://www.equidia.fr/courses/2020-11-15/R4/C6",
       "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2020-11-15/R4C6-laval-prix-georges-lambert",
       "controle": "Réunion et course confirmées dans une fiche de résultat montrant le cheval gagnant ; lien Equidia au format de course, lecture non testée ici."
+    },
+    {
+      "date": "2020-10-31",
+      "cheval": "FETICHE ATOUT",
+      "hippodrome": "CHATELAILLON-LA ROCHELLE",
+      "url": "https://www.equidia.fr/courses/2020-10-31/R3/C5",
+      "justificatif": "https://www.canalturf.com/resultats-PMU/2020-10-31/la-rochelle-chatela/224214_prix-bar-du-centre.html",
+      "controle": "Cheval 3e confirmé dans l'arrivée du 2020-10-31, course R3C5. La lecture effective de la vidéo Equidia n'a pas été testée."
     },
     {
       "date": "2020-08-08",
