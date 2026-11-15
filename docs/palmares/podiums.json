@@ -652,7 +652,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Eva BOUCLET",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Charley HESLOUIN",
+      "source_entraineur": "https://www.geny.com/cheval/2664298-indice-deladou/course/1692779"
     },
     {
       "date": "2025-12-21",
@@ -1058,7 +1060,9 @@
       "discipline": "attele",
       "casaque": "blanche",
       "proprietaire": "Écurie Initial",
-      "jockey": "Mathias LEGROS"
+      "jockey": "Mathias LEGROS",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "https://www.geny.com/cheval/2780422-lariflette/course/1552851"
     },
     {
       "date": "2025-03-02",
