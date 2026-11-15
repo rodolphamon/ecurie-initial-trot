@@ -1,5 +1,5 @@
 {
-  "version": 33,
+  "version": 34,
   "note": "Fiches de courses Equidia ou LeTROT avec sources identifiant les courses. Les URLs Equidia sont déduites du format date/R/C ; la disponibilité et la lecture des vidéos ne sont pas garanties. HOMA reste sur LeTROT faute de fiche Equidia vérifiée.",
   "replays": [
     {
@@ -18,6 +18,22 @@
       "url": "https://www.equidia.fr/courses/2026-10-30/R5/C5",
       "preuve_identification_course": "https://turfin.fr/course/2026-10-30/r5c5-la-cepiere-prix-victor-bermes",
       "controle": "Course, hippodrome et R/C identifiés dans les résultats Turfin ; consultation de la vidéo Equidia non testée"
+    },
+    {
+      "date": "2026-10-22",
+      "cheval": "GONAFOOT",
+      "hippodrome": "LES SABLES-D'OLONNE",
+      "url": "https://www.equidia.fr/courses/2026-10-22/R2/C1",
+      "justificatif": "https://xauth.unibet.fr/fr/course-du-jour/2026-10-22/R2C1-les-sables-d-olonne-prix-vision-d-etat",
+      "controle": "Résultat et numéro R/C concordants dans la source indiquée ; lecture du replay sur Equidia non testée individuellement"
+    },
+    {
+      "date": "2026-10-20",
+      "cheval": "ZARTOP",
+      "hippodrome": "CLAIREFONTAINE",
+      "url": "https://www.equidia.fr/courses/2026-10-20/R1/C7",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2026-10-20/R1C7-clairefontaine-prix-merci-aux-pro-des-courses-venus-a-clairefontaine-prix-des-astrances",
+      "controle": "Résultat et numéro R/C concordants dans la source indiquée ; lecture du replay sur Equidia non testée individuellement"
     },
     {
       "date": "2026-10-17",
@@ -55,6 +71,22 @@
       "controle": "Correspondance de course identifiée dans les résultats Turfin ; lecture vidéo Equidia non vérifiée"
     },
     {
+      "date": "2026-09-14",
+      "cheval": "MASTER PAT",
+      "hippodrome": "CHANTILLY",
+      "url": "https://www.equidia.fr/courses/2026-09-14/R4/C6",
+      "justificatif": "https://www.geny.com/cheval/2817411-master-pat",
+      "controle": "Résultat et numéro R/C concordants dans la source indiquée ; lecture du replay sur Equidia non testée individuellement"
+    },
+    {
+      "date": "2026-09-13",
+      "cheval": "LE ROI LEON",
+      "hippodrome": "PARISLONGCHAMP",
+      "url": "https://www.equidia.fr/courses/2026-09-13/R1/C1",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2026-09-13/R1C1-equidia",
+      "controle": "Résultat et numéro R/C concordants dans la source indiquée ; lecture du replay sur Equidia non testée individuellement"
+    },
+    {
       "date": "2026-09-04",
       "cheval": "LORD ON WAY",
       "hippodrome": "LYON-PARILLY",
@@ -64,6 +96,14 @@
       "controle": "Lien direct vers la fiche de course Equidia indiqué sur Turfin ; lecture du replay non testée depuis cet environnement",
       "lien_letrot_precedent": "https://www.letrot.com/courses/2026-09-04/6901/6",
       "preuve_lien_equidia": "https://turfin.fr/course/2026-09-04/r3c6-lyon-parilly-prix-yvan-berger"
+    },
+    {
+      "date": "2026-09-01",
+      "cheval": "GIORGIANA",
+      "hippodrome": "DEAUVILLE",
+      "url": "https://www.equidia.fr/courses/2026-09-01/R1/C3",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2026-09-01/R1C3-equidia",
+      "controle": "Résultat et numéro R/C concordants dans la source indiquée ; lecture du replay sur Equidia non testée individuellement"
     },
     {
       "date": "2026-08-28",
@@ -98,6 +138,14 @@
       "controle": "Course, hippodrome et R/C identifiés dans les résultats Turfin ; consultation de la vidéo Equidia non testée"
     },
     {
+      "date": "2026-08-18",
+      "cheval": "LE ROI LEON",
+      "hippodrome": "DEAUVILLE",
+      "url": "https://www.equidia.fr/courses/2026-08-18/R1/C7",
+      "justificatif": "https://zeturf.fr/fr/course-du-jour/2026-08-18/R1C7-deauville-prix-jimmy-winkfield-prix-du-quai-sainte-catherine",
+      "controle": "Résultat et numéro R/C concordants dans la source indiquée ; lecture du replay sur Equidia non testée individuellement"
+    },
+    {
       "date": "2026-08-10",
       "cheval": "LARGO DE JOUDES",
       "hippodrome": "DIVONNE-LES-BAINS",
@@ -128,6 +176,14 @@
       "url": "https://www.equidia.fr/courses/2026-08-02/R9/C2",
       "preuve_identification_course": "https://turfin.fr/course/2026-08-02/r9c2-aix-les-bains",
       "controle": "Course référencée par Turfin (R et C concordants) ; lecture du replay Equidia non testée ici"
+    },
+    {
+      "date": "2026-07-30",
+      "cheval": "LE ROI LEON",
+      "hippodrome": "DIEPPE",
+      "url": "https://www.equidia.fr/courses/2026-07-30/R1/C3",
+      "justificatif": "https://www.turfoo.fr/dernieres-minutes/260730/",
+      "controle": "Résultat et numéro R/C concordants dans la source indiquée ; lecture du replay sur Equidia non testée individuellement"
     },
     {
       "date": "2026-07-26",
