@@ -1,5 +1,5 @@
 {
-  "version": 41,
+  "version": 42,
   "note": "Fiches de courses Equidia ou LeTROT avec sources identifiant les courses. Les URLs Equidia sont déduites du format date/R/C ; la disponibilité et la lecture des vidéos ne sont pas garanties. HOMA reste sur LeTROT faute de fiche Equidia vérifiée.",
   "replays": [
     {
@@ -756,6 +756,14 @@
       "controle": "Course et numéro R/C identifiés dans les résultats publics ; replay Equidia à confirmer dans le navigateur"
     },
     {
+      "date": "2025-07-22",
+      "cheval": "MANDRAGORA FLEURY",
+      "hippodrome": "CABOURG",
+      "url": "https://www.equidia.fr/courses/2025-07-22/R5/C6",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2025-07-22/R5C6-cabourg-prix-des-valerianes",
+      "controle": "Arrivée officielle et identifiants R/C vérifiés sur la source ; ouverture vidéo Equidia non testée individuellement"
+    },
+    {
       "date": "2025-06-30",
       "cheval": "INDICE DELADOU",
       "hippodrome": "LE MONT ST MICHEL",
@@ -789,6 +797,22 @@
       "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2025-06-15/202/6",
       "lien_letrot_precedent": "https://www.letrot.com/courses/2025-06-15/202/6",
       "preuve_identification_course": "https://www.canalturf.com/resultats-PMU/2025-06-15/la-capelle/374542_prix-du-croise-laroche.html"
+    },
+    {
+      "date": "2025-05-20",
+      "cheval": "INDICE DELADOU",
+      "hippodrome": "VICHY",
+      "url": "https://www.equidia.fr/courses/2025-05-20/R2/C2",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2025-05-20/R2C2-vichy-prix-du-chatel-montagne",
+      "controle": "Arrivée officielle et identifiants R/C vérifiés sur la source ; ouverture vidéo Equidia non testée individuellement"
+    },
+    {
+      "date": "2025-05-17",
+      "cheval": "MANDRAGORA FLEURY",
+      "hippodrome": "CAEN",
+      "url": "https://www.equidia.fr/courses/2025-05-17/R3/C2",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2025-05-17/R3C2-caen-prix-de-conteville",
+      "controle": "Arrivée officielle et identifiants R/C vérifiés sur la source ; ouverture vidéo Equidia non testée individuellement"
     },
     {
       "date": "2025-05-03",
@@ -850,6 +874,14 @@
       "controle": "Date, hippodrome, cheval et R/C retrouvés dans les résultats ; lecture du replay Equidia non vérifiée séparément"
     },
     {
+      "date": "2025-02-20",
+      "cheval": "ISOLEE DU BOUILLON",
+      "hippodrome": "VINCENNES",
+      "url": "https://www.equidia.fr/courses/2025-02-20/R1/C7",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2025-02-20/R1C7-vincennes-prix-de-vouziers",
+      "controle": "Arrivée officielle et identifiants R/C vérifiés sur la source ; ouverture vidéo Equidia non testée individuellement"
+    },
+    {
       "date": "2025-02-07",
       "cheval": "LARIFLETTE",
       "hippodrome": "VINCENNES",
@@ -897,6 +929,14 @@
     },
     {
       "date": "2024-10-10",
+      "cheval": "IT'S EAGLE COGLAIS",
+      "hippodrome": "ENGHIEN",
+      "url": "https://www.equidia.fr/courses/2024-10-10/R4/C5",
+      "justificatif": "https://www.oneturf.fr/arrive/FR/10-10-2024/197222%2C1636001%2CENGHIEN-SOISY%2C5-PRIX-DE-LA-PORTE-DE-CHAMPERRET.html",
+      "controle": "Arrivée officielle et identifiants R/C vérifiés sur la source ; ouverture vidéo Equidia non testée individuellement"
+    },
+    {
+      "date": "2024-10-10",
       "cheval": "LARIFLETTE",
       "hippodrome": "ENGHIEN",
       "url": "https://www.equidia.fr/courses/2024-10-10/R4/C7",
@@ -916,6 +956,30 @@
       "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2024-10-01/7500/6",
       "lien_letrot_precedent": "https://www.letrot.com/courses/2024-10-01/7500/6",
       "preuve_identification_course": "https://www.canalturf.com/resultats-PMU/2024-10-01/paris-vincennes/351257_prix-de-perros-guirec.html"
+    },
+    {
+      "date": "2024-09-10",
+      "cheval": "IT'S EAGLE COGLAIS",
+      "hippodrome": "VINCENNES",
+      "url": "https://www.equidia.fr/courses/2024-09-10/R4/C6",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2024-09-10/R4C6-vincennes-prix-alkeste",
+      "controle": "Arrivée officielle et identifiants R/C vérifiés sur la source ; ouverture vidéo Equidia non testée individuellement"
+    },
+    {
+      "date": "2024-09-05",
+      "cheval": "LARIFLETTE",
+      "hippodrome": "VINCENNES - GP",
+      "url": "https://www.equidia.fr/courses/2024-09-05/R4/C5",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2024-09-05/R4C5-vincennes-prix-de-givors",
+      "controle": "Arrivée officielle et identifiants R/C vérifiés sur la source ; ouverture vidéo Equidia non testée individuellement"
+    },
+    {
+      "date": "2024-08-30",
+      "cheval": "IT'S EAGLE COGLAIS",
+      "hippodrome": "VINCENNES",
+      "url": "https://www.equidia.fr/courses/2024-08-30/R1/C7",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2024-08-30/R1C7-vincennes-prix-danae",
+      "controle": "Arrivée officielle et identifiants R/C vérifiés sur la source ; ouverture vidéo Equidia non testée individuellement"
     },
     {
       "date": "2024-07-15",
