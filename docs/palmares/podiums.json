@@ -81,6 +81,16 @@
       "casaque": "nathalie"
     },
     {
+      "date": "2026-09-28",
+      "cheval": "MANDRAGORA FLEURY",
+      "hippodrome": "CRAON",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "proprietaire": "Écurie Initial",
+      "jockey": "Patrice PACAUD"
+    },
+    {
       "date": "2026-09-27",
       "cheval": "JUNINIO FLEURY",
       "hippodrome": "VILLENEUVE-SUR-LOT",
@@ -99,6 +109,16 @@
       "entraineur": "Gilles PANNIER",
       "casaque": "galop",
       "jockey": "H. LEBOUC"
+    },
+    {
+      "date": "2026-09-20",
+      "cheval": "NOSTALGIE DAIRPET",
+      "hippodrome": "VIRE NORMANDIE",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "proprietaire": "Écurie Initial",
+      "jockey": "Gilles MAILLARD"
     },
     {
       "date": "2026-09-14",
@@ -131,6 +151,26 @@
       "jockey": "L. BOISSEAU"
     },
     {
+      "date": "2026-08-28",
+      "cheval": "NOSTALGIE DAIRPET",
+      "hippodrome": "LES SABLES-D'OLONNE",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "proprietaire": "Écurie Initial",
+      "jockey": "Antoine WIELS"
+    },
+    {
+      "date": "2026-08-26",
+      "cheval": "MOSCANTIDA PEAL",
+      "hippodrome": "VINCENNES - GP",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "proprietaire": "Écurie Initial",
+      "jockey": "David THOMAIN"
+    },
+    {
       "date": "2026-08-25",
       "cheval": "NEBRASKA FLEURY",
       "hippodrome": "CABOURG",
@@ -148,6 +188,16 @@
       "entraineur": "Gilles PANNIER",
       "casaque": "galop",
       "jockey": "L. BOISSEAU"
+    },
+    {
+      "date": "2026-08-20",
+      "cheval": "LORD ON WAY",
+      "hippodrome": "DIVONNE-LES-BAINS",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "proprietaire": "Écurie Initial",
+      "jockey": "Mathias LEGROS"
     },
     {
       "date": "2026-08-18",
@@ -168,6 +218,26 @@
       "entraineur": "Gilles PANNIER",
       "casaque": "galop",
       "jockey": "M. BARZALONA"
+    },
+    {
+      "date": "2026-08-15",
+      "cheval": "MANDRAGORA FLEURY",
+      "hippodrome": "CARENTAN",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "proprietaire": "Écurie Initial",
+      "jockey": "Patrice PACAUD"
+    },
+    {
+      "date": "2026-08-08",
+      "cheval": "MOSCANTIDA PEAL",
+      "hippodrome": "ENGHIEN",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "proprietaire": "Écurie Initial",
+      "jockey": "Benjamin ROCHARD"
     },
     {
       "date": "2026-08-03",
@@ -199,6 +269,16 @@
       "jockey": "M. BARZALONA"
     },
     {
+      "date": "2026-07-26",
+      "cheval": "LARGO DE JOUDES",
+      "hippodrome": "ENGHIEN",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "proprietaire": "Écurie Initial",
+      "jockey": "Clément FRECELLE"
+    },
+    {
       "date": "2026-07-19",
       "cheval": "LE ROI LEON",
       "hippodrome": "CHANTILLY",
@@ -227,6 +307,16 @@
       "casaque": "blanche"
     },
     {
+      "date": "2026-07-12",
+      "cheval": "LORD ON WAY",
+      "hippodrome": "MONTMIRAIL",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "proprietaire": "Écurie Initial",
+      "jockey": "Mathias LEGROS"
+    },
+    {
       "date": "2026-07-02",
       "cheval": "LE ROI LEON",
       "hippodrome": "PARISLONGCHAMP",
@@ -235,6 +325,16 @@
       "entraineur": "Gilles PANNIER",
       "casaque": "galop",
       "jockey": "A. MOLINS"
+    },
+    {
+      "date": "2026-06-29",
+      "cheval": "MOSCANTIDA PEAL",
+      "hippodrome": "ENGHIEN",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "proprietaire": "Écurie Initial",
+      "jockey": "Alexis COLLETTE"
     },
     {
       "date": "2026-06-10",
@@ -254,6 +354,16 @@
       "discipline": "attele",
       "jockey": "François LAGADEUC",
       "casaque": "blanche"
+    },
+    {
+      "date": "2026-05-26",
+      "cheval": "MOONDANCE OKINA",
+      "hippodrome": "VINCENNES - GP",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "proprietaire": "Écurie Initial",
+      "jockey": "François LAGADEUC"
     },
     {
       "date": "2026-05-25",
@@ -343,6 +453,16 @@
       "casaque": "julien"
     },
     {
+      "date": "2026-04-17",
+      "cheval": "ISOLEE DU BOUILLON",
+      "hippodrome": "VINCENNES - GP",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "proprietaire": "Écurie Initial",
+      "jockey": "Mathias LEGROS"
+    },
+    {
       "date": "2026-04-12",
       "cheval": "MOONDANCE OKINA",
       "hippodrome": "GRAIGNES",
@@ -350,6 +470,16 @@
       "discipline": "attele",
       "jockey": "Sébastien ERNAULT",
       "casaque": "blanche"
+    },
+    {
+      "date": "2026-04-12",
+      "cheval": "NEBRASKA FLEURY",
+      "hippodrome": "TOURS-CHAMBRAY",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "proprietaire": "Écurie Initial",
+      "jockey": "Pierre-Louis DESAUNETTE"
     },
     {
       "date": "2026-04-09",
@@ -372,6 +502,16 @@
       "casaque": "julien"
     },
     {
+      "date": "2026-04-06",
+      "cheval": "MOONDANCE OKINA",
+      "hippodrome": "CHERBOURG",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "proprietaire": "Écurie Initial",
+      "jockey": "Guillaume LENAIN"
+    },
+    {
       "date": "2026-04-04",
       "cheval": "LIMPIDE",
       "hippodrome": "LE CROISE-LAROCHE",
@@ -380,6 +520,26 @@
       "entraineur": "Gilles PANNIER",
       "casaque": "galop",
       "jockey": "H. LEBOUC"
+    },
+    {
+      "date": "2026-03-15",
+      "cheval": "LARGO DE JOUDES",
+      "hippodrome": "GRAIGNES",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "proprietaire": "Écurie Initial",
+      "jockey": "Amaury BOURGOIN-TIMBERT"
+    },
+    {
+      "date": "2026-03-12",
+      "cheval": "NEBRASKA FLEURY",
+      "hippodrome": "CAEN",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "proprietaire": "Écurie Initial",
+      "jockey": "Vincent HEBERT"
     },
     {
       "date": "2026-02-27",
@@ -399,6 +559,16 @@
       "discipline": "attele",
       "jockey": "Michel HANQUIER",
       "casaque": "nathalie"
+    },
+    {
+      "date": "2026-02-16",
+      "cheval": "IT'S EAGLE COGLAIS",
+      "hippodrome": "VINCENNES - GP",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "proprietaire": "Écurie Initial",
+      "jockey": "Mary-Kate DUVAL"
     },
     {
       "date": "2026-02-05",
@@ -476,6 +646,26 @@
       "discipline": "attele",
       "jockey": "Matthias LEGROS",
       "casaque": "blanche"
+    },
+    {
+      "date": "2025-11-23",
+      "cheval": "L'ARTISTE DE GAGOU",
+      "hippodrome": "CHERBOURG",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "proprietaire": "Écurie Initial",
+      "jockey": "Romain LE CREPS"
+    },
+    {
+      "date": "2025-11-20",
+      "cheval": "LARGO DE JOUDES",
+      "hippodrome": "GRAIGNES",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "proprietaire": "Écurie Initial",
+      "jockey": "Cédric TERRY"
     },
     {
       "date": "2025-11-16",
@@ -583,6 +773,16 @@
       "casaque": "blanche"
     },
     {
+      "date": "2025-08-11",
+      "cheval": "HAMPTON AMERICA",
+      "hippodrome": "CASTERA-VERDUZAN",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "proprietaire": "Écurie Initial",
+      "jockey": "Michel HANQUIER"
+    },
+    {
       "date": "2025-08-09",
       "cheval": "LARIFLETTE",
       "hippodrome": "ENGHIEN",
@@ -609,6 +809,16 @@
       "discipline": "attele",
       "jockey": "Michel-Xavier CHARLOT",
       "casaque": "nathalie"
+    },
+    {
+      "date": "2025-07-22",
+      "cheval": "MANDRAGORA FLEURY",
+      "hippodrome": "CABOURG",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "proprietaire": "Écurie Initial",
+      "jockey": "Vincent HEBERT"
     },
     {
       "date": "2025-07-13",
@@ -737,6 +947,16 @@
       "jockey": "C. LECOEUVRE"
     },
     {
+      "date": "2025-04-17",
+      "cheval": "MACLANDER",
+      "hippodrome": "ENGHIEN",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "proprietaire": "Écurie Initial",
+      "jockey": "Mathias LEGROS"
+    },
+    {
       "date": "2025-04-13",
       "cheval": "JETHAN DE MONGOCHY",
       "hippodrome": "AGEN-LA-GARENNE",
@@ -775,6 +995,16 @@
       "casaque": "blanche"
     },
     {
+      "date": "2025-03-20",
+      "cheval": "MANDRAGORA FLEURY",
+      "hippodrome": "CAEN",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "proprietaire": "Écurie Initial",
+      "jockey": "Vincent HEBERT"
+    },
+    {
       "date": "2025-03-16",
       "cheval": "VYBORG",
       "hippodrome": "SAINT-CLOUD",
@@ -783,6 +1013,16 @@
       "entraineur": "Gilles PANNIER",
       "casaque": "galop",
       "jockey": "B. MARIE"
+    },
+    {
+      "date": "2025-03-11",
+      "cheval": "LARIFLETTE",
+      "hippodrome": "ENGHIEN",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "proprietaire": "Écurie Initial",
+      "jockey": "Mathias LEGROS"
     },
     {
       "date": "2025-03-02",
