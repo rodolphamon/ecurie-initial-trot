@@ -217,12 +217,46 @@ async function loadReplays(){
   render();
  }catch(err){/* Aucun pictogramme tant que le lien direct n'est pas vérifié. */}
 }
-// Vincennes est un seul hippodrome : GP et PP sont deux pistes, pas deux établissements.
+// Un nom par hippodrome, indépendamment des accents, tirets, variantes historiques et pistes.
+// La source brute de chaque course reste intacte pour préserver les liens vers les vidéos.
+// Ne pas confondre Deauville-La Touques avec Clairefontaine,
+// ni Marseille-Borély avec Marseille-Vivaux.
 function hippodromeUnifie(v){
  const value=String(v||"").trim();
- if(/^VILLENEUVE(?:\s+|-)+SUR(?:\s+|-)+LOT$/i.test(value))return "VILLENEUVE-SUR-LOT";
- return /^VINCENNES(?:\s*[-–()]\s*(?:G\.?P\.?|P\.?P\.?|GRANDE\s+PISTE|PETITE\s+PISTE)\s*\)?)?$/i.test(value)
-   ? "VINCENNES" : value;
+ const key=value.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toUpperCase()
+   .replace(/[^A-Z0-9]+/g," ").trim().replace(/\s+/g," ");
+ const aliases={
+  "AGEN LA GARENNE":"AGEN-LA-GARENNE",
+  "AVIGNON LE PONTET":"AVIGNON-LE-PONTET",
+  "BAGNOLES DE L ORNE":"BAGNOLES-DE-L'ORNE",
+  "BEAUMONT DE LOMAGNE":"BEAUMONT-DE-LOMAGNE",
+  "BORDEAUX":"BORDEAUX",
+  "BORDEAUX LE BOUSCAT":"BORDEAUX",
+  "CLAIREFONTAINE":"CLAIREFONTAINE",
+  "DEAUVILLE CLAIREFONTAINE":"CLAIREFONTAINE",
+  "LA FERTE VIDAME":"LA FERTÉ-VIDAME",
+  "LE CROISE LAROCHE":"LE CROISÉ-LAROCHE",
+  "LE LION D ANGERS":"LE LION-D'ANGERS",
+  "LE MONT ST MICHEL":"LE MONT-SAINT-MICHEL",
+  "LE MONT SAINT MICHEL":"LE MONT-SAINT-MICHEL",
+  "LES SABLES D OLONNE":"LES SABLES-D'OLONNE",
+  "LES SABLES D OLONNES":"LES SABLES-D'OLONNE",
+  "LYON A PARILLY":"LYON-PARILLY",
+  "LYON PARILLY":"LYON-PARILLY",
+  "MARSEILLE A BORELY":"MARSEILLE-BORÉLY",
+  "MARSEILLE BORELY":"MARSEILLE-BORÉLY",
+  "MARSEILLE A VIVAUX":"MARSEILLE-VIVAUX",
+  "MARSEILLE VIVAUX":"MARSEILLE-VIVAUX",
+  "PORNICHET":"PORNICHET",
+  "PORNICHET LA BAULE":"PORNICHET",
+  "VILLENEUVE SUR LOT":"VILLENEUVE-SUR-LOT",
+  "VINCENNES":"VINCENNES",
+  "VINCENNES GP":"VINCENNES",
+  "VINCENNES PP":"VINCENNES",
+  "VINCENNES GRANDE PISTE":"VINCENNES",
+  "VINCENNES PETITE PISTE":"VINCENNES"
+ };
+ return Object.prototype.hasOwnProperty.call(aliases,key)?aliases[key]:value;
 }
 const state={page:1,perPage:25,discipline:"",placing:"all",videoOnly:false};
 function render(){
