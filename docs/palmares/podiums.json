@@ -26,9 +26,10 @@
       "hippodrome": "TOULOUSE",
       "classement": 2,
       "discipline": "attele",
-      "casaque": "blanche",
+      "casaque": "nathalie",
       "jockey": "M. DAOUGABEL",
-      "entraineur": "Mathieu DAOUGABEL"
+      "entraineur": "Mathieu DAOUGABEL",
+      "proprietaire": "Nathalie HAMON"
     },
     {
       "date": "2026-10-25",
@@ -36,9 +37,10 @@
       "hippodrome": "MONTAUBAN",
       "classement": 2,
       "discipline": "attele",
-      "casaque": "blanche",
+      "casaque": "nathalie",
       "jockey": "M. DAOUGABEL",
-      "entraineur": "Mathieu DAOUGABEL"
+      "entraineur": "Mathieu DAOUGABEL",
+      "proprietaire": "Nathalie HAMON"
     },
     {
       "date": "2026-10-22",
