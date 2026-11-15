@@ -1,5 +1,5 @@
 {
-  "version": 19,
+  "version": 20,
   "note": "Liens vers les pages de courses sur Equidia ou LeTROT, avec références de résultats ayant permis d'identifier date, hippodrome, réunion et numéro de course. Les liens Equidia sont calculés d'après le format d'URL et leur lecture, ainsi que la disponibilité du replay, n'ont pas été testées automatiquement. Les victoires historiques ne sont pas modifiées.",
   "replays": [
     {
@@ -134,10 +134,12 @@
       "date": "2025-04-04",
       "cheval": "LARIFLETTE",
       "hippodrome": "VINCENNES",
-      "url": "https://www.letrot.com/courses/2025-04-04/7500/2",
+      "url": "https://www.equidia.fr/courses/2025-04-04/R1/C2",
       "justificatif": "https://www.iturf.fr/programme/course/2025-04-04/R1C2/Prix-de-Suresnes",
-      "controle": "Hippodrome, date et numéro de course vérifiés ; URL construite au format LeTROT, lecture non testée automatiquement",
-      "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2025-04-04/7500/2"
+      "controle": "ZEturf confirme la réunion, la course et le cheval vainqueur ; replay Equidia non testé",
+      "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2025-04-04/7500/2",
+      "lien_letrot_precedent": "https://www.letrot.com/courses/2025-04-04/7500/2",
+      "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2025-04-04/R1C2-vincennes-prix-de-suresnes"
     },
     {
       "date": "2025-02-07",
@@ -266,10 +268,12 @@
       "date": "2021-12-31",
       "cheval": "DARWIN LA MESANGE",
       "hippodrome": "VINCENNES",
-      "url": "https://www.letrot.com/courses/2021-12-31/7500/1",
+      "url": "https://www.equidia.fr/courses/2021-12-31/R1/C1",
       "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2021-12-31/R1C1-vincennes-prix-de-saint-germain",
-      "controle": "Hippodrome, date et numéro de course vérifiés ; URL construite au format LeTROT, lecture non testée automatiquement",
-      "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2021-12-31/7500/1"
+      "controle": "ZEturf confirme la réunion, la course et le cheval vainqueur ; replay Equidia non testé",
+      "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2021-12-31/7500/1",
+      "lien_letrot_precedent": "https://www.letrot.com/courses/2021-12-31/7500/1",
+      "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2021-12-31/R1C1-vincennes-prix-de-saint-germain"
     },
     {
       "date": "2021-11-16",
@@ -311,19 +315,23 @@
       "date": "2020-02-11",
       "cheval": "FETICHE ATOUT",
       "hippodrome": "VINCENNES",
-      "url": "https://www.letrot.com/courses/2020-02-11/7500/4",
+      "url": "https://www.equidia.fr/courses/2020-02-11/R1/C4",
       "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2020-02-11/R1C4-vincennes-prix-de-forcalquier",
-      "controle": "Hippodrome, date et numéro de course vérifiés ; URL construite au format LeTROT, lecture non testée automatiquement",
-      "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2020-02-11/7500/4"
+      "controle": "ZEturf confirme la réunion, la course et le cheval vainqueur ; replay Equidia non testé",
+      "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2020-02-11/7500/4",
+      "lien_letrot_precedent": "https://www.letrot.com/courses/2020-02-11/7500/4",
+      "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2020-02-11/R1C4-vincennes-prix-de-forcalquier"
     },
     {
       "date": "2017-03-04",
       "cheval": "DJANGO DE MONGOCHY",
       "hippodrome": "VINCENNES",
-      "url": "https://www.letrot.com/courses/2017-03-04/7500/8",
+      "url": "https://www.equidia.fr/courses/2017-03-04/R1/C8",
       "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2017-03-04/R1C8-vincennes-prix-de-monpazier",
-      "controle": "Hippodrome, date et numéro de course vérifiés ; URL construite au format LeTROT, lecture non testée automatiquement",
-      "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2017-03-04/7500/8"
+      "controle": "ZEturf confirme la réunion, la course et le cheval vainqueur ; replay Equidia non testé",
+      "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2017-03-04/7500/8",
+      "lien_letrot_precedent": "https://www.letrot.com/courses/2017-03-04/7500/8",
+      "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2017-03-04/R1C8-vincennes-prix-de-monpazier"
     },
     {
       "date": "2016-11-01",
