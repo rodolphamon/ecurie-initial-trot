@@ -3371,7 +3371,9 @@
       "classement": 3,
       "discipline": "attele",
       "casaque": "blanche",
-      "jockey": "Marion LEMONNIER"
+      "jockey": "Marion LEMONNIER",
+      "entraineur": "Benoît CAILLIAU",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Benoît CAILLIAU en 2012-2013, Alexandre MARQUET à partir de 2014"
     },
     {
       "date": "2012-04-15",
@@ -3380,7 +3382,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Amandine BROUEL",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Benoît CAILLIAU",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Benoît CAILLIAU en 2012-2013, Alexandre MARQUET à partir de 2014"
     },
     {
       "date": "2011-08-30",
