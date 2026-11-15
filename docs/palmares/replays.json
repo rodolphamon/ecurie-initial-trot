@@ -1,5 +1,5 @@
 {
-  "version": 76,
+  "version": 77,
   "note": "Fiches de courses Equidia ou LeTROT avec sources identifiant les courses. Les URLs Equidia sont déduites du format date/R/C ; la disponibilité et la lecture des vidéos ne sont pas garanties. HOMA reste sur LeTROT faute de fiche Equidia vérifiée.",
   "replays": [
     {
@@ -2504,6 +2504,15 @@
       "url": "https://www.equidia.fr/courses/2017-07-18/R5/C6",
       "justificatif": "https://www.gbet.fr/courses/cabourg/2017-07-18/r5/c6/prix-des-bleuets/",
       "controle": "Arrivée 2e avec date et course R5C6 vérifiées dans la source ; disponibilité effective de la vidéo Equidia non testée."
+    },
+    {
+      "date": "2017-06-17",
+      "cheval": "ELFE ATOUT",
+      "hippodrome": "LISIEUX",
+      "url": "https://www.zeturf.fr/fr/course-du-jour/2017-06-17/R8C1-lisieux-prix-abc-ambulances",
+      "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2017-06-17/R8C1-lisieux-prix-abc-ambulances",
+      "preuve_arrivee": "https://www.zone-turf.fr/cheval/elfe-atout-583000/",
+      "controle": "3e Prix ABC Ambulances du 17/06/2017, Lisieux, confirmée avec réunion ZEturf R8C1. La page ZEturf comporte une section Replay ; sa lecture effective non testée. Autre fournisseur classe la réunion R9C1 : lien Equidia non extrapolé par prudence."
     },
     {
       "date": "2017-05-23",
