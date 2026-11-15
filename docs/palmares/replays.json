@@ -1,5 +1,5 @@
 {
-  "version": 59,
+  "version": 60,
   "note": "Fiches de courses Equidia ou LeTROT avec sources identifiant les courses. Les URLs Equidia sont déduites du format date/R/C ; la disponibilité et la lecture des vidéos ne sont pas garanties. HOMA reste sur LeTROT faute de fiche Equidia vérifiée.",
   "replays": [
     {
@@ -1653,6 +1653,14 @@
       "controle": "Arrivée identifiée : 3e, n°16 ; R9C2. Page Equidia déduite de date/R/C, lecture vidéo non testée."
     },
     {
+      "date": "2022-10-07",
+      "cheval": "VYBORG",
+      "hippodrome": "COMPIEGNE",
+      "url": "https://www.equidia.fr/courses/2022-10-07/R4/C6",
+      "justificatif": "https://www.geny.com/course/1352202-2022-10-07-compiegne-prix-des-etangs-de-batigny/arrivee-rapports",
+      "controle": "3e, n°6 ; résultat et numéro R4C6 confirmés par source citée ; lecture du replay Equidia non vérifiée."
+    },
+    {
       "date": "2022-08-31",
       "cheval": "HELIOS BONBON",
       "hippodrome": "VINCENNES",
@@ -1670,6 +1678,14 @@
       "url": "https://www.equidia.fr/courses/2022-08-30/R5/C7",
       "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2022-08-30/R5C7-cabourg-prix-des-gaillets-des-sables",
       "controle": "Arrivée identifiée : 3e, n°13 ; R5C7. Page Equidia déduite de date/R/C, lecture vidéo non testée."
+    },
+    {
+      "date": "2022-08-23",
+      "cheval": "HELIOS BONBON",
+      "hippodrome": "CABOURG",
+      "url": "https://www.equidia.fr/courses/2022-08-23/R5/C8",
+      "justificatif": "https://www.canalturf.com/resultats-PMU/2022-08-23/cabourg/283043_prix-des-cardamines.html",
+      "controle": "3e, n°8 ; résultat et numéro R5C8 confirmés par source citée ; lecture du replay Equidia non vérifiée."
     },
     {
       "date": "2022-08-16",
@@ -1766,6 +1782,22 @@
       "controle": "Date, R/C et cheval gagnant confirmés dans le résultat officiel reproduit par ZEturf/Canalturf ; lien Equidia construit, lecture du replay non testée."
     },
     {
+      "date": "2022-03-20",
+      "cheval": "ISBA QUICK",
+      "hippodrome": "REIMS",
+      "url": "https://www.equidia.fr/courses/2022-03-20/R5/C5",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2022-03-20/R5C5-reims-prix-pmu-le-moderne-bazancourt",
+      "controle": "3e, n°2 ; résultat et numéro R5C5 confirmés par source citée ; lecture du replay Equidia non vérifiée."
+    },
+    {
+      "date": "2022-03-04",
+      "cheval": "ISBA QUICK",
+      "hippodrome": "LAVAL",
+      "url": "https://www.equidia.fr/courses/2022-03-04/R5/C6",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2022-03-04/R5C6-laval-prix-jeune-orange",
+      "controle": "3e, n°14 ; résultat et numéro R5C6 confirmés par source citée ; lecture du replay Equidia non vérifiée."
+    },
+    {
       "date": "2022-02-22",
       "cheval": "CABALLO D'AURE",
       "hippodrome": "CAGNES-SUR-MER",
@@ -1783,6 +1815,14 @@
       "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2022-02-22/7500/4",
       "lien_letrot_precedent": "https://www.letrot.com/courses/2022-02-22/7500/4",
       "preuve_identification_course": "https://www.zone-turf.fr/rapports/r1-c4-prix-d-avenches-812212.html"
+    },
+    {
+      "date": "2022-02-03",
+      "cheval": "IBERIK DE MONGOCHY",
+      "hippodrome": "VINCENNES - GP",
+      "url": "https://www.equidia.fr/courses/2022-02-03/R1/C4",
+      "justificatif": "https://www.zeturf.sn/fr/course-du-jour/2022-02-03/R1C4-vincennes-prix-de-dozule",
+      "controle": "2e, n°6 ; résultat et numéro R1C4 confirmés par source citée ; lecture du replay Equidia non vérifiée."
     },
     {
       "date": "2022-01-29",
