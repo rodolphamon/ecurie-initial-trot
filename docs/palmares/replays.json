@@ -1,5 +1,5 @@
 {
-  "version": 55,
+  "version": 56,
   "note": "Fiches de courses Equidia ou LeTROT avec sources identifiant les courses. Les URLs Equidia sont déduites du format date/R/C ; la disponibilité et la lecture des vidéos ne sont pas garanties. HOMA reste sur LeTROT faute de fiche Equidia vérifiée.",
   "replays": [
     {
@@ -1601,6 +1601,14 @@
       "url": "https://www.equidia.fr/courses/2022-07-08/R1/C3",
       "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2022-07-08/R1C3-cabourg-prix-paul-viel",
       "controle": "Course et victoire explicitement confirmées par l'arrivée publiée ; lien Equidia construit à partir du R/C vérifié, lecture vidéo non testée."
+    },
+    {
+      "date": "2022-06-30",
+      "cheval": "JACKPOT DES BORDES",
+      "hippodrome": "ENGHIEN",
+      "url": "https://www.equidia.fr/courses/2022-06-30/R4/C4",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2022-06-30/R4C4-enghien-soisy-prix-de-la-place-du-commerce",
+      "controle": "2e n°9 dans le Prix de la Place du Commerce, réunion R4 course C4 confirmée par ZEturf ; replay Equidia non visionné individuellement"
     },
     {
       "date": "2022-06-10",
