@@ -391,7 +391,9 @@
       "discipline": "attele",
       "casaque": "blanche",
       "proprietaire": "Écurie Initial",
-      "jockey": "François LAGADEUC"
+      "jockey": "François LAGADEUC",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2026-05-25",
@@ -505,7 +507,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Sébastien ERNAULT",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2026-04-12",
@@ -547,7 +551,9 @@
       "discipline": "attele",
       "casaque": "blanche",
       "proprietaire": "Écurie Initial",
-      "jockey": "Guillaume LENAIN"
+      "jockey": "Guillaume LENAIN",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2026-04-04",
@@ -629,7 +635,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Matthias LEGROS",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2026-02-01",
@@ -911,7 +919,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Matthias LEGROS",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2025-05-31",
@@ -1041,7 +1051,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Charley HESLOUIN",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2025-03-21",
@@ -1337,7 +1349,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Adrien LAMY",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2024-06-15",
@@ -1398,7 +1412,9 @@
       "classement": 3,
       "discipline": "attele",
       "casaque": "blanche",
-      "jockey": "Bruno MARIE"
+      "jockey": "Bruno MARIE",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2024-05-07",
@@ -1591,7 +1607,9 @@
       "classement": 3,
       "discipline": "attele",
       "casaque": "blanche",
-      "jockey": "Bruno MARIE"
+      "jockey": "Bruno MARIE",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2023-10-24",
@@ -1658,7 +1676,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Maiana MENDIBOURE",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2023-08-07",
@@ -1709,7 +1729,9 @@
       "classement": 3,
       "discipline": "attele",
       "casaque": "blanche",
-      "jockey": "Claude Charles VAUGRANTE"
+      "jockey": "Claude Charles VAUGRANTE",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2023-07-02",
@@ -1865,7 +1887,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Bruno MARIE",
-      "casaque": "nathalie"
+      "casaque": "nathalie",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2023-02-24",
@@ -1939,7 +1963,9 @@
       "classement": 3,
       "discipline": "attele",
       "jockey": "Alexandre GUILLEMIN",
-      "casaque": "nathalie"
+      "casaque": "nathalie",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2023-01-07",
@@ -1948,7 +1974,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "François TUGEND",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2022-12-30",
@@ -1957,7 +1985,9 @@
       "classement": 3,
       "discipline": "attele",
       "casaque": "blanche",
-      "jockey": "Romain LE CREPS"
+      "jockey": "Romain LE CREPS",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2022-12-22",
@@ -1966,7 +1996,9 @@
       "classement": 3,
       "discipline": "attele",
       "casaque": "blanche",
-      "jockey": "François LAGADEUC"
+      "jockey": "François LAGADEUC",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2022-11-27",
@@ -1975,7 +2007,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "François LAGADEUC",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2022-11-15",
@@ -2014,7 +2048,9 @@
       "classement": 3,
       "discipline": "attele",
       "casaque": "blanche",
-      "jockey": "Bruno MARIE"
+      "jockey": "Bruno MARIE",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2022-10-07",
@@ -2044,7 +2080,9 @@
       "classement": 3,
       "discipline": "attele",
       "casaque": "blanche",
-      "jockey": "Adrien LAMY"
+      "jockey": "Adrien LAMY",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2022-08-28",
@@ -2083,7 +2121,9 @@
       "classement": 3,
       "discipline": "attele",
       "casaque": "blanche",
-      "jockey": "Bruno MARIE"
+      "jockey": "Bruno MARIE",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2022-08-09",
@@ -2151,7 +2191,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Bruno MARIE",
-      "casaque": "nathalie"
+      "casaque": "nathalie",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2022-06-30",
@@ -2160,7 +2202,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Bruno MARIE",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2022-06-18",
@@ -2261,7 +2305,9 @@
       "classement": 3,
       "discipline": "attele",
       "jockey": "Alexandre GUILLEMIN",
-      "casaque": "nathalie"
+      "casaque": "nathalie",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2022-03-04",
@@ -2270,7 +2316,9 @@
       "classement": 3,
       "discipline": "attele",
       "jockey": "Alexandre GUILLEMIN",
-      "casaque": "nathalie"
+      "casaque": "nathalie",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2022-02-05",
@@ -2299,7 +2347,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Bruno MARIE",
-      "casaque": "nathalie"
+      "casaque": "nathalie",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2021-12-13",
@@ -2317,7 +2367,9 @@
       "classement": 3,
       "discipline": "attele",
       "casaque": "blanche",
-      "jockey": "Alexandre GUILLEMIN"
+      "jockey": "Alexandre GUILLEMIN",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2021-11-03",
@@ -2409,7 +2461,9 @@
       "classement": 3,
       "discipline": "attele",
       "jockey": "Bruno MARIE",
-      "casaque": "nathalie"
+      "casaque": "nathalie",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2021-07-31",
@@ -2427,7 +2481,9 @@
       "classement": 3,
       "discipline": "attele",
       "jockey": "Bruno MARIE",
-      "casaque": "nathalie"
+      "casaque": "nathalie",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2021-07-14",
@@ -2448,7 +2504,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Romain LE CREPS",
-      "casaque": "nathalie"
+      "casaque": "nathalie",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2021-07-05",
@@ -2512,7 +2570,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Bruno MARIE",
-      "casaque": "nathalie"
+      "casaque": "nathalie",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2021-04-24",
@@ -2543,7 +2603,9 @@
       "classement": 3,
       "discipline": "attele",
       "casaque": "blanche",
-      "jockey": "Quentin DAOUGABEL"
+      "jockey": "Quentin DAOUGABEL",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2021-03-07",
@@ -2648,7 +2710,9 @@
       "classement": 3,
       "discipline": "attele",
       "casaque": "blanche",
-      "jockey": "Bruno MARIE"
+      "jockey": "Bruno MARIE",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2020-06-04",
@@ -2657,7 +2721,9 @@
       "classement": 3,
       "discipline": "attele",
       "casaque": "blanche",
-      "jockey": "Adrien LAMY"
+      "jockey": "Adrien LAMY",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2020-06-02",
@@ -2675,7 +2741,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Adrien LAMY",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2020-05-15",
@@ -2704,7 +2772,9 @@
       "classement": 3,
       "discipline": "attele",
       "casaque": "blanche",
-      "jockey": "Eric COLLARD"
+      "jockey": "Eric COLLARD",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2019-08-12",
@@ -2768,7 +2838,9 @@
       "classement": 3,
       "discipline": "attele",
       "casaque": "blanche",
-      "jockey": "Omar CAUCHI"
+      "jockey": "Omar CAUCHI",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2019-06-10",
@@ -2777,7 +2849,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Luc-Jérôme LEGROS",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2018-09-16",
@@ -2786,7 +2860,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Bruno MARIE",
-      "casaque": "nathalie"
+      "casaque": "nathalie",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2018-07-02",
@@ -2795,7 +2871,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Jean-Michel BAZIRE",
-      "casaque": "nathalie"
+      "casaque": "nathalie",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2018-06-19",
@@ -2804,7 +2882,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Bruno MARIE",
-      "casaque": "nathalie"
+      "casaque": "nathalie",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2018-04-28",
@@ -2833,7 +2913,9 @@
       "classement": 3,
       "discipline": "attele",
       "jockey": "Charley HESLOUIN",
-      "casaque": "nathalie"
+      "casaque": "nathalie",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2017-06-05",
