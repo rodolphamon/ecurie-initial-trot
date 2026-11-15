@@ -2836,7 +2836,9 @@
       "classement": 3,
       "discipline": "attele",
       "casaque": "blanche",
-      "jockey": "Lolita BALAYN"
+      "jockey": "Lolita BALAYN",
+      "entraineur": "Benoît BARASSIN",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Guillaume CARDINE jusqu'au 22/06/2016, puis Benoît BARASSIN"
     },
     {
       "date": "2017-04-09",
@@ -2854,7 +2856,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Pierre HOUEL",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Benoît BARASSIN",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Guillaume CARDINE jusqu'au 22/06/2016, puis Benoît BARASSIN"
     },
     {
       "date": "2017-03-19",
@@ -2987,7 +2991,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Pierre HOUEL",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Benoît BARASSIN",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Guillaume CARDINE jusqu'au 22/06/2016, puis Benoît BARASSIN"
     },
     {
       "date": "2016-09-20",
@@ -2996,7 +3002,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Eric RAFFIN",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Benoît BARASSIN",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Guillaume CARDINE jusqu'au 22/06/2016, puis Benoît BARASSIN"
     },
     {
       "date": "2016-09-18",
@@ -3025,7 +3033,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Pierre HOUEL",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Benoît BARASSIN",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Guillaume CARDINE jusqu'au 22/06/2016, puis Benoît BARASSIN"
     },
     {
       "date": "2016-08-30",
@@ -3034,7 +3044,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Pierre HOUEL",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Benoît BARASSIN",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Guillaume CARDINE jusqu'au 22/06/2016, puis Benoît BARASSIN"
     },
     {
       "date": "2016-08-01",
@@ -3052,7 +3064,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "François LAGADEUC",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Guillaume CARDINE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Guillaume CARDINE jusqu'au 22/06/2016, puis Benoît BARASSIN"
     },
     {
       "date": "2015-12-06",
@@ -3139,7 +3153,9 @@
       "classement": 3,
       "discipline": "attele",
       "casaque": "blanche",
-      "jockey": "Guillaume CARDINE"
+      "jockey": "Guillaume CARDINE",
+      "entraineur": "Guillaume CARDINE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Guillaume CARDINE jusqu'au 22/06/2016, puis Benoît BARASSIN"
     },
     {
       "date": "2015-04-06",
