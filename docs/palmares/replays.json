@@ -1,5 +1,5 @@
 {
-  "version": 81,
+  "version": 82,
   "note": "Fiches de courses Equidia ou LeTROT avec sources identifiant les courses. Les URLs Equidia sont déduites du format date/R/C ; la disponibilité et la lecture des vidéos ne sont pas garanties. HOMA reste sur LeTROT faute de fiche Equidia vérifiée.",
   "replays": [
     {
@@ -1651,6 +1651,15 @@
       "url": "https://www.equidia.fr/courses/2023-03-29/R1/C5",
       "justificatif": "https://www.zeturf.be/fr/course-du-jour/2023-03-29/R1C5-marseille-borely-prix-de-cagnes-sur-mer",
       "controle": "Arrivée officielle consultée : 3e n°1, R1C5. La disponibilité du replay sur Equidia n'a pas été testée individuellement."
+    },
+    {
+      "date": "2023-03-26",
+      "cheval": "HOMAYA DU BOCAGE",
+      "hippodrome": "CHARTRES",
+      "url": "https://www.zeturf.fr/fr/course-du-jour/2023-03-26/R11C8-chartres-prix-de-l-office-de-tourisme-chartres-me",
+      "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2023-03-26/R11C8-chartres-prix-de-l-office-de-tourisme-chartres-me",
+      "preuve_arrivee": "https://www.zone-turf.fr/cheval/homaya-du-bocage-788862/",
+      "controle": "R11C8 Prix de l'Office de Tourisme Chartres Me, 26/03/2023, n°8 2e, A. Guillemin ; rubrique Replay présente sur ZEturf ; lecture effective du replay non testée."
     },
     {
       "date": "2023-03-23",
