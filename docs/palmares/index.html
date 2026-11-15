@@ -68,8 +68,8 @@ td:first-child,th:first-child{text-align:center;width:75px}td.date{white-space:n
 <label><select id="year" aria-label="Année"><option value="">Année</option></select></label>
 <label><select id="horse" aria-label="Filtrer par cheval"><option value="">Cheval</option></select></label>
 <label><select id="pilot" aria-label="Filtrer par jockey ou driver"><option value="">Jockey / Driver</option></select></label>
-<label class="trainer-filter"><input id="trainer" type="search" list="trainer-suggestions" placeholder="Rechercher un entraîneur…" aria-label="Rechercher un entraîneur" autocomplete="off"><datalist id="trainer-suggestions"></datalist></label>
-<label class="hippodrome-filter"><input id="search" type="search" placeholder="Rechercher un hippodrome…" aria-label="Rechercher par hippodrome"></label>
+<label class="trainer-filter"><select id="trainer" aria-label="Filtrer par entraîneur"><option value="">Entraîneur</option></select></label>
+<label class="hippodrome-filter"><select id="search" aria-label="Filtrer par hippodrome"><option value="">Hippodrome</option></select></label>
 <label><select id="order" aria-label="Classement"><option value="desc">Plus récentes d'abord</option><option value="asc">Plus anciennes d'abord</option></select></label>
 </section>
 <div class="caption-line"><div class="result" id="count" aria-live="polite"></div><div class="legend" id="legend" role="group" aria-label="Filtrer les victoires par discipline"></div></div>
@@ -220,8 +220,8 @@ async function loadReplays(){
 const state={page:1,perPage:25,discipline:"",placing:"all",videoOnly:false};
 function render(){
  const fold=s=>String(s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLocaleLowerCase("fr");
- const q=fold($("search").value.trim()),year=$("year").value,type=state.discipline,horse=$("horse").value,pilot=$("pilot").value,trainerQuery=fold($("trainer").value.trim());
- const data=results.filter(r=>(!state.videoOnly||!!replayUrl(r.video))&&(state.placing==="all"||(state.placing==="win"?(r.classement||1)===1:state.placing==="second"?(r.classement||1)===2:(r.classement||1)===3))&&(!year||r.date.slice(0,4)===year)&&(!type||r.discipline===type)&&(!horse||r.cheval===horse)&&(!pilot||r.jockey===pilot)&&(!trainerQuery||fold(r.entraineur).includes(trainerQuery))&&(!q||fold(r.hippodrome).includes(q)))
+ const hippodrome=$("search").value,year=$("year").value,type=state.discipline,horse=$("horse").value,pilot=$("pilot").value,trainer=$("trainer").value;
+ const data=results.filter(r=>(!state.videoOnly||!!replayUrl(r.video))&&(state.placing==="all"||(state.placing==="win"?(r.classement||1)===1:state.placing==="second"?(r.classement||1)===2:(r.classement||1)===3))&&(!year||r.date.slice(0,4)===year)&&(!type||r.discipline===type)&&(!horse||r.cheval===horse)&&(!pilot||r.jockey===pilot)&&(!trainer||r.entraineur===trainer)&&(!hippodrome||r.hippodrome===hippodrome))
  .sort((a,b)=>$("order").value==="desc"?b.date.localeCompare(a.date):a.date.localeCompare(b.date));
  const pages=Math.max(1,Math.ceil(data.length/state.perPage));
  state.page=Math.min(state.page,pages);
@@ -238,7 +238,7 @@ function render(){
  }).join("");
  for(const button of $("legend").querySelectorAll("button[data-discipline]"))button.setAttribute("aria-pressed",button.dataset.discipline===state.discipline?"true":"false");
  $("empty").hidden=data.length>0;
- $("count").textContent=(!q&&!year&&!type&&!horse&&!pilot&&!trainerQuery)?"Toutes les courses de nos archives":data.length+" course"+(data.length>1?"s":"")+" trouvée"+(data.length>1?"s":"");
+ $("count").textContent=(!hippodrome&&!year&&!type&&!horse&&!pilot&&!trainer)?"Toutes les courses de nos archives":data.length+" course"+(data.length>1?"s":"")+" trouvée"+(data.length>1?"s":"");
  $("page").textContent="Page "+state.page+" / "+pages;
  $("prev").disabled=state.page===1;$("next").disabled=state.page===pages;
  postHeight();
@@ -252,7 +252,7 @@ function refreshYears(){
 }
 refreshYears();
 function refreshNameFilters(){
- const horseSelect=$("horse"),pilotSelect=$("pilot");
+ const horseSelect=$("horse"),pilotSelect=$("pilot"),trainerSelect=$("trainer"),hippodromeSelect=$("search");
  function fill(select,values,allLabel,sortFn){
   const previous=select.value;
   select.replaceChildren(new Option(allLabel,""));
@@ -268,11 +268,8 @@ function refreshNameFilters(){
  };
  fill(horseSelect,results.map(r=>r.cheval),"Cheval",alphabetic);
  fill(pilotSelect,results.map(r=>r.jockey),"Jockey / Driver",bySurname);
- const trainerList=$("trainer-suggestions");
- trainerList.replaceChildren();
- for(const name of [...new Set(results.map(r=>r.entraineur).filter(Boolean))].sort(alphabetic)){
-  const option=document.createElement("option");option.value=name;trainerList.appendChild(option);
- }
+ fill(trainerSelect,results.map(r=>r.entraineur),"Entraîneur",alphabetic);
+ fill(hippodromeSelect,results.map(r=>r.hippodrome),"Hippodrome",alphabetic);
 }
 refreshNameFilters();
 // Référence validée par le propriétaire. Deux lignes anciennes avec casaque blanche
