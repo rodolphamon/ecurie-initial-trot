@@ -1,5 +1,5 @@
 {
-  "version": 72,
+  "version": 73,
   "note": "Fiches de courses Equidia ou LeTROT avec sources identifiant les courses. Les URLs Equidia sont déduites du format date/R/C ; la disponibilité et la lecture des vidéos ne sont pas garanties. HOMA reste sur LeTROT faute de fiche Equidia vérifiée.",
   "replays": [
     {
@@ -2416,6 +2416,14 @@
       "controle": "Réunion et course confirmées dans une fiche de résultat montrant le cheval gagnant ; lien Equidia au format de course, lecture non testée ici."
     },
     {
+      "date": "2019-08-12",
+      "cheval": "ETOILE DE MONGOCHY",
+      "hippodrome": "LANGON-LIBOURNE",
+      "url": "https://www.equidia.fr/courses/2019-08-12/R2/C4",
+      "justificatif": "https://www.canalturf.com/resultats-PMU/2019-08-12/langon/193266_prix-chateau-teigney.html",
+      "controle": "Arrivée 3e, Prix Château Teigney ; course R2C4 corroborée par programme/résultat ; disponibilité et lecture de la vidéo Equidia non testées individuellement."
+    },
+    {
       "date": "2019-06-30",
       "cheval": "ETOILE DE MONGOCHY",
       "hippodrome": "BEAUMONT-DE-LOMAGNE",
@@ -2677,6 +2685,14 @@
       "url": "https://www.equidia.fr/courses/2016-01-11/R7/C1",
       "preuve_identification_course": "https://www.gbet.fr/courses/chateaubriant/2016-01-11/r7/c1/prix-goetmals-wood/",
       "controle": "Date, cheval gagnant et réunion/course R/C identifiés dans les résultats publics. Replay Equidia non testé depuis cet environnement."
+    },
+    {
+      "date": "2015-07-31",
+      "cheval": "BEAUTE D'ONDEE",
+      "hippodrome": "PORNICHET",
+      "url": "https://www.equidia.fr/courses/2015-07-31/R4/C2",
+      "justificatif": "https://www.canalturf.com/resultats-PMU/2015-07-31_resultats-rapports-des-courses-du-vendredi-31-juillet-2015.html",
+      "controle": "Arrivée 3e au Prix de Saint-Jean de Monts, corroborée par https://www.lequipe.fr/Hippisme/Actualites/-/578282 ; course R4C2 corroborée par programme/résultat ; disponibilité et lecture de la vidéo Equidia non testées individuellement."
     },
     {
       "date": "2015-07-26",
