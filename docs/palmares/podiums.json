@@ -2685,7 +2685,9 @@
       "classement": 3,
       "discipline": "attele",
       "casaque": "blanche",
-      "jockey": "Cyril GAZENGEL"
+      "jockey": "Cyril GAZENGEL",
+      "entraineur": "Thomas TROUSSARD",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Benoît BARASSIN jusqu'au 24/02/2019, puis Thomas TROUSSARD, puis Virgile FOUCAULT à partir du 20/05/2020"
     },
     {
       "date": "2019-08-06",
@@ -2694,7 +2696,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Cyril GAZENGEL",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Thomas TROUSSARD",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Benoît BARASSIN jusqu'au 24/02/2019, puis Thomas TROUSSARD, puis Virgile FOUCAULT à partir du 20/05/2020"
     },
     {
       "date": "2019-07-31",
@@ -2714,7 +2718,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Cyril GAZENGEL",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Thomas TROUSSARD",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Benoît BARASSIN jusqu'au 24/02/2019, puis Thomas TROUSSARD, puis Virgile FOUCAULT à partir du 20/05/2020"
     },
     {
       "date": "2019-06-30",
@@ -2723,7 +2729,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Gregory TOQUE",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Thomas TROUSSARD",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Benoît BARASSIN jusqu'au 24/02/2019, puis Thomas TROUSSARD, puis Virgile FOUCAULT à partir du 20/05/2020"
     },
     {
       "date": "2019-06-16",
@@ -2786,7 +2794,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Benoît BARASSIN",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Benoît BARASSIN",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Benoît BARASSIN jusqu'au 24/02/2019, puis Thomas TROUSSARD, puis Virgile FOUCAULT à partir du 20/05/2020"
     },
     {
       "date": "2017-06-17",
@@ -2804,7 +2814,9 @@
       "classement": 3,
       "discipline": "attele",
       "casaque": "blanche",
-      "jockey": "Benoît BARASSIN"
+      "jockey": "Benoît BARASSIN",
+      "entraineur": "Benoît BARASSIN",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Benoît BARASSIN jusqu'au 24/02/2019, puis Thomas TROUSSARD, puis Virgile FOUCAULT à partir du 20/05/2020"
     },
     {
       "date": "2017-05-25",
@@ -2813,7 +2825,9 @@
       "classement": 3,
       "discipline": "attele",
       "casaque": "blanche",
-      "jockey": "Antoine LHERETE"
+      "jockey": "Antoine LHERETE",
+      "entraineur": "Benoît BARASSIN",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Benoît BARASSIN jusqu'au 24/02/2019, puis Thomas TROUSSARD, puis Virgile FOUCAULT à partir du 20/05/2020"
     },
     {
       "date": "2017-05-23",
@@ -3000,7 +3014,9 @@
       "classement": 3,
       "discipline": "attele",
       "casaque": "blanche",
-      "jockey": "François LAGADEUC"
+      "jockey": "François LAGADEUC",
+      "entraineur": "Benoît BARASSIN",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Benoît BARASSIN jusqu'au 24/02/2019, puis Thomas TROUSSARD, puis Virgile FOUCAULT à partir du 20/05/2020"
     },
     {
       "date": "2016-09-08",
