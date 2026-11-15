@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "note": "Suivi de recherches. Ces URLs justifient les courses, PAS leur vidéo. Le statut signifie que la recherche publique effectuée n'a pas identifié de lien replay fiable; cela ne prouve pas qu'aucun replay n'existe. Ne jamais importer ces URLs dans replays.json automatiquement.",
+  "note": "Inventaire de recherches sur les podiums sans replay. Une arrivée vérifiée n'établit PAS l'existence d'une vidéo. Chaque URL de replay doit être appariée par date/hippodrome/course/cheval et, si possible, faire l'objet d'un contrôle de lecture avant publication.",
   "statut": "course_identifiee_replay_a_rechercher",
   "verifie_le": "2026-11-15",
   "courses": [
@@ -75,6 +75,16 @@
       "commentaire": "Arrivée et classement vérifiés dans une source publique ; aucun replay spécifique trouvé lors de cette passe. Ne pas ajouter la page de résultat comme vidéo."
     },
     {
+      "date": "2026-05-25",
+      "cheval": "NELSON STAR",
+      "hippodrome": "MIRAMONT-DE-GUYENNE",
+      "classement": 2,
+      "course": "Prix Le Tropic Bar PMU",
+      "source_resultat": "https://www.zone-turf.fr/cheval/nelson-star-2151766/",
+      "etat_video": "non_identifiee",
+      "commentaire": "Résultat recoupé dans l'archive citée. Aucun lien individuel de replay trouvé par recherche publique dans cette passe; ne pas assimiler cette source à une vidéo."
+    },
+    {
       "date": "2026-05-24",
       "cheval": "NEBRASKA FLEURY",
       "hippodrome": "ROYAN-ATLANTIQUE",
@@ -115,6 +125,16 @@
       "commentaire": "Arrivée et classement vérifiés dans une source publique ; aucun replay spécifique trouvé lors de cette passe. Ne pas ajouter la page de résultat comme vidéo."
     },
     {
+      "date": "2024-10-06",
+      "cheval": "MANDRAGORA FLEURY",
+      "hippodrome": "ALENCON",
+      "classement": 3,
+      "course": "Prix de Semalle",
+      "source_resultat": "https://www.zone-turf.fr/cheval/mandragora-fleury-2051309/",
+      "etat_video": "non_identifiee",
+      "commentaire": "Résultat recoupé dans l'archive citée. Aucun lien individuel de replay trouvé par recherche publique dans cette passe; ne pas assimiler cette source à une vidéo."
+    },
+    {
       "date": "2024-09-22",
       "cheval": "GUEPARD DE MONE",
       "hippodrome": "VILLENEUVE-SUR-LOT",
@@ -123,6 +143,56 @@
       "source_resultat": "https://www.zone-turf.fr/cheval/guepard-de-mone-751746/",
       "etat_video": "non_identifiee",
       "commentaire": "Arrivée recoupée ; vérifier LeTROT/Equidia/ZEturf avant ajout d'un lien vidéo."
+    },
+    {
+      "date": "2024-08-04",
+      "cheval": "ISOLEE DU BOUILLON",
+      "hippodrome": "LA FERTE-VIDAME",
+      "classement": 2,
+      "course": "Prix Raceandcare",
+      "source_resultat": "https://www.zone-turf.fr/cheval/isolee-du-bouillon-1505966/",
+      "etat_video": "non_identifiee",
+      "commentaire": "Résultat recoupé dans l'archive citée. Aucun lien individuel de replay trouvé par recherche publique dans cette passe; ne pas assimiler cette source à une vidéo."
+    },
+    {
+      "date": "2024-07-14",
+      "cheval": "FANTOMAS DU VAL",
+      "hippodrome": "BAGNOLES DE L'ORNE",
+      "classement": 3,
+      "course": "Prix de la Ville de Bagnoles de l'Orne",
+      "source_resultat": "https://www.zone-turf.fr/cheval/grisou-atout-723888/archives-1.html",
+      "etat_video": "non_identifiee",
+      "commentaire": "Résultat recoupé dans l'archive citée. Aucun lien individuel de replay trouvé par recherche publique dans cette passe; ne pas assimiler cette source à une vidéo."
+    },
+    {
+      "date": "2024-05-27",
+      "cheval": "ILLAM DE MONGOCHY",
+      "hippodrome": "BERNAY",
+      "classement": 3,
+      "course": "Prix Carrefour Market - Bernay",
+      "source_resultat": "https://www.zone-turf.fr/cheval/ilovedam-1361552/archives-1.html",
+      "etat_video": "non_identifiee",
+      "commentaire": "Résultat recoupé dans l'archive citée. Aucun lien individuel de replay trouvé par recherche publique dans cette passe; ne pas assimiler cette source à une vidéo."
+    },
+    {
+      "date": "2024-05-09",
+      "cheval": "JAMAIS SANS ELLE",
+      "hippodrome": "VALOGNES",
+      "classement": 3,
+      "course": "Prix Intermarché Valognes - Gilbert Pico",
+      "source_resultat": "https://www.zone-turf.fr/cheval/jamais-sans-elle-1872974/",
+      "etat_video": "non_identifiee",
+      "commentaire": "Résultat recoupé dans l'archive citée. Aucun lien individuel de replay trouvé par recherche publique dans cette passe; ne pas assimiler cette source à une vidéo."
+    },
+    {
+      "date": "2024-04-27",
+      "cheval": "JODEON",
+      "hippodrome": "GOURNAY-EN-BRAY",
+      "classement": 3,
+      "course": "Prix Élevage de Jafa (Gr A)",
+      "source_resultat": "https://www.zone-turf.fr/cheval/jodeon-1768032/",
+      "etat_video": "non_identifiee",
+      "commentaire": "Résultat recoupé dans l'archive citée. Aucun lien individuel de replay trouvé par recherche publique dans cette passe; ne pas assimiler cette source à une vidéo."
     },
     {
       "date": "2024-04-06",
@@ -143,6 +213,26 @@
       "source_resultat": "https://www.zone-turf.fr/cheval/joy-d-ourville-1698800/archives-1.html",
       "etat_video": "non_identifiee",
       "commentaire": "Arrivée recoupée ; vérifier LeTROT/Equidia/ZEturf avant ajout d'un lien vidéo."
+    },
+    {
+      "date": "2023-09-02",
+      "cheval": "FIESTA TEJY",
+      "hippodrome": "LANGON-LIBOURNE",
+      "classement": 2,
+      "course": "Prix Bernard Tartas",
+      "source_resultat": "https://www.zone-turf.fr/cheval/fiesta-tejy-655392/",
+      "etat_video": "non_identifiee",
+      "commentaire": "Résultat recoupé dans l'archive citée. Aucun lien individuel de replay trouvé par recherche publique dans cette passe; ne pas assimiler cette source à une vidéo."
+    },
+    {
+      "date": "2023-05-29",
+      "cheval": "HANANE MONTAVAL",
+      "hippodrome": "DURTAL",
+      "classement": 2,
+      "course": "Prix Paul Delanoë",
+      "source_resultat": "https://www.zone-turf.fr/cheval/gavroche-paulo-743958/",
+      "etat_video": "non_identifiee",
+      "commentaire": "Résultat recoupé dans l'archive citée. Aucun lien individuel de replay trouvé par recherche publique dans cette passe; ne pas assimiler cette source à une vidéo."
     },
     {
       "date": "2023-02-25",
@@ -215,6 +305,16 @@
       "commentaire": "Résultat et course identifiés. L'absence de vidéo connue ne prouve pas l'inexistence d'un enregistrement."
     },
     {
+      "date": "2021-03-07",
+      "cheval": "GOSPEL",
+      "hippodrome": "CHALLANS",
+      "classement": 2,
+      "course": "Prix de Nort-sur-Erdre (monté)",
+      "source_resultat": "https://www.zone-turf.fr/cheval/gospel-767128/",
+      "etat_video": "non_identifiee",
+      "commentaire": "Résultat recoupé dans l'archive citée. Aucun lien individuel de replay trouvé par recherche publique dans cette passe; ne pas assimiler cette source à une vidéo."
+    },
+    {
       "date": "2020-12-14",
       "cheval": "FLEUR VIVANCIERE",
       "hippodrome": "BORDEAUX",
@@ -233,6 +333,26 @@
       "source_resultat": "https://www.zone-turf.fr/cheval/get-ready-761360/archives-2.html",
       "etat_video": "non_identifiee",
       "commentaire": "Arrivée recoupée ; vérifier LeTROT/Equidia/ZEturf avant ajout d'un lien vidéo."
+    },
+    {
+      "date": "2019-09-15",
+      "cheval": "CRYSTAL GIRL",
+      "hippodrome": "LAON",
+      "classement": 3,
+      "course": "Prix de la Ville de Laon",
+      "source_resultat": "https://www.zone-turf.fr/cheval/crystal-girl-455872/",
+      "etat_video": "non_identifiee",
+      "commentaire": "Résultat recoupé dans l'archive citée. Aucun lien individuel de replay trouvé par recherche publique dans cette passe; ne pas assimiler cette source à une vidéo."
+    },
+    {
+      "date": "2019-06-10",
+      "cheval": "CRYSTAL GIRL",
+      "hippodrome": "VILLEDIEU-LES-POELES",
+      "classement": 2,
+      "course": "Prix de Biarritz - Prix Maurice de Folle",
+      "source_resultat": "https://www.zone-turf.fr/cheval/crystal-girl-455872/",
+      "etat_video": "non_identifiee",
+      "commentaire": "Résultat recoupé dans l'archive citée. Aucun lien individuel de replay trouvé par recherche publique dans cette passe; ne pas assimiler cette source à une vidéo."
     },
     {
       "date": "2017-03-19",
@@ -304,5 +424,6 @@
       "etat_video": "non_identifiee",
       "commentaire": "Arrivée recoupée ; vérifier LeTROT/Equidia/ZEturf avant ajout d'un lien vidéo."
     }
-  ]
+  ],
+  "methode": "Traiter au minimum 20 courses distinctes par session de recherche lorsque suffisamment de candidates restent; rechercher en parallèle LeTROT, Equidia et ZEturf; conserver les preuves d'arrivées séparées des URLs de replay; ne pas créer de lien inventé."
 }
