@@ -138,6 +138,16 @@
       "jockey": "C. DEMURO"
     },
     {
+      "date": "2026-08-16",
+      "cheval": "VYBORG",
+      "hippodrome": "DEAUVILLE",
+      "classement": 2,
+      "discipline": "galop",
+      "entraineur": "Gilles PANNIER",
+      "casaque": "galop",
+      "jockey": "M. BARZALONA"
+    },
+    {
       "date": "2026-08-03",
       "cheval": "MANDRAGORA FLEURY",
       "hippodrome": "ROCHEFORT-SUR-LOIRE",
@@ -673,6 +683,16 @@
       "jockey": "L. ROUSSEL"
     },
     {
+      "date": "2025-04-18",
+      "cheval": "VYBORG",
+      "hippodrome": "SAINT-CLOUD",
+      "classement": 3,
+      "discipline": "galop",
+      "entraineur": "Gilles PANNIER",
+      "casaque": "galop",
+      "jockey": "C. LECOEUVRE"
+    },
+    {
       "date": "2025-04-13",
       "cheval": "JETHAN DE MONGOCHY",
       "hippodrome": "AGEN-LA-GARENNE",
@@ -681,6 +701,16 @@
       "jockey": "Florian JULIEN",
       "entraineur": "Jackie JULIEN",
       "casaque": "julien"
+    },
+    {
+      "date": "2025-03-28",
+      "cheval": "VYBORG",
+      "hippodrome": "COMPIEGNE",
+      "classement": 3,
+      "discipline": "galop",
+      "entraineur": "Gilles PANNIER",
+      "casaque": "galop",
+      "jockey": "B. MARIE"
     },
     {
       "date": "2025-03-23",
@@ -699,6 +729,16 @@
       "discipline": "attele",
       "jockey": "Jean-Christophe SOREL",
       "casaque": "blanche"
+    },
+    {
+      "date": "2025-03-16",
+      "cheval": "VYBORG",
+      "hippodrome": "SAINT-CLOUD",
+      "classement": 3,
+      "discipline": "galop",
+      "entraineur": "Gilles PANNIER",
+      "casaque": "galop",
+      "jockey": "B. MARIE"
     },
     {
       "date": "2025-03-02",
@@ -1327,6 +1367,16 @@
       "jockey": "Sébastien LABOUTIQUE"
     },
     {
+      "date": "2023-04-24",
+      "cheval": "VYBORG",
+      "hippodrome": "LE CROISE-LAROCHE",
+      "classement": 2,
+      "discipline": "galop",
+      "entraineur": "Gilles PANNIER",
+      "casaque": "galop",
+      "jockey": "J. CLAUDIC"
+    },
+    {
       "date": "2023-04-23",
       "cheval": "JUNINIO FLEURY",
       "hippodrome": "SAINT-AUBIN-LES-ELBEUF",
@@ -1491,6 +1541,16 @@
       "casaque": "blanche"
     },
     {
+      "date": "2022-10-21",
+      "cheval": "VYBORG",
+      "hippodrome": "CLAIREFONTAINE",
+      "classement": 3,
+      "discipline": "galop",
+      "entraineur": "Gilles PANNIER",
+      "casaque": "galop",
+      "jockey": "C. LECOEUVRE"
+    },
+    {
       "date": "2022-10-09",
       "cheval": "JACKPOT DES BORDES",
       "hippodrome": "CHERBOURG",
@@ -1498,6 +1558,16 @@
       "discipline": "attele",
       "casaque": "blanche",
       "jockey": "Bruno MARIE"
+    },
+    {
+      "date": "2022-10-07",
+      "cheval": "VYBORG",
+      "hippodrome": "COMPIEGNE",
+      "classement": 3,
+      "discipline": "galop",
+      "entraineur": "Gilles PANNIER",
+      "casaque": "galop",
+      "jockey": "C. LECOEUVRE"
     },
     {
       "date": "2022-09-11",
