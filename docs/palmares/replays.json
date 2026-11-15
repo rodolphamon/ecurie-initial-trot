@@ -1,5 +1,5 @@
 {
-  "version": 51,
+  "version": 52,
   "note": "Fiches de courses Equidia ou LeTROT avec sources identifiant les courses. Les URLs Equidia sont déduites du format date/R/C ; la disponibilité et la lecture des vidéos ne sont pas garanties. HOMA reste sur LeTROT faute de fiche Equidia vérifiée.",
   "replays": [
     {
@@ -1159,6 +1159,14 @@
       "controle": "Numéros de réunion et course recoupés par source de résultats ; lien Equidia construit, lecture du replay à confirmer"
     },
     {
+      "date": "2024-07-08",
+      "cheval": "IT'S EAGLE COGLAIS",
+      "hippodrome": "LES SABLES D'OLONNE",
+      "url": "https://www.equidia.fr/courses/2024-07-08/R1/C4",
+      "justificatif": "https://www.canalturf.com/resultats-PMU/2024-07-08/les-sables-d-olonne/343606_prix-vendee-le-departement.html",
+      "controle": "Date, cheval, classement et R/C confirmés dans une arrivée publique ; lecture vidéo Equidia non testée individuellement"
+    },
+    {
       "date": "2024-07-04",
       "cheval": "HAMPTON AMERICA",
       "hippodrome": "VICHY",
@@ -1254,6 +1262,14 @@
     },
     {
       "date": "2024-02-15",
+      "cheval": "HANANE MONTAVAL",
+      "hippodrome": "GRAIGNES",
+      "url": "https://www.equidia.fr/courses/2024-02-15/R4/C3",
+      "justificatif": "https://www.turfoo.fr/resultats-courses/240215/reunion4-graignes/course3-prix-intermarche-carentan/",
+      "controle": "Date, cheval, classement et R/C confirmés dans une arrivée publique ; lecture vidéo Equidia non testée individuellement"
+    },
+    {
+      "date": "2024-02-15",
       "cheval": "ISOLEE DU BOUILLON",
       "hippodrome": "GRAIGNES",
       "url": "https://www.equidia.fr/courses/2024-02-15/R4/C2",
@@ -1285,6 +1301,14 @@
       "justificatif": "https://www.turfoo.fr/programmes-courses/240116/",
       "controle": "Hippodrome, R/C et résultat recoupés sur les résultats publiés ; replay Equidia non visionné individuellement",
       "preuve_classement": "https://www.zone-turf.fr/cheval/hanane-montaval-895528/"
+    },
+    {
+      "date": "2024-01-05",
+      "cheval": "ISOLEE DU BOUILLON",
+      "hippodrome": "PONTCHATEAU",
+      "url": "https://www.equidia.fr/courses/2024-01-05/R2/C5",
+      "justificatif": "https://www.turfoo.fr/resultats-courses/240105/reunion2-pontchateau/course5-prix-de-la-ville-de-pontchateau/",
+      "controle": "Date, cheval, classement et R/C confirmés dans une arrivée publique ; lecture vidéo Equidia non testée individuellement"
     },
     {
       "date": "2023-12-27",
@@ -1440,6 +1464,14 @@
       "url": "https://www.equidia.fr/courses/2023-03-16/R1/C2",
       "justificatif": "https://www.zone-turf.fr/rapports/r1-c2-prix-de-puchay-926970.html",
       "controle": "Cheval, classement et R/C confirmés dans l'arrivée publiée ; replay Equidia non visionné individuellement"
+    },
+    {
+      "date": "2023-02-14",
+      "cheval": "IT'S EAGLE COGLAIS",
+      "hippodrome": "VINCENNES - GP",
+      "url": "https://www.equidia.fr/courses/2023-02-14/R1/C2",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2023-02-14/R1C2-vincennes-prix-de-colmar",
+      "controle": "Date, cheval, classement et R/C confirmés dans une arrivée publique ; lecture vidéo Equidia non testée individuellement"
     },
     {
       "date": "2022-10-12",
