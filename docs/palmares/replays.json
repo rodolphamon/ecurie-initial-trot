@@ -1,5 +1,5 @@
 {
-  "version": 40,
+  "version": 41,
   "note": "Fiches de courses Equidia ou LeTROT avec sources identifiant les courses. Les URLs Equidia sont déduites du format date/R/C ; la disponibilité et la lecture des vidéos ne sont pas garanties. HOMA reste sur LeTROT faute de fiche Equidia vérifiée.",
   "replays": [
     {
@@ -507,6 +507,14 @@
       "controle": "2e place et R4C1 identifiées dans résultats Turfin ; lecture vidéo Equidia non testée"
     },
     {
+      "date": "2026-02-01",
+      "cheval": "JUNINIO FLEURY",
+      "hippodrome": "AGEN-LA-GARENNE",
+      "url": "https://www.equidia.fr/courses/2026-02-01/R10/C5",
+      "justificatif": "https://www.elo-turf.fr/cheval/juninio-fleury",
+      "controle": "Date, cheval, place et R/C recoupés dans l'historique de courses eloturf ; lecture de la vidéo Equidia non testée individuellement"
+    },
+    {
       "date": "2026-01-30",
       "cheval": "LARIFLETTE",
       "hippodrome": "VINCENNES",
@@ -556,6 +564,14 @@
       "url": "https://www.equidia.fr/courses/2025-12-08/R6/C1",
       "preuve_identification_course": "https://www.canalturf.com/resultats-PMU/2025-12-08/bordeaux-le-bouscat/391442_prix-une-de-mai.html",
       "controle": "Course et numéro R/C identifiés dans les résultats publics ; replay Equidia à confirmer dans le navigateur"
+    },
+    {
+      "date": "2025-11-20",
+      "cheval": "LARGO DE JOUDES",
+      "hippodrome": "GRAIGNES",
+      "url": "https://www.equidia.fr/courses/2025-11-20/R4/C2",
+      "justificatif": "https://www.elo-turf.fr/cheval/largo-de-joudes",
+      "controle": "Date, cheval, place et R/C recoupés dans l'historique de courses eloturf ; lecture de la vidéo Equidia non testée individuellement"
     },
     {
       "date": "2025-11-17",
@@ -679,6 +695,14 @@
       "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2025-09-18/7500/6",
       "lien_letrot_precedent": "https://www.letrot.com/courses/2025-09-18/7500/6",
       "preuve_identification_course": "https://www.canalturf.com/resultats-PMU/2025-09-18/paris-vincennes/383758_prix-gaston-roussel.html"
+    },
+    {
+      "date": "2025-09-12",
+      "cheval": "ON LOCKDOWN",
+      "hippodrome": "LE MANS",
+      "url": "https://www.equidia.fr/courses/2025-09-12/R5/C2",
+      "justificatif": "https://www.elo-turf.fr/cheval/on-lockdown",
+      "controle": "Date, cheval, place et R/C recoupés dans l'historique de courses eloturf ; lecture de la vidéo Equidia non testée individuellement"
     },
     {
       "date": "2025-09-03",
