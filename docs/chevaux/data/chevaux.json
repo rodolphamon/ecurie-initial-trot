@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-12",
+  "updated_at": "2026-11-15",
   "horses": [
     {
       "id": "andresy",
@@ -59,7 +59,12 @@
       "trainer": "Charley HESLOUIN",
       "casaque": "blanche",
       "horseLink": "https://www.letrot.com/stats/chevaux/INDICE-DELADOU/ZWpbZwsDBgMV/courses",
-      "photoVersion": "20261112-nouvelle"
+      "photoVersion": "20261112-nouvelle",
+      "origines": {
+        "pere": "TIEGO D'ETANG",
+        "mere": "ROMY DE CHAUMIERE",
+        "pere_de_mere": "L'AS DE VIRETAUTE"
+      }
     },
     {
       "id": "isolee-du-bouillon",
@@ -67,7 +72,12 @@
       "discipline": "Trot",
       "trainer": "Bruno MARIE",
       "casaque": "blanche",
-      "horseLink": "https://www.letrot.com/stats/chevaux/ISOLEE-DU-BOUILLON/ZWpbZQQJAgMG/courses"
+      "horseLink": "https://www.letrot.com/stats/chevaux/ISOLEE-DU-BOUILLON/ZWpbZQQJAgMG/courses",
+      "origines": {
+        "pere": "DOLLAR MACKER",
+        "mere": "URGELE",
+        "pere_de_mere": "OTELLO PIERJI"
+      }
     },
     {
       "id": "le-roi-leon",
@@ -93,7 +103,12 @@
       "discipline": "Trot",
       "trainer": "Bruno MARIE",
       "casaque": "blanche",
-      "horseLink": "https://www.letrot.com/stats/chevaux/LORD-ON-WAY/ZmN8ZgYHAQUa/courses"
+      "horseLink": "https://www.letrot.com/stats/chevaux/LORD-ON-WAY/ZmN8ZgYHAQUa/courses",
+      "origines": {
+        "pere": "FABULOUS WOOD",
+        "mere": "ONLY WAY",
+        "pere_de_mere": "VIKING'S WAY"
+      }
     },
     {
       "id": "lucky-des-gaudines",
@@ -111,7 +126,12 @@
       "trainer": "Vincent HÉBERT",
       "casaque": "blanche",
       "horseLink": "https://www.letrot.com/stats/chevaux/MANDRAGORA-FLEURY/ZmBbYgoHBgQf/courses",
-      "photoVersion": "20261112-19"
+      "photoVersion": "20261112-19",
+      "origines": {
+        "pere": "DJANGO RIFF",
+        "mere": "ERYA KALOUMA",
+        "pere_de_mere": "ROYAL DREAM"
+      }
     },
     {
       "id": "master-pat",
@@ -129,7 +149,12 @@
       "trainer": "Laurent BARASSIN",
       "casaque": "blanche",
       "horseLink": "https://www.letrot.com/stats/chevaux/memphis-belle/ZmB9ZwMIAQYY/courses",
-      "photoVersion": "20261112-lot5"
+      "photoVersion": "20261112-lot5",
+      "origines": {
+        "pere": "GOSPEL PAT",
+        "mere": "DIVINE ESPERANCE",
+        "pere_de_mere": "GOB DE LOUMADE"
+      }
     },
     {
       "id": "mona-lisa-stardust",
@@ -147,7 +172,12 @@
       "trainer": "Bruno MARIE",
       "casaque": "blanche",
       "horseLink": "https://www.letrot.com/stats/chevaux/MOONDANCE-OKINA/ZmBbbAMIAQUc/courses",
-      "photoVersion": "20261112-19"
+      "photoVersion": "20261112-19",
+      "origines": {
+        "pere": "EUGENITO DU NOYER",
+        "mere": "GODIVA OKINA",
+        "pere_de_mere": "TAG WOOD"
+      }
     },
     {
       "id": "myrtille-marboula",
@@ -164,7 +194,12 @@
       "trainer": "Vincent HÉBERT",
       "casaque": "blanche",
       "horseLink": "https://www.letrot.com/stats/chevaux/NEBRASKA-FLEURY/ZmF8ZQUGBwQB/courses",
-      "photoVersion": "20261112-19"
+      "photoVersion": "20261112-19",
+      "origines": {
+        "pere": "BRILLANTISSIME",
+        "mere": "ERYA KALOUMA",
+        "pere_de_mere": "ROYAL DREAM"
+      }
     },
     {
       "id": "nelson-star",
@@ -173,7 +208,12 @@
       "trainer": "Michel HANQUIER",
       "casaque": "blanche",
       "horseLink": null,
-      "photoVersion": "20261112-19"
+      "photoVersion": "20261112-19",
+      "origines": {
+        "pere": "ITALIANO VERO",
+        "mere": "BEST STAR",
+        "pere_de_mere": "LOOK DE STAR"
+      }
     },
     {
       "id": "nostalgie-dairpet",
@@ -182,7 +222,12 @@
       "trainer": "Laurent BARASSIN",
       "casaque": "blanche",
       "horseLink": null,
-      "photoVersion": "20261112-19"
+      "photoVersion": "20261112-19",
+      "origines": {
+        "pere": "SEVERINO",
+        "mere": "GARDEN CITY",
+        "pere_de_mere": "QUAKER JET"
+      }
     },
     {
       "id": "odacieuse-fleury",
@@ -191,7 +236,12 @@
       "trainer": "Vincent HÉBERT",
       "casaque": "blanche",
       "horseLink": "https://www.letrot.com/stats/chevaux/ODACIEUSE-FLEURY/ZmZbYgsEBAYG/courses",
-      "photoVersion": "20261112-19"
+      "photoVersion": "20261112-19",
+      "origines": {
+        "pere": "DOLLAR MACKER",
+        "mere": "GIRL STAR EMGE",
+        "pere_de_mere": "TIMOKO"
+      }
     },
     {
       "id": "olano-de-la-vallee",
@@ -200,7 +250,12 @@
       "trainer": "Vincent HÉBERT",
       "casaque": "blanche",
       "horseLink": "https://www.letrot.com/stats/chevaux/OLANO-DE-LA-VALLEE/ZmZbbAIBAwcG/courses",
-      "photoVersion": "20261112-19"
+      "photoVersion": "20261112-19",
+      "origines": {
+        "pere": "UN AMOUR D'HAUFOR",
+        "mere": "GENNY DE LA VALLEE",
+        "pere_de_mere": "TEXAS CHARM"
+      }
     },
     {
       "id": "on-lockdown",
@@ -226,7 +281,12 @@
       "trainer": "A. RIPOLL RIGO",
       "casaque": "blanche",
       "horseLink": "https://www.letrot.com/stats/chevaux/phacelie-bilou/Zmd8ZAYABQMV/elevage",
-      "photoVersion": "20261112-19"
+      "photoVersion": "20261112-19",
+      "origines": {
+        "pere": "ERIDAN",
+        "mere": "FLORETTE BILOU",
+        "pere_de_mere": "PRINCE D'ESPACE"
+      }
     },
     {
       "id": "popstar-d-eri",
