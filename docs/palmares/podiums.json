@@ -89,6 +89,16 @@
       "casaque": "julien"
     },
     {
+      "date": "2026-09-01",
+      "cheval": "GIORGIANA",
+      "hippodrome": "DEAUVILLE",
+      "classement": 3,
+      "discipline": "galop",
+      "entraineur": "Gilles PANNIER",
+      "casaque": "galop",
+      "jockey": "L. BOISSEAU"
+    },
+    {
       "date": "2026-08-25",
       "cheval": "NEBRASKA FLEURY",
       "hippodrome": "CABOURG",
@@ -160,6 +170,16 @@
       "entraineur": "Gilles PANNIER",
       "casaque": "galop",
       "jockey": "L. BOISSEAU"
+    },
+    {
+      "date": "2026-05-17",
+      "cheval": "GIORGIANA",
+      "hippodrome": "LE CROISE-LAROCHE",
+      "classement": 3,
+      "discipline": "galop",
+      "entraineur": "Gilles PANNIER",
+      "casaque": "galop",
+      "jockey": "A. MOLINS"
     },
     {
       "date": "2026-05-10",
@@ -305,6 +325,16 @@
       "casaque": "nathalie"
     },
     {
+      "date": "2025-10-17",
+      "cheval": "GIORGIANA",
+      "hippodrome": "LE CROISE-LAROCHE",
+      "classement": 3,
+      "discipline": "galop",
+      "entraineur": "Gilles PANNIER",
+      "casaque": "galop",
+      "jockey": "A. MOLINS"
+    },
+    {
       "date": "2025-09-23",
       "cheval": "LARIFLETTE",
       "hippodrome": "VINCENNES - GP",
@@ -397,6 +427,16 @@
       "casaque": "blanche"
     },
     {
+      "date": "2025-06-13",
+      "cheval": "GIORGIANA",
+      "hippodrome": "SAINT-CLOUD",
+      "classement": 3,
+      "discipline": "galop",
+      "entraineur": "Gilles PANNIER",
+      "casaque": "galop",
+      "jockey": "A. MOLINS"
+    },
+    {
       "date": "2025-06-08",
       "cheval": "LOVE ME MAZELI",
       "hippodrome": "SAINT-MALO",
@@ -415,6 +455,16 @@
       "casaque": "blanche"
     },
     {
+      "date": "2025-05-27",
+      "cheval": "GIORGIANA",
+      "hippodrome": "EVREUX",
+      "classement": 3,
+      "discipline": "galop",
+      "entraineur": "Gilles PANNIER",
+      "casaque": "galop",
+      "jockey": "A. MOLINS"
+    },
+    {
       "date": "2025-05-20",
       "cheval": "INDICE DELADOU",
       "hippodrome": "VICHY",
@@ -431,6 +481,16 @@
       "discipline": "attele",
       "jockey": "Vincent HEBERT",
       "casaque": "blanche"
+    },
+    {
+      "date": "2025-05-09",
+      "cheval": "GIORGIANA",
+      "hippodrome": "SAINT-CLOUD",
+      "classement": 2,
+      "discipline": "galop",
+      "entraineur": "Gilles PANNIER",
+      "casaque": "galop",
+      "jockey": "A. MOLINS"
     },
     {
       "date": "2025-04-13",
