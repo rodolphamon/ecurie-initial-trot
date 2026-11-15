@@ -1,5 +1,5 @@
 {
-  "version": 57,
+  "version": 58,
   "note": "Fiches de courses Equidia ou LeTROT avec sources identifiant les courses. Les URLs Equidia sont déduites du format date/R/C ; la disponibilité et la lecture des vidéos ne sont pas garanties. HOMA reste sur LeTROT faute de fiche Equidia vérifiée.",
   "replays": [
     {
@@ -1570,6 +1570,14 @@
       "controle": "Date, cheval, classement et R/C confirmés dans une arrivée publique ; lecture vidéo Equidia non testée individuellement"
     },
     {
+      "date": "2023-02-07",
+      "cheval": "IT'S EAGLE COGLAIS",
+      "hippodrome": "GRAIGNES",
+      "url": "https://www.equidia.fr/courses/2023-02-07/R3/C3",
+      "justificatif": "https://www.gbet.fr/courses/graignes/2023-02-07/r3/c3/prix-la-voix-du-bocage/",
+      "controle": "3e, n°3 ; position établie par historique des performances https://www.zone-turf.fr/cheval/it-s-eagle-coglais-953246/. Réunion et course vérifiées ; disponibilité du replay Equidia non testée"
+    },
+    {
       "date": "2023-02-05",
       "cheval": "IBERIK DE MONGOCHY",
       "hippodrome": "VINCENNES - GP",
@@ -1592,6 +1600,22 @@
       "url": "https://www.equidia.fr/courses/2023-01-07/R9/C4",
       "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2023-01-07/R9C4-cagnes-sur-mer-prix-de-bologne",
       "controle": "Arrivée officielle consultée : 2e n°12, R9C4. La disponibilité du replay sur Equidia n'a pas été testée individuellement."
+    },
+    {
+      "date": "2022-12-30",
+      "cheval": "HARRISON GEDE",
+      "hippodrome": "BEAUMONT-DE-LOMAGNE",
+      "url": "https://www.equidia.fr/courses/2022-12-30/R3/C5",
+      "justificatif": "https://www.geny.com/course/1374088/arrivee-rapports",
+      "controle": "3e, n°2. Réunion et course vérifiées ; disponibilité du replay Equidia non testée"
+    },
+    {
+      "date": "2022-12-22",
+      "cheval": "HARRISON GEDE",
+      "hippodrome": "CABOURG",
+      "url": "https://www.equidia.fr/courses/2022-12-22/R5/C2",
+      "justificatif": "https://www.canalturf.com/resultats-PMU/2022-12-22/cabourg/294007_prix-des-cineraires.html",
+      "controle": "3e, n°7. Réunion et course vérifiées ; disponibilité du replay Equidia non testée"
     },
     {
       "date": "2022-11-15",
