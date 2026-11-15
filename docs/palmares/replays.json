@@ -1,5 +1,5 @@
 {
-  "version": 38,
+  "version": 39,
   "note": "Fiches de courses Equidia ou LeTROT avec sources identifiant les courses. Les URLs Equidia sont déduites du format date/R/C ; la disponibilité et la lecture des vidéos ne sont pas garanties. HOMA reste sur LeTROT faute de fiche Equidia vérifiée.",
   "replays": [
     {
@@ -322,6 +322,14 @@
       "controle": "Course, classement et numéro R/C confirmés dans les arrivées ; disponibilité de la vidéo Equidia non vérifiée individuellement"
     },
     {
+      "date": "2026-05-17",
+      "cheval": "LIMPIDE",
+      "hippodrome": "LE CROISE-LAROCHE",
+      "url": "https://www.equidia.fr/courses/2026-05-17/R6/C1",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2026-05-17/R6C1-le-croise-laroche-prix-hugues-delloye",
+      "controle": "Course, R/C et résultat confirmés sur ZEturf ; lecture vidéo Equidia non testée individuellement"
+    },
+    {
       "date": "2026-05-10",
       "cheval": "DOURIANN",
       "hippodrome": "PARISLONGCHAMP",
@@ -363,6 +371,14 @@
       "url": "https://www.equidia.fr/courses/2026-04-17/R1/C1",
       "justificatif": "https://www.canalturf.com/resultats-PMU/2026-04-17/paris-vincennes/403305_prix-asterope.html",
       "controle": "R/C, cheval et place confirmés dans l'arrivée de course ; replay Equidia non visionné individuellement"
+    },
+    {
+      "date": "2026-04-12",
+      "cheval": "MOONDANCE OKINA",
+      "hippodrome": "GRAIGNES",
+      "url": "https://www.equidia.fr/courses/2026-04-12/R5/C6",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2026-04-12/R5C6-graignes-prix-de-la-federation-regionale-des-courses",
+      "controle": "Course, R/C et résultat confirmés sur ZEturf ; lecture vidéo Equidia non testée individuellement"
     },
     {
       "date": "2026-04-09",
