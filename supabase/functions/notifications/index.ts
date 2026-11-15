@@ -58,8 +58,9 @@ Deno.serve(async (request) => {
   if (origin && !ORIGINS.has(origin)) return respond({ error: "Origine non autorisée." }, 403, origin);
   if (request.method === "GET") {
     const key = env("PUSH_VAPID_PUBLIC_KEY");
-    return key ? respond({ publicKey: key }, 200, origin)
-               : respond({ error: "Service non configuré." }, 503, origin);
+    return key && env("PUSH_VAPID_PRIVATE_KEY")
+      ? respond({ publicKey: key }, 200, origin)
+      : respond({ error: "Service non configuré." }, 503, origin);
   }
   if (request.method !== "POST") return respond({ error: "Méthode non autorisée." }, 405, origin);
   try {
@@ -67,6 +68,14 @@ Deno.serve(async (request) => {
     const { action, deviceToken } = body || {};
     if (!validToken(deviceToken)) return respond({ error: "Jeton d'appareil invalide." }, 400, origin);
     const tokenHash = await hash(deviceToken);
+    if (action === "status") {
+      if (!validEndpoint(body.endpoint)) return respond({ error: "Abonnement invalide." }, 400, origin);
+      const { data, error } = await db.from("ei_push_subscriptions")
+        .select("audience,scope,confirmed,daily,before15,results,withdrawn")
+        .eq("endpoint", body.endpoint).eq("token_hash", tokenHash).maybeSingle();
+      if (error) throw error;
+      return respond({ ok: true, active: !!data, preferences: data }, 200, origin);
+    }
     if (action === "unsubscribe") {
       if (!validEndpoint(body.endpoint)) return respond({ error: "Abonnement invalide." }, 400, origin);
       const { error } = await db.from("ei_push_subscriptions").delete()
