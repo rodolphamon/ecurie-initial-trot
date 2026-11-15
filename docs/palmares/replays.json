@@ -1,5 +1,5 @@
 {
-  "version": 46,
+  "version": 47,
   "note": "Fiches de courses Equidia ou LeTROT avec sources identifiant les courses. Les URLs Equidia sont déduites du format date/R/C ; la disponibilité et la lecture des vidéos ne sont pas garanties. HOMA reste sur LeTROT faute de fiche Equidia vérifiée.",
   "replays": [
     {
@@ -815,6 +815,14 @@
       "controle": "Arrivée ZEturf confirme le cheval, le classement et R/C ; accès à la vidéo Equidia non testé individuellement"
     },
     {
+      "date": "2025-06-08",
+      "cheval": "LOVE ME MAZELI",
+      "hippodrome": "SAINT-MALO",
+      "url": "https://www.equidia.fr/courses/2025-06-08/R5/C7",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2025-06-08/R5C7-saint-malo-prix-de-cezembre",
+      "controle": "Date, course R/C et classement vérifiés dans les résultats publiés ; visionnage Equidia non testé individuellement"
+    },
+    {
       "date": "2025-05-31",
       "cheval": "HAMPTON AMERICA",
       "hippodrome": "AGEN-LA-GARENNE",
@@ -871,6 +879,14 @@
       "controle": "Course et victoire explicitement confirmées par l'arrivée publiée ; lien Equidia construit à partir du R/C vérifié, lecture vidéo non testée."
     },
     {
+      "date": "2025-04-25",
+      "cheval": "SAMAPY",
+      "hippodrome": "COMPIEGNE",
+      "url": "https://www.equidia.fr/courses/2025-04-25/R4/C4",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2025-04-25/R4C4-compiegne-prix-d-autreches",
+      "controle": "Date, course R/C et classement vérifiés dans les résultats publiés ; visionnage Equidia non testé individuellement"
+    },
+    {
       "date": "2025-04-18",
       "cheval": "VYBORG",
       "hippodrome": "SAINT-CLOUD",
@@ -885,6 +901,14 @@
       "url": "https://www.equidia.fr/courses/2025-04-17/R4/C7",
       "justificatif": "https://www.canalturf.com/resultats-PMU/2025-04-17/enghien/368980_prix-de-la-porte-maillot.html",
       "controle": "R/C, cheval et place confirmés dans l'arrivée de course ; replay Equidia non visionné individuellement"
+    },
+    {
+      "date": "2025-04-13",
+      "cheval": "JETHAN DE MONGOCHY",
+      "hippodrome": "AGEN-LA-GARENNE",
+      "url": "https://www.equidia.fr/courses/2025-04-13/R11/C5",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2025-04-13/R11C5-agen-prix-guy-jougla",
+      "controle": "Date, course R/C et classement vérifiés dans les résultats publiés ; visionnage Equidia non testé individuellement"
     },
     {
       "date": "2025-04-09",
@@ -1110,6 +1134,14 @@
       "controle": "Course R/C et arrivée confirmées sur ZEturf ; lecture du replay Equidia non contrôlée individuellement"
     },
     {
+      "date": "2024-05-25",
+      "cheval": "SAMAPY",
+      "hippodrome": "SAINT-CLOUD",
+      "url": "https://www.equidia.fr/courses/2024-05-25/R4/C7",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2024-05-25/R4C7-saint-cloud-prix-du-mesnil-villement",
+      "controle": "Date, course R/C et classement vérifiés dans les résultats publiés ; visionnage Equidia non testé individuellement"
+    },
+    {
       "date": "2024-05-17",
       "cheval": "FAVORI DE L'ITON",
       "hippodrome": "VINCENNES",
@@ -1138,6 +1170,14 @@
       "url": "https://www.equidia.fr/courses/2024-05-09/R4/C6",
       "preuve_identification_course": "https://www.gbet.fr/courses/le-lion-d-angers/2024-05-09/r4/c6/px-de-la-reg-pays-de-la-loire-3e-ep-chal-apgo-px-de-la-grosse-pierre/",
       "controle": "Numéros de réunion et course recoupés par source de résultats ; lien Equidia construit, lecture du replay à confirmer"
+    },
+    {
+      "date": "2024-05-07",
+      "cheval": "ISOLEE DU BOUILLON",
+      "hippodrome": "VINCENNES - GP",
+      "url": "https://www.equidia.fr/courses/2024-05-07/R4/C8",
+      "justificatif": "https://www.turf-fr.com//partants-programmes/r4-vincennes-37131",
+      "controle": "Date, course R/C et classement vérifiés dans les résultats publiés ; visionnage Equidia non testé individuellement"
     },
     {
       "date": "2024-04-18",
