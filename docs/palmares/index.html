@@ -207,7 +207,9 @@ async function loadReplays(){
   const byRace=new Map(results.map(r=>[[r.date,r.cheval,r.hippodrome].join("|").toUpperCase(),r]));
   for(const video of candidates){
     if(!video||!video.date||!video.cheval||!video.hippodrome)continue;
-    const row=byRace.get([video.date,video.cheval,video.hippodrome].join("|").toUpperCase());
+    const normalizeReplayKey=s=>String(s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toUpperCase().replace(/[^A-Z0-9]/g,"");
+    const candidatesForHorse=results.filter(r=>r.date===video.date&&normalizeReplayKey(r.cheval)===normalizeReplayKey(video.cheval));
+    const row=byRace.get([video.date,video.cheval,video.hippodrome].join("|").toUpperCase())||(candidatesForHorse.length===1?candidatesForHorse[0]:null);
     const url=replayUrl(video.url);
     if(row&&url)row.video=url;
   }
