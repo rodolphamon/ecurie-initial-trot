@@ -1,5 +1,5 @@
 {
-  "version": 39,
+  "version": 40,
   "note": "Fiches de courses Equidia ou LeTROT avec sources identifiant les courses. Les URLs Equidia sont déduites du format date/R/C ; la disponibilité et la lecture des vidéos ne sont pas garanties. HOMA reste sur LeTROT faute de fiche Equidia vérifiée.",
   "replays": [
     {
@@ -430,6 +430,14 @@
     },
     {
       "date": "2026-03-15",
+      "cheval": "LARGO DE JOUDES",
+      "hippodrome": "GRAIGNES",
+      "url": "https://www.equidia.fr/courses/2026-03-15/R5/C3",
+      "justificatif": "https://www.canalturf.com/resultats-PMU/2026-03-15/graignes/400126_prix-des-tulipes.html",
+      "controle": "Date, hippodrome, cheval et R/C retrouvés dans les résultats ; lecture du replay Equidia non vérifiée séparément"
+    },
+    {
+      "date": "2026-03-15",
       "cheval": "MONA LISA STARDUST",
       "hippodrome": "AGEN-LA-GARENNE",
       "justificatif": "https://www.canalturf.com/resultats-PMU/2026-03-15/agen-le-passage/400149_prix-de-l-hippodrome-de-manacor.html",
@@ -577,6 +585,14 @@
       "controle": "R/C, cheval et place confirmés dans l'arrivée de course ; replay Equidia non visionné individuellement"
     },
     {
+      "date": "2025-10-17",
+      "cheval": "GIORGIANA",
+      "hippodrome": "LE CROISE-LAROCHE",
+      "url": "https://www.equidia.fr/courses/2025-10-17/R5/C3",
+      "justificatif": "https://www.zeturf.fr/fr/course/2025-10-17/R5C3-le-croise-laroche-prix-d-hazebroucq",
+      "controle": "Date, hippodrome, cheval et R/C retrouvés dans les résultats ; lecture du replay Equidia non vérifiée séparément"
+    },
+    {
       "date": "2025-10-10",
       "cheval": "ON LOCKDOWN",
       "hippodrome": "COMPIEGNE",
@@ -636,6 +652,14 @@
       "url": "https://www.equidia.fr/courses/2025-09-21/R13/C6",
       "preuve_identification_course": "https://www.elo-turf.fr/cheval/largo-de-joudes",
       "controle": "Date, cheval gagnant et numéro R/C concordants dans la source ; lien Equidia de la course, disponibilité du replay non vérifiée automatiquement"
+    },
+    {
+      "date": "2025-09-20",
+      "cheval": "MASTER PAT",
+      "hippodrome": "LE LION-D'ANGERS",
+      "url": "https://www.equidia.fr/courses/2025-09-20/R2/C4",
+      "justificatif": "https://www.geny.com/chevaux-reperes/2025-09-20",
+      "controle": "Date, hippodrome, cheval et R/C retrouvés dans les résultats ; lecture du replay Equidia non vérifiée séparément"
     },
     {
       "date": "2025-09-18",
@@ -784,6 +808,22 @@
       "url": "https://www.equidia.fr/courses/2025-04-01/R3/C7",
       "preuve_identification_course": "https://www.canalturf.com/resultats-PMU/2025-04-01/lyon-parilly/367452_prix-du-lannemezan.html",
       "controle": "Course et numéro R/C identifiés dans les résultats publics ; replay Equidia à confirmer dans le navigateur"
+    },
+    {
+      "date": "2025-03-21",
+      "cheval": "JOHANNA ELEVEN",
+      "hippodrome": "MARSEILLE (A BORELY)",
+      "url": "https://www.equidia.fr/courses/2025-03-21/R2/C5",
+      "justificatif": "https://www.canalturf.com/resultats-PMU/2025-03-21/marseille-borely/366386_prix-de-l-ile-de-ratonneau.html",
+      "controle": "Date, hippodrome, cheval et R/C retrouvés dans les résultats ; lecture du replay Equidia non vérifiée séparément"
+    },
+    {
+      "date": "2025-03-11",
+      "cheval": "LARIFLETTE",
+      "hippodrome": "ENGHIEN",
+      "url": "https://www.equidia.fr/courses/2025-03-11/R4/C7",
+      "justificatif": "https://www.zeturf.be/fr/course-du-jour/2025-03-11/R4C7-enghien-soisy-prix-du-gave",
+      "controle": "Date, hippodrome, cheval et R/C retrouvés dans les résultats ; lecture du replay Equidia non vérifiée séparément"
     },
     {
       "date": "2025-02-07",
