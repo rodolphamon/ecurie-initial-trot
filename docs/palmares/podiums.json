@@ -1028,6 +1028,15 @@
       "casaque": "homa"
     },
     {
+      "date": "2023-04-30",
+      "cheval": "HOMAYA DU BOCAGE",
+      "hippodrome": "CHARTRES",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Sébastien LABOUTIQUE"
+    },
+    {
       "date": "2023-04-23",
       "cheval": "JUNINIO FLEURY",
       "hippodrome": "SAINT-AUBIN-LES-ELBEUF",
@@ -1036,6 +1045,24 @@
       "jockey": "Vincent HEBERT",
       "entraineur": "Vincent HEBERT",
       "casaque": "homa"
+    },
+    {
+      "date": "2023-03-29",
+      "cheval": "DARWIN LA MESANGE",
+      "hippodrome": "MARSEILLE-BORELY",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Jean Charles FERON"
+    },
+    {
+      "date": "2023-03-16",
+      "cheval": "INDICE DELADOU",
+      "hippodrome": "CAEN",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Alexis COLLETTE"
     },
     {
       "date": "2023-03-10",
@@ -1072,6 +1099,15 @@
       "discipline": "attele",
       "jockey": "Adrien LAMY",
       "casaque": "blanche"
+    },
+    {
+      "date": "2023-02-07",
+      "cheval": "IT'S EAGLE COGLAIS",
+      "hippodrome": "GRAIGNES",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Bruno MARIE"
     },
     {
       "date": "2023-02-05",
@@ -1120,6 +1156,24 @@
       "casaque": "blanche"
     },
     {
+      "date": "2022-12-30",
+      "cheval": "HARRISON GEDE",
+      "hippodrome": "BEAUMONT-DE-LOMAGNE",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Romain LE CREPS"
+    },
+    {
+      "date": "2022-12-22",
+      "cheval": "HARRISON GEDE",
+      "hippodrome": "CABOURG",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "François LAGADEUC"
+    },
+    {
       "date": "2022-11-27",
       "cheval": "HARRISON GEDE",
       "hippodrome": "VIRE NORMANDIE",
@@ -1147,6 +1201,15 @@
       "casaque": "blanche"
     },
     {
+      "date": "2022-10-09",
+      "cheval": "JACKPOT DES BORDES",
+      "hippodrome": "CHERBOURG",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Bruno MARIE"
+    },
+    {
       "date": "2022-09-11",
       "cheval": "HANANE MONTAVAL",
       "hippodrome": "CHATEAUBRIANT",
@@ -1156,6 +1219,15 @@
       "casaque": "nathalie"
     },
     {
+      "date": "2022-08-30",
+      "cheval": "JACKPOT DES BORDES",
+      "hippodrome": "CABOURG",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Adrien LAMY"
+    },
+    {
       "date": "2022-08-28",
       "cheval": "HANANE MONTAVAL",
       "hippodrome": "ROYAN-ATLANTIQUE",
@@ -1163,6 +1235,15 @@
       "discipline": "attele",
       "jockey": "Adrien MERIEL",
       "casaque": "nathalie"
+    },
+    {
+      "date": "2022-08-23",
+      "cheval": "HELIOS BONBON",
+      "hippodrome": "CABOURG",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Cédric PARYS"
     },
     {
       "date": "2022-08-17",
@@ -1175,6 +1256,24 @@
       "casaque": "blanche"
     },
     {
+      "date": "2022-08-16",
+      "cheval": "JACKPOT DES BORDES",
+      "hippodrome": "ENGHIEN",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Bruno MARIE"
+    },
+    {
+      "date": "2022-08-09",
+      "cheval": "DARWIN LA MESANGE",
+      "hippodrome": "TRIE-SUR-BAISE",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Virgile FOUCAULT"
+    },
+    {
       "date": "2022-08-08",
       "cheval": "HANANE MONTAVAL",
       "hippodrome": "DIEPPE",
@@ -1182,6 +1281,15 @@
       "discipline": "attele",
       "jockey": "Adrien MERIEL",
       "casaque": "nathalie"
+    },
+    {
+      "date": "2022-07-31",
+      "cheval": "IVAN DRAGO",
+      "hippodrome": "VILLENEUVE-SUR-LOT",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Virgile FOUCAULT"
     },
     {
       "date": "2022-07-17",
@@ -1240,6 +1348,24 @@
       "entraineur": "Charley HESLOUIN"
     },
     {
+      "date": "2022-06-05",
+      "cheval": "IVAN DRAGO",
+      "hippodrome": "MONTAUBAN",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Virgile FOUCAULT"
+    },
+    {
+      "date": "2022-05-19",
+      "cheval": "GOSPEL",
+      "hippodrome": "LISIEUX",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Gaëtan GILLARD"
+    },
+    {
       "date": "2022-04-17",
       "cheval": "HOMAYA DU BOCAGE",
       "hippodrome": "ECOMMOY",
@@ -1276,6 +1402,24 @@
       "casaque": "blanche"
     },
     {
+      "date": "2022-04-03",
+      "cheval": "HOMAYA DU BOCAGE",
+      "hippodrome": "VIRE NORMANDIE",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Bruno MARIE"
+    },
+    {
+      "date": "2022-03-22",
+      "cheval": "HERMES PLANCHETTE",
+      "hippodrome": "ENGHIEN",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Bruno MARIE"
+    },
+    {
       "date": "2022-03-20",
       "cheval": "ISBA QUICK",
       "hippodrome": "REIMS",
@@ -1292,6 +1436,15 @@
       "discipline": "attele",
       "jockey": "Alexandre GUILLEMIN",
       "casaque": "nathalie"
+    },
+    {
+      "date": "2022-02-05",
+      "cheval": "DARWIN LA MESANGE",
+      "hippodrome": "MAUQUENCHY",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Gabin FAVRIS"
     },
     {
       "date": "2022-02-03",
@@ -1321,6 +1474,33 @@
       "casaque": "blanche"
     },
     {
+      "date": "2021-11-26",
+      "cheval": "HERMES DU FOSSE",
+      "hippodrome": "REIMS",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Alexandre GUILLEMIN"
+    },
+    {
+      "date": "2021-11-03",
+      "cheval": "IBERIK DE MONGOCHY",
+      "hippodrome": "VINCENNES",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "François LAGADEUC"
+    },
+    {
+      "date": "2021-10-26",
+      "cheval": "HERMES PLANCHETTE",
+      "hippodrome": "VINCENNES",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Bruno MARIE"
+    },
+    {
       "date": "2021-09-28",
       "cheval": "JUNINIO FLEURY",
       "hippodrome": "VINCENNES",
@@ -1329,6 +1509,24 @@
       "jockey": "Gabriele GELORMINI",
       "entraineur": "Bruno MARIE",
       "casaque": "blanche"
+    },
+    {
+      "date": "2021-09-27",
+      "cheval": "FLEUR VIVANCIERE",
+      "hippodrome": "VIC-FEZENSAC",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Frédéric CLOZIER"
+    },
+    {
+      "date": "2021-09-26",
+      "cheval": "HIP HOP JULRY",
+      "hippodrome": "VILLENEUVE-SUR-LOT",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Dimitri CRESPEL"
     },
     {
       "date": "2021-08-07",
@@ -1347,6 +1545,15 @@
       "discipline": "attele",
       "jockey": "Bruno MARIE",
       "casaque": "nathalie"
+    },
+    {
+      "date": "2021-07-31",
+      "cheval": "IDEE FLORALE",
+      "hippodrome": "RANES",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Grégory SIMON"
     },
     {
       "date": "2021-07-26",
@@ -1401,6 +1608,15 @@
       "discipline": "attele",
       "jockey": "Bruno MARIE",
       "casaque": "nathalie"
+    },
+    {
+      "date": "2021-04-11",
+      "cheval": "GINKO",
+      "hippodrome": "RAMBOUILLET",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Quentin DAOUGABEL"
     },
     {
       "date": "2021-03-07",
