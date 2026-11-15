@@ -69,7 +69,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Adrien LAMY",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Laurent BARASSIN",
+      "source_entraineur": "https://www.journalduturf.com/arrivees-rapports-pmu/574130_prix-du-maine.html?tab=resultat"
     },
     {
       "date": "2026-10-03",
@@ -120,7 +122,9 @@
       "discipline": "attele",
       "casaque": "blanche",
       "proprietaire": "Écurie Initial",
-      "jockey": "Gilles MAILLARD"
+      "jockey": "Gilles MAILLARD",
+      "entraineur": "Laurent BARASSIN",
+      "source_entraineur": "https://www.turfoo.fr/fiches/chevaux/nostalgie-dairpet/"
     },
     {
       "date": "2026-09-14",
@@ -160,7 +164,9 @@
       "discipline": "attele",
       "casaque": "blanche",
       "proprietaire": "Écurie Initial",
-      "jockey": "Antoine WIELS"
+      "jockey": "Antoine WIELS",
+      "entraineur": "Laurent BARASSIN",
+      "source_entraineur": "https://www.turfoo.fr/fiches/chevaux/nostalgie-dairpet/"
     },
     {
       "date": "2026-08-26",
@@ -170,7 +176,9 @@
       "discipline": "attele",
       "casaque": "blanche",
       "proprietaire": "Écurie Initial",
-      "jockey": "David THOMAIN"
+      "jockey": "David THOMAIN",
+      "entraineur": "Pierre-Louis DESAUNETTE",
+      "source_entraineur": "https://www.geny.com/cheval/2824299-moscantida-peal/course/1678936"
     },
     {
       "date": "2026-08-25",
@@ -229,7 +237,9 @@
       "discipline": "attele",
       "casaque": "blanche",
       "proprietaire": "Écurie Initial",
-      "jockey": "Patrice PACAUD"
+      "jockey": "Patrice PACAUD",
+      "entraineur": "Vincent HEBERT",
+      "source_entraineur": "https://www.turfoo.fr/index.php/fiches/chevaux/mandragora-fleury/"
     },
     {
       "date": "2026-08-08",
@@ -239,7 +249,9 @@
       "discipline": "attele",
       "casaque": "blanche",
       "proprietaire": "Écurie Initial",
-      "jockey": "Benjamin ROCHARD"
+      "jockey": "Benjamin ROCHARD",
+      "entraineur": "Pierre-Louis DESAUNETTE",
+      "source_entraineur": "https://www.turfoo.fr/fiches/chevaux/moscantida-peal/"
     },
     {
       "date": "2026-08-03",
@@ -248,7 +260,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Patrice PACAUD",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Vincent HEBERT",
+      "source_entraineur": "https://www.turfoo.fr/index.php/fiches/chevaux/mandragora-fleury/"
     },
     {
       "date": "2026-08-03",
@@ -297,7 +311,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Patrice PACAUD",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Vincent HEBERT",
+      "source_entraineur": "https://www.turfoo.fr/index.php/fiches/chevaux/mandragora-fleury/"
     },
     {
       "date": "2026-07-12",
@@ -336,7 +352,9 @@
       "discipline": "attele",
       "casaque": "blanche",
       "proprietaire": "Écurie Initial",
-      "jockey": "Alexis COLLETTE"
+      "jockey": "Alexis COLLETTE",
+      "entraineur": "Pierre-Louis DESAUNETTE",
+      "source_entraineur": "https://www.turfoo.fr/fiches/chevaux/moscantida-peal/"
     },
     {
       "date": "2026-06-10",
