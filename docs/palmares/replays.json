@@ -1,5 +1,5 @@
 {
-  "version": 45,
+  "version": 46,
   "note": "Fiches de courses Equidia ou LeTROT avec sources identifiant les courses. Les URLs Equidia sont déduites du format date/R/C ; la disponibilité et la lecture des vidéos ne sont pas garanties. HOMA reste sur LeTROT faute de fiche Equidia vérifiée.",
   "replays": [
     {
@@ -807,6 +807,22 @@
       "preuve_identification_course": "https://www.canalturf.com/resultats-PMU/2025-06-15/la-capelle/374542_prix-du-croise-laroche.html"
     },
     {
+      "date": "2025-06-13",
+      "cheval": "GIORGIANA",
+      "hippodrome": "SAINT-CLOUD",
+      "url": "https://www.equidia.fr/courses/2025-06-13/R4/C6",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2025-06-13/R4C6-saint-cloud-prix-des-coteaux-de-la-seine",
+      "controle": "Arrivée ZEturf confirme le cheval, le classement et R/C ; accès à la vidéo Equidia non testé individuellement"
+    },
+    {
+      "date": "2025-05-31",
+      "cheval": "HAMPTON AMERICA",
+      "hippodrome": "AGEN-LA-GARENNE",
+      "url": "https://www.equidia.fr/courses/2025-05-31/R4/C2",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2025-05-31/R4C2-agen-prix-radio-bulle",
+      "controle": "Arrivée ZEturf confirme le cheval, le classement et R/C ; accès à la vidéo Equidia non testé individuellement"
+    },
+    {
       "date": "2025-05-20",
       "cheval": "INDICE DELADOU",
       "hippodrome": "VICHY",
@@ -1221,6 +1237,14 @@
       "url": "https://www.equidia.fr/courses/2023-08-01/R4/C3",
       "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2023-08-01/R4C3-meslay-du-maine-prix-groupama",
       "controle": "Course et victoire explicitement confirmées par l'arrivée publiée ; lien Equidia construit à partir du R/C vérifié, lecture vidéo non testée."
+    },
+    {
+      "date": "2023-07-30",
+      "cheval": "INDICE DELADOU",
+      "hippodrome": "ENGHIEN",
+      "url": "https://www.equidia.fr/courses/2023-07-30/R3/C5",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2023-07-30/R3C5-enghien-soisy-prix-d-aix-en-provence",
+      "controle": "Arrivée ZEturf confirme le cheval, le classement et R/C ; accès à la vidéo Equidia non testé individuellement"
     },
     {
       "date": "2023-07-22",
