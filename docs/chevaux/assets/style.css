@@ -18,3 +18,9 @@
   .top .top-nav { display: none !important; }
   .bottom-actions { display: none !important; }
 }
+
+/* Catalogue dans l'application : retirer le fil d'Ariane et le surtitre, conserver le site web. */
+@media (display-mode: standalone) {
+  body[data-page="catalogue"] .breadcrumb,
+  body[data-page="catalogue"] .eyebrow { display: none !important; }
+}
