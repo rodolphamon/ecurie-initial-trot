@@ -99,6 +99,16 @@
       "jockey": "M. GUYON"
     },
     {
+      "date": "2026-09-13",
+      "cheval": "LE ROI LEON",
+      "hippodrome": "PARISLONGCHAMP",
+      "classement": 3,
+      "discipline": "galop",
+      "entraineur": "Gilles PANNIER",
+      "casaque": "galop",
+      "jockey": "A. MOLINS"
+    },
+    {
       "date": "2026-09-01",
       "cheval": "GIORGIANA",
       "hippodrome": "DEAUVILLE",
@@ -118,6 +128,16 @@
       "casaque": "blanche"
     },
     {
+      "date": "2026-08-18",
+      "cheval": "LE ROI LEON",
+      "hippodrome": "DEAUVILLE",
+      "classement": 2,
+      "discipline": "galop",
+      "entraineur": "Gilles PANNIER",
+      "casaque": "galop",
+      "jockey": "C. DEMURO"
+    },
+    {
       "date": "2026-08-03",
       "cheval": "MANDRAGORA FLEURY",
       "hippodrome": "ROCHEFORT-SUR-LOIRE",
@@ -125,6 +145,26 @@
       "discipline": "attele",
       "jockey": "Patrice PACAUD",
       "casaque": "blanche"
+    },
+    {
+      "date": "2026-07-30",
+      "cheval": "LE ROI LEON",
+      "hippodrome": "DIEPPE",
+      "classement": 2,
+      "discipline": "galop",
+      "entraineur": "Gilles PANNIER",
+      "casaque": "galop",
+      "jockey": "M. BARZALONA"
+    },
+    {
+      "date": "2026-07-19",
+      "cheval": "LE ROI LEON",
+      "hippodrome": "CHANTILLY",
+      "classement": 2,
+      "discipline": "galop",
+      "entraineur": "Gilles PANNIER",
+      "casaque": "galop",
+      "jockey": "A. MOLINS"
     },
     {
       "date": "2026-07-12",
@@ -143,6 +183,16 @@
       "discipline": "attele",
       "jockey": "Matthias LEGROS",
       "casaque": "blanche"
+    },
+    {
+      "date": "2026-07-02",
+      "cheval": "LE ROI LEON",
+      "hippodrome": "PARISLONGCHAMP",
+      "classement": 2,
+      "discipline": "galop",
+      "entraineur": "Gilles PANNIER",
+      "casaque": "galop",
+      "jockey": "A. MOLINS"
     },
     {
       "date": "2026-05-29",
@@ -248,6 +298,16 @@
       "discipline": "attele",
       "jockey": "Sébastien ERNAULT",
       "casaque": "blanche"
+    },
+    {
+      "date": "2026-04-09",
+      "cheval": "ROSA MIA",
+      "hippodrome": "ARGENTAN",
+      "classement": 3,
+      "discipline": "galop",
+      "entraineur": "Gilles PANNIER",
+      "casaque": "galop",
+      "jockey": "H. LEBOUC"
     },
     {
       "date": "2026-04-06",
