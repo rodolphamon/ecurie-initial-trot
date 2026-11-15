@@ -1,5 +1,5 @@
 {
-  "version": 66,
+  "version": 67,
   "note": "Fiches de courses Equidia ou LeTROT avec sources identifiant les courses. Les URLs Equidia sont déduites du format date/R/C ; la disponibilité et la lecture des vidéos ne sont pas garanties. HOMA reste sur LeTROT faute de fiche Equidia vérifiée.",
   "replays": [
     {
@@ -2205,6 +2205,14 @@
       "controle": "Réunion et course confirmées dans une fiche de résultat montrant le cheval gagnant ; lien Equidia au format de course, lecture non testée ici."
     },
     {
+      "date": "2020-06-11",
+      "cheval": "GINKO",
+      "hippodrome": "LA CAPELLE",
+      "url": "https://www.equidia.fr/courses/2020-06-11/R2/C4",
+      "justificatif": "https://www.zeturf.sn/fr/course-du-jour/2020-06-11/R2C4-la-capelle-prix-de-reims",
+      "controle": "Arrivée 3e avec date et course R2C4 vérifiées dans la source ; disponibilité effective de la vidéo Equidia non testée."
+    },
+    {
       "date": "2020-06-04",
       "cheval": "GINKO",
       "hippodrome": "CAEN",
@@ -2243,6 +2251,14 @@
       "url": "https://www.equidia.fr/courses/2020-03-05/R4/C6",
       "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2020-03-05/R4C6-laval-prix-jean-chouan",
       "controle": "Réunion et course confirmées dans une fiche de résultat montrant le cheval gagnant ; lien Equidia au format de course, lecture non testée ici."
+    },
+    {
+      "date": "2020-02-26",
+      "cheval": "FETICHE ATOUT",
+      "hippodrome": "MAUQUENCHY",
+      "url": "https://www.equidia.fr/courses/2020-02-26/R4/C3",
+      "justificatif": "https://www.canalturf.com/resultats-PMU/2020-02-26/mauquenchy/204386_prix-de-l-historial-jeanne-d-arc.html",
+      "controle": "Arrivée 3e avec date et course R4C3 vérifiées dans la source ; disponibilité effective de la vidéo Equidia non testée."
     },
     {
       "date": "2020-02-11",
@@ -2321,6 +2337,22 @@
       "controle": "Classement 2e, date et numéro de course R4C6 recoupés dans les résultats publiés ; lecture effective du replay Equidia non testée."
     },
     {
+      "date": "2018-04-28",
+      "cheval": "DJANGO DE MONGOCHY",
+      "hippodrome": "ARGENTAN",
+      "url": "https://www.equidia.fr/courses/2018-04-28/R4/C3",
+      "justificatif": "https://www.gbet.fr/chevaux/django-de-mongochy-96448/",
+      "controle": "Arrivée 2e avec date et course R4C3 vérifiées dans la source ; disponibilité effective de la vidéo Equidia non testée."
+    },
+    {
+      "date": "2017-07-18",
+      "cheval": "ETOILE DE MONGOCHY",
+      "hippodrome": "CABOURG",
+      "url": "https://www.equidia.fr/courses/2017-07-18/R5/C6",
+      "justificatif": "https://www.gbet.fr/courses/cabourg/2017-07-18/r5/c6/prix-des-bleuets/",
+      "controle": "Arrivée 2e avec date et course R5C6 vérifiées dans la source ; disponibilité effective de la vidéo Equidia non testée."
+    },
+    {
       "date": "2017-05-23",
       "cheval": "CALIE DE POMMERAYE",
       "hippodrome": "VINCENNES",
@@ -2378,6 +2410,14 @@
       "url": "https://www.equidia.fr/courses/2017-02-02/R1/C8",
       "justificatif": "https://www.gbet.fr/chevaux/django-de-mongochy-96448/",
       "controle": "Classement 2e, date et numéro de course R1C8 recoupés dans les résultats publiés ; lecture effective du replay Equidia non testée."
+    },
+    {
+      "date": "2017-01-30",
+      "cheval": "ACTRICE DE CERISY",
+      "hippodrome": "TOULOUSE",
+      "url": "https://www.equidia.fr/courses/2017-01-30/R4/C1",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2017-01-30/R4C1-toulouse-prix-de-la-cartoucherie",
+      "controle": "Arrivée 3e avec date et course R4C1 vérifiées dans la source ; disponibilité effective de la vidéo Equidia non testée."
     },
     {
       "date": "2017-01-23",
@@ -2469,6 +2509,14 @@
       "url": "https://www.equidia.fr/courses/2016-08-30/R5/C7",
       "justificatif": "https://www.gbet.fr/courses/cabourg/2016-08-30/r5/c7/prix-du-tamaris/",
       "controle": "Classement 2e, date et numéro de course R5C7 recoupés dans les résultats publiés ; lecture effective du replay Equidia non testée."
+    },
+    {
+      "date": "2016-04-02",
+      "cheval": "CALIE DE POMMERAYE",
+      "hippodrome": "CAEN",
+      "url": "https://www.equidia.fr/courses/2016-04-02/R3/C3",
+      "justificatif": "https://www.geny.com/course/791864-2016-04-02-caen-prix-de-brix/arrivee-rapports",
+      "controle": "Arrivée 2e avec date et course R3C3 vérifiées dans la source ; disponibilité effective de la vidéo Equidia non testée."
     },
     {
       "date": "2016-02-16",
