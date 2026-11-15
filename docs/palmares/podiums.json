@@ -431,6 +431,33 @@
       "casaque": "blanche"
     },
     {
+      "date": "2025-03-02",
+      "cheval": "KEENNESS",
+      "hippodrome": "AGEN-LA GARENNE",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Michel HANQUIER"
+    },
+    {
+      "date": "2025-02-20",
+      "cheval": "ISOLEE DU BOUILLON",
+      "hippodrome": "VINCENNES",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Mathias LEGROS"
+    },
+    {
+      "date": "2025-02-15",
+      "cheval": "HAMPTON AMERICA",
+      "hippodrome": "AGEN-LA GARENNE",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Benjamin CANDELLE-GARDENQ"
+    },
+    {
       "date": "2025-01-20",
       "cheval": "LARIFLETTE",
       "hippodrome": "VINCENNES - GP",
@@ -476,6 +503,15 @@
       "casaque": "blanche"
     },
     {
+      "date": "2024-10-06",
+      "cheval": "MANDRAGORA FLEURY",
+      "hippodrome": "ALENCON",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Vincent HEBERT"
+    },
+    {
       "date": "2024-10-05",
       "cheval": "JEHAN",
       "hippodrome": "CABOURG",
@@ -485,6 +521,24 @@
       "casaque": "blanche"
     },
     {
+      "date": "2024-09-22",
+      "cheval": "GUEPARD DE MONE",
+      "hippodrome": "VILLENEUVE-SUR-LOT",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Chloé SCHOTTER"
+    },
+    {
+      "date": "2024-09-10",
+      "cheval": "IT'S EAGLE COGLAIS",
+      "hippodrome": "VINCENNES",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Matthias LEGROS"
+    },
+    {
       "date": "2024-09-05",
       "cheval": "LARIFLETTE",
       "hippodrome": "VINCENNES - GP",
@@ -492,6 +546,15 @@
       "discipline": "attele",
       "jockey": "Matthias LEGROS",
       "casaque": "blanche"
+    },
+    {
+      "date": "2024-08-30",
+      "cheval": "IT'S EAGLE COGLAIS",
+      "hippodrome": "VINCENNES",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Bruno MARIE"
     },
     {
       "date": "2024-08-04",
@@ -521,6 +584,33 @@
       "casaque": "blanche"
     },
     {
+      "date": "2024-07-14",
+      "cheval": "FANTOMAS DU VAL",
+      "hippodrome": "BAGNOLES DE L'ORNE",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Alexis MARIE"
+    },
+    {
+      "date": "2024-07-08",
+      "cheval": "IT'S EAGLE COGLAIS",
+      "hippodrome": "LES SABLES D'OLONNE",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Matthias LEGROS"
+    },
+    {
+      "date": "2024-07-04",
+      "cheval": "HAMPTON AMERICA",
+      "hippodrome": "VICHY",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Michel HANQUIER"
+    },
+    {
       "date": "2024-07-01",
       "cheval": "HANANE MONTAVAL",
       "hippodrome": "STRASBOURG",
@@ -528,6 +618,15 @@
       "discipline": "attele",
       "jockey": "Joachim-Brandon LELIEVRE",
       "casaque": "nathalie"
+    },
+    {
+      "date": "2024-06-27",
+      "cheval": "FANTOMAS DU VAL",
+      "hippodrome": "ENGHIEN",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Alexandre ABRIVARD"
     },
     {
       "date": "2024-06-16",
@@ -558,6 +657,33 @@
       "entraineur": "Charley HESLOUIN"
     },
     {
+      "date": "2024-06-03",
+      "cheval": "HOMAYA DU BOCAGE",
+      "hippodrome": "EAUZE",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Maxence VAUDOIT"
+    },
+    {
+      "date": "2024-05-27",
+      "cheval": "ILLAM DE MONGOCHY",
+      "hippodrome": "BERNAY",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Alexis MARIE"
+    },
+    {
+      "date": "2024-05-09",
+      "cheval": "JAMAIS SANS ELLE",
+      "hippodrome": "VALOGNES",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Bruno MARIE"
+    },
+    {
       "date": "2024-05-07",
       "cheval": "ISOLEE DU BOUILLON",
       "hippodrome": "VINCENNES - GP",
@@ -565,6 +691,15 @@
       "discipline": "attele",
       "jockey": "Benjamin-Thomas MARIE",
       "casaque": "blanche"
+    },
+    {
+      "date": "2024-04-27",
+      "cheval": "JODEON",
+      "hippodrome": "GOURNAY-EN-BRAY",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Matthias LEGROS"
     },
     {
       "date": "2024-04-23",
@@ -583,6 +718,15 @@
       "discipline": "attele",
       "jockey": "Matthias LEGROS",
       "casaque": "blanche"
+    },
+    {
+      "date": "2024-04-06",
+      "cheval": "JESSIE DES LANDES",
+      "hippodrome": "SAUMUR",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Alexis MARIE"
     },
     {
       "date": "2024-03-24",
@@ -610,6 +754,24 @@
       "discipline": "attele",
       "jockey": "François LAGADEUC",
       "casaque": "nathalie"
+    },
+    {
+      "date": "2024-02-15",
+      "cheval": "ISOLEE DU BOUILLON",
+      "hippodrome": "GRAIGNES",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Matthias LEGROS"
+    },
+    {
+      "date": "2024-02-12",
+      "cheval": "GUEPARD DE MONE",
+      "hippodrome": "AGEN-LA GARENNE",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Guy BEAUDOUIN"
     },
     {
       "date": "2024-02-04",
@@ -648,6 +810,15 @@
       "casaque": "blanche"
     },
     {
+      "date": "2023-12-27",
+      "cheval": "HAMPTON AMERICA",
+      "hippodrome": "CABOURG",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Robin LAMY"
+    },
+    {
       "date": "2023-12-17",
       "cheval": "HAMPTON AMERICA",
       "hippodrome": "ARGENTAN",
@@ -664,6 +835,33 @@
       "discipline": "attele",
       "jockey": "Eva BOUCLET",
       "casaque": "blanche"
+    },
+    {
+      "date": "2023-11-05",
+      "cheval": "GUEPARD DE MONE",
+      "hippodrome": "GRENADE-SUR-GARONNE",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Frédéric CLOZIER"
+    },
+    {
+      "date": "2023-11-05",
+      "cheval": "JAMAIS SANS ELLE",
+      "hippodrome": "LA CAPELLE",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Bruno MARIE"
+    },
+    {
+      "date": "2023-09-18",
+      "cheval": "FANTOMAS DU VAL",
+      "hippodrome": "CAVAILLON",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Marion DONABEDIAN"
     },
     {
       "date": "2023-09-17",
@@ -692,6 +890,15 @@
       "discipline": "attele",
       "jockey": "Florian JULIEN",
       "casaque": "blanche"
+    },
+    {
+      "date": "2023-09-01",
+      "cheval": "INDICE DELADOU",
+      "hippodrome": "VINCENNES",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Eva BOUCLET"
     },
     {
       "date": "2023-08-08",
@@ -730,6 +937,24 @@
       "casaque": "blanche"
     },
     {
+      "date": "2023-07-30",
+      "cheval": "INDICE DELADOU",
+      "hippodrome": "ENGHIEN",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Eva BOUCLET"
+    },
+    {
+      "date": "2023-07-04",
+      "cheval": "HERMES DU PRESSOIR",
+      "hippodrome": "BIARRITZ",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Claude Charles VAUGRANTE"
+    },
+    {
       "date": "2023-07-02",
       "cheval": "GOSPEL",
       "hippodrome": "ECOMMOY",
@@ -748,6 +973,15 @@
       "casaque": "blanche"
     },
     {
+      "date": "2023-05-31",
+      "cheval": "GOSPEL",
+      "hippodrome": "CAEN",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Paul Philippe PLOQUIN"
+    },
+    {
       "date": "2023-05-29",
       "cheval": "HANANE MONTAVAL",
       "hippodrome": "DURTAL",
@@ -764,6 +998,15 @@
       "discipline": "attele",
       "jockey": "Bruno MARIE",
       "casaque": "nathalie"
+    },
+    {
+      "date": "2023-05-14",
+      "cheval": "ISOLEE DU BOUILLON",
+      "hippodrome": "ALENCON",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Alexandre GUILLEMIN"
     },
     {
       "date": "2023-05-01",
