@@ -4,7 +4,7 @@
   "short_name": "Écurie Initial",
   "description": "Chevaux, courses, palmarès et communauté de l'Écurie Initial",
   "start_url": "./",
-  "scope": "./",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#f6f4f1",
   "theme_color": "#171717",
