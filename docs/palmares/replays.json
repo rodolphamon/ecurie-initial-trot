@@ -1,5 +1,5 @@
 {
-  "version": 87,
+  "version": 88,
   "note": "Fiches de courses Equidia ou LeTROT avec sources identifiant les courses. Les URLs Equidia sont déduites du format date/R/C ; la disponibilité et la lecture des vidéos ne sont pas garanties. HOMA reste sur LeTROT faute de fiche Equidia vérifiée.",
   "replays": [
     {
@@ -2822,6 +2822,14 @@
       "nature_lien": "video_course_dailymotion"
     },
     {
+      "date": "2015-12-20",
+      "cheval": "TYCOZ DE LADY",
+      "hippodrome": "MESLAY-DU-MAINE",
+      "url": "https://www.zeturf.sn/en/course-du-jour/2015-12-20/R2C6-meslay-du-maine-prix-des-ambulances-saint-denis-d-anjou",
+      "preuve_identification_course": "https://www.zeturf.sn/en/course-du-jour/2015-12-20/R2C6-meslay-du-maine-prix-des-ambulances-saint-denis-d-anjou",
+      "controle": "1er n°7 du Prix des Ambulances Saint-Denis-d'Anjou, Meslay-du-Maine R2C6 le 20/12/2015, jockey H. Guerot, au trot monté ; fiche ZEturf sur domaine sn présente Replay. Lecture effective vidéo non testée."
+    },
+    {
       "date": "2015-12-06",
       "cheval": "TYCOZ DE LADY",
       "hippodrome": "ARGENTAN",
@@ -2922,6 +2930,14 @@
       "url": "https://www.equidia.fr/courses/2014-04-16/R1/C7",
       "justificatif": "https://www.zone-turf.fr/cheval/rhea-silvia-43685/",
       "controle": "Cheval 3e confirmé, date/hippodrome/réunion/course R1C7 recoupés dans les archives ; vidéo Equidia non visionnée individuellement"
+    },
+    {
+      "date": "2014-01-29",
+      "cheval": "ADAMS",
+      "hippodrome": "BORDEAUX",
+      "url": "https://www.zeturf.fr/fr/course-du-jour/2014-01-29/R2C3-bordeaux-le-bouscat-prix-ourasi",
+      "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2014-01-29/R2C3-bordeaux-le-bouscat-prix-ourasi",
+      "controle": "1er n°4 du Prix Ourasi, Bordeaux-Le Bouscat, R2C3 le 29/01/2014, driver Eric Raffin ; fiche ZEturf exacte et rubrique Replay publiquement présentes. Lecture de la vidéo non testée."
     },
     {
       "date": "2013-12-30",
