@@ -7,3 +7,8 @@
 
 /* Lien discret vers la source de chaque résultat vérifié */
 .perf-source{display:block;font-size:11px;margin-top:4px}.perf-source a{color:#a94c11;text-decoration:underline;text-underline-offset:2px}.perf-source a:hover{color:#6d2c05}
+
+/* Application installée : la navigation fixe remplace les deux boutons de bas de fiche. */
+@media all and (display-mode: standalone) {
+  .bottom-actions { display: none !important; }
+}
