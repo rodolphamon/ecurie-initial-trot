@@ -1,5 +1,5 @@
 {
-  "version": 34,
+  "version": 35,
   "note": "Fiches de courses Equidia ou LeTROT avec sources identifiant les courses. Les URLs Equidia sont déduites du format date/R/C ; la disponibilité et la lecture des vidéos ne sont pas garanties. HOMA reste sur LeTROT faute de fiche Equidia vérifiée.",
   "replays": [
     {
@@ -146,6 +146,14 @@
       "controle": "Résultat et numéro R/C concordants dans la source indiquée ; lecture du replay sur Equidia non testée individuellement"
     },
     {
+      "date": "2026-08-16",
+      "cheval": "VYBORG",
+      "hippodrome": "DEAUVILLE",
+      "url": "https://www.equidia.fr/courses/2026-08-16/R1/C9",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2026-08-16/R1C9-deauville-the-aga-khan-studs-prix-de-la-villa-sayer",
+      "controle": "R/C et podium confirmés par résultat ; replay Equidia non visionné individuellement"
+    },
+    {
       "date": "2026-08-10",
       "cheval": "LARGO DE JOUDES",
       "hippodrome": "DIVONNE-LES-BAINS",
@@ -168,6 +176,14 @@
       "url": "https://www.equidia.fr/courses/2026-08-08/R3/C1",
       "preuve_identification_course": "https://turfin.fr/course/2026-08-08/r3c1-enghien-prix-de-pornic",
       "controle": "Course, hippodrome et R/C identifiés dans les résultats Turfin ; consultation de la vidéo Equidia non testée"
+    },
+    {
+      "date": "2026-08-03",
+      "cheval": "ZARTOP",
+      "hippodrome": "CLAIREFONTAINE",
+      "url": "https://www.equidia.fr/courses/2026-08-03/R1/C6",
+      "justificatif": "https://zeturf.fr/fr/course-du-jour/2026-08-03/R1C6-clairefontaine-ane-du-cotentin-prix-des-enclos",
+      "controle": "R/C et podium confirmés par résultat ; replay Equidia non visionné individuellement"
     },
     {
       "date": "2026-08-02",
@@ -195,6 +211,14 @@
     },
     {
       "date": "2026-07-19",
+      "cheval": "LE ROI LEON",
+      "hippodrome": "CHANTILLY",
+      "url": "https://www.equidia.fr/courses/2026-07-19/R1/C8",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2026-07-19/R1C8-chantilly-prix-sans-souci-ii",
+      "controle": "R/C et podium confirmés par résultat ; replay Equidia non visionné individuellement"
+    },
+    {
+      "date": "2026-07-19",
       "cheval": "NEBRASKA FLEURY",
       "hippodrome": "CLAIREFONTAINE",
       "url": "https://www.equidia.fr/courses/2026-07-19/R11/C5",
@@ -208,6 +232,14 @@
       "url": "https://www.equidia.fr/courses/2026-07-03/R5/C1",
       "preuve_lien_equidia": "https://turfin.fr/course/2026-07-03/r5c1-tarbes-prix-max-daguzan-garros",
       "controle": "Lien direct vers la fiche de course Equidia indiqué sur Turfin ; lecture du replay non testée depuis cet environnement"
+    },
+    {
+      "date": "2026-07-02",
+      "cheval": "LE ROI LEON",
+      "hippodrome": "PARISLONGCHAMP",
+      "url": "https://www.equidia.fr/courses/2026-07-02/R1/C8",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2026-07-02/R1C8-paris-longchamp-prix-d-argences",
+      "controle": "R/C et podium confirmés par résultat ; replay Equidia non visionné individuellement"
     },
     {
       "date": "2026-07-02",
