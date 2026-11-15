@@ -32,9 +32,9 @@ button{cursor:pointer;background:var(--orange);border:0;border-radius:9px;font-w
 <div class="row"><input type="checkbox" id="reminder10" checked><label for="reminder10"><strong>Rappel à 10h00</strong><div class="muted">Le jour de la course.</div></label></div>
 <div class="row"><input type="checkbox" id="before15" checked><label for="before15"><strong>15 minutes avant le départ</strong></label></div>
 <div class="row"><input type="checkbox" id="resultMember" checked><label for="resultMember"><strong>Résultat officiel</strong></label></div>
-<div class="row"><input type="checkbox" id="withdrawn" checked><label for="withdrawn"><strong>Non-partant / forfait</strong><div class="muted">Annule les rappels restants.</div></label></div>
+<div class="row"><input type="checkbox" id="withdrawn" checked><label for="withdrawn"><strong>Non-partant / forfait</strong></label></div>
 </div>
-<p class="muted">Aucune alerte n'est envoyée lors d'un simple nouvel engagement.</p></section>
+</section>
 <section class="card"><h2>Autorisation sur cet appareil</h2>
 <p id="serviceState" class="muted">Vérification du service de notifications…</p>
 <button type="button" id="enable" disabled>Activer les notifications</button>
@@ -76,7 +76,7 @@ async function init(){
   if(session?.user){
     const {data:a}=await db.from('associes').select('actif,nom_affiche').eq('user_id',session.user.id).maybeSingle();
     isMember=!!a?.actif;
-    if(isMember){$('profile').textContent='Espace associé · '+a.nom_affiche;$('profileText').textContent='Choisissez vos chevaux ou tout l’effectif.';$('scopeBox').hidden=false;$('guestChecks').hidden=true;$('memberChecks').hidden=false;}
+    if(isMember){$('profile').textContent='Espace associé · '+a.nom_affiche;$('profileText').hidden=true;$('scopeBox').hidden=false;$('guestChecks').hidden=true;$('memberChecks').hidden=false;}
   }
   registration=await navigator.serviceWorker.register('../sw.js');
   subscription=await registration.pushManager.getSubscription();
