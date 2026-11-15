@@ -1,5 +1,5 @@
 {
-  "version": 70,
+  "version": 71,
   "note": "Fiches de courses Equidia ou LeTROT avec sources identifiant les courses. Les URLs Equidia sont déduites du format date/R/C ; la disponibilité et la lecture des vidéos ne sont pas garanties. HOMA reste sur LeTROT faute de fiche Equidia vérifiée.",
   "replays": [
     {
@@ -606,6 +606,14 @@
       "controle": "Numéros de réunion et course recoupés par source de résultats ; lien Equidia construit, lecture du replay à confirmer"
     },
     {
+      "date": "2025-11-16",
+      "cheval": "JETHAN DE MONGOCHY",
+      "hippodrome": "AGEN-LA-GARENNE",
+      "url": "https://www.equidia.fr/courses/2025-11-16/R7/C6",
+      "justificatif": "https://hippigold.fr/courses/2025-11-16/r7c6/",
+      "controle": "Numéro de course R7C6 et classement 3 confirmés dans résultats publiés. URL vidéo Equidia construite à partir de R/C ; disponibilité et lecture non vérifiées."
+    },
+    {
       "date": "2025-11-07",
       "cheval": "INDICE DELADOU",
       "hippodrome": "VINCENNES",
@@ -786,6 +794,14 @@
       "url": "https://www.equidia.fr/courses/2025-08-09/R3/C3",
       "justificatif": "https://www.canalturf.com/resultats-PMU/2025-08-09/enghien/379820_prix-de-pornic.html",
       "controle": "R/C, cheval et place confirmés dans l'arrivée de course ; replay Equidia non visionné individuellement"
+    },
+    {
+      "date": "2025-08-02",
+      "cheval": "MONA LISA STARDUST",
+      "hippodrome": "VILLEREAL",
+      "url": "https://www.equidia.fr/courses/2025-08-02/R10/C1",
+      "justificatif": "https://www.turfoo.fr/programmes-courses/250802/reunion10-villereal/courses/",
+      "controle": "Numéro de course R10C1 et classement 3 confirmés dans résultats publiés. URL vidéo Equidia construite à partir de R/C ; disponibilité et lecture non vérifiées."
     },
     {
       "date": "2025-07-26",
@@ -1033,6 +1049,14 @@
       "url": "https://www.equidia.fr/courses/2025-03-11/R4/C7",
       "justificatif": "https://www.zeturf.be/fr/course-du-jour/2025-03-11/R4C7-enghien-soisy-prix-du-gave",
       "controle": "Date, hippodrome, cheval et R/C retrouvés dans les résultats ; lecture du replay Equidia non vérifiée séparément"
+    },
+    {
+      "date": "2025-03-02",
+      "cheval": "KEENNESS",
+      "hippodrome": "AGEN-LA GARENNE",
+      "url": "https://www.equidia.fr/courses/2025-03-02/R9/C4",
+      "justificatif": "https://www.geny.com/course/1552963/arrivee-rapports",
+      "controle": "Numéro de course R9C4 et classement 3 confirmés dans résultats publiés. URL vidéo Equidia construite à partir de R/C ; disponibilité et lecture non vérifiées."
     },
     {
       "date": "2025-02-20",
