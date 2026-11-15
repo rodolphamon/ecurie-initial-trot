@@ -18,12 +18,12 @@ async function setup(){
  const{data:member,error:memberError}=await db.from('associes').select('nom_affiche,actif').eq('user_id',user.id).maybeSingle();
  if(memberError||!member?.actif){$('locked').hidden=false;return}
  $('welcome').textContent='Bienvenue '+member.nom_affiche+' !';
- const{data:parts,error:partsError}=await db.from('participations_chevaux').select('cheval_slug,cheval_nom,pourcentage').eq('user_id',user.id).order('cheval_nom');
+ const{data:parts,error:partsError}=await db.from('participations_chevaux').select('cheval_slug,cheval_nom').eq('user_id',user.id).order('cheval_nom');
  if(partsError){$('status').textContent='Les participations ne sont pas encore configurées. Réessayez ultérieurement.'; $('private').hidden=false;return}
  if(!parts.length){$('horses').append(el('p',"Aucune participation n'est encore enregistrée sur votre compte.",'muted'))}
  for(const part of parts){
  const box=el('article',undefined,'horse');box.append(el('h2',part.cheval_nom));
- if(part.pourcentage!==null)box.append(el('p','Votre participation : '+Number(part.pourcentage).toLocaleString('fr-FR')+' %'));
+ 
  const newsBox=el('div');
  const{data:news,error:newsError}=await db.from('actualites_chevaux_privees').select('titre,contenu,created_at').eq('cheval_slug',part.cheval_slug).order('created_at',{ascending:false}).limit(10);
  if(newsError)newsBox.append(el('p','Informations privées indisponibles pour le moment.','muted'));
