@@ -1,5 +1,5 @@
 {
-  "version": 74,
+  "version": 75,
   "note": "Fiches de courses Equidia ou LeTROT avec sources identifiant les courses. Les URLs Equidia sont déduites du format date/R/C ; la disponibilité et la lecture des vidéos ne sont pas garanties. HOMA reste sur LeTROT faute de fiche Equidia vérifiée.",
   "replays": [
     {
@@ -248,6 +248,15 @@
       "url": "https://www.equidia.fr/courses/2026-07-19/R11/C5",
       "preuve_identification_course": "https://turfin.fr/course/2026-07-19/r11c5-clairefontaine-prix-etalon-otello-pierji",
       "controle": "Course référencée par Turfin (R et C concordants) ; lecture du replay Equidia non testée ici"
+    },
+    {
+      "date": "2026-07-12",
+      "cheval": "MANDRAGORA FLEURY",
+      "hippodrome": "DEAUVILLE-CLAIREFONTAINE",
+      "url": "https://www.equidia.fr/courses/2026-07-12/R10/C3",
+      "preuve_identification_course": "https://www.geny.com/course/1666684/arrivee-rapports",
+      "preuve_arrivee": "https://www.zeturf.fr/fr/course-du-jour/2026-07-12/R10C3-clairefontaine-prix-playmo-club-de-normandie",
+      "controle": "2e Prix Playmo Club de Normandie (R10C3), 12/07/2026 ; cheval et arrivée confirmés ; existence et lecture effectives du replay Equidia non testées."
     },
     {
       "date": "2026-07-03",
@@ -2777,6 +2786,15 @@
       "preuve_identification_course": "https://www.zone-turf.fr/cheval/actrice-de-cerisy-208673/archives-2.html",
       "preuve_arrivee": "https://www.zone-turf.fr/cheval/actrice-de-cerisy-208673/archives-2.html",
       "controle": "R1C8 Prix de Saint-Wandrille confirmé par programme du 15/03/2013 et résultat Actrice de Cerisy gagnante ; vidéo Equidia non testée"
+    },
+    {
+      "date": "2011-08-30",
+      "cheval": "SURCOUF BREIZH",
+      "hippodrome": "PORNICHET",
+      "url": "https://www.equidia.fr/courses/2011-08-30/R7/C8",
+      "preuve_identification_course": "https://www.geny.com/course/377473-2011-08-30-pornichet-la-baule-prix-de-pradel/arrivee-rapports",
+      "preuve_arrivee": "https://www.zeturf.sn/fr/course-du-jour/2011-08-30/R7C8-pornichet-la-baule-prix-de-pradel",
+      "controle": "2e Prix de Pradel (R7C8), 30/08/2011 ; cheval et arrivée confirmés ; existence et lecture effectives du replay Equidia non testées."
     }
   ]
 }
