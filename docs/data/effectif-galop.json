@@ -228,7 +228,8 @@
       "gains_verified_at": "2026-11-11",
       "verified_at": null,
       "data_status": "verified",
-      "gains_source_url": "https://www.geny.com/cheval/2859514-rosa-mia/course/1682831"
+      "gains_source_url": "https://www.geny.com/cheval/2859514-rosa-mia/course/1682831",
+      "status": "au repos"
     },
     {
       "id": "saturday-night",
