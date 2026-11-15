@@ -14,13 +14,19 @@
   const coursesBase = new URL("engagements/", siteBase);
   const podiumsBase = new URL("palmares/", siteBase);
   const associesBase = new URL("?espace=associes", applicationBase);
+  const contactBase = new URL("contact/", applicationBase);
+  const devenirBase = new URL("devenir-associe/", applicationBase);
+  const notificationsBase = new URL("notifications/", applicationBase);
+  const isContact = currentPath.startsWith(contactBase.pathname) || currentPath.startsWith(devenirBase.pathname);
   const onPrivate = currentPath.startsWith(applicationBase.pathname) &&
-    (currentPath !== applicationBase.pathname || new URLSearchParams(location.search).get("espace") === "associes");
+    (currentPath !== applicationBase.pathname || new URLSearchParams(location.search).get("espace") === "associes") &&
+    !isContact && !currentPath.startsWith(notificationsBase.pathname);
   const tabs = [
     { label: "🐎 Chevaux", href: chevauxBase.href, active: currentPath.startsWith(chevauxBase.pathname) },
     { label: "📅 Courses", href: coursesBase.href, active: currentPath.startsWith(coursesBase.pathname) },
     { label: "🏆 Podiums", href: podiumsBase.href, active: currentPath.startsWith(podiumsBase.pathname) },
-    { label: "🔒 Associés", href: associesBase.href, active: onPrivate }
+    { label: "🔒 Associés", href: associesBase.href, active: onPrivate },
+    { label: "✉️ Contact", href: contactBase.href, active: isContact }
   ];
   const css = document.createElement("style");
   css.id = "ei-app-nav-css";
@@ -38,12 +44,14 @@
       align-items: center; justify-content: center; text-align: center;
       padding: 7px 3px; margin: 0; border-radius: 8px;
       color: #fff !important; text-decoration: none !important;
-      font: 500 12px/1.2 Arial,Helvetica,sans-serif !important;
+      font: 500 11px/1.2 Arial,Helvetica,sans-serif !important;
+      white-space: nowrap; letter-spacing: -.1px;
       touch-action: manipulation; -webkit-tap-highlight-color: rgba(244,119,33,.3);
     }
     #ei-app-nav a[aria-current="page"] { background: #37302b; color: #ffa568 !important; font-weight: 700 !important; }
     #ei-app-nav a:focus-visible { outline: 2px solid #f47721; outline-offset: -2px; }
     #ei-app-nav a:active { background: #4b362a; }
+    @media (max-width: 370px) { #ei-app-nav a { font-size: 10px !important; letter-spacing: -.2px; padding-left: 0; padding-right: 0; } }
     @media (min-width: 760px) { #ei-app-nav { max-width: none; } #ei-app-nav a { font-size: 14px !important; } }
   `;
   document.head.appendChild(css);
