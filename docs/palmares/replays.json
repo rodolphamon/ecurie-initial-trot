@@ -1,5 +1,5 @@
 {
-  "version": 52,
+  "version": 53,
   "note": "Fiches de courses Equidia ou LeTROT avec sources identifiant les courses. Les URLs Equidia sont déduites du format date/R/C ; la disponibilité et la lecture des vidéos ne sont pas garanties. HOMA reste sur LeTROT faute de fiche Equidia vérifiée.",
   "replays": [
     {
@@ -566,6 +566,14 @@
       "controle": "Course et numéro R/C identifiés dans les résultats publics ; replay Equidia à confirmer dans le navigateur"
     },
     {
+      "date": "2025-11-23",
+      "cheval": "L'ARTISTE DE GAGOU",
+      "hippodrome": "CHERBOURG",
+      "url": "https://www.equidia.fr/courses/2025-11-23/R8/C4",
+      "justificatif": "https://www.zeturf.fr/fr/course/2025-11-23/R8C4-cherbourg-prix-pmu-le-maxelo-tourlaville-groupe-b",
+      "controle": "Cheval et classement dans arrivée de course publiquement consultable ; R/C confirmés ; disponibilité du replay Equidia non testée individuellement"
+    },
+    {
       "date": "2025-11-20",
       "cheval": "LARGO DE JOUDES",
       "hippodrome": "GRAIGNES",
@@ -714,6 +722,14 @@
       "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2025-09-03/202/4",
       "lien_letrot_precedent": "https://www.letrot.com/courses/2025-09-03/202/4",
       "preuve_identification_course": "https://www.canalturf.com/resultats-PMU/2025-09-03/la-capelle/382288_prix-francois-caille.html"
+    },
+    {
+      "date": "2025-08-29",
+      "cheval": "ZARTOP",
+      "hippodrome": "SAINT-MALO",
+      "url": "https://www.equidia.fr/courses/2025-08-29/R5/C1",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2025-08-29/R5C1-saint-malo-prix-robert-surcouf",
+      "controle": "Cheval et classement dans arrivée de course publiquement consultable ; R/C confirmés ; disponibilité du replay Equidia non testée individuellement"
     },
     {
       "date": "2025-08-27",
@@ -1143,6 +1159,14 @@
       "controle": "Arrivée officielle et identifiants R/C vérifiés sur la source ; ouverture vidéo Equidia non testée individuellement"
     },
     {
+      "date": "2024-08-03",
+      "cheval": "JODEON",
+      "hippodrome": "LES SABLES D'OLONNE",
+      "url": "https://www.equidia.fr/courses/2024-08-03/R10/C4",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2024-08-03/R10C4-les-sables-d-olonne-prix-de-la-pironniere-groupe-a",
+      "controle": "Cheval et classement dans arrivée de course publiquement consultable ; R/C confirmés ; disponibilité du replay Equidia non testée individuellement"
+    },
+    {
       "date": "2024-07-30",
       "cheval": "ON LOCKDOWN",
       "hippodrome": "DEAUVILLE",
@@ -1472,6 +1496,22 @@
       "url": "https://www.equidia.fr/courses/2023-02-14/R1/C2",
       "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2023-02-14/R1C2-vincennes-prix-de-colmar",
       "controle": "Date, cheval, classement et R/C confirmés dans une arrivée publique ; lecture vidéo Equidia non testée individuellement"
+    },
+    {
+      "date": "2023-02-05",
+      "cheval": "IBERIK DE MONGOCHY",
+      "hippodrome": "VINCENNES - GP",
+      "url": "https://www.equidia.fr/courses/2023-02-05/R1/C2",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2023-02-05/R1C2-vincennes-prix-indienne",
+      "controle": "Cheval et classement dans arrivée de course publiquement consultable ; R/C confirmés ; disponibilité du replay Equidia non testée individuellement"
+    },
+    {
+      "date": "2023-01-29",
+      "cheval": "IT'S EAGLE COGLAIS",
+      "hippodrome": "NANTES",
+      "url": "https://www.equidia.fr/courses/2023-01-29/R2/C2",
+      "justificatif": "https://www.zeturf.fr/fr/reunion-du-jour/2023-01-29/R2-nantes",
+      "controle": "Cheval et classement dans arrivée de course publiquement consultable ; R/C confirmés ; disponibilité du replay Equidia non testée individuellement"
     },
     {
       "date": "2022-10-12",
