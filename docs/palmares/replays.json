@@ -1,5 +1,5 @@
 {
-  "version": 20,
+  "version": 21,
   "note": "Liens vers les pages de courses sur Equidia ou LeTROT, avec références de résultats ayant permis d'identifier date, hippodrome, réunion et numéro de course. Les liens Equidia sont calculés d'après le format d'URL et leur lecture, ainsi que la disponibilité du replay, n'ont pas été testées automatiquement. Les victoires historiques ne sont pas modifiées.",
   "replays": [
     {
@@ -176,19 +176,23 @@
       "date": "2024-10-01",
       "cheval": "LARIFLETTE",
       "hippodrome": "VINCENNES",
-      "url": "https://www.letrot.com/courses/2024-10-01/7500/6",
+      "url": "https://www.equidia.fr/courses/2024-10-01/R4/C6",
       "justificatif": "https://www.canalturf.com/resultats-PMU/2024-10-01/paris-vincennes/351257_prix-de-perros-guirec.html",
-      "controle": "Hippodrome, date et numéro de course vérifiés ; URL construite au format LeTROT, lecture non testée automatiquement",
-      "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2024-10-01/7500/6"
+      "controle": "Résultat Canalturf : date, cheval gagnant, hippodrome et R/C confirmés ; lecture vidéo Equidia non testée",
+      "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2024-10-01/7500/6",
+      "lien_letrot_precedent": "https://www.letrot.com/courses/2024-10-01/7500/6",
+      "preuve_identification_course": "https://www.canalturf.com/resultats-PMU/2024-10-01/paris-vincennes/351257_prix-de-perros-guirec.html"
     },
     {
       "date": "2024-05-17",
       "cheval": "FAVORI DE L'ITON",
       "hippodrome": "VINCENNES",
-      "url": "https://www.letrot.com/courses/2024-05-17/7500/4",
+      "url": "https://www.equidia.fr/courses/2024-05-17/R1/C4",
       "justificatif": "https://www.canalturf.com/resultats-PMU/2024-05-17/paris-vincennes/339017_prix-de-nogent-prix-jean-gabin.html",
-      "controle": "Hippodrome, date et numéro de course vérifiés ; URL construite au format LeTROT, lecture non testée automatiquement",
-      "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2024-05-17/7500/4"
+      "controle": "Résultat Canalturf : date, cheval gagnant, hippodrome et R/C confirmés ; lecture vidéo Equidia non testée",
+      "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2024-05-17/7500/4",
+      "lien_letrot_precedent": "https://www.letrot.com/courses/2024-05-17/7500/4",
+      "preuve_identification_course": "https://www.canalturf.com/resultats-PMU/2024-05-17/paris-vincennes/339017_prix-de-nogent-prix-jean-gabin.html"
     },
     {
       "date": "2024-05-14",
@@ -214,10 +218,12 @@
       "date": "2022-10-12",
       "cheval": "ILLAM DE MONGOCHY",
       "hippodrome": "ENGHIEN",
-      "url": "https://www.letrot.com/courses/2022-10-12/7502/2",
+      "url": "https://www.equidia.fr/courses/2022-10-12/R1/C2",
       "justificatif": "https://www.canalturf.com/resultats-PMU/2022-10-12/enghien/287560_prix-de-la-tour-montparnasse.html",
-      "controle": "Hippodrome, date et numéro de course vérifiés ; URL construite au format LeTROT, lecture non testée automatiquement",
-      "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2022-10-12/7502/2"
+      "controle": "Résultat Canalturf : date, cheval gagnant, hippodrome et R/C confirmés ; lecture vidéo Equidia non testée",
+      "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2022-10-12/7502/2",
+      "lien_letrot_precedent": "https://www.letrot.com/courses/2022-10-12/7502/2",
+      "preuve_identification_course": "https://www.canalturf.com/resultats-PMU/2022-10-12/enghien/287560_prix-de-la-tour-montparnasse.html"
     },
     {
       "date": "2022-08-31",
