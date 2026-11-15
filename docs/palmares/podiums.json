@@ -1239,7 +1239,9 @@
       "classement": 3,
       "discipline": "attele",
       "casaque": "blanche",
-      "jockey": "Chloé SCHOTTER"
+      "jockey": "Chloé SCHOTTER",
+      "entraineur": "Frédéric CLOZIER",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Charley HESLOUIN puis Frédéric CLOZIER à partir de la victoire de Villeneuve-sur-Lot du 10/09/2023"
     },
     {
       "date": "2024-09-10",
@@ -1540,7 +1542,9 @@
       "classement": 3,
       "discipline": "attele",
       "casaque": "blanche",
-      "jockey": "Guy BEAUDOUIN"
+      "jockey": "Guy BEAUDOUIN",
+      "entraineur": "Frédéric CLOZIER",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Charley HESLOUIN puis Frédéric CLOZIER à partir de la victoire de Villeneuve-sur-Lot du 10/09/2023"
     },
     {
       "date": "2024-02-04",
@@ -1626,7 +1630,9 @@
       "classement": 3,
       "discipline": "attele",
       "casaque": "blanche",
-      "jockey": "Frédéric CLOZIER"
+      "jockey": "Frédéric CLOZIER",
+      "entraineur": "Frédéric CLOZIER",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Charley HESLOUIN puis Frédéric CLOZIER à partir de la victoire de Villeneuve-sur-Lot du 10/09/2023"
     },
     {
       "date": "2023-11-05",
