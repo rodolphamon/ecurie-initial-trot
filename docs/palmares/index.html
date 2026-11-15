@@ -93,6 +93,8 @@ function nomProprietaire(s){
 }
 function victoireAdmiseAuCompteur(r){
  if(r.compteInitial===false)return false;
+ // Les casaques de tiers restent visibles mais ne sont jamais comptabilisées.
+ if(["julien","homa"].includes(r.casaque))return false;
  const discipline=["galop","obstacle"].includes(r.discipline)?"galop":["attele","monte","trot"].includes(r.discipline)?"trot":null;
  if(!discipline)return false;
  // Si le propriétaire est identifié, sa valeur fait foi, pas la casaque ni le jockey.
@@ -267,8 +269,15 @@ refreshNameFilters();
 // Calcul sur les lignes attribuées aux cinq catégories admises,
 // vérifiées individuellement contre la liste officielle des 130 succès de l'Écurie Initial au trot.
 function updateCounter(){
- const total=results.filter(r=>(r.classement||1)===1&&victoireAdmiseAuCompteur(r)).length;
- $("counter").textContent=new Intl.NumberFormat("fr-FR").format(total);const seconds=results.filter(r=>r.classement===2).length,thirds=results.filter(r=>r.classement===3).length;$("silverCounter").textContent=seconds;$("bronzeCounter").textContent=thirds;$("allPodiums").textContent=new Intl.NumberFormat("fr-FR").format(total+seconds+thirds);$("placingStats").textContent="Classements enregistrés : "+total+" victoires, "+seconds+" deuxièmes places et "+thirds+" troisièmes places";
+ const admis=results.filter(victoireAdmiseAuCompteur);
+ const total=admis.filter(r=>(r.classement||1)===1).length;
+ const seconds=admis.filter(r=>r.classement===2).length;
+ const thirds=admis.filter(r=>r.classement===3).length;
+ $("counter").textContent=new Intl.NumberFormat("fr-FR").format(total);
+ $("silverCounter").textContent=seconds;
+ $("bronzeCounter").textContent=thirds;
+ $("allPodiums").textContent=new Intl.NumberFormat("fr-FR").format(total+seconds+thirds);
+ $("placingStats").textContent="Résultats attribués dans ce palmarès : "+total+" victoires, "+seconds+" deuxièmes places et "+thirds+" troisièmes places. Référence officielle LeTROT (trot uniquement) : 153 victoires et 434 podiums (Écurie Initial, Rodolphe et Nathalie HAMON).";
 }
 async function loadPodiums(){try{const response=await fetch("./podiums.json",{cache:"no-store"});if(!response.ok)throw Error();const json=await response.json();const keys=new Set(results.map(v=>[v.date,v.cheval,v.hippodrome].join("|").toUpperCase()));for(const p of json.podiums||[]){if(!p||![2,3].includes(p.classement)||!/^\d{4}-\d{2}-\d{2}$/.test(p.date||"")||!p.cheval||!p.hippodrome)continue;const key=[p.date,p.cheval,p.hippodrome].join("|").toUpperCase();if(keys.has(key))continue;keys.add(key);results.push({...p,jockey:p.jockey||"",entraineur:p.entraineur||"",casaque:p.casaque||"blanche"})}refreshYears();refreshNameFilters();updateCounter();render()}catch(e){/* Le palmarès des victoires reste disponible. */}}
 async function loadNewVictories(){
