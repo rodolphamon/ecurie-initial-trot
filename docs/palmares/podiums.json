@@ -1,28 +1,10 @@
 {
   "podiums": [
     {
-      "date": "2026-10-20",
-      "cheval": "ZARTOP",
-      "hippodrome": "CLAIREFONTAINE",
-      "classement": 2,
-      "discipline": "galop",
-      "entraineur": "Gilles PANNIER",
-      "casaque": "galop"
-    },
-    {
-      "date": "2026-10-22",
-      "cheval": "GONAFOOT",
-      "hippodrome": "LES SABLES-D'OLONNE",
+      "date": "2026-11-01",
+      "cheval": "MEMPHIS BELLE",
+      "hippodrome": "LISIEUX",
       "classement": 3,
-      "discipline": "galop",
-      "entraineur": "Gilles PANNIER",
-      "casaque": "galop"
-    },
-    {
-      "date": "2026-10-25",
-      "cheval": "LUCKY DES GAUDINES",
-      "hippodrome": "MONTAUBAN",
-      "classement": 2,
       "discipline": "attele",
       "casaque": "blanche"
     },
@@ -35,11 +17,398 @@
       "casaque": "blanche"
     },
     {
-      "date": "2026-11-01",
-      "cheval": "MEMPHIS BELLE",
+      "date": "2026-10-25",
+      "cheval": "LUCKY DES GAUDINES",
+      "hippodrome": "MONTAUBAN",
+      "classement": 2,
+      "discipline": "attele",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2026-10-22",
+      "cheval": "GONAFOOT",
+      "hippodrome": "LES SABLES-D'OLONNE",
+      "classement": 3,
+      "discipline": "galop",
+      "entraineur": "Gilles PANNIER",
+      "casaque": "galop"
+    },
+    {
+      "date": "2026-10-20",
+      "cheval": "ZARTOP",
+      "hippodrome": "CLAIREFONTAINE",
+      "classement": 2,
+      "discipline": "galop",
+      "entraineur": "Gilles PANNIER",
+      "casaque": "galop"
+    },
+    {
+      "date": "2026-10-03",
+      "cheval": "LUCKY DES GAUDINES",
+      "hippodrome": "BEAUMONT-DE-LOMAGNE",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Mathieu DAOUGABEL",
+      "casaque": "nathalie"
+    },
+    {
+      "date": "2026-02-23",
+      "cheval": "MONA LISA STARDUST",
+      "hippodrome": "MONTAUBAN",
+      "classement": 3,
+      "discipline": "attele",
+      "jockey": "Michel HANQUIER",
+      "casaque": "nathalie"
+    },
+    {
+      "date": "2025-11-03",
+      "cheval": "MONA LISA STARDUST",
+      "hippodrome": "AGEN-LA-GARENNE",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Michel HANQUIER",
+      "casaque": "nathalie"
+    },
+    {
+      "date": "2025-08-02",
+      "cheval": "MONA LISA STARDUST",
+      "hippodrome": "VILLEREAL",
+      "classement": 3,
+      "discipline": "attele",
+      "jockey": "Michel-Xavier CHARLOT",
+      "casaque": "nathalie"
+    },
+    {
+      "date": "2024-07-01",
+      "cheval": "HANANE MONTAVAL",
+      "hippodrome": "STRASBOURG",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Joachim-Brandon LELIEVRE",
+      "casaque": "nathalie"
+    },
+    {
+      "date": "2024-02-15",
+      "cheval": "HANANE MONTAVAL",
+      "hippodrome": "GRAIGNES",
+      "classement": 3,
+      "discipline": "attele",
+      "jockey": "François LAGADEUC",
+      "casaque": "nathalie"
+    },
+    {
+      "date": "2024-01-31",
+      "cheval": "HANANE MONTAVAL",
+      "hippodrome": "ANGERS",
+      "classement": 3,
+      "discipline": "attele",
+      "jockey": "François LAGADEUC",
+      "casaque": "nathalie"
+    },
+    {
+      "date": "2024-01-16",
+      "cheval": "HANANE MONTAVAL",
+      "hippodrome": "TOULOUSE",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Adrien MERIEL",
+      "casaque": "nathalie"
+    },
+    {
+      "date": "2023-05-29",
+      "cheval": "HANANE MONTAVAL",
+      "hippodrome": "DURTAL",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Mathieu ABRIVARD",
+      "casaque": "nathalie"
+    },
+    {
+      "date": "2023-05-16",
+      "cheval": "KOBLENZA DAIRPET",
+      "hippodrome": "VINCENNES",
+      "classement": 3,
+      "discipline": "attele",
+      "jockey": "Bruno MARIE",
+      "casaque": "nathalie"
+    },
+    {
+      "date": "2023-05-01",
+      "cheval": "KOBLENZA DAIRPET",
+      "hippodrome": "BERNAY",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Bruno MARIE",
+      "casaque": "nathalie"
+    },
+    {
+      "date": "2023-02-25",
+      "cheval": "ISBA QUICK",
+      "hippodrome": "MONTAUBAN",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Bruno MARIE",
+      "casaque": "nathalie"
+    },
+    {
+      "date": "2023-01-21",
+      "cheval": "ISBA QUICK",
+      "hippodrome": "ARGENTAN",
+      "classement": 3,
+      "discipline": "attele",
+      "jockey": "Alexandre GUILLEMIN",
+      "casaque": "nathalie"
+    },
+    {
+      "date": "2022-09-11",
+      "cheval": "HANANE MONTAVAL",
+      "hippodrome": "CHATEAUBRIANT",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "François LAGADEUC",
+      "casaque": "nathalie"
+    },
+    {
+      "date": "2022-08-28",
+      "cheval": "HANANE MONTAVAL",
+      "hippodrome": "ROYAN-ATLANTIQUE",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Adrien MERIEL",
+      "casaque": "nathalie"
+    },
+    {
+      "date": "2022-08-08",
+      "cheval": "HANANE MONTAVAL",
+      "hippodrome": "DIEPPE",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Adrien MERIEL",
+      "casaque": "nathalie"
+    },
+    {
+      "date": "2022-07-01",
+      "cheval": "ISBA QUICK",
+      "hippodrome": "BORDEAUX",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Bruno MARIE",
+      "casaque": "nathalie"
+    },
+    {
+      "date": "2022-03-20",
+      "cheval": "ISBA QUICK",
+      "hippodrome": "REIMS",
+      "classement": 3,
+      "discipline": "attele",
+      "jockey": "Alexandre GUILLEMIN",
+      "casaque": "nathalie"
+    },
+    {
+      "date": "2022-03-04",
+      "cheval": "ISBA QUICK",
+      "hippodrome": "LAVAL",
+      "classement": 3,
+      "discipline": "attele",
+      "jockey": "Alexandre GUILLEMIN",
+      "casaque": "nathalie"
+    },
+    {
+      "date": "2022-01-16",
+      "cheval": "ISBA QUICK",
+      "hippodrome": "ARGENTAN",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Bruno MARIE",
+      "casaque": "nathalie"
+    },
+    {
+      "date": "2021-08-01",
+      "cheval": "CAID DORE",
+      "hippodrome": "COMPIEGNE",
+      "classement": 3,
+      "discipline": "attele",
+      "jockey": "Bruno MARIE",
+      "casaque": "nathalie"
+    },
+    {
+      "date": "2021-07-26",
+      "cheval": "CAID DORE",
+      "hippodrome": "CHATELAILLON-LA ROCHELLE",
+      "classement": 3,
+      "discipline": "attele",
+      "jockey": "Bruno MARIE",
+      "casaque": "nathalie"
+    },
+    {
+      "date": "2021-07-05",
+      "cheval": "CAID DORE",
+      "hippodrome": "EAUZE",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Romain LE CREPS",
+      "casaque": "nathalie"
+    },
+    {
+      "date": "2021-05-02",
+      "cheval": "CAID DORE",
+      "hippodrome": "RAMBOUILLET",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Bruno MARIE",
+      "casaque": "nathalie"
+    },
+    {
+      "date": "2020-09-20",
+      "cheval": "FEEL SO GOOD",
+      "hippodrome": "VILLEDIEU-LES-POELES",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Florian TABESSE",
+      "casaque": "nathalie"
+    },
+    {
+      "date": "2018-09-16",
+      "cheval": "ELFE ATOUT",
+      "hippodrome": "CHERBOURG",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Bruno MARIE",
+      "casaque": "nathalie"
+    },
+    {
+      "date": "2018-07-02",
+      "cheval": "ELFE ATOUT",
+      "hippodrome": "VICHY",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Jean-Michel BAZIRE",
+      "casaque": "nathalie"
+    },
+    {
+      "date": "2018-06-19",
+      "cheval": "ELFE ATOUT",
+      "hippodrome": "VICHY",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Bruno MARIE",
+      "casaque": "nathalie"
+    },
+    {
+      "date": "2017-06-17",
+      "cheval": "ELFE ATOUT",
       "hippodrome": "LISIEUX",
       "classement": 3,
       "discipline": "attele",
+      "jockey": "Charley HESLOUIN",
+      "casaque": "nathalie"
+    },
+    {
+      "date": "2015-06-13",
+      "cheval": "UKAPI DE GODISSON",
+      "hippodrome": "LE TOUQUET",
+      "classement": 3,
+      "discipline": "attele",
+      "jockey": "Dwight PIETERS",
+      "casaque": "nathalie"
+    },
+    {
+      "date": "2013-07-27",
+      "cheval": "RHUM BARBES",
+      "hippodrome": "COMPIEGNE",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Elisabeth ALLAIRE",
+      "casaque": "nathalie"
+    },
+    {
+      "date": "2011-08-30",
+      "cheval": "SURCOUF BREIZH",
+      "hippodrome": "PORNICHET",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Mathieu ABRIVARD",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2011-08-21",
+      "cheval": "ROMEO LAP",
+      "hippodrome": "SAINT-PIERRE-EN-AUGE",
+      "classement": 3,
+      "discipline": "attele",
+      "jockey": "Marlène BEDOUET",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2011-08-20",
+      "cheval": "SURCOUF BREIZH",
+      "hippodrome": "GRAIGNES",
+      "classement": 3,
+      "discipline": "attele",
+      "jockey": "Marlène BEDOUET",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2011-08-15",
+      "cheval": "ROMEO LAP",
+      "hippodrome": "DIEPPE",
+      "classement": 3,
+      "discipline": "attele",
+      "jockey": "Wilfried JEHANNE",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2009-09-27",
+      "cheval": "OLGA DE LA FONTE",
+      "hippodrome": "AVIGNON-LE PONTET",
+      "classement": 3,
+      "discipline": "attele",
+      "jockey": "Franck HATIER",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2009-08-22",
+      "cheval": "OLGA DE LA FONTE",
+      "hippodrome": "SAINT-PIERRE-EN-AUGE",
+      "classement": 3,
+      "discipline": "attele",
+      "jockey": "Rodolphe HAMON",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2009-08-16",
+      "cheval": "OLGA DE LA FONTE",
+      "hippodrome": "BACQUEVILLE-EN-CAUX",
+      "classement": 3,
+      "discipline": "attele",
+      "jockey": "Rodolphe HAMON",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2009-05-31",
+      "cheval": "OLGA DE LA FONTE",
+      "hippodrome": "GOURNAY-EN-BRAY",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Rodolphe HAMON",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2009-05-10",
+      "cheval": "OLGA DE LA FONTE",
+      "hippodrome": "ARRAS",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Rodolphe HAMON",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2008-10-27",
+      "cheval": "OLGA DE LA FONTE",
+      "hippodrome": "LE CROISE-LAROCHE",
+      "classement": 3,
+      "discipline": "attele",
+      "jockey": "Christophe SOUMILLON",
       "casaque": "blanche"
     }
   ]
