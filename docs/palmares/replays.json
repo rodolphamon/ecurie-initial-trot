@@ -1,5 +1,5 @@
 {
-  "version": 22,
+  "version": 23,
   "note": "Liens vers les pages de courses sur Equidia ou LeTROT, avec références de résultats ayant permis d'identifier date, hippodrome, réunion et numéro de course. Les liens Equidia sont calculés d'après le format d'URL et leur lecture, ainsi que la disponibilité du replay, n'ont pas été testées automatiquement. Les victoires historiques ne sont pas modifiées.",
   "replays": [
     {
@@ -262,10 +262,12 @@
       "date": "2022-02-22",
       "cheval": "IBERIK DE MONGOCHY",
       "hippodrome": "VINCENNES",
-      "url": "https://www.letrot.com/courses/2022-02-22/7500/4",
+      "url": "https://www.equidia.fr/courses/2022-02-22/R1/C4",
       "justificatif": "https://www.zone-turf.fr/rapports/r1-c4-prix-d-avenches-812212.html",
-      "controle": "Hippodrome, date et numéro de course vérifiés ; URL construite au format LeTROT, lecture non testée automatiquement",
-      "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2022-02-22/7500/4"
+      "controle": "Résultat public confirme date, hippodrome, R/C et victoire ; lecture du replay Equidia non testée",
+      "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2022-02-22/7500/4",
+      "lien_letrot_precedent": "https://www.letrot.com/courses/2022-02-22/7500/4",
+      "preuve_identification_course": "https://www.zone-turf.fr/rapports/r1-c4-prix-d-avenches-812212.html"
     },
     {
       "date": "2022-01-29",
@@ -302,19 +304,23 @@
       "date": "2021-10-19",
       "cheval": "IBERIK DE MONGOCHY",
       "hippodrome": "VINCENNES",
-      "url": "https://www.letrot.com/courses/2021-10-19/7500/4",
+      "url": "https://www.equidia.fr/courses/2021-10-19/R1/C4",
       "justificatif": "https://www.geny.com/course/1268733-2021-10-19-vincennes-prix-phact/arrivee-rapports",
-      "controle": "Hippodrome, date et numéro de course vérifiés ; URL construite au format LeTROT, lecture non testée automatiquement",
-      "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2021-10-19/7500/4"
+      "controle": "Résultat public confirme date, hippodrome, R/C et victoire ; lecture du replay Equidia non testée",
+      "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2021-10-19/7500/4",
+      "lien_letrot_precedent": "https://www.letrot.com/courses/2021-10-19/7500/4",
+      "preuve_identification_course": "https://www.gbet.fr/courses/vincennes/2021-10-19/r1/c4/prix-phact/"
     },
     {
       "date": "2021-09-23",
       "cheval": "IBERIK DE MONGOCHY",
       "hippodrome": "VINCENNES",
-      "url": "https://www.letrot.com/courses/2021-09-23/7500/2",
+      "url": "https://www.equidia.fr/courses/2021-09-23/R1/C2",
       "justificatif": "https://www.gbet.fr/courses/vincennes/2021-09-23/r1/c2/prix-de-bagneres/",
-      "controle": "Hippodrome, date et numéro de course vérifiés ; URL construite au format LeTROT, lecture non testée automatiquement",
-      "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2021-09-23/7500/2"
+      "controle": "Résultat public confirme date, hippodrome, R/C et victoire ; lecture du replay Equidia non testée",
+      "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2021-09-23/7500/2",
+      "lien_letrot_precedent": "https://www.letrot.com/courses/2021-09-23/7500/2",
+      "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2021-09-23/R1C2-vincennes-prix-de-bagneres"
     },
     {
       "date": "2021-08-30",
