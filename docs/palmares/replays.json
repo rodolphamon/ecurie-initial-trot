@@ -1,5 +1,5 @@
 {
-  "version": 71,
+  "version": 72,
   "note": "Fiches de courses Equidia ou LeTROT avec sources identifiant les courses. Les URLs Equidia sont déduites du format date/R/C ; la disponibilité et la lecture des vidéos ne sont pas garanties. HOMA reste sur LeTROT faute de fiche Equidia vérifiée.",
   "replays": [
     {
@@ -2124,6 +2124,14 @@
       "controle": "2e n°7 Prix de la Cauvinière, R1C7 confirmé par arrivée ou historique détaillé des courses ; disponibilité effective du replay Equidia non testée individuellement."
     },
     {
+      "date": "2021-08-01",
+      "cheval": "CAID DORE",
+      "hippodrome": "COMPIEGNE",
+      "url": "https://www.equidia.fr/courses/2021-08-01/R9/C5",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2021-08-01/R9C5-compiegne-prix-de-l-arc",
+      "controle": "Arrivée 3e et numéro R9C5 confirmés par source de résultat ; disponibilité de la vidéo Equidia non vérifiée individuellement"
+    },
+    {
       "date": "2021-07-26",
       "cheval": "CAID DORE",
       "hippodrome": "CHATELAILLON-LA ROCHELLE",
@@ -2408,6 +2416,14 @@
       "controle": "Réunion et course confirmées dans une fiche de résultat montrant le cheval gagnant ; lien Equidia au format de course, lecture non testée ici."
     },
     {
+      "date": "2019-06-30",
+      "cheval": "ETOILE DE MONGOCHY",
+      "hippodrome": "BEAUMONT-DE-LOMAGNE",
+      "url": "https://www.equidia.fr/courses/2019-06-30/R8/C2",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2019-06-30/R8C2-beaumont-de-lomagne-prix-henri-delbary",
+      "controle": "Arrivée 2e et numéro R8C2 confirmés par source de résultat ; disponibilité de la vidéo Equidia non vérifiée individuellement"
+    },
+    {
       "date": "2019-05-10",
       "cheval": "FETICHE ATOUT",
       "hippodrome": "LAVAL",
@@ -2423,6 +2439,14 @@
       "preuve_identification_course": "https://www.canalturf.com/cotes/2018-11-28/le-croise-laroche/179742_prix-des-recollets.html",
       "preuve_arrivee": "https://www.sportinglife.com/racing/results/2018-11-28/le-croise-laroche/502350/prix-des-recollets-attele",
       "controle": "Numéro R/C confirmé dans le programme et victoire dans le résultat ; lien Equidia de la course, lecture vidéo non testée automatiquement"
+    },
+    {
+      "date": "2018-09-16",
+      "cheval": "ELFE ATOUT",
+      "hippodrome": "CHERBOURG",
+      "url": "https://www.equidia.fr/courses/2018-09-16/R11/C5",
+      "justificatif": "https://www.oneturf.co.uk/results/FR/16-09-2018/119381%2C953048%2CCHERBOURG%2C5-PRIX-JUNIOR-TROT.html",
+      "controle": "Arrivée 2e et numéro R11C5 confirmés par source de résultat ; disponibilité de la vidéo Equidia non vérifiée individuellement"
     },
     {
       "date": "2018-08-06",
@@ -2696,6 +2720,14 @@
       "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2013-12-27/7500/8",
       "lien_letrot_precedent": "https://www.letrot.com/courses/2013-12-27/7500/8",
       "preuve_identification_course": "https://www.zone-turf.fr/cheval/agitateur-250028/archives-2.html"
+    },
+    {
+      "date": "2013-07-27",
+      "cheval": "RHUM BARBES",
+      "hippodrome": "COMPIEGNE",
+      "url": "https://www.equidia.fr/courses/2013-07-27/R7/C5",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2013-07-27/R7C5-compiegne-prix-de-vaudrampont",
+      "controle": "Arrivée 2e et numéro R7C5 confirmés par source de résultat ; disponibilité de la vidéo Equidia non vérifiée individuellement"
     },
     {
       "date": "2013-03-19",
