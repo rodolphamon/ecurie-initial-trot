@@ -25,6 +25,16 @@
       "commentaire": "Arrivée confirmée ; aucune URL de replay spécifique établie lors des recherches. Ne pas afficher comme vidéo tant que le replay est introuvable."
     },
     {
+      "date": "2026-09-27",
+      "cheval": "JUNINIO FLEURY",
+      "hippodrome": "VILLENEUVE-SUR-LOT",
+      "classement": 2,
+      "course": "Prix de Villeréal, PHH C7",
+      "source_resultat": "https://www.zone-turf.fr/cheval/juninio-fleury-1622784/",
+      "etat_video": "non_identifiee",
+      "commentaire": "Résultat et course identifiés. L'absence de vidéo connue ne prouve pas l'inexistence d'un enregistrement."
+    },
+    {
       "date": "2026-09-20",
       "cheval": "ANDRESY",
       "hippodrome": "SABLE-SUR-SARTHE",
@@ -135,6 +145,36 @@
       "commentaire": "Arrivée recoupée ; vérifier LeTROT/Equidia/ZEturf avant ajout d'un lien vidéo."
     },
     {
+      "date": "2022-08-28",
+      "cheval": "HANANE MONTAVAL",
+      "hippodrome": "ROYAN-ATLANTIQUE",
+      "classement": 2,
+      "course": "Prix de la Ville de Saint-Augustin R9C3",
+      "source_resultat": "https://www.zeturf.fr/fr/course-du-jour/2022-08-28/R9C3-royan-la-palmyre-prix-de-la-ville-de-saint-augustin",
+      "etat_video": "fiche_avec_replay_identifiee",
+      "commentaire": "Résultat et course identifiés. L'absence de vidéo connue ne prouve pas l'inexistence d'un enregistrement."
+    },
+    {
+      "date": "2022-08-17",
+      "cheval": "JETHAN DE MONGOCHY",
+      "hippodrome": "ROYAN-ATLANTIQUE",
+      "classement": 3,
+      "course": "Prix Ar Pub R8C1",
+      "source_resultat": "https://www.zeturf.fr/fr/course-du-jour/2022-08-17/R8C1-royan-la-palmyre-prix-ar-pub",
+      "etat_video": "fiche_avec_replay_identifiee",
+      "commentaire": "Résultat et course identifiés. L'absence de vidéo connue ne prouve pas l'inexistence d'un enregistrement."
+    },
+    {
+      "date": "2022-07-03",
+      "cheval": "JETHAN DE MONGOCHY",
+      "hippodrome": "LE TOUQUET",
+      "classement": 2,
+      "course": "Prix d'Ouverture Groupe B",
+      "source_resultat": "https://www.zone-turf.fr/cheval/juno-day-1740256/archives-2.html",
+      "etat_video": "non_identifiee",
+      "commentaire": "Résultat et course identifiés. L'absence de vidéo connue ne prouve pas l'inexistence d'un enregistrement."
+    },
+    {
       "date": "2022-06-18",
       "cheval": "JETHAN DE MONGOCHY",
       "hippodrome": "LISIEUX",
@@ -143,6 +183,26 @@
       "source_resultat": "https://www.zone-turf.fr/programmes/phh-lisieux-151106.html",
       "etat_video": "non_identifiee",
       "commentaire": "Arrivée recoupée ; vérifier LeTROT/Equidia/ZEturf avant ajout d'un lien vidéo."
+    },
+    {
+      "date": "2022-04-03",
+      "cheval": "JULY DU GUESNE",
+      "hippodrome": "VIRE NORMANDIE",
+      "classement": 2,
+      "course": "Prix de la Sté Courses Agon-Coutainville, PHH C1",
+      "source_resultat": "https://www.zone-turf.fr/rapports/phh-vire-146944.html",
+      "etat_video": "non_identifiee",
+      "commentaire": "Résultat et course identifiés. L'absence de vidéo connue ne prouve pas l'inexistence d'un enregistrement."
+    },
+    {
+      "date": "2022-04-03",
+      "cheval": "HOMAYA DU BOCAGE",
+      "hippodrome": "VIRE NORMANDIE",
+      "classement": 3,
+      "course": "Prix du Zoo de Jurques Groupe C, PHH C7",
+      "source_resultat": "https://www.zone-turf.fr/rapports/phh-vire-146944.html",
+      "etat_video": "non_identifiee",
+      "commentaire": "Résultat et course identifiés. L'absence de vidéo connue ne prouve pas l'inexistence d'un enregistrement."
     },
     {
       "date": "2020-12-14",
@@ -213,6 +273,16 @@
       "source_resultat": "https://www.zone-turf.fr/cheval/rhea-silvia-43685/",
       "etat_video": "non_identifiee",
       "commentaire": "Arrivée recoupée ; vérifier LeTROT/Equidia/ZEturf avant ajout d'un lien vidéo."
+    },
+    {
+      "date": "2013-11-10",
+      "cheval": "ACTRICE DE CERISY",
+      "hippodrome": "BORDEAUX",
+      "classement": 2,
+      "course": "Prix Fernand Monnereau, Z7C1",
+      "source_resultat": "https://www.zone-turf.fr/rapports/phh-c1-prix-fernand-monnereau-231968.html",
+      "etat_video": "non_identifiee",
+      "commentaire": "Résultat et course identifiés. L'absence de vidéo connue ne prouve pas l'inexistence d'un enregistrement."
     },
     {
       "date": "2013-01-13",
