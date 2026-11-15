@@ -1,5 +1,5 @@
 {
-  "version": 31,
+  "version": 32,
   "note": "Fiches de courses Equidia ou LeTROT avec sources identifiant les courses. Les URLs Equidia sont déduites du format date/R/C ; la disponibilité et la lecture des vidéos ne sont pas garanties. HOMA reste sur LeTROT faute de fiche Equidia vérifiée.",
   "replays": [
     {
@@ -162,6 +162,14 @@
       "controle": "Course référencée par Turfin (R et C concordants) ; lecture du replay Equidia non testée ici"
     },
     {
+      "date": "2026-06-29",
+      "cheval": "MOSCANTIDA PEAL",
+      "hippodrome": "ENGHIEN",
+      "url": "https://www.equidia.fr/courses/2026-06-29/R2/C4",
+      "justificatif": "https://zeturf.fr/fr/course-du-jour/2026-06-29/R2C4-enghien-soisy-prix-de-janze",
+      "controle": "Réunion, course et classement confirmés par source de résultats ; l'utilisateur a confirmé le fonctionnement des liens Equidia sur le site, lecture de cette course non testée individuellement"
+    },
+    {
       "date": "2026-06-10",
       "cheval": "ROSA MIA",
       "hippodrome": "ARGENTAN",
@@ -176,6 +184,14 @@
       "url": "https://www.equidia.fr/courses/2026-06-02/R1/C1",
       "preuve_lien_equidia": "https://turfin.fr/course/2026-06-02/r1c1-saint-cloud",
       "controle": "Lien direct vers la fiche de course Equidia indiqué sur Turfin ; lecture du replay non testée depuis cet environnement"
+    },
+    {
+      "date": "2026-05-29",
+      "cheval": "ISOLEE DU BOUILLON",
+      "hippodrome": "VINCENNES - GP",
+      "url": "https://www.equidia.fr/courses/2026-05-29/R1/C4",
+      "justificatif": "https://www.canalturf.com/resultats-PMU/2026-05-29/paris-vincennes/407409_prix-de-clairefontaine.html",
+      "controle": "Réunion, course et classement confirmés par source de résultats ; l'utilisateur a confirmé le fonctionnement des liens Equidia sur le site, lecture de cette course non testée individuellement"
     },
     {
       "date": "2026-05-26",
@@ -262,6 +278,14 @@
       "url": "https://www.equidia.fr/courses/2026-02-20/R4/C7",
       "preuve_lien_equidia": "https://turfin.fr/course/2026-02-20/r4c7-chantilly",
       "controle": "Lien direct vers la fiche de course Equidia indiqué sur Turfin ; lecture du replay non testée depuis cet environnement"
+    },
+    {
+      "date": "2026-02-16",
+      "cheval": "IT'S EAGLE COGLAIS",
+      "hippodrome": "VINCENNES - GP",
+      "url": "https://www.equidia.fr/courses/2026-02-16/R1/C3",
+      "justificatif": "https://www.canalturf.com/resultats-PMU/2026-02-16/paris-vincennes/397655_prix-de-balleroy.html",
+      "controle": "Réunion, course et classement confirmés par source de résultats ; l'utilisateur a confirmé le fonctionnement des liens Equidia sur le site, lecture de cette course non testée individuellement"
     },
     {
       "date": "2026-02-14",
