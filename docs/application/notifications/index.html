@@ -84,6 +84,23 @@ async function init(){
   const config=await res.json().catch(()=>({}));
   if(!res.ok||!config.publicKey){$('serviceState').textContent='Les notifications sont en préparation : le serveur d’envoi doit encore être activé.';return}
   publicKey=config.publicKey;
+  if(subscription && localStorage.getItem(tokenKey)){
+    try{
+      const state=await callServer({action:'status',deviceToken:deviceToken(),endpoint:subscription.endpoint});
+      const p=state.preferences;
+      if(state.active && p){
+        if(isMember){
+          for(const [field,id] of Object.entries({confirmed:'confirmed',daily:'reminder10',before15:'before15',results:'resultMember',withdrawn:'withdrawn'}))
+            $(id).checked=!!p[field];
+          const chosen=document.querySelector('input[name="scope"][value="'+(p.scope==='all'?'all':'mine')+'"]');
+          if(chosen)chosen.checked=true;
+        }else{
+          $('daily').checked=!!p.daily;
+          $('results').checked=!!p.results;
+        }
+      }
+    }catch(_){/* La consultation des préférences n'empêche pas leur réenregistrement. */}
+  }
   $('serviceState').textContent=subscription?'Cet appareil possède déjà une autorisation Push.':'Prêt à demander votre autorisation.';
   $('enable').disabled=false;
   if(subscription){$('enable').textContent='Enregistrer mes préférences';$('disable').hidden=false;}
