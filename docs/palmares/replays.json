@@ -1,5 +1,5 @@
 {
-  "version": 29,
+  "version": 30,
   "note": "Fiches de courses Equidia ou LeTROT avec sources identifiant les courses. Les URLs Equidia sont déduites du format date/R/C ; la disponibilité et la lecture des vidéos ne sont pas garanties. HOMA reste sur LeTROT faute de fiche Equidia vérifiée.",
   "replays": [
     {
@@ -47,6 +47,14 @@
       "controle": "Lien direct vers la fiche de course Equidia indiqué sur Turfin ; lecture du replay non testée depuis cet environnement"
     },
     {
+      "date": "2026-09-20",
+      "cheval": "NOSTALGIE DAIRPET",
+      "hippodrome": "VIRE NORMANDIE",
+      "url": "https://www.equidia.fr/courses/2026-09-20/R12/C1",
+      "preuve_identification_course": "https://turfin.fr/course/12/1?date=2026-09-20",
+      "controle": "Correspondance de course identifiée dans les résultats Turfin ; lecture vidéo Equidia non vérifiée"
+    },
+    {
       "date": "2026-09-04",
       "cheval": "LORD ON WAY",
       "hippodrome": "LYON-PARILLY",
@@ -56,6 +64,14 @@
       "controle": "Lien direct vers la fiche de course Equidia indiqué sur Turfin ; lecture du replay non testée depuis cet environnement",
       "lien_letrot_precedent": "https://www.letrot.com/courses/2026-09-04/6901/6",
       "preuve_lien_equidia": "https://turfin.fr/course/2026-09-04/r3c6-lyon-parilly-prix-yvan-berger"
+    },
+    {
+      "date": "2026-08-28",
+      "cheval": "NOSTALGIE DAIRPET",
+      "hippodrome": "LES SABLES-D'OLONNE",
+      "url": "https://www.equidia.fr/courses/2026-08-28/R6/C8",
+      "preuve_identification_course": "https://turfin.fr/course/2026-08-28/r6c8-les-sables-d-olonne-prix-charles-richard",
+      "controle": "Correspondance de course identifiée dans les résultats Turfin ; lecture vidéo Equidia non vérifiée"
     },
     {
       "date": "2026-08-27",
@@ -189,6 +205,14 @@
       "preuve_identification_course": "https://turfin.fr/course/2026-04-19/r9c7-agen-la-garenne"
     },
     {
+      "date": "2026-04-06",
+      "cheval": "MOONDANCE OKINA",
+      "hippodrome": "CHERBOURG",
+      "url": "https://www.equidia.fr/courses/2026-04-06/R4/C4",
+      "preuve_identification_course": "https://turfin.fr/course/2026-04-06/r4c4-cherbourg-prix-hotels-ibis-et-ibis-budget-la-glace",
+      "controle": "Correspondance de course identifiée dans les résultats Turfin ; lecture vidéo Equidia non vérifiée"
+    },
+    {
       "date": "2026-04-04",
       "cheval": "GIORGIANA",
       "hippodrome": "LE CROISÉ-LAROCHE",
@@ -222,6 +246,14 @@
       "controle": "Course référencée par Turfin (R et C concordants) ; lecture du replay Equidia non testée ici",
       "lien_letrot_precedent": "https://www.letrot.com/courses/2026-03-15/4701/2",
       "preuve_identification_course": "https://turfin.fr/course/2026-03-15/r8c2-agen-la-garenne-prix-de-l-hippodrome-de-manacor"
+    },
+    {
+      "date": "2026-03-12",
+      "cheval": "NEBRASKA FLEURY",
+      "hippodrome": "CAEN",
+      "url": "https://www.equidia.fr/courses/2026-03-12/R3/C2",
+      "preuve_identification_course": "https://turfin.fr/course/2026-03-12/r3c2-caen-prix-de-saint-wandrille",
+      "controle": "Correspondance de course identifiée dans les résultats Turfin ; lecture vidéo Equidia non vérifiée"
     },
     {
       "date": "2026-02-20",
