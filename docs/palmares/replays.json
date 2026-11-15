@@ -1,5 +1,5 @@
 {
-  "version": 50,
+  "version": 51,
   "note": "Fiches de courses Equidia ou LeTROT avec sources identifiant les courses. Les URLs Equidia sont déduites du format date/R/C ; la disponibilité et la lecture des vidéos ne sont pas garanties. HOMA reste sur LeTROT faute de fiche Equidia vérifiée.",
   "replays": [
     {
@@ -1160,6 +1160,14 @@
     },
     {
       "date": "2024-07-04",
+      "cheval": "HAMPTON AMERICA",
+      "hippodrome": "VICHY",
+      "url": "https://www.equidia.fr/courses/2024-07-04/R6/C7",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2024-07-04/R6C7-vichy-prix-de-feurs-raymond-goleo",
+      "controle": "Cheval, classement et R/C confirmés dans l'arrivée publiée ; replay Equidia non visionné individuellement"
+    },
+    {
+      "date": "2024-07-04",
       "cheval": "ISOLEE DU BOUILLON",
       "hippodrome": "LISIEUX",
       "url": "https://www.equidia.fr/courses/2024-07-04/R4/C1",
@@ -1279,6 +1287,14 @@
       "preuve_classement": "https://www.zone-turf.fr/cheval/hanane-montaval-895528/"
     },
     {
+      "date": "2023-12-27",
+      "cheval": "HAMPTON AMERICA",
+      "hippodrome": "CABOURG",
+      "url": "https://www.equidia.fr/courses/2023-12-27/R3/C5",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2023-12-27/R3C5-cabourg-prix-des-mufliers",
+      "controle": "Cheval, classement et R/C confirmés dans l'arrivée publiée ; replay Equidia non visionné individuellement"
+    },
+    {
       "date": "2023-12-03",
       "cheval": "INDICE DELADOU",
       "hippodrome": "BEAUMONT DE LOMAGNE",
@@ -1328,6 +1344,14 @@
       "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2023-09-07/7500/6",
       "lien_letrot_precedent": "https://www.letrot.com/courses/2023-09-07/7500/6",
       "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2023-09-07/R4C6-vincennes-prix-de-givors"
+    },
+    {
+      "date": "2023-09-01",
+      "cheval": "INDICE DELADOU",
+      "hippodrome": "VINCENNES",
+      "url": "https://www.equidia.fr/courses/2023-09-01/R1/C5",
+      "justificatif": "https://www.zeturf.es/fr/course-du-jour/2023-09-01/R1C5-vincennes-prix-amalia",
+      "controle": "Cheval, classement et R/C confirmés dans l'arrivée publiée ; replay Equidia non visionné individuellement"
     },
     {
       "date": "2023-08-10",
@@ -1394,12 +1418,28 @@
       "controle": "Résultat, cheval gagnant, date et R/C vérifiés ; lien de course Equidia construit, disponibilité vidéo à confirmer"
     },
     {
+      "date": "2023-05-16",
+      "cheval": "KOBLENZA DAIRPET",
+      "hippodrome": "VINCENNES",
+      "url": "https://www.equidia.fr/courses/2023-05-16/R4/C4",
+      "justificatif": "https://www.zeturf.sn/fr/course-du-jour/2023-05-16/R4C4-vincennes-prix-circe",
+      "controle": "Cheval, classement et R/C confirmés dans l'arrivée publiée ; replay Equidia non visionné individuellement"
+    },
+    {
       "date": "2023-03-23",
       "cheval": "JETHAN DE MONGOCHY",
       "hippodrome": "CAEN",
       "url": "https://www.equidia.fr/courses/2023-03-23/R3/C5",
       "preuve_identification_course": "https://www.geny.com/course/1389977-2023-03-23-caen-prix-d-herouvillette/arrivee-rapports",
       "controle": "Résultat, cheval gagnant, date et R/C vérifiés ; lien de course Equidia construit, disponibilité vidéo à confirmer"
+    },
+    {
+      "date": "2023-03-16",
+      "cheval": "INDICE DELADOU",
+      "hippodrome": "CAEN",
+      "url": "https://www.equidia.fr/courses/2023-03-16/R1/C2",
+      "justificatif": "https://www.zone-turf.fr/rapports/r1-c2-prix-de-puchay-926970.html",
+      "controle": "Cheval, classement et R/C confirmés dans l'arrivée publiée ; replay Equidia non visionné individuellement"
     },
     {
       "date": "2022-10-12",
