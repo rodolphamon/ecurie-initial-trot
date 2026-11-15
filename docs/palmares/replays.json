@@ -1,5 +1,5 @@
 {
-  "version": 84,
+  "version": 85,
   "note": "Fiches de courses Equidia ou LeTROT avec sources identifiant les courses. Les URLs Equidia sont déduites du format date/R/C ; la disponibilité et la lecture des vidéos ne sont pas garanties. HOMA reste sur LeTROT faute de fiche Equidia vérifiée.",
   "replays": [
     {
@@ -2623,12 +2623,16 @@
       "date": "2017-03-04",
       "cheval": "DJANGO DE MONGOCHY",
       "hippodrome": "VINCENNES",
-      "url": "https://www.equidia.fr/courses/2017-03-04/R1/C8",
+      "url": "https://www.dailymotion.com/video/x5dxub9",
       "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2017-03-04/R1C8-vincennes-prix-de-monpazier",
-      "controle": "ZEturf confirme la réunion, la course et le cheval vainqueur ; replay Equidia non testé",
+      "controle": "Vidéo de la chaîne historique Écurie-Initial, titre et date correspondant au résultat, player Dailymotion accessible ; lecture intégrale non vérifiée. Victoire Django de Mongochy Vincennes 04/03/2017",
       "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2017-03-04/7500/8",
       "lien_letrot_precedent": "https://www.letrot.com/courses/2017-03-04/7500/8",
-      "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2017-03-04/R1C8-vincennes-prix-de-monpazier"
+      "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2017-03-04/R1C8-vincennes-prix-de-monpazier",
+      "lien_fiche_course_precedent": "https://www.equidia.fr/courses/2017-03-04/R1/C8",
+      "source_video": "https://www.dailymotion.com/user/Ecurie-Initial",
+      "preuve_video": "https://www.dailymotion.com/video/x5dxub9",
+      "nature_lien": "video_course_dailymotion"
     },
     {
       "date": "2017-02-26",
@@ -2722,12 +2726,16 @@
       "date": "2016-11-01",
       "cheval": "CALIE DE POMMERAYE",
       "hippodrome": "VINCENNES",
-      "url": "https://www.equidia.fr/courses/2016-11-01/R5/C7",
+      "url": "https://www.dailymotion.com/video/x50j15e",
       "justificatif": "https://www.canalturf.com/resultats-PMU/2016-11-01/paris-vincennes/143560_prix-justicia.html",
-      "controle": "Réunion, course et victoire confirmées dans les résultats publics ; lecture vidéo Equidia non testée",
+      "controle": "Vidéo de la chaîne historique Écurie-Initial, titre et date correspondant au résultat, player Dailymotion accessible ; lecture intégrale non vérifiée. Victoire Calie de Pommeraye Vincennes 01/11/2016",
       "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2016-11-01/7500/7",
       "lien_letrot_precedent": "https://www.letrot.com/courses/2016-11-01/7500/7",
-      "preuve_identification_course": "https://www.canalturf.com/resultats-PMU/2016-11-01/paris-vincennes/143560_prix-justicia.html"
+      "preuve_identification_course": "https://www.canalturf.com/resultats-PMU/2016-11-01/paris-vincennes/143560_prix-justicia.html",
+      "lien_fiche_course_precedent": "https://www.equidia.fr/courses/2016-11-01/R5/C7",
+      "source_video": "https://www.dailymotion.com/user/Ecurie-Initial",
+      "preuve_video": "https://www.dailymotion.com/video/x50j15e",
+      "nature_lien": "video_course_dailymotion"
     },
     {
       "date": "2016-10-10",
@@ -2818,12 +2826,46 @@
       "controle": "Cheval 2e confirmé, date/hippodrome/réunion/course R3C6 recoupés dans les archives ; vidéo Equidia non visionnée individuellement"
     },
     {
+      "date": "2015-06-21",
+      "cheval": "BEAUTE D'ONDEE",
+      "hippodrome": "QUESTEMBERT",
+      "url": "https://www.dailymotion.com/video/x2v4ibd",
+      "source_video": "https://www.dailymotion.com/user/Ecurie-Initial",
+      "preuve_video": "https://www.dailymotion.com/video/x2v4ibd",
+      "nature_lien": "video_course_dailymotion",
+      "controle": "Vidéo publiée sur la chaîne historique Écurie-Initial ; titre, date et hippodrome correspondent à la ligne du palmarès ; lecture intégrale non vérifiée. 3e place Questembert 21/06/2015"
+    },
+    {
+      "date": "2015-06-07",
+      "cheval": "CALIE DE POMMERAYE",
+      "hippodrome": "GOURNAY-EN-BRAY",
+      "url": "https://www.dailymotion.com/video/x2uf4xc",
+      "source_video": "https://www.dailymotion.com/user/Ecurie-Initial",
+      "preuve_video": "https://www.dailymotion.com/video/x2uf4xc",
+      "nature_lien": "video_course_dailymotion",
+      "controle": "Vidéo publiée sur la chaîne historique Écurie-Initial ; titre, date et hippodrome correspondent à la ligne du palmarès ; lecture intégrale non vérifiée. Victoire Calie de Pommeraye Gournay-en-Bray 07/06/2015"
+    },
+    {
+      "date": "2015-04-05",
+      "cheval": "ACTRICE DE CERISY",
+      "hippodrome": "BEAUMONT DE LOMAGNE",
+      "url": "https://www.dailymotion.com/video/x2v4jft",
+      "source_video": "https://www.dailymotion.com/user/Ecurie-Initial",
+      "preuve_video": "https://www.dailymotion.com/video/x2v4jft",
+      "nature_lien": "video_course_dailymotion",
+      "controle": "Vidéo publiée sur la chaîne historique Écurie-Initial ; titre, date et hippodrome correspondent à la ligne du palmarès ; lecture intégrale non vérifiée. Victoire Actrice de Cerisy Beaumont de Lomagne 05/04/2015"
+    },
+    {
       "date": "2014-11-02",
       "cheval": "BEAUTE D'ONDEE",
       "hippodrome": "MAUQUENCHY",
-      "url": "https://www.equidia.fr/courses/2014-11-02/R9/C5",
+      "url": "https://www.dailymotion.com/video/x2ervp1",
       "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2014-11-02/R9C5-mauquenchy-prix-isidore-partouche-groupe-a",
-      "controle": "Cheval 2e du Prix Isidore Partouche Groupe A à Mauquenchy, réunion R9C5, confirmé ZEturf ; vidéo Equidia non visionnée individuellement"
+      "controle": "Vidéo de la chaîne historique Écurie-Initial, titre et date correspondant au résultat, player Dailymotion accessible ; lecture intégrale non vérifiée. 2e place Mauquenchy 02/11/2014",
+      "lien_fiche_course_precedent": "https://www.equidia.fr/courses/2014-11-02/R9/C5",
+      "source_video": "https://www.dailymotion.com/user/Ecurie-Initial",
+      "preuve_video": "https://www.dailymotion.com/video/x2ervp1",
+      "nature_lien": "video_course_dailymotion"
     },
     {
       "date": "2014-09-19",
@@ -2832,6 +2874,26 @@
       "url": "https://www.equidia.fr/courses/2014-09-19/R2/C4",
       "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2014-09-19/R2C4-cabourg-prix-de-rollon",
       "controle": "Arrivée et réunion R2C4 vérifiées sur ZEturf ; lien Equidia construit, disponibilité du replay ancien non vérifiée"
+    },
+    {
+      "date": "2014-07-15",
+      "cheval": "UKAPI DE GODISSON",
+      "hippodrome": "BIARRITZ",
+      "url": "https://www.dailymotion.com/video/x2erxld",
+      "source_video": "https://www.dailymotion.com/user/Ecurie-Initial",
+      "preuve_video": "https://www.dailymotion.com/video/x2erxld",
+      "nature_lien": "video_course_dailymotion",
+      "controle": "Vidéo publiée sur la chaîne historique Écurie-Initial ; titre, date et hippodrome correspondent à la ligne du palmarès ; lecture intégrale non vérifiée. Victoire Ukapi de Godisson à Biarritz 15/07/2014"
+    },
+    {
+      "date": "2014-06-15",
+      "cheval": "UKAPI DE GODISSON",
+      "hippodrome": "LUXE",
+      "url": "https://www.dailymotion.com/video/x2erwj3",
+      "source_video": "https://www.dailymotion.com/user/Ecurie-Initial",
+      "preuve_video": "https://www.dailymotion.com/video/x2erwj3",
+      "nature_lien": "video_course_dailymotion",
+      "controle": "Vidéo publiée sur la chaîne historique Écurie-Initial ; titre, date et hippodrome correspondent à la ligne du palmarès ; lecture intégrale non vérifiée. Victoire Ukapi de Godisson à Luxé 15/06/2014"
     },
     {
       "date": "2014-04-16",
@@ -2854,20 +2916,88 @@
       "date": "2013-12-27",
       "cheval": "ADAMS",
       "hippodrome": "VINCENNES",
-      "url": "https://www.equidia.fr/courses/2013-12-27/R1/C8",
+      "url": "https://www.dailymotion.com/video/x190dh8",
       "justificatif": "https://www.canalturf.com/resultats-PMU/2013-12-27_resultats-rapports-des-courses-du-vendredi-27-decembre-2013.html",
-      "controle": "ADAMS gagnant du Prix d'Erbray Gr A, R1C8 à Vincennes le 27/12/2013 ; replay Equidia non testé",
+      "controle": "Vidéo de la chaîne historique Écurie-Initial, titre et date correspondant au résultat, player Dailymotion accessible ; lecture intégrale non vérifiée. Victoire Adams Vincennes 27/12/2013",
       "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2013-12-27/7500/8",
       "lien_letrot_precedent": "https://www.letrot.com/courses/2013-12-27/7500/8",
-      "preuve_identification_course": "https://www.zone-turf.fr/cheval/agitateur-250028/archives-2.html"
+      "preuve_identification_course": "https://www.zone-turf.fr/cheval/agitateur-250028/archives-2.html",
+      "lien_fiche_course_precedent": "https://www.equidia.fr/courses/2013-12-27/R1/C8",
+      "source_video": "https://www.dailymotion.com/user/Ecurie-Initial",
+      "preuve_video": "https://www.dailymotion.com/video/x190dh8",
+      "nature_lien": "video_course_dailymotion"
+    },
+    {
+      "date": "2013-10-18",
+      "cheval": "ADAMS",
+      "hippodrome": "AMIENS",
+      "url": "https://www.dailymotion.com/video/x190tvu",
+      "source_video": "https://www.dailymotion.com/user/Ecurie-Initial",
+      "preuve_video": "https://www.dailymotion.com/video/x190tvu",
+      "nature_lien": "video_course_dailymotion",
+      "controle": "Vidéo publiée sur la chaîne historique Écurie-Initial ; titre, date et hippodrome correspondent à la ligne du palmarès ; lecture intégrale non vérifiée. Victoire Adams Amiens 18/10/2013"
+    },
+    {
+      "date": "2013-09-08",
+      "cheval": "RHEA SILVIA",
+      "hippodrome": "COMPIEGNE",
+      "url": "https://www.dailymotion.com/video/x156ld4",
+      "source_video": "https://www.dailymotion.com/user/Ecurie-Initial",
+      "preuve_video": "https://www.dailymotion.com/video/x156ld4",
+      "nature_lien": "video_course_dailymotion",
+      "controle": "Vidéo publiée sur la chaîne historique Écurie-Initial ; titre, date et hippodrome correspondent à la ligne du palmarès ; lecture intégrale non vérifiée. Victoire Rhéa Silvia Compiègne 08/09/2013"
+    },
+    {
+      "date": "2013-08-15",
+      "cheval": "RHEA SILVIA",
+      "hippodrome": "CARENTAN",
+      "url": "https://www.dailymotion.com/video/x13dp6v",
+      "source_video": "https://www.dailymotion.com/user/Ecurie-Initial",
+      "preuve_video": "https://www.dailymotion.com/video/x13dp6v",
+      "nature_lien": "video_course_dailymotion",
+      "controle": "Vidéo publiée sur la chaîne historique Écurie-Initial ; titre, date et hippodrome correspondent à la ligne du palmarès ; lecture intégrale non vérifiée. Victoire Rhéa Silvia Carentan 15/08/2013 au monté"
     },
     {
       "date": "2013-07-27",
       "cheval": "RHUM BARBES",
       "hippodrome": "COMPIEGNE",
-      "url": "https://www.equidia.fr/courses/2013-07-27/R7/C5",
+      "url": "https://www.dailymotion.com/video/x12t9p0",
       "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2013-07-27/R7C5-compiegne-prix-de-vaudrampont",
-      "controle": "Arrivée 2e et numéro R7C5 confirmés par source de résultat ; disponibilité de la vidéo Equidia non vérifiée individuellement"
+      "controle": "Vidéo de la chaîne historique Écurie-Initial, titre et date correspondant au résultat, player Dailymotion accessible ; lecture intégrale non vérifiée. Vidéo de la journée doublé Compiègne 27/07/2013, Rhum Barbes deuxième",
+      "lien_fiche_course_precedent": "https://www.equidia.fr/courses/2013-07-27/R7/C5",
+      "source_video": "https://www.dailymotion.com/user/Ecurie-Initial",
+      "preuve_video": "https://www.dailymotion.com/video/x12t9p0",
+      "nature_lien": "video_course_dailymotion"
+    },
+    {
+      "date": "2013-07-27",
+      "cheval": "RHEA SILVIA",
+      "hippodrome": "COMPIEGNE",
+      "url": "https://www.dailymotion.com/video/x12t9p0",
+      "source_video": "https://www.dailymotion.com/user/Ecurie-Initial",
+      "preuve_video": "https://www.dailymotion.com/video/x12t9p0",
+      "nature_lien": "video_course_dailymotion",
+      "controle": "Vidéo publiée sur la chaîne historique Écurie-Initial ; titre, date et hippodrome correspondent à la ligne du palmarès ; lecture intégrale non vérifiée. Vidéo de la journée doublé Compiègne 27/07/2013, Rhéa Silvia gagnante"
+    },
+    {
+      "date": "2013-06-23",
+      "cheval": "RHUM BARBES",
+      "hippodrome": "LES ANDELYS",
+      "url": "https://www.dailymotion.com/video/x190vj6",
+      "source_video": "https://www.dailymotion.com/user/Ecurie-Initial",
+      "preuve_video": "https://www.dailymotion.com/video/x190vj6",
+      "nature_lien": "video_course_dailymotion",
+      "controle": "Vidéo publiée sur la chaîne historique Écurie-Initial ; titre, date et hippodrome correspondent à la ligne du palmarès ; lecture intégrale non vérifiée. Victoire Rhum Barbes aux Andelys 23/06/2013"
+    },
+    {
+      "date": "2013-05-19",
+      "cheval": "RHUM BARBES",
+      "hippodrome": "LE NEUBOURG",
+      "url": "https://www.dailymotion.com/video/x190v4m",
+      "source_video": "https://www.dailymotion.com/user/Ecurie-Initial",
+      "preuve_video": "https://www.dailymotion.com/video/x190v4m",
+      "nature_lien": "video_course_dailymotion",
+      "controle": "Vidéo publiée sur la chaîne historique Écurie-Initial ; titre, date et hippodrome correspondent à la ligne du palmarès ; lecture intégrale non vérifiée. Victoire Rhum Barbes au Neubourg 19/05/2013"
     },
     {
       "date": "2013-03-19",
