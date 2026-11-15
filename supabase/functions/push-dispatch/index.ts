@@ -133,7 +133,13 @@ async function run() {
   }
   const vapid={publicKey:env("PUSH_VAPID_PUBLIC_KEY"),privateKey:env("PUSH_VAPID_PRIVATE_KEY"),subject:"mailto:contact@ecurie-initial.com"};
   if(!vapid.publicKey||!vapid.privateKey)throw Error("VAPID absent");
+  const currentRaceStates=new Map(races.map(x=>[x.event_key,x.statut]));
   for(const alert of alerts||[]){
+    // Un forfait annule les rappels et confirmations encore dans la file d'envoi.
+    if(alert.categorie==="confirmed"||alert.categorie==="before15"){
+      const raceKey=alert.id.slice(alert.categorie.length+1);
+      if(!CONFIRMED.has(currentRaceStates.get(raceKey)||""))continue;
+    }
     for(const sub of subs||[]){
       if(Date.parse(sub.created_at)>Date.parse(alert.created_at))continue;
       const member=sub.audience==="associate" && !!sub.user_id && active.has(sub.user_id);
