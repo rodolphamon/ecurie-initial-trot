@@ -1,5 +1,5 @@
 {
-  "version": 56,
+  "version": 57,
   "note": "Fiches de courses Equidia ou LeTROT avec sources identifiant les courses. Les URLs Equidia sont déduites du format date/R/C ; la disponibilité et la lecture des vidéos ne sont pas garanties. HOMA reste sur LeTROT faute de fiche Equidia vérifiée.",
   "replays": [
     {
@@ -1175,6 +1175,14 @@
       "controle": "Course et référence R/C recoupées avec les résultats publiés ; disponibilité de la vidéo Equidia non vérifiée individuellement"
     },
     {
+      "date": "2024-07-27",
+      "cheval": "JODEON",
+      "hippodrome": "COMPIEGNE",
+      "url": "https://www.equidia.fr/courses/2024-07-27/R8/C7",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2024-07-27/R8C7-compiegne-prix-d-epernon-groupe-a",
+      "controle": "Arrivée officielle consultée : 2e n°11, R8C7. La disponibilité du replay sur Equidia n'a pas été testée individuellement."
+    },
+    {
       "date": "2024-07-15",
       "cheval": "GIORGIANA",
       "hippodrome": "SAINT-MALO",
@@ -1213,6 +1221,14 @@
       "url": "https://www.equidia.fr/courses/2024-06-27/R4/C6",
       "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2024-06-27/R4C6-enghien-soisy-prix-de-lunel",
       "controle": "Course R/C et arrivée confirmées sur ZEturf ; lecture du replay Equidia non contrôlée individuellement"
+    },
+    {
+      "date": "2024-06-15",
+      "cheval": "HAMPTON AMERICA",
+      "hippodrome": "AGEN-LA-GARENNE",
+      "url": "https://www.equidia.fr/courses/2024-06-15/R5/C6",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2024-06-15/R5C6-agen-prix-laureats-gpso-agen-de-1981-a-1999-prix-du-credit-mutuel",
+      "controle": "Arrivée officielle consultée : 2e n°13, R5C6. La disponibilité du replay sur Equidia n'a pas été testée individuellement."
     },
     {
       "date": "2024-05-25",
@@ -1299,6 +1315,14 @@
       "url": "https://www.equidia.fr/courses/2024-02-15/R4/C2",
       "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2024-02-15/R4C2-graignes-prix-jaminska",
       "controle": "Cheval et classement confirmés sur l'arrivée ZEturf de la course R/C ; ouverture du replay Equidia non vérifiée individuellement"
+    },
+    {
+      "date": "2024-02-12",
+      "cheval": "GUEPARD DE MONE",
+      "hippodrome": "AGEN-LA GARENNE",
+      "url": "https://www.equidia.fr/courses/2024-02-12/R3/C1",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2024-02-12/R3C1-agen-prix-de-cuq",
+      "controle": "Arrivée officielle consultée : 3e n°6, R3C1. La disponibilité du replay sur Equidia n'a pas été testée individuellement."
     },
     {
       "date": "2024-02-04",
@@ -1466,6 +1490,14 @@
       "controle": "Victoire et numéro de réunion/course R4C2 confirmés dans l'arrivée ; replay Equidia non testé"
     },
     {
+      "date": "2023-05-31",
+      "cheval": "GOSPEL",
+      "hippodrome": "CAEN",
+      "url": "https://www.equidia.fr/courses/2023-05-31/R4/C2",
+      "justificatif": "https://www.geny.com/course/1407304-2023-05-31-caen-prix-de-lassay/arrivee-rapports",
+      "controle": "Arrivée officielle consultée : 3e n°2, R4C2. La disponibilité du replay sur Equidia n'a pas été testée individuellement."
+    },
+    {
       "date": "2023-05-24",
       "cheval": "KOBLENZA DAIRPET",
       "hippodrome": "LE CROISE-LAROCHE",
@@ -1488,6 +1520,14 @@
       "url": "https://www.equidia.fr/courses/2023-04-24/R4/C3",
       "justificatif": "https://www.zeturf.fr/fr/reunion-du-jour/2023-04-24/R4-le-croise-laroche",
       "controle": "ZEturf cite Vyborg deuxième dans le Prix de la Villa Cavrois, R4C3 ; lecture effective du replay non testée"
+    },
+    {
+      "date": "2023-03-29",
+      "cheval": "DARWIN LA MESANGE",
+      "hippodrome": "MARSEILLE-BORELY",
+      "url": "https://www.equidia.fr/courses/2023-03-29/R1/C5",
+      "justificatif": "https://www.zeturf.be/fr/course-du-jour/2023-03-29/R1C5-marseille-borely-prix-de-cagnes-sur-mer",
+      "controle": "Arrivée officielle consultée : 3e n°1, R1C5. La disponibilité du replay sur Equidia n'a pas été testée individuellement."
     },
     {
       "date": "2023-03-23",
@@ -1544,6 +1584,14 @@
       "url": "https://www.equidia.fr/courses/2023-01-29/R2/C2",
       "justificatif": "https://www.zeturf.fr/fr/reunion-du-jour/2023-01-29/R2-nantes",
       "controle": "Cheval et classement dans arrivée de course publiquement consultable ; R/C confirmés ; disponibilité du replay Equidia non testée individuellement"
+    },
+    {
+      "date": "2023-01-07",
+      "cheval": "CAID DORE",
+      "hippodrome": "CAGNES-SUR-MER",
+      "url": "https://www.equidia.fr/courses/2023-01-07/R9/C4",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2023-01-07/R9C4-cagnes-sur-mer-prix-de-bologne",
+      "controle": "Arrivée officielle consultée : 2e n°12, R9C4. La disponibilité du replay sur Equidia n'a pas été testée individuellement."
     },
     {
       "date": "2022-11-15",
@@ -1652,6 +1700,14 @@
       "url": "https://www.equidia.fr/courses/2022-04-18/R7/C8",
       "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2022-04-18/R7C8-cholet-prix-val-de-l-aube",
       "controle": "Date, R/C et cheval gagnant confirmés dans le résultat officiel reproduit par ZEturf/Canalturf ; lien Equidia construit, lecture du replay non testée."
+    },
+    {
+      "date": "2022-03-22",
+      "cheval": "HERMES PLANCHETTE",
+      "hippodrome": "ENGHIEN",
+      "url": "https://www.equidia.fr/courses/2022-03-22/R4/C7",
+      "justificatif": "https://www.canalturf.com/resultats-PMU/2022-03-22/enghien/269153_prix-de-chennevieres.html",
+      "controle": "Arrivée officielle consultée : 3e n°5, R4C7. La disponibilité du replay sur Equidia n'a pas été testée individuellement."
     },
     {
       "date": "2022-03-20",
