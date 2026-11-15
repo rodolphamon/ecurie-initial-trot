@@ -1,5 +1,5 @@
 {
-  "version": 21,
+  "version": 22,
   "note": "Liens vers les pages de courses sur Equidia ou LeTROT, avec références de résultats ayant permis d'identifier date, hippodrome, réunion et numéro de course. Les liens Equidia sont calculés d'après le format d'URL et leur lecture, ainsi que la disponibilité du replay, n'ont pas été testées automatiquement. Les victoires historiques ne sont pas modifiées.",
   "replays": [
     {
@@ -198,10 +198,12 @@
       "date": "2024-05-14",
       "cheval": "IBERIK DE MONGOCHY",
       "hippodrome": "VINCENNES",
-      "url": "https://www.letrot.com/courses/2024-05-14/7500/3",
+      "url": "https://www.equidia.fr/courses/2024-05-14/R4/C3",
       "justificatif": "https://www.geny.com/course/1488381-2024-05-14-vincennes-prix-emile-neveux/arrivee-rapports",
-      "controle": "Hippodrome, date et numéro de course vérifiés ; URL construite au format LeTROT, lecture non testée automatiquement",
-      "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2024-05-14/7500/3"
+      "controle": "Course, réunion et victoire vérifiées sur les résultats publiés ; lecture effective du replay Equidia non testée",
+      "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2024-05-14/7500/3",
+      "lien_letrot_precedent": "https://www.letrot.com/courses/2024-05-14/7500/3",
+      "preuve_identification_course": "https://www.geny.com/course/1488381-2024-05-14-vincennes-prix-emile-neveux/arrivee-rapports"
     },
     {
       "date": "2023-09-07",
@@ -229,19 +231,23 @@
       "date": "2022-08-31",
       "cheval": "HELIOS BONBON",
       "hippodrome": "VINCENNES",
-      "url": "https://www.letrot.com/courses/2022-08-31/7500/2",
+      "url": "https://www.equidia.fr/courses/2022-08-31/R3/C2",
       "justificatif": "https://www.canalturf.com/resultats-PMU/2022-08-31/paris-vincennes/283728_prix-de-bosc-renoult.html",
-      "controle": "Date, hippodrome et numéro de course vérifiés ; lecture du replay LeTROT à confirmer dans un navigateur",
-      "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2022-08-31/7500/2"
+      "controle": "Course, réunion et victoire vérifiées sur les résultats publiés ; lecture effective du replay Equidia non testée",
+      "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2022-08-31/7500/2",
+      "lien_letrot_precedent": "https://www.letrot.com/courses/2022-08-31/7500/2",
+      "preuve_identification_course": "https://www.canalturf.com/resultats-PMU/2022-08-31/paris-vincennes/283728_prix-de-bosc-renoult.html"
     },
     {
       "date": "2022-08-13",
       "cheval": "INDICE DELADOU",
       "hippodrome": "ENGHIEN",
-      "url": "https://www.letrot.com/courses/2022-08-13/7502/5",
+      "url": "https://www.equidia.fr/courses/2022-08-13/R3/C5",
       "justificatif": "https://www.canalturf.com/resultats-PMU/2022-08-13/enghien/282144_prix-de-la-place-de-valois.html",
-      "controle": "Hippodrome, date et numéro de course vérifiés ; URL construite au format LeTROT, lecture non testée automatiquement",
-      "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2022-08-13/7502/5"
+      "controle": "Course, réunion et victoire vérifiées sur les résultats publiés ; lecture effective du replay Equidia non testée",
+      "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2022-08-13/7502/5",
+      "lien_letrot_precedent": "https://www.letrot.com/courses/2022-08-13/7502/5",
+      "preuve_identification_course": "https://www.canalturf.com/resultats-PMU/2022-08-13/enghien/282144_prix-de-la-place-de-valois.html"
     },
     {
       "date": "2022-05-17",
@@ -285,10 +291,12 @@
       "date": "2021-11-16",
       "cheval": "HERMES PLANCHETTE",
       "hippodrome": "VINCENNES",
-      "url": "https://www.letrot.com/courses/2021-11-16/7500/7",
+      "url": "https://www.equidia.fr/courses/2021-11-16/R3/C7",
       "justificatif": "https://www.canalturf.com/resultats-PMU/2021-11-16/paris-vincennes/258468_prix-unitas.html",
-      "controle": "Hippodrome, date et numéro de course vérifiés ; URL construite au format LeTROT, lecture non testée automatiquement",
-      "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2021-11-16/7500/7"
+      "controle": "Course, réunion et victoire vérifiées sur les résultats publiés ; lecture effective du replay Equidia non testée",
+      "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2021-11-16/7500/7",
+      "lien_letrot_precedent": "https://www.letrot.com/courses/2021-11-16/7500/7",
+      "preuve_identification_course": "https://www.canalturf.com/resultats-PMU/2021-11-16/paris-vincennes/258468_prix-unitas.html"
     },
     {
       "date": "2021-10-19",
