@@ -1,5 +1,5 @@
 {
-  "version": 68,
+  "version": 69,
   "note": "Fiches de courses Equidia ou LeTROT avec sources identifiant les courses. Les URLs Equidia sont déduites du format date/R/C ; la disponibilité et la lecture des vidéos ne sont pas garanties. HOMA reste sur LeTROT faute de fiche Equidia vérifiée.",
   "replays": [
     {
@@ -42,6 +42,14 @@
       "url": "https://www.equidia.fr/courses/2026-10-17/R5/C7",
       "preuve_identification_course": "https://turfin.fr/course/2026-10-17/r5c7-enghien-prix-du-maine",
       "controle": "Course, hippodrome et R/C identifiés dans les résultats Turfin ; consultation de la vidéo Equidia non testée"
+    },
+    {
+      "date": "2026-10-03",
+      "cheval": "LUCKY DES GAUDINES",
+      "hippodrome": "BEAUMONT-DE-LOMAGNE",
+      "url": "https://www.equidia.fr/courses/2026-10-03/R9/C4",
+      "justificatif": "https://www.journalduturf.com/arrivees-rapports-pmu/573044_prix-de-solvalla.html?tab=resultat",
+      "controle": "Cheval 2e confirmé, date/hippodrome/réunion/course R9C4 recoupés dans les archives ; vidéo Equidia non visionnée individuellement"
     },
     {
       "date": "2026-09-28",
@@ -144,6 +152,14 @@
       "url": "https://www.equidia.fr/courses/2026-08-23/R1/C8",
       "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2026-08-23/R1C8-equidia",
       "controle": "Date, hippodrome, classement et R/C vérifiés sur l'arrivée ZEturf ; la vidéo Equidia n'a pas été visionnée individuellement"
+    },
+    {
+      "date": "2026-08-20",
+      "cheval": "LORD ON WAY",
+      "hippodrome": "DIVONNE-LES-BAINS",
+      "url": "https://www.equidia.fr/courses/2026-08-20/R4/C5",
+      "justificatif": "https://www.elite-turf.fr/courses/ea9cdb19-477d-4e23-a876-83cf92aa1f89",
+      "controle": "Cheval 3e confirmé, date/hippodrome/réunion/course R4C5 recoupés dans les archives ; vidéo Equidia non visionnée individuellement"
     },
     {
       "date": "2026-08-18",
@@ -1027,6 +1043,14 @@
       "controle": "Arrivée officielle et identifiants R/C vérifiés sur la source ; ouverture vidéo Equidia non testée individuellement"
     },
     {
+      "date": "2025-02-15",
+      "cheval": "HAMPTON AMERICA",
+      "hippodrome": "AGEN-LA GARENNE",
+      "url": "https://www.equidia.fr/courses/2025-02-15/R3/C1",
+      "justificatif": "https://www.turfoo.fr/resultats-courses/250215/reunion3-agen/course1-prix-de-sauvagnas/",
+      "controle": "Cheval 3e confirmé, date/hippodrome/réunion/course R3C1 recoupés dans les archives ; vidéo Equidia non visionnée individuellement"
+    },
+    {
       "date": "2025-02-07",
       "cheval": "LARIFLETTE",
       "hippodrome": "VINCENNES",
@@ -1682,6 +1706,14 @@
       "controle": "3e, n°7. Réunion et course vérifiées ; disponibilité du replay Equidia non testée"
     },
     {
+      "date": "2022-11-27",
+      "cheval": "HARRISON GEDE",
+      "hippodrome": "VIRE NORMANDIE",
+      "url": "https://www.equidia.fr/courses/2022-11-27/R10/C3",
+      "justificatif": "https://www.zeturf.be/fr/course-du-jour/2022-11-27/R10C3-vire-prix-info-vire-normandie-groupe-a",
+      "controle": "Cheval 2e confirmé, date/hippodrome/réunion/course R10C3 recoupés dans les archives ; vidéo Equidia non visionnée individuellement"
+    },
+    {
       "date": "2022-11-15",
       "cheval": "ILLAM DE MONGOCHY",
       "hippodrome": "VINCENNES - GP",
@@ -1777,6 +1809,14 @@
       "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2022-08-13/7502/5",
       "lien_letrot_precedent": "https://www.letrot.com/courses/2022-08-13/7502/5",
       "preuve_identification_course": "https://www.canalturf.com/resultats-PMU/2022-08-13/enghien/282144_prix-de-la-place-de-valois.html"
+    },
+    {
+      "date": "2022-08-08",
+      "cheval": "HANANE MONTAVAL",
+      "hippodrome": "DIEPPE",
+      "url": "https://www.equidia.fr/courses/2022-08-08/R6/C5",
+      "justificatif": "https://www.zeturf.be/fr/course-du-jour/2022-08-08/R6C5-dieppe-prix-champlain",
+      "controle": "Cheval 2e confirmé, date/hippodrome/réunion/course R6C5 recoupés dans les archives ; vidéo Equidia non visionnée individuellement"
     },
     {
       "date": "2022-07-08",
@@ -1959,6 +1999,14 @@
       "controle": "2e Prix de Clamart, R4C7 confirmé par arrivée ou historique détaillé des courses ; disponibilité effective du replay Equidia non testée individuellement."
     },
     {
+      "date": "2021-11-26",
+      "cheval": "HERMES DU FOSSE",
+      "hippodrome": "REIMS",
+      "url": "https://www.equidia.fr/courses/2021-11-26/R4/C4",
+      "justificatif": "https://www.zone-turf.fr/rapports/r4-c4-prix-de-clairmarais-786948.html",
+      "controle": "Cheval 3e confirmé, date/hippodrome/réunion/course R4C4 recoupés dans les archives ; vidéo Equidia non visionnée individuellement"
+    },
+    {
       "date": "2021-11-21",
       "cheval": "HIP HOP JULRY",
       "hippodrome": "AGEN-LA GARENNE",
@@ -2050,6 +2098,14 @@
       "url": "https://www.equidia.fr/courses/2021-08-03/R1/C7",
       "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2021-08-03/R1C7-equidia",
       "controle": "2e n°7 Prix de la Cauvinière, R1C7 confirmé par arrivée ou historique détaillé des courses ; disponibilité effective du replay Equidia non testée individuellement."
+    },
+    {
+      "date": "2021-07-26",
+      "cheval": "CAID DORE",
+      "hippodrome": "CHATELAILLON-LA ROCHELLE",
+      "url": "https://www.equidia.fr/courses/2021-07-26/R3/C8",
+      "justificatif": "https://www.gbet.fr/courses/chatelaillon/2021-07-26/r3/c8/prix-des-assurances-marquet-sarraf/",
+      "controle": "Cheval 3e confirmé, date/hippodrome/réunion/course R3C8 recoupés dans les archives ; vidéo Equidia non visionnée individuellement"
     },
     {
       "date": "2021-07-18",
@@ -2575,12 +2631,28 @@
       "controle": "Date, cheval gagnant et réunion/course R/C identifiés dans les résultats publics. Replay Equidia non testé depuis cet environnement."
     },
     {
+      "date": "2015-07-26",
+      "cheval": "ADAMS",
+      "hippodrome": "ENGHIEN",
+      "url": "https://www.equidia.fr/courses/2015-07-26/R3/C6",
+      "justificatif": "https://www.zone-turf.fr/cheval/adams-221098/",
+      "controle": "Cheval 2e confirmé, date/hippodrome/réunion/course R3C6 recoupés dans les archives ; vidéo Equidia non visionnée individuellement"
+    },
+    {
       "date": "2014-09-19",
       "cheval": "ACTRICE DE CERISY",
       "hippodrome": "CABOURG",
       "url": "https://www.equidia.fr/courses/2014-09-19/R2/C4",
       "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2014-09-19/R2C4-cabourg-prix-de-rollon",
       "controle": "Arrivée et réunion R2C4 vérifiées sur ZEturf ; lien Equidia construit, disponibilité du replay ancien non vérifiée"
+    },
+    {
+      "date": "2014-04-16",
+      "cheval": "RHEA SILVIA",
+      "hippodrome": "PONTCHATEAU",
+      "url": "https://www.equidia.fr/courses/2014-04-16/R1/C7",
+      "justificatif": "https://www.zone-turf.fr/cheval/rhea-silvia-43685/",
+      "controle": "Cheval 3e confirmé, date/hippodrome/réunion/course R1C7 recoupés dans les archives ; vidéo Equidia non visionnée individuellement"
     },
     {
       "date": "2013-12-27",
