@@ -88,7 +88,9 @@
       "discipline": "attele",
       "casaque": "blanche",
       "proprietaire": "Écurie Initial",
-      "jockey": "Patrice PACAUD"
+      "jockey": "Patrice PACAUD",
+      "entraineur": "Vincent HEBERT",
+      "source_entraineur": "https://www.infos-entrainement.fr/reunions-pmu-courses-du-jour/2026-09-28/r2/c7"
     },
     {
       "date": "2026-09-27",
