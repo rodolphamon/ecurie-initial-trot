@@ -1646,6 +1646,15 @@
       "casaque": "blanche"
     },
     {
+      "date": "2020-12-14",
+      "cheval": "FLEUR VIVANCIERE",
+      "hippodrome": "BORDEAUX",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Etienne CLOZIER"
+    },
+    {
       "date": "2020-12-06",
       "cheval": "FETICHE ATOUT",
       "hippodrome": "VINCENNES - GP",
@@ -1664,6 +1673,15 @@
       "casaque": "blanche"
     },
     {
+      "date": "2020-10-31",
+      "cheval": "FETICHE ATOUT",
+      "hippodrome": "CHATELAILLON-LA ROCHELLE",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Charley MOTTIER"
+    },
+    {
       "date": "2020-09-20",
       "cheval": "FEEL SO GOOD",
       "hippodrome": "VILLEDIEU-LES-POELES",
@@ -1671,6 +1689,15 @@
       "discipline": "attele",
       "jockey": "Florian TABESSE",
       "casaque": "nathalie"
+    },
+    {
+      "date": "2020-08-15",
+      "cheval": "GREAT FIRE",
+      "hippodrome": "FRANCHEVILLE-LA BARRE",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Oscar PLACIER"
     },
     {
       "date": "2020-06-24",
@@ -1682,6 +1709,33 @@
       "casaque": "blanche"
     },
     {
+      "date": "2020-06-11",
+      "cheval": "GINKO",
+      "hippodrome": "LA CAPELLE",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Bruno MARIE"
+    },
+    {
+      "date": "2020-06-04",
+      "cheval": "GINKO",
+      "hippodrome": "CAEN",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Adrien LAMY"
+    },
+    {
+      "date": "2020-06-02",
+      "cheval": "FETICHE ATOUT",
+      "hippodrome": "LAVAL",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Yoann LEBOURGEOIS"
+    },
+    {
       "date": "2020-05-17",
       "cheval": "GINKO",
       "hippodrome": "MAUQUENCHY",
@@ -1691,6 +1745,42 @@
       "casaque": "blanche"
     },
     {
+      "date": "2020-05-15",
+      "cheval": "GOSPEL",
+      "hippodrome": "TOULOUSE",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Christopher CORBINEAU"
+    },
+    {
+      "date": "2020-02-26",
+      "cheval": "FETICHE ATOUT",
+      "hippodrome": "MAUQUENCHY",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Sylvain DIEUDONNE"
+    },
+    {
+      "date": "2019-09-15",
+      "cheval": "CRYSTAL GIRL",
+      "hippodrome": "LAON",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Eric COLLARD"
+    },
+    {
+      "date": "2019-08-12",
+      "cheval": "ETOILE DE MONGOCHY",
+      "hippodrome": "LANGON-LIBOURNE",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Cyril GAZENGEL"
+    },
+    {
       "date": "2019-08-06",
       "cheval": "ETOILE DE MONGOCHY",
       "hippodrome": "TRIE-SUR-BAISE",
@@ -1698,6 +1788,15 @@
       "discipline": "attele",
       "jockey": "Cyril GAZENGEL",
       "casaque": "blanche"
+    },
+    {
+      "date": "2019-07-31",
+      "cheval": "GOSPEL",
+      "hippodrome": "DOZULE",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Pierre HOUEL"
     },
     {
       "date": "2019-07-07",
@@ -1716,6 +1815,15 @@
       "discipline": "attele",
       "jockey": "Gregory TOQUE",
       "casaque": "blanche"
+    },
+    {
+      "date": "2019-06-16",
+      "cheval": "CRYSTAL GIRL",
+      "hippodrome": "LES ANDELYS",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Omar CAUCHI"
     },
     {
       "date": "2019-06-10",
@@ -1781,6 +1889,42 @@
       "casaque": "nathalie"
     },
     {
+      "date": "2017-06-05",
+      "cheval": "ETOILE DE MONGOCHY",
+      "hippodrome": "VILLEDIEU-LES-POELES",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Benoît BARASSIN"
+    },
+    {
+      "date": "2017-05-25",
+      "cheval": "ETOILE DE MONGOCHY",
+      "hippodrome": "BIHOREL-LES-ROUEN",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Antoine LHERETE"
+    },
+    {
+      "date": "2017-05-23",
+      "cheval": "CALIE DE POMMERAYE",
+      "hippodrome": "VINCENNES",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Lolita BALAYN"
+    },
+    {
+      "date": "2017-04-09",
+      "cheval": "ACTRICE DE CERISY",
+      "hippodrome": "BEAUMONT-DE-LOMAGNE",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Gabriel MONTHULE"
+    },
+    {
       "date": "2017-04-07",
       "cheval": "CALIE DE POMMERAYE",
       "hippodrome": "VINCENNES - PP",
@@ -1797,6 +1941,15 @@
       "discipline": "attele",
       "jockey": "Bruno MARIE",
       "casaque": "blanche"
+    },
+    {
+      "date": "2017-03-05",
+      "cheval": "VALMIN DE GUEUDE",
+      "hippodrome": "SEICHES-SUR-LE-LOIR",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Rodolphe HAMON"
     },
     {
       "date": "2017-02-19",
@@ -1826,6 +1979,33 @@
       "casaque": "blanche"
     },
     {
+      "date": "2017-01-30",
+      "cheval": "ACTRICE DE CERISY",
+      "hippodrome": "TOULOUSE",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Romain LE CREPS"
+    },
+    {
+      "date": "2017-01-23",
+      "cheval": "DJANGO DE MONGOCHY",
+      "hippodrome": "VINCENNES",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Bruno MARIE"
+    },
+    {
+      "date": "2016-12-26",
+      "cheval": "VALMIN DE GUEUDE",
+      "hippodrome": "BORDEAUX",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Charley HESLOUIN"
+    },
+    {
       "date": "2016-12-04",
       "cheval": "VALMIN DE GUEUDE",
       "hippodrome": "LYON (A PARILLY)",
@@ -1835,6 +2015,15 @@
       "casaque": "blanche"
     },
     {
+      "date": "2016-11-21",
+      "cheval": "VALMIN DE GUEUDE",
+      "hippodrome": "CHATEAUBRIANT",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Michel POIRIER"
+    },
+    {
       "date": "2016-11-06",
       "cheval": "VALMIN DE GUEUDE",
       "hippodrome": "LISIEUX",
@@ -1842,6 +2031,15 @@
       "discipline": "attele",
       "jockey": "Rodolphe HAMON",
       "casaque": "blanche"
+    },
+    {
+      "date": "2016-10-15",
+      "cheval": "VALMIN DE GUEUDE",
+      "hippodrome": "PARAY-LE-MONIAL",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Adrien LAMY"
     },
     {
       "date": "2016-10-10",
@@ -1871,6 +2069,15 @@
       "casaque": "blanche"
     },
     {
+      "date": "2016-09-11",
+      "cheval": "ETOILE DE MONGOCHY",
+      "hippodrome": "BERNAY",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "François LAGADEUC"
+    },
+    {
       "date": "2016-09-08",
       "cheval": "CALIE DE POMMERAYE",
       "hippodrome": "MAUQUENCHY",
@@ -1889,6 +2096,15 @@
       "casaque": "blanche"
     },
     {
+      "date": "2016-08-01",
+      "cheval": "BEAUTE D'ONDEE",
+      "hippodrome": "BREHAL",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Pierre SORAIS"
+    },
+    {
       "date": "2016-04-02",
       "cheval": "CALIE DE POMMERAYE",
       "hippodrome": "CAEN",
@@ -1896,6 +2112,15 @@
       "discipline": "attele",
       "jockey": "François LAGADEUC",
       "casaque": "blanche"
+    },
+    {
+      "date": "2015-12-06",
+      "cheval": "TYCOZ DE LADY",
+      "hippodrome": "ARGENTAN",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Paul COUETIL"
     },
     {
       "date": "2015-09-13",
@@ -1916,6 +2141,15 @@
       "casaque": "blanche"
     },
     {
+      "date": "2015-07-31",
+      "cheval": "BEAUTE D'ONDEE",
+      "hippodrome": "PORNICHET",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Adrien LAMY"
+    },
+    {
       "date": "2015-07-26",
       "cheval": "ADAMS",
       "hippodrome": "ENGHIEN",
@@ -1923,6 +2157,15 @@
       "discipline": "attele",
       "jockey": "Franck NIVARD",
       "casaque": "blanche"
+    },
+    {
+      "date": "2015-07-21",
+      "cheval": "BEAUTE D'ONDEE",
+      "hippodrome": "PORNICHET",
+      "classement": 3,
+      "discipline": "attele",
+      "casaque": "blanche",
+      "jockey": "Adrien LAMY"
     },
     {
       "date": "2015-06-13",
