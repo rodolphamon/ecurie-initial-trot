@@ -301,7 +301,13 @@
       "discipline": "Trot",
       "trainer": "Laurent BARASSIN",
       "casaque": "blanche",
-      "horseLink": null
+      "horseLink": null,
+      "birth_year": 2025,
+      "origines": {
+        "pere": "BRILLANTISSIME",
+        "mere": "GIOCONDA",
+        "pere_de_mere": "PASSWORD"
+      }
     },
     {
       "id": "phacelie-bilou",
