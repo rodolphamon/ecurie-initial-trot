@@ -7,7 +7,7 @@
 .palmares{max-width:1140px;width:100%;margin:auto;min-width:0}.top{background:#191919;color:#fff;padding:24px clamp(18px,3.5vw,38px);border-radius:16px;border-top:6px solid var(--orange);display:flex;align-items:center;justify-content:space-between;gap:16px}
 .top h1{font-size:clamp(26px,5vw,41px);line-height:1;letter-spacing:.035em;margin:0;font-weight:900}
 #counter{font-size:clamp(39px,7vw,70px);font-weight:900;line-height:1;letter-spacing:-.055em;color:#ff862c;font-variant-numeric:tabular-nums}
-.controls{margin-top:24px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.controls label{min-width:0}.controls label:first-child,.controls label:nth-child(4),.controls .trainer-filter{grid-column:span 2}
+.controls{margin-top:24px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.controls label{min-width:0}.controls label:nth-child(3),.controls .trainer-filter,.controls .hippodrome-filter{grid-column:span 2}.controls label:last-child{grid-column:1/-1}
 .controls input,.controls select{width:100%;padding:13px 12px;border:1px solid #d7d7dc;background:white;border-radius:9px;font:inherit;color:#252525;min-width:0;outline-color:var(--orange);font-size:14px}
 .caption-line{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:12px 1px 10px}.result{font-size:13px;color:#595959}.legend{display:flex;flex-wrap:wrap;gap:6px}
 .tag{display:inline-flex;align-items:center;gap:4px;padding:5px 8px;background:#f8f8f8;border:1px solid #ebebeb;border-radius:99px;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit;color:inherit;transition:background .16s ease,border-color .16s ease}.legend .tag[aria-pressed="true"]{border-color:var(--orange);background:var(--soft);color:#9c4712;box-shadow:0 0 0 1px var(--orange)}.legend .tag:hover{background:#fff0e3}.legend .tag:focus-visible{outline:2px solid var(--orange);outline-offset:2px}.tag .disc-img{width:36px;height:25px;margin-right:2px}.tag .disc-text{font-size:12px}
@@ -44,7 +44,7 @@ td:first-child,th:first-child{text-align:center;width:75px}td.date{white-space:n
  .top h1{font-size:clamp(24px,7vw,34px)}
  #counter{font-size:clamp(39px,10vw,58px)}
  .controls{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:14px}
- .controls label:first-child,.controls label:nth-child(4),.controls label:nth-child(5),.controls .trainer-filter,.controls label:last-child{grid-column:1/-1}
+ .controls label:nth-child(3),.controls .trainer-filter,.controls .hippodrome-filter,.controls label:last-child{grid-column:1/-1}
  .controls input,.controls select{padding:12px 10px;min-width:0;font-size:13px}
  .caption-line{align-items:flex-start;flex-direction:column;margin:13px 1px 12px;gap:10px}
  .legend{gap:5px}
@@ -65,11 +65,11 @@ td:first-child,th:first-child{text-align:center;width:75px}td.date{white-space:n
 <main class="palmares">
 <header class="top"><div class="medal-counts" aria-label="Palmarès des médailles"><div class="medal-item"><span class="medal medal-1 medal-header" aria-hidden="true">1</span><output id="counter" aria-label="Nombre de victoires" aria-live="polite">172</output></div><div class="medal-item"><span class="medal medal-2 medal-header" aria-hidden="true">2</span><output id="silverCounter" aria-label="Nombre de deuxièmes places" aria-live="polite">0</output></div><div class="medal-item"><span class="medal medal-3 medal-header" aria-hidden="true">3</span><output id="bronzeCounter" aria-label="Nombre de troisièmes places" aria-live="polite">0</output></div></div><div class="medal-total">Total des podiums : <strong id="allPodiums">172</strong></div></header>
 <div class="placing-tabs" role="group" aria-label="Filtrer par classement"><button type="button" data-placing="all" aria-pressed="true" aria-label="Tous les classements"><span class="medal-group"><span class="medal medal-1" aria-hidden="true">1</span><span class="medal medal-2" aria-hidden="true">2</span><span class="medal medal-3" aria-hidden="true">3</span></span></button><button type="button" data-placing="win" aria-pressed="false" aria-label="Victoires"><span class="medal medal-1" aria-hidden="true">1</span> Or</button><button type="button" data-placing="second" aria-pressed="false" aria-label="Deuxièmes places"><span class="medal medal-2" aria-hidden="true">2</span> Argent</button><button type="button" data-placing="third" aria-pressed="false" aria-label="Troisièmes places"><span class="medal medal-3" aria-hidden="true">3</span> Bronze</button><button type="button" data-video-only="true" aria-pressed="false" aria-label="Afficher uniquement les résultats avec vidéo">▣ Vidéos</button></div><section aria-label="Filtrer les performances" class="controls">
-<label><input id="search" type="search" placeholder="Rechercher un hippodrome…" aria-label="Rechercher par hippodrome"></label>
 <label><select id="year" aria-label="Année"><option value="">Année</option></select></label>
 <label><select id="horse" aria-label="Filtrer par cheval"><option value="">Cheval</option></select></label>
 <label><select id="pilot" aria-label="Filtrer par jockey ou driver"><option value="">Jockey / Driver</option></select></label>
 <label class="trainer-filter"><input id="trainer" type="search" list="trainer-suggestions" placeholder="Rechercher un entraîneur…" aria-label="Rechercher un entraîneur" autocomplete="off"><datalist id="trainer-suggestions"></datalist></label>
+<label class="hippodrome-filter"><input id="search" type="search" placeholder="Rechercher un hippodrome…" aria-label="Rechercher par hippodrome"></label>
 <label><select id="order" aria-label="Classement"><option value="desc">Plus récentes d'abord</option><option value="asc">Plus anciennes d'abord</option></select></label>
 </section>
 <div class="caption-line"><div class="result" id="count" aria-live="polite"></div><div class="legend" id="legend" role="group" aria-label="Filtrer les victoires par discipline"></div></div>
