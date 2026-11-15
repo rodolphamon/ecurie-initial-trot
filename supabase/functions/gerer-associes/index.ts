@@ -33,7 +33,7 @@ serve(async (req) => {
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || nom.length < 2 || nom.length > 100) return reply(400, { error: "Nom ou e-mail invalide." });
       const { data, error } = await admin.auth.admin.inviteUserByEmail(email, { redirectTo: "https://rodolphamon.github.io/ecurie-initial-trot/application/connexion/" });
       if (error || !data.user) return reply(400, { error: error?.message || "Invitation impossible." });
-      const { error: saveError } = await admin.from("associes").upsert({ user_id: data.user.id, nom_affiche: nom, actif: true, administrateur: false }, { onConflict: "user_id" });
+      const { error: saveError } = await admin.from("associes").insert({ user_id: data.user.id, nom_affiche: nom, actif: true, administrateur: false });
       if (saveError) return reply(500, { error: "Compte invité, mais activation incomplète. Vérifiez dans Supabase." });
       return reply(200, { ok: true, message: "Invitation envoyée." });
     }
