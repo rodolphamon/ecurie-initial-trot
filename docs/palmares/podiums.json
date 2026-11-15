@@ -3118,17 +3118,6 @@
       "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Bruno MARIE à partir du 15/10/2016, auparavant Romain LE CREPS"
     },
     {
-      "date": "2017-03-05",
-      "cheval": "VALMIN DE GUEUDE",
-      "hippodrome": "SEICHES-SUR-LE-LOIR",
-      "classement": 3,
-      "discipline": "attele",
-      "casaque": "blanche",
-      "jockey": "Rodolphe HAMON",
-      "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Bruno MARIE à partir du 15/10/2016, auparavant Romain LE CREPS"
-    },
-    {
       "date": "2017-02-19",
       "cheval": "VALMIN DE GUEUDE",
       "hippodrome": "VIRE NORMANDIE",
@@ -3797,6 +3786,18 @@
       "proprietaire": "Rodolphe HAMON",
       "entraineur": "Hervé BIHEL",
       "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+    }
+  ],
+  "corrections_historique": [
+    {
+      "date": "2017-03-05",
+      "cheval": "VALMIN DE GUEUDE",
+      "hippodrome": "SEICHES-SUR-LE-LOIR",
+      "ancienne_mention": "3e place dans podiums",
+      "classement_verifie": 4,
+      "driver": "Rodolphe HAMON",
+      "source": "https://www.zone-turf.fr/rapports/phh-c8-prix-president-le-vexier-432362.html",
+      "motif": "Course Prix President le Vexier PHH C8, arrivée officielle 2-4-1-14-12, VALMIN n°14 quatrième; exclu des podiums mais historique conservé."
     }
   ]
 }
