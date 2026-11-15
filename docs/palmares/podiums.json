@@ -15,8 +15,10 @@
       "cheval": "MEMPHIS BELLE",
       "hippodrome": "LISIEUX",
       "classement": 3,
-      "discipline": "attele",
-      "casaque": "blanche"
+      "discipline": "monte",
+      "casaque": "blanche",
+      "jockey": "A. ANGOT",
+      "entraineur": "Laurent BARASSIN"
     },
     {
       "date": "2026-10-30",
@@ -24,7 +26,9 @@
       "hippodrome": "TOULOUSE",
       "classement": 2,
       "discipline": "attele",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "jockey": "M. DAOUGABEL",
+      "entraineur": "Mathieu DAOUGABEL"
     },
     {
       "date": "2026-10-25",
@@ -32,7 +36,9 @@
       "hippodrome": "MONTAUBAN",
       "classement": 2,
       "discipline": "attele",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "jockey": "M. DAOUGABEL",
+      "entraineur": "Mathieu DAOUGABEL"
     },
     {
       "date": "2026-10-22",
@@ -41,7 +47,8 @@
       "classement": 3,
       "discipline": "galop",
       "entraineur": "Gilles PANNIER",
-      "casaque": "galop"
+      "casaque": "galop",
+      "jockey": "O. D'ANDIGNÉ"
     },
     {
       "date": "2026-10-20",
@@ -50,7 +57,8 @@
       "classement": 2,
       "discipline": "galop",
       "entraineur": "Gilles PANNIER",
-      "casaque": "galop"
+      "casaque": "galop",
+      "jockey": "C. DEMURO"
     },
     {
       "date": "2026-10-17",
