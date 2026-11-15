@@ -1,5 +1,5 @@
 {
-  "version": 82,
+  "version": 83,
   "note": "Fiches de courses Equidia ou LeTROT avec sources identifiant les courses. Les URLs Equidia sont déduites du format date/R/C ; la disponibilité et la lecture des vidéos ne sont pas garanties. HOMA reste sur LeTROT faute de fiche Equidia vérifiée.",
   "replays": [
     {
@@ -1851,6 +1851,15 @@
       "url": "https://www.equidia.fr/courses/2022-08-30/R5/C7",
       "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2022-08-30/R5C7-cabourg-prix-des-gaillets-des-sables",
       "controle": "Arrivée identifiée : 3e, n°13 ; R5C7. Page Equidia déduite de date/R/C, lecture vidéo non testée."
+    },
+    {
+      "date": "2022-08-28",
+      "cheval": "HANANE MONTAVAL",
+      "hippodrome": "ROYAN-ATLANTIQUE",
+      "url": "https://www.zeturf.fr/fr/course-du-jour/2022-08-28/R9C3-royan-la-palmyre-prix-de-la-ville-de-saint-augustin",
+      "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2022-08-28/R9C3-royan-la-palmyre-prix-de-la-ville-de-saint-augustin",
+      "preuve_arrivee": "https://www.geny.com/course/1342908/arrivee-rapports",
+      "controle": "R9C3 Prix de la Ville de Saint-Augustin, Royan La Palmyre 28/08/2022 : HANANE MONTAVAL n°10 2e avec A. Mériel, arrivée et rubrique Replay confirmées dans la page ZEturf consultée ; lecture effective du flux vidéo non testée."
     },
     {
       "date": "2022-08-23",
