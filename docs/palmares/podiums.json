@@ -1516,6 +1516,18 @@
       "jockey": "Bruno MARIE"
     },
     {
+      "date": "2023-10-24",
+      "cheval": "MYMAP",
+      "hippodrome": "LE MANS",
+      "classement": 2,
+      "discipline": "galop",
+      "casaque": "galop_rodolphe",
+      "jockey": "Coralie PACAUT",
+      "entraineur": "Gilles PANNIER",
+      "proprietaire": "Rodolphe HAMON",
+      "source": "https://www.france-sire.com/cheval-432932-mymap.php"
+    },
+    {
       "date": "2023-09-18",
       "cheval": "FANTOMAS DU VAL",
       "hippodrome": "CAVAILLON",
