@@ -1,6 +1,16 @@
 {
   "podiums": [
     {
+      "date": "2026-11-08",
+      "cheval": "JUNINIO FLEURY",
+      "hippodrome": "CASTELSARRASIN",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Florian JULIEN",
+      "entraineur": "Florian JULIEN",
+      "casaque": "julien"
+    },
+    {
       "date": "2026-11-01",
       "cheval": "MEMPHIS BELLE",
       "hippodrome": "LISIEUX",
@@ -59,6 +69,16 @@
       "discipline": "attele",
       "jockey": "Mathieu DAOUGABEL",
       "casaque": "nathalie"
+    },
+    {
+      "date": "2026-09-27",
+      "cheval": "JUNINIO FLEURY",
+      "hippodrome": "VILLENEUVE-SUR-LOT",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Florian JULIEN",
+      "entraineur": "Florian JULIEN",
+      "casaque": "julien"
     },
     {
       "date": "2026-08-25",
@@ -162,6 +182,16 @@
       "casaque": "blanche"
     },
     {
+      "date": "2026-04-06",
+      "cheval": "JUNINIO FLEURY",
+      "hippodrome": "CASTILLONNES",
+      "classement": 3,
+      "discipline": "attele",
+      "jockey": "Cyril GAZENGEL",
+      "entraineur": "Florian JULIEN",
+      "casaque": "julien"
+    },
+    {
       "date": "2026-02-23",
       "cheval": "MONA LISA STARDUST",
       "hippodrome": "MONTAUBAN",
@@ -178,6 +208,16 @@
       "discipline": "attele",
       "jockey": "Matthias LEGROS",
       "casaque": "blanche"
+    },
+    {
+      "date": "2026-02-01",
+      "cheval": "JUNINIO FLEURY",
+      "hippodrome": "AGEN-LA-GARENNE",
+      "classement": 3,
+      "discipline": "attele",
+      "jockey": "Florian JULIEN",
+      "entraineur": "Florian JULIEN",
+      "casaque": "julien"
     },
     {
       "date": "2026-01-25",
@@ -627,6 +667,16 @@
       "casaque": "blanche"
     },
     {
+      "date": "2023-09-10",
+      "cheval": "JUNINIO FLEURY",
+      "hippodrome": "BERNAY",
+      "classement": 3,
+      "discipline": "attele",
+      "jockey": "Vincent HEBERT",
+      "entraineur": "Vincent HEBERT",
+      "casaque": "hebert"
+    },
+    {
       "date": "2023-09-02",
       "cheval": "FIESTA TEJY",
       "hippodrome": "LANGON-LIBOURNE",
@@ -717,6 +767,26 @@
       "casaque": "nathalie"
     },
     {
+      "date": "2023-05-01",
+      "cheval": "JUNINIO FLEURY",
+      "hippodrome": "FOUGERES",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Jérémy CONDETTE",
+      "entraineur": "Vincent HEBERT",
+      "casaque": "hebert"
+    },
+    {
+      "date": "2023-04-23",
+      "cheval": "JUNINIO FLEURY",
+      "hippodrome": "SAINT-AUBIN-LES-ELBEUF",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Vincent HEBERT",
+      "entraineur": "Vincent HEBERT",
+      "casaque": "hebert"
+    },
+    {
       "date": "2023-03-10",
       "cheval": "IT'S EAGLE COGLAIS",
       "hippodrome": "CORDEMAIS",
@@ -769,6 +839,16 @@
       "discipline": "attele",
       "jockey": "Bruno MARIE",
       "casaque": "blanche"
+    },
+    {
+      "date": "2023-01-28",
+      "cheval": "JUNINIO FLEURY",
+      "hippodrome": "ARGENTAN",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Vincent HEBERT",
+      "entraineur": "Vincent HEBERT",
+      "casaque": "hebert"
     },
     {
       "date": "2023-01-21",
@@ -987,6 +1067,16 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Jean-Philippe MONCLIN",
+      "casaque": "blanche"
+    },
+    {
+      "date": "2021-09-28",
+      "cheval": "JUNINIO FLEURY",
+      "hippodrome": "VINCENNES",
+      "classement": 2,
+      "discipline": "attele",
+      "jockey": "Gabriele GELORMINI",
+      "entraineur": "Bruno MARIE",
       "casaque": "blanche"
     },
     {
