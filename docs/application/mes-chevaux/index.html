@@ -1,10 +1,55 @@
 <!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#171717"><title>Mes chevaux · Écurie Initial</title>
-<style>*{box-sizing:border-box}body{margin:0;background:#f6f4f1;color:#242424;font:15px Arial,sans-serif}header{background:#171717;color:white;padding:18px}header strong{font-size:21px}header span{color:#f47721}main{max-width:780px;margin:auto;padding:16px 13px 40px}h1{font-size:25px}h2{font-size:19px;margin:0 0 9px}p{line-height:1.5}a{color:#ab4d0d}.card{background:#fff;border:1px solid #e8e2dd;border-radius:13px;padding:17px;margin:12px 0}.horse{border-top:1px solid #eee;padding:15px 0}.horse:first-child{border:0}.muted{color:#666;font-size:13px}.news{border-left:3px solid #f47721;padding:8px 12px;margin:9px 0;background:#faf8f5;white-space:pre-wrap;overflow-wrap:anywhere}.button{display:inline-block;background:#f47721;color:#171717;font-weight:bold;text-decoration:none;padding:12px 15px;border-radius:9px}.links{display:flex;gap:14px;flex-wrap:wrap}.alert{font-size:13px;color:#6b4a32}a:focus-visible{outline:3px solid #f47721;outline-offset:3px}[hidden]{display:none!important}@media(max-width:600px){header{padding:14px}main{padding:12px}.card{padding:15px}h1{font-size:23px}}</style><link rel="manifest" href="../manifest.webmanifest"><link rel="apple-touch-icon" href="../icon-192.png"></head>
+<style>*{box-sizing:border-box}body{margin:0;background:#f6f4f1;color:#242424;font:15px Arial,sans-serif}header{background:#171717;color:white;padding:18px}header strong{font-size:21px}header span{color:#f47721}main{max-width:780px;margin:auto;padding:16px 13px 40px}h1{font-size:25px}h2{font-size:19px;margin:0 0 9px}p{line-height:1.5}a{color:#ab4d0d}.card{background:#fff;border:1px solid #e8e2dd;border-radius:13px;padding:17px;margin:12px 0}.horse{border-top:1px solid #eee;padding:15px 0}.horse:first-child{border:0}.muted{color:#666;font-size:13px}.news{border-left:3px solid #f47721;padding:8px 12px;margin:9px 0;background:#faf8f5;white-space:pre-wrap;overflow-wrap:anywhere}.button{display:inline-block;background:#f47721;color:#171717;font-weight:bold;text-decoration:none;padding:12px 15px;border-radius:9px}.links{display:flex;gap:14px;flex-wrap:wrap}.alert{font-size:13px;color:#6b4a32}a:focus-visible{outline:3px solid #f47721;outline-offset:3px}[hidden]{display:none!important}@media(max-width:600px){header{padding:14px}main{padding:12px}.card{padding:15px}h1{font-size:23px}}
+:root{--ei-orange:#f47721}
+.dash-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:13px 0}
+.dash-stat{background:white;border:1px solid #e8e2dd;border-top:4px solid var(--ei-orange);padding:12px;border-radius:12px}
+.dash-stat b{display:block;font-size:28px;line-height:1.2}.dash-stat small{color:#666}
+.dash-row{border-bottom:1px solid #eee;padding:10px 0}
+.dash-row:last-child{border:0}
+.dash-row a{font-weight:700;text-decoration:none;color:#262626}
+.dash-row .muted{margin-top:3px;display:block}
+.horse-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(235px,1fr));gap:9px;margin-top:12px}
+.horse-card{background:#fff;border:1px solid #e8e2dd;border-radius:11px;padding:12px}
+.horse-card a{font-weight:bold;text-decoration:none;color:#242424}
+.horse-card .muted{display:block;margin-top:2px}
+#horse-search{width:100%;padding:13px;border:1px solid #d6d0c9;border-radius:10px;font:inherit}
+.mini-badge{display:inline-block;border-radius:30px;padding:2px 8px;background:#fff0e5;color:#9b450a;font-size:11px;margin-left:7px}
+.mini-badge.confirmed{background:#e5f4e9;color:#236c3f}
+.card-heading{display:flex;justify-content:space-between;align-items:center;gap:9px;flex-wrap:wrap}
+.card-heading a{font-size:13px}
+#newsSection .news{border:0;border-left:3px solid var(--ei-orange)}
+</style><link rel="manifest" href="../manifest.webmanifest"><link rel="apple-touch-icon" href="../icon-ei-192.png"></head>
 <body><header><strong>ÉCURIE <span>INITIAL</span></strong><div style="font-size:12px;color:#ddd">Mon espace personnel</div></header><main>
 <p><a href="../">← Retour à l'application</a></p><h1>🐎 Mes chevaux</h1><p id="loading">Vérification de votre accès…</p>
 <section class="card" id="locked" hidden><h2>🔒 Espace réservé</h2><p>Connectez-vous avec votre compte associé validé.</p><a class="button" href="../connexion/">Se connecter</a></section>
-<div id="private" hidden><p id="welcome"></p><p class="muted">Seuls vos chevaux et leurs informations réservées apparaissent ici.</p><section class="card"><h2>Mes participations</h2><div id="horses"></div></section>
-<section class="card"><h2>🔔 Notifications de mes chevaux</h2><p>Choisissez les alertes à recevoir sur ce téléphone, pour vos chevaux ou pour tout l’effectif de l’écurie.</p><a class="button" href="../notifications/">Gérer mes notifications</a><p class="muted">Les notifications Push nécessitent l’activation du service d’envoi Supabase.</p></section><p class="links"><a href="../tribune/">💬 Tribune des associés</a><a href="../connexion/">Mon compte</a></p></div>
+<div id="private" hidden>
+<p id="welcome" class="muted"></p>
+<div class="dash-stats">
+  <div class="dash-stat"><b id="horse-count">—</b><small>Chevaux dans mes participations</small></div>
+  <div class="dash-stat"><b id="starters-count">—</b><small>Prochains partants confirmés</small></div>
+</div>
+<section class="card">
+  <div class="card-heading"><h2>📅 Mes prochaines courses</h2><a href="../../engagements/">Toutes les courses</a></div>
+  <div id="next-races"></div>
+</section>
+<section class="card" id="newsSection" hidden>
+  <h2>✉️ Nouvelles privées</h2><div id="private-news"></div>
+</section>
+<section class="card">
+  <h2>🏆 Dernières performances</h2><div id="last-results"></div>
+</section>
+<section class="card">
+  <div class="card-heading"><h2>Mes participations</h2><span id="horse-shown" class="muted"></span></div>
+  <p><input id="horse-search" type="search" placeholder="Rechercher un de mes chevaux…" aria-label="Rechercher parmi mes chevaux"></p>
+  <div id="horses" class="horse-grid"></div>
+</section>
+<section class="card">
+  <h2>🔔 Mes notifications</h2>
+  <p class="muted">Choisissez les alertes et les chevaux que vous souhaitez suivre.</p>
+  <a class="button" href="../notifications/">Gérer mes notifications</a>
+</section>
+<p class="links"><a href="../tribune/">💬 Tribune des associés</a><a href="../connexion/">Mon compte</a></p>
+</div>
 <p id="status" role="status" aria-live="polite"></p></main>
 <script type="module">
 import{createClient}from'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
@@ -14,25 +59,112 @@ function el(t,text,cl){const n=document.createElement(t);if(text!==undefined)n.t
 function formatDate(s){const d=new Date(s);return isNaN(+d)?'':d.toLocaleDateString('fr-FR')}
 async function setup(){
  try{
- const{data:{user},error}=await db.auth.getUser();if(error||!user){$('locked').hidden=false;return}
- const{data:member,error:memberError}=await db.from('associes').select('nom_affiche,actif').eq('user_id',user.id).maybeSingle();
- if(memberError||!member?.actif){$('locked').hidden=false;return}
- $('welcome').textContent='Bienvenue '+member.nom_affiche+' !';
- const{data:parts,error:partsError}=await db.from('participations_chevaux').select('cheval_slug,cheval_nom').eq('user_id',user.id).order('cheval_nom');
- if(partsError){$('status').textContent='Les participations ne sont pas encore configurées. Réessayez ultérieurement.'; $('private').hidden=false;return}
- if(!parts.length){$('horses').append(el('p',"Aucune participation n'est encore enregistrée sur votre compte.",'muted'))}
- for(const part of parts){
- const box=el('article',undefined,'horse');box.append(el('h2',part.cheval_nom));
- 
- const newsBox=el('div');
- const{data:news,error:newsError}=await db.from('actualites_chevaux_privees').select('titre,contenu,created_at').eq('cheval_slug',part.cheval_slug).order('created_at',{ascending:false}).limit(10);
- if(newsError)newsBox.append(el('p','Informations privées indisponibles pour le moment.','muted'));
- else if(!news?.length)newsBox.append(el('p','Aucune nouvelle privée pour le moment.','muted'));
- else for(const item of news){const entry=el('div',undefined,'news');entry.append(el('strong',item.titre),el('p',item.contenu),el('small',formatDate(item.created_at)));newsBox.append(entry)}
- box.append(newsBox);$('horses').append(box)
- }
- $('private').hidden=false;
- }catch(e){$('status').textContent="Impossible de charger votre espace pour le moment."}finally{$('loading').hidden=true}
+  const{data:{user},error}=await db.auth.getUser();
+  if(error||!user){$('locked').hidden=false;return}
+  const{data:member,error:memberError}=await db.from('associes')
+    .select('nom_affiche,actif').eq('user_id',user.id).maybeSingle();
+  if(memberError||!member?.actif){$('locked').hidden=false;return}
+  $('welcome').textContent='Bienvenue '+member.nom_affiche+' !';
+  const{data:parts,error:partsError}=await db.from('participations_chevaux')
+    .select('cheval_slug,cheval_nom').eq('user_id',user.id).order('cheval_nom');
+  if(partsError)throw Error('Impossible de charger vos participations.');
+  const mine=parts||[];
+  $('horse-count').textContent=mine.length;
+  $('private').hidden=false;
+  const bySlug=new Map(mine.map(p=>[p.cheval_slug,p]));
+  const addLink=(name,slug)=>{
+    if(!/^[a-z0-9-]+$/.test(slug||''))return el('strong',name);
+    const link=el('a',name);link.href='../../chevaux/'+encodeURIComponent(slug)+'/';return link;
+  };
+  const parDate=()=>new Intl.DateTimeFormat('sv-SE',{timeZone:'Europe/Paris',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
+  const displayDate=s=>s&&/^\d{4}-\d{2}-\d{2}$/.test(s)
+    ?new Intl.DateTimeFormat('fr-FR',{day:'numeric',month:'short',timeZone:'Europe/Paris'}).format(new Date(s+'T12:00:00Z')):s||'';
+  const publicPromise=Promise.all([
+    '../../chevaux/data/editorial.json','../../chevaux/data/chevaux.json'
+  ].map(async url=>{
+    const r=await fetch(url+'?v='+Date.now(),{cache:'no-store'});
+    if(!r.ok)throw Error('Données publiques indisponibles');
+    return r.json();
+  }));
+  const privatePromise=mine.length
+    ?db.from('actualites_chevaux_privees').select('cheval_slug,titre,contenu,created_at')
+      .in('cheval_slug',mine.map(p=>p.cheval_slug)).order('created_at',{ascending:false}).limit(20)
+    :Promise.resolve({data:[],error:null});
+  const [pubResult,privResult]=await Promise.allSettled([publicPromise,privatePromise]);
+  let editorial=null,profiles=null;
+  if(pubResult.status==='fulfilled'){[editorial,profiles]=pubResult.value}
+  else $('status').textContent='Les courses et performances sont temporairement indisponibles.';
+  const races=[],performances=[];
+  for(const p of mine){
+    for(const event of editorial?.engagements?.[p.cheval_slug]||[]){
+      if(event.date>=parDate()&&['engage','declare','partant'].includes(event.statut))races.push({part:p,event});
+    }
+    for(const result of editorial?.performances?.[p.cheval_slug]||[]){
+      if(result?.date)performances.push({part:p,result});
+    }
+  }
+  races.sort((a,b)=>(a.event.date+(a.event.heure||'')).localeCompare(b.event.date+(b.event.heure||'')));
+  performances.sort((a,b)=>b.result.date.localeCompare(a.result.date));
+  $('starters-count').textContent=races.filter(x=>['declare','partant'].includes(x.event.statut)).length;
+  const raceBox=$('next-races');
+  if(!editorial)raceBox.append(el('p','Courses indisponibles pour le moment.','muted'));
+  else if(!races.length)raceBox.append(el('p','Aucune course à venir enregistrée pour vos chevaux.','muted'));
+  else for(const {part,event} of races.slice(0,8)){
+    const row=el('div',undefined,'dash-row'),head=el('div');
+    head.append(addLink(part.cheval_nom,part.cheval_slug));
+    const confirmed=['declare','partant'].includes(event.statut);
+    head.append(el('span',confirmed?'Partant confirmé':'Engagé','mini-badge'+(confirmed?' confirmed':'')));
+    row.append(head,el('small',[displayDate(event.date),event.heure||'',event.hippodrome||''].filter(Boolean).join(' · '),'muted'));
+    raceBox.append(row);
+  }
+  const perfBox=$('last-results');
+  if(!editorial)perfBox.append(el('p','Performances indisponibles pour le moment.','muted'));
+  else if(!performances.length)perfBox.append(el('p','Aucune performance enregistrée.','muted'));
+  else for(const {part,result} of performances.slice(0,6)){
+    const row=el('div',undefined,'dash-row'),top=el('div');
+    top.append(addLink(part.cheval_nom,part.cheval_slug));
+    if(result.rang)top.append(el('span',result.rang,'mini-badge'));
+    row.append(top,el('small',[displayDate(result.date),result.hippodrome||''].filter(Boolean).join(' · '),'muted'));
+    perfBox.append(row);
+  }
+  if(privResult.status==='fulfilled'&&!privResult.value.error){
+    for(const n of privResult.value.data||[]){
+      const box=el('article',undefined,'news');
+      box.append(el('strong',(bySlug.get(n.cheval_slug)?.cheval_nom||'Cheval')+' · '+n.titre));
+      box.append(el('p',n.contenu));
+      box.append(el('small',formatDate(n.created_at)));
+      $('private-news').append(box);
+      $('newsSection').hidden=false;
+    }
+  }
+  const profilesBySlug=new Map((profiles?.horses||[]).map(h=>[h.id,h]));
+  const nodes=[];
+  for(const p of mine){
+    const block=el('article',undefined,'horse-card');
+    block.append(addLink(p.cheval_nom,p.cheval_slug));
+    const details=[];
+    const discipline=profilesBySlug.get(p.cheval_slug)?.discipline;
+    if(discipline)details.push(discipline);
+    const upcoming=races.find(x=>x.part.cheval_slug===p.cheval_slug);
+    if(upcoming)details.push((['declare','partant'].includes(upcoming.event.statut)?'Partant':'Engagé')+' le '+displayDate(upcoming.event.date));
+    else{
+      const last=performances.find(x=>x.part.cheval_slug===p.cheval_slug);
+      if(last?.result.rang)details.push('Dernière perf. : '+last.result.rang);
+    }
+    if(details.length)block.append(el('span',details.join(' · '),'muted'));
+    $('horses').append(block);
+    nodes.push({block,name:p.cheval_nom.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase()});
+  }
+  const filter=()=>{
+    const q=$('horse-search').value.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim();
+    let shown=0;
+    for(const n of nodes){n.block.hidden=!!q&&!n.name.includes(q);if(!n.block.hidden)shown++}
+    $('horse-shown').textContent=shown+' cheval'+(shown===1?'':'ux');
+  };
+  $('horse-search').addEventListener('input',filter);filter();
+  if(!mine.length)$('horses').append(el('p','Aucune participation enregistrée.','muted'));
+ }catch(e){$('status').textContent=e?.message||'Impossible de charger votre espace pour le moment.'}
+ finally{$('loading').hidden=true}
 }
 setup();
 </script><script defer src="../nav.js?v=20261115b"></script></body></html>
