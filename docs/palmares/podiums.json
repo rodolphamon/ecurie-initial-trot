@@ -3213,7 +3213,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Lolita BALAYN",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Alexandre MARQUET",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Benoît CAILLIAU en 2013, Alexandre MARQUET à partir de 2014"
     },
     {
       "date": "2014-06-01",
@@ -3222,7 +3224,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Lolita BALAYN",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Alexandre MARQUET",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Benoît CAILLIAU en 2013, Alexandre MARQUET à partir de 2014"
     },
     {
       "date": "2014-04-16",
@@ -3231,7 +3235,9 @@
       "classement": 3,
       "discipline": "attele",
       "casaque": "blanche",
-      "jockey": "Lolita BALAYN"
+      "jockey": "Lolita BALAYN",
+      "entraineur": "Alexandre MARQUET",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Benoît CAILLIAU en 2013, Alexandre MARQUET à partir de 2014"
     },
     {
       "date": "2013-12-30",
@@ -3267,7 +3273,9 @@
       "classement": 3,
       "discipline": "attele",
       "casaque": "blanche",
-      "jockey": "Lolita BALAYN"
+      "jockey": "Lolita BALAYN",
+      "entraineur": "Benoît CAILLIAU",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Benoît CAILLIAU en 2013, Alexandre MARQUET à partir de 2014"
     },
     {
       "date": "2013-08-22",
@@ -3285,7 +3293,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Lolita BALAYN",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Benoît CAILLIAU",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Benoît CAILLIAU en 2013, Alexandre MARQUET à partir de 2014"
     },
     {
       "date": "2013-07-27",
@@ -3303,7 +3313,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Lolita BALAYN",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Benoît CAILLIAU",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Benoît CAILLIAU en 2013, Alexandre MARQUET à partir de 2014"
     },
     {
       "date": "2013-02-17",
