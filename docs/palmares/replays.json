@@ -1,5 +1,5 @@
 {
-  "version": 15,
+  "version": 16,
   "note": "Liens vers les pages de courses sur Equidia ou LeTROT, avec références de résultats ayant permis d'identifier date, hippodrome, réunion et numéro de course. Les liens Equidia sont calculés d'après le format d'URL et leur lecture, ainsi que la disponibilité du replay, n'ont pas été testées automatiquement. Les victoires historiques ne sont pas modifiées.",
   "replays": [
     {
@@ -91,10 +91,11 @@
       "date": "2025-09-23",
       "cheval": "MANDRAGORA FLEURY",
       "hippodrome": "VINCENNES",
-      "url": "https://www.letrot.com/courses/2025-09-23/7500/6",
+      "url": "https://www.equidia.fr/courses/2025-09-23/R3/C6",
       "justificatif": "https://www.canalturf.com/resultats-PMU/2025-09-23/paris-vincennes/384239_prix-hydrus.html",
-      "controle": "Hippodrome, date et numéro de course vérifiés ; URL construite au format LeTROT, lecture non testée automatiquement",
-      "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2025-09-23/7500/6"
+      "controle": "R3C6 Prix Hydrus confirmé par Canalturf et ZEturf (Mandragora Fleury gagnante) ; disponibilité de la vidéo Equidia non testée",
+      "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2025-09-23/7500/6",
+      "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2025-09-23/R3C6-vincennes-prix-hydrus"
     },
     {
       "date": "2025-09-18",
