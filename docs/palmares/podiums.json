@@ -1294,7 +1294,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Maxence VAUDOIT",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2024-07-30",
@@ -1313,7 +1315,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Matthias LEGROS",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2024-07-14",
@@ -1322,7 +1326,9 @@
       "classement": 3,
       "discipline": "attele",
       "casaque": "blanche",
-      "jockey": "Alexis MARIE"
+      "jockey": "Alexis MARIE",
+      "entraineur": "Jean-Charles FERON",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2024-07-08",
@@ -1364,7 +1370,9 @@
       "classement": 3,
       "discipline": "attele",
       "casaque": "blanche",
-      "jockey": "Alexandre ABRIVARD"
+      "jockey": "Alexandre ABRIVARD",
+      "entraineur": "Jean-Charles FERON",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2024-06-16",
@@ -1460,7 +1468,9 @@
       "classement": 3,
       "discipline": "attele",
       "casaque": "blanche",
-      "jockey": "Matthias LEGROS"
+      "jockey": "Matthias LEGROS",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2024-04-23",
@@ -1664,7 +1674,9 @@
       "classement": 3,
       "discipline": "attele",
       "casaque": "blanche",
-      "jockey": "Marion DONABEDIAN"
+      "jockey": "Marion DONABEDIAN",
+      "entraineur": "Jean-Charles FERON",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2023-09-17",
@@ -1898,7 +1910,9 @@
       "classement": 3,
       "discipline": "attele",
       "casaque": "blanche",
-      "jockey": "Jean Charles FERON"
+      "jockey": "Jean Charles FERON",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2023-03-16",
@@ -2176,7 +2190,9 @@
       "classement": 3,
       "discipline": "attele",
       "casaque": "blanche",
-      "jockey": "Virgile FOUCAULT"
+      "jockey": "Virgile FOUCAULT",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2022-08-08",
@@ -2196,7 +2212,9 @@
       "classement": 3,
       "discipline": "attele",
       "casaque": "blanche",
-      "jockey": "Virgile FOUCAULT"
+      "jockey": "Virgile FOUCAULT",
+      "entraineur": "Virgile FOUCAULT",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2022-07-17",
@@ -2216,7 +2234,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Romain LE CREPS",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Virgile FOUCAULT",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2022-07-03",
@@ -2267,7 +2287,9 @@
       "classement": 3,
       "discipline": "attele",
       "casaque": "blanche",
-      "jockey": "Virgile FOUCAULT"
+      "jockey": "Virgile FOUCAULT",
+      "entraineur": "Virgile FOUCAULT",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2022-05-19",
@@ -2375,7 +2397,9 @@
       "classement": 3,
       "discipline": "attele",
       "casaque": "blanche",
-      "jockey": "Gabin FAVRIS"
+      "jockey": "Gabin FAVRIS",
+      "entraineur": "Bruno MARIE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2022-02-03",
@@ -3528,7 +3552,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Mickaël BACHELOT",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Manuel CRIADO",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2013-01-13",
@@ -3557,7 +3583,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Guillaume CARDINE",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Guillaume CARDINE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2012-07-30",
@@ -3566,7 +3594,9 @@
       "classement": 2,
       "discipline": "attele",
       "jockey": "Guillaume CARDINE",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "entraineur": "Guillaume CARDINE",
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
     },
     {
       "date": "2012-05-13",
