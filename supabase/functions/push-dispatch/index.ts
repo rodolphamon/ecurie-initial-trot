@@ -146,8 +146,14 @@ async function run() {
       if(sub.audience==="associate"&&!member)continue;
       if(!sub[alert.categorie])continue;
       const owned=member ? holdings.get(sub.user_id)||new Set<string>() : new Set<string>();
-      if(alert.cheval_slug && member && sub.scope==="mine" && !owned.has(alert.cheval_slug))continue;
-      if(alert.cheval_slug && !member && !["results"].includes(alert.categorie))continue;
+      if(alert.categorie==="private_news"){
+        // Priorité absolue à la copropriété : aucune exception liée au choix "tous".
+        // Ni visiteurs, ni associés d'un autre cheval ne doivent recevoir l'alerte.
+        if(!member || !alert.cheval_slug || !owned.has(alert.cheval_slug))continue;
+      }else{
+        if(alert.cheval_slug && member && sub.scope==="mine" && !owned.has(alert.cheval_slug))continue;
+        if(alert.cheval_slug && !member && !["results"].includes(alert.categorie))continue;
+      }
       let message:{title:string,body:string,url:string}|null=null;
       const p=alert.payload||{};
       if(alert.categorie==="daily"){
@@ -165,6 +171,12 @@ async function run() {
         message={title:"⏰ Départ imminent · "+esc(p.nom),body:esc(p.hippodrome)+" · environ "+esc(p.diff)+" min avant le départ.",url:APP+"/engagements/"};
       }else if(alert.categorie==="results"){
         message={title:"🏆 Résultat officiel · "+esc(p.nom),body:esc(p.rang)+" à "+esc(p.hippodrome),url:APP+"/chevaux/"+alert.cheval_slug+"/"};
+      }else if(alert.categorie==="private_news"){
+        message={
+          title:"🔒 Nouvelle information · "+esc(p.nom),
+          body:"Une publication privée concernant ce cheval est disponible dans votre espace associé.",
+          url:APP+"/application/mes-chevaux/?info="+encodeURIComponent(esc(p.id))+"#nouvelles-privees"
+        };
       }
       if(!message)continue;
       const {data:prev,error:prevErr}=await sb.from("ei_push_deliveries")
