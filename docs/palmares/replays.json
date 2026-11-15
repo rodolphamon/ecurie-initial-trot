@@ -1,5 +1,5 @@
 {
-  "version": 53,
+  "version": 54,
   "note": "Fiches de courses Equidia ou LeTROT avec sources identifiant les courses. Les URLs Equidia sont déduites du format date/R/C ; la disponibilité et la lecture des vidéos ne sont pas garanties. HOMA reste sur LeTROT faute de fiche Equidia vérifiée.",
   "replays": [
     {
@@ -1474,6 +1474,14 @@
       "controle": "Cheval, classement et R/C confirmés dans l'arrivée publiée ; replay Equidia non visionné individuellement"
     },
     {
+      "date": "2023-04-24",
+      "cheval": "VYBORG",
+      "hippodrome": "LE CROISE-LAROCHE",
+      "url": "https://www.equidia.fr/courses/2023-04-24/R4/C3",
+      "justificatif": "https://www.zeturf.fr/fr/reunion-du-jour/2023-04-24/R4-le-croise-laroche",
+      "controle": "ZEturf cite Vyborg deuxième dans le Prix de la Villa Cavrois, R4C3 ; lecture effective du replay non testée"
+    },
+    {
       "date": "2023-03-23",
       "cheval": "JETHAN DE MONGOCHY",
       "hippodrome": "CAEN",
@@ -1488,6 +1496,14 @@
       "url": "https://www.equidia.fr/courses/2023-03-16/R1/C2",
       "justificatif": "https://www.zone-turf.fr/rapports/r1-c2-prix-de-puchay-926970.html",
       "controle": "Cheval, classement et R/C confirmés dans l'arrivée publiée ; replay Equidia non visionné individuellement"
+    },
+    {
+      "date": "2023-02-24",
+      "cheval": "IBERIK DE MONGOCHY",
+      "hippodrome": "VINCENNES - GP",
+      "url": "https://www.equidia.fr/courses/2023-02-24/R1/C6",
+      "justificatif": "https://www.geny.com/en/course/1385059/arrivee-rapports",
+      "controle": "Geny R1C6 Prix Salam, Iberik deuxième ; lecture effective du replay non testée"
     },
     {
       "date": "2023-02-14",
@@ -1512,6 +1528,14 @@
       "url": "https://www.equidia.fr/courses/2023-01-29/R2/C2",
       "justificatif": "https://www.zeturf.fr/fr/reunion-du-jour/2023-01-29/R2-nantes",
       "controle": "Cheval et classement dans arrivée de course publiquement consultable ; R/C confirmés ; disponibilité du replay Equidia non testée individuellement"
+    },
+    {
+      "date": "2022-11-15",
+      "cheval": "ILLAM DE MONGOCHY",
+      "hippodrome": "VINCENNES - GP",
+      "url": "https://www.equidia.fr/courses/2022-11-15/R3/C4",
+      "justificatif": "https://www.gbet.fr/proprietaires/g-gavelle-36368/",
+      "controle": "Prix de Castres R3C4 corroboré par historique; classement deuxième sur Province Courses https://province-courses.fr/fiche_cheval.php?id=18137138T ; lecture effective du replay non testée"
     },
     {
       "date": "2022-10-12",
