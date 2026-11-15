@@ -1,5 +1,5 @@
 {
-  "version": 30,
+  "version": 31,
   "note": "Fiches de courses Equidia ou LeTROT avec sources identifiant les courses. Les URLs Equidia sont déduites du format date/R/C ; la disponibilité et la lecture des vidéos ne sont pas garanties. HOMA reste sur LeTROT faute de fiche Equidia vérifiée.",
   "replays": [
     {
@@ -273,6 +273,14 @@
       "controle": "Course référencée par Turfin (R et C concordants) ; lecture du replay Equidia non testée ici",
       "lien_letrot_precedent": "https://www.letrot.com/courses/2026-02-14/4701/1",
       "preuve_identification_course": "https://turfin.fr/course/2026-02-14/r4c1-agen-la-garenne"
+    },
+    {
+      "date": "2026-02-02",
+      "cheval": "LOVE ME MAZELI",
+      "hippodrome": "GRAIGNES",
+      "url": "https://www.equidia.fr/courses/2026-02-02/R4/C1",
+      "preuve_identification_course": "https://turfin.fr/course/2026-02-02/r4c1-graignes-prix-province-courses",
+      "controle": "2e place et R4C1 identifiées dans résultats Turfin ; lecture vidéo Equidia non testée"
     },
     {
       "date": "2026-01-30",
