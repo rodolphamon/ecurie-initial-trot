@@ -187,7 +187,8 @@ function replayUrl(value){
   const letrot=url.hostname==="www.letrot.com"&&(/^\/courses\/\d{4}-\d{2}-\d{2}\/\d+\/\d+\/?$/.test(url.pathname)||/^\/fr\/courses\/replay-courses\/\d{4}-\d{2}-\d{2}\/\d+\/\d+\/?$/.test(url.pathname));
   const equidia=url.hostname==="www.equidia.fr"&&/^\/courses\/\d{4}-\d{2}-\d{2}\/R\d+\/C\d+\/?$/.test(url.pathname);
   const archive=url.hostname==="www.dailymotion.com"&&/^\/video\/[a-zA-Z0-9]+\/?$/.test(url.pathname);
-  return letrot||equidia||archive?url.href:"";
+  const zeturf=url.hostname==="www.zeturf.fr"&&/^\/fr\/course-du-jour\/\d{4}-\d{2}-\d{2}\/R\d+C\d+-[a-z0-9-]+\/?$/.test(url.pathname);
+  return letrot||equidia||archive||zeturf?url.href:"";
  }catch{return ""}
 }
 function replayButton(result,mobile){
