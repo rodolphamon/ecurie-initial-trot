@@ -12,6 +12,7 @@
 .horse-card{background:#fff;border:1px solid #e8e2dd;border-radius:11px;padding:12px}
 .horse-card a{font-weight:bold;text-decoration:none;color:#242424}
 .horse-card .muted{display:block;margin-top:2px}
+.horse-card .pub-link{display:inline-block;margin-top:7px;font-size:12px;color:#aa4a0b;text-decoration:underline}
 #horse-search{width:100%;padding:13px;border:1px solid #d6d0c9;border-radius:10px;font:inherit}
 .mini-badge{display:inline-block;border-radius:30px;padding:2px 8px;background:#fff0e5;color:#9b450a;font-size:11px;margin-left:7px}
 .mini-badge.confirmed{background:#e5f4e9;color:#236c3f}
@@ -63,9 +64,14 @@ async function setup(){
   const{data:{user},error}=await db.auth.getUser();
   if(error||!user){$('locked').hidden=false;return}
   const{data:member,error:memberError}=await db.from('associes')
-    .select('nom_affiche,actif').eq('user_id',user.id).maybeSingle();
+    .select('nom_affiche,actif,administrateur').eq('user_id',user.id).maybeSingle();
   if(memberError||!member?.actif){$('locked').hidden=false;return}
   $('welcome').textContent='Bienvenue '+member.nom_affiche+' !';
+  if(member.administrateur){
+    const quick=el('a','✍️ Publier une information privée','button');
+    quick.href='../administration/actualites/';
+    $('welcome').after(quick);
+  }
   const{data:parts,error:partsError}=await db.from('participations_chevaux')
     .select('cheval_slug,cheval_nom').eq('user_id',user.id).order('cheval_nom');
   if(partsError)throw Error('Impossible de charger vos participations.');
@@ -171,6 +177,11 @@ async function setup(){
       if(last?.result.rang)details.push('Dernière perf. : '+last.result.rang);
     }
     if(details.length)block.append(el('span',details.join(' · '),'muted'));
+    if(member.administrateur && /^[a-z0-9-]+$/.test(p.cheval_slug)){
+      const adminLink=el('a','✍️ Publier pour ce cheval','pub-link');
+      adminLink.href='../administration/actualites/?cheval='+encodeURIComponent(p.cheval_slug);
+      block.append(adminLink);
+    }
     $('horses').append(block);
     nodes.push({block,name:p.cheval_nom.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase()});
   }
