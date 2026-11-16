@@ -22,6 +22,7 @@ from zoneinfo import ZoneInfo
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "docs/chevaux/data/editorial.json"
+HORSES = ROOT / "docs/chevaux/data/chevaux.json"
 PMU = "https://online.turfinfo.api.pmu.fr/rest/client/1"
 STATUSES = {"partant", "declare"}
 PARIS = ZoneInfo("Europe/Paris")
@@ -119,6 +120,39 @@ def fetch_programme(day):
         return json.load(resp), url
 
 
+def fetch_participants(day, code):
+    digits = datetime.strptime(day, "%Y-%m-%d").strftime("%d%m%Y")
+    code_match = re.fullmatch(r"R(\d+)C(\d+)", str(code), re.I)
+    if not code_match:
+        raise ValueError("Code réunion/course PMU invalide")
+    n_reunion, n_course = code_match.groups()
+    url = f"{PMU}/programme/{digits}/R{n_reunion}/C{n_course}/participants"
+    req = urllib.request.Request(url, headers={
+        "User-Agent": "EcurieInitial-ResultMonitor/1.0 (contact@ecurie-initial.com)",
+        "Accept": "application/json",
+        "Origin": "https://www.pmu.fr",
+    })
+    with urllib.request.urlopen(req, timeout=18) as response:
+        data = json.load(response)
+    if not isinstance(data, dict) or not isinstance(data.get("participants"), list):
+        raise ValueError("Liste de partants PMU introuvable")
+    return data["participants"]
+
+
+def verify_identity(day, code, bib, expected_name):
+    runners = fetch_participants(day, code)
+    matches = [runner for runner in runners
+               if isinstance(runner, dict) and number(runner.get("numPmu")) == bib]
+    if len(matches) != 1:
+        return False, "N° de programme introuvable ou ambigu"
+    remote = normalize(matches[0].get("nom", ""))
+    expected = normalize(expected_name)
+    # La correspondance du nom est impérative : ne jamais déduire l'identité du seul dossard.
+    if not remote or remote != expected:
+        return False, f"Nom différent pour le n° {bib} : PMU={remote}; écurie={expected}"
+    return True, None
+
+
 def local_time(day, hour):
     if not isinstance(hour, str) or not re.fullmatch(r"\d{2}:\d{2}", hour):
         return None
@@ -150,10 +184,12 @@ def due_events(data, current):
 
 
 def apply(data, current, is_dry_run=False, probe=False):
+    horses = json.loads(HORSES.read_text(encoding='utf-8')).get('horses', [])
+    horse_names = {h['id']: h['name'] for h in horses if isinstance(h, dict) and h.get('id') and h.get('name')}
     events = due_events(data, current)
     days = sorted({evt["date"] for _, evt, _ in events})
     if probe and not days:
-        days = [current.date().isoformat()]
+        days = [current.date().isoformat(), (current.date() + timedelta(days=1)).isoformat()]
     print(f"[PMU] Date Paris : {current.isoformat(timespec='minutes')} ; {len(events)} partant(s) à examiner")
     cache = {}
     updates = []
@@ -179,6 +215,18 @@ def apply(data, current, is_dry_run=False, probe=False):
             rank, err = rank_in_arrival(race, bib)
             if err:
                 print(f"[PMU] {slug} : {err}")
+                continue
+            expected_name = horse_names.get(slug)
+            if not expected_name:
+                print(f"[PMU] {slug} : nom de cheval non présent dans notre effectif")
+                continue
+            try:
+                valid, error = verify_identity(day, evt["course"], bib, expected_name)
+            except (ValueError, OSError, urllib.error.URLError, TimeoutError) as exc:
+                print(f"[PMU] {slug} : identité non vérifiable : {type(exc).__name__} {str(exc)[:140]}", file=sys.stderr)
+                continue
+            if not valid:
+                print(f"[PMU] {slug} : {error}")
                 continue
             val = ("1er" if rank == 1 else f"{rank}e")
             perf = {
@@ -219,6 +267,7 @@ def self_test():
     race["arriveeDefinitive"] = False
     assert rank_in_arrival(race, 5)[0] is None
     assert find_race(fixture, "R1C7", "Deauville")[0] is None
+    assert normalize("Maître d'Or") == normalize("MAITRE D OR")
     print("[PMU] Tests internes réussis : ex aequo, provisoire, lieu et non classé")
 
 
