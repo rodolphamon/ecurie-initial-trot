@@ -65,7 +65,7 @@ serve(async (req) => {
       }
       if (body.action === "update_email") {
         const email = String(body.email || "").trim().toLowerCase();
-        if (!/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email) || email.length > 254) {
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.length > 254) {
           return reply(400, { error: "Adresse e-mail invalide." });
         }
         // Ne crée pas de nouveau compte et ne touche pas aux participations.
