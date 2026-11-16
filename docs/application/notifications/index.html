@@ -86,6 +86,25 @@ async function init(){
   const config=await res.json().catch(()=>({}));
   if(!res.ok||!config.publicKey){$('serviceState').textContent='Les notifications sont en préparation : le serveur d’envoi doit encore être activé.';return}
   publicKey=config.publicKey;
+  // Si la clé de l'appareil ne correspond plus à celle du serveur,
+  // l'envoi est rejeté par le service Push (souvent avec un 403).
+  // Révoquer seulement l'ancien abonnement Push local, jamais le compte.
+  const installedKey=subscription?.options?.applicationServerKey;
+  if(installedKey){
+    const current=new Uint8Array(installedKey),expected=base64ToBytes(publicKey);
+    const matches=current.length===expected.length && current.every((v,i)=>v===expected[i]);
+    if(!matches){
+      try{
+        if(localStorage.getItem(tokenKey)){
+          await callServer({action:'unsubscribe',deviceToken:deviceToken(),endpoint:subscription.endpoint});
+        }
+      }catch(_){/* Le retrait local reste possible si la demande serveur échoue. */}
+      await subscription.unsubscribe();
+      subscription=null;
+      $('testPush').hidden=true;
+      message('La clé de notification de ce téléphone était ancienne. Cliquez sur « Activer les notifications » pour la renouveler.',true);
+    }
+  }
   if(subscription && localStorage.getItem(tokenKey)){
     try{
       const state=await callServer({action:'status',deviceToken:deviceToken(),endpoint:subscription.endpoint});
