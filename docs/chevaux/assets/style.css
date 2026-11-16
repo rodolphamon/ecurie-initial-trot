@@ -47,13 +47,3 @@
   .ei-app-installed .wordmark small{font-size:7.5px;letter-spacing:.1px}
 }
 
-/* Signature anniversaire : équilibre l'espace à droite sur les petits écrans. */
-.ei-anniversary{display:none}
-.ei-app-installed .ei-anniversary{display:flex;flex:0 0 48px;width:48px;height:48px;flex-direction:column;align-items:center;justify-content:center;border:1.5px solid var(--accent);background:#fff9f5;border-radius:50%;line-height:1;color:#191919}
-.ei-app-installed .ei-anniversary b{font-size:19px;font-weight:900;line-height:1.08}
-.ei-app-installed .ei-anniversary small{font-size:9px;letter-spacing:1px;color:#b44f10;font-weight:800;line-height:1.1}
-.ei-app-installed .top-inner{justify-content:space-between}
-.ei-app-installed .wordmark{min-width:0}
-.ei-app-installed .wordmark-copy{min-width:0}
-@media(max-width:590px){.ei-app-installed .ei-anniversary{margin-left:8px;flex-basis:44px;width:44px;height:44px}}
-@media(max-width:355px){.ei-app-installed .ei-anniversary{display:none}}
