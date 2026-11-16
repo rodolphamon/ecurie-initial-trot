@@ -9,6 +9,7 @@ const sb = createClient(env("SUPABASE_URL"), env("SUPABASE_SERVICE_ROLE_KEY"), {
   auth: { persistSession: false, autoRefreshToken: false },
 });
 const APP = "https://fiches.ecurie-initial.com";
+const PILOT_LAUNCH_AT = Date.parse("2026-11-30T23:00:00Z");
 const editorialUrl = APP + "/chevaux/data/editorial.json";
 const horsesUrl = APP + "/chevaux/data/chevaux.json";
 const WITHDRAWN = new Set(["non-partant", "forfait", "elimine", "np"]);
@@ -43,6 +44,7 @@ async function getJSON(url:string) {
 const iso=(n:number)=>new Date(n).toISOString();
 async function run() {
   const now=Date.now(), clock=parisNow(new Date(now)), nextHour=now+3600_000;
+  const prelaunch = now < PILOT_LAUNCH_AT;
   const [ed,horses]=await Promise.all([getJSON(editorialUrl),getJSON(horsesUrl)]);
   const horseNames:Record<string,string>={};
   const src=horses.horses||horses;
@@ -95,13 +97,16 @@ async function run() {
     if(!Array.isArray(rows))continue;
     for(const perf of rows){
       const p=perf as Record<string,unknown>;
-      if(p.officiel!==true && p.statut!=="officiel")continue;
+      const official=p.officiel===true||p.statut==="officiel";
+      const pilotValidated=prelaunch && p.valide_ecurie===true && p.notif_testeurs===true;
+      if(!official && !pilotValidated)continue;
       const date=esc(p.date);
       if(!/^\d{4}-\d{2}-\d{2}$/.test(date)||Date.parse(date+"T00:00:00Z")<now-48*3600_000)continue;
       const pKey=[slug,date,esc(p.hippodrome).toLowerCase()].join("|");
       await saveAlert({id:"results:"+pKey,categorie:"results",cheval_slug:slug,payload:{
         nom:horseNames[slug]||slug.replace(/-/g," ").toUpperCase(),
-        hippodrome:esc(p.hippodrome),rang:esc(p.rang||p.classement||"Résultat disponible"),date
+        hippodrome:esc(p.hippodrome),rang:esc(p.rang||p.classement||"Résultat disponible"),date,
+        official,pilotTest:pilotValidated
       },expires_at:iso(now+36*3600_000)});counts.alerts++;
     }
   }
@@ -127,7 +132,7 @@ async function run() {
     const {data:members,error:memErr}=await sb.from("associes")
       .select("user_id,nom_affiche,administrateur").eq("actif",true).in("user_id",userIds);
     if(memErr)throw memErr;
-    const launchOpen=now>=Date.parse("2026-11-30T23:00:00Z");
+    const launchOpen=!prelaunch;
     const pilots=new Set<string>();
     if(!launchOpen){
       const {data:rows,error:pilotError}=await sb.from("ei_lancement_pilotes")
@@ -161,6 +166,8 @@ async function run() {
       if(Date.parse(sub.created_at)>Date.parse(alert.created_at))continue;
       const member=sub.audience==="associate" && !!sub.user_id && active.has(sub.user_id);
       if(sub.audience==="associate"&&!member)continue;
+      // Jusqu’au 1er décembre, aucune alerte n’est adressée aux visiteurs ou aux non-testeurs.
+      if(prelaunch&&!member)continue;
       if(!sub[alert.categorie])continue;
       const owned=member ? holdings.get(sub.user_id)||new Set<string>() : new Set<string>();
       if(alert.categorie==="private_news"){
@@ -168,7 +175,8 @@ async function run() {
         // Ni visiteurs, ni associés d'un autre cheval ne doivent recevoir l'alerte.
         if(!member || !alert.cheval_slug || !owned.has(alert.cheval_slug))continue;
       }else{
-        if(alert.cheval_slug && member && sub.scope==="mine" && !owned.has(alert.cheval_slug))continue;
+        const pilotResult=prelaunch && alert.categorie==="results" && alert.payload?.pilotTest===true;
+        if(alert.cheval_slug && member && sub.scope==="mine" && !owned.has(alert.cheval_slug) && !pilotResult)continue;
         if(alert.cheval_slug && !member && !["results"].includes(alert.categorie))continue;
       }
       let message:{title:string,body:string,url:string}|null=null;
@@ -187,7 +195,7 @@ async function run() {
       }else if(alert.categorie==="before15"){
         message={title:"⏰ Départ imminent · "+esc(p.nom),body:esc(p.hippodrome)+" · environ "+esc(p.diff)+" min avant le départ.",url:APP+"/engagements/"};
       }else if(alert.categorie==="results"){
-        message={title:"🏆 Résultat officiel · "+esc(p.nom),body:esc(p.rang)+" à "+esc(p.hippodrome),url:APP+"/chevaux/"+alert.cheval_slug+"/"};
+        message={title:(p.official===true?"🏆 Résultat officiel · ":"🏆 Résultat de l’écurie · ")+esc(p.nom),body:esc(p.rang)+" à "+esc(p.hippodrome),url:APP+"/chevaux/"+alert.cheval_slug+"/"};
       }else if(alert.categorie==="private_news"){
         message={
           title:"🔒 Nouvelle information · "+esc(p.nom),
