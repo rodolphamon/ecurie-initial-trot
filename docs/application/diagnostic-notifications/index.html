@@ -36,7 +36,7 @@ a{color:#a84f13}
 </section>
 <section class="card">
 <h2>Vérifier l’affichage sur ce téléphone</h2>
-<p style="display:flex;align-items:center;gap:12px"><img src="/application/notification-logo-v2.png" width="68" height="68" alt="Logo de notification Écurie Initial" style="object-fit:contain;background:#fff;border:1px solid #ddd;border-radius:8px"> <span>Nouvelle icône couleur et pictogramme blanc « EI » pour la barre Android.</span></p>
+<p style="display:flex;align-items:center;gap:12px"><img src="/application/notification-logo-orange-v3.png" width="68" height="68" alt="Logo de notification Écurie Initial" style="object-fit:contain;background:#fff;border:1px solid #ddd;border-radius:8px"> <span>Nouveau logo orange sur fond noir pour la notification ; petit pictogramme blanc pour la barre Android.</span></p>
 <p>Cliquez ici : une notification locale doit apparaître, sans passer par le serveur.</p>
 <button id="local" type="button">Tester le nouveau logo sur mon téléphone</button>
 <p id="result" role="status" aria-live="polite"></p>
@@ -93,11 +93,11 @@ el('local').onclick=async()=>{
   const r=await navigator.serviceWorker.getRegistration('../');
   if(!r?.active)throw Error('Le service worker de l’application n’est pas actif sur cet appareil.');
   await r.update().catch(()=>{});
-  for(const u of ['/application/notification-logo-v2.png','/application/notification-badge-ei-v2.png']){
+  for(const u of ['/application/notification-logo-orange-v3.png','/application/notification-badge-ei-v2.png']){
     const res=await fetch(u,{cache:'no-store'});
     if(!res.ok || !(res.headers.get('content-type')||'').includes('image/png'))throw Error('Icône indisponible ('+res.status+') : '+u+'. Réessayez après la publication.');
   }
-  await r.showNotification('🔔 Écurie Initial · Nouveau logo',{body:'Test du logo Écurie Initial : si ce message apparaît, votre téléphone sait afficher la nouvelle icône.',icon:'/application/notification-logo-v2.png',badge:'/application/notification-badge-ei-v2.png',tag:'ei-local-diagnostic-'+Date.now()});
+  await r.showNotification('🔔 Écurie Initial · Logo orange',{body:'Test du logo Écurie Initial : si ce message apparaît, votre téléphone sait afficher la nouvelle icône.',icon:'/application/notification-logo-orange-v3.png',badge:'/application/notification-badge-ei-v2.png',tag:'ei-local-diagnostic-'+Date.now()});
   el('result').textContent='La notification utilisant les nouveaux fichiers d’icône a été demandée. Regardez le volet des notifications.';
  }catch(e){el('result').textContent='Échec : '+(e?.message||String(e))}
  finally{b.disabled=false;await check()}
