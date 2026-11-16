@@ -12,7 +12,7 @@
 1. Vérifier les tables existantes `associes`, `participations_chevaux`, les RLS et la présence de l'administrateur actif. Les noms et adresses des associés ne doivent jamais être ajoutés au dépôt public.
 2. Déployer la fonction `gerer-associes` depuis le dossier `supabase/functions/gerer-associes/` dans le projet Supabase **yeecwaaizmvrhwobukfa**. Le JWT du gestionnaire doit être exigé. Vérifier le résultat du déploiement et les logs.
 3. Sous Supabase **Authentication → URL Configuration**, autoriser explicitement l'URL de retour `https://rodolphamon.github.io/ecurie-initial-trot/application/connexion/` ; vérifier également la configuration du domaine personnalisé de l'application avant tout changement d'URL.
-4. Sous **Authentication → SMTP Settings**, configurer un service SMTP transactionnel et une adresse expéditrice vérifiée au nom de l'écurie, avec ses DNS SPF/DKIM. Ne jamais publier identifiants SMTP, `service_role` ou secrets dans GitHub.
+4. Sous **Authentication → SMTP Settings**, configurer **IONOS** avec l'expéditeur **Écurie Initial <contact@ecurie-initial.com>** : hôte **smtp.ionos.fr**, port **465** en **SSL/TLS**, identifiant **contact@ecurie-initial.com** et mot de passe de la boîte IONOS (à saisir uniquement dans Supabase). En alternative : port **587** en **STARTTLS**. Vérifier les DNS SPF/DKIM. Ne jamais publier identifiants SMTP, `service_role` ou secrets dans GitHub.
 5. Sous **Authentication → Email Templates**, coller les fichiers `invite.html` (Invite user) et `recovery.html` (Reset password) avec les objets :
    - « Écurie Initial – Votre invitation à l'espace associés »
    - « Écurie Initial – Réinitialisation de votre mot de passe »
