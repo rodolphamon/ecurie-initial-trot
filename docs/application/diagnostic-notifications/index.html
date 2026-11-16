@@ -36,9 +36,9 @@ a{color:#a84f13}
 </section>
 <section class="card">
 <h2>Vérifier l’affichage sur ce téléphone</h2>
-<p style="display:flex;align-items:center;gap:12px"><img src="/application/icon-ei-192.png" width="68" height="68" alt="Logo officiel de l’application Écurie Initial" style="object-fit:contain;background:#fff;border:1px solid #ddd;border-radius:8px"> <span>Une seule identité visuelle dans la notification : le logo officiel de l’application à gauche, sans doublon orange à droite. La petite icône Android de la barre d’état reste gérée séparément.</span></p>
+<p style="display:flex;align-items:center;gap:12px"><img src="/application/icon-ei-192.png" width="68" height="68" alt="Logo officiel de l’application Écurie Initial" style="object-fit:contain;background:#fff;border:1px solid #ddd;border-radius:8px"> <span>Le logo officiel de l’application doit apparaître à gauche et à droite. La petite icône Android de la barre d’état reste gérée séparément.</span></p>
 <p>Cliquez ici : une notification locale doit apparaître, sans passer par le serveur.</p>
-<button id="local" type="button">Tester la notification sans doublon</button>
+<button id="local" type="button">Tester les deux logos officiels</button>
 <p id="result" role="status" aria-live="polite"></p>
 <small>Si ce test local fonctionne mais que les notifications automatiques n’arrivent pas, vérifiez « Dernier Push reçu » ci-dessus. Si le test local échoue, vérifiez les autorisations Android/iPhone et les notifications de l’application.</small>
 </section>
@@ -97,8 +97,8 @@ el('local').onclick=async()=>{
     const res=await fetch(u,{cache:'no-store'});
     if(!res.ok || !(res.headers.get('content-type')||'').includes('image/png'))throw Error('Icône indisponible ('+res.status+') : '+u+'. Réessayez après la publication.');
   }
-  await r.showNotification('🔔 Écurie Initial · Test sans doublon',{body:'Le logo officiel doit apparaître à gauche, sans EI orange ajouté à droite.',badge:'/application/notification-ei-badge.png',tag:'ei-local-diagnostic-'+Date.now()});
-  el('result').textContent='La notification sans doublon a été demandée. Vérifiez le volet des notifications.';
+  await r.showNotification('🔔 Écurie Initial · Test des logos',{body:'Le même logo officiel Écurie Initial doit apparaître des deux côtés.',icon:'/application/icon-ei-192.png',badge:'/application/notification-ei-badge.png',tag:'ei-local-diagnostic-'+Date.now()});
+  el('result').textContent='La notification avec les deux logos officiels a été demandée. Vérifiez le volet des notifications.';
  }catch(e){el('result').textContent='Échec : '+(e?.message||String(e))}
  finally{b.disabled=false;await check()}
 };
