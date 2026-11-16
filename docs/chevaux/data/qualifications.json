@@ -1,35 +1,39 @@
 {
   "schema": "ecurie-initial-qualifications-v1",
   "updated_at": "2026-11-16",
-  "note": "Pages de replay identifiées à partir des fiches chevaux Province Courses. L'accès effectif au lecteur vidéo dépend du diffuseur.",
+  "note": "Pages de replay de qualifications identifiées sur Province Courses ; cheval, date, lot et chrono recoupés sur les fiches officielles. La lecture effective du lecteur vidéo dépend du diffuseur.",
   "qualifications": {
     "mandragora-fleury": {
       "date": "2024-06-27",
       "hippodrome": "Caen",
       "lot": 17,
       "url": "https://province-courses.fr/replay.php?video=8570",
-      "source_url": "https://province-courses.fr/fiche_cheval.php?id=22168747K"
+      "source_url": "https://province-courses.fr/fiche_cheval.php?id=22168747K",
+      "chrono": "1'19\"5"
     },
     "mona-lisa-stardust": {
       "date": "2024-08-22",
       "hippodrome": "Caen",
       "lot": 22,
       "url": "https://www.province-courses.fr/replay.php?video=8894",
-      "source_url": "https://www.province-courses.fr/fiche_cheval.php?id=22182526H"
+      "source_url": "https://www.province-courses.fr/fiche_cheval.php?id=22182526H",
+      "chrono": "1'19\"7"
     },
     "myrtille-marboula": {
       "date": "2024-06-04",
       "hippodrome": "Caen",
       "lot": 8,
       "url": "https://province-courses.fr/replay.php?video=8439",
-      "source_url": "https://province-courses.fr/fiche_cheval.php?id=22162017A"
+      "source_url": "https://province-courses.fr/fiche_cheval.php?id=22162017A",
+      "chrono": "1'18\"8"
     },
     "nostalgie-dairpet": {
       "date": "2025-07-31",
       "hippodrome": "Caen",
       "lot": 16,
       "url": "https://province-courses.fr/replay.php?video=10334",
-      "source_url": "https://province-courses.fr/fiche_cheval.php?id=23337024T"
+      "source_url": "https://province-courses.fr/fiche_cheval.php?id=23337024T",
+      "chrono": "1'19\"8"
     },
     "nebraska-fleury": {
       "date": "2026-02-11",
