@@ -51,7 +51,18 @@
   border-bottom:2px solid var(--accent);color:#191919
 }
 .ei-app-installed .wordmark-initial{color:#191919}
-.ei-app-installed .wordmark-initial-i{color:var(--accent)}
+.ei-app-installed .wordmark-initial-i{
+  position:relative;display:inline-block;vertical-align:baseline;
+  font-weight:900;font-style:normal;text-transform:none;
+  color:var(--accent);line-height:1;
+}
+.ei-app-installed .wordmark-initial-i::before{
+  content:"★";position:absolute;left:50%;top:-.45em;
+  transform:translateX(-50%);font-size:.51em;line-height:1;
+  color:var(--accent);-webkit-text-stroke:.65px #171717;
+  paint-order:stroke fill;text-shadow:0 0 .35px #171717;
+  pointer-events:none;
+}
 .ei-app-installed .wordmark-copy small{display:none}
 .ei-app-installed .wordmark-slogan-line{display:block;color:#191919;white-space:nowrap}
 .ei-app-installed .wordmark-slogan-date{display:block;color:var(--accent);font-weight:900;margin-top:2px;white-space:nowrap}
