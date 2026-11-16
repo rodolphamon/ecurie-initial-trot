@@ -1,6 +1,11 @@
 name: Déployer la gestion des associés (Supabase)
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'supabase/functions/gerer-associes/**'
+      - '.github/workflows/deployer-gestion-associes.yml'
 permissions:
   contents: read
 jobs:
