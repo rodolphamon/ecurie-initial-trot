@@ -138,7 +138,7 @@ USING (
 );
 
 -- Vérifier que la politique historique permissive ne subsiste pas.
-DO $
+DO $$
 BEGIN
  IF EXISTS (
   SELECT 1 FROM pg_policies
@@ -151,7 +151,7 @@ BEGIN
  ) THEN
    RAISE EXCEPTION 'Préouverture annulée : une politique de lecture privée inattendue reste active.';
  END IF;
-END $;
+END $$;
 
 COMMIT;
 
