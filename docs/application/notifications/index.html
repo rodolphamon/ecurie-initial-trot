@@ -17,7 +17,7 @@ button{cursor:pointer;background:var(--orange);border:0;border-radius:9px;font-w
 <header><strong>ÉCURIE <span>INITIAL</span></strong><div>🔔 Notifications de l'écurie</div></header>
 <main><p><a href="../">← Retour à l'application</a></p>
 <h1>Restez au cœur des courses</h1><p>Choisissez les alertes que vous souhaitez recevoir sur votre téléphone. Aucune notification ne sera activée sans votre accord.</p>
-<section class="card"><h2 id="profile">Visiteurs et passionnés</h2><p class="muted" id="profileText">Sans compte, suivez les partants du jour et les résultats officiels de tous les chevaux de l'écurie.</p>
+<div id="notificationOptions" hidden><section class="card"><h2 id="profile">Visiteurs et passionnés</h2><p class="muted" id="profileText">Sans compte, suivez les partants du jour et les résultats officiels de tous les chevaux de l'écurie.</p>
 <div id="scopeBox" hidden><h2>Quels chevaux suivre ?</h2>
 <label class="radio"><input type="radio" name="scope" value="mine" checked> Uniquement mes chevaux</label>
 <label class="radio"><input type="radio" name="scope" value="all"> Tous les chevaux de l'écurie</label>
@@ -49,7 +49,7 @@ button{cursor:pointer;background:var(--orange);border:0;border-radius:9px;font-w
 <p class="muted">Envoi test uniquement à Adrien Delgery, Éric Schott et Nicolas Barré, sur les appareils qu'ils ont inscrits aux notifications. Aucun autre associé n'est contacté.</p>
 <button type="button" id="sendAndresy">Envoyer l'alerte ANDRESY aux 3 testeurs</button>
 <p id="andresyStatus" role="status" aria-live="polite"></p>
-</section>
+</section></div><section class="card" id="prelaunchHold" hidden><h2>🔒 Ouverture le 1er décembre 2026</h2><p>Vous pouvez confirmer votre inscription dès aujourd’hui, mais les notifications de l’application sont réservées jusqu’au 1er décembre à nos quatre testeurs.</p><a href="../connexion/">Confirmer mon invitation ou me connecter</a></section>
 </main>
 <script type="module">
 import {createClient} from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
@@ -82,6 +82,21 @@ async function init(){
     $('serviceState').textContent='Ce navigateur ne prend pas en charge les notifications Push. Sur iPhone, utilisez l’application installée.';return;
   }
   const {data:{session}}=await db.auth.getSession();
+  if(Date.now()<Date.parse('2026-11-30T23:00:00Z')){
+    let pilot=false;
+    if(session?.user){
+      const {data:state,error:gateError}=await db.rpc('ei_etat_lancement');
+      if(!gateError&&state)pilot=state.autorise===true;
+      else {
+        const {data:a}=await db.from('associes')
+          .select('actif,administrateur,nom_affiche').eq('user_id',session.user.id).maybeSingle();
+        const name=(a?.nom_affiche||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim().replace(/\s+/g,' ');
+        pilot=!!a?.actif&&(a.administrateur===true||['adrien delgery','eric schott','nicolas barre'].includes(name));
+      }
+    }
+    if(!pilot){$('prelaunchHold').hidden=false;return}
+  }
+  $('notificationOptions').hidden=false;
   if(session?.user){
     const {data:a}=await db.from('associes').select('actif,nom_affiche,administrateur').eq('user_id',session.user.id).maybeSingle();
     isMember=!!a?.actif;
