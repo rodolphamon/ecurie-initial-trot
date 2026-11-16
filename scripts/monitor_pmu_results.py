@@ -202,6 +202,28 @@ def apply(data, current, is_dry_run=False, probe=False):
         except (ValueError, OSError, urllib.error.URLError, TimeoutError) as exc:
             print(f"[PMU] Source indisponible pour {day} : {type(exc).__name__} {str(exc)[:180]}", file=sys.stderr)
             continue
+    if probe:
+        tomorrow = (current.date() + timedelta(days=1)).isoformat()
+        if tomorrow in cache:
+            future_payload, _ = cache[tomorrow]
+            for slug, entries in data.get("engagements", {}).items():
+                for e in entries if isinstance(entries, list) else []:
+                    if not isinstance(e, dict) or e.get("date") != tomorrow or str(e.get("statut", "")).lower() not in STATUSES:
+                        continue
+                    bib = number(e.get("numero"))
+                    if not bib:
+                        continue
+                    race, race_error = find_race(future_payload, e.get("course", ""), e.get("hippodrome", ""))
+                    if race_error:
+                        print(f"[PMU] Vérification demain {slug} : {race_error}")
+                        continue
+                    expected = horse_names.get(slug, "")
+                    try:
+                        valid, error = verify_identity(tomorrow, e["course"], bib, expected)
+                        print(f"[PMU] Vérification demain {slug}, {e['course']}, n°{bib} : "
+                              + ("NOM ET COURSE CONFIRMÉS" if valid else f"NON CONFIRMÉ : {error}"))
+                    except (ValueError, OSError, urllib.error.URLError, TimeoutError) as exc:
+                        print(f"[PMU] Vérification demain {slug} : participants indisponibles ({type(exc).__name__})", file=sys.stderr)
     for slug, evt, bib in events:
         day = evt["date"]
         if day not in cache:
