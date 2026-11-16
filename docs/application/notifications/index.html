@@ -43,6 +43,14 @@ button{cursor:pointer;background:var(--orange);border:0;border-radius:9px;font-w
 <button type="button" class="secondary" id="testPush" hidden>🔔 Envoyer une notification test sur ce téléphone</button>
 <p id="status" role="status" aria-live="polite"></p>
 <p class="muted">Sur iPhone, ajoutez d'abord Écurie Initial à l'écran d'accueil. Vous pourrez modifier vos choix ou désactiver les alertes à tout moment.</p></section>
+<section class="card" id="andresyPanel" hidden>
+<h2>🐎 Test réservé à l'administration</h2>
+<p><strong>ANDRESY · Partant confirmé</strong></p>
+<p>Mercredi 18 novembre 2026 · Amiens · 20 h 15 · Plat 1 650 m · corde 6.</p>
+<p class="muted">Envoi test uniquement à Adrien Delgery, Éric Schott et Nicolas Barré, sur les appareils qu'ils ont inscrits aux notifications. Aucun autre associé n'est contacté.</p>
+<button type="button" id="sendAndresy">Envoyer l'alerte ANDRESY aux 3 testeurs</button>
+<p id="andresyStatus" role="status" aria-live="polite"></p>
+</section>
 </main>
 <script type="module">
 import {createClient} from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
@@ -76,9 +84,9 @@ async function init(){
   }
   const {data:{session}}=await db.auth.getSession();
   if(session?.user){
-    const {data:a}=await db.from('associes').select('actif,nom_affiche').eq('user_id',session.user.id).maybeSingle();
+    const {data:a}=await db.from('associes').select('actif,nom_affiche,administrateur').eq('user_id',session.user.id).maybeSingle();
     isMember=!!a?.actif;
-    if(isMember){$('profile').textContent='Espace associé · '+a.nom_affiche;$('profileText').hidden=true;$('scopeBox').hidden=false;$('guestChecks').hidden=true;$('memberChecks').hidden=false;}
+    if(isMember){$('profile').textContent='Espace associé · '+a.nom_affiche;$('profileText').hidden=true;$('scopeBox').hidden=false;$('guestChecks').hidden=true;$('memberChecks').hidden=false;if(a.administrateur)$('andresyPanel').hidden=false;}
   }
   registration=await navigator.serviceWorker.register('../sw.js');
   subscription=await registration.pushManager.getSubscription();
@@ -157,6 +165,21 @@ $('disable').onclick=async()=>{
    $('testPush').hidden=true;
    message('Notifications désactivées sur cet appareil.');
  }catch(e){message(e.message||'Désactivation impossible.',true)}finally{$('disable').disabled=false}
+};
+$('sendAndresy').onclick=async()=>{
+ if(!confirm('Envoyer maintenant une notification ANDRESY aux téléphones inscrits d’Adrien, Éric et Nicolas uniquement ?'))return;
+ const btn=$('sendAndresy'),statusEl=$('andresyStatus');
+ btn.disabled=true;
+ statusEl.textContent='Envoi ciblé en cours…';
+ try{
+   const result=await callServer({action:'send_andresy_test',confirm:true});
+   const lines=(result.results||[]).map(r=>r.name+' : '+(r.accountFound
+     ? (r.devices===0?'aucun téléphone inscrit':
+       r.accepted+' accepté(s) sur '+r.devices+' appareil(s)'+(r.failed?' · '+r.failed+' échec(s)':''))
+     : 'compte actif non trouvé'));
+   statusEl.textContent=lines.join(' | ')+'\nLe test est terminé côté serveur. Demandez à chaque testeur de confirmer la réception.';
+ }catch(e){statusEl.textContent=e.message||'Erreur pendant l’envoi ciblé.'}
+ finally{btn.disabled=false}
 };
 $('testPush').onclick=async()=>{
  const btn=$('testPush');btn.disabled=true;message('Demande d’envoi en cours…');
