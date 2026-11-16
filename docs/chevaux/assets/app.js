@@ -78,9 +78,11 @@ function horse(s){
   const perf=(s.editor.performances[id]||[]).slice().sort((a,b)=>b.date.localeCompare(a.date));
   const eng=(s.editor.engagements[id]||[]).filter(x=>x.date+'T'+(x.heure||'23:59')>=currentParis()).sort((a,b)=>(a.date+(a.heure||'23:59')).localeCompare(b.date+(b.heure||'23:59')));
   const tr=perf.length
-    ?'<div class="table-wrap"><table class="perf-table"><thead><tr><th>Date</th><th>Hippodrome</th><th>Classement</th><th>Driver / Jockey</th><th>Vidéo</th></tr></thead><tbody>'+perf.map(x=>{
+    ?'<div class="table-wrap"><table class="perf-table"><thead><tr><th>Date</th><th>Hippodrome</th><th>Classement</th><th>Driver / Jockey</th><th>Vidéo / course</th></tr></thead><tbody>'+perf.map(x=>{
       const replay=s.replayIndex[x.date+'|'+normalizeSearch(p.name)]||absoluteUrl(x.video_url);
-      const video=replay?'<a class="ei-video-link" href="'+esc(replay)+'" target="_blank" rel="noopener noreferrer" aria-label="Vidéo de '+esc(p.name)+' du '+esc(dateFR(x.date))+'">▶ Vidéo</a>':'<span class="ei-no-video" aria-label="Vidéo non référencée">—</span>';
+      const course=absoluteUrl(x.course_url);
+      const courseType=String(x.rang||'').toLowerCase().startsWith('qualif')?'Qualification':'Résultat';
+      const video=replay?'<a class="ei-video-link" href="'+esc(replay)+'" target="_blank" rel="noopener noreferrer" aria-label="Fiche de course et vidéo possible de '+esc(p.name)+' du '+esc(dateFR(x.date))+'">▶ Vidéo</a>':course?'<a class="ei-course-link" href="'+esc(course)+'" target="_blank" rel="noopener noreferrer" aria-label="'+courseType+' de '+esc(p.name)+' du '+esc(dateFR(x.date))+'">↗ '+courseType+'</a>':'<span class="ei-no-video" aria-label="Replay non retrouvé">—</span>';
       return '<tr><td>'+esc(dateFR(x.date))+'</td><td>'+esc(x.hippodrome)+'</td><td><span class="rank">'+esc(x.rang||'—')+'</span></td><td>'+esc(x.driver||x.jockey||'—')+'</td><td>'+video+'</td></tr>';
     }).join('')+'</tbody></table></div>'
     :'<div class="empty">Aucune performance détaillée renseignée pour le moment.</div>';
