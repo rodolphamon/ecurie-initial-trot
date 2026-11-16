@@ -61,6 +61,16 @@
       "url": "https://province-courses.fr/replay.php?video=10021",
       "source_url": "https://province-courses.fr/fiche_cheval.php?id=23307584T",
       "statut": "page_de_replay_identifiee"
+    },
+    "olano-de-la-vallee": {
+      "date": "2026-11-12",
+      "hippodrome": "Caen",
+      "lot": 8,
+      "chrono": "1'19\"8",
+      "url": "https://www.letrot.com/courses/qualifications/2026-11-12/1400/26669?lot=8",
+      "source_url": "https://www.letrot.com/courses/qualifications/2026-11-12/1400/26669?lot=8",
+      "statut": "replay_signale_disponible_par_proprietaire",
+      "note": "Lien LeTROT de la séance ciblé sur le lot n°8 ; vidéo annoncée visible par le propriétaire. La lecture n'a pas pu être testée depuis cet environnement."
     }
   }
 }
