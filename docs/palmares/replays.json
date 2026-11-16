@@ -1,5 +1,5 @@
 {
-  "version": 91,
+  "version": 92,
   "note": "Fiches de courses Equidia ou LeTROT avec sources identifiant les courses. Les URLs Equidia sont déduites du format date/R/C ; la disponibilité et la lecture des vidéos ne sont pas garanties. HOMA reste sur LeTROT faute de fiche Equidia vérifiée.",
   "replays": [
     {
@@ -43,6 +43,14 @@
       "controle": "Course R3C5 et présence du cheval identifiées dans les sources ; fiche de course Equidia reconstituée, lecture du replay non testée individuellement"
     },
     {
+      "date": "2026-11-03",
+      "cheval": "SATURDAY NIGHT",
+      "hippodrome": "DEAUVILLE",
+      "url": "https://www.equidia.fr/courses/2026-11-03/R4/C5",
+      "justificatif": "https://www.turf-pronostics.com/resultats/2026-11-03/r4c5/deauville/prix-du-hoguenet/",
+      "controle": "Correspondance course R4C5 / cheval / hippodrome confirmée par la source ; lien vers fiche Equidia déduit, vidéo non visionnée"
+    },
+    {
       "date": "2026-11-01",
       "cheval": "MEMPHIS BELLE",
       "hippodrome": "LISIEUX",
@@ -68,12 +76,28 @@
       "controle": "Course, hippodrome et R/C identifiés dans les résultats Turfin ; consultation de la vidéo Equidia non testée"
     },
     {
+      "date": "2026-10-29",
+      "cheval": "ROSA MIA",
+      "hippodrome": "FONTAINEBLEAU",
+      "url": "https://www.equidia.fr/courses/2026-10-29/R2/C5",
+      "justificatif": "https://www.turf-pronostics.com/partants/2026-10-29/r2c5/fontainebleau/prix-patrice-quenedey/",
+      "controle": "Correspondance course R2C5 / cheval / hippodrome confirmée par la source ; lien vers fiche Equidia déduit, vidéo non visionnée"
+    },
+    {
       "date": "2026-10-28",
       "cheval": "LE ROI LEON",
       "hippodrome": "LE MANS",
       "url": "https://www.equidia.fr/courses/2026-10-28/R2/C5",
       "justificatif": "https://www.journalduturf.com/arrivees-rapports-pmu/574980_grand-prix-du-mans.html",
       "controle": "Course R2C5 et présence du cheval identifiées dans les sources ; fiche de course Equidia reconstituée, lecture du replay non testée individuellement"
+    },
+    {
+      "date": "2026-10-26",
+      "cheval": "DOURIANN",
+      "hippodrome": "TOULOUSE",
+      "url": "https://www.equidia.fr/courses/2026-10-26/R4/C5",
+      "justificatif": "https://www.elo-turf.fr/cheval/douriann",
+      "controle": "Correspondance course R4C5 / cheval / hippodrome confirmée par la source ; lien vers fiche Equidia déduit, vidéo non visionnée"
     },
     {
       "date": "2026-10-22",
@@ -162,6 +186,22 @@
       "url": "https://www.equidia.fr/courses/2026-10-03/R9/C4",
       "justificatif": "https://www.journalduturf.com/arrivees-rapports-pmu/573044_prix-de-solvalla.html?tab=resultat",
       "controle": "Cheval 2e confirmé, date/hippodrome/réunion/course R9C4 recoupés dans les archives ; vidéo Equidia non visionnée individuellement"
+    },
+    {
+      "date": "2026-09-29",
+      "cheval": "DOURIANN",
+      "hippodrome": "CHANTILLY",
+      "url": "https://www.equidia.fr/courses/2026-09-29/R1/C1",
+      "justificatif": "https://www.elo-turf.fr/cheval/douriann",
+      "controle": "Correspondance course R1C1 / cheval / hippodrome confirmée par la source ; lien vers fiche Equidia déduit, vidéo non visionnée"
+    },
+    {
+      "date": "2026-09-29",
+      "cheval": "SATURDAY NIGHT",
+      "hippodrome": "CHANTILLY",
+      "url": "https://www.equidia.fr/courses/2026-09-29/R1/C7",
+      "justificatif": "https://www.elo-turf.fr/cheval/saturday-night",
+      "controle": "Correspondance course R1C7 / cheval / hippodrome confirmée par la source ; lien vers fiche Equidia déduit, vidéo non visionnée"
     },
     {
       "date": "2026-09-28",
@@ -282,6 +322,14 @@
       "preuve_lien_equidia": "https://turfin.fr/course/2026-09-04/r3c6-lyon-parilly-prix-yvan-berger"
     },
     {
+      "date": "2026-09-04",
+      "cheval": "ON LOCKDOWN",
+      "hippodrome": "LE LION-D'ANGERS",
+      "url": "https://www.equidia.fr/courses/2026-09-04/R5/C7",
+      "justificatif": "https://www.elo-turf.fr/cheval/on-lockdown",
+      "controle": "Correspondance course R5C7 / cheval / hippodrome confirmée par la source ; lien vers fiche Equidia déduit, vidéo non visionnée"
+    },
+    {
       "date": "2026-09-01",
       "cheval": "GIORGIANA",
       "hippodrome": "DEAUVILLE",
@@ -304,6 +352,14 @@
       "url": "https://www.equidia.fr/courses/2026-08-28/R6/C8",
       "preuve_identification_course": "https://turfin.fr/course/2026-08-28/r6c8-les-sables-d-olonne-prix-charles-richard",
       "controle": "Correspondance de course identifiée dans les résultats Turfin ; lecture vidéo Equidia non vérifiée"
+    },
+    {
+      "date": "2026-08-28",
+      "cheval": "SATURDAY NIGHT",
+      "hippodrome": "SAINT-MALO",
+      "url": "https://www.equidia.fr/courses/2026-08-28/R5/C3",
+      "justificatif": "https://www.elo-turf.fr/cheval/saturday-night",
+      "controle": "Correspondance course R5C3 / cheval / hippodrome confirmée par la source ; lien vers fiche Equidia déduit, vidéo non visionnée"
     },
     {
       "date": "2026-08-27",
@@ -338,6 +394,14 @@
       "controle": "Course, hippodrome et R/C identifiés dans les résultats Turfin ; consultation de la vidéo Equidia non testée"
     },
     {
+      "date": "2026-08-24",
+      "cheval": "ZARTOP",
+      "hippodrome": "DIEPPE",
+      "url": "https://www.equidia.fr/courses/2026-08-24/R4/C6",
+      "justificatif": "https://www.elo-turf.fr/cheval/zartop",
+      "controle": "Correspondance course R4C6 / cheval / hippodrome confirmée par la source ; lien vers fiche Equidia déduit, vidéo non visionnée"
+    },
+    {
       "date": "2026-08-23",
       "cheval": "ANDRESY",
       "hippodrome": "DEAUVILLE",
@@ -355,6 +419,14 @@
     },
     {
       "date": "2026-08-18",
+      "cheval": "DOURIANN",
+      "hippodrome": "DEAUVILLE",
+      "url": "https://www.equidia.fr/courses/2026-08-18/R1/C8",
+      "justificatif": "https://www.elo-turf.fr/cheval/douriann",
+      "controle": "Correspondance course R1C8 / cheval / hippodrome confirmée par la source ; lien vers fiche Equidia déduit, vidéo non visionnée"
+    },
+    {
+      "date": "2026-08-18",
       "cheval": "LE ROI LEON",
       "hippodrome": "DEAUVILLE",
       "url": "https://www.equidia.fr/courses/2026-08-18/R1/C7",
@@ -363,11 +435,27 @@
     },
     {
       "date": "2026-08-16",
+      "cheval": "SATURDAY NIGHT",
+      "hippodrome": "LE TOUQUET",
+      "url": "https://www.equidia.fr/courses/2026-08-16/R4/C5",
+      "justificatif": "https://www.elo-turf.fr/cheval/saturday-night",
+      "controle": "Correspondance course R4C5 / cheval / hippodrome confirmée par la source ; lien vers fiche Equidia déduit, vidéo non visionnée"
+    },
+    {
+      "date": "2026-08-16",
       "cheval": "VYBORG",
       "hippodrome": "DEAUVILLE",
       "url": "https://www.equidia.fr/courses/2026-08-16/R1/C9",
       "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2026-08-16/R1C9-deauville-the-aga-khan-studs-prix-de-la-villa-sayer",
       "controle": "R/C et podium confirmés par résultat ; replay Equidia non visionné individuellement"
+    },
+    {
+      "date": "2026-08-11",
+      "cheval": "ANDRESY",
+      "hippodrome": "DEAUVILLE",
+      "url": "https://www.equidia.fr/courses/2026-08-11/R1/C5",
+      "justificatif": "https://www.elo-turf.fr/cheval/andresy",
+      "controle": "Correspondance course R1C5 / cheval / hippodrome confirmée par la source ; lien vers fiche Equidia déduit, vidéo non visionnée"
     },
     {
       "date": "2026-08-10",
@@ -435,6 +523,14 @@
     },
     {
       "date": "2026-07-30",
+      "cheval": "DOURIANN",
+      "hippodrome": "DIEPPE",
+      "url": "https://www.equidia.fr/courses/2026-07-30/R1/C7",
+      "justificatif": "https://www.elo-turf.fr/cheval/douriann",
+      "controle": "Correspondance course R1C7 / cheval / hippodrome confirmée par la source ; lien vers fiche Equidia déduit, vidéo non visionnée"
+    },
+    {
+      "date": "2026-07-30",
       "cheval": "LE ROI LEON",
       "hippodrome": "DIEPPE",
       "url": "https://www.equidia.fr/courses/2026-07-30/R1/C3",
@@ -466,6 +562,22 @@
       "controle": "Course référencée par Turfin (R et C concordants) ; lecture du replay Equidia non testée ici"
     },
     {
+      "date": "2026-07-19",
+      "cheval": "SATURDAY NIGHT",
+      "hippodrome": "CHANTILLY",
+      "url": "https://www.equidia.fr/courses/2026-07-19/R1/C8",
+      "justificatif": "https://www.elo-turf.fr/cheval/saturday-night",
+      "controle": "Correspondance course R1C8 / cheval / hippodrome confirmée par la source ; lien vers fiche Equidia déduit, vidéo non visionnée"
+    },
+    {
+      "date": "2026-07-18",
+      "cheval": "ZARTOP",
+      "hippodrome": "DIEPPE",
+      "url": "https://www.equidia.fr/courses/2026-07-18/R4/C6",
+      "justificatif": "https://www.elo-turf.fr/cheval/zartop",
+      "controle": "Correspondance course R4C6 / cheval / hippodrome confirmée par la source ; lien vers fiche Equidia déduit, vidéo non visionnée"
+    },
+    {
       "date": "2026-07-12",
       "cheval": "MANDRAGORA FLEURY",
       "hippodrome": "DEAUVILLE-CLAIREFONTAINE",
@@ -473,6 +585,14 @@
       "preuve_identification_course": "https://www.geny.com/course/1666684/arrivee-rapports",
       "preuve_arrivee": "https://www.zeturf.fr/fr/course-du-jour/2026-07-12/R10C3-clairefontaine-prix-playmo-club-de-normandie",
       "controle": "2e Prix Playmo Club de Normandie (R10C3), 12/07/2026 ; cheval et arrivée confirmés ; existence et lecture effectives du replay Equidia non testées."
+    },
+    {
+      "date": "2026-07-09",
+      "cheval": "ZARTOP",
+      "hippodrome": "DIEPPE",
+      "url": "https://www.equidia.fr/courses/2026-07-09/R2/C6",
+      "justificatif": "https://www.elo-turf.fr/cheval/zartop",
+      "controle": "Correspondance course R2C6 / cheval / hippodrome confirmée par la source ; lien vers fiche Equidia déduit, vidéo non visionnée"
     },
     {
       "date": "2026-07-03",
@@ -505,6 +625,14 @@
       "url": "https://www.equidia.fr/courses/2026-06-29/R2/C4",
       "justificatif": "https://zeturf.fr/fr/course-du-jour/2026-06-29/R2C4-enghien-soisy-prix-de-janze",
       "controle": "Réunion, course et classement confirmés par source de résultats ; l'utilisateur a confirmé le fonctionnement des liens Equidia sur le site, lecture de cette course non testée individuellement"
+    },
+    {
+      "date": "2026-06-22",
+      "cheval": "DOURIANN",
+      "hippodrome": "LYON-PARILLY",
+      "url": "https://www.equidia.fr/courses/2026-06-22/R1/C8",
+      "justificatif": "https://www.elo-turf.fr/cheval/douriann",
+      "controle": "Correspondance course R1C8 / cheval / hippodrome confirmée par la source ; lien vers fiche Equidia déduit, vidéo non visionnée"
     },
     {
       "date": "2026-06-16",
@@ -553,6 +681,14 @@
       "url": "https://www.equidia.fr/courses/2026-06-02/R5/C4",
       "justificatif": "https://www.elo-turf.fr/cheval/moondance-okina",
       "controle": "Correspondance cheval/date/hippodrome avec R5C4 identifiée dans les résultats ; URL Equidia de fiche de course reconstruite, lecture vidéo non testée"
+    },
+    {
+      "date": "2026-05-29",
+      "cheval": "BOBROVKHA",
+      "hippodrome": "NANTES",
+      "url": "https://www.equidia.fr/courses/2026-05-29/R5/C5",
+      "justificatif": "https://www.elo-turf.fr/cheval/bobrovkha",
+      "controle": "Correspondance course R5C5 / cheval / hippodrome confirmée par la source ; lien vers fiche Equidia déduit, vidéo non visionnée"
     },
     {
       "date": "2026-05-29",
@@ -611,6 +747,14 @@
       "controle": "Course R1C1 et cheval identifiés dans la source ; fiche Equidia reconstruite, lecture du replay non testée"
     },
     {
+      "date": "2026-05-03",
+      "cheval": "BOBROVKHA",
+      "hippodrome": "PARISLONGCHAMP",
+      "url": "https://www.equidia.fr/courses/2026-05-03/R1/C7",
+      "justificatif": "https://www.elo-turf.fr/cheval/bobrovkha",
+      "controle": "Correspondance course R1C7 / cheval / hippodrome confirmée par la source ; lien vers fiche Equidia déduit, vidéo non visionnée"
+    },
+    {
       "date": "2026-04-30",
       "cheval": "MOONDANCE OKINA",
       "hippodrome": "SAINT-BRIEUC",
@@ -662,6 +806,14 @@
       "controle": "Course, R/C et résultat confirmés sur ZEturf ; lecture vidéo Equidia non testée individuellement"
     },
     {
+      "date": "2026-04-11",
+      "cheval": "BOBROVKHA",
+      "hippodrome": "FONTAINEBLEAU",
+      "url": "https://www.equidia.fr/courses/2026-04-11/R4/C5",
+      "justificatif": "https://www.elo-turf.fr/cheval/bobrovkha",
+      "controle": "Correspondance course R4C5 / cheval / hippodrome confirmée par la source ; lien vers fiche Equidia déduit, vidéo non visionnée"
+    },
+    {
       "date": "2026-04-09",
       "cheval": "ROSA MIA",
       "hippodrome": "ARGENTAN",
@@ -676,6 +828,14 @@
       "url": "https://www.equidia.fr/courses/2026-04-06/R4/C4",
       "preuve_identification_course": "https://turfin.fr/course/2026-04-06/r4c4-cherbourg-prix-hotels-ibis-et-ibis-budget-la-glace",
       "controle": "Correspondance de course identifiée dans les résultats Turfin ; lecture vidéo Equidia non vérifiée"
+    },
+    {
+      "date": "2026-04-05",
+      "cheval": "ON LOCKDOWN",
+      "hippodrome": "PARISLONGCHAMP",
+      "url": "https://www.equidia.fr/courses/2026-04-05/R1/C8",
+      "justificatif": "https://www.elo-turf.fr/cheval/on-lockdown",
+      "controle": "Correspondance course R1C8 / cheval / hippodrome confirmée par la source ; lien vers fiche Equidia déduit, vidéo non visionnée"
     },
     {
       "date": "2026-04-04",
@@ -767,6 +927,14 @@
       "url": "https://www.equidia.fr/courses/2026-03-06/R1/C4",
       "justificatif": "https://www.elo-turf.fr/cheval/indice-deladou",
       "controle": "Correspondance cheval/date/hippodrome avec R1C4 identifiée dans les résultats ; URL Equidia de fiche de course reconstruite, lecture vidéo non testée"
+    },
+    {
+      "date": "2026-03-04",
+      "cheval": "BOBROVKHA",
+      "hippodrome": "LE MANS",
+      "url": "https://www.equidia.fr/courses/2026-03-04/R2/C6",
+      "justificatif": "https://www.elo-turf.fr/cheval/bobrovkha",
+      "controle": "Correspondance course R2C6 / cheval / hippodrome confirmée par la source ; lien vers fiche Equidia déduit, vidéo non visionnée"
     },
     {
       "date": "2026-02-27",
