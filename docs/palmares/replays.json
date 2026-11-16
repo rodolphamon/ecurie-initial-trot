@@ -1,5 +1,5 @@
 {
-  "version": 93,
+  "version": 94,
   "note": "Fiches de courses Equidia ou LeTROT avec sources identifiant les courses. Les URLs Equidia sont déduites du format date/R/C ; la disponibilité et la lecture des vidéos ne sont pas garanties. HOMA reste sur LeTROT faute de fiche Equidia vérifiée.",
   "replays": [
     {
@@ -148,6 +148,14 @@
       "controle": "Course R1C4 et cheval identifiés dans la source ; fiche Equidia reconstruite, lecture du replay non testée"
     },
     {
+      "date": "2026-10-21",
+      "cheval": "MASTER PAT",
+      "hippodrome": "DEAUVILLE",
+      "url": "https://www.equidia.fr/courses/2026-10-21/R4/C2",
+      "justificatif": "https://chutt.fr/index.php/arrivees-et-rapports/?course=2&date=21_10_2026&reunion=4",
+      "controle": "Cheval, hippodrome, date et réunion R4C2 vérifiés dans les résultats indiqués ; lien Equidia déduit, lecture vidéo non testée"
+    },
+    {
       "date": "2026-10-20",
       "cheval": "ZARTOP",
       "hippodrome": "CLAIREFONTAINE",
@@ -178,6 +186,14 @@
       "url": "https://www.equidia.fr/courses/2026-10-10/R1/C4",
       "justificatif": "https://www.turf.bzh/ecuriebzh.php?jour=2026-10-10",
       "controle": "Correspondance cheval/date/hippodrome avec R1C4 identifiée dans les résultats ; URL Equidia de fiche de course reconstruite, lecture vidéo non testée"
+    },
+    {
+      "date": "2026-10-09",
+      "cheval": "MASTER PAT",
+      "hippodrome": "COMPIEGNE",
+      "url": "https://www.equidia.fr/courses/2026-10-09/R4/C9",
+      "justificatif": "https://www.turfoo.fr/programmes-courses/261009/reunion4-compiegne/course9-prix-du-carrefour-du-fond-pernant/comparateur-de-cotes/",
+      "controle": "Cheval, hippodrome, date et réunion R4C9 vérifiés dans les résultats indiqués ; lien Equidia déduit, lecture vidéo non testée"
     },
     {
       "date": "2026-10-09",
@@ -327,6 +343,14 @@
       "controle": "Correspondance cheval/date/hippodrome avec R5C8 identifiée dans les résultats ; URL Equidia de fiche de course reconstruite, lecture vidéo non testée"
     },
     {
+      "date": "2026-09-18",
+      "cheval": "VICTORIA SECRET",
+      "hippodrome": "SAINT-CLOUD",
+      "url": "https://www.equidia.fr/courses/2026-09-18/R4/C7",
+      "justificatif": "https://zeturf.fr/fr/course-du-jour/2026-09-18/R4C7-saint-cloud-prix-du-bosquet-de-la-felicite",
+      "controle": "Cheval, hippodrome, date et réunion R4C7 vérifiés dans les résultats indiqués ; lien Equidia déduit, lecture vidéo non testée"
+    },
+    {
       "date": "2026-09-14",
       "cheval": "MASTER PAT",
       "hippodrome": "CHANTILLY",
@@ -394,6 +418,30 @@
       "controle": "Résultat et numéro R/C concordants dans la source indiquée ; lecture du replay sur Equidia non testée individuellement"
     },
     {
+      "date": "2026-09-01",
+      "cheval": "MASTER PAT",
+      "hippodrome": "DEAUVILLE",
+      "url": "https://www.equidia.fr/courses/2026-09-01/R1/C7",
+      "justificatif": "https://www.coin-turf.fr/arrivees-rapports/01092026/187663_deauville/prix-du-marais-dozet",
+      "controle": "Cheval, hippodrome, date et réunion R1C7 vérifiés dans les résultats indiqués ; lien Equidia déduit, lecture vidéo non testée"
+    },
+    {
+      "date": "2026-08-31",
+      "cheval": "VICTORIA SECRET",
+      "hippodrome": "SAINT-CLOUD",
+      "url": "https://www.equidia.fr/courses/2026-08-31/R1/C5",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2026-08-31/R1C5-equidia",
+      "controle": "Cheval, hippodrome, date et réunion R1C5 vérifiés dans les résultats indiqués ; lien Equidia déduit, lecture vidéo non testée"
+    },
+    {
+      "date": "2026-08-31",
+      "cheval": "VYBORG",
+      "hippodrome": "SAINT-CLOUD",
+      "url": "https://www.equidia.fr/courses/2026-08-31/R1/C7",
+      "justificatif": "https://www.geny.com/cheval/2707679-vyborg/course/1680388",
+      "controle": "Cheval, hippodrome, date et réunion R1C7 vérifiés dans les résultats indiqués ; lien Equidia déduit, lecture vidéo non testée"
+    },
+    {
       "date": "2026-08-28",
       "cheval": "MANDRAGORA FLEURY",
       "hippodrome": "CABOURG",
@@ -416,6 +464,14 @@
       "url": "https://www.equidia.fr/courses/2026-08-28/R5/C3",
       "justificatif": "https://www.elo-turf.fr/cheval/saturday-night",
       "controle": "Correspondance course R5C3 / cheval / hippodrome confirmée par la source ; lien vers fiche Equidia déduit, vidéo non visionnée"
+    },
+    {
+      "date": "2026-08-27",
+      "cheval": "LE ROI LEON",
+      "hippodrome": "DEAUVILLE",
+      "url": "https://www.equidia.fr/courses/2026-08-27/R1/C6",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2026-08-27/R1C6-equidia",
+      "controle": "Cheval, hippodrome, date et réunion R1C6 vérifiés dans les résultats indiqués ; lien Equidia déduit, lecture vidéo non testée"
     },
     {
       "date": "2026-08-27",
@@ -451,6 +507,14 @@
     },
     {
       "date": "2026-08-24",
+      "cheval": "VICTORIA SECRET",
+      "hippodrome": "DIEPPE",
+      "url": "https://www.equidia.fr/courses/2026-08-24/R4/C4",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2026-08-24/R4C4-dieppe-prix-de-la-cite-de-limes",
+      "controle": "Cheval, hippodrome, date et réunion R4C4 vérifiés dans les résultats indiqués ; lien Equidia déduit, lecture vidéo non testée"
+    },
+    {
+      "date": "2026-08-24",
       "cheval": "ZARTOP",
       "hippodrome": "DIEPPE",
       "url": "https://www.equidia.fr/courses/2026-08-24/R4/C6",
@@ -472,6 +536,14 @@
       "url": "https://www.equidia.fr/courses/2026-08-20/R4/C5",
       "justificatif": "https://www.elite-turf.fr/courses/ea9cdb19-477d-4e23-a876-83cf92aa1f89",
       "controle": "Cheval 3e confirmé, date/hippodrome/réunion/course R4C5 recoupés dans les archives ; vidéo Equidia non visionnée individuellement"
+    },
+    {
+      "date": "2026-08-20",
+      "cheval": "MASTER PAT",
+      "hippodrome": "DEAUVILLE",
+      "url": "https://www.equidia.fr/courses/2026-08-20/R1/C6",
+      "justificatif": "https://www.turfoo.fr/programmes-courses/260820/reunion1-deauville/course6-prix-de-dieppe/comparateur-de-cotes/",
+      "controle": "Cheval, hippodrome, date et réunion R1C6 vérifiés dans les résultats indiqués ; lien Equidia déduit, lecture vidéo non testée"
     },
     {
       "date": "2026-08-18",
@@ -563,6 +635,14 @@
     },
     {
       "date": "2026-08-03",
+      "cheval": "VICTORIA SECRET",
+      "hippodrome": "CLAIREFONTAINE",
+      "url": "https://www.equidia.fr/courses/2026-08-03/R1/C2",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2026-08-03/R1C2-clairefontaine-abeille-noire-de-normandie---prix-des-gardenias",
+      "controle": "Cheval, hippodrome, date et réunion R1C2 vérifiés dans les résultats indiqués ; lien Equidia déduit, lecture vidéo non testée"
+    },
+    {
+      "date": "2026-08-03",
       "cheval": "ZARTOP",
       "hippodrome": "CLAIREFONTAINE",
       "url": "https://www.equidia.fr/courses/2026-08-03/R1/C6",
@@ -600,6 +680,14 @@
       "url": "https://www.equidia.fr/courses/2026-07-26/R3/C6",
       "preuve_identification_course": "https://turfin.fr/course/3/6?date=2026-07-26",
       "controle": "Course, hippodrome et R/C identifiés dans les résultats Turfin ; consultation de la vidéo Equidia non testée"
+    },
+    {
+      "date": "2026-07-26",
+      "cheval": "VYBORG",
+      "hippodrome": "LE TOUQUET",
+      "url": "https://www.equidia.fr/courses/2026-07-26/R5/C6",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2026-07-26/R5C6-le-touquet-prix-hotel-westminster",
+      "controle": "Cheval, hippodrome, date et réunion R5C6 vérifiés dans les résultats indiqués ; lien Equidia déduit, lecture vidéo non testée"
     },
     {
       "date": "2026-07-19",
