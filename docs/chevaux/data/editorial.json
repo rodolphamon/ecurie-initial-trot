@@ -1,6 +1,6 @@
 {
   "schema": "ecurie-initial-profils-v1",
-  "updated_at": "2026-11-15",
+  "updated_at": "2026-11-16",
   "note": "Pour les performances : au maximum les cinq dernières sorties documentées, dont les sources sont conservées en interne pour contrôle. Les classements exacts n'ont été indiqués que lorsqu'ils étaient disponibles. Les jeunes chevaux inédits n'ont pas de performances inventées. Les engagements existants sont conservés ; les nouveaux engagements au trot du 13/11/2026 sont ajoutés sans reprendre les horaires. Résultats du 13/11/2026 (MONA LISA STARDUST 7e, VICTORIA SECRET non placée) communiqués par l'Écurie Initial.",
   "performances": {
     "memphis-belle": [
@@ -1087,14 +1087,20 @@
     "andresy": [
       {
         "date": "2026-11-18",
-        "heure": "",
+        "heure": "20:15",
         "hippodrome": "Amiens",
         "type": "Plat",
         "prix": "Prix de Péronne",
         "allocation": 13700,
         "distance": "1650 m",
-        "statut": "engage",
-        "source_description": "Capture espace propriétaire France Galop 12/11/2026"
+        "statut": "partant",
+        "jockey": "Olivier d'Andigné",
+        "entraineur": "Gilles Pannier",
+        "corde": 6,
+        "course": "C3",
+        "decharge": "20 %",
+        "source_description": "Partant France Galop communiqué par le gérant le 16/11/2026 ; heure 20h15, corde 6",
+        "source_url": "https://pro.france-galop.com/EspacePro/Course/CourseDetailsPage?anneeCourse=2026&specialite=P&numProgramme=6508"
       }
     ],
     "giorgiana": [
