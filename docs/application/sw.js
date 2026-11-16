@@ -1,6 +1,6 @@
 // Service Worker de l'application Écurie Initial.
 // Cache minimal ; aucun contenu privé conservé volontairement en cache.
-const CACHE='ei-app-shell-v2';
+const CACHE='ei-app-shell-v3';
 self.addEventListener('install',event=>{
   event.waitUntil(caches.open(CACHE).then(c=>c.addAll(['./','manifest.webmanifest'])));
   self.skipWaiting();
@@ -20,6 +20,26 @@ self.addEventListener('fetch',event=>{
      url.pathname.includes('/application/notifications/'))return;
   event.respondWith(fetch(event.request).catch(()=>caches.match(event.request)));
 });
+// Diagnostic limité à ce navigateur : horodatage et résultat d'affichage seulement.
+function recordPushStatus(status,error){
+  return new Promise(resolve=>{
+    try{
+      const open=indexedDB.open('ei-push-debug-v1',1);
+      open.onupgradeneeded=()=>{
+        if(!open.result.objectStoreNames.contains('events'))open.result.createObjectStore('events');
+      };
+      open.onerror=()=>resolve();
+      open.onsuccess=()=>{
+        const db=open.result;
+        const tx=db.transaction('events','readwrite');
+        tx.objectStore('events').put({at:new Date().toISOString(),status,error:error||null},'last');
+        tx.oncomplete=()=>{db.close();resolve()};
+        tx.onerror=()=>{db.close();resolve()};
+        tx.onabort=()=>{db.close();resolve()};
+      };
+    }catch(_){resolve()}
+  });
+}
 self.addEventListener('push',event=>{
   event.waitUntil((async()=>{
     let payload={};
@@ -31,11 +51,16 @@ self.addEventListener('push',event=>{
       const target=new URL(payload.url||url,self.location.origin);
       if(target.origin===self.location.origin)url=target.href;
     }catch{}
-    await self.registration.showNotification(title,{
-      body,icon:'/application/icon-ei-192.png',badge:'/application/icon-ei-192.png',
-      tag:typeof payload.tag==='string'?payload.tag:undefined,
-      data:{url},renotify:false
-    });
+    try{
+      await self.registration.showNotification(title,{
+        body,icon:'/application/icon-ei-192.png',badge:'/application/icon-ei-192.png',
+        tag:typeof payload.tag==='string'?payload.tag:undefined,
+        data:{url},renotify:false
+      });
+      await recordPushStatus('shown',null);
+    }catch(e){
+      await recordPushStatus('error',e instanceof Error?e.name:'erreur d’affichage');
+    }
   })());
 });
 self.addEventListener('notificationclick',event=>{
