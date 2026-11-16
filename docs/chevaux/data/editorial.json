@@ -1027,11 +1027,13 @@
         "allocation": 19200,
         "distance": "1400 m",
         "statut": "partant",
-        "source_description": "Partants France Galop transmis le 13/11/2026 ; horaires confirmés par le gérant",
-        "jockey": "L. ROUSSEL",
+        "source_description": "Liste France Galop communiquée le 16/11/2026 ; horaires et statut partant confirmés séparément lorsque disponibles",
+        "jockey": "Léo Roussel",
         "course": "R3C8",
         "numero": "4",
-        "source_url": "https://hippigold.fr/courses/2026-11-16/r3c8/"
+        "source_url": "https://hippigold.fr/courses/2026-11-16/r3c8/",
+        "code_programme": "6245",
+        "part": "A (25 %)"
       }
     ],
     "zartop": [
@@ -1044,11 +1046,13 @@
         "allocation": 11900,
         "distance": "3200 m",
         "statut": "partant",
-        "source_description": "Partants France Galop transmis le 13/11/2026 ; horaires confirmés par le gérant",
-        "jockey": "L. ROUSSEL",
+        "source_description": "Liste France Galop communiquée le 16/11/2026 ; horaires et statut partant confirmés séparément lorsque disponibles",
+        "jockey": "Léo Roussel",
         "course": "R3C6",
         "numero": "3",
-        "source_url": "https://hippigold.fr/courses/2026-11-16/r3c6/"
+        "source_url": "https://hippigold.fr/courses/2026-11-16/r3c6/",
+        "code_programme": "6244",
+        "part": "R (16 %)"
       }
     ],
     "master-pat": [
@@ -1061,11 +1065,13 @@
         "allocation": 21100,
         "distance": "1600 m",
         "statut": "partant",
-        "jockey": "C. BELMONT",
-        "source_description": "Capture espace propriétaire France Galop transmise le 14/11/2026 ; liste publique des partants recoupée le 15/11/2026",
+        "jockey": "César Belmont",
+        "source_description": "Liste France Galop communiquée le 16/11/2026 ; horaires et statut partant confirmés séparément lorsque disponibles",
         "course": "R1C7",
         "numero": 5,
-        "source_url": "https://hippigold.fr/courses/2026-11-17/r1c7/"
+        "source_url": "https://hippigold.fr/courses/2026-11-17/r1c7/",
+        "code_programme": "1187",
+        "part": "R (16 %)"
       }
     ],
     "nostalgie-dairpet": [
@@ -1101,8 +1107,10 @@
         "corde": 6,
         "course": "C3",
         "decharge": "20 %",
-        "source_description": "Partant France Galop communiqué par le gérant le 16/11/2026 ; heure 20h15, corde 6",
-        "source_url": "https://pro.france-galop.com/EspacePro/Course/CourseDetailsPage?anneeCourse=2026&specialite=P&numProgramme=6508"
+        "source_description": "Liste France Galop communiquée le 16/11/2026 ; horaires et statut partant confirmés séparément lorsque disponibles",
+        "source_url": "https://pro.france-galop.com/EspacePro/Course/CourseDetailsPage?anneeCourse=2026&specialite=P&numProgramme=6508",
+        "code_programme": "6508",
+        "part": "A (20 %)"
       }
     ],
     "giorgiana": [
@@ -1115,7 +1123,9 @@
         "allocation": 22100,
         "distance": "1200 m",
         "statut": "engage",
-        "source_description": "Capture espace propriétaire France Galop 12/11/2026"
+        "source_description": "Liste France Galop communiquée le 16/11/2026 ; horaires et statut partant confirmés séparément lorsque disponibles",
+        "code_programme": "1193",
+        "part": "A (25 %)"
       }
     ],
     "le-roi-leon": [
@@ -1128,7 +1138,9 @@
         "allocation": 50900,
         "distance": "2000 m",
         "statut": "engage",
-        "source_description": "Capture espace propriétaire France Galop 12/11/2026"
+        "source_description": "Liste France Galop communiquée le 16/11/2026 ; horaires et statut partant confirmés séparément lorsque disponibles",
+        "code_programme": "1190",
+        "part": "R (16 %)"
       }
     ],
     "douriann": [
@@ -1141,7 +1153,9 @@
         "allocation": 50900,
         "distance": "2000 m",
         "statut": "engage",
-        "source_description": "Capture espace propriétaire France Galop 12/11/2026"
+        "source_description": "Liste France Galop communiquée le 16/11/2026 ; horaires et statut partant confirmés séparément lorsque disponibles",
+        "code_programme": "1190",
+        "part": "A (30 %)"
       }
     ],
     "moondance-okina": [
@@ -1290,6 +1304,20 @@
         "prix": "Prix Valmiki",
         "statut": "engage",
         "source_description": "Capture engagements LeTROT transmise le 14/11/2026"
+      }
+    ],
+    "bailychka": [
+      {
+        "date": "2026-11-24",
+        "hippodrome": "Deauville",
+        "type": "Plat",
+        "statut": "engage",
+        "prix": "Prix de Préaux",
+        "allocation": 27400,
+        "distance": "1900 m",
+        "code_programme": "1215",
+        "part": "R (16 %)",
+        "source_description": "Liste France Galop communiquée le 16/11/2026 ; horaires et statut partant confirmés séparément lorsque disponibles"
       }
     ]
   }
