@@ -93,8 +93,11 @@ serve(async (req) => {
       }
       if (body.action === "get_member_horses") {
         const { data, error } = await admin.from("participations_chevaux")
-          .select("cheval_slug,cheval_nom,pourcentage").eq("user_id", id).order("cheval_nom");
-        if (error) return reply(500, { error: "Impossible de consulter les chevaux de ce compte." });
+          .select("cheval_slug,cheval_nom").eq("user_id", id).order("cheval_nom");
+        if (error) {
+          console.error("get_member_horses", { code: error.code, message: error.message });
+          return reply(500, { error: "Impossible de consulter les chevaux de ce compte (code " + (error.code || "inconnu") + ")." });
+        }
         return reply(200, { ok: true, nom: member.nom_affiche, horses: data || [] });
       }
       if (body.action === "update_email") {
