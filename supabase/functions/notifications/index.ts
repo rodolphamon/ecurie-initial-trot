@@ -3,6 +3,7 @@
 // Toutes les écritures utilisent service_role côté serveur uniquement.
 // La clef privée VAPID ne doit JAMAIS être dans GitHub ou dans la PWA.
 import { createClient } from "npm:@supabase/supabase-js@2";
+import { sendPushNotification } from "npm:@mmmike/web-push/send";
 
 const ORIGINS = new Set([
   "https://fiches.ecurie-initial.com",
@@ -24,6 +25,8 @@ const env = (key: string) => Deno.env.get(key) || "";
 const db = createClient(env("SUPABASE_URL"), env("SUPABASE_SERVICE_ROLE_KEY"), {
   auth: { persistSession: false, autoRefreshToken: false },
 });
+// Limite les tests répétés pour un même appareil (sur une instance de fonction).
+const lastTests = new Map<string, number>();
 
 function validEndpoint(s: unknown): s is string {
   if (typeof s !== "string" || s.length > 2048) return false;
@@ -75,6 +78,48 @@ Deno.serve(async (request) => {
         .eq("endpoint", body.endpoint).eq("token_hash", tokenHash).maybeSingle();
       if (error) throw error;
       return respond({ ok: true, active: !!data, preferences: data }, 200, origin);
+    }
+    if (action === "test") {
+      // Test individuel : JWT actif + abonnement appartenant au compte et à l'appareil.
+      // N'insère aucune alerte globale en base : aucun autre appareil n'est contacté.
+      if (!validEndpoint(body.endpoint)) return respond({ error: "Abonnement invalide." }, 400, origin);
+      const user = await memberId(request);
+      if (!user) return respond({ error: "Connectez-vous à votre compte associé avant le test." }, 403, origin);
+      const { data: sub, error } = await db.from("ei_push_subscriptions")
+        .select("endpoint,p256dh,auth_secret,user_id,audience")
+        .eq("endpoint", body.endpoint).eq("token_hash", tokenHash).maybeSingle();
+      if (error) throw error;
+      if (!sub || sub.user_id !== user || sub.audience !== "associate")
+        return respond({ error: "Cet appareil n'est pas inscrit à votre compte. Enregistrez vos préférences." }, 404, origin);
+      const now = Date.now();
+      if (now - (lastTests.get(sub.endpoint) || 0) < 120000)
+        return respond({ error: "Un essai a été demandé récemment sur cet appareil. Recommencez dans deux minutes." }, 429, origin);
+      const vapid = {
+        publicKey: env("PUSH_VAPID_PUBLIC_KEY"),
+        privateKey: env("PUSH_VAPID_PRIVATE_KEY"),
+        subject: "mailto:contact@ecurie-initial.com",
+      };
+      if (!vapid.publicKey || !vapid.privateKey)
+        return respond({ error: "Les clés d'envoi des notifications manquent." }, 503, origin);
+      lastTests.set(sub.endpoint, now);
+      try {
+        const delivered = await sendPushNotification(
+          { endpoint: sub.endpoint, keys: { p256dh: sub.p256dh, auth: sub.auth_secret } },
+          {
+            title: "🔔 Test Écurie Initial",
+            body: "Vous recevez bien les notifications de l'écurie !",
+            url: "https://fiches.ecurie-initial.com/application/notifications/",
+          },
+          vapid,
+        );
+        if (!delivered)
+          return respond({ error: "L'abonnement du téléphone a expiré. Désactivez et réactivez les notifications." }, 410, origin);
+        return respond({ ok: true, sent: true }, 200, origin);
+      } catch (e) {
+        lastTests.delete(sub.endpoint);
+        console.error("Push test failed", e instanceof Error ? e.message : e);
+        return respond({ error: "Envoi test impossible. Consulter les journaux Supabase de la fonction notifications." }, 502, origin);
+      }
     }
     if (action === "unsubscribe") {
       if (!validEndpoint(body.endpoint)) return respond({ error: "Abonnement invalide." }, 400, origin);
