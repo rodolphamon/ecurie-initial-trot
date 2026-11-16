@@ -46,6 +46,54 @@ serve(async (req) => {
       if (error) return reply(500, { error: "Mise à jour impossible." });
       return reply(200, { ok: true });
     }
+
+    // Rattachements individuels : seul l'administrateur peut lire ou modifier les participations.
+    const memberActions = new Set(["get_member_horses", "add_member_horse", "remove_member_horse", "update_email"]);
+    if (memberActions.has(body.action)) {
+      const id = String(body.user_id || "");
+      if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id)) {
+        return reply(400, { error: "Identifiant de compte invalide." });
+      }
+      const { data: member, error: memberError } = await admin.from("associes")
+        .select("user_id,nom_affiche").eq("user_id", id).maybeSingle();
+      if (memberError || !member) return reply(404, { error: "Compte associé introuvable." });
+      if (body.action === "get_member_horses") {
+        const { data, error } = await admin.from("participations_chevaux")
+          .select("cheval_slug,cheval_nom,pourcentage").eq("user_id", id).order("cheval_nom");
+        if (error) return reply(500, { error: "Impossible de consulter les chevaux de ce compte." });
+        return reply(200, { ok: true, nom: member.nom_affiche, horses: data || [] });
+      }
+      if (body.action === "update_email") {
+        const email = String(body.email || "").trim().toLowerCase();
+        if (!/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email) || email.length > 254) {
+          return reply(400, { error: "Adresse e-mail invalide." });
+        }
+        // Ne crée pas de nouveau compte et ne touche pas aux participations.
+        const { error } = await admin.auth.admin.updateUserById(id, { email, email_confirm: true });
+        if (error) return reply(400, { error: error.message || "Adresse e-mail non modifiée." });
+        return reply(200, { ok: true, message: "Adresse de connexion mise à jour sans invitation." });
+      }
+      const slug = String(body.cheval_slug || "").trim();
+      if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug) || slug.length > 110) {
+        return reply(400, { error: "Identifiant de cheval invalide." });
+      }
+      if (body.action === "add_member_horse") {
+        const name = String(body.cheval_nom || "").trim();
+        if (!name || name.length > 120) return reply(400, { error: "Nom de cheval invalide." });
+        const { error } = await admin.from("participations_chevaux")
+          .insert({ user_id: id, cheval_slug: slug, cheval_nom: name });
+        if (error?.code === "23505") return reply(409, { error: "Ce cheval est déjà rattaché à cet associé." });
+        if (error) return reply(500, { error: "Impossible d'ajouter cette participation." });
+        return reply(200, { ok: true, message: "Cheval rattaché à ce compte." });
+      }
+      if (body.action === "remove_member_horse") {
+        const { data, error } = await admin.from("participations_chevaux")
+          .delete().eq("user_id", id).eq("cheval_slug", slug).select("cheval_slug");
+        if (error) return reply(500, { error: "Impossible de retirer ce rattachement." });
+        if (!data?.length) return reply(404, { error: "Rattachement introuvable." });
+        return reply(200, { ok: true, message: "Rattachement supprimé." });
+      }
+    }
     return reply(400, { error: "Action inconnue." });
   } catch { return reply(400, { error: "Requête invalide." }); }
 });
