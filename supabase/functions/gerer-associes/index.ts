@@ -28,6 +28,11 @@ serve(async (req) => {
     if (roleError || !me?.actif || !me.administrateur) return reply(403, { error: "Accès administrateur requis." });
     const body = await req.json();
     if (body.action === "invite") {
+      // Aucune invitation avant la mise en place des règles RLS de préouverture.
+      const { data: launchReady, error: launchError } = await admin.rpc("ei_lancement_pret");
+      if (launchError || launchReady !== true) {
+        return reply(503, { error: "Les inscriptions sont en préparation : vérification de la sécurité de préouverture nécessaire avant les invitations." });
+      }
       const email = String(body.email || "").trim().toLowerCase();
       const nom = String(body.nom || "").trim();
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || nom.length < 2 || nom.length > 100) return reply(400, { error: "Nom ou e-mail invalide." });
@@ -57,7 +62,7 @@ serve(async (req) => {
           return reply(500, { error: "L'invitation et le compte sont créés, mais les chevaux n'ont pas pu être rattachés. Utilisez le bouton « Chevaux » pour terminer, sans nouvelle invitation." });
         }
       }
-      return reply(200, { ok: true, message: "Invitation envoyée. " + horses.length + " cheval(aux) rattaché(s).", chevaux_rattaches: horses.length });
+      return reply(200, { ok: true, message: "Invitation envoyée. L'associé peut créer son mot de passe dès maintenant ; son espace ouvrira le 1er décembre 2026. " + horses.length + " cheval(aux) rattaché(s).", chevaux_rattaches: horses.length });
     }
     if (body.action === "set_active") {
       const id = String(body.user_id || "");
