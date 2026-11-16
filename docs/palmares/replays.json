@@ -1,5 +1,5 @@
 {
-  "version": 94,
+  "version": 95,
   "note": "Fiches de courses Equidia ou LeTROT avec sources identifiant les courses. Les URLs Equidia sont déduites du format date/R/C ; la disponibilité et la lecture des vidéos ne sont pas garanties. HOMA reste sur LeTROT faute de fiche Equidia vérifiée.",
   "replays": [
     {
@@ -391,6 +391,14 @@
       "controle": "Course R1C8 et cheval identifiés dans la source ; fiche Equidia reconstruite, lecture du replay non testée"
     },
     {
+      "date": "2026-09-11",
+      "cheval": "ROSA MIA",
+      "hippodrome": "LE MANS",
+      "url": "https://www.equidia.fr/courses/2026-09-11/R5/C5",
+      "justificatif": "https://www.geny.com/cheval/2859514-rosa-mia/course/1682831",
+      "controle": "Date/hippodrome/cheval R5C5 retrouvés dans la source ; URL Equidia de fiche de course déduite, accès au replay non testé"
+    },
+    {
       "date": "2026-09-04",
       "cheval": "LORD ON WAY",
       "hippodrome": "LYON-PARILLY",
@@ -658,6 +666,14 @@
       "controle": "Course référencée par Turfin (R et C concordants) ; lecture du replay Equidia non testée ici"
     },
     {
+      "date": "2026-07-31",
+      "cheval": "GIORGIANA",
+      "hippodrome": "SENONNES-POUANCE",
+      "url": "https://www.equidia.fr/courses/2026-07-31/R2/C8",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2026-07-31/R2C8-equidia",
+      "controle": "Date/hippodrome/cheval R2C8 retrouvés dans la source ; URL Equidia de fiche de course déduite, accès au replay non testé"
+    },
+    {
       "date": "2026-07-30",
       "cheval": "DOURIANN",
       "hippodrome": "DIEPPE",
@@ -688,6 +704,14 @@
       "url": "https://www.equidia.fr/courses/2026-07-26/R5/C6",
       "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2026-07-26/R5C6-le-touquet-prix-hotel-westminster",
       "controle": "Cheval, hippodrome, date et réunion R5C6 vérifiés dans les résultats indiqués ; lien Equidia déduit, lecture vidéo non testée"
+    },
+    {
+      "date": "2026-07-22",
+      "cheval": "ROSA MIA",
+      "hippodrome": "CLAIREFONTAINE",
+      "url": "https://www.equidia.fr/courses/2026-07-22/R2/C1",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2026-07-22/R2C1-clairefontaine-prix-des-enfants-10-petites-promenades-musicales-pmpa-fr-prix-des-glycines",
+      "controle": "Date/hippodrome/cheval R2C1 retrouvés dans la source ; URL Equidia de fiche de course déduite, accès au replay non testé"
     },
     {
       "date": "2026-07-19",
@@ -763,6 +787,14 @@
       "controle": "Course référencée par Turfin (R et C concordants) ; lecture du replay Equidia non testée ici"
     },
     {
+      "date": "2026-07-02",
+      "cheval": "ROSA MIA",
+      "hippodrome": "PARISLONGCHAMP",
+      "url": "https://www.equidia.fr/courses/2026-07-02/R1/C9",
+      "justificatif": "https://chutt.fr/index.php/pronostics/?course=9&date=02_07_2026&reunion=1",
+      "controle": "Date/hippodrome/cheval R1C9 retrouvés dans la source ; URL Equidia de fiche de course déduite, accès au replay non testé"
+    },
+    {
       "date": "2026-06-29",
       "cheval": "MOSCANTIDA PEAL",
       "hippodrome": "ENGHIEN",
@@ -777,6 +809,14 @@
       "url": "https://www.equidia.fr/courses/2026-06-27/R1/C2",
       "justificatif": "https://www.pmu.fr/turf/27062026/r1/c2/",
       "controle": "Réunion et course R1C2 identifiées, cheval présent ; lien Equidia format standard, accès au replay non testé"
+    },
+    {
+      "date": "2026-06-25",
+      "cheval": "VYBORG",
+      "hippodrome": "DEAUVILLE",
+      "url": "https://www.equidia.fr/courses/2026-06-25/R4/C6",
+      "justificatif": "https://www.journalduturf.com/courses.php?id=564803",
+      "controle": "Date/hippodrome/cheval R4C6 retrouvés dans la source ; URL Equidia de fiche de course déduite, accès au replay non testé"
     },
     {
       "date": "2026-06-22",
@@ -809,6 +849,14 @@
       "url": "https://www.equidia.fr/courses/2026-06-10/R3/C3",
       "preuve_lien_equidia": "https://turfin.fr/course/2026-06-10/r3c3-argentan-prix-des-terres-d-argentan",
       "controle": "Lien direct vers la fiche de course Equidia indiqué sur Turfin ; lecture du replay non testée depuis cet environnement"
+    },
+    {
+      "date": "2026-06-10",
+      "cheval": "VYBORG",
+      "hippodrome": "ARGENTAN",
+      "url": "https://www.equidia.fr/courses/2026-06-10/R3/C6",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2026-06-10/R3C6-equidia",
+      "controle": "Date/hippodrome/cheval R3C6 retrouvés dans la source ; URL Equidia de fiche de course déduite, accès au replay non testé"
     },
     {
       "date": "2026-06-10",
