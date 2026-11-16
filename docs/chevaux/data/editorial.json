@@ -1074,14 +1074,16 @@
         "hippodrome": "Vincennes",
         "type": "Trot attelé",
         "statut": "engage",
-        "source_description": "Capture des engagements Trot transmise le 13/11/2026 (horaires non retenus)"
+        "source_description": "Capture des engagements Trot transmise le 13/11/2026 (horaires non retenus)",
+        "prix": "Prix de Bonnieux"
       },
       {
         "date": "2026-12-03",
         "hippodrome": "Vincennes",
         "type": "Trot monté",
         "statut": "engage",
-        "source_description": "Capture des engagements Trot transmise le 13/11/2026 (horaires non retenus)"
+        "source_description": "Capture des engagements Trot transmise le 13/11/2026 (horaires non retenus)",
+        "prix": "Prix de Chamalières"
       }
     ],
     "andresy": [
@@ -1148,21 +1150,24 @@
         "hippodrome": "Mauquenchy",
         "type": "Trot attelé",
         "statut": "engage",
-        "source_description": "Capture des engagements Trot transmise le 13/11/2026 (horaires non retenus)"
+        "source_description": "Capture des engagements Trot transmise le 13/11/2026 (horaires non retenus)",
+        "prix": "Prix le Bistrot & l'Assiette de Formerie"
       },
       {
         "date": "2026-12-09",
         "hippodrome": "Lyon (La Soie)",
         "type": "Trot attelé",
         "statut": "engage",
-        "source_description": "Capture des engagements Trot transmise le 13/11/2026 (horaires non retenus)"
+        "source_description": "Capture des engagements Trot transmise le 13/11/2026 (horaires non retenus)",
+        "prix": "Prix de Champagne-Ardenne"
       },
       {
         "date": "2026-12-21",
         "hippodrome": "Cagnes-sur-Mer",
         "type": "Trot attelé",
         "statut": "engage",
-        "source_description": "Capture des engagements Trot transmise le 13/11/2026 (horaires non retenus)"
+        "source_description": "Capture des engagements Trot transmise le 13/11/2026 (horaires non retenus)",
+        "prix": "Prix de la Napoule"
       }
     ],
     "memphis-belle": [
@@ -1179,7 +1184,8 @@
         "hippodrome": "Cherbourg",
         "type": "Trot attelé",
         "statut": "engage",
-        "source_description": "Capture des engagements Trot transmise le 13/11/2026 (horaires non retenus)"
+        "source_description": "Capture des engagements Trot transmise le 13/11/2026 (horaires non retenus)",
+        "prix": "Prix Une Tempête Dans Ma Tête"
       }
     ],
     "isolee-du-bouillon": [
@@ -1188,53 +1194,77 @@
         "hippodrome": "Vincennes",
         "type": "Trot attelé",
         "statut": "engage",
-        "source_description": "Capture des engagements Trot transmise le 13/11/2026 (horaires non retenus)"
+        "source_description": "Capture des engagements Trot transmise le 13/11/2026 (horaires non retenus)",
+        "prix": "Prix de Meslay du Maine"
       },
       {
         "date": "2026-12-04",
         "hippodrome": "Mauquenchy",
         "type": "Trot attelé",
         "statut": "engage",
-        "source_description": "Capture des engagements Trot transmise le 13/11/2026 (horaires non retenus)"
+        "source_description": "Capture des engagements Trot transmise le 13/11/2026 (horaires non retenus)",
+        "prix": "Prix Levasseur Réceptions"
       },
       {
         "date": "2026-12-07",
         "hippodrome": "Vincennes",
         "type": "Trot attelé",
         "statut": "engage",
-        "source_description": "Capture des engagements Trot transmise le 13/11/2026 (horaires non retenus)"
+        "source_description": "Capture des engagements Trot transmise le 13/11/2026 (horaires non retenus)",
+        "prix": "Prix des Alpes"
       },
       {
         "date": "2026-12-10",
         "hippodrome": "Vincennes",
         "type": "Trot attelé",
         "statut": "engage",
-        "source_description": "Capture des engagements Trot transmise le 13/11/2026 (horaires non retenus)"
+        "source_description": "Capture des engagements Trot transmise le 13/11/2026 (horaires non retenus)",
+        "prix": "Prix de Murat"
       },
       {
         "date": "2026-12-24",
         "hippodrome": "Vincennes",
         "type": "Trot attelé",
         "statut": "engage",
-        "source_description": "Capture des engagements Trot transmise le 13/11/2026 (horaires non retenus)"
+        "source_description": "Capture des engagements Trot transmise le 13/11/2026 (horaires non retenus)",
+        "prix": "Prix d'Amboise"
       },
       {
         "date": "2026-12-25",
         "hippodrome": "Vincennes",
         "type": "Trot attelé",
         "statut": "engage",
-        "source_description": "Capture des engagements Trot transmise le 13/11/2026 (horaires non retenus)"
+        "source_description": "Capture des engagements Trot transmise le 13/11/2026 (horaires non retenus)",
+        "prix": "Prix du Gard"
       },
       {
         "date": "2027-01-02",
         "hippodrome": "Vincennes",
         "type": "Trot attelé",
         "statut": "engage",
-        "source_description": "Capture des engagements Trot transmise le 13/11/2026 (horaires non retenus)"
+        "source_description": "Capture des engagements Trot transmise le 13/11/2026 (horaires non retenus)",
+        "prix": "Prix de Nozay"
       }
     ],
-    "lord-on-way": [],
+    "lord-on-way": [
+      {
+        "date": "2026-11-20",
+        "hippodrome": "Vincennes",
+        "type": "Trot attelé",
+        "prix": "Prix Florentina",
+        "statut": "engage",
+        "source_description": "Capture LeTROT des engagements communiquée par le gérant le 16/11/2026"
+      }
+    ],
     "lucky-des-gaudines": [
+      {
+        "date": "2026-11-27",
+        "hippodrome": "Toulouse",
+        "type": "Trot attelé",
+        "prix": "Prix de la Rhune",
+        "statut": "engage",
+        "source_description": "Capture LeTROT des engagements communiquée par le gérant le 16/11/2026"
+      },
       {
         "date": "2026-11-29",
         "hippodrome": "Beaumont-de-Lomagne",
