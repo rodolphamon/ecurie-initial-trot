@@ -124,9 +124,26 @@ async function run() {
   const active=new Set<string>();
   const holdings=new Map<string,Set<string>>();
   if(userIds.length){
-    const {data:members,error:memErr}=await sb.from("associes").select("user_id").eq("actif",true).in("user_id",userIds);
+    const {data:members,error:memErr}=await sb.from("associes")
+      .select("user_id,nom_affiche,administrateur").eq("actif",true).in("user_id",userIds);
     if(memErr)throw memErr;
-    for(const m of members||[])active.add(m.user_id);
+    const launchOpen=now>=Date.parse("2026-11-30T23:00:00Z");
+    const pilots=new Set<string>();
+    if(!launchOpen){
+      const {data:rows,error:pilotError}=await sb.from("ei_lancement_pilotes")
+        .select("user_id").in("user_id",userIds);
+      if(!pilotError){for(const x of rows||[])pilots.add(x.user_id)}
+      else if(pilotError.code==="42P01"||pilotError.code==="PGRST205"){
+        // Transition avant activation des règles SQL : seuls les comptes pilotes connus.
+        const norm=(s:string)=>s.normalize("NFD").replace(/[\u0300-\u036f]/g,"")
+          .toLowerCase().trim().replace(/\s+/g," ");
+        for(const m of members||[]){
+          if(m.administrateur||["adrien delgery","eric schott","nicolas barre"].includes(norm(m.nom_affiche||"")))
+            pilots.add(m.user_id);
+        }
+      }else throw pilotError;
+    }
+    for(const m of members||[])if(launchOpen||pilots.has(m.user_id))active.add(m.user_id);
     const {data:parts,error:partsErr}=await sb.from("participations_chevaux").select("user_id,cheval_slug").in("user_id",userIds).limit(10000);
     if(partsErr)throw partsErr;
     for(const p of parts||[]){if(!holdings.has(p.user_id))holdings.set(p.user_id,new Set());holdings.get(p.user_id)!.add(p.cheval_slug)}
