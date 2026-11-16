@@ -30,6 +30,33 @@
       "lot": 16,
       "url": "https://province-courses.fr/replay.php?video=10334",
       "source_url": "https://province-courses.fr/fiche_cheval.php?id=23337024T"
+    },
+    "nebraska-fleury": {
+      "date": "2026-02-11",
+      "hippodrome": "Caen",
+      "lot": 4,
+      "chrono": "1'18\"1",
+      "url": "https://www.province-courses.fr/replay.php?video=11114",
+      "source_url": "https://www.province-courses.fr/fiche_cheval.php?id=23317657U",
+      "statut": "page_de_replay_identifiee"
+    },
+    "memphis-belle": {
+      "date": "2025-10-14",
+      "hippodrome": "Caen",
+      "lot": 3,
+      "chrono": "1'18\"1",
+      "url": "https://www.province-courses.fr/replay.php?video=10738",
+      "source_url": "https://www.province-courses.fr/fiche_cheval.php?id=22231835L",
+      "statut": "page_de_replay_identifiee"
+    },
+    "nelson-star": {
+      "date": "2025-06-03",
+      "hippodrome": "Caen",
+      "lot": 17,
+      "chrono": "1'19\"9",
+      "url": "https://province-courses.fr/replay.php?video=10021",
+      "source_url": "https://province-courses.fr/fiche_cheval.php?id=23307584T",
+      "statut": "page_de_replay_identifiee"
     }
   }
 }
