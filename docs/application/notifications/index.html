@@ -40,10 +40,11 @@ button{cursor:pointer;background:var(--orange);border:0;border-radius:9px;font-w
 <p id="serviceState" class="muted">Vérification du service de notifications…</p>
 <button type="button" id="enable" disabled>Activer les notifications</button>
 <button type="button" class="secondary" id="disable" hidden>Arrêter sur cet appareil</button>
+<button type="button" class="secondary" id="testRemote" disabled>📨 Envoyer un test serveur sur ce téléphone</button>
 <p id="status" role="status" aria-live="polite"></p>
 <p class="muted">Sur iPhone, ajoutez d'abord Écurie Initial à l'écran d'accueil. Vous pourrez modifier vos choix ou désactiver les alertes à tout moment.</p>
 <p><a href="../diagnostic-notifications/" style="display:inline-block;padding:12px 16px;border:1px solid #f47721;border-radius:9px;background:#fff7f0;color:#703109;text-decoration:none;font-weight:700">🔎 Diagnostic des notifications</a></p>
-<p class="muted">Un test uniquement sur ce téléphone, sans envoyer d'alerte aux autres associés. Sur iPhone, ouvrez cette rubrique depuis l'application installée.</p></section>
+<p class="muted">Le diagnostic local vérifie l’affichage. Le bouton « Test serveur » envoie une vraie notification Push à ce téléphone uniquement, sans avertir les autres associés. Sur iPhone, ouvrez cette rubrique depuis l’application installée.</p></section>
 <section class="card" id="andresyPanel" hidden>
 <h2>🐎 Test réservé à l'administration</h2>
 <p><strong>ANDRESY · Partant confirmé</strong></p>
@@ -133,6 +134,7 @@ async function init(){
       const state=await callServer({action:'status',deviceToken:deviceToken(),endpoint:subscription.endpoint});
       const p=state.preferences;
       if(state.active && p){
+        if(isMember)$('testRemote').disabled=false;
         if(isMember){
           for(const [field,id] of Object.entries({confirmed:'confirmed',daily:'reminder10',before15:'before15',results:'resultMember',withdrawn:'withdrawn',private_news:'privateNews'}))
             $(id).checked=!!p[field];
@@ -164,7 +166,7 @@ $('enable').onclick=async()=>{
    }
    await callServer({action:'subscribe',deviceToken:deviceToken(),subscription:subscription.toJSON(),preferences:prefs()});
    message('Préférences enregistrées pour cet appareil.');
-   btn.textContent='Enregistrer mes préférences';$('disable').hidden=false;
+   btn.textContent='Enregistrer mes préférences';$('disable').hidden=false;if(isMember)$('testRemote').disabled=false;
  }catch(e){message(e.message||'Activation impossible.',true)}finally{btn.disabled=false}
 };
 $('disable').onclick=async()=>{
@@ -174,9 +176,18 @@ $('disable').onclick=async()=>{
    await callServer({action:'unsubscribe',deviceToken:deviceToken(),endpoint:subscription.endpoint});
    await subscription.unsubscribe();subscription=null;
    localStorage.removeItem(tokenKey);
-   $('disable').hidden=true;$('enable').textContent='Activer les notifications';
+   $('disable').hidden=true;$('enable').textContent='Activer les notifications';$('testRemote').disabled=true;
    message('Notifications désactivées sur cet appareil.');
  }catch(e){message(e.message||'Désactivation impossible.',true)}finally{$('disable').disabled=false}
+};
+$('testRemote').onclick=async()=>{
+ const btn=$('testRemote');btn.disabled=true;message('Demande envoyée au serveur…');
+ try{
+   if(!subscription||!isMember)throw Error('Connectez-vous à votre compte et activez les notifications sur ce téléphone.');
+   await callServer({action:'test',deviceToken:deviceToken(),endpoint:subscription.endpoint});
+   message('Envoi accepté par le service Push. Vérifiez si une notification arrive, puis ouvrez « Diagnostic des notifications » pour voir si elle a été reçue et affichée.');
+ }catch(e){message(e.message||'Le test distant a échoué.',true)}
+ finally{btn.disabled=!subscription||!isMember}
 };
 $('sendAndresy').onclick=async()=>{
  if(!confirm('Envoyer maintenant une notification ANDRESY aux téléphones inscrits d’Adrien, Éric et Nicolas uniquement ?'))return;

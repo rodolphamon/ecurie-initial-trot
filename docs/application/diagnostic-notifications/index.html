@@ -30,8 +30,8 @@ a{color:#a84f13}
 <dt>Service worker</dt><dd id="worker">Vérification…</dd>
 <dt>Abonnement Push</dt><dd id="subscription">Vérification…</dd>
 <dt>Service Push</dt><dd id="provider">Vérification…</dd>
-<dt>Dernier Push reçu</dt><dd id="last">Vérification…</dd>
-<dt>Affichage du dernier Push</dt><dd id="display">Vérification…</dd>
+<dt>Dernier Push reçu du serveur</dt><dd id="last">Vérification…</dd>
+<dt>Dernier Push affiché</dt><dd id="display">Vérification…</dd>
 </dl>
 </section>
 <section class="card">
@@ -44,7 +44,7 @@ a{color:#a84f13}
 </section>
 <section class="card">
 <h2>Après un envoi automatique</h2>
-<p>Rouvrez cette page et consultez « Dernier Push reçu » : cela permet de distinguer un Push arrivé au navigateur d’un message dont l’affichage a échoué.</p>
+<p>Après le test serveur depuis « Notifications », rouvrez cette page. Les lignes « Dernier Push reçu du serveur » et « Dernier Push affiché » permettent de savoir si le Push est arrivé au navigateur puis a été affiché. Le test local ne compte pas comme une réception du serveur.</p>
 <p><small>Pour la confidentialité, seul l’état du diagnostic est conservé sur cet appareil ; ni le jeton ni l’adresse complète d’abonnement ne sont affichés.</small></p>
 </section>
 </main>
@@ -55,15 +55,19 @@ function readLastPush(){
   try{
    const r=indexedDB.open('ei-push-debug-v1',1);
    r.onupgradeneeded=()=>{if(!r.result.objectStoreNames.contains('events'))r.result.createObjectStore('events')};
-   r.onerror=()=>resolve(null);
+   r.onerror=()=>resolve({received:null,display:null});
    r.onsuccess=()=>{
     const db=r.result;
-    if(!db.objectStoreNames.contains('events')){db.close();resolve(null);return;}
-    const tx=db.transaction('events','readonly'),q=tx.objectStore('events').get('last');
-    q.onsuccess=()=>{const result=q.result||null;db.close();resolve(result)};
-    q.onerror=()=>{db.close();resolve(null)};
+    if(!db.objectStoreNames.contains('events')){db.close();resolve({received:null,display:null});return}
+    const tx=db.transaction('events','readonly'),store=tx.objectStore('events');
+    const reads=['last_received','last_display','last'].map(k=>new Promise(done=>{
+     const req=store.get(k);req.onsuccess=()=>done(req.result||null);req.onerror=()=>done(null);
+    }));
+    Promise.all(reads).then(([received,display,legacy])=>{
+      db.close();resolve({received,display:display||legacy||null});
+    }).catch(()=>{db.close();resolve({received:null,display:null})});
    };
-  }catch(e){resolve(null)}
+  }catch(e){resolve({received:null,display:null})}
  });
 }
 async function check(){
@@ -82,8 +86,8 @@ async function check(){
   }
  }catch(e){el('worker').textContent='Erreur';el('subscription').textContent='À vérifier';el('provider').textContent='—'}
  const last=await readLastPush();
- el('last').textContent=last?.at?new Date(last.at).toLocaleString('fr-FR'):'Aucun événement enregistré';
- el('display').textContent=last?.status==='shown'?'Affiché':last?.status==='error'?'Erreur : '+(last.error||'inconnue'):'—';
+ el('last').textContent=last.received?.at?new Date(last.received.at).toLocaleString('fr-FR'):'Aucune réception enregistrée';
+ el('display').textContent=last.display?.at?(last.display.status==='shown'?'Affiché le ':'Erreur le ')+new Date(last.display.at).toLocaleString('fr-FR')+(last.display.status==='error'?' : '+(last.display.error||'inconnue'):''):'Aucun affichage enregistré';
 }
 el('local').onclick=async()=>{
  const b=el('local');b.disabled=true;el('result').textContent='';

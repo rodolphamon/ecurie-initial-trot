@@ -1,6 +1,6 @@
 // Service Worker de l'application Écurie Initial.
 // Cache minimal ; aucun contenu privé conservé volontairement en cache.
-const CACHE='ei-app-shell-v9';
+const CACHE='ei-app-shell-v10';
 self.addEventListener('install',event=>{
   event.waitUntil(caches.open(CACHE).then(c=>c.addAll(['./','manifest.webmanifest','icon-ei-192.png','notification-ei-badge.png'])));
   self.skipWaiting();
@@ -32,7 +32,11 @@ function recordPushStatus(status,error){
       open.onsuccess=()=>{
         const db=open.result;
         const tx=db.transaction('events','readwrite');
-        tx.objectStore('events').put({at:new Date().toISOString(),status,error:error||null},'last');
+        const entry={at:new Date().toISOString(),status,error:error||null};
+        const store=tx.objectStore('events');
+        store.put(entry,'last');
+        if(status==='received')store.put(entry,'last_received');
+        if(status==='shown'||status==='error')store.put(entry,'last_display');
         tx.oncomplete=()=>{db.close();resolve()};
         tx.onerror=()=>{db.close();resolve()};
         tx.onabort=()=>{db.close();resolve()};
@@ -51,6 +55,7 @@ self.addEventListener('push',event=>{
       const target=new URL(payload.url||url,self.location.origin);
       if(target.origin===self.location.origin)url=target.href;
     }catch{}
+    await recordPushStatus('received',null);
     try{
       await self.registration.showNotification(title,{
         body,
