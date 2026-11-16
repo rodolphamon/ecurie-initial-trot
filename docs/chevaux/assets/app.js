@@ -13,12 +13,14 @@ function photoMarkup(p,style){let img=base+'photos/'+p.id+'.jpg?v='+encodeURICom
 async function load(){let paths=[base+'data/chevaux.json',base+'data/editorial.json',base+'../data/effectif-trot.json',base+'../data/effectif-galop.json'];let requests=await Promise.all(paths.map(async p=>{let r=await fetch(p,{cache:'no-store'});if(!r.ok)throw Error('Impossible de charger '+p);return r.json()}));let [all,editor,trot,galop]=requests;
 try{const q=await fetch(base+'data/qualifications.json',{cache:'no-store'});if(q.ok){let videos=await q.json();editor.qualifications={...(editor.qualifications||{}),...(videos.qualifications||{})};}}catch(e){console.warn('Vidéos de qualification temporairement indisponibles',e)}let gallop=new Map((galop.horses||[]).map(h=>[h.id,h]));const replayIndex=Object.create(null);try{let response=await fetch(base+'../palmares/replays.json',{cache:'no-store'});if(response.ok){let data=await response.json();for(const replay of data.replays||[]){let url=absoluteUrl(replay.url);
 let sourceLetrot=absoluteUrl(replay.lien_replay_original);
+let resultatLetrot=absoluteUrl(replay.lien_letrot_precedent);
 if(url&&replay.date&&replay.cheval){
   const direct=/\/video\//i.test(url)&&/dailymotion\.com|youtube\.com/i.test(url);
   const replayLetrot=/letrot\.com\/.*replay-courses\//i.test(sourceLetrot||url);
+  const ficheLetrot=/letrot\.com\/courses\/\d{4}-\d\d-\d\d\//i.test(resultatLetrot||'');
   replayIndex[replay.date+'|'+normalizeSearch(replay.cheval)]={
-    url:direct?url:replayLetrot?(sourceLetrot||url):url,
-    kind:direct?'video':replayLetrot?'letrot':replay.verification_replay_2026_11_16?.statut==='page_course_avec_rubrique_replay'?'replay_page':/equidia\.fr/i.test(url)?'equidia':'course'
+    url:direct?url:replayLetrot?(sourceLetrot||url):ficheLetrot?resultatLetrot:url,
+    kind:direct?'video':replayLetrot?'letrot':ficheLetrot?'letrot_result':replay.verification_replay_2026_11_16?.statut==='page_course_avec_rubrique_replay'?'replay_page':/equidia\.fr/i.test(url)?'equidia':'course'
   };
 }}}}catch(error){console.warn('Liens vidéo temporairement indisponibles',error)}return {profiles:all.horses.map(p=>({...p,...(gallop.get(p.id)||{})})),editor,trot:trot.horses||{},gallop,replayIndex,updates:{trot:trot.updated_at,galop:galop.updated_at}}}
 const installedApp = window.matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
@@ -95,7 +97,7 @@ function horse(s){
       const direct=absoluteUrl(x.video_url);
       const isNonPartant=/non.partant|^np\b/i.test(String(x.rang||''));
       const link=isNonPartant?null:(replay||(direct?{url:direct,kind:/dailymotion\.com|youtube\.com/i.test(direct)?'video':'course'}:null));
-      const video=link?'<a class="'+(link.kind==='video'||link.kind==='letrot'?'ei-video-link':'ei-course-link')+'" href="'+esc(link.url)+'" target="_blank" rel="noopener noreferrer" aria-label="'+esc(link.kind==='video'?'Vidéo':link.kind==='letrot'?'Replay sur LeTROT':link.kind==='equidia'?'Fiche de course Equidia':link.kind==='replay_page'?'Page de course avec rubrique Replay':'Fiche de course')+' de '+esc(p.name)+' du '+esc(dateFR(x.date))+'">'+(link.kind==='video'?'▶ Vidéo':link.kind==='letrot'?'▶ LeTROT':link.kind==='equidia'?'↗ Equidia':link.kind==='replay_page'?'↗ Page replay':'↗ Course')+'</a>':course&&!isNonPartant?'<a class="ei-course-link" href="'+esc(course)+'" target="_blank" rel="noopener noreferrer" aria-label="'+courseType+' de '+esc(p.name)+' du '+esc(dateFR(x.date))+'">↗ '+courseType+'</a>':'<span class="ei-no-video" aria-label="Aucun replay disponible">—</span>';
+      const video=link?'<a class="'+(link.kind==='video'||link.kind==='letrot'?'ei-video-link':'ei-course-link')+'" href="'+esc(link.url)+'" target="_blank" rel="noopener noreferrer" aria-label="'+esc(link.kind==='video'?'Vidéo':link.kind==='letrot'?'Replay sur LeTROT':link.kind==='letrot_result'?'Fiche de course LeTROT':link.kind==='equidia'?'Fiche de course Equidia':link.kind==='replay_page'?'Page de course avec rubrique Replay':'Fiche de course')+' de '+esc(p.name)+' du '+esc(dateFR(x.date))+'">'+(link.kind==='video'?'▶ Vidéo':link.kind==='letrot'?'▶ LeTROT':link.kind==='letrot_result'?'↗ LeTROT':link.kind==='equidia'?'↗ Equidia':link.kind==='replay_page'?'↗ Page replay':'↗ Course')+'</a>':course&&!isNonPartant?'<a class="ei-course-link" href="'+esc(course)+'" target="_blank" rel="noopener noreferrer" aria-label="'+courseType+' de '+esc(p.name)+' du '+esc(dateFR(x.date))+'">↗ '+courseType+'</a>':'<span class="ei-no-video" aria-label="Aucun replay disponible">—</span>';
       return '<tr><td>'+esc(dateFR(x.date))+'</td><td>'+esc(x.hippodrome)+'</td><td><span class="rank">'+esc(x.rang||'—')+'</span></td><td>'+esc(x.driver||x.jockey||'—')+'</td><td>'+video+'</td></tr>';
     }).join('')+'</tbody></table></div>'
     :'<div class="empty">Aucune performance détaillée renseignée pour le moment.</div>';
