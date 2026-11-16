@@ -1,6 +1,12 @@
 name: Déployer les notifications (Supabase)
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "supabase/functions/notifications/**"
+      - "supabase/functions/push-dispatch/**"
+      - ".github/workflows/deployer-notifications.yml"
 permissions:
   contents: read
 jobs:
