@@ -70,15 +70,27 @@ serve(async (req) => {
     }
 
     // Rattachements individuels : seul l'administrateur peut lire ou modifier les participations.
-    const memberActions = new Set(["get_member_horses", "add_member_horse", "remove_member_horse", "update_email"]);
+    const memberActions = new Set(["get_member_horses", "add_member_horse", "remove_member_horse", "update_email", "send_access_email"]);
     if (memberActions.has(body.action)) {
       const id = String(body.user_id || "");
       if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id)) {
         return reply(400, { error: "Identifiant de compte invalide." });
       }
       const { data: member, error: memberError } = await admin.from("associes")
-        .select("user_id,nom_affiche").eq("user_id", id).maybeSingle();
+        .select("user_id,nom_affiche,actif").eq("user_id", id).maybeSingle();
       if (memberError || !member) return reply(404, { error: "Compte associé introuvable." });
+      if (body.action === "send_access_email") {
+        if (!member.actif) return reply(403, { error: "Réactivez d'abord le compte de cet associé." });
+        const { data: account, error: accountError } = await admin.auth.admin.getUserById(id);
+        const recipient = account?.user?.email;
+        if (accountError || !recipient) return reply(404, { error: "Adresse de connexion introuvable." });
+        // Un compte existant ne doit jamais être recréé pour renvoyer un accès.
+        const { error } = await auth.auth.resetPasswordForEmail(recipient, {
+          redirectTo: "https://fiches.ecurie-initial.com/application/connexion/",
+        });
+        if (error) return reply(429, { error: "Lien non envoyé : " + error.message + ". Vérifiez le SMTP et les limites d'envoi." });
+        return reply(200, { ok: true, message: "Lien de définition ou réinitialisation du mot de passe demandé pour ce compte existant." });
+      }
       if (body.action === "get_member_horses") {
         const { data, error } = await admin.from("participations_chevaux")
           .select("cheval_slug,cheval_nom,pourcentage").eq("user_id", id).order("cheval_nom");
