@@ -1,5 +1,5 @@
 {
-  "version": 89,
+  "version": 90,
   "note": "Fiches de courses Equidia ou LeTROT avec sources identifiant les courses. Les URLs Equidia sont déduites du format date/R/C ; la disponibilité et la lecture des vidéos ne sont pas garanties. HOMA reste sur LeTROT faute de fiche Equidia vérifiée.",
   "replays": [
     {
@@ -76,6 +76,14 @@
       "controle": "Résultat et numéro R/C concordants dans la source indiquée ; lecture du replay sur Equidia non testée individuellement"
     },
     {
+      "date": "2026-10-21",
+      "cheval": "INDICE DELADOU",
+      "hippodrome": "TOULOUSE",
+      "url": "https://www.equidia.fr/courses/2026-10-21/R1/C4",
+      "justificatif": "https://www.geny.com/cheval/2664298-indice-deladou/course/1692779",
+      "controle": "Course R1C4 et cheval identifiés dans la source ; fiche Equidia reconstruite, lecture du replay non testée"
+    },
+    {
       "date": "2026-10-20",
       "cheval": "ZARTOP",
       "hippodrome": "CLAIREFONTAINE",
@@ -92,12 +100,28 @@
       "controle": "Course, hippodrome et R/C identifiés dans les résultats Turfin ; consultation de la vidéo Equidia non testée"
     },
     {
+      "date": "2026-10-15",
+      "cheval": "ISOLEE DU BOUILLON",
+      "hippodrome": "ENGHIEN",
+      "url": "https://www.equidia.fr/courses/2026-10-15/R4/C3",
+      "justificatif": "https://www.geny.com/cheval/2692098-isolee-du-bouillon/course/1691245",
+      "controle": "Course R4C3 et cheval identifiés dans la source ; fiche Equidia reconstruite, lecture du replay non testée"
+    },
+    {
       "date": "2026-10-05",
       "cheval": "GONAFOOT",
       "hippodrome": "DEAUVILLE",
       "url": "https://www.equidia.fr/courses/2026-10-05/R4/C6",
       "justificatif": "https://zeturf.fr/fr/course-du-jour/2026-10-05/R4C6-deauville-prix-de-cagnes-sur-mer?prefill=2",
       "controle": "Course R4C6 et présence du cheval identifiées dans les sources ; fiche de course Equidia reconstituée, lecture du replay non testée individuellement"
+    },
+    {
+      "date": "2026-10-05",
+      "cheval": "LORD ON WAY",
+      "hippodrome": "ENGHIEN",
+      "url": "https://www.equidia.fr/courses/2026-10-05/R1/C1",
+      "justificatif": "https://www.turf-pronostics.com/cheval/lord-on-way/",
+      "controle": "Course R1C1 et cheval identifiés dans la source ; fiche Equidia reconstruite, lecture du replay non testée"
     },
     {
       "date": "2026-10-03",
@@ -114,6 +138,14 @@
       "url": "https://www.equidia.fr/courses/2026-09-28/R2/C7",
       "preuve_identification_course": "https://turfin.fr/course/2026-09-28/r2c7-craon-prix-du-courrier-de-la-mayenne",
       "controle": "Course, hippodrome et R/C identifiés dans les résultats Turfin ; consultation de la vidéo Equidia non testée"
+    },
+    {
+      "date": "2026-09-27",
+      "cheval": "ISOLEE DU BOUILLON",
+      "hippodrome": "VINCENNES",
+      "url": "https://www.equidia.fr/courses/2026-09-27/R1/C7",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2026-09-27/R1C7-equidia",
+      "controle": "Course R1C7 et cheval identifiés dans la source ; fiche Equidia reconstruite, lecture du replay non testée"
     },
     {
       "date": "2026-09-22",
@@ -143,6 +175,14 @@
       "controle": "Correspondance de course identifiée dans les résultats Turfin ; lecture vidéo Equidia non vérifiée"
     },
     {
+      "date": "2026-09-18",
+      "cheval": "LUCKY DES GAUDINES",
+      "hippodrome": "TOULOUSE",
+      "url": "https://www.equidia.fr/courses/2026-09-18/R5/C2",
+      "justificatif": "https://www.geny.com/cheval/2798166-lucky-des-gaudines/course/1684669",
+      "controle": "Course R5C2 et cheval identifiés dans la source ; fiche Equidia reconstruite, lecture du replay non testée"
+    },
+    {
       "date": "2026-09-14",
       "cheval": "MASTER PAT",
       "hippodrome": "CHANTILLY",
@@ -157,6 +197,30 @@
       "url": "https://www.equidia.fr/courses/2026-09-13/R1/C1",
       "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2026-09-13/R1C1-equidia",
       "controle": "Résultat et numéro R/C concordants dans la source indiquée ; lecture du replay sur Equidia non testée individuellement"
+    },
+    {
+      "date": "2026-09-12",
+      "cheval": "ISOLEE DU BOUILLON",
+      "hippodrome": "VINCENNES",
+      "url": "https://www.equidia.fr/courses/2026-09-12/R1/C9",
+      "justificatif": "https://www.ornecourses.com/course.php?id=4834",
+      "controle": "Course R1C9 et cheval identifiés dans la source ; fiche Equidia reconstruite, lecture du replay non testée"
+    },
+    {
+      "date": "2026-09-11",
+      "cheval": "BAILYCHKA",
+      "hippodrome": "LE MANS",
+      "url": "https://www.equidia.fr/courses/2026-09-11/R5/C1",
+      "justificatif": "https://ornecourses.com/course.php?id=4819",
+      "controle": "Course R5C1 et cheval identifiés dans la source ; fiche Equidia reconstruite, lecture du replay non testée"
+    },
+    {
+      "date": "2026-09-11",
+      "cheval": "MANDRAGORA FLEURY",
+      "hippodrome": "VINCENNES",
+      "url": "https://www.equidia.fr/courses/2026-09-11/R1/C8",
+      "justificatif": "https://www.geny.com/cheval/2823449-mandragora-fleury/course/1682845",
+      "controle": "Course R1C8 et cheval identifiés dans la source ; fiche Equidia reconstruite, lecture du replay non testée"
     },
     {
       "date": "2026-09-04",
@@ -176,6 +240,14 @@
       "url": "https://www.equidia.fr/courses/2026-09-01/R1/C3",
       "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2026-09-01/R1C3-equidia",
       "controle": "Résultat et numéro R/C concordants dans la source indiquée ; lecture du replay sur Equidia non testée individuellement"
+    },
+    {
+      "date": "2026-08-28",
+      "cheval": "MANDRAGORA FLEURY",
+      "hippodrome": "CABOURG",
+      "url": "https://www.equidia.fr/courses/2026-08-28/R1/C3",
+      "justificatif": "https://mediapronos.com/actu-turf/reunion-r1-cabourg-2026-08-28/",
+      "controle": "Course R1C3 et cheval identifiés dans la source ; fiche Equidia reconstruite, lecture du replay non testée"
     },
     {
       "date": "2026-08-28",
@@ -264,6 +336,14 @@
       "url": "https://www.equidia.fr/courses/2026-08-08/R3/C1",
       "preuve_identification_course": "https://turfin.fr/course/2026-08-08/r3c1-enghien-prix-de-pornic",
       "controle": "Course, hippodrome et R/C identifiés dans les résultats Turfin ; consultation de la vidéo Equidia non testée"
+    },
+    {
+      "date": "2026-08-03",
+      "cheval": "BAILYCHKA",
+      "hippodrome": "VICHY",
+      "url": "https://www.equidia.fr/courses/2026-08-03/R4/C7",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2026-08-03/R4C7-vichy-prix-de-sault?theme=turf",
+      "controle": "Course R4C7 et cheval identifiés dans la source ; fiche Equidia reconstruite, lecture du replay non testée"
     },
     {
       "date": "2026-08-03",
@@ -427,6 +507,14 @@
       "controle": "R/C, cheval et place confirmés dans l'arrivée de course ; replay Equidia non visionné individuellement"
     },
     {
+      "date": "2026-05-05",
+      "cheval": "LIMPIDE",
+      "hippodrome": "SAINT-CLOUD",
+      "url": "https://www.equidia.fr/courses/2026-05-05/R1/C1",
+      "justificatif": "https://www.turfoo.fr/programmes-courses/260505/reunion1-saint-cloud/courses/",
+      "controle": "Course R1C1 et cheval identifiés dans la source ; fiche Equidia reconstruite, lecture du replay non testée"
+    },
+    {
       "date": "2026-04-21",
       "cheval": "MOSCANTIDA PEAL",
       "hippodrome": "VINCENNES - GP",
@@ -508,6 +596,14 @@
       "url": "https://www.equidia.fr/courses/2026-03-31/R2/C2",
       "preuve_identification_course": "https://www.canalturf.com/resultats-PMU/2026-03-31/nantes/401568_prix-de-vieillevigne.html",
       "controle": "Numéros de réunion et course recoupés par source de résultats ; lien Equidia construit, lecture du replay à confirmer"
+    },
+    {
+      "date": "2026-03-30",
+      "cheval": "LIMPIDE",
+      "hippodrome": "CHANTILLY",
+      "url": "https://www.equidia.fr/courses/2026-03-30/R1/C3",
+      "justificatif": "https://www.geny.com/course/1641448-2026-03-30-chantilly-prix-de-l-hospice-conde/arrivee-rapports",
+      "controle": "Course R1C3 et cheval identifiés dans la source ; fiche Equidia reconstruite, lecture du replay non testée"
     },
     {
       "date": "2026-03-20",
