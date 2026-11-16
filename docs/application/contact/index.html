@@ -72,7 +72,18 @@ header{background:#fff;color:#191919;border-bottom:4px solid var(--orange);paddi
   color:#191919;padding-bottom:6px;border-bottom:2px solid var(--orange)
 }
 .brand-copy strong .brand-initial{color:#191919}
-.brand-copy strong .brand-initial-i{color:var(--orange)}
+.brand-copy strong .brand-initial-i{
+  position:relative;display:inline-block;vertical-align:baseline;
+  font-weight:900;font-style:normal;text-transform:none;
+  color:var(--orange);line-height:1;
+}
+.brand-copy strong .brand-initial-i::before{
+  content:"★";position:absolute;left:50%;top:-.45em;
+  transform:translateX(-50%);font-size:.51em;line-height:1;
+  color:var(--orange);-webkit-text-stroke:.65px #171717;
+  paint-order:stroke fill;text-shadow:0 0 .35px #171717;
+  pointer-events:none;
+}
 .brand-slogan-line{display:block;color:#191919;white-space:nowrap}
 .brand-slogan-date{display:block;color:var(--orange);font-weight:900;margin-top:2px;white-space:nowrap}
 .brand-slogan{
@@ -99,7 +110,7 @@ header{background:#fff;color:#191919;border-bottom:4px solid var(--orange);paddi
 </style>
 </head>
 <body>
-<header><div class="brand"><img src="../icon-ei-192.png" alt="Emblème officiel Écurie Initial"><div class="brand-copy"><strong>ÉCURIE <span class="brand-initial"><span class="brand-initial-i">I</span>NITIAL</span></strong></div><p class="brand-slogan"><span class="brand-slogan-line">PARTAGEONS NOTRE PASSION</span><span class="brand-slogan-date">DEPUIS 2011</span></p></div></header>
+<header><div class="brand"><img src="../icon-ei-192.png" alt="Emblème officiel Écurie Initial"><div class="brand-copy"><strong>ÉCURIE <span class="brand-initial"><span class="brand-initial-i">ı</span>NITIAL</span></strong></div><p class="brand-slogan"><span class="brand-slogan-line">PARTAGEONS NOTRE PASSION</span><span class="brand-slogan-date">DEPUIS 2011</span></p></div></header>
 <main>
 <p><a class="back" href="../">← Retour à l'application</a></p>
 <section class="hero">
