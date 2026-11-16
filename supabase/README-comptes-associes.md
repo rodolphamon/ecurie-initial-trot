@@ -32,3 +32,21 @@
 - Dans Supabase > Authentication > SMTP Settings, compléter l'envoi par IONOS, puis renseigner dans Email Templates les fichiers du dépôt.
 - Dans GitHub > Actions, ouvrir « Déployer la gestion des associés (Supabase) » et déclencher le workflow manuel **après** avoir configuré le secret `SUPABASE_ACCESS_TOKEN` dans GitHub. Ne partager aucun mot de passe ni jeton dans le chat.
 - Tester la réception d'un e-mail et les droits d'accès avec deux comptes d'essai séparés avant toute invitation générale.
+
+## Préouverture du 16 novembre au 1er décembre 2026
+
+**Règle souhaitée :** les invitations peuvent partir et les nouveaux associés peuvent définir leur mot de passe avant le lancement, mais **aucun accès aux espaces privés ni aux notifications d'associé avant le 1er décembre 2026 à 00:00 heure de Paris**, hormis les quatre testeurs (compte administrateur, Adrien Delgery, Nicolas Barré et Éric Schott).
+
+**Étape indispensable avant d'envoyer des invitations :** exécuter dans Supabase SQL Editor `supabase/migrations/20261116_ei_preouverture_1_decembre.sql`. Le SQL :
+- identifie **exactement quatre** comptes actifs (un administrateur et les trois testeurs nommés) puis fige leurs UUID dans `ei_lancement_pilotes` ; si le comptage n'est pas exact, la transaction échoue sans modifier les droits ;
+- protège les participations privées, les actualités des chevaux, la Tribune et les médias privés par des fonctions et politiques RLS imposant la date ou l'appartenance aux quatre testeurs ;
+- expose aux sessions connectées le seul état de leur propre préinscription via `ei_etat_lancement()` ;
+- déverrouille les comptes actifs **automatiquement** le 1er décembre sans tâche planifiée ni activation manuelle.
+
+Le serveur `gerer-associes` a un contrôle `ei_lancement_pret()` : **aucune nouvelle invitation ne doit partir avant l'installation SQL**. Les Edge Functions `notifications` et `push-dispatch` vérifient elles aussi la préouverture. Le déploiement du code n'applique PAS la migration SQL.
+
+Après application, contrôler avec **un compte non testeur invité** que le lien d'invitation permet la création du mot de passe et affiche la page « Votre inscription est enregistrée », mais que l'accès direct à la Tribune, à Mes chevaux, aux données privées via Supabase REST et aux notifications d'associé reste refusé. Contrôler sur les quatre comptes pilotes que le fonctionnement habituel est préservé. Faire également un test négatif de lecture inter-chevaux.
+
+Le modèle `supabase/email-templates/invite.html` a été adapté pour annoncer la préouverture. Il faut **mettre à jour manuellement** le modèle « Invite user » dans Supabase Authentication → Email Templates : GitHub ne déploie pas les modèles e-mail. Ne jamais envoyer la campagne générale avant vérification du SQL, du SMTP et de la page d'attente.
+
+Attention : les pages publiques du site www.ecurie-initial.com restent publiques et ne sont pas protégées par la préouverture. Seuls l'application privée, ses fonctionnalités associées et les notifications d'associé sont réservés aux quatre testeurs.
