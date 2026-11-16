@@ -1,5 +1,5 @@
 {
-  "version": 90,
+  "version": 91,
   "note": "Fiches de courses Equidia ou LeTROT avec sources identifiant les courses. Les URLs Equidia sont déduites du format date/R/C ; la disponibilité et la lecture des vidéos ne sont pas garanties. HOMA reste sur LeTROT faute de fiche Equidia vérifiée.",
   "replays": [
     {
@@ -9,6 +9,14 @@
       "url": "https://www.equidia.fr/courses/2026-11-13/R5/C1",
       "justificatif": "https://www.journalduturf.com/arrivees-rapports-pmu/576279_prix-de-l--hippodrome-d--eauze.html?tab=resultat",
       "controle": "Course R5C1 et présence du cheval identifiées dans les sources ; fiche de course Equidia reconstituée, lecture du replay non testée individuellement"
+    },
+    {
+      "date": "2026-11-13",
+      "cheval": "VICTORIA SECRET",
+      "hippodrome": "SAINT-CLOUD",
+      "url": "https://www.equidia.fr/courses/2026-11-13/R4/C5",
+      "justificatif": "https://www.zone-turf.fr/rapports/r4-c5-prix-de-la-goubiniere-1169819.html",
+      "controle": "Correspondance cheval/date/hippodrome avec R4C5 identifiée dans les résultats ; URL Equidia de fiche de course reconstruite, lecture vidéo non testée"
     },
     {
       "date": "2026-11-11",
@@ -108,6 +116,30 @@
       "controle": "Course R4C3 et cheval identifiés dans la source ; fiche Equidia reconstruite, lecture du replay non testée"
     },
     {
+      "date": "2026-10-10",
+      "cheval": "INDICE DELADOU",
+      "hippodrome": "CAEN",
+      "url": "https://www.equidia.fr/courses/2026-10-10/R1/C4",
+      "justificatif": "https://www.turf.bzh/ecuriebzh.php?jour=2026-10-10",
+      "controle": "Correspondance cheval/date/hippodrome avec R1C4 identifiée dans les résultats ; URL Equidia de fiche de course reconstruite, lecture vidéo non testée"
+    },
+    {
+      "date": "2026-10-08",
+      "cheval": "NOSTALGIE DAIRPET",
+      "hippodrome": "ENGHIEN",
+      "url": "https://www.equidia.fr/courses/2026-10-08/R4/C7",
+      "justificatif": "https://www.elite-turf.fr/courses/e9360321-5751-4eb4-b806-a4ace791eedc",
+      "controle": "Correspondance cheval/date/hippodrome avec R4C7 identifiée dans les résultats ; URL Equidia de fiche de course reconstruite, lecture vidéo non testée"
+    },
+    {
+      "date": "2026-10-06",
+      "cheval": "MYRTILLE MARBOULA",
+      "hippodrome": "VINCENNES",
+      "url": "https://www.equidia.fr/courses/2026-10-06/R4/C1",
+      "justificatif": "https://www.elo-turf.fr/cheval/myrtille-marboula",
+      "controle": "Correspondance cheval/date/hippodrome avec R4C1 identifiée dans les résultats ; URL Equidia de fiche de course reconstruite, lecture vidéo non testée"
+    },
+    {
       "date": "2026-10-05",
       "cheval": "GONAFOOT",
       "hippodrome": "DEAUVILLE",
@@ -156,6 +188,14 @@
       "controle": "Course R4C1 et présence du cheval identifiées dans les sources ; fiche de course Equidia reconstituée, lecture du replay non testée individuellement"
     },
     {
+      "date": "2026-09-22",
+      "cheval": "MYRTILLE MARBOULA",
+      "hippodrome": "VINCENNES",
+      "url": "https://www.equidia.fr/courses/2026-09-22/R3/C6",
+      "justificatif": "https://www.turf-pronostics.com/resultats/2026-09-22/r3c6/vincennes/prix-myrrha/",
+      "controle": "Correspondance cheval/date/hippodrome avec R3C6 identifiée dans les résultats ; URL Equidia de fiche de course reconstruite, lecture vidéo non testée"
+    },
+    {
       "date": "2026-09-21",
       "cheval": "LORD ON WAY",
       "hippodrome": "LA CAPELLE",
@@ -181,6 +221,14 @@
       "url": "https://www.equidia.fr/courses/2026-09-18/R5/C2",
       "justificatif": "https://www.geny.com/cheval/2798166-lucky-des-gaudines/course/1684669",
       "controle": "Course R5C2 et cheval identifiés dans la source ; fiche Equidia reconstruite, lecture du replay non testée"
+    },
+    {
+      "date": "2026-09-18",
+      "cheval": "MONA LISA STARDUST",
+      "hippodrome": "TOULOUSE",
+      "url": "https://www.equidia.fr/courses/2026-09-18/R5/C8",
+      "justificatif": "https://www.elo-turf.fr/cheval/mona-lisa-stardust",
+      "controle": "Correspondance cheval/date/hippodrome avec R5C8 identifiée dans les résultats ; URL Equidia de fiche de course reconstruite, lecture vidéo non testée"
     },
     {
       "date": "2026-09-14",
@@ -274,6 +322,14 @@
       "controle": "Course, hippodrome et R/C identifiés dans les résultats Turfin ; consultation de la vidéo Equidia non testée"
     },
     {
+      "date": "2026-08-26",
+      "cheval": "MYRTILLE MARBOULA",
+      "hippodrome": "VINCENNES",
+      "url": "https://www.equidia.fr/courses/2026-08-26/R2/C6",
+      "justificatif": "https://www.elo-turf.fr/cheval/myrtille-marboula",
+      "controle": "Correspondance cheval/date/hippodrome avec R2C6 identifiée dans les résultats ; URL Equidia de fiche de course reconstruite, lecture vidéo non testée"
+    },
+    {
       "date": "2026-08-25",
       "cheval": "NEBRASKA FLEURY",
       "hippodrome": "CABOURG",
@@ -336,6 +392,22 @@
       "url": "https://www.equidia.fr/courses/2026-08-08/R3/C1",
       "preuve_identification_course": "https://turfin.fr/course/2026-08-08/r3c1-enghien-prix-de-pornic",
       "controle": "Course, hippodrome et R/C identifiés dans les résultats Turfin ; consultation de la vidéo Equidia non testée"
+    },
+    {
+      "date": "2026-08-08",
+      "cheval": "MYRTILLE MARBOULA",
+      "hippodrome": "ENGHIEN",
+      "url": "https://www.equidia.fr/courses/2026-08-08/R3/C1",
+      "justificatif": "https://www.elo-turf.fr/cheval/myrtille-marboula",
+      "controle": "Correspondance cheval/date/hippodrome avec R3C1 identifiée dans les résultats ; URL Equidia de fiche de course reconstruite, lecture vidéo non testée"
+    },
+    {
+      "date": "2026-08-04",
+      "cheval": "NOSTALGIE DAIRPET",
+      "hippodrome": "CABOURG",
+      "url": "https://www.equidia.fr/courses/2026-08-04/R6/C4",
+      "justificatif": "https://www.elo-turf.fr/cheval/nostalgie-dairpet",
+      "controle": "Correspondance cheval/date/hippodrome avec R6C4 identifiée dans les résultats ; URL Equidia de fiche de course reconstruite, lecture vidéo non testée"
     },
     {
       "date": "2026-08-03",
@@ -435,6 +507,22 @@
       "controle": "Réunion, course et classement confirmés par source de résultats ; l'utilisateur a confirmé le fonctionnement des liens Equidia sur le site, lecture de cette course non testée individuellement"
     },
     {
+      "date": "2026-06-16",
+      "cheval": "MANDRAGORA FLEURY",
+      "hippodrome": "VINCENNES",
+      "url": "https://www.equidia.fr/courses/2026-06-16/R5/C4",
+      "justificatif": "https://www.elite-turf.fr/courses/4d7ed4b2-f0c6-4c70-813b-740aec3d620c",
+      "controle": "Correspondance cheval/date/hippodrome avec R5C4 identifiée dans les résultats ; URL Equidia de fiche de course reconstruite, lecture vidéo non testée"
+    },
+    {
+      "date": "2026-06-16",
+      "cheval": "MOONDANCE OKINA",
+      "hippodrome": "VINCENNES",
+      "url": "https://www.equidia.fr/courses/2026-06-16/R5/C4",
+      "justificatif": "https://www.elo-turf.fr/cheval/moondance-okina",
+      "controle": "Correspondance cheval/date/hippodrome avec R5C4 identifiée dans les résultats ; URL Equidia de fiche de course reconstruite, lecture vidéo non testée"
+    },
+    {
       "date": "2026-06-10",
       "cheval": "ROSA MIA",
       "hippodrome": "ARGENTAN",
@@ -457,6 +545,14 @@
       "url": "https://www.equidia.fr/courses/2026-06-02/R1/C1",
       "preuve_lien_equidia": "https://turfin.fr/course/2026-06-02/r1c1-saint-cloud",
       "controle": "Lien direct vers la fiche de course Equidia indiqué sur Turfin ; lecture du replay non testée depuis cet environnement"
+    },
+    {
+      "date": "2026-06-02",
+      "cheval": "MOONDANCE OKINA",
+      "hippodrome": "VINCENNES",
+      "url": "https://www.equidia.fr/courses/2026-06-02/R5/C4",
+      "justificatif": "https://www.elo-turf.fr/cheval/moondance-okina",
+      "controle": "Correspondance cheval/date/hippodrome avec R5C4 identifiée dans les résultats ; URL Equidia de fiche de course reconstruite, lecture vidéo non testée"
     },
     {
       "date": "2026-05-29",
@@ -513,6 +609,14 @@
       "url": "https://www.equidia.fr/courses/2026-05-05/R1/C1",
       "justificatif": "https://www.turfoo.fr/programmes-courses/260505/reunion1-saint-cloud/courses/",
       "controle": "Course R1C1 et cheval identifiés dans la source ; fiche Equidia reconstruite, lecture du replay non testée"
+    },
+    {
+      "date": "2026-04-30",
+      "cheval": "MOONDANCE OKINA",
+      "hippodrome": "SAINT-BRIEUC",
+      "url": "https://www.equidia.fr/courses/2026-04-30/R4/C8",
+      "justificatif": "https://www.elo-turf.fr/cheval/moondance-okina",
+      "controle": "Correspondance cheval/date/hippodrome avec R4C8 identifiée dans les résultats ; URL Equidia de fiche de course reconstruite, lecture vidéo non testée"
     },
     {
       "date": "2026-04-21",
@@ -590,6 +694,14 @@
       "controle": "Course, classement et numéro R/C confirmés dans les arrivées ; disponibilité de la vidéo Equidia non vérifiée individuellement"
     },
     {
+      "date": "2026-04-03",
+      "cheval": "MONA LISA STARDUST",
+      "hippodrome": "TOULOUSE",
+      "url": "https://www.equidia.fr/courses/2026-04-03/R3/C4",
+      "justificatif": "https://www.elo-turf.fr/cheval/mona-lisa-stardust",
+      "controle": "Correspondance cheval/date/hippodrome avec R3C4 identifiée dans les résultats ; URL Equidia de fiche de course reconstruite, lecture vidéo non testée"
+    },
+    {
       "date": "2026-03-31",
       "cheval": "BOBROVKHA",
       "hippodrome": "NANTES",
@@ -604,6 +716,14 @@
       "url": "https://www.equidia.fr/courses/2026-03-30/R1/C3",
       "justificatif": "https://www.geny.com/course/1641448-2026-03-30-chantilly-prix-de-l-hospice-conde/arrivee-rapports",
       "controle": "Course R1C3 et cheval identifiés dans la source ; fiche Equidia reconstruite, lecture du replay non testée"
+    },
+    {
+      "date": "2026-03-26",
+      "cheval": "MONA LISA STARDUST",
+      "hippodrome": "TOULOUSE",
+      "url": "https://www.equidia.fr/courses/2026-03-26/R4/C8",
+      "justificatif": "https://www.elo-turf.fr/cheval/mona-lisa-stardust",
+      "controle": "Correspondance cheval/date/hippodrome avec R4C8 identifiée dans les résultats ; URL Equidia de fiche de course reconstruite, lecture vidéo non testée"
     },
     {
       "date": "2026-03-20",
@@ -641,12 +761,28 @@
       "controle": "Correspondance de course identifiée dans les résultats Turfin ; lecture vidéo Equidia non vérifiée"
     },
     {
+      "date": "2026-03-06",
+      "cheval": "INDICE DELADOU",
+      "hippodrome": "ENGHIEN",
+      "url": "https://www.equidia.fr/courses/2026-03-06/R1/C4",
+      "justificatif": "https://www.elo-turf.fr/cheval/indice-deladou",
+      "controle": "Correspondance cheval/date/hippodrome avec R1C4 identifiée dans les résultats ; URL Equidia de fiche de course reconstruite, lecture vidéo non testée"
+    },
+    {
       "date": "2026-02-27",
       "cheval": "ZARTOP",
       "hippodrome": "PORNICHET",
       "url": "https://www.equidia.fr/courses/2026-02-27/R4/C7",
       "justificatif": "https://www.canalturf.com/resultats-PMU/2026-02-27/pornichet/398674_prix-du-chateau-de-tesson.html",
       "controle": "Course, classement et numéro R/C confirmés dans les arrivées ; disponibilité de la vidéo Equidia non vérifiée individuellement"
+    },
+    {
+      "date": "2026-02-20",
+      "cheval": "INDICE DELADOU",
+      "hippodrome": "VINCENNES",
+      "url": "https://www.equidia.fr/courses/2026-02-20/R1/C4",
+      "justificatif": "https://www.elo-turf.fr/cheval/indice-deladou",
+      "controle": "Correspondance cheval/date/hippodrome avec R1C4 identifiée dans les résultats ; URL Equidia de fiche de course reconstruite, lecture vidéo non testée"
     },
     {
       "date": "2026-02-20",
