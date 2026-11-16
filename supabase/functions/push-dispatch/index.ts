@@ -233,9 +233,21 @@ async function run() {
   }
   return counts;
 }
+// Vérification du secret de pg_cron, conservé chiffré dans Supabase Vault.
+// Seule son empreinte SHA-256 est conservée dans le code (secret aléatoire 256 bits).
+// En cas de rotation du secret Vault, actualiser son empreinte avant de relancer le cron.
+const JOB_SECRET_HASH = "b8f2b6f0fb720da44ff95398f5feeef97cc56bfb4b5b29474c2b202a802845cc";
+async function authorizedCron(req: Request): Promise<boolean> {
+  if(req.method!=="POST")return false;
+  const token = req.headers.get("authorization")?.match(/^Bearer ([A-Za-z0-9_-]{43})$/)?.[1];
+  if(!token)return false;
+  const digest=new Uint8Array(await crypto.subtle.digest("SHA-256",new TextEncoder().encode(token)));
+  let mismatch=0;
+  for(let i=0;i<digest.length;i++)mismatch|=digest[i]^parseInt(JOB_SECRET_HASH.slice(2*i,2*i+2),16);
+  return mismatch===0;
+}
 Deno.serve(async req=>{
-  const secret=env("PUSH_JOB_SECRET");
-  if(req.method!=="POST"||!secret||req.headers.get("authorization")!=="Bearer "+secret)
+  if(!(await authorizedCron(req)))
     return Response.json({error:"Non autorisé"},{status:401});
   try{return Response.json({ok:true,...await run()})}
   catch(e){console.error("Push dispatch error",e);return Response.json({error:"Traitement impossible"},{status:500})}
