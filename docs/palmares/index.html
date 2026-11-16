@@ -216,7 +216,8 @@ async function loadReplays(){
     const candidatesForHorse=results.filter(r=>r.date===video.date&&normalizeReplayKey(r.cheval)===normalizeReplayKey(video.cheval));
     const row=byRace.get([video.date,video.cheval,video.hippodrome].join("|").toUpperCase())||(candidatesForHorse.length===1?candidatesForHorse[0]:null);
     const original=replayUrl(video.lien_replay_original);
-    const url=original||replayUrl(video.url);
+    const direct=replayUrl(video.url);
+    const url=direct.includes("dailymotion.com/video/")?direct:(original||direct);
     if(row&&url){
       row.video=url;
       row.videoSource=url.includes("dailymotion.com/video/")?"video":url.includes("letrot.com/")?"letrot":url.includes("equidia.fr/")?"equidia":"course";
