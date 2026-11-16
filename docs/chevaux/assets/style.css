@@ -24,3 +24,25 @@
   body[data-page="catalogue"] .breadcrumb,
   body[data-page="catalogue"] .eyebrow { display: none !important; }
 }
+
+
+/* Application installée : identité claire et compacte, sans modifier le site web. */
+.ei-app-installed .top{background:#fff;color:#191919;border-bottom:4px solid var(--accent)}
+.ei-app-installed .top-inner{min-height:74px}
+.ei-app-installed .wordmark{gap:11px;color:#191919;letter-spacing:0}
+.ei-app-installed .wordmark-logo{width:48px;height:48px;background:#fff;border:1px solid #eee5de;border-radius:9px;padding:3px}
+.ei-app-installed .wordmark-copy{display:block;min-width:0;padding-left:11px;border-left:2px solid var(--accent)}
+.ei-app-installed .wordmark-title{display:block;font-size:clamp(17px,4.8vw,22px);font-weight:900;letter-spacing:0;line-height:1.08;white-space:nowrap}
+.ei-app-installed .wordmark-accent,.ei-app-installed .wordmark-year{color:var(--accent)}
+.ei-app-installed .wordmark small{font-size:clamp(8px,2.05vw,10px);font-weight:700;line-height:1.4;letter-spacing:.35px;color:#303030;margin-top:5px}
+@media(max-width:590px){
+  .ei-app-installed .top-inner{min-height:0;padding-top:12px;padding-bottom:12px;flex-direction:row;align-items:center;gap:0}
+  .ei-app-installed .wordmark-logo{width:46px;height:46px}
+  .ei-app-installed .top-nav{display:none!important}
+}
+@media(max-width:340px){
+  .ei-app-installed .wordmark{gap:7px}
+  .ei-app-installed .wordmark-copy{padding-left:7px}
+  .ei-app-installed .wordmark-title{font-size:17px}
+  .ei-app-installed .wordmark small{font-size:7.5px;letter-spacing:.1px}
+}
