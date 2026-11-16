@@ -854,6 +854,17 @@
     ],
     "on-lockdown": [
       {
+        "date": "2026-11-16",
+        "hippodrome": "Le Mans",
+        "rang": "5e",
+        "jockey": "Léo ROUSSEL",
+        "type": "Plat",
+        "prix": "Prix du Mesnil",
+        "source_description": "Résultat communiqué par le gérant de l'Écurie Initial le 16/11/2026 ; classement officiel externe non encore recoupé.",
+        "source_url": "https://hippigold.fr/courses/2026-11-16/r3c8/",
+        "valide_ecurie": true
+      },
+      {
         "date": "2026-10-28",
         "hippodrome": "Le Mans",
         "rang": "7e",
@@ -878,13 +889,6 @@
         "date": "2026-04-05",
         "hippodrome": "ParisLongchamp",
         "rang": "Non placé",
-        "source_url": "https://www.canalturf.com/courses_fiche_cheval.php?idcheval=385290",
-        "jockey": "L. BOISSEAU"
-      },
-      {
-        "date": "2026-03-20",
-        "hippodrome": "Le Mans",
-        "rang": "1er",
         "source_url": "https://www.canalturf.com/courses_fiche_cheval.php?idcheval=385290",
         "jockey": "L. BOISSEAU"
       }
@@ -1024,25 +1028,7 @@
       }
     ],
     "victoria-secret": [],
-    "on-lockdown": [
-      {
-        "date": "2026-11-16",
-        "heure": "15:57",
-        "hippodrome": "Le Mans",
-        "type": "Plat",
-        "prix": "Prix du Mesnil",
-        "allocation": 19200,
-        "distance": "1400 m",
-        "statut": "partant",
-        "source_description": "Liste France Galop communiquée le 16/11/2026 ; horaires et statut partant confirmés séparément lorsque disponibles",
-        "jockey": "Léo Roussel",
-        "course": "R3C8",
-        "numero": "4",
-        "source_url": "https://hippigold.fr/courses/2026-11-16/r3c8/",
-        "code_programme": "6245",
-        "part": "A (25 %)"
-      }
-    ],
+    "on-lockdown": [],
     "zartop": [],
     "master-pat": [
       {
