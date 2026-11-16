@@ -47,3 +47,8 @@
   .ei-app-installed .wordmark small{font-size:7.5px;letter-spacing:.1px}
 }
 
+
+/* Liens vers les replays des performances : site et application */
+.ei-video-link{display:inline-block;white-space:nowrap;border:1px solid #f47721;border-radius:8px;color:#8a3700;background:#fff6ef;padding:5px 9px;font-size:13px;font-weight:700;text-decoration:none}
+.ei-video-link:hover,.ei-video-link:focus-visible{background:#f47721;color:#191919}
+.ei-no-video{color:#999}
