@@ -1,4 +1,4 @@
-<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Administration · Écurie Initial</title><style>*{box-sizing:border-box}body{font:15px Arial,sans-serif;background:#f6f4f1;color:#242424;margin:0}header{background:#171717;color:#fff;padding:20px}header strong{font-size:22px}header span{color:#f47721}main{max-width:860px;margin:28px auto;padding:0 16px}.panel{background:#fff;border:1px solid #e7e0d9;border-radius:14px;padding:22px;margin-bottom:15px}h1{margin-top:0}p{line-height:1.5}a{color:#a94c08}button{background:#f47721;border:0;border-radius:8px;padding:11px 16px;font-weight:bold;cursor:pointer}button:disabled{opacity:.5;cursor:not-allowed}input{width:100%;padding:11px;border:1px solid #ccc;border-radius:8px;margin:6px 0 12px}label{font-weight:bold}#actionStatus{margin-top:12px}table{border-collapse:collapse;width:100%}th,td{text-align:left;border-bottom:1px solid #eee;padding:12px 8px}th{font-size:13px}small,.muted{color:#666}#error{color:#a00}#content[hidden],#denied[hidden]{display:none}nav{margin-bottom:16px}.horse-item{display:flex;justify-content:space-between;align-items:center;gap:12px;border-bottom:1px solid #eee;padding:10px 0}.horse-item:last-child{border:0}.horse-item button,.secondary{background:#eee;color:#222}.inline-actions{display:flex;flex-wrap:wrap;gap:7px}.inline-actions button{font-size:12px;padding:8px 10px}.small-select{width:100%;padding:11px;border:1px solid #ccc;border-radius:8px;margin:8px 0 12px}#horsePanel[hidden],#emailPanel[hidden]{display:none}.status{min-height:22px;margin:8px 0;color:#505050}.warning{background:#fff7eb;border-left:3px solid #f47721;padding:10px 13px}@media(max-width:650px){.panel{padding:16px}th,td{padding:9px 5px}main{padding:0 10px}}
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Administration · Écurie Initial</title><style>*{box-sizing:border-box}body{font:15px Arial,sans-serif;background:#f6f4f1;color:#242424;margin:0}header{background:#171717;color:#fff;padding:20px}header strong{font-size:22px}header span{color:#f47721}main{max-width:860px;margin:28px auto;padding:0 16px}.panel{background:#fff;border:1px solid #e7e0d9;border-radius:14px;padding:22px;margin-bottom:15px}h1{margin-top:0}p{line-height:1.5}a{color:#a94c08}button{background:#f47721;border:0;border-radius:8px;padding:11px 16px;font-weight:bold;cursor:pointer}button:disabled{opacity:.5;cursor:not-allowed}input{width:100%;padding:11px;border:1px solid #ccc;border-radius:8px;margin:6px 0 12px}label{font-weight:bold}.invite-horses{margin:14px 0;padding:14px;border:1px solid #e8e2dd;border-radius:10px}.invite-horses legend{font-weight:bold}.invite-roster{display:grid;grid-template-columns:repeat(auto-fit,minmax(185px,1fr));gap:6px;max-height:230px;overflow:auto;padding:4px}.invite-roster label{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:normal;padding:6px;border-radius:6px;background:#faf8f6}.invite-roster label[hidden]{display:none}.invite-roster input{width:auto;margin:0;flex-shrink:0}.invite-roster-state{font-size:12px;color:#666}#actionStatus{margin-top:12px}table{border-collapse:collapse;width:100%}th,td{text-align:left;border-bottom:1px solid #eee;padding:12px 8px}th{font-size:13px}small,.muted{color:#666}#error{color:#a00}#content[hidden],#denied[hidden]{display:none}nav{margin-bottom:16px}.horse-item{display:flex;justify-content:space-between;align-items:center;gap:12px;border-bottom:1px solid #eee;padding:10px 0}.horse-item:last-child{border:0}.horse-item button,.secondary{background:#eee;color:#222}.inline-actions{display:flex;flex-wrap:wrap;gap:7px}.inline-actions button{font-size:12px;padding:8px 10px}.small-select{width:100%;padding:11px;border:1px solid #ccc;border-radius:8px;margin:8px 0 12px}#horsePanel[hidden],#emailPanel[hidden]{display:none}.status{min-height:22px;margin:8px 0;color:#505050}.warning{background:#fff7eb;border-left:3px solid #f47721;padding:10px 13px}@media(max-width:650px){.panel{padding:16px}th,td{padding:9px 5px}main{padding:0 10px}}
 </style><link rel="manifest" href="../manifest.webmanifest"><link rel="apple-touch-icon" href="../icon-ei-192.png"></head><body><header><strong>ÉCURIE <span>INITIAL</span></strong><div>Administration des associés</div></header><main><nav><a href="../connexion/">← Mon espace associé</a></nav><div class="panel"><h1>Gestion des associés</h1><p id="loading">Vérification des droits d'administrateur…</p><p id="error" role="alert"></p><div id="denied" hidden><p>Cette rubrique est réservée à l'administrateur de l'Écurie Initial. Connectez-vous avec votre compte autorisé.</p><a href="../connexion/">Se connecter</a></div><div id="content" hidden><p>Voici les comptes enregistrés dans l'espace privé. Seuls les associés actifs peuvent consulter les publications.</p><div style="overflow-x:auto"><table><thead><tr><th>Associé</th><th>Statut</th><th>Rôle</th><th>Accès</th><th>Gestion</th></tr></thead><tbody id="members"></tbody></table></div><p class="muted" id="count"></p></div></div><div class="panel" id="horsePanel" hidden>
 <h2>🐎 Chevaux de <span id="horseMemberName"></span></h2>
 <p class="warning">Ne rattacher que les chevaux dont cette personne est réellement copropriétaire. Exclure les locataires et respecter les groupes de propriété propres à chaque cheval. Les chevaux déjà rattachés sont conservés.</p>
@@ -11,7 +11,7 @@
 <p class="muted">Le compte et ses participations seront conservés. Cette correction n'envoie pas de nouvelle invitation.</p>
 <form id="emailForm"><label for="newEmail">Nouvelle adresse e-mail</label><input id="newEmail" type="email" required autocomplete="off" maxlength="254"><button type="submit">Enregistrer la nouvelle adresse</button></form>
 <p id="emailStatus" role="status" aria-live="polite"></p>
-</div><div class="panel" id="privateNewsPanel" hidden><h2>🐎 Informations privées par cheval</h2><p>Publiez un message, une photo ou une vidéo pour les seuls associés propriétaires du cheval. Vous pouvez demander une notification ciblée.</p><p><a href="actualites/" style="display:inline-block;background:#f47721;color:#171717;font-weight:bold;text-decoration:none;border-radius:9px;padding:13px 15px">✍️ Publier une information</a></p></div><div class="panel" id="actions" hidden><h2>Invitations et gestion des accès</h2><p>Invitez un associé par e-mail ou suspendez son accès. Ces actions nécessitent l'activation préalable du service sécurisé Supabase.</p><form id="inviteForm"><label for="nom">Nom affiché</label><input id="nom" maxlength="100" required placeholder="Prénom NOM"><label for="email">Adresse e-mail</label><input id="email" type="email" required placeholder="associe@exemple.fr"><button type="submit">Envoyer l'invitation</button></form><p id="actionStatus" role="status"></p><p class="muted">Les invitations sont individuelles. Aucun mot de passe ne doit être communiqué.</p><p class="muted">Pour corriger une adresse existante ou rattacher un cheval, choisissez le compte dans le tableau « Gestion des associés ».</p></div></main><script type="module">
+</div><div class="panel" id="privateNewsPanel" hidden><h2>🐎 Informations privées par cheval</h2><p>Publiez un message, une photo ou une vidéo pour les seuls associés propriétaires du cheval. Vous pouvez demander une notification ciblée.</p><p><a href="actualites/" style="display:inline-block;background:#f47721;color:#171717;font-weight:bold;text-decoration:none;border-radius:9px;padding:13px 15px">✍️ Publier une information</a></p></div><div class="panel" id="actions" hidden><h2>Invitations et gestion des accès</h2><p>Invitez un associé par e-mail ou suspendez son accès. Ces actions nécessitent l'activation préalable du service sécurisé Supabase.</p><form id="inviteForm"><label for="nom">Nom affiché</label><input id="nom" maxlength="100" required placeholder="Prénom NOM"><label for="email">Adresse e-mail</label><input id="email" type="email" required placeholder="associe@exemple.fr"><fieldset class="invite-horses"><legend>🐎 Chevaux de cet associé</legend><p class="muted">Cochez ses chevaux pour les rattacher dès la création du compte. Vous pourrez modifier cette liste ensuite.</p><input type="search" id="inviteHorseFilter" placeholder="Rechercher un cheval…" aria-label="Rechercher un cheval à attribuer"><div id="inviteHorseChoices" class="invite-roster"></div><p id="inviteHorseCount" class="invite-roster-state" role="status">Chargement des chevaux…</p></fieldset><button type="submit">Créer le compte et envoyer l'invitation</button></form><p id="actionStatus" role="status"></p><p class="muted">Les invitations sont individuelles. Aucun mot de passe ne doit être communiqué.</p><p class="muted">Pour corriger une adresse existante ou rattacher un cheval, choisissez le compte dans le tableau « Gestion des associés ».</p></div></main><script type="module">
 import {createClient} from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
 const db=createClient('https://yeecwaaizmvrhwobukfa.supabase.co','sb_publishable_xUy2EJA3u3cKWl8BB4GNPQ_qhV9Pes3');
 const $=id=>document.getElementById(id);
@@ -40,6 +40,28 @@ async function loadRoster(){
   rosterLoaded=true;
  }catch{rosterLoaded=false}
 }
+function renderInviteRoster(){
+ const box=$('inviteHorseChoices');box.replaceChildren();
+ if(!rosterLoaded){status('inviteHorseCount','Liste des chevaux indisponible. Réessayez après actualisation.');return}
+ if(!roster.length){status('inviteHorseCount','Aucun cheval enregistré dans l’effectif.');return}
+ for(const horse of roster){
+  const label=make('label'),input=make('input');
+  input.type='checkbox';input.value=horse.id;input.name='inviteHorse';input.addEventListener('change',updateInviteSummary);
+  label.append(input,make('span',horse.name));box.append(label);
+ }
+ updateInviteSummary();
+}
+function updateInviteSummary(){
+ const n=document.querySelectorAll('#inviteHorseChoices input:checked').length;
+ status('inviteHorseCount',n+' '+(n===1?'cheval sélectionné':'chevaux sélectionnés')+' sur '+roster.length);
+}
+$('inviteHorseFilter').addEventListener('input',()=>{
+ const needle=$('inviteHorseFilter').value.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim();
+ for(const label of $('inviteHorseChoices').querySelectorAll('label')){
+  const norm=label.textContent.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
+  label.hidden=!!needle&&!norm.includes(needle);
+ }
+});
 async function renderHorses(member){
  if(selectedMember?.user_id!==member.user_id)return;
  status('horseStatus','Chargement des participations…');
@@ -148,16 +170,25 @@ async function init(){
   $('count').textContent=members.length+' compte(s) enregistré(s)';
   $('content').hidden=false;$('actions').hidden=false;$('privateNewsPanel').hidden=false;
   await loadRoster();
+  renderInviteRoster();
  }catch(e){status('error','Impossible de charger les comptes pour le moment.')}
  finally{$('loading').hidden=true}
 }
 $('inviteForm').onsubmit=async e=>{
- e.preventDefault();const b=e.target.querySelector('button');b.disabled=true;
- status('actionStatus','Envoi en cours…');
+ e.preventDefault();
+ if(!rosterLoaded){status('actionStatus','Liste des chevaux indisponible : actualisez cette page avant de créer un compte.');return}
+ const picked=[...$('inviteHorseChoices').querySelectorAll('input:checked')];
+ const horses=picked.map(input=>roster.find(h=>h.id===input.value)).filter(Boolean)
+  .map(h=>({cheval_slug:h.id,cheval_nom:h.name}));
+ const nom=$('nom').value.trim(),email=$('email').value.trim().toLowerCase();
+ const warning=horses.length?horses.length+' cheval(aux) associé(s) à son compte.':'Aucun cheval rattaché pour le moment.';
+ if(!confirm('Inviter '+nom+' à l’adresse '+email+' ?\n'+warning))return;
+ const b=e.target.querySelector('button');b.disabled=true;
+ status('actionStatus','Création du compte et invitation en cours…');
  try {
-  await action({action:'invite',nom:$('nom').value.trim(),email:$('email').value.trim()});
-  status('actionStatus','Invitation demandée. Vérifiez la réception puis actualisez la liste des comptes.');
-  e.target.reset();
+  const response=await action({action:'invite',nom,email,horses});
+  status('actionStatus',response.message||'Invitation demandée. Vérifiez la réception de l’e-mail.');
+  e.target.reset();updateInviteSummary();
  }catch(err){status('actionStatus',err.message)}finally{b.disabled=false}
 };
 await init();
