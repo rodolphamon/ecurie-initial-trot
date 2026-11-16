@@ -1,7 +1,39 @@
 {
-  "version": 88,
+  "version": 89,
   "note": "Fiches de courses Equidia ou LeTROT avec sources identifiant les courses. Les URLs Equidia sont déduites du format date/R/C ; la disponibilité et la lecture des vidéos ne sont pas garanties. HOMA reste sur LeTROT faute de fiche Equidia vérifiée.",
   "replays": [
+    {
+      "date": "2026-11-13",
+      "cheval": "MONA LISA STARDUST",
+      "hippodrome": "TOULOUSE",
+      "url": "https://www.equidia.fr/courses/2026-11-13/R5/C1",
+      "justificatif": "https://www.journalduturf.com/arrivees-rapports-pmu/576279_prix-de-l--hippodrome-d--eauze.html?tab=resultat",
+      "controle": "Course R5C1 et présence du cheval identifiées dans les sources ; fiche de course Equidia reconstituée, lecture du replay non testée individuellement"
+    },
+    {
+      "date": "2026-11-11",
+      "cheval": "MEMPHIS BELLE",
+      "hippodrome": "GRAIGNES",
+      "url": "https://www.equidia.fr/courses/2026-11-11/R13/C1",
+      "justificatif": "https://turfin.fr/course/2026-11-11/r13c1-graignes-prix-pierre-massieu",
+      "controle": "Course R13C1 et présence du cheval identifiées dans les sources ; fiche de course Equidia reconstituée, lecture du replay non testée individuellement"
+    },
+    {
+      "date": "2026-11-07",
+      "cheval": "ISOLEE DU BOUILLON",
+      "hippodrome": "LAVAL",
+      "url": "https://www.equidia.fr/courses/2026-11-07/R5/C3",
+      "justificatif": "https://www.province-courses.fr/fiche_cheval.php?id=18116900R",
+      "controle": "Course R5C3 et présence du cheval identifiées dans les sources ; fiche de course Equidia reconstituée, lecture du replay non testée individuellement"
+    },
+    {
+      "date": "2026-11-05",
+      "cheval": "ANDRESY",
+      "hippodrome": "CHANTILLY",
+      "url": "https://www.equidia.fr/courses/2026-11-05/R3/C5",
+      "justificatif": "https://turfin.fr/course/2026-11-05/r3c5-chantilly-prix-du-labyrinthe-de-buis",
+      "controle": "Course R3C5 et présence du cheval identifiées dans les sources ; fiche de course Equidia reconstituée, lecture du replay non testée individuellement"
+    },
     {
       "date": "2026-11-01",
       "cheval": "MEMPHIS BELLE",
@@ -12,12 +44,28 @@
       "controle": "3e Prix d'Orbec R16C2 confirmée ; lien replay Equidia annoncé par Turfin ; lecture vidéo non testée depuis cet environnement"
     },
     {
+      "date": "2026-10-31",
+      "cheval": "GONAFOOT",
+      "hippodrome": "DEAUVILLE",
+      "url": "https://www.equidia.fr/courses/2026-10-31/R1/C2",
+      "justificatif": "https://www.canalturf.com/courses_fiche_entraineur.php?date=2026-10-31&identraineur=891",
+      "controle": "Course R1C2 et présence du cheval identifiées dans les sources ; fiche de course Equidia reconstituée, lecture du replay non testée individuellement"
+    },
+    {
       "date": "2026-10-30",
       "cheval": "LUCKY DES GAUDINES",
       "hippodrome": "TOULOUSE",
       "url": "https://www.equidia.fr/courses/2026-10-30/R5/C5",
       "preuve_identification_course": "https://turfin.fr/course/2026-10-30/r5c5-la-cepiere-prix-victor-bermes",
       "controle": "Course, hippodrome et R/C identifiés dans les résultats Turfin ; consultation de la vidéo Equidia non testée"
+    },
+    {
+      "date": "2026-10-28",
+      "cheval": "LE ROI LEON",
+      "hippodrome": "LE MANS",
+      "url": "https://www.equidia.fr/courses/2026-10-28/R2/C5",
+      "justificatif": "https://www.journalduturf.com/arrivees-rapports-pmu/574980_grand-prix-du-mans.html",
+      "controle": "Course R2C5 et présence du cheval identifiées dans les sources ; fiche de course Equidia reconstituée, lecture du replay non testée individuellement"
     },
     {
       "date": "2026-10-22",
@@ -44,6 +92,14 @@
       "controle": "Course, hippodrome et R/C identifiés dans les résultats Turfin ; consultation de la vidéo Equidia non testée"
     },
     {
+      "date": "2026-10-05",
+      "cheval": "GONAFOOT",
+      "hippodrome": "DEAUVILLE",
+      "url": "https://www.equidia.fr/courses/2026-10-05/R4/C6",
+      "justificatif": "https://zeturf.fr/fr/course-du-jour/2026-10-05/R4C6-deauville-prix-de-cagnes-sur-mer?prefill=2",
+      "controle": "Course R4C6 et présence du cheval identifiées dans les sources ; fiche de course Equidia reconstituée, lecture du replay non testée individuellement"
+    },
+    {
       "date": "2026-10-03",
       "cheval": "LUCKY DES GAUDINES",
       "hippodrome": "BEAUMONT-DE-LOMAGNE",
@@ -58,6 +114,14 @@
       "url": "https://www.equidia.fr/courses/2026-09-28/R2/C7",
       "preuve_identification_course": "https://turfin.fr/course/2026-09-28/r2c7-craon-prix-du-courrier-de-la-mayenne",
       "controle": "Course, hippodrome et R/C identifiés dans les résultats Turfin ; consultation de la vidéo Equidia non testée"
+    },
+    {
+      "date": "2026-09-22",
+      "cheval": "GONAFOOT",
+      "hippodrome": "VICHY",
+      "url": "https://www.equidia.fr/courses/2026-09-22/R4/C1",
+      "justificatif": "https://www.pmu.fr/turf/22092026/r4/c1/",
+      "controle": "Course R4C1 et présence du cheval identifiées dans les sources ; fiche de course Equidia reconstituée, lecture du replay non testée individuellement"
     },
     {
       "date": "2026-09-21",
@@ -2995,6 +3059,16 @@
     },
     {
       "date": "2013-07-27",
+      "cheval": "RHEA SILVIA",
+      "hippodrome": "COMPIEGNE",
+      "url": "https://www.dailymotion.com/video/x12t9p0",
+      "source_video": "https://www.dailymotion.com/user/Ecurie-Initial",
+      "preuve_video": "https://www.dailymotion.com/video/x12t9p0",
+      "nature_lien": "video_course_dailymotion",
+      "controle": "Vidéo publiée sur la chaîne historique Écurie-Initial ; titre, date et hippodrome correspondent à la ligne du palmarès ; lecture intégrale non vérifiée. Vidéo de la journée doublé Compiègne 27/07/2013, Rhéa Silvia gagnante"
+    },
+    {
+      "date": "2013-07-27",
       "cheval": "RHUM BARBES",
       "hippodrome": "COMPIEGNE",
       "url": "https://www.dailymotion.com/video/x12t9p0",
@@ -3004,16 +3078,6 @@
       "source_video": "https://www.dailymotion.com/user/Ecurie-Initial",
       "preuve_video": "https://www.dailymotion.com/video/x12t9p0",
       "nature_lien": "video_course_dailymotion"
-    },
-    {
-      "date": "2013-07-27",
-      "cheval": "RHEA SILVIA",
-      "hippodrome": "COMPIEGNE",
-      "url": "https://www.dailymotion.com/video/x12t9p0",
-      "source_video": "https://www.dailymotion.com/user/Ecurie-Initial",
-      "preuve_video": "https://www.dailymotion.com/video/x12t9p0",
-      "nature_lien": "video_course_dailymotion",
-      "controle": "Vidéo publiée sur la chaîne historique Écurie-Initial ; titre, date et hippodrome correspondent à la ligne du palmarès ; lecture intégrale non vérifiée. Vidéo de la journée doublé Compiègne 27/07/2013, Rhéa Silvia gagnante"
     },
     {
       "date": "2013-06-23",
