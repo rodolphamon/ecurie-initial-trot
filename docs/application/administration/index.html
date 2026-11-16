@@ -164,7 +164,20 @@ async function init(){
    horsesBtn.onclick=()=>selectHorses(m);
    const emailBtn=make('button','✉️ E-mail');emailBtn.type='button';emailBtn.className='secondary';
    emailBtn.onclick=()=>selectEmail(m);
-   buttons.append(horsesBtn,emailBtn);manage.append(buttons);tr.append(manage);
+   const accessBtn=make('button','✉️ Lien d’accès');accessBtn.type='button';accessBtn.className='secondary';
+   accessBtn.disabled=!m.actif;
+   accessBtn.title=m.actif?'Envoyer un nouveau lien sans recréer le compte':'Compte suspendu';
+   accessBtn.onclick=async()=>{
+    if(!confirm('Envoyer à '+m.nom_affiche+' un e-mail pour définir ou réinitialiser son mot de passe ? Le compte et ses chevaux restent inchangés.'))return;
+    accessBtn.disabled=true;
+    status('actionStatus','Demande d’envoi du lien d’accès à '+m.nom_affiche+'…');
+    try{
+      const response=await action({action:'send_access_email',user_id:m.user_id});
+      status('actionStatus',response.message+' Vérifiez la réception.');
+    }catch(error){status('actionStatus',error.message)}
+    finally{accessBtn.disabled=!m.actif}
+   };
+   buttons.append(horsesBtn,emailBtn,accessBtn);manage.append(buttons);tr.append(manage);
    $('members').append(tr);
   }
   $('count').textContent=members.length+' compte(s) enregistré(s)';
