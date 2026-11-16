@@ -191,7 +191,7 @@ function replayUrl(value){
   return letrot||equidia||archive||zeturf?url.href:"";
  }catch{return ""}
 }
-// Un lien vers une fiche de course n'est pas, à lui seul, une vidéo vérifiée.
+// Afficher Résultat en secours si aucun lien de replay LeTROT ou Equidia ne correspond.
 function resultatUrl(value){
  try{
   const url=new URL(String(value||""));
@@ -213,21 +213,16 @@ function replayPreference(value,record){
  if(!url)return null;
  const host=new URL(url).hostname.replace(/^www\./,"");
  const path=new URL(url).pathname;
- const verified=record?.video_verifiee===true
-   ||record?.replay_confirme===true
-   ||record?.verification_video==="confirmee"
-   ||record?.etat_video==="confirmee";
  if(host==="letrot.com"&&/^\/courses\//.test(path))
    return {url,score:110,isVideo:true};
- if(host==="equidia.fr"&&verified)
-   return {url,score:105,isVideo:true};
+ // Les fiches de courses Equidia et LeTROT peuvent proposer le replay ;
+ // on conserve leur bouton Vidéo comme avant, sans prétendre avoir visionné chacune.
+ if(host==="equidia.fr")
+   return {url,score:100,isVideo:true};
  if(host==="dailymotion.com")
    return {url,score:95,isVideo:true};
  if(host==="letrot.com"&&/^\/fr\/courses\/replay-courses\//.test(path))
    return {url,score:90,isVideo:true};
- // Fiche Equidia = résultat tant que le replay n'est pas confirmé.
- if(host==="equidia.fr")
-   return {url,score:35,isVideo:false};
  return {url,score:15,isVideo:false};
 }
 function replayButton(result,mobile){
