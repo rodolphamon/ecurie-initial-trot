@@ -40,6 +40,7 @@ button{cursor:pointer;background:var(--orange);border:0;border-radius:9px;font-w
 <p id="serviceState" class="muted">Vérification du service de notifications…</p>
 <button type="button" id="enable" disabled>Activer les notifications</button>
 <button type="button" class="secondary" id="disable" hidden>Arrêter sur cet appareil</button>
+<button type="button" class="secondary" id="testPush" hidden>🔔 Envoyer une notification test sur ce téléphone</button>
 <p id="status" role="status" aria-live="polite"></p>
 <p class="muted">Sur iPhone, ajoutez d'abord Écurie Initial à l'écran d'accueil. Vous pourrez modifier vos choix ou désactiver les alertes à tout moment.</p></section>
 </main>
@@ -90,6 +91,7 @@ async function init(){
       const state=await callServer({action:'status',deviceToken:deviceToken(),endpoint:subscription.endpoint});
       const p=state.preferences;
       if(state.active && p){
+        if(isMember)$('testPush').hidden=false;
         if(isMember){
           for(const [field,id] of Object.entries({confirmed:'confirmed',daily:'reminder10',before15:'before15',results:'resultMember',withdrawn:'withdrawn',private_news:'privateNews'}))
             $(id).checked=!!p[field];
@@ -122,6 +124,7 @@ $('enable').onclick=async()=>{
    await callServer({action:'subscribe',deviceToken:deviceToken(),subscription:subscription.toJSON(),preferences:prefs()});
    message('Préférences enregistrées pour cet appareil.');
    btn.textContent='Enregistrer mes préférences';$('disable').hidden=false;
+   $('testPush').hidden=!isMember;
  }catch(e){message(e.message||'Activation impossible.',true)}finally{btn.disabled=false}
 };
 $('disable').onclick=async()=>{
@@ -132,8 +135,19 @@ $('disable').onclick=async()=>{
    await subscription.unsubscribe();subscription=null;
    localStorage.removeItem(tokenKey);
    $('disable').hidden=true;$('enable').textContent='Activer les notifications';
+   $('testPush').hidden=true;
    message('Notifications désactivées sur cet appareil.');
  }catch(e){message(e.message||'Désactivation impossible.',true)}finally{$('disable').disabled=false}
+};
+$('testPush').onclick=async()=>{
+ const btn=$('testPush');btn.disabled=true;message('Demande d’envoi en cours…');
+ try{
+   if(!isMember || !subscription)throw Error('Connectez-vous avec votre compte associé et activez les notifications.');
+   const result=await callServer({action:'test',deviceToken:deviceToken(),endpoint:subscription.endpoint});
+   if(!result.sent)throw Error('L’envoi de test n’a pas été confirmé par le serveur.');
+   message('Notification test envoyée. Vérifiez les alertes sur ce téléphone.');
+ }catch(e){message(e.message||'Envoi test impossible.',true)}
+ finally{btn.disabled=false}
 };
 init();
 </script>
