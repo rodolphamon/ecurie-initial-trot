@@ -1,0 +1,24 @@
+name: Surveiller les résultats définitifs PMU
+on:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/monitor_pmu_results.py"
+      - ".github/workflows/surveiller-resultats-pmu.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: resultats-pmu
+  cancel-in-progress: false
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Valider la logique et tester la connexion PMU (aucun envoi)
+        run: python scripts/monitor_pmu_results.py --self-test --probe
