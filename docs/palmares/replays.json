@@ -1,5 +1,5 @@
 {
-  "version": 95,
+  "version": 96,
   "note": "Fiches de courses Equidia ou LeTROT avec sources identifiant les courses. Les URLs Equidia sont déduites du format date/R/C ; la disponibilité et la lecture des vidéos ne sont pas garanties. HOMA reste sur LeTROT faute de fiche Equidia vérifiée.",
   "replays": [
     {
@@ -418,6 +418,14 @@
       "controle": "Correspondance course R5C7 / cheval / hippodrome confirmée par la source ; lien vers fiche Equidia déduit, vidéo non visionnée"
     },
     {
+      "date": "2026-09-03",
+      "cheval": "GONAFOOT",
+      "hippodrome": "VICHY",
+      "url": "https://www.equidia.fr/courses/2026-09-03/R2/C3",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2026-09-03/R2C3-vichy-prix-mireille",
+      "controle": "Cheval présent dans la course R2C3 ; URL de la fiche Equidia déduite du numéro de course, replay non testé"
+    },
+    {
       "date": "2026-09-01",
       "cheval": "GIORGIANA",
       "hippodrome": "DEAUVILLE",
@@ -515,6 +523,14 @@
     },
     {
       "date": "2026-08-24",
+      "cheval": "LUCKY DES GAUDINES",
+      "hippodrome": "CASTERA-VERDUZAN",
+      "url": "https://www.equidia.fr/courses/2026-08-24/R6/C1",
+      "justificatif": "https://www.geny.com/cheval/2798166-lucky-des-gaudines/course/1678722",
+      "controle": "Cheval présent dans la course R6C1 ; URL de la fiche Equidia déduite du numéro de course, replay non testé"
+    },
+    {
+      "date": "2026-08-24",
       "cheval": "VICTORIA SECRET",
       "hippodrome": "DIEPPE",
       "url": "https://www.equidia.fr/courses/2026-08-24/R4/C4",
@@ -552,6 +568,14 @@
       "url": "https://www.equidia.fr/courses/2026-08-20/R1/C6",
       "justificatif": "https://www.turfoo.fr/programmes-courses/260820/reunion1-deauville/course6-prix-de-dieppe/comparateur-de-cotes/",
       "controle": "Cheval, hippodrome, date et réunion R1C6 vérifiés dans les résultats indiqués ; lien Equidia déduit, lecture vidéo non testée"
+    },
+    {
+      "date": "2026-08-20",
+      "cheval": "ROSA MIA",
+      "hippodrome": "LE LION-D'ANGERS",
+      "url": "https://www.equidia.fr/courses/2026-08-20/R2/C4",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2026-08-20/R2C4--prix-de-la-vez",
+      "controle": "Cheval présent dans la course R2C4 ; URL de la fiche Equidia déduite du numéro de course, replay non testé"
     },
     {
       "date": "2026-08-18",
