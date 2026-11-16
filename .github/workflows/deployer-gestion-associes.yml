@@ -21,7 +21,7 @@ jobs:
             echo "::error::Secret SUPABASE_ACCESS_TOKEN manquant dans Settings > Secrets and variables > Actions."
             exit 1
           fi
-          supabase functions deploy gerer-associes --project-ref yeecwaaizmvrhwobukfa
+          supabase functions deploy gerer-associes --project-ref yeecwaaizmvrhwobukfa --yes
       - name: Vérifier le déploiement
         run: |
           echo "Le déploiement de gerer-associes est terminé."
