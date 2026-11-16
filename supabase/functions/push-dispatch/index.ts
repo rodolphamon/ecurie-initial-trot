@@ -10,7 +10,9 @@ const sb = createClient(env("SUPABASE_URL"), env("SUPABASE_SERVICE_ROLE_KEY"), {
 });
 const APP = "https://fiches.ecurie-initial.com";
 const PILOT_LAUNCH_AT = Date.parse("2026-11-30T23:00:00Z");
-const editorialUrl = APP + "/chevaux/data/editorial.json";
+// Les commits de GitHub Actions ne déclenchent pas toujours une reconstruction Pages.
+// La source brute garantit au moteur Push la dernière performance vérifiée.
+const editorialUrl = "https://raw.githubusercontent.com/rodolphamon/ecurie-initial-trot/main/docs/chevaux/data/editorial.json";
 const horsesUrl = APP + "/chevaux/data/chevaux.json";
 const WITHDRAWN = new Set(["non-partant", "forfait", "elimine", "np"]);
 const CONFIRMED = new Set(["partant", "declare"]);
