@@ -16,7 +16,7 @@ if(url&&replay.date&&replay.cheval){
   const direct=/\/video\//i.test(url)&&/dailymotion\.com|youtube\.com/i.test(url);
   const replayLetrot=/letrot\.com\/.*replay-courses\//i.test(sourceLetrot||url);
   replayIndex[replay.date+'|'+normalizeSearch(replay.cheval)]={
-    url:replayLetrot?(sourceLetrot||url):url,
+    url:direct?url:replayLetrot?(sourceLetrot||url):url,
     kind:direct?'video':replayLetrot?'letrot':/equidia\.fr/i.test(url)?'equidia':'course'
   };
 }}}}catch(error){console.warn('Liens vidéo temporairement indisponibles',error)}return {profiles:all.horses.map(p=>({...p,...(gallop.get(p.id)||{})})),editor,trot:trot.horses||{},gallop,replayIndex,updates:{trot:trot.updated_at,galop:galop.updated_at}}}
