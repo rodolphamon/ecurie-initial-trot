@@ -46,7 +46,7 @@ serve(async (req) => {
         seen.add(slug);
         horses.push({ cheval_slug: slug, cheval_nom: name });
       }
-      const { data, error } = await admin.auth.admin.inviteUserByEmail(email, { redirectTo: "https://rodolphamon.github.io/ecurie-initial-trot/application/connexion/" });
+      const { data, error } = await admin.auth.admin.inviteUserByEmail(email, { redirectTo: "https://fiches.ecurie-initial.com/application/connexion/" });
       if (error || !data.user) return reply(400, { error: error?.message || "Invitation impossible." });
       const { error: saveError } = await admin.from("associes").insert({ user_id: data.user.id, nom_affiche: nom, actif: true, administrateur: false });
       if (saveError) return reply(500, { error: "L'invitation a été envoyée, mais l'accès n'a pas pu être activé. Vérifiez ce compte dans Supabase ; ne réinvitez pas automatiquement." });
