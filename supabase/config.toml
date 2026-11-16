@@ -1,3 +1,8 @@
+# Invitations et gestion des participations : JWT du compte admin obligatoire.
+# Ne pas désactiver cette vérification au déploiement.
+[functions.gerer-associes]
+verify_jwt = true
+
 # Écurie Initial — vérification des appels réalisée par le code de chaque fonction.
 # notifications : contrôle du jeton de l'appareil + Supabase Auth facultative.
 # push-dispatch : contrôle obligatoire du secret PUSH_JOB_SECRET.
