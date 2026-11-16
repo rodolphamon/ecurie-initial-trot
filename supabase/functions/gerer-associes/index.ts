@@ -31,11 +31,33 @@ serve(async (req) => {
       const email = String(body.email || "").trim().toLowerCase();
       const nom = String(body.nom || "").trim();
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || nom.length < 2 || nom.length > 100) return reply(400, { error: "Nom ou e-mail invalide." });
+      // Les chevaux sélectionnés sont attachés au compte créé ; ils ne vont jamais dans le dépôt public.
+      const requested = body.horses ?? [];
+      if (!Array.isArray(requested) || requested.length > 40) return reply(400, { error: "Sélection de chevaux invalide." });
+      const horses: Array<{ cheval_slug: string; cheval_nom: string }> = [];
+      const seen = new Set<string>();
+      for (const h of requested) {
+        if (!h || typeof h !== "object") return reply(400, { error: "Cheval invalide." });
+        const slug = String(h.cheval_slug || "").trim();
+        const name = String(h.cheval_nom || "").trim();
+        if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug) || slug.length > 110 || !name || name.length > 120 || seen.has(slug)) {
+          return reply(400, { error: "La liste des participations contient une erreur ou un doublon." });
+        }
+        seen.add(slug);
+        horses.push({ cheval_slug: slug, cheval_nom: name });
+      }
       const { data, error } = await admin.auth.admin.inviteUserByEmail(email, { redirectTo: "https://rodolphamon.github.io/ecurie-initial-trot/application/connexion/" });
       if (error || !data.user) return reply(400, { error: error?.message || "Invitation impossible." });
       const { error: saveError } = await admin.from("associes").insert({ user_id: data.user.id, nom_affiche: nom, actif: true, administrateur: false });
-      if (saveError) return reply(500, { error: "Compte invité, mais activation incomplète. Vérifiez dans Supabase." });
-      return reply(200, { ok: true, message: "Invitation envoyée." });
+      if (saveError) return reply(500, { error: "L'invitation a été envoyée, mais l'accès n'a pas pu être activé. Vérifiez ce compte dans Supabase ; ne réinvitez pas automatiquement." });
+      if (horses.length) {
+        const rows = horses.map((h) => ({ ...h, user_id: data.user.id }));
+        const { error: attachError } = await admin.from("participations_chevaux").insert(rows);
+        if (attachError) {
+          return reply(500, { error: "L'invitation et le compte sont créés, mais les chevaux n'ont pas pu être rattachés. Utilisez le bouton « Chevaux » pour terminer, sans nouvelle invitation." });
+        }
+      }
+      return reply(200, { ok: true, message: "Invitation envoyée. " + horses.length + " cheval(aux) rattaché(s).", chevaux_rattaches: horses.length });
     }
     if (body.action === "set_active") {
       const id = String(body.user_id || "");
