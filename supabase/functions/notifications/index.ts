@@ -42,6 +42,39 @@ const validKey = (s: unknown): s is string =>
   /^[\w+\/=\-]+$/.test(s);
 const validToken = (s: unknown): s is string =>
   typeof s === "string" && /^[0-9a-f]{64}$/.test(s);
+
+// Vérifie localement que la clé privée signe un message validé par la clé
+// publique. Aucun octet privé ne quitte Supabase ni ne paraît dans les logs.
+function decodeBase64url(value: string): Uint8Array {
+  const b64 = value.replace(/-/g, "+").replace(/_/g, "/");
+  return Uint8Array.from(atob(b64 + "=".repeat((4 - b64.length % 4) % 4)), c => c.charCodeAt(0));
+}
+function encodeBase64url(bytes: Uint8Array): string {
+  let binary = "";
+  for (const b of bytes) binary += String.fromCharCode(b);
+  return btoa(binary).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/g, "");
+}
+async function vapidPairMatches(): Promise<boolean> {
+  try {
+    const pub = decodeBase64url(env("PUSH_VAPID_PUBLIC_KEY"));
+    const priv = decodeBase64url(env("PUSH_VAPID_PRIVATE_KEY"));
+    if (pub.length !== 65 || pub[0] !== 0x04 || priv.length !== 32) return false;
+    const verifyingKey = await crypto.subtle.importKey(
+      "raw", pub, { name: "ECDSA", namedCurve: "P-256" }, false, ["verify"]);
+    const signingKey = await crypto.subtle.importKey(
+      "jwk",
+      { kty: "EC", crv: "P-256",
+        x: encodeBase64url(pub.slice(1, 33)),
+        y: encodeBase64url(pub.slice(33)),
+        d: encodeBase64url(priv) },
+      { name: "ECDSA", namedCurve: "P-256" }, false, ["sign"]);
+    const sample = new TextEncoder().encode("EI Push VAPID pair check v1");
+    const signature = await crypto.subtle.sign({ name: "ECDSA", hash: "SHA-256" }, signingKey, sample);
+    return await crypto.subtle.verify({ name: "ECDSA", hash: "SHA-256" }, verifyingKey, signature, sample);
+  } catch {
+    return false;
+  }
+}
 async function hash(token: string) {
   const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(token));
   return Array.from(new Uint8Array(buf), b => b.toString(16).padStart(2, "0")).join("");
@@ -101,6 +134,12 @@ Deno.serve(async (request) => {
       };
       if (!vapid.publicKey || !vapid.privateKey)
         return respond({ error: "Les clés d'envoi des notifications manquent." }, 503, origin);
+      if (!(await vapidPairMatches())) {
+        console.error("Push VAPID diagnostic: public and private keys do not form a valid pair");
+        return respond({
+          error: "Les deux clés VAPID enregistrées dans Supabase ne correspondent pas. Réenregistrez la clé publique et la clé privée issues de la même génération."
+        }, 503, origin);
+      }
       lastTests.set(sub.endpoint, now);
       try {
         const delivered = await sendPushNotification(
@@ -136,9 +175,9 @@ Deno.serve(async (request) => {
           errorType: e instanceof Error ? e.name : "inconnu",
         });
         if (statusCode === 403) {
-          return respond({ error: "Service Push : refus d'authentification (403)"
-            + (reason ? " — " + reason : "")
-            + ". Vérifiez les clés VAPID et réactivez l'inscription de ce téléphone." }, 502, origin);
+          return respond({ error: "Service Push : refus d'authentification (403)."
+            + (reason ? " Code : " + reason + "." : "")
+            + " La paire VAPID a été vérifiée côté serveur ; il faut diagnostiquer la réponse du service de notifications du téléphone." }, 502, origin);
         }
         return respond({ error: "Envoi test impossible"
           + (statusCode ? " (Push HTTP " + statusCode + ")" : "")
