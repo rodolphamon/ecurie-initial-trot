@@ -102,6 +102,97 @@ Deno.serve(async (request) => {
   try {
     const body = await request.json();
     const { action, deviceToken } = body || {};
+    if (action === "send_andresy_test") {
+      // Bouton de démonstration réservé à l'administrateur connecté.
+      // Trois destinataires NOMMÉS, aucune publication dans la file générale
+      // et aucun ciblage par 'tous les chevaux' : zéro envoi aux autres associés.
+      if (body.confirm !== true)
+        return respond({ error: "Confirmation explicite nécessaire." }, 400, origin);
+      const jwt = request.headers.get("authorization")?.match(/^Bearer\s+(.+)$/i)?.[1];
+      if (!jwt) return respond({ error: "Connexion administrateur requise." }, 403, origin);
+      const { data: identity, error: authError } = await db.auth.getUser(jwt);
+      if (authError || !identity.user)
+        return respond({ error: "Connexion administrateur invalide." }, 403, origin);
+      const { data: adminAccount, error: adminError } = await db.from("associes")
+        .select("actif,administrateur").eq("user_id", identity.user.id).maybeSingle();
+      if (adminError || !adminAccount?.actif || !adminAccount?.administrateur)
+        return respond({ error: "Action réservée à l'administrateur." }, 403, origin);
+
+      const targets = [
+        { first: "adrien", last: "delgery", label: "Adrien Delgery" },
+        { first: "eric", last: "schott", label: "Éric Schott" },
+        { first: "nicolas", last: "barre", label: "Nicolas Barré" },
+      ];
+      const normalize = (v: string) => v.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase().replace(/[^a-z]+/g, " ").trim().split(/\s+/);
+      const { data: members, error: membersError } = await db.from("associes")
+        .select("user_id,nom_affiche,actif").eq("actif", true);
+      if (membersError) throw membersError;
+      const accounts = targets.map(target => {
+        const matches = (members || []).filter(m => {
+          const words = normalize(m.nom_affiche || "");
+          return words.includes(target.first) && words.includes(target.last);
+        });
+        return { ...target, matches };
+      });
+      if (accounts.some(x => x.matches.length > 1)) {
+        return respond({
+          error: "Plusieurs comptes correspondent à un même testeur : envoi annulé pour éviter tout destinataire erroné."
+        }, 409, origin);
+      }
+      const userIds = accounts.flatMap(x => x.matches.map(m => m.user_id));
+      const { data: subscriptions, error: subscriptionsError } = userIds.length
+        ? await db.from("ei_push_subscriptions")
+            .select("endpoint,p256dh,auth_secret,user_id,audience")
+            .eq("audience", "associate").in("user_id", userIds).limit(50)
+        : { data: [], error: null };
+      if (subscriptionsError) throw subscriptionsError;
+      if (!(await vapidPairMatches())) {
+        return respond({ error: "Les clés VAPID ne correspondent plus. Envoi annulé." }, 503, origin);
+      }
+      const vapid = {
+        publicKey: env("PUSH_VAPID_PUBLIC_KEY"),
+        privateKey: env("PUSH_VAPID_PRIVATE_KEY"),
+        subject: "mailto:contact@ecurie-initial.com",
+      };
+      const results = [];
+      for (const account of accounts) {
+        const userId = account.matches[0]?.user_id;
+        const devices = (subscriptions || []).filter(sub =>
+          sub.user_id === userId && validEndpoint(sub.endpoint));
+        let accepted = 0;
+        let failed = 0;
+        for (const device of devices) {
+          try {
+            const sent = await sendPushNotification(
+              { endpoint: device.endpoint,
+                keys: { p256dh: device.p256dh, auth: device.auth_secret } },
+              {
+                title: "✅ ANDRESY · Partant confirmé",
+                body: "Mercredi 18/11 à 20h15 · Amiens · Plat 1 650 m · corde 6 (test)",
+                url: "https://fiches.ecurie-initial.com/chevaux/andresy/",
+              },
+              vapid,
+            );
+            if (sent) accepted++;
+            else failed++;
+          } catch (e) {
+            failed++;
+            const code = (e as { statusCode?: unknown })?.statusCode;
+            console.error("ANDRESY test Push", {
+              recipient: account.label,
+              code: typeof code === "number" ? code : "inconnu",
+              type: e instanceof Error ? e.name : "inconnu",
+            });
+          }
+        }
+        results.push({ name: account.label, accountFound: !!userId,
+          devices: devices.length, accepted, failed });
+      }
+      return respond({ ok: true, results,
+        note: "Accepté signifie que le service Push a reçu l'envoi, pas que le téléphone l'a affiché." },
+        200, origin);
+    }
     if (!validToken(deviceToken)) return respond({ error: "Jeton d'appareil invalide." }, 400, origin);
     const tokenHash = await hash(deviceToken);
     if (action === "status") {
