@@ -37,13 +37,13 @@ a{color:#a84f13}
 <section class="card">
 <h2>Vérifier l’affichage sur ce téléphone</h2>
 <p>Cliquez ici : une notification locale doit apparaître, sans passer par le serveur.</p>
-<button id="local" type="button">Afficher une notification sur mon téléphone</button>
+<button id="local" type="button">Tester le nouveau logo sur mon téléphone</button>
 <p id="result" role="status" aria-live="polite"></p>
-<small>Si la notification locale apparaît mais pas l’alerte ANDRESY, le problème se situe en amont de l’affichage. Si elle n’apparaît pas, vérifiez les autorisations de notifications du navigateur et du téléphone.</small>
+<small>Si ce test local fonctionne mais que les notifications automatiques n’arrivent pas, vérifiez « Dernier Push reçu » ci-dessus. Si le test local échoue, vérifiez les autorisations Android/iPhone et les notifications de l’application.</small>
 </section>
 <section class="card">
-<h2>Après le prochain envoi ANDRESY</h2>
-<p>Rouvrez cette page et consultez « Dernier Push reçu » : cela permettra de distinguer un message jamais arrivé au navigateur d’un message reçu mais non affiché.</p>
+<h2>Après un envoi automatique</h2>
+<p>Rouvrez cette page et consultez « Dernier Push reçu » : cela permet de distinguer un Push arrivé au navigateur d’un message dont l’affichage a échoué.</p>
 <p><small>Pour la confidentialité, seul l’état du diagnostic est conservé sur cet appareil ; ni le jeton ni l’adresse complète d’abonnement ne sont affichés.</small></p>
 </section>
 </main>
@@ -91,7 +91,8 @@ el('local').onclick=async()=>{
   if(Notification.permission!=='granted')throw Error('Notifications non autorisées. Activez-les dans les réglages du navigateur.');
   const r=await navigator.serviceWorker.getRegistration('../');
   if(!r?.active)throw Error('Le service worker de l’application n’est pas actif sur cet appareil.');
-  await r.showNotification('🔔 Écurie Initial · Vérification locale',{body:'Si vous voyez ce message, l’affichage des notifications fonctionne sur ce téléphone.',icon:'../icon-ei-192.png',badge:'../icon-ei-192.png',tag:'ei-local-diagnostic-'+Date.now()});
+  await r.update().catch(()=>{});
+  await r.showNotification('🔔 Écurie Initial · Nouveau logo',{body:'Test du logo Écurie Initial : si ce message apparaît, votre téléphone sait afficher la nouvelle icône.',icon:'/application/notification-logo.png',badge:'/application/notification-badge.png',tag:'ei-local-diagnostic-'+Date.now()});
   el('result').textContent='Demande d’affichage acceptée par le téléphone. Regardez le volet des notifications.';
  }catch(e){el('result').textContent='Échec : '+(e?.message||String(e))}
  finally{b.disabled=false;await check()}
