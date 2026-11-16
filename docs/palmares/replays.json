@@ -1,6 +1,6 @@
 {
-  "version": 97,
-  "note": "Fiches de courses Equidia ou LeTROT avec sources identifiant les courses. Les URLs Equidia sont déduites du format date/R/C ; la disponibilité et la lecture des vidéos ne sont pas garanties. HOMA reste sur LeTROT faute de fiche Equidia vérifiée.",
+  "version": 98,
+  "note": "Liens de courses historiques (LeTROT, Equidia, ZEturf, Dailymotion). Les pages ZEturf indiquant « Replay » ont été recoupées par cheval/date/R/C ; accès et lecture effective des lecteurs vidéo non garantis. Certains anciens liens Equidia sont reconstruits et restent à vérifier. Les vidéos de qualifications sont dans docs/chevaux/data/qualifications.json.",
   "replays": [
     {
       "date": "2026-11-13",
@@ -32,22 +32,36 @@
       "date": "2026-11-11",
       "cheval": "MEMPHIS BELLE",
       "hippodrome": "GRAIGNES",
-      "url": "https://www.equidia.fr/courses/2026-11-11/R13/C1",
-      "justificatif": "https://turfin.fr/course/2026-11-11/r13c1-graignes-prix-pierre-massieu",
-      "controle": "Course R13C1 et présence du cheval identifiées dans les sources ; fiche de course Equidia reconstituée, lecture du replay non testée individuellement",
+      "url": "https://zeturf.fr/fr/course-du-jour/2026-11-11/R12C1-graignes-prix-pierre-massieu",
+      "justificatif": "https://zeturf.fr/fr/course-du-jour/2026-11-11/R12C1-graignes-prix-pierre-massieu",
+      "controle": "Correction : Prix Pierre Massieu R12C1 et MEMPHIS BELLE 5e, source avec Replay. Correspondance de la course recoupée sur la page ZEturf ; page marquée « Replay », lecture effective de la vidéo non testée.",
       "verification_course_2026_11_16": {
         "statut": "correspondance_course_recoupee",
         "source": "https://turfin.fr/archives/2026-11-11",
         "video": "non_testee"
+      },
+      "lien_equidia_precedent": "https://www.equidia.fr/courses/2026-11-11/R13/C1",
+      "verification_replay_2026_11_16": {
+        "statut": "page_course_avec_rubrique_replay",
+        "source": "https://zeturf.fr/fr/course-du-jour/2026-11-11/R12C1-graignes-prix-pierre-massieu",
+        "course": "R12C1",
+        "lecture_video": "non_testee"
       }
     },
     {
       "date": "2026-11-07",
       "cheval": "ISOLEE DU BOUILLON",
       "hippodrome": "LAVAL",
-      "url": "https://www.equidia.fr/courses/2026-11-07/R5/C3",
-      "justificatif": "https://www.province-courses.fr/fiche_cheval.php?id=18116900R",
-      "controle": "Course R5C3 et présence du cheval identifiées dans les sources ; fiche de course Equidia reconstituée, lecture du replay non testée individuellement"
+      "url": "https://www.zeturf.fr/fr/course-du-jour/2026-11-07/R5C3-laval-prix-cobaty-53?prefill=8",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2026-11-07/R5C3-laval-prix-cobaty-53?prefill=8",
+      "controle": "Prix Cobaty 53 R5C3, ISOLÉE DU BOUILLON 6e, Replay indiqué. Correspondance de la course recoupée sur la page ZEturf ; page marquée « Replay », lecture effective de la vidéo non testée.",
+      "lien_equidia_precedent": "https://www.equidia.fr/courses/2026-11-07/R5/C3",
+      "verification_replay_2026_11_16": {
+        "statut": "page_course_avec_rubrique_replay",
+        "source": "https://www.zeturf.fr/fr/course-du-jour/2026-11-07/R5C3-laval-prix-cobaty-53?prefill=8",
+        "course": "R5C3",
+        "lecture_video": "non_testee"
+      }
     },
     {
       "date": "2026-11-05",
@@ -69,10 +83,17 @@
       "date": "2026-11-01",
       "cheval": "MEMPHIS BELLE",
       "hippodrome": "LISIEUX",
-      "url": "https://www.equidia.fr/courses/2026-11-01/R16/C2",
-      "justificatif": "https://turfin.fr/course/2026-11-01/r16c2-lisieux-prix-d-orbec",
+      "url": "https://zeturf.fr/fr/course-du-jour/2026-11-01/R13C2-lisieux-prix-d-orbec",
+      "justificatif": "https://zeturf.fr/fr/course-du-jour/2026-11-01/R13C2-lisieux-prix-d-orbec",
       "preuve_lien_equidia": "https://turfin.fr/course/2026-11-01/r16c2-lisieux-prix-d-orbec",
-      "controle": "3e Prix d'Orbec R16C2 confirmée ; lien replay Equidia annoncé par Turfin ; lecture vidéo non testée depuis cet environnement"
+      "controle": "Correction : Prix d'Orbec R13C2 et MEMPHIS BELLE 3e, source avec Replay. Correspondance de la course recoupée sur la page ZEturf ; page marquée « Replay », lecture effective de la vidéo non testée.",
+      "lien_equidia_precedent": "https://www.equidia.fr/courses/2026-11-01/R16/C2",
+      "verification_replay_2026_11_16": {
+        "statut": "page_course_avec_rubrique_replay",
+        "source": "https://zeturf.fr/fr/course-du-jour/2026-11-01/R13C2-lisieux-prix-d-orbec",
+        "course": "R13C2",
+        "lecture_video": "non_testee"
+      }
     },
     {
       "date": "2026-10-31",
@@ -86,9 +107,17 @@
       "date": "2026-10-30",
       "cheval": "LUCKY DES GAUDINES",
       "hippodrome": "TOULOUSE",
-      "url": "https://www.equidia.fr/courses/2026-10-30/R5/C5",
+      "url": "https://www.zeturf.fr/fr/course-du-jour/2026-10-30/R5C5-toulouse-prix-victor-bermes?prefill=15",
       "preuve_identification_course": "https://turfin.fr/course/2026-10-30/r5c5-la-cepiere-prix-victor-bermes",
-      "controle": "Course, hippodrome et R/C identifiés dans les résultats Turfin ; consultation de la vidéo Equidia non testée"
+      "controle": "Prix Victor Bermes R5C5, LUCKY DES GAUDINES 2e, Replay indiqué. Correspondance de la course recoupée sur la page ZEturf ; page marquée « Replay », lecture effective de la vidéo non testée.",
+      "lien_equidia_precedent": "https://www.equidia.fr/courses/2026-10-30/R5/C5",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2026-10-30/R5C5-toulouse-prix-victor-bermes?prefill=15",
+      "verification_replay_2026_11_16": {
+        "statut": "page_course_avec_rubrique_replay",
+        "source": "https://www.zeturf.fr/fr/course-du-jour/2026-10-30/R5C5-toulouse-prix-victor-bermes?prefill=15",
+        "course": "R5C5",
+        "lecture_video": "non_testee"
+      }
     },
     {
       "date": "2026-10-29",
@@ -150,9 +179,16 @@
       "date": "2026-10-22",
       "cheval": "GONAFOOT",
       "hippodrome": "LES SABLES-D'OLONNE",
-      "url": "https://www.equidia.fr/courses/2026-10-22/R2/C1",
-      "justificatif": "https://xauth.unibet.fr/fr/course-du-jour/2026-10-22/R2C1-les-sables-d-olonne-prix-vision-d-etat",
-      "controle": "Résultat et numéro R/C concordants dans la source indiquée ; lecture du replay sur Equidia non testée individuellement"
+      "url": "https://www.zeturf.fr/fr/course-du-jour/2026-10-22/R2C1-les-sables-d-olonne-prix-vision-d-etat",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2026-10-22/R2C1-les-sables-d-olonne-prix-vision-d-etat",
+      "controle": "Prix Vision d'État R2C1, GONAFOOT 3e, Replay indiqué. Correspondance de la course recoupée sur la page ZEturf ; page marquée « Replay », lecture effective de la vidéo non testée.",
+      "lien_equidia_precedent": "https://www.equidia.fr/courses/2026-10-22/R2/C1",
+      "verification_replay_2026_11_16": {
+        "statut": "page_course_avec_rubrique_replay",
+        "source": "https://www.zeturf.fr/fr/course-du-jour/2026-10-22/R2C1-les-sables-d-olonne-prix-vision-d-etat",
+        "course": "R2C1",
+        "lecture_video": "non_testee"
+      }
     },
     {
       "date": "2026-10-21",
@@ -187,9 +223,17 @@
       "date": "2026-10-17",
       "cheval": "NOSTALGIE DAIRPET",
       "hippodrome": "ENGHIEN",
-      "url": "https://www.equidia.fr/courses/2026-10-17/R5/C7",
+      "url": "https://www.zeturf.fr/fr/course-du-jour/2026-10-17/R5C7-enghien-soisy-prix-du-maine?prefill=8",
       "preuve_identification_course": "https://turfin.fr/course/2026-10-17/r5c7-enghien-prix-du-maine",
-      "controle": "Course, hippodrome et R/C identifiés dans les résultats Turfin ; consultation de la vidéo Equidia non testée"
+      "controle": "Prix du Maine R5C7, NOSTALGIE DAIRPET 2e, page Replay indiquée (accès non confirmé). Correspondance de la course recoupée sur la page ZEturf ; page marquée « Replay », lecture effective de la vidéo non testée.",
+      "lien_equidia_precedent": "https://www.equidia.fr/courses/2026-10-17/R5/C7",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2026-10-17/R5C7-enghien-soisy-prix-du-maine?prefill=8",
+      "verification_replay_2026_11_16": {
+        "statut": "page_course_avec_rubrique_replay",
+        "source": "https://www.zeturf.fr/fr/course-du-jour/2026-10-17/R5C7-enghien-soisy-prix-du-maine?prefill=8",
+        "course": "R5C7",
+        "lecture_video": "non_testee"
+      }
     },
     {
       "date": "2026-10-15",
@@ -333,9 +377,16 @@
       "date": "2026-09-22",
       "cheval": "MYRTILLE MARBOULA",
       "hippodrome": "VINCENNES",
-      "url": "https://www.equidia.fr/courses/2026-09-22/R3/C6",
-      "justificatif": "https://www.turf-pronostics.com/resultats/2026-09-22/r3c6/vincennes/prix-myrrha/",
-      "controle": "Correspondance cheval/date/hippodrome avec R3C6 identifiée dans les résultats ; URL Equidia de fiche de course reconstruite, lecture vidéo non testée"
+      "url": "https://zeturf.fr/fr/course-du-jour/2026-09-22/R3C6-vincennes-prix-myrrha",
+      "justificatif": "https://zeturf.fr/fr/course-du-jour/2026-09-22/R3C6-vincennes-prix-myrrha",
+      "controle": "Prix Myrrha R3C6, MYRTILLE MARBOULA 1re, Replay indiqué. Correspondance de la course recoupée sur la page ZEturf ; page marquée « Replay », lecture effective de la vidéo non testée.",
+      "lien_equidia_precedent": "https://www.equidia.fr/courses/2026-09-22/R3/C6",
+      "verification_replay_2026_11_16": {
+        "statut": "page_course_avec_rubrique_replay",
+        "source": "https://zeturf.fr/fr/course-du-jour/2026-09-22/R3C6-vincennes-prix-myrrha",
+        "course": "R3C6",
+        "lecture_video": "non_testee"
+      }
     },
     {
       "date": "2026-09-21",
@@ -432,12 +483,19 @@
       "date": "2026-09-04",
       "cheval": "LORD ON WAY",
       "hippodrome": "LYON-PARILLY",
-      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2026-09-04/R3C6-lyon-parilly-prix-yvan-berger",
-      "url": "https://www.equidia.fr/courses/2026-09-04/R3/C6",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2026-09-04/R3C6-lyon-parilly-prix-yvan-berger?prefill=15",
+      "url": "https://www.zeturf.fr/fr/course-du-jour/2026-09-04/R3C6-lyon-parilly-prix-yvan-berger?prefill=15",
       "justificatif_code_hippodrome": "https://www.leshippodromesdelyon.fr/wp-content/uploads/2019/04/2019BROCHUREsem1.pdf",
-      "controle": "Lien direct vers la fiche de course Equidia indiqué sur Turfin ; lecture du replay non testée depuis cet environnement",
+      "controle": "Prix Yvan Berger R3C6, LORD ON WAY 1er, Replay indiqué. Correspondance de la course recoupée sur la page ZEturf ; page marquée « Replay », lecture effective de la vidéo non testée.",
       "lien_letrot_precedent": "https://www.letrot.com/courses/2026-09-04/6901/6",
-      "preuve_lien_equidia": "https://turfin.fr/course/2026-09-04/r3c6-lyon-parilly-prix-yvan-berger"
+      "preuve_lien_equidia": "https://turfin.fr/course/2026-09-04/r3c6-lyon-parilly-prix-yvan-berger",
+      "lien_equidia_precedent": "https://www.equidia.fr/courses/2026-09-04/R3/C6",
+      "verification_replay_2026_11_16": {
+        "statut": "page_course_avec_rubrique_replay",
+        "source": "https://www.zeturf.fr/fr/course-du-jour/2026-09-04/R3C6-lyon-parilly-prix-yvan-berger?prefill=15",
+        "course": "R3C6",
+        "lecture_video": "non_testee"
+      }
     },
     {
       "date": "2026-09-04",
@@ -947,9 +1005,16 @@
       "date": "2026-06-02",
       "cheval": "MOONDANCE OKINA",
       "hippodrome": "VINCENNES",
-      "url": "https://www.equidia.fr/courses/2026-06-02/R5/C4",
-      "justificatif": "https://www.elo-turf.fr/cheval/moondance-okina",
-      "controle": "Correspondance cheval/date/hippodrome avec R5C4 identifiée dans les résultats ; URL Equidia de fiche de course reconstruite, lecture vidéo non testée"
+      "url": "https://www.zeturf.fr/fr/course-du-jour/2026-06-02/R5C4-vincennes-prix-prokne",
+      "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2026-06-02/R5C4-vincennes-prix-prokne",
+      "controle": "Prix Prokne R5C4, MOONDANCE OKINA 4e, Replay indiqué. Correspondance de la course recoupée sur la page ZEturf ; page marquée « Replay », lecture effective de la vidéo non testée.",
+      "lien_equidia_precedent": "https://www.equidia.fr/courses/2026-06-02/R5/C4",
+      "verification_replay_2026_11_16": {
+        "statut": "page_course_avec_rubrique_replay",
+        "source": "https://www.zeturf.fr/fr/course-du-jour/2026-06-02/R5C4-vincennes-prix-prokne",
+        "course": "R5C4",
+        "lecture_video": "non_testee"
+      }
     },
     {
       "date": "2026-05-29",
