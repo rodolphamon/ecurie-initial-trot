@@ -1,5 +1,5 @@
 {
-  "version": 92,
+  "version": 93,
   "note": "Fiches de courses Equidia ou LeTROT avec sources identifiant les courses. Les URLs Equidia sont déduites du format date/R/C ; la disponibilité et la lecture des vidéos ne sont pas garanties. HOMA reste sur LeTROT faute de fiche Equidia vérifiée.",
   "replays": [
     {
@@ -92,12 +92,44 @@
       "controle": "Course R2C5 et présence du cheval identifiées dans les sources ; fiche de course Equidia reconstituée, lecture du replay non testée individuellement"
     },
     {
+      "date": "2026-10-28",
+      "cheval": "ON LOCKDOWN",
+      "hippodrome": "LE MANS",
+      "url": "https://www.equidia.fr/courses/2026-10-28/R2/C3",
+      "justificatif": "https://www.turf-pronostics.com/partants/2026-10-28/r2c3/le-mans/prix-marcel-coutard/",
+      "controle": "Réunion et course R2C3 identifiées, cheval présent ; lien Equidia format standard, accès au replay non testé"
+    },
+    {
       "date": "2026-10-26",
       "cheval": "DOURIANN",
       "hippodrome": "TOULOUSE",
       "url": "https://www.equidia.fr/courses/2026-10-26/R4/C5",
       "justificatif": "https://www.elo-turf.fr/cheval/douriann",
       "controle": "Correspondance course R4C5 / cheval / hippodrome confirmée par la source ; lien vers fiche Equidia déduit, vidéo non visionnée"
+    },
+    {
+      "date": "2026-10-26",
+      "cheval": "GIORGIANA",
+      "hippodrome": "TOULOUSE",
+      "url": "https://www.equidia.fr/courses/2026-10-26/R4/C4",
+      "justificatif": "https://www.elite-turf.fr/courses/23faab4e-4676-48ff-b4c4-f2686b77c3d9",
+      "controle": "Réunion et course R4C4 identifiées, cheval présent ; lien Equidia format standard, accès au replay non testé"
+    },
+    {
+      "date": "2026-10-23",
+      "cheval": "ANDRESY",
+      "hippodrome": "CLAIREFONTAINE",
+      "url": "https://www.equidia.fr/courses/2026-10-23/R4/C7",
+      "justificatif": "https://www.elite-turf.fr/courses/ad0d699b-0647-49cd-89d5-8661ff8fef48",
+      "controle": "Réunion et course R4C7 identifiées, cheval présent ; lien Equidia format standard, accès au replay non testé"
+    },
+    {
+      "date": "2026-10-23",
+      "cheval": "LE ROI LEON",
+      "hippodrome": "CLAIREFONTAINE",
+      "url": "https://www.equidia.fr/courses/2026-10-23/R4/C9",
+      "justificatif": "https://www.elite-turf.fr/courses/a43213d8-3985-4193-b392-82a4d674d5fb",
+      "controle": "Réunion et course R4C9 identifiées, cheval présent ; lien Equidia format standard, accès au replay non testé"
     },
     {
       "date": "2026-10-22",
@@ -148,6 +180,14 @@
       "controle": "Correspondance cheval/date/hippodrome avec R1C4 identifiée dans les résultats ; URL Equidia de fiche de course reconstruite, lecture vidéo non testée"
     },
     {
+      "date": "2026-10-09",
+      "cheval": "ON LOCKDOWN",
+      "hippodrome": "COMPIEGNE",
+      "url": "https://www.equidia.fr/courses/2026-10-09/R4/C8",
+      "justificatif": "https://www.elo-turf.fr/cheval/on-lockdown",
+      "controle": "Réunion et course R4C8 identifiées, cheval présent ; lien Equidia format standard, accès au replay non testé"
+    },
+    {
       "date": "2026-10-08",
       "cheval": "NOSTALGIE DAIRPET",
       "hippodrome": "ENGHIEN",
@@ -188,6 +228,14 @@
       "controle": "Cheval 2e confirmé, date/hippodrome/réunion/course R9C4 recoupés dans les archives ; vidéo Equidia non visionnée individuellement"
     },
     {
+      "date": "2026-10-01",
+      "cheval": "GIORGIANA",
+      "hippodrome": "ARGENTAN",
+      "url": "https://www.equidia.fr/courses/2026-10-01/R4/C2",
+      "justificatif": "https://www.turf-pronostics.com/partants/2026-10-01/r4c2/argentan/prix-de-longchamp/",
+      "controle": "Réunion et course R4C2 identifiées, cheval présent ; lien Equidia format standard, accès au replay non testé"
+    },
+    {
       "date": "2026-09-29",
       "cheval": "DOURIANN",
       "hippodrome": "CHANTILLY",
@@ -218,6 +266,14 @@
       "url": "https://www.equidia.fr/courses/2026-09-27/R1/C7",
       "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2026-09-27/R1C7-equidia",
       "controle": "Course R1C7 et cheval identifiés dans la source ; fiche Equidia reconstruite, lecture du replay non testée"
+    },
+    {
+      "date": "2026-09-25",
+      "cheval": "LE ROI LEON",
+      "hippodrome": "SAINT-CLOUD",
+      "url": "https://www.equidia.fr/courses/2026-09-25/R4/C8",
+      "justificatif": "https://www.turf-pronostics.com/resultats/2026-09-25/r4c8/saint-cloud/prix-du-val-dor/",
+      "controle": "Réunion et course R4C8 identifiées, cheval présent ; lien Equidia format standard, accès au replay non testé"
     },
     {
       "date": "2026-09-22",
@@ -627,6 +683,14 @@
       "controle": "Réunion, course et classement confirmés par source de résultats ; l'utilisateur a confirmé le fonctionnement des liens Equidia sur le site, lecture de cette course non testée individuellement"
     },
     {
+      "date": "2026-06-27",
+      "cheval": "ISOLÉE DU BOUILLON",
+      "hippodrome": "ENGHIEN",
+      "url": "https://www.equidia.fr/courses/2026-06-27/R1/C2",
+      "justificatif": "https://www.pmu.fr/turf/27062026/r1/c2/",
+      "controle": "Réunion et course R1C2 identifiées, cheval présent ; lien Equidia format standard, accès au replay non testé"
+    },
+    {
       "date": "2026-06-22",
       "cheval": "DOURIANN",
       "hippodrome": "LYON-PARILLY",
@@ -761,6 +825,14 @@
       "url": "https://www.equidia.fr/courses/2026-04-30/R4/C8",
       "justificatif": "https://www.elo-turf.fr/cheval/moondance-okina",
       "controle": "Correspondance cheval/date/hippodrome avec R4C8 identifiée dans les résultats ; URL Equidia de fiche de course reconstruite, lecture vidéo non testée"
+    },
+    {
+      "date": "2026-04-21",
+      "cheval": "LIMPIDE",
+      "hippodrome": "LE MANS",
+      "url": "https://www.equidia.fr/courses/2026-04-21/R3/C4",
+      "justificatif": "https://www.turf-pronostics.com/resultats/2026-04-21/r3c4/le-mans/prix-du-canton-de-la-fleche/",
+      "controle": "Réunion et course R3C4 identifiées, cheval présent ; lien Equidia format standard, accès au replay non testé"
     },
     {
       "date": "2026-04-21",
