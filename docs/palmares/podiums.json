@@ -1,6 +1,17 @@
 {
   "podiums": [
     {
+      "date": "2026-11-16",
+      "cheval": "ZARTOP",
+      "hippodrome": "LE MANS",
+      "classement": 2,
+      "discipline": "galop",
+      "jockey": "Léo ROUSSEL",
+      "entraineur": "Gilles PANNIER",
+      "casaque": "galop",
+      "source_resultat": "Résultat communiqué par le gérant de l'Écurie Initial le 16/11/2026 ; en attente de recoupement officiel"
+    },
+    {
       "date": "2026-11-08",
       "cheval": "JUNINIO FLEURY",
       "hippodrome": "CASTELSARRASIN",
