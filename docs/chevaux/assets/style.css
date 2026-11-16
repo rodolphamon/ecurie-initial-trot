@@ -53,6 +53,8 @@
 .ei-app-installed .wordmark-initial{color:#191919}
 .ei-app-installed .wordmark-initial-i{color:var(--accent)}
 .ei-app-installed .wordmark-copy small{display:none}
+.ei-app-installed .wordmark-slogan-line{display:block;color:#191919;white-space:nowrap}
+.ei-app-installed .wordmark-slogan-date{display:block;color:var(--accent);font-weight:900;margin-top:2px;white-space:nowrap}
 .ei-app-installed .wordmark-slogan{
   display:block;flex:0 1 240px;max-width:38%;margin-left:auto;
   font-size:clamp(9px,1.1vw,11px);line-height:1.4;letter-spacing:.45px;
