@@ -101,3 +101,7 @@
 /* Fiche de course (pas de replay confirmé) */
 .ei-course-link{display:inline-block;white-space:nowrap;border:1px solid #d5d5d5;border-radius:8px;padding:5px 9px;font-size:13px;font-weight:700;text-decoration:none;color:#454545;background:#f6f6f6}
 .ei-course-link:hover,.ei-course-link:focus-visible{border-color:#f47721;color:#191919;background:#fff6ef}
+
+/* Replays de qualification (Caen / Province Courses) */
+.ei-qualification{display:flex;gap:12px;justify-content:space-between;align-items:center;flex-wrap:wrap}
+.ei-qualification-label{font-weight:700;color:#444}
