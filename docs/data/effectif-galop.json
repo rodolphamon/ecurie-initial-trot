@@ -1,6 +1,6 @@
 {
-  "source": "Gains vérifiés sur fiches individuelles Zone-Turf, Geny et autres sources référencées, le 11/11/2026. ROSA MIA : gains cumulés plat et obstacle (Geny). Valeurs handicap issues des relevés Écurie Initial sauf valeurs vérifiées individuellement. Les montants de gains peuvent différer selon les périmètres des sites tiers.",
-  "updated_at": "2026-11-15",
+  "source": "Gains vérifiés sur fiches individuelles Zone-Turf, Geny et autres sources référencées, le 11/11/2026. ROSA MIA : gains cumulés plat et obstacle (Geny). Valeurs handicap issues des relevés Écurie Initial sauf valeurs vérifiées individuellement. Les montants de gains peuvent différer selon les périmètres des sites tiers. Contrôle du 16/11/2026 : ZARTOP gains de carrière 30 637 € (ancien 27 349 €), fiche Zone-Turf consultée le 16/11/2026 https://www.zone-turf.fr/cheval/zartop-2037318/ ; valeur handicap 24,5 inchangée.",
+  "updated_at": "2026-11-16",
   "roster_snapshot_at": "2026-11-10",
   "value_snapshot_at": "2026-11-10",
   "note": "Effectif confirmé par le gérant : 16 galopeurs, dont BOBROVKHA et VYBORG au repos. CORONADO n'appartient pas à l'Écurie Initial. SINGAPOR INITIAL n'a pas encore débuté.",
@@ -326,10 +326,10 @@
       "value_status": "verified",
       "value_source_date": "2026-11-10",
       "value_verified_at": "2026-11-11",
-      "gains": 27349,
+      "gains": 30637,
       "gains_status": "verified",
-      "gains_verified_at": "2026-11-11",
-      "verified_at": null,
+      "gains_verified_at": "2026-11-16",
+      "verified_at": "2026-11-16",
       "data_status": "verified",
       "value_source_url": "https://www.zone-turf.fr/cheval/zartop-2037318/",
       "gains_source_url": "https://www.zone-turf.fr/cheval/zartop-2037318/"
