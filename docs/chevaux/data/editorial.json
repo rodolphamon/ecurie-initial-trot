@@ -120,6 +120,20 @@
     ],
     "zartop": [
       {
+        "date": "2026-11-16",
+        "hippodrome": "Le Mans",
+        "rang": "2e",
+        "jockey": "Léo ROUSSEL",
+        "entraineur": "Gilles PANNIER",
+        "type": "Plat",
+        "prix": "Prix de Saint-Georges-du-Bois",
+        "distance": "3200 m",
+        "source_description": "Résultat communiqué par le gérant de l'Écurie Initial le 16/11/2026 ; classement officiel externe non encore recoupé.",
+        "source_url": "https://hippigold.fr/courses/2026-11-16/r3c6/",
+        "valide_ecurie": true,
+        "notif_testeurs": true
+      },
+      {
         "date": "2026-10-20",
         "hippodrome": "Clairefontaine",
         "rang": "2e",
@@ -144,13 +158,6 @@
         "date": "2026-07-18",
         "hippodrome": "Dieppe",
         "rang": "7e",
-        "source_url": "https://www.canalturf.com/courses_fiche_cheval.php?idcheval=484772",
-        "jockey": "M. FAVRIAUX"
-      },
-      {
-        "date": "2026-07-09",
-        "hippodrome": "Dieppe",
-        "rang": "4e",
         "source_url": "https://www.canalturf.com/courses_fiche_cheval.php?idcheval=484772",
         "jockey": "M. FAVRIAUX"
       }
@@ -1036,25 +1043,7 @@
         "part": "A (25 %)"
       }
     ],
-    "zartop": [
-      {
-        "date": "2026-11-16",
-        "heure": "14:47",
-        "hippodrome": "Le Mans",
-        "type": "Plat",
-        "prix": "Prix de Saint-Georges-du-Bois",
-        "allocation": 11900,
-        "distance": "3200 m",
-        "statut": "partant",
-        "source_description": "Liste France Galop communiquée le 16/11/2026 ; horaires et statut partant confirmés séparément lorsque disponibles",
-        "jockey": "Léo Roussel",
-        "course": "R3C6",
-        "numero": "3",
-        "source_url": "https://hippigold.fr/courses/2026-11-16/r3c6/",
-        "code_programme": "6244",
-        "part": "R (16 %)"
-      }
-    ],
+    "zartop": [],
     "master-pat": [
       {
         "date": "2026-11-17",
