@@ -1,7 +1,164 @@
-<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Administration · Écurie Initial</title><style>*{box-sizing:border-box}body{font:15px Arial,sans-serif;background:#f6f4f1;color:#242424;margin:0}header{background:#171717;color:#fff;padding:20px}header strong{font-size:22px}header span{color:#f47721}main{max-width:860px;margin:28px auto;padding:0 16px}.panel{background:#fff;border:1px solid #e7e0d9;border-radius:14px;padding:22px;margin-bottom:15px}h1{margin-top:0}p{line-height:1.5}a{color:#a94c08}button{background:#f47721;border:0;border-radius:8px;padding:11px 16px;font-weight:bold;cursor:pointer}button:disabled{opacity:.5;cursor:not-allowed}input{width:100%;padding:11px;border:1px solid #ccc;border-radius:8px;margin:6px 0 12px}label{font-weight:bold}#actionStatus{margin-top:12px}table{border-collapse:collapse;width:100%}th,td{text-align:left;border-bottom:1px solid #eee;padding:12px 8px}th{font-size:13px}small,.muted{color:#666}#error{color:#a00}#content[hidden],#denied[hidden]{display:none}nav{margin-bottom:16px}</style><link rel="manifest" href="../manifest.webmanifest"><link rel="apple-touch-icon" href="../icon-ei-192.png"></head><body><header><strong>ÉCURIE <span>INITIAL</span></strong><div>Administration des associés</div></header><main><nav><a href="../connexion/">← Mon espace associé</a></nav><div class="panel"><h1>Gestion des associés</h1><p id="loading">Vérification des droits d'administrateur…</p><p id="error" role="alert"></p><div id="denied" hidden><p>Cette rubrique est réservée à l'administrateur de l'Écurie Initial. Connectez-vous avec votre compte autorisé.</p><a href="../connexion/">Se connecter</a></div><div id="content" hidden><p>Voici les comptes enregistrés dans l'espace privé. Seuls les associés actifs peuvent consulter les publications.</p><div style="overflow-x:auto"><table><thead><tr><th>Associé</th><th>Statut</th><th>Rôle</th><th>Accès</th></tr></thead><tbody id="members"></tbody></table></div><p class="muted" id="count"></p></div></div><div class="panel" id="privateNewsPanel" hidden><h2>🐎 Informations privées par cheval</h2><p>Publiez un message, une photo ou une vidéo pour les seuls associés propriétaires du cheval. Vous pouvez demander une notification ciblée.</p><p><a href="actualites/" style="display:inline-block;background:#f47721;color:#171717;font-weight:bold;text-decoration:none;border-radius:9px;padding:13px 15px">✍️ Publier une information</a></p></div><div class="panel" id="actions" hidden><h2>Invitations et gestion des accès</h2><p>Invitez un associé par e-mail ou suspendez son accès. Ces actions nécessitent l'activation préalable du service sécurisé Supabase.</p><form id="inviteForm"><label for="nom">Nom affiché</label><input id="nom" maxlength="100" required placeholder="Prénom NOM"><label for="email">Adresse e-mail</label><input id="email" type="email" required placeholder="associe@exemple.fr"><button type="submit">Envoyer l'invitation</button></form><p id="actionStatus" role="status"></p><p class="muted">Les invitations sont individuelles. Aucun mot de passe ne doit être communiqué.</p><hr style="border:0;border-top:1px solid #eee;margin:22px 0"><h3>Correction du compte Adrien DELGERY</h3><p class="muted">Conserver son compte et remplacer son ancienne adresse par la nouvelle, sans envoyer de mail.</p><button id="fixAdrien" type="button">Corriger l’adresse d’Adrien</button><p id="fixAdrienStatus" role="status"></p></div></main><script type="module">
-import{createClient}from'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
-const db=createClient('https://yeecwaaizmvrhwobukfa.supabase.co','sb_publishable_xUy2EJA3u3cKWl8BB4GNPQ_qhV9Pes3');const $=id=>document.getElementById(id);async function action(body){const {data:{session}}=await db.auth.getSession();if(!session)throw Error('Veuillez vous reconnecter.');const res=await fetch('https://yeecwaaizmvrhwobukfa.supabase.co/functions/v1/gerer-associes',{method:'POST',headers:{'Content-Type':'application/json','apikey':'sb_publishable_xUy2EJA3u3cKWl8BB4GNPQ_qhV9Pes3','Authorization':'Bearer '+session.access_token},body:JSON.stringify(body)});const data=await res.json().catch(()=>({}));if(!res.ok)throw Error(data.error||'Service indisponible ou non encore déployé.');return data}
-try{const {data:{user},error:authError}=await db.auth.getUser();if(authError||!user){$('denied').hidden=false}else{const {data:me,error:roleError}=await db.from('associes').select('administrateur,actif').eq('user_id',user.id).maybeSingle();if(roleError||!me?.actif||!me.administrateur){$('denied').hidden=false}else{const {data:members,error}=await db.from('associes').select('user_id,nom_affiche,actif,administrateur').order('nom_affiche');if(error)throw error;for(const m of members){const tr=document.createElement('tr');for(const value of [m.nom_affiche,m.actif?'Actif':'Suspendu',m.administrateur?'Administrateur':'Associé']){const td=document.createElement('td');td.textContent=value;tr.appendChild(td)}const td=document.createElement('td');if(!m.administrateur){const b=document.createElement('button');b.textContent=m.actif?'Suspendre':'Réactiver';b.onclick=async()=>{if(!confirm((m.actif?'Suspendre':'Réactiver')+' le compte de '+m.nom_affiche+' ?'))return;b.disabled=true;try{await action({action:'set_active',user_id:m.user_id,actif:!m.actif});location.reload()}catch(e){$('actionStatus').textContent=e.message;b.disabled=false}};td.append(b)}else td.textContent='—';tr.append(td);$('members').appendChild(tr)}$('count').textContent=members.length+' compte(s) enregistré(s)';$('content').hidden=false;$('actions').hidden=false;$('privateNewsPanel').hidden=false}}}catch(e){$('error').textContent='Impossible de charger les comptes pour le moment.'}finally{$('loading').hidden=true}
-$('inviteForm').onsubmit=async e=>{e.preventDefault();const b=e.target.querySelector('button');b.disabled=true;$('actionStatus').textContent='Envoi en cours…';try{await action({action:'invite',nom:$('nom').value.trim(),email:$('email').value.trim()});$('actionStatus').textContent='Invitation envoyée. Actualisez la page pour voir le nouveau compte.';e.target.reset()}catch(err){$('actionStatus').textContent=err.message}finally{b.disabled=false}};
-document.getElementById('fixAdrien').onclick=async e=>{if(!confirm("Corriger l’adresse d’Adrien DELGERY sur son compte existant ? Aucun e-mail ne sera envoyé."))return;const b=e.currentTarget;b.disabled=true;document.getElementById('fixAdrienStatus').textContent='Correction en cours…';try{const result=await action({action:'corriger_email_adrien'});document.getElementById('fixAdrienStatus').textContent=result.message||'Adresse corrigée. Vérifiez dans Supabase Authentication → Users.';b.hidden=true}catch(error){document.getElementById('fixAdrienStatus').textContent=error.message;b.disabled=false}};
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Administration · Écurie Initial</title><style>*{box-sizing:border-box}body{font:15px Arial,sans-serif;background:#f6f4f1;color:#242424;margin:0}header{background:#171717;color:#fff;padding:20px}header strong{font-size:22px}header span{color:#f47721}main{max-width:860px;margin:28px auto;padding:0 16px}.panel{background:#fff;border:1px solid #e7e0d9;border-radius:14px;padding:22px;margin-bottom:15px}h1{margin-top:0}p{line-height:1.5}a{color:#a94c08}button{background:#f47721;border:0;border-radius:8px;padding:11px 16px;font-weight:bold;cursor:pointer}button:disabled{opacity:.5;cursor:not-allowed}input{width:100%;padding:11px;border:1px solid #ccc;border-radius:8px;margin:6px 0 12px}label{font-weight:bold}#actionStatus{margin-top:12px}table{border-collapse:collapse;width:100%}th,td{text-align:left;border-bottom:1px solid #eee;padding:12px 8px}th{font-size:13px}small,.muted{color:#666}#error{color:#a00}#content[hidden],#denied[hidden]{display:none}nav{margin-bottom:16px}.horse-item{display:flex;justify-content:space-between;align-items:center;gap:12px;border-bottom:1px solid #eee;padding:10px 0}.horse-item:last-child{border:0}.horse-item button,.secondary{background:#eee;color:#222}.inline-actions{display:flex;flex-wrap:wrap;gap:7px}.inline-actions button{font-size:12px;padding:8px 10px}.small-select{width:100%;padding:11px;border:1px solid #ccc;border-radius:8px;margin:8px 0 12px}#horsePanel[hidden],#emailPanel[hidden]{display:none}.status{min-height:22px;margin:8px 0;color:#505050}.warning{background:#fff7eb;border-left:3px solid #f47721;padding:10px 13px}@media(max-width:650px){.panel{padding:16px}th,td{padding:9px 5px}main{padding:0 10px}}
+</style><link rel="manifest" href="../manifest.webmanifest"><link rel="apple-touch-icon" href="../icon-ei-192.png"></head><body><header><strong>ÉCURIE <span>INITIAL</span></strong><div>Administration des associés</div></header><main><nav><a href="../connexion/">← Mon espace associé</a></nav><div class="panel"><h1>Gestion des associés</h1><p id="loading">Vérification des droits d'administrateur…</p><p id="error" role="alert"></p><div id="denied" hidden><p>Cette rubrique est réservée à l'administrateur de l'Écurie Initial. Connectez-vous avec votre compte autorisé.</p><a href="../connexion/">Se connecter</a></div><div id="content" hidden><p>Voici les comptes enregistrés dans l'espace privé. Seuls les associés actifs peuvent consulter les publications.</p><div style="overflow-x:auto"><table><thead><tr><th>Associé</th><th>Statut</th><th>Rôle</th><th>Accès</th><th>Gestion</th></tr></thead><tbody id="members"></tbody></table></div><p class="muted" id="count"></p></div></div><div class="panel" id="horsePanel" hidden>
+<h2>🐎 Chevaux de <span id="horseMemberName"></span></h2>
+<p class="warning">Ne rattacher que les chevaux dont cette personne est réellement copropriétaire. Exclure les locataires et respecter les groupes de propriété propres à chaque cheval. Les chevaux déjà rattachés sont conservés.</p>
+<p id="horseStatus" class="status" role="status" aria-live="polite"></p>
+<div id="horseList"></div>
+<form id="horseForm" hidden><label for="horseSelect">Ajouter un cheval à cet associé</label><select id="horseSelect" class="small-select" required></select><button type="submit">Ajouter ce cheval</button></form>
+</div>
+<div class="panel" id="emailPanel" hidden>
+<h2>✉️ Corriger l'e-mail de <span id="emailMemberName"></span></h2>
+<p class="muted">Le compte et ses participations seront conservés. Cette correction n'envoie pas de nouvelle invitation.</p>
+<form id="emailForm"><label for="newEmail">Nouvelle adresse e-mail</label><input id="newEmail" type="email" required autocomplete="off" maxlength="254"><button type="submit">Enregistrer la nouvelle adresse</button></form>
+<p id="emailStatus" role="status" aria-live="polite"></p>
+</div><div class="panel" id="privateNewsPanel" hidden><h2>🐎 Informations privées par cheval</h2><p>Publiez un message, une photo ou une vidéo pour les seuls associés propriétaires du cheval. Vous pouvez demander une notification ciblée.</p><p><a href="actualites/" style="display:inline-block;background:#f47721;color:#171717;font-weight:bold;text-decoration:none;border-radius:9px;padding:13px 15px">✍️ Publier une information</a></p></div><div class="panel" id="actions" hidden><h2>Invitations et gestion des accès</h2><p>Invitez un associé par e-mail ou suspendez son accès. Ces actions nécessitent l'activation préalable du service sécurisé Supabase.</p><form id="inviteForm"><label for="nom">Nom affiché</label><input id="nom" maxlength="100" required placeholder="Prénom NOM"><label for="email">Adresse e-mail</label><input id="email" type="email" required placeholder="associe@exemple.fr"><button type="submit">Envoyer l'invitation</button></form><p id="actionStatus" role="status"></p><p class="muted">Les invitations sont individuelles. Aucun mot de passe ne doit être communiqué.</p><p class="muted">Pour corriger une adresse existante ou rattacher un cheval, choisissez le compte dans le tableau « Gestion des associés ».</p></div></main><script type="module">
+import {createClient} from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+const db=createClient('https://yeecwaaizmvrhwobukfa.supabase.co','sb_publishable_xUy2EJA3u3cKWl8BB4GNPQ_qhV9Pes3');
+const $=id=>document.getElementById(id);
+let selectedMember=null,emailMember=null,roster=[],rosterLoaded=false;
+const sortFr=(a,b)=>a.localeCompare(b,'fr',{sensitivity:'base'});
+function status(id,value){$(id).textContent=value}
+function make(tag,content){const node=document.createElement(tag);if(content!==undefined)node.textContent=content;return node}
+async function action(body){
+ const {data:{session}}=await db.auth.getSession();
+ if(!session)throw Error('Veuillez vous reconnecter.');
+ const res=await fetch('https://yeecwaaizmvrhwobukfa.supabase.co/functions/v1/gerer-associes',{
+  method:'POST',headers:{'Content-Type':'application/json','apikey':'sb_publishable_xUy2EJA3u3cKWl8BB4GNPQ_qhV9Pes3',
+  'Authorization':'Bearer '+session.access_token},body:JSON.stringify(body)
+ });
+ const data=await res.json().catch(()=>({}));
+ if(!res.ok)throw Error(data.error||'Service de gestion indisponible : vérifiez le déploiement Supabase.');
+ return data;
+}
+async function loadRoster(){
+ try {
+  const res=await fetch('../../chevaux/data/chevaux.json',{cache:'no-store'});
+  if(!res.ok)throw Error();
+  const data=await res.json();
+  roster=(data.horses||[]).filter(h=>/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(h.id||'')&&h.name)
+    .map(h=>({id:h.id,name:h.name})).sort((a,b)=>sortFr(a.name,b.name));
+  rosterLoaded=true;
+ }catch{rosterLoaded=false}
+}
+async function renderHorses(member){
+ if(selectedMember?.user_id!==member.user_id)return;
+ status('horseStatus','Chargement des participations…');
+ $('horseList').replaceChildren();
+ $('horseForm').hidden=true;
+ try {
+  const result=await action({action:'get_member_horses',user_id:member.user_id});
+  if(selectedMember?.user_id!==member.user_id)return;
+  const owned=result.horses||[],ownedSlugs=new Set(owned.map(h=>h.cheval_slug));
+  status('horseStatus',owned.length+' '+(owned.length===1?'cheval rattaché':'chevaux rattachés'));
+  if(!owned.length)$('horseList').append(make('p','Aucun cheval rattaché à ce compte.'));
+  for(const horse of owned){
+   const line=make('div');line.className='horse-item';
+   const info=make('div');
+   info.append(make('strong',horse.cheval_nom));
+   if(horse.pourcentage!==null&&horse.pourcentage!==undefined){
+    info.append(make('small',' · '+horse.pourcentage+' %'));
+   }
+   const remove=make('button','Retirer');remove.type='button';remove.className='secondary';
+   remove.onclick=async()=>{
+    if(!confirm('Retirer '+horse.cheval_nom+' des participations de '+member.nom_affiche+' ?'))return;
+    remove.disabled=true;
+    try {await action({action:'remove_member_horse',user_id:member.user_id,cheval_slug:horse.cheval_slug});await renderHorses(member)}
+    catch(e){status('horseStatus',e.message);remove.disabled=false}
+   };
+   line.append(info,remove);$('horseList').append(line);
+  }
+  const choices=roster.filter(h=>!ownedSlugs.has(h.id));
+  const sel=$('horseSelect');sel.replaceChildren();
+  const blank=make('option','Sélectionner un cheval…');blank.value='';sel.append(blank);
+  for(const horse of choices){const opt=make('option',horse.name);opt.value=horse.id;sel.append(opt)}
+  $('horseForm').hidden=!rosterLoaded||!choices.length;
+  if(!rosterLoaded)status('horseStatus','Participations affichées, mais la liste des chevaux est indisponible : ajout désactivé.');
+ }catch(e){status('horseStatus',e.message)}
+}
+async function selectHorses(member){
+ selectedMember=member;
+ $('horseMemberName').textContent=member.nom_affiche;
+ $('horsePanel').hidden=false;
+ await renderHorses(member);
+ $('horsePanel').scrollIntoView({behavior:'smooth',block:'start'});
+}
+$('horseForm').onsubmit=async e=>{
+ e.preventDefault();if(!selectedMember)return;
+ const slug=$('horseSelect').value,horse=roster.find(h=>h.id===slug);
+ if(!horse)return;
+ if(!confirm('Confirmer que '+selectedMember.nom_affiche+' est copropriétaire de '+horse.name+' (et non locataire) ?'))return;
+ const b=e.target.querySelector('button');b.disabled=true;
+ try {
+  await action({action:'add_member_horse',user_id:selectedMember.user_id,cheval_slug:horse.id,cheval_nom:horse.name});
+  await renderHorses(selectedMember);
+ }catch(err){status('horseStatus',err.message)}finally{b.disabled=false}
+};
+function selectEmail(member){
+ emailMember=member;
+ $('emailMemberName').textContent=member.nom_affiche;
+ $('newEmail').value='';
+ status('emailStatus','');
+ $('emailPanel').hidden=false;
+ $('emailPanel').scrollIntoView({behavior:'smooth',block:'start'});
+}
+$('emailForm').onsubmit=async e=>{
+ e.preventDefault();if(!emailMember)return;
+ const email=$('newEmail').value.trim().toLowerCase();
+ if(!confirm('Modifier l’adresse de connexion de '+emailMember.nom_affiche+' en '+email+' ?'))return;
+ const b=e.target.querySelector('button');b.disabled=true;
+ try {
+  const result=await action({action:'update_email',user_id:emailMember.user_id,email});
+  status('emailStatus',result.message||'Adresse modifiée.');
+  $('newEmail').value='';
+ }catch(err){status('emailStatus',err.message)}finally{b.disabled=false}
+};
+async function init(){
+ try {
+  const {data:{user},error:authError}=await db.auth.getUser();
+  if(authError||!user){$('denied').hidden=false;return}
+  const {data:me,error:roleError}=await db.from('associes').select('administrateur,actif').eq('user_id',user.id).maybeSingle();
+  if(roleError||!me?.actif||!me.administrateur){$('denied').hidden=false;return}
+  const {data:members,error}=await db.from('associes').select('user_id,nom_affiche,actif,administrateur').order('nom_affiche');
+  if(error)throw error;
+  for(const m of members){
+   const tr=make('tr');
+   for(const value of [m.nom_affiche,m.actif?'Actif':'Suspendu',m.administrateur?'Administrateur':'Associé']){
+    const td=make('td',value);tr.append(td);
+   }
+   const access=make('td');
+   if(!m.administrateur){
+    const b=make('button',m.actif?'Suspendre':'Réactiver');b.type='button';
+    b.onclick=async()=>{
+     if(!confirm((m.actif?'Suspendre':'Réactiver')+' le compte de '+m.nom_affiche+' ?'))return;
+     b.disabled=true;
+     try{await action({action:'set_active',user_id:m.user_id,actif:!m.actif});location.reload()}
+     catch(e){status('actionStatus',e.message);b.disabled=false}
+    };
+    access.append(b);
+   }else access.textContent='—';
+   tr.append(access);
+   const manage=make('td'),buttons=make('div');buttons.className='inline-actions';
+   const horsesBtn=make('button','🐎 Chevaux');horsesBtn.type='button';
+   horsesBtn.onclick=()=>selectHorses(m);
+   const emailBtn=make('button','✉️ E-mail');emailBtn.type='button';emailBtn.className='secondary';
+   emailBtn.onclick=()=>selectEmail(m);
+   buttons.append(horsesBtn,emailBtn);manage.append(buttons);tr.append(manage);
+   $('members').append(tr);
+  }
+  $('count').textContent=members.length+' compte(s) enregistré(s)';
+  $('content').hidden=false;$('actions').hidden=false;$('privateNewsPanel').hidden=false;
+  await loadRoster();
+ }catch(e){status('error','Impossible de charger les comptes pour le moment.')}
+ finally{$('loading').hidden=true}
+}
+$('inviteForm').onsubmit=async e=>{
+ e.preventDefault();const b=e.target.querySelector('button');b.disabled=true;
+ status('actionStatus','Envoi en cours…');
+ try {
+  await action({action:'invite',nom:$('nom').value.trim(),email:$('email').value.trim()});
+  status('actionStatus','Invitation demandée. Vérifiez la réception puis actualisez la liste des comptes.');
+  e.target.reset();
+ }catch(err){status('actionStatus',err.message)}finally{b.disabled=false}
+};
+await init();
 </script><script defer src="../nav.js?v=20261115b"></script></body></html>
