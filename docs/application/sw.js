@@ -1,8 +1,8 @@
 // Service Worker de l'application Écurie Initial.
 // Cache minimal ; aucun contenu privé conservé volontairement en cache.
-const CACHE='ei-app-shell-v7';
+const CACHE='ei-app-shell-v8';
 self.addEventListener('install',event=>{
-  event.waitUntil(caches.open(CACHE).then(c=>c.addAll(['./','manifest.webmanifest','notification-ei-orange.png','notification-ei-badge.png'])));
+  event.waitUntil(caches.open(CACHE).then(c=>c.addAll(['./','manifest.webmanifest','notification-ei-badge.png'])));
   self.skipWaiting();
 });
 self.addEventListener('activate',event=>{
@@ -54,7 +54,7 @@ self.addEventListener('push',event=>{
     try{
       await self.registration.showNotification(title,{
         body,
-        icon:'/application/notification-ei-orange.png',
+        // Aucun grand pictogramme : Android conserve le logo officiel de l'application à gauche.
         badge:'/application/notification-ei-badge.png',
         tag:typeof payload.tag==='string'?payload.tag:undefined,
         data:{url},renotify:false
