@@ -117,8 +117,33 @@ Deno.serve(async (request) => {
         return respond({ ok: true, sent: true }, 200, origin);
       } catch (e) {
         lastTests.delete(sub.endpoint);
-        console.error("Push test failed", e instanceof Error ? e.message : e);
-        return respond({ error: "Envoi test impossible. Consulter les journaux Supabase de la fonction notifications." }, 502, origin);
+        // Ne pas journaliser la réponse brute: elle peut contenir des données
+        // liées à l'abonnement. Garder seulement le statut et un code court.
+        const statusCode = typeof (e as { statusCode?: unknown })?.statusCode === "number"
+          ? (e as { statusCode: number }).statusCode : null;
+        let reason = "";
+        const body = (e as { body?: unknown })?.body;
+        if (typeof body === "string" && body.length < 4096) {
+          try {
+            const p = JSON.parse(body);
+            const candidate = p?.reason ?? p?.error?.status ?? p?.error?.code;
+            if (typeof candidate === "string" && /^[a-zA-Z0-9_-]{1,55}$/.test(candidate))
+              reason = candidate;
+          } catch { /* Pas de code connu dans cette réponse. */ }
+        }
+        console.error("Push test failed", {
+          status: statusCode || "inconnu", reason: reason || "indisponible",
+          errorType: e instanceof Error ? e.name : "inconnu",
+        });
+        if (statusCode === 403) {
+          return respond({ error: "Service Push : refus d'authentification (403)"
+            + (reason ? " — " + reason : "")
+            + ". Vérifiez les clés VAPID et réactivez l'inscription de ce téléphone." }, 502, origin);
+        }
+        return respond({ error: "Envoi test impossible"
+          + (statusCode ? " (Push HTTP " + statusCode + ")" : "")
+          + (reason ? " — " + reason : "")
+          + ". Consultez les logs de la fonction notifications." }, 502, origin);
       }
     }
     if (action === "unsubscribe") {
