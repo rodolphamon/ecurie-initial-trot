@@ -197,7 +197,7 @@ function replayButton(result,mobile){
  const type=result.videoSource||(url.includes("dailymotion.com/video/")?"video":url.includes("letrot.com/")?"letrot":"course");
  const svg='<svg viewBox="0 0 24 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="1.5" y="1.5" width="21" height="17" rx="4" stroke="currentColor" stroke-width="1.7"/><path d="m10 6 6.2 4L10 14V6Z" fill="currentColor"/></svg>';
  const isReplay=type==="video"||type==="letrot";
- const label=type==="video"?"Vidéo":type==="letrot"?"LeTROT":type==="equidia"?"Course":"Résultat";
+ const label=isReplay?"Vidéo":"Résultat";
  const title=(type==="video"?"Vidéo":type==="letrot"?"Fiche replay LeTROT (lecture à vérifier)":type==="equidia"?"Fiche de course Equidia (replay non vérifié)":"Résultat de course")+" : "+result.cheval+" du "+result.date.split("-").reverse().join("/");
  const symbol=isReplay?svg:"↗";
  const link='<a class="replay-link" href="'+esc(url)+'" target="_blank" rel="noopener noreferrer" title="'+esc(title)+'" aria-label="'+esc(title)+'">'+symbol+'<span>'+label+'</span></a>';
