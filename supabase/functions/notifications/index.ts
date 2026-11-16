@@ -79,14 +79,28 @@ async function hash(token: string) {
   const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(token));
   return Array.from(new Uint8Array(buf), b => b.toString(16).padStart(2, "0")).join("");
 }
+const launchOpen = () => Date.now() >= Date.parse("2026-11-30T23:00:00Z");
+const normalizePilotName = (s: string) =>
+  s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim().replace(/\s+/g, " ");
+async function allowedMember(id: string): Promise<boolean> {
+  const { data: a, error } = await db.from("associes")
+    .select("actif,administrateur,nom_affiche").eq("user_id", id).maybeSingle();
+  if (error || !a?.actif) return false;
+  if (launchOpen()) return true;
+  const { data: pilot, error: pilotError } = await db.from("ei_lancement_pilotes")
+    .select("user_id").eq("user_id", id).maybeSingle();
+  if (!pilotError) return !!pilot;
+  // Transition avant installation SQL : ne laisser que les quatre testeurs déjà connus.
+  if (pilotError.code !== "42P01" && pilotError.code !== "PGRST205") return false;
+  return a.administrateur === true ||
+    ["adrien delgery", "eric schott", "nicolas barre"].includes(normalizePilotName(a.nom_affiche || ""));
+}
 async function memberId(request: Request): Promise<string | null> {
   const jwt = request.headers.get("authorization")?.match(/^Bearer\s+(.+)$/i)?.[1];
   if (!jwt) return null;
   const { data: auth, error } = await db.auth.getUser(jwt);
   if (error || !auth.user) return null;
-  const { data: associe } = await db.from("associes")
-    .select("actif").eq("user_id", auth.user.id).maybeSingle();
-  return associe?.actif === true ? auth.user.id : null;
+  return (await allowedMember(auth.user.id)) ? auth.user.id : null;
 }
 Deno.serve(async (request) => {
   const origin = request.headers.get("origin");
@@ -115,8 +129,9 @@ Deno.serve(async (request) => {
         return respond({ error: "Connexion administrateur invalide." }, 403, origin);
       const { data: adminAccount, error: adminError } = await db.from("associes")
         .select("actif,administrateur").eq("user_id", identity.user.id).maybeSingle();
-      if (adminError || !adminAccount?.actif || !adminAccount?.administrateur)
-        return respond({ error: "Action réservée à l'administrateur." }, 403, origin);
+      if (adminError || !adminAccount?.actif || !adminAccount?.administrateur ||
+          !(await allowedMember(identity.user.id)))
+        return respond({ error: "Action réservée à l'administrateur pilote." }, 403, origin);
 
       const targets = [
         { first: "adrien", last: "delgery", label: "Adrien Delgery" },
@@ -289,6 +304,17 @@ Deno.serve(async (request) => {
       return respond({ error: "Informations Push invalides." }, 400, origin);
     const user = await memberId(request);
     const member = !!user;
+    // Un invité connecté en préinscription ne peut pas contourner
+    // la date d'ouverture en créant un abonnement de visiteur.
+    if (!member) {
+      const jwt = request.headers.get("authorization")?.match(/^Bearer\s+(.+)$/i)?.[1];
+      if (jwt) {
+        const { data: auth } = await db.auth.getUser(jwt);
+        if (auth.user) return respond({
+          error: "Votre compte est inscrit. Les notifications seront disponibles à partir du 1er décembre 2026."
+        }, 403, origin);
+      }
+    }
     const p = body.preferences || {};
     const values = {
       endpoint: sub.endpoint,
