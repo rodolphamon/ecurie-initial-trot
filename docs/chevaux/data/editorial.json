@@ -586,21 +586,24 @@
         "hippodrome": "Le Dorat",
         "rang": "Dai",
         "source_url": "https://www.zone-turf.fr/cheval/nelson-star-2151766/resume-de-carriere/",
-        "driver": "Matthéo GERGOUIL"
+        "driver": "Matthéo GERGOUIL",
+        "course_url": "https://www.geny.com/course/1668043-2026-07-14-le-dorat-prix-de-la-commune-de-saint-ouen/arrivee-rapports?orga=PMH"
       },
       {
         "date": "2026-07-01",
         "hippodrome": "Biarritz",
         "rang": "Arrêté",
         "source_url": "https://www.zone-turf.fr/cheval/nelson-star-2151766/resume-de-carriere/",
-        "driver": "Maxime GRASSET"
+        "driver": "Maxime GRASSET",
+        "course_url": "https://www.geny.com/course/1664397-2026-07-01-biarritz-prix-label-vie-souvenir-georges-senten/arrivee-rapports?orga=PMH"
       },
       {
         "date": "2026-06-07",
         "hippodrome": "Eauze",
         "rang": "Dai",
         "source_url": "https://www.zone-turf.fr/cheval/nelson-star-2151766/resume-de-carriere/",
-        "driver": "Maxime GRASSET"
+        "driver": "Maxime GRASSET",
+        "course_url": "https://www.geny.com/course/1657529-2026-06-07-eauze-prix-robert-lanna-prix-des-vins-des-cotes-de-gascogne/arrivee-rapports"
       }
     ],
     "nostalgie-dairpet": [
