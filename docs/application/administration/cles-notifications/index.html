@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer"><meta http-equiv="Cache-Control" content="no-store">
+<title>Génération locale des clés Push · Écurie Initial</title>
+<style>
+:root{--orange:#ee7623}*{box-sizing:border-box}
+body{margin:0;background:#f6f4f1;color:#1c1c1c;font:16px/1.5 Arial,sans-serif}
+header{background:#171717;color:#fff;padding:22px max(24px,calc((100% - 850px)/2));font-size:23px;font-weight:700}
+header b{color:var(--orange)}
+main{max-width:850px;margin:auto;padding:24px 16px 70px}
+h1{line-height:1.2;font-size:27px}section{background:#fff;border:1px solid #ddd;border-radius:14px;padding:23px;margin:16px 0}
+p{margin:12px 0}.hint{color:#656565}strong{font-weight:750}
+button{border:0;background:var(--orange);color:#171717;font-size:15px;font-weight:bold;padding:12px 16px;border-radius:9px;cursor:pointer}
+button.copy{background:#ededed;padding:9px 14px}
+.field{margin:22px 0}.field label{display:block;font-weight:bold;margin:0 0 6px}
+textarea{display:block;width:100%;resize:vertical;min-height:74px;overflow-wrap:anywhere;word-break:break-all;background:#f9f7f3;border:1px solid #ddd;border-radius:8px;padding:11px;color:#181818;font:14px/1.5 monospace}
+.row{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:7px}
+.small{font-size:14px}#generated[hidden]{display:none}
+#status{font-weight:bold}a{color:#ad4e0f}
+</style></head>
+<body>
+<header>ÉCURIE <b>INITIAL</b></header>
+<main>
+<p><a href="../">← Retour à l'administration</a></p>
+<h1>🔔 Installer les clés de notifications</h1>
+<section>
+<p><strong>Ces clés sont générées uniquement dans ce navigateur.</strong> Rien n'est transmis à Écurie Initial, Supabase ou GitHub par cette page. Les valeurs ne sont pas enregistrées localement.</p>
+<p class="hint">Ouvrez cet outil sur votre ordinateur, puis copiez chacune des trois valeurs dans <strong>Supabase → Edge Functions → Secrets</strong>. Ne partagez jamais les valeurs privées par e-mail ou messagerie.</p>
+<button type="button" id="generate">Générer les 3 clés sécurisées</button>
+<p id="status" role="status" aria-live="polite"></p>
+</section>
+<section id="generated" hidden>
+<h2>Valeurs à enregistrer dans Supabase</h2>
+<div class="field"><label for="publicValue">1. PUSH_VAPID_PUBLIC_KEY</label>
+<textarea id="publicValue" readonly spellcheck="false"></textarea>
+<div class="row"><button class="copy" data-field="publicValue">Copier la valeur publique</button><span class="small hint">Clé publique utilisée sur les téléphones.</span></div></div>
+<div class="field"><label for="privateValue">2. PUSH_VAPID_PRIVATE_KEY</label>
+<textarea id="privateValue" readonly spellcheck="false"></textarea>
+<div class="row"><button class="copy" data-field="privateValue">Copier la clé privée</button><span class="small hint">Clé confidentielle, uniquement dans Supabase Secrets.</span></div></div>
+<div class="field"><label for="jobValue">3. PUSH_JOB_SECRET</label>
+<textarea id="jobValue" readonly spellcheck="false"></textarea>
+<div class="row"><button class="copy" data-field="jobValue">Copier le secret du moteur</button><span class="small hint">Pour autoriser le déclenchement du moteur d'alertes.</span></div></div>
+<p><strong>Important :</strong> Enregistrez les trois valeurs de la <strong>même génération</strong>. Ne cliquez pas une seconde fois sur « Générer » après avoir copié une première valeur.</p>
+<p>Quand les trois secrets sont enregistrés, vous pouvez fermer cette page. Une nouvelle génération remplacerait les valeurs de cette page, et pourrait rendre les anciens abonnements Push incompatibles.</p>
+</section>
+</main>
+<script>
+(() => {
+  const $=id=>document.getElementById(id);
+  function encodeBase64Url(buf){
+    const bytes=new Uint8Array(buf);
+    let binary='';
+    for(let i=0;i<bytes.length;i++)binary+=String.fromCharCode(bytes[i]);
+    return btoa(binary).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+  }
+  $('generate').addEventListener('click',async()=>{
+    $('generate').disabled=true;
+    $('status').textContent='Génération sécurisée…';
+    try{
+      if(!crypto?.subtle||!crypto?.getRandomValues)throw Error('Le navigateur ne permet pas la génération sécurisée.');
+      const pair=await crypto.subtle.generateKey({name:'ECDSA',namedCurve:'P-256'},true,['sign','verify']);
+      const publicRaw=await crypto.subtle.exportKey('raw',pair.publicKey);
+      const privateJwk=await crypto.subtle.exportKey('jwk',pair.privateKey);
+      if(!privateJwk.d)throw Error('Clé privée invalide.');
+      const job=new Uint8Array(32);crypto.getRandomValues(job);
+      $('publicValue').value=encodeBase64Url(publicRaw);
+      $('privateValue').value=privateJwk.d;
+      $('jobValue').value=encodeBase64Url(job);
+      $('generated').hidden=false;
+      $('status').textContent='Clés prêtes. Copiez-les dans Supabase Secrets.';
+      $('generate').textContent='Clés générées';
+    }catch(e){
+      $('status').textContent=e.message||'Génération impossible.';
+      $('generate').disabled=false;
+    }
+  });
+  document.querySelectorAll('button[data-field]').forEach(btn=>btn.addEventListener('click',async()=>{
+    const el=$(btn.dataset.field);
+    try{
+      await navigator.clipboard.writeText(el.value);
+      const old=btn.textContent;btn.textContent='Copié ✓';
+      setTimeout(()=>btn.textContent=old,1500);
+    }catch(e){el.select();document.execCommand('copy');btn.textContent='Copié ✓';}
+  }));
+})();
+</script>
+</body></html>
