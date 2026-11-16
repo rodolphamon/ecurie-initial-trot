@@ -116,11 +116,16 @@ GRANT EXECUTE ON FUNCTION public.ei_lancement_pret() TO service_role;
 
 -- Les politiques qui vérifiaient seulement a.actif doivent aussi
 -- respecter la date d'ouverture et la liste de test.
+-- Les noms des politiques actuellement en production sont différents
+-- de ceux prévus dans les schémas de référence. Supprimer impérativement
+-- les politiques historiques : Postgres combine les politiques SELECT en OR.
+DROP POLICY IF EXISTS "Mes participations" ON public.participations_chevaux;
 DROP POLICY IF EXISTS "associe lit ses participations" ON public.participations_chevaux;
 CREATE POLICY "associe lit ses participations"
 ON public.participations_chevaux FOR SELECT TO authenticated
 USING (user_id = (SELECT auth.uid()) AND public.est_associe_actif());
 
+DROP POLICY IF EXISTS "Actualites de mes chevaux" ON public.actualites_chevaux_privees;
 DROP POLICY IF EXISTS "associe lit actualites de ses chevaux" ON public.actualites_chevaux_privees;
 CREATE POLICY "associe lit actualites de ses chevaux"
 ON public.actualites_chevaux_privees FOR SELECT TO authenticated
@@ -131,6 +136,22 @@ USING (
       AND p.user_id = (SELECT auth.uid())
   )
 );
+
+-- Vérifier que la politique historique permissive ne subsiste pas.
+DO $
+BEGIN
+ IF EXISTS (
+  SELECT 1 FROM pg_policies
+  WHERE schemaname='public'
+    AND (
+      (tablename='participations_chevaux' AND cmd='SELECT' AND policyname<>'associe lit ses participations')
+      OR
+      (tablename='actualites_chevaux_privees' AND cmd='SELECT' AND policyname NOT IN ('associe lit actualites de ses chevaux','admin voit toutes les actualites privees'))
+    )
+ ) THEN
+   RAISE EXCEPTION 'Préouverture annulée : une politique de lecture privée inattendue reste active.';
+ END IF;
+END $;
 
 COMMIT;
 
