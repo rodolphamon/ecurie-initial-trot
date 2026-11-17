@@ -63,10 +63,51 @@ body.ei-prelaunch{padding-bottom:0!important}
 #prelaunch p{font-size:16px;line-height:1.65}
 #prelaunch a{display:inline-block;background:#f47721;color:#171717;text-decoration:none;border-radius:10px;padding:13px 18px;font-weight:800;margin-top:8px}
 #prelaunch .prelaunch-hint{color:#777;font-size:13px;margin:14px 4px}
+
+/* Accueil expérimental : affichage compact et actualités dynamiques */
+.intro.intro-compact{display:flex;align-items:center;gap:12px;padding:15px 18px;border-radius:15px;background:linear-gradient(120deg,#232020,#482d20)}
+.intro-compact .intro-star{display:grid;place-items:center;flex:0 0 34px;height:34px;border-radius:10px;background:#f4772124;color:#ffad70;font-size:22px}
+.intro-compact h1{margin:0 0 4px;font-size:clamp(19px,3vw,25px);line-height:1.18}
+.intro-compact p{font-size:13px;line-height:1.4;color:#f2e8df}
+#appContent .tabs{margin:14px 0 16px}
+#appContent .tabs button{padding:11px 8px}
+#publicArea .home-title{font-size:19px;font-weight:900;margin:16px 0 9px}
+.home-title .orange-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:8px;background:var(--o);vertical-align:2px}
+.home-dashboard{display:grid;grid-template-columns:minmax(0,.86fr) minmax(0,1.14fr);gap:9px}
+.home-dashboard a{min-width:0;min-height:97px;padding:12px 13px;background:#fff;border:1px solid #e6ddd5;border-left:4px solid var(--o);border-radius:13px;display:flex;flex-direction:column;justify-content:center;gap:5px;text-decoration:none;color:#222;box-shadow:0 2px 7px #00000006}
+.home-dashboard a:last-child{grid-column:1/-1;min-height:76px;border-left-color:#222;background:#fffaf6}
+.home-dashboard a:focus-visible{outline:3px solid var(--o);outline-offset:2px}
+.home-dashboard a:active{background:#fff1e6}
+.home-dashboard .dash-label{font-size:10px;text-transform:uppercase;letter-spacing:.5px;font-weight:900;color:#745b49}
+.home-dashboard strong{font-size:clamp(16px,3vw,21px);font-weight:900;line-height:1.1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.home-dashboard .dash-number{font-size:34px;font-variant-numeric:tabular-nums}
+.home-dashboard .dash-detail{font-size:12px;color:#6a6159;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#publicArea .cards{gap:10px}
+#publicArea .cards a.card{padding:12px 13px;min-height:77px}
+#publicArea .cards a.card strong{font-size:15px;line-height:1.25}
+#publicArea .cards a.card small{font-size:12px;line-height:1.25;margin-top:5px}
+@media(max-width:600px){.intro.intro-compact{padding:13px 14px;gap:10px}.intro-compact h1{font-size:19px}.intro-compact p{font-size:12px}.intro-compact .intro-star{flex-basis:29px;height:29px;font-size:19px}#publicArea .home-title{font-size:18px}#publicArea .cards a.card{padding:11px;min-height:74px}#publicArea .cards a.card strong{font-size:14px}#publicArea .cards a.card small{font-size:11px}.home-dashboard a{min-height:91px;padding:10px 11px}.home-dashboard a:last-child{min-height:73px}.home-dashboard .dash-detail{font-size:11px}.home-dashboard strong{font-size:16px}}
+@media(max-width:355px){.home-dashboard{grid-template-columns:1fr 1fr}.home-dashboard a{padding:9px}.home-dashboard .dash-label{font-size:9px}}
+
 </style><link rel="apple-touch-icon" href="icon-ei-192.png"></head><body class="ei-prelaunch"><header><div class="brand"><img src="icon-ei-192.png" alt="Emblème officiel Écurie Initial"><div class="brand-copy"><strong>ÉCURIE <span class="brand-initial"><span class="brand-initial-i">I</span>NITIAL</span></strong></div><p class="brand-slogan"><span class="brand-slogan-line">PARTAGEONS NOTRE PASSION</span><span class="brand-slogan-date">DEPUIS 2011</span></p></div></header><div id="prelaunch" hidden><div class="prelaunch-box"><h1>🐎 Bientôt votre espace Écurie Initial</h1><p><strong>Ouverture officielle le mardi 1er décembre 2026.</strong></p><p>Vous avez reçu une invitation ? Vous pouvez dès maintenant confirmer votre inscription et définir votre mot de passe. L’accès à l’application sera disponible à partir du 1er décembre.</p><p>Jusqu’à cette date, les cinq comptes pilotes et les contributeurs expressément autorisés assurent les derniers essais.</p><a href="connexion/">Confirmer mon invitation ou me connecter</a><p style="font-size:13px;color:#f7e9df;margin:18px 0 0"><strong>Vous pouvez installer l'application dès maintenant :</strong><br>Android : ouvrez cette page dans Chrome puis « Installer l'application ».<br>iPhone : ouvrez cette page dans Safari, puis « Partager » → « Sur l'écran d'accueil ».</p></div><p class="prelaunch-hint">Notre site public reste accessible sur <a href="https://www.ecurie-initial.com/" style="background:none;color:#a54c0b;padding:0;font:inherit;text-decoration:underline">www.ecurie-initial.com</a>.</p></div><main id="appContent" hidden>
-<section class="intro"><h1>Une écurie, une communauté.</h1><p>Retrouvez les chevaux de l'Écurie Initial, leurs engagements et leurs performances. Partageons ensemble les émotions et les réussites de tous les chevaux de l’écurie !</p></section>
+<section class="intro intro-compact"><span class="intro-star" aria-hidden="true">★</span><div><h1>L’écurie au quotidien</h1><p>Nos chevaux, leurs courses et leurs résultats, au même endroit.</p></div></section>
 <div class="tabs"><button class="active" id="publicTab" type="button">Espace public</button><button id="privateTab" type="button">Espace associés 🔒</button></div>
-<div id="publicArea"><h2>À découvrir</h2><div class="cards"><a class="card" href="../chevaux/"><strong>🐎 Effectif et résultats</strong><small>34 fiches individuelles</small></a><a class="card" href="../engagements/"><strong>📅 Prochains partants</strong><small>Engagements et horaires confirmés</small></a><a class="card" href="../palmares/"><strong>🏆 Victoires & podiums</strong><small>Classements, filtres et palmarès historique</small></a><a class="card" href="notifications/"><strong>🔔 Notifications</strong><small>Partants du jour et résultats officiels</small></a><a class="card" href="devenir-associe/"><strong>🧡 Devenir associé</strong><small>Découvrir la propriété en parts</small></a><a class="card" href="contact/"><strong>✉️ Nous contacter</strong><small>Une question ? Écrivez à l'écurie</small></a></div></div>
+<div id="publicArea">
+<h2 class="home-title"><span class="orange-dot" aria-hidden="true"></span>En ce moment</h2>
+<div class="home-dashboard" aria-label="Actualité de l'écurie">
+<a href="../chevaux/"><span class="dash-label">Effectif</span><strong class="dash-number" id="dashHorses">—</strong><span class="dash-detail">chevaux à suivre</span></a>
+<a href="../engagements/"><span class="dash-label" id="dashNextLabel">Prochain rendez-vous</span><strong id="dashNextHorse">À venir</strong><span class="dash-detail" id="dashNextDetail">Voir les engagements</span></a>
+<a href="../chevaux/" id="dashResultLink"><span class="dash-label">Dernier résultat</span><strong id="dashResultHorse">À venir</strong><span class="dash-detail" id="dashResultDetail">Voir les performances</span></a>
+</div>
+<h2 class="home-title">À découvrir</h2>
+<div class="cards">
+<a class="card" href="../chevaux/"><strong>🐎 Effectif et résultats</strong><small>Fiches des chevaux</small></a>
+<a class="card" href="../engagements/"><strong>📅 Prochains partants</strong><small>Calendrier des courses</small></a>
+<a class="card" href="../palmares/"><strong>🏆 Victoires & podiums</strong><small>Palmarès de l'écurie</small></a>
+<a class="card" href="notifications/"><strong>🔔 Notifications</strong><small>Alertes de courses</small></a>
+<a class="card" href="devenir-associe/"><strong>🧡 Devenir associé</strong><small>Rejoindre l'écurie</small></a>
+<a class="card" href="contact/"><strong>✉️ Nous contacter</strong><small>Écrire à l'écurie</small></a>
+</div></div>
 <section id="privateArea" hidden><div class="private"><h2>🔒 La tribune des associés</h2><p>Un espace convivial pour suivre tous les chevaux, partager photos et nouvelles, commenter les courses et retrouver ses participations personnelles.</p><p><strong>Accès réservé aux associés validés par l'écurie.</strong></p><p class="notice">Connectez-vous pour accéder aux publications et aux commentaires réservés aux associés.</p><p class="notice">Pas encore associé ? <a href="devenir-associe/">Découvrez comment nous rejoindre.</a></p><div class="privateActions"><a class="button" href="connexion/">Se connecter</a><a class="button button-dark" href="mes-chevaux/">🐎 Mes chevaux</a><a class="button button-dark" href="tribune/">Accéder à la Tribune</a><a class="button button-dark" href="notifications/">🔔 Notifications</a></div></div></section>
 </main>
 <script>
@@ -95,7 +136,68 @@ async function allowApp(){
   return !!member?.actif && (member.administrateur===true || ['adrien delgery','eric schott','nicolas barre','gilles moninot'].includes(norm(member.nom_affiche)));
  }catch(_){return false}
 }
-allowApp().then(open=>{app.hidden=!open;waiting.hidden=open;document.body.classList.toggle('ei-prelaunch',!open)})
+allowApp().then(open=>{app.hidden=!open;waiting.hidden=open;document.body.classList.toggle('ei-prelaunch',!open);if(open)window.loadHomeDashboard?.()})
 .catch(()=>{app.hidden=true;waiting.hidden=false;document.body.classList.add('ei-prelaunch')});
+</script>
+<script>
+window.loadHomeDashboard=async function(){
+ const get=id=>document.getElementById(id);
+ const stamp=d=>new Intl.DateTimeFormat("fr-FR",{day:"numeric",month:"short",timeZone:"Europe/Paris"}).format(new Date(d+"T12:00:00Z"));
+ const current=()=>new Intl.DateTimeFormat("sv-SE",{timeZone:"Europe/Paris",year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit",hourCycle:"h23"}).format(new Date()).replace(" ","T");
+ const hh=s=>/^\d\d:\d\d$/.test(s||"")?" · "+s.replace(":"," h "):"";
+ try{
+  const [horsesData,editorial]=await Promise.all(["chevaux.json","editorial.json"].map(async file=>{
+   const r=await fetch("../chevaux/data/"+file+"?v="+Date.now(),{cache:"no-store"});
+   if(!r.ok)throw Error("Données indisponibles");
+   return r.json();
+  }));
+  const horses=Array.isArray(horsesData.horses)?horsesData.horses:[];
+  const known=new Map(horses.map(h=>[h.id,h.name]));
+  get("dashHorses").textContent=String(horses.length);
+  const paint=()=>{
+   const now=current(),upcoming=[],past=[];
+   for(const [slug,events] of Object.entries(editorial.engagements||{})){
+    if(!known.has(slug)||!Array.isArray(events))continue;
+    for(const e of events){
+     if(!e||!/^\d{4}-\d\d-\d\d$/.test(e.date||"")||["forfait","non-partant","elimine"].includes(e.statut))continue;
+     const moment=e.date+"T"+(/^\d\d:\d\d$/.test(e.heure||"")?e.heure:"23:59");
+     if(moment>=now)upcoming.push({slug,e,moment});
+    }
+   }
+   upcoming.sort((a,b)=>a.moment.localeCompare(b.moment));
+   const next=upcoming[0];
+   if(next){
+    get("dashNextLabel").textContent=["partant","declare"].includes(next.e.statut)?"Prochain partant":"Prochain engagement";
+    get("dashNextHorse").textContent=known.get(next.slug);
+    get("dashNextDetail").textContent=[next.e.hippodrome,stamp(next.e.date)].filter(Boolean).join(" · ")+hh(next.e.heure);
+   }else{
+    get("dashNextLabel").textContent="Prochain rendez-vous";get("dashNextHorse").textContent="Aucun annoncé";get("dashNextDetail").textContent="Voir les engagements";
+   }
+   for(const [slug,perfs] of Object.entries(editorial.performances||{})){
+    if(!known.has(slug)||!Array.isArray(perfs))continue;
+    for(const p of perfs)if(p&&/^\d{4}-\d\d-\d\d$/.test(p.date||"")&&p.date<=now.slice(0,10))past.push({slug,p});
+   }
+   past.sort((a,b)=>b.p.date.localeCompare(a.p.date)||Number(!!b.p.officiel)-Number(!!a.p.officiel));
+   const latest=past[0];
+   if(latest){
+    get("dashResultHorse").textContent=known.get(latest.slug);
+    get("dashResultDetail").textContent=[latest.p.rang,latest.p.hippodrome,stamp(latest.p.date)].filter(Boolean).join(" · ");
+    get("dashResultLink").href="../chevaux/"+encodeURIComponent(latest.slug)+"/";
+   }else{
+    get("dashResultHorse").textContent="Aucun résultat";get("dashResultDetail").textContent="Voir les performances";
+   }
+  };
+  paint();
+  try{
+   const {createClient}=await import("https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm");
+   const db=createClient("https://yeecwaaizmvrhwobukfa.supabase.co","sb_publishable_xUy2EJA3u3cKWl8BB4GNPQ_qhV9Pes3");
+   const {data,error}=await db.from("ei_contributions_engagements").select("cheval_slug,engagements");
+   if(error)throw error;
+   editorial.engagements=editorial.engagements||{};
+   for(const row of data||[])if(known.has(row.cheval_slug)&&Array.isArray(row.engagements))editorial.engagements[row.cheval_slug]=row.engagements;
+   paint();
+  }catch(e){console.info("Accueil : engagements de référence conservés",e)}
+ }catch(e){console.warn("Accueil : données dynamiques momentanément indisponibles",e)}
+};
 </script>
 <script defer src="nav.js?v=20261117tabsresultatspartants1"></script></body></html>
