@@ -140,7 +140,9 @@ body.ei-prelaunch{padding-bottom:0!important}
 .home-dashboard #dashResultLink .dash-result-copy{flex:initial;max-width:none;min-width:0}
 .home-dashboard #dashResultLink .dash-result-silk{position:static;transform:none;left:auto;top:auto;width:43px;height:57px;object-fit:contain;justify-self:center}
 .home-dashboard .dash-result-people{display:flex;flex-direction:column;justify-content:center;gap:6px;min-width:0;font-size:clamp(10px,1.9vw,12px);font-weight:750;line-height:1.2;color:#403730}
-.home-dashboard .dash-result-person{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.home-dashboard .dash-result-person{display:flex;align-items:center;gap:3px;min-width:0;white-space:nowrap;overflow:hidden}
+.home-dashboard .dash-result-person .dash-role-icon{flex:0 0 12px;width:12px;height:12px;color:var(--o);stroke:currentColor;stroke-width:1.9;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.home-dashboard .dash-result-person .dash-person-name{display:block;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .home-dashboard .dash-result-person[hidden]{display:none}
 @media(max-width:600px){
  .home-dashboard .dash-next-identity #dashNextHorse{font-size:clamp(13px,4vw,16px)}
@@ -254,7 +256,7 @@ body.ei-prelaunch{padding-bottom:0!important}
 <div class="home-dashboard" aria-label="Actualité de l'écurie">
 <a href="../chevaux/"><span class="dash-label">Effectif</span><strong class="dash-number" id="dashHorses">—</strong><span class="dash-detail">chevaux à suivre</span></a>
 <a href="../engagements/" id="dashNextLink"><span class="dash-label" id="dashNextLabel">Prochain rendez-vous</span><span class="dash-next-identity"><strong id="dashNextHorse">À venir</strong><span id="dashNextJockey" class="dash-next-jockey" hidden></span></span><span class="dash-detail" id="dashNextDetail">Voir les engagements</span><img class="dash-next-silk" id="dashNextSilk" alt="" width="43" height="54" hidden></a>
-<a href="../chevaux/" id="dashResultLink"><span class="dash-label dash-result-heading">Dernière performance</span><span class="dash-result-copy"><strong id="dashResultHorse">À venir</strong><span class="dash-detail" id="dashResultDetail">Voir les performances</span></span><img class="dash-result-silk" id="dashResultSilk" alt="" width="43" height="57" hidden><span class="dash-result-people" aria-label="Jockey ou driver et entraîneur"><span id="dashResultRider" class="dash-result-person" hidden></span><span id="dashResultTrainer" class="dash-result-person" hidden></span></span><span class="dash-result-score" id="dashResultRank" aria-label="Classement" hidden>—</span></a>
+<a href="../chevaux/" id="dashResultLink"><span class="dash-label dash-result-heading">Dernière performance</span><span class="dash-result-copy"><strong id="dashResultHorse">À venir</strong><span class="dash-detail" id="dashResultDetail">Voir les performances</span></span><img class="dash-result-silk" id="dashResultSilk" alt="" width="43" height="57" hidden><span class="dash-result-people" aria-label="Jockey ou driver et entraîneur"><span id="dashResultRider" class="dash-result-person" hidden><svg class="dash-role-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 15v-2a8 8 0 0 1 16 0v2H4Z"/><path d="M3 15h18l-1.5 3H6.5L3 15Z"/><path d="M12 5v10"/></svg><span class="dash-person-name"></span></span><span id="dashResultTrainer" class="dash-result-person" hidden><svg class="dash-role-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7.5" r="3.5"/><path d="M5 20v-1a7 7 0 0 1 14 0v1H5Z"/></svg><span class="dash-person-name"></span></span></span><span class="dash-result-score" id="dashResultRank" aria-label="Classement" hidden>—</span></a>
 </div>
 <h2 class="home-title"><span class="orange-dot" aria-hidden="true"></span>À découvrir</h2>
 <div class="cards">
@@ -358,8 +360,8 @@ window.loadHomeDashboard=async function(){
      const rider=get("dashResultRider"),trainer=get("dashResultTrainer");
      const riderName=String(latest.p.jockey||latest.p.driver||"").trim();
      const trainerName=String(latest.p.entraineur||horse?.trainer||"").trim();
-     rider.textContent=riderName; rider.title=riderName?"Jockey / driver : "+riderName:"";rider.hidden=!riderName;
-     trainer.textContent=trainerName;trainer.title=trainerName?"Entraîneur : "+trainerName:"";trainer.hidden=!trainerName;
+     rider.querySelector(".dash-person-name").textContent=riderName; rider.title=riderName?"Jockey / driver : "+riderName:"";rider.hidden=!riderName;
+     trainer.querySelector(".dash-person-name").textContent=trainerName;trainer.title=trainerName?"Entraîneur : "+trainerName:"";trainer.hidden=!trainerName;
     const rank=get("dashResultRank"),rankValue=String(latest.p.rang||"").trim();
     rank.hidden=!rankValue;
     rank.textContent=rankValue;
