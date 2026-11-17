@@ -234,6 +234,35 @@ body.ei-prelaunch{padding-bottom:0!important}
   .home-dashboard #dashNextLink .dash-next-silk{width:32px;height:44px}
 }
 
+/* Afficher integrale­ment le jockey et l'entraineur, meme avec les emojis. */
+@media(max-width:600px){
+ .home-dashboard #dashResultLink{
+   grid-template-columns:minmax(0,1.12fr) 36px minmax(0,1fr) 54px;
+   column-gap:3px;
+ }
+ .home-dashboard #dashResultLink .dash-result-silk{width:36px;height:51px}
+ .home-dashboard #dashResultLink .dash-result-score{
+   box-sizing:border-box;min-width:54px;width:54px;max-width:54px;
+   padding-left:1px;padding-right:1px;font-size:clamp(34px,10vw,43px);
+ }
+ .home-dashboard .dash-result-person{gap:2px}
+ .home-dashboard .dash-result-person .dash-role-emoji{
+   flex:0 0 15px;width:15px;font-size:15px;
+ }
+ .home-dashboard .dash-result-people{font-size:clamp(9.5px,2.6vw,11px);letter-spacing:-.025em}
+}
+@media(max-width:355px){
+ .home-dashboard #dashResultLink{
+   grid-template-columns:minmax(0,1.08fr) 31px minmax(0,1fr) 49px;
+   column-gap:2px;
+ }
+ .home-dashboard #dashResultLink .dash-result-silk{width:31px;height:47px}
+ .home-dashboard #dashResultLink .dash-result-score{
+   min-width:49px;width:49px;max-width:49px;font-size:34px;
+ }
+ .home-dashboard .dash-result-people{font-size:9px}
+}
+
 /* Bandeau d'accueil sur une seule ligne, sous le liseré orange. */
 #appContent .home-welcome{
   display:flex;align-items:center;justify-content:center;
