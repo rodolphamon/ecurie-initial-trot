@@ -34,6 +34,7 @@ td:first-child,th:first-child{text-align:center;width:75px}td.date{white-space:n
 .replay-link{display:inline-flex;align-items:center;justify-content:center;gap:5px;padding:7px 10px;border:1px solid #e5ba92;border-radius:999px;background:#fff5ed;color:#9c4712;font-size:12px;font-weight:800;text-decoration:none;line-height:1;white-space:nowrap}
 .replay-link svg{width:21px;height:19px;flex-shrink:0}
 .replay-link:hover,.replay-link:focus-visible{background:#f9d8bf;color:#72310c}
+.replay-unavailable{display:inline-block;padding:4px 2px;text-align:center;color:#8d8781;font-size:10px;font-weight:600;white-space:nowrap}
 .pal-card-replay{margin:0}.pal-card-actions{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;flex-shrink:0;align-self:start;margin-top:-28px;min-width:0;width:100%}.pal-card-actions .replay-link{padding:4px 6px;font-size:11px}.video-cell{text-align:center;width:94px}.video-cell .replay-link{padding:6px 9px}
 .pal-card-disc{display:inline-flex;align-items:center;justify-content:center;gap:2px;white-space:nowrap;padding:4px 3px;border-radius:20px;background:#fff5ec;border:1px solid #f5e5d7;color:#8f4517;font-size:11px;font-weight:800;max-width:100%}
 .pal-card-disc .disc-img{width:20px;height:18px;margin:0;object-fit:contain}
@@ -266,56 +267,39 @@ function disc(type){
  return (src?'<img class="disc-img" src="'+src+'" alt="" loading="lazy">':'')+'<span class="disc-text"'+(type==="trot"?' title="Discipline exacte à confirmer"':'')+'>'+label+'</span>';
 }
 // Liens de course et de replay référencés : la présence d'une fiche Equidia ne garantit pas la lecture d'une vidéo.
+// Navigation publique du palmarès uniquement vers LeTROT et Equidia.
 function replayUrl(value){
  try{
   const url=new URL(String(value||""));
   if(url.protocol!=="https:")return "";
-  const letrot=url.hostname==="www.letrot.com"&&(/^\/courses\/\d{4}-\d{2}-\d{2}\/\d+\/\d+\/?$/.test(url.pathname)||/^\/fr\/courses\/replay-courses\/\d{4}-\d{2}-\d{2}\/\d+\/\d+\/?$/.test(url.pathname));
-  const equidia=url.hostname==="www.equidia.fr"&&/^\/courses\/\d{4}-\d{2}-\d{2}\/R\d+\/C\d+\/?$/.test(url.pathname);
-  const archive=url.hostname==="www.dailymotion.com"&&/^\/video\/[a-zA-Z0-9]+\/?$/.test(url.pathname);
-  const zeturf=["www.zeturf.fr","www.zeturf.sn","zeturf.fr","zeturf.sn","www.zeturf.be"].includes(url.hostname)&&/^\/(?:fr|en)\/course-du-jour\/\d{4}-\d{2}-\d{2}\/R\d+C\d+-[a-z0-9-]+\/?$/.test(url.pathname);
-  return letrot||equidia||archive||zeturf?url.href:"";
+  const host=url.hostname.replace(/^www\./,"").toLowerCase();
+  const letrot=host==="letrot.com"&&(
+    /^\/courses\/\d{4}-\d{2}-\d{2}\/\d+\/\d+\/?$/.test(url.pathname)||
+    /^\/fr\/courses\/replay-courses\/\d{4}-\d{2}-\d{2}\/\d+\/\d+\/?$/.test(url.pathname)
+  );
+  const equidia=host==="equidia.fr"&&
+    /^\/courses\/\d{4}-\d{2}-\d{2}\/R\d+\/C\d+\/?$/i.test(url.pathname);
+  return letrot||equidia?url.href:"";
  }catch{return ""}
 }
-// Afficher Résultat en secours si aucun lien de replay LeTROT ou Equidia ne correspond.
-function resultatUrl(value){
- try{
-  const url=new URL(String(value||""));
-  if(url.protocol!=="https:")return "";
-  const host=url.hostname.replace(/^www\./,"");
-  const path=url.pathname;
-  const race=(host==="letrot.com"&&/^\/(?:courses|fr\/courses\/replay-courses)\//.test(path))
-   ||(host==="equidia.fr"&&/^\/courses\/\d{4}-\d{2}-\d{2}\//.test(path))
-   ||(["zeturf.fr","zeturf.sn","zeturf.be"].includes(host)&&/^\/(?:fr|en)\/course-du-jour\//.test(path))
-   ||(host==="geny.com"&&/^\/course\//.test(path))
-   ||(host==="zone-turf.fr"&&/^\/rapports\//.test(path))
-   ||(host==="oneturf.fr"&&/^\/arrive/.test(path))
-   ||(host==="canalturf.com"&&/^\/resultats-PMU\//.test(path));
-  return race?url.href:"";
- }catch{return ""}
-}
-function replayPreference(value,record){
+function resultatUrl(value){return replayUrl(value)}
+function replayPreference(value,record,discipline){
  const url=replayUrl(value);
  if(!url)return null;
- const host=new URL(url).hostname.replace(/^www\./,"");
- const path=new URL(url).pathname;
- if(host==="letrot.com"&&/^\/courses\//.test(path))
-   return {url,score:110,isVideo:true};
- // Les fiches de courses Equidia et LeTROT peuvent proposer le replay ;
- // on conserve leur bouton Vidéo comme avant, sans prétendre avoir visionné chacune.
- if(host==="equidia.fr")
-   return {url,score:100,isVideo:true};
- if(host==="dailymotion.com")
-   return {url,score:95,isVideo:true};
- if(host==="letrot.com"&&/^\/fr\/courses\/replay-courses\//.test(path))
-   return {url,score:90,isVideo:true};
- return {url,score:15,isVideo:false};
+ const host=new URL(url).hostname.replace(/^www\./,"").toLowerCase();
+ if(discipline==="galop"||discipline==="obstacle"){
+  if(host!=="equidia.fr")return null;
+  return {url,score:140,isVideo:true};
+ }
+ if(host==="letrot.com")return {url,score:140,isVideo:true};
+ if(host==="equidia.fr")return {url,score:110,isVideo:true};
+ return null;
 }
 function replayButton(result,mobile){
  const url=replayUrl(result.video)||resultatUrl(result.source);
- if(!url)return "";
+ if(!url)return '<span class="replay-unavailable" title="Aucun lien LeTROT ou Equidia disponible pour cette course">À retrouver</span>';
  // Vidéo prioritaire ; sinon lien Résultat lorsque la vidéo n'est pas connue.
- const isReplay=!!result.video&&result.videoSource==="video";
+ const isReplay=!!result.video&&result.videoSource==="video"&&!!replayUrl(result.video);
  const label=isReplay?"Vidéo":"Résultat";
  const svg='<svg viewBox="0 0 24 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="1.5" y="1.5" width="21" height="17" rx="4" stroke="currentColor" stroke-width="1.7"/><path d="m10 6 6.2 4L10 14V6Z" fill="currentColor"/></svg>';
  const title=(isReplay?"Replay disponible":"Page de course (replay selon disponibilité)")+" : "+result.cheval+" du "+result.date.split("-").reverse().join("/");
@@ -356,16 +340,16 @@ async function loadReplays(){
     const exact=matching.filter(r=>normalizeReplayKey(r.hippodrome)===normalizeReplayKey(video.hippodrome));
     const row=exact.length===1?exact[0]:(matching.length===1?matching[0]:null);
     if(!row)continue;
-    // Quand une vidéo n'est pas référencée, réutiliser en secours la page
-    // d'arrivée de cette course déjà vérifiée dans le suivi des chevaux.
-    const courseUrl=[video.course_url,video.source_url,video.justificatif,video.preuve_identification_course]
+    // Liens officiels uniquement, correspondant au cheval et à la date.
+    const options=[
+      video.lien_letrot_precedent,video.lien_replay_original,
+      video.lien_equidia_precedent,video.url,
+      video.course_url,video.video_url,video.source_url
+    ].map(value=>replayPreference(value,video,row.discipline)).filter(Boolean)
+     .sort((a,b)=>b.score-a.score);
+    const courseUrl=[video.course_url,video.source_url]
       .map(resultatUrl).find(Boolean);
     if(courseUrl&&!resultatUrl(row.source))row.source=courseUrl;
-    // Privilégier les pages LeTROT avec replay, puis les vidéos attestées ;
-    // une fiche Equidia non testée reste affichée comme Résultat.
-    const options=[video.lien_letrot_precedent,video.lien_replay_original,video.url]
-      .map(value=>replayPreference(value,video)).filter(Boolean)
-      .sort((a,b)=>b.score-a.score);
     if(!options.length)continue;
     const best=options[0];
     if(best.score>(row.videoPriority||0)){
