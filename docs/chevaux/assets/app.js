@@ -136,7 +136,7 @@ function latestResults(s){
   performances.sort((a,b)=>
     (b.result.date+(b.result.heure||'')).localeCompare(a.result.date+(a.result.heure||''))||
     a.p.name.localeCompare(b.p.name,'fr',{sensitivity:'base'}));
-  const rows=performances.slice(0,15).map(({p,result})=>{
+  const rows=performances.slice(0,20).map(({p,result})=>{
     const rank=String(result.rang||'').trim();
     const medal=/^1(?:er|re|ère)?\b/i.test(rank)?' gold':/^2e\b/i.test(rank)?' silver':/^3e\b/i.test(rank)?' bronze':'';
     const direct=absoluteUrl(result.video_url);
@@ -167,7 +167,7 @@ function latestResults(s){
   }).join('');
   return '<section class="recent-results" aria-labelledby="recent-results-title">'
     +'<div class="recent-heading"><h2 id="recent-results-title">🏁 Nos derniers résultats</h2>'+(performances.length>5?'<button type="button" id="recent-scroll-next" class="recent-scroll-hint" aria-controls="recent-scroll-list" aria-label="Faire défiler les résultats vers le bas"><span class="recent-scroll-arrow" aria-hidden="true">↓</span><span class="recent-scroll-label">Défiler</span></button>':'')+'</div>'
-    +(rows?'<ol id="recent-scroll-list" class="recent-list" aria-label="Les 15 dernières performances, faire défiler pour les suivantes" tabindex="0">'+rows+'</ol>':'<p class="recent-empty">Aucun résultat récent enregistré pour le moment.</p>')
+    +(rows?'<ol id="recent-scroll-list" class="recent-list" aria-label="Les 20 dernières performances, faire défiler pour les suivantes" tabindex="0">'+rows+'</ol>':'<p class="recent-empty">Aucun résultat récent enregistré pour le moment.</p>')
     +'</section>';
 }
 
@@ -191,8 +191,8 @@ function catalog(s){
       '</div>'+
       '<div class="grid" id="cards"></div>'+
     '</main>'+footer();
-  // L'indicateur est aussi une vraie commande : passer aux cinq résultats
-  // suivants sans augmenter la hauteur du bloc. Le geste tactile reste actif.
+  // L'indicateur avance de trois performances par clic sans augmenter
+  // la hauteur du bloc. Le défilement tactile reste actif.
   const recentScroll=$('#recent-scroll-list'),scrollButton=$('#recent-scroll-next');
   if(recentScroll&&scrollButton){
     const arrow=scrollButton.querySelector('.recent-scroll-arrow');
@@ -201,12 +201,15 @@ function catalog(s){
       const atEnd=recentScroll.scrollTop>=recentScroll.scrollHeight-recentScroll.clientHeight-3;
       arrow.textContent=atEnd?'↑':'↓';
       label.textContent=atEnd?'Retour':'Défiler';
-      scrollButton.setAttribute('aria-label',atEnd?'Revenir aux premiers résultats':'Faire défiler les résultats vers le bas');
+      scrollButton.setAttribute('aria-label',atEnd?'Revenir aux premiers résultats':'Faire défiler les résultats par groupes de trois');
     };
     scrollButton.addEventListener('click',()=>{
       const atEnd=recentScroll.scrollTop>=recentScroll.scrollHeight-recentScroll.clientHeight-3;
       if(atEnd)recentScroll.scrollTo({top:0,behavior:'smooth'});
-      else recentScroll.scrollBy({top:recentScroll.clientHeight,behavior:'smooth'});
+      else {
+        const rowHeight=recentScroll.querySelector('.recent-item')?.getBoundingClientRect().height || recentScroll.clientHeight/5;
+        recentScroll.scrollBy({top:3*rowHeight,behavior:'smooth'});
+      }
     });
     recentScroll.addEventListener('scroll',refreshScrollHint,{passive:true});
     refreshScrollHint();
