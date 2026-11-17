@@ -68,7 +68,10 @@
     },
     "olano-de-la-vallee": {
       "record": null,
-      "gains": null
+      "gains": 0,
+      "gains_source_url": "https://www.letrot.com/stats/chevaux/OLANO-DE-LA-VALLEE/ZmZbbAIBAwcG/courses",
+      "gains_verified_at": "2026-11-17",
+      "gains_source": "LeTROT - Gains Totaux"
     },
     "palazzo-grassi": {
       "record": null,

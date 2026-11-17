@@ -820,6 +820,21 @@
     ],
     "master-pat": [
       {
+        "date": "2026-11-17",
+        "hippodrome": "Chantilly",
+        "rang": "5e",
+        "officiel": true,
+        "statut": "officiel",
+        "source_description": "PMU : arrivée définitive R1C7, cheval n°5",
+        "source_url": "https://www.pmu.fr/turf/",
+        "source_api": "https://online.turfinfo.api.pmu.fr/rest/client/1/programme/17112026",
+        "course": "R1C7",
+        "numero": 5,
+        "video_url": "https://www.equidia.fr/courses/2026-11-17/R1/C7",
+        "course_url": "https://www.equidia.fr/courses/2026-11-17/R1/C7",
+        "video_source": "equidia_course"
+      },
+      {
         "date": "2026-10-21",
         "hippodrome": "Deauville",
         "rang": "9e",
