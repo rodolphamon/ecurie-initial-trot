@@ -490,4 +490,4 @@ if("ResizeObserver" in window)new ResizeObserver(postHeight).observe(document.bo
 document.querySelectorAll("[data-placing]").forEach(button=>button.addEventListener("click",()=>{state.placing=button.dataset.placing;state.page=1;document.querySelectorAll("[data-placing]").forEach(b=>b.setAttribute("aria-pressed",String(b===button)));render()}));
 document.querySelector("[data-video-only]").addEventListener("click",function(){state.videoOnly=!state.videoOnly;state.page=1;this.setAttribute("aria-pressed",String(state.videoOnly));render()});
 render();fondTransparentCasaqueGalop();Promise.allSettled([loadPodiums(),loadNewVictories()]).then(loadReplays);window.addEventListener("load",postHeight);
-</script><script defer src="../application/nav.js?v=20261115b"></script></body></html>
+</script><script defer src="../application/nav.js?v=20261117prelaunchfix"></script></body></html>
