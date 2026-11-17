@@ -54,6 +54,44 @@ h1{font-size:clamp(23px,4vw,35px);line-height:1.12;letter-spacing:-.6px;margin:6
 .empty{border-radius:13px;background:#fff;border:1px solid var(--line);padding:22px;color:#786959;text-align:center}
 @media(max-width:720px){.event{grid-template-columns:56px minmax(0,1fr);gap:10px;padding:12px}.horse strong{font-size:16px}.when .time{font-size:16px}.when .silk-icon{width:49px;height:60px}.pill{font-size:10px;padding:5px 8px}.flag{margin-top:8px}}
 @media(max-width:390px){.container{padding:13px 9px}.event{grid-template-columns:48px minmax(0,1fr);gap:8px;padding:10px 9px}.when{font-size:11px}.when .silk-icon{width:44px;height:54px}.horse strong{font-size:15px}.race{font-size:11px}.pill{font-size:9px;padding:4px 7px}.person{font-size:11px}.filter{padding:8px 10px}}
+/* Affichage compact : trois lignes utiles à côté de la casaque. */
+.event{grid-template-columns:54px minmax(0,1fr);gap:10px;padding:10px 13px;align-items:center}
+.when .silk-icon{width:48px;height:58px}
+.horse{display:grid;grid-template-rows:auto auto auto;gap:4px;min-width:0}
+.horse-heading{display:flex;align-items:center;flex-wrap:nowrap;gap:6px;min-width:0}
+.horse-heading strong{display:block;flex:0 1 auto;min-width:0;font-size:clamp(13px,3.6vw,17px);line-height:1.2}
+.horse-heading a{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.start-time{flex:0 0 auto;font-size:clamp(14px,3.8vw,19px);line-height:1.2}
+.pill{flex:0 0 auto;margin-left:auto;white-space:nowrap;font-size:10px;line-height:1.2;padding:4px 7px}
+.pill-compact{display:none}
+.horse-meta{display:flex;align-items:baseline;justify-content:space-between;gap:8px;min-width:0}
+.horse-meta .place{margin:0;min-width:0;font-size:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.horse-meta .person{margin:0;flex:none;font-size:11px;line-height:1.3;white-space:nowrap}
+.horse .race{margin:0;min-width:0;font-size:11px;line-height:1.35;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media(max-width:720px){
+ .event{grid-template-columns:50px minmax(0,1fr);gap:9px;padding:10px 11px}
+ .when .silk-icon{width:46px;height:56px}
+ .horse-heading{gap:5px}
+ .horse-heading strong{font-size:clamp(13px,3.55vw,16px)}
+ .start-time{font-size:clamp(14px,3.7vw,17px)}
+ .pill{font-size:9px;padding:4px 6px}
+ .pill-full{display:none}
+ .pill-compact{display:inline}
+ .horse-meta{gap:6px}
+ .horse-meta .place{font-size:11.5px}
+ .horse-meta .person{font-size:10.5px}
+}
+@media(max-width:390px){
+ .event{grid-template-columns:43px minmax(0,1fr);gap:7px;padding:9px 8px}
+ .when .silk-icon{width:42px;height:52px}
+ .horse-heading{gap:4px}
+ .horse-heading strong{font-size:clamp(12px,3.5vw,15px)}
+ .start-time{font-size:14px}
+ .pill{font-size:8px;padding:3px 5px}
+ .horse-meta .place{font-size:11px}
+ .horse-meta .person{font-size:10px}
+ .horse .race{font-size:10.5px}
+}
 </style>
 </head>
 <body>
@@ -70,6 +108,7 @@ h1{font-size:clamp(23px,4vw,35px);line-height:1.12;letter-spacing:-.6px;margin:6
 "use strict";
 const BASE="../chevaux/";
 const labels={"engage":"Engagé","declare":"Déclaré partant","partant":"Partant confirmé","non-partant":"Non-partant","forfait":"Forfait","elimine":"Éliminé","qualification":"Qualification"};
+const shortLabels={"engage":"Engagé","declare":"Déclaré","partant":"Confirmé","non-partant":"Non-partant","forfait":"Forfait","elimine":"Éliminé","qualification":"Qualif."};
 const esc=v=>String(v==null?"":v).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const paris=()=>new Intl.DateTimeFormat("sv-SE",{timeZone:"Europe/Paris",year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit",hourCycle:"h23"}).format(new Date()).replace(" ","T");
 const day=s=>new Intl.DateTimeFormat("fr-FR",{weekday:"long",day:"numeric",month:"long",year:"numeric",timeZone:"Europe/Paris"}).format(new Date(s+"T12:00:00Z"));
@@ -92,8 +131,9 @@ const person=e.driver||e.jockey||"";
 const silkFile=horse.casaque==="galop"?"casaque-galop.svg":horse.casaque==="orange"?"casaque-orange.svg":"casaque-blanche.svg";
 return '<article class="event'+(isPartant(e)?' is-partant':'')+'">'
 +'<div class="when"><span class="silk-icon" role="img" aria-label="Casaque de '+esc(horse.name)+'" style="background-image:url(\'../assets/'+silkFile+'\')"></span></div>'
-+'<div class="horse"><div class="horse-heading"><strong><a target="_blank" rel="noopener noreferrer" href="'+BASE+encodeURIComponent(id)+'/">'+esc(horse.name)+'</a></strong>'+(isPartant(e)&&time?'<span class="start-time">'+esc(time)+'</span>':'')+'</div><div class="place">'+esc(e.hippodrome||"Hippodrome à confirmer")+' · '+esc(horse.discipline||"")+(e.numero?' · N° '+esc(e.numero):'')+'</div><div class="race">'+esc(detail)+'</div>'
-+'<div class="flag"><span class="pill '+esc(e.statut||"engage")+'">'+esc(label)+'</span>'+(person?'<span class="person">'+esc(person)+'</span>':'')+'</div></div></article>'}).join("")+'</div></section>').join("");
++'<div class="horse"><div class="horse-heading"><strong><a target="_blank" rel="noopener noreferrer" href="'+BASE+encodeURIComponent(id)+'/">'+esc(horse.name)+'</a></strong>'+(isPartant(e)&&time?'<span class="start-time">'+esc(time)+'</span>':'')+'<span class="pill '+esc(e.statut||"engage")+'" title="'+esc(label)+'" aria-label="'+esc(label)+'"><span class="pill-full">'+esc(label)+'</span><span class="pill-compact" aria-hidden="true">'+esc(shortLabels[e.statut]||label)+'</span></span></div>'
++'<div class="horse-meta"><span class="place" title="'+esc((e.hippodrome||"Hippodrome à confirmer")+' · '+(horse.discipline||"")+(e.numero?' · N° '+e.numero:''))+'">'+esc(e.hippodrome||"Hippodrome à confirmer")+' · '+esc(horse.discipline||"")+(e.numero?' · N° '+esc(e.numero):'')+'</span>'+(person?'<span class="person">'+esc(person)+'</span>':'')+'</div>'
++'<div class="race" title="'+esc(detail)+'">'+esc(detail)+'</div></div></article>'}).join("")+'</div></section>').join("");
 resize();
 }
 function resize(){try{window.parent.postMessage({kind:"ecurie-initial-engagements-height",height:document.documentElement.scrollHeight}, "*")}catch(_){}}
