@@ -1115,7 +1115,7 @@
     "giorgiana": [
       {
         "date": "2026-11-19",
-        "heure": "14:30",
+        "heure": "13:10",
         "hippodrome": "Saint-Cloud",
         "type": "Plat",
         "prix": "Prix du Tunnel de Saint-Cloud",
@@ -1126,24 +1126,28 @@
         "code_programme": "1193",
         "part": "A (25 %)",
         "jockey": "Léo ROUSSEL",
-        "entraineur": "Gilles PANNIER"
+        "entraineur": "Gilles PANNIER",
+        "course": "R1C5",
+        "numero": 14
       }
     ],
     "le-roi-leon": [
       {
         "date": "2026-11-19",
-        "heure": "13:10",
+        "heure": "14:30",
         "hippodrome": "Saint-Cloud",
         "type": "Plat",
-        "prix": "Prix Del Monte",
-        "allocation": 25900,
+        "prix": "Prix de Boadilla Del Monte",
+        "allocation": 21100,
         "distance": "2000 m",
         "statut": "partant",
         "source_description": "Déclarations France Galop transmises par le gérant le 17/11/2026 ; horaire confirmé par le gérant. ",
         "code_programme": "11197",
         "part": "R (16 %)",
         "jockey": "Léo ROUSSEL",
-        "entraineur": "Gilles PANNIER"
+        "entraineur": "Gilles PANNIER",
+        "course": "R1C7",
+        "numero": 5
       }
     ],
     "douriann": [
