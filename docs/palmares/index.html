@@ -298,12 +298,12 @@ function replayPreference(value,record,discipline){
  const url=replayUrl(value);
  if(!url)return null;
  const host=new URL(url).hostname.replace(/^www\./,"").toLowerCase();
- // Rejeter un lien Equidia dont le R/C contredit la course identifiée.
- if(host==="equidia.fr"){
-  const label=String(record&&record.controle||"");
-  const expected=label.match(/\bR(\d+)\s*C(\d+)\b/i);
-  const actual=new URL(url).pathname.match(/\/R(\d+)\/C(\d+)/i);
-  if(expected&&actual&&(Number(expected[1])!==Number(actual[1])||Number(expected[2])!==Number(actual[2])))return null;
+ // Les plateformes peuvent numéroter différemment une même réunion
+ // (ex. Lisieux le 01/11/2026). Contrôler la date exacte du lien plutôt
+ // que comparer arbitrairement les numéros R d'Equidia et d'autres sites.
+ if(record&&record.date){
+  const inUrl=new URL(url).pathname.match(/\/(\d{4}-\d{2}-\d{2})\//);
+  if(!inUrl||inUrl[1]!==record.date)return null;
  }
  if(discipline==="galop"||discipline==="obstacle"){
   if(host!=="equidia.fr")return null;
@@ -314,10 +314,16 @@ function replayPreference(value,record,discipline){
  return null;
 }
 function replayButton(result,mobile){
- const url=replayUrl(result.video)||resultatUrl(result.source);
+ // Le lien officiel doit également correspondre à la date de la course.
+ const officialForThisRace=value=>{
+  const u=replayUrl(value);
+  return u&&new URL(u).pathname.includes("/"+result.date+"/")?u:"";
+ };
+ const movie=officialForThisRace(result.video);
+ const url=movie||officialForThisRace(result.source);
  if(!url)return '<span class="replay-unavailable" title="Aucun lien LeTROT ou Equidia disponible pour cette course">À retrouver</span>';
  // Vidéo prioritaire ; sinon lien Résultat lorsque la vidéo n'est pas connue.
- const isReplay=!!result.video&&result.videoSource==="video"&&!!replayUrl(result.video);
+ const isReplay=!!movie&&result.videoSource==="video";
  const label=isReplay?"Vidéo":"Résultat";
  const svg='<svg viewBox="0 0 24 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="1.5" y="1.5" width="21" height="17" rx="4" stroke="currentColor" stroke-width="1.7"/><path d="m10 6 6.2 4L10 14V6Z" fill="currentColor"/></svg>';
  const title=(isReplay?"Page LeTROT / Equidia (vidéo selon disponibilité)":"Page officielle du résultat")+" : "+result.cheval+" du "+result.date.split("-").reverse().join("/");
