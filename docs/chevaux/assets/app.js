@@ -166,8 +166,8 @@ function latestResults(s){
       +'</li>';
   }).join('');
   return '<section class="recent-results" aria-labelledby="recent-results-title">'
-    +'<div class="recent-heading"><h2 id="recent-results-title">🏁 Nos derniers résultats</h2><span>'+(performances.length>5?'↓ Défiler · ':'')+'Trot &amp; galop</span></div>'
-    +(rows?'<ol class="recent-list" aria-label="Les 15 dernières performances, faire défiler pour les suivantes" tabindex="0">'+rows+'</ol>':'<p class="recent-empty">Aucun résultat récent enregistré pour le moment.</p>')
+    +'<div class="recent-heading"><h2 id="recent-results-title">🏁 Nos derniers résultats</h2>'+(performances.length>5?'<button type="button" id="recent-scroll-next" class="recent-scroll-hint" aria-controls="recent-scroll-list" aria-label="Faire défiler les résultats vers le bas"><span class="recent-scroll-arrow" aria-hidden="true">↓</span><span class="recent-scroll-label">Défiler</span></button>':'')+'</div>'
+    +(rows?'<ol id="recent-scroll-list" class="recent-list" aria-label="Les 15 dernières performances, faire défiler pour les suivantes" tabindex="0">'+rows+'</ol>':'<p class="recent-empty">Aucun résultat récent enregistré pour le moment.</p>')
     +'</section>';
 }
 
@@ -191,6 +191,26 @@ function catalog(s){
       '</div>'+
       '<div class="grid" id="cards"></div>'+
     '</main>'+footer();
+  // L'indicateur est aussi une vraie commande : passer aux cinq résultats
+  // suivants sans augmenter la hauteur du bloc. Le geste tactile reste actif.
+  const recentScroll=$('#recent-scroll-list'),scrollButton=$('#recent-scroll-next');
+  if(recentScroll&&scrollButton){
+    const arrow=scrollButton.querySelector('.recent-scroll-arrow');
+    const label=scrollButton.querySelector('.recent-scroll-label');
+    const refreshScrollHint=()=>{
+      const atEnd=recentScroll.scrollTop>=recentScroll.scrollHeight-recentScroll.clientHeight-3;
+      arrow.textContent=atEnd?'↑':'↓';
+      label.textContent=atEnd?'Retour':'Défiler';
+      scrollButton.setAttribute('aria-label',atEnd?'Revenir aux premiers résultats':'Faire défiler les résultats vers le bas');
+    };
+    scrollButton.addEventListener('click',()=>{
+      const atEnd=recentScroll.scrollTop>=recentScroll.scrollHeight-recentScroll.clientHeight-3;
+      if(atEnd)recentScroll.scrollTo({top:0,behavior:'smooth'});
+      else recentScroll.scrollBy({top:recentScroll.clientHeight,behavior:'smooth'});
+    });
+    recentScroll.addEventListener('scroll',refreshScrollHint,{passive:true});
+    refreshScrollHint();
+  }
   const horseSelect=$('#filter-horse'),trainerSelect=$('#filter-trainer');
   function redraw(){
     const selectedHorse=horseSelect.value,selectedTrainer=trainerSelect.value;
