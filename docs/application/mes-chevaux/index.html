@@ -145,7 +145,7 @@ async function setup(){
     head.append(addLink(part.cheval_nom,part.cheval_slug));
     const confirmed=['declare','partant'].includes(event.statut);
     head.append(el('span',confirmed?'Partant confirmé':'Engagé','mini-badge'+(confirmed?' confirmed':'')));
-    row.append(head,el('small',[displayDate(event.date),event.heure||'',event.hippodrome||''].filter(Boolean).join(' · '),'muted'));
+    row.append(head,el('small',[displayDate(event.date),event.heure||'',event.hippodrome||'',event.type_course||'',event.surface||''].filter(Boolean).join(' · '),'muted'));
     raceBox.append(row);
   }
   const perfBox=$('last-results');
