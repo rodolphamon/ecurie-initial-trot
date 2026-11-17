@@ -1,0 +1,1593 @@
+{
+  "mise_a_jour": "2026-11-18",
+  "description": "Liste de travail des courses du palmarès sans lien officiel LeTROT/Equidia référencé. Une URL de page course ne prouve pas la disponibilité du replay. Ne pas créer de lien non vérifié. Les courses sous casaques extérieures restent affichées mais exclues des compteurs selon les règles existantes.",
+  "regle": "Trot : LeTROT puis Equidia ; galop : Equidia. Aucun lien externe d'une autre plateforme dans les boutons publics.",
+  "bilan": {
+    "performances": 535,
+    "liens_officiels_references": 340,
+    "liens_officiels_a_retrouver": 195
+  },
+  "a_retrouver_par_annee": {
+    "2008": 6,
+    "2009": 8,
+    "2010": 1,
+    "2011": 5,
+    "2012": 6,
+    "2013": 17,
+    "2014": 8,
+    "2015": 13,
+    "2016": 5,
+    "2017": 6,
+    "2018": 2,
+    "2019": 9,
+    "2020": 6,
+    "2021": 16,
+    "2022": 18,
+    "2023": 26,
+    "2024": 17,
+    "2025": 11,
+    "2026": 15
+  },
+  "courses": [
+    {
+      "date": "2026-11-08",
+      "cheval": "JUNINIO FLEURY",
+      "hippodrome": "CASTELSARRASIN",
+      "discipline": "attele",
+      "classement": 2,
+      "priorite": "recente"
+    },
+    {
+      "date": "2026-10-25",
+      "cheval": "LUCKY DES GAUDINES",
+      "hippodrome": "MONTAUBAN",
+      "discipline": "attele",
+      "classement": 2,
+      "priorite": "recente"
+    },
+    {
+      "date": "2026-09-27",
+      "cheval": "JUNINIO FLEURY",
+      "hippodrome": "VILLENEUVE-SUR-LOT",
+      "discipline": "attele",
+      "classement": 2,
+      "priorite": "recente"
+    },
+    {
+      "date": "2026-09-20",
+      "cheval": "ANDRESY",
+      "hippodrome": "SABLE-SUR-SARTHE",
+      "discipline": "galop",
+      "classement": 3,
+      "priorite": "recente"
+    },
+    {
+      "date": "2026-08-15",
+      "cheval": "MANDRAGORA FLEURY",
+      "hippodrome": "CARENTAN",
+      "discipline": "attele",
+      "classement": 3,
+      "priorite": "recente"
+    },
+    {
+      "date": "2026-08-03",
+      "cheval": "MANDRAGORA FLEURY",
+      "hippodrome": "ROCHEFORT-SUR-LOIRE",
+      "discipline": "attele",
+      "classement": 2,
+      "priorite": "recente"
+    },
+    {
+      "date": "2026-07-12",
+      "cheval": "LORD ON WAY",
+      "hippodrome": "MONTMIRAIL",
+      "discipline": "attele",
+      "classement": 3,
+      "priorite": "recente"
+    },
+    {
+      "date": "2026-07-12",
+      "cheval": "MEMPHIS BELLE",
+      "hippodrome": "RANES",
+      "discipline": "attele",
+      "classement": 2,
+      "priorite": "recente"
+    },
+    {
+      "date": "2026-05-25",
+      "cheval": "NELSON STAR",
+      "hippodrome": "MIRAMONT-DE-GUYENNE",
+      "discipline": "attele",
+      "classement": 2,
+      "priorite": "recente"
+    },
+    {
+      "date": "2026-05-24",
+      "cheval": "NEBRASKA FLEURY",
+      "hippodrome": "ROYAN-ATLANTIQUE",
+      "discipline": "attele",
+      "classement": 2,
+      "priorite": "recente"
+    },
+    {
+      "date": "2026-05-03",
+      "cheval": "JETHAN DE MONGOCHY",
+      "hippodrome": "MONPAZIER",
+      "discipline": "attele",
+      "classement": 3,
+      "priorite": "recente"
+    },
+    {
+      "date": "2026-04-12",
+      "cheval": "NEBRASKA FLEURY",
+      "hippodrome": "TOURS-CHAMBRAY",
+      "discipline": "attele",
+      "classement": 3,
+      "priorite": "recente"
+    },
+    {
+      "date": "2026-04-06",
+      "cheval": "JUNINIO FLEURY",
+      "hippodrome": "CASTILLONNES",
+      "discipline": "attele",
+      "classement": 3,
+      "priorite": "recente"
+    },
+    {
+      "date": "2026-03-01",
+      "cheval": "JETHAN DE MONGOCHY",
+      "hippodrome": "CHALLANS",
+      "discipline": "attele",
+      "classement": 1,
+      "priorite": "recente"
+    },
+    {
+      "date": "2026-02-23",
+      "cheval": "MONA LISA STARDUST",
+      "hippodrome": "MONTAUBAN",
+      "discipline": "attele",
+      "classement": 3,
+      "priorite": "recente"
+    },
+    {
+      "date": "2025-12-21",
+      "cheval": "JETHAN DE MONGOCHY",
+      "hippodrome": "GRENADE-SUR-GARONNE",
+      "discipline": "attele",
+      "classement": 3,
+      "priorite": "recente"
+    },
+    {
+      "date": "2025-08-31",
+      "cheval": "JETHAN DE MONGOCHY",
+      "hippodrome": "VILLENEUVE SUR LOT",
+      "discipline": "attele",
+      "classement": 1,
+      "priorite": "recente"
+    },
+    {
+      "date": "2025-08-23",
+      "cheval": "JETHAN DE MONGOCHY",
+      "hippodrome": "VILLEREAL",
+      "discipline": "attele",
+      "classement": 3,
+      "priorite": "recente"
+    },
+    {
+      "date": "2025-08-11",
+      "cheval": "HAMPTON AMERICA",
+      "hippodrome": "CASTERA-VERDUZAN",
+      "discipline": "attele",
+      "classement": 3,
+      "priorite": "recente"
+    },
+    {
+      "date": "2025-08-03",
+      "cheval": "JETHAN DE MONGOCHY",
+      "hippodrome": "GRAMAT",
+      "discipline": "attele",
+      "classement": 2,
+      "priorite": "recente"
+    },
+    {
+      "date": "2025-07-13",
+      "cheval": "LARKY PERRINE",
+      "hippodrome": "RANES",
+      "discipline": "attele",
+      "classement": 2,
+      "priorite": "recente"
+    },
+    {
+      "date": "2025-07-06",
+      "cheval": "JETHAN DE MONGOCHY",
+      "hippodrome": "MONPAZIER",
+      "discipline": "attele",
+      "classement": 1,
+      "priorite": "recente"
+    },
+    {
+      "date": "2025-06-01",
+      "cheval": "ISOLEE DU BOUILLON",
+      "hippodrome": "ALENCON",
+      "discipline": "attele",
+      "classement": 1,
+      "priorite": "recente"
+    },
+    {
+      "date": "2025-05-08",
+      "cheval": "ISOLEE DU BOUILLON",
+      "hippodrome": "SAINT-AUBIN-LES-ELBEUF",
+      "discipline": "attele",
+      "classement": 1,
+      "priorite": "recente"
+    },
+    {
+      "date": "2025-05-04",
+      "cheval": "JETHAN DE MONGOCHY",
+      "hippodrome": "CASTELSARRASIN",
+      "discipline": "attele",
+      "classement": 1,
+      "priorite": "recente"
+    },
+    {
+      "date": "2025-04-13",
+      "cheval": "L'ARTISTE DE GAGOU",
+      "hippodrome": "SAINT-AUBIN-LES-ELBEUF",
+      "discipline": "attele",
+      "classement": 1,
+      "priorite": "recente"
+    },
+    {
+      "date": "2024-10-06",
+      "cheval": "MANDRAGORA FLEURY",
+      "hippodrome": "ALENCON",
+      "discipline": "attele",
+      "classement": 3,
+      "priorite": "historique"
+    },
+    {
+      "date": "2024-09-22",
+      "cheval": "GUEPARD DE MONE",
+      "hippodrome": "VILLENEUVE-SUR-LOT",
+      "discipline": "attele",
+      "classement": 3,
+      "priorite": "historique"
+    },
+    {
+      "date": "2024-09-15",
+      "cheval": "ISOLEE DU BOUILLON",
+      "hippodrome": "CHATEAUROUX",
+      "discipline": "attele",
+      "classement": 1,
+      "priorite": "historique"
+    },
+    {
+      "date": "2024-08-18",
+      "cheval": "ISOLEE DU BOUILLON",
+      "hippodrome": "AGON-COUTAINVILLE",
+      "discipline": "attele",
+      "classement": 1,
+      "priorite": "historique"
+    },
+    {
+      "date": "2024-08-04",
+      "cheval": "ISOLEE DU BOUILLON",
+      "hippodrome": "LA FERTE-VIDAME",
+      "discipline": "attele",
+      "classement": 2,
+      "priorite": "historique"
+    },
+    {
+      "date": "2024-07-21",
+      "cheval": "ISOLEE DU BOUILLON",
+      "hippodrome": "LA FERTÉ-VIDAME",
+      "discipline": "attele",
+      "classement": 1,
+      "priorite": "historique"
+    },
+    {
+      "date": "2024-07-14",
+      "cheval": "FANTOMAS DU VAL",
+      "hippodrome": "BAGNOLES DE L'ORNE",
+      "discipline": "attele",
+      "classement": 3,
+      "priorite": "historique"
+    },
+    {
+      "date": "2024-06-16",
+      "cheval": "JAMAIS SANS ELLE",
+      "hippodrome": "RAMBOUILLET",
+      "discipline": "attele",
+      "classement": 2,
+      "priorite": "historique"
+    },
+    {
+      "date": "2024-06-09",
+      "cheval": "JETHAN DE MONGOCHY",
+      "hippodrome": "ARRAS",
+      "discipline": "attele",
+      "classement": 2,
+      "priorite": "historique"
+    },
+    {
+      "date": "2024-06-03",
+      "cheval": "HOMAYA DU BOCAGE",
+      "hippodrome": "EAUZE",
+      "discipline": "attele",
+      "classement": 3,
+      "priorite": "historique"
+    },
+    {
+      "date": "2024-05-27",
+      "cheval": "ILLAM DE MONGOCHY",
+      "hippodrome": "BERNAY",
+      "discipline": "attele",
+      "classement": 3,
+      "priorite": "historique"
+    },
+    {
+      "date": "2024-05-09",
+      "cheval": "JAMAIS SANS ELLE",
+      "hippodrome": "VALOGNES",
+      "discipline": "attele",
+      "classement": 3,
+      "priorite": "historique"
+    },
+    {
+      "date": "2024-04-27",
+      "cheval": "JODEON",
+      "hippodrome": "GOURNAY-EN-BRAY",
+      "discipline": "attele",
+      "classement": 3,
+      "priorite": "historique"
+    },
+    {
+      "date": "2024-04-06",
+      "cheval": "JESSIE DES LANDES",
+      "hippodrome": "SAUMUR",
+      "discipline": "attele",
+      "classement": 3,
+      "priorite": "historique"
+    },
+    {
+      "date": "2024-04-01",
+      "cheval": "JUNINIO FLEURY",
+      "hippodrome": "ECOMMOY",
+      "discipline": "attele",
+      "classement": 1,
+      "priorite": "historique"
+    },
+    {
+      "date": "2024-03-24",
+      "cheval": "JESSIE DES LANDES",
+      "hippodrome": "LA GUERCHE-DE-BRETAGNE",
+      "discipline": "attele",
+      "classement": 2,
+      "priorite": "historique"
+    },
+    {
+      "date": "2024-02-25",
+      "cheval": "ILLAM DE MONGOCHY",
+      "hippodrome": "SAUMUR",
+      "discipline": "attele",
+      "classement": 2,
+      "priorite": "historique"
+    },
+    {
+      "date": "2023-11-05",
+      "cheval": "GUEPARD DE MONE",
+      "hippodrome": "GRENADE-SUR-GARONNE",
+      "discipline": "attele",
+      "classement": 3,
+      "priorite": "historique"
+    },
+    {
+      "date": "2023-09-17",
+      "cheval": "HANANE MONTAVAL",
+      "hippodrome": "VILLEDIEU-LES-POELES",
+      "discipline": "attele",
+      "classement": 1,
+      "priorite": "historique"
+    },
+    {
+      "date": "2023-09-17",
+      "cheval": "ILLAM DE MONGOCHY",
+      "hippodrome": "BLAIN-BOUVRON-LE GAVRE",
+      "discipline": "attele",
+      "classement": 2,
+      "priorite": "historique"
+    },
+    {
+      "date": "2023-09-10",
+      "cheval": "GUEPARD DE MONE",
+      "hippodrome": "VILLENEUVE SUR LOT",
+      "discipline": "attele",
+      "classement": 1,
+      "priorite": "historique"
+    },
+    {
+      "date": "2023-09-10",
+      "cheval": "JUNINIO FLEURY",
+      "hippodrome": "BERNAY",
+      "discipline": "attele",
+      "classement": 3,
+      "priorite": "historique"
+    },
+    {
+      "date": "2023-09-02",
+      "cheval": "FIESTA TEJY",
+      "hippodrome": "LANGON-LIBOURNE",
+      "discipline": "attele",
+      "classement": 2,
+      "priorite": "historique"
+    },
+    {
+      "date": "2023-08-08",
+      "cheval": "HERMES DU PRESSOIR",
+      "hippodrome": "TRIE-SUR-BAISE",
+      "discipline": "attele",
+      "classement": 2,
+      "priorite": "historique"
+    },
+    {
+      "date": "2023-08-06",
+      "cheval": "ISOLEE DU BOUILLON",
+      "hippodrome": "BRÉHAL",
+      "discipline": "attele",
+      "classement": 2,
+      "priorite": "historique"
+    },
+    {
+      "date": "2023-08-01",
+      "cheval": "HANANE MONTAVAL",
+      "hippodrome": "AVRANCHES",
+      "discipline": "attele",
+      "classement": 1,
+      "priorite": "historique"
+    },
+    {
+      "date": "2023-08-01",
+      "cheval": "JAMAIS SANS ELLE",
+      "hippodrome": "AVRANCHES",
+      "discipline": "attele",
+      "classement": 1,
+      "priorite": "historique"
+    },
+    {
+      "date": "2023-07-30",
+      "cheval": "ISOLEE DU BOUILLON",
+      "hippodrome": "BERNAY",
+      "discipline": "attele",
+      "classement": 2,
+      "priorite": "historique"
+    },
+    {
+      "date": "2023-07-23",
+      "cheval": "GUEPARD DE MONE",
+      "hippodrome": "SAINT-OMER",
+      "discipline": "attele",
+      "classement": 1,
+      "priorite": "historique"
+    },
+    {
+      "date": "2023-07-14",
+      "cheval": "HANANE MONTAVAL",
+      "hippodrome": "BAGNOLES-DE-L'ORNE",
+      "discipline": "attele",
+      "classement": 1,
+      "priorite": "historique"
+    },
+    {
+      "date": "2023-07-09",
+      "cheval": "ISOLEE DU BOUILLON",
+      "hippodrome": "BERNAY",
+      "discipline": "attele",
+      "classement": 1,
+      "priorite": "historique"
+    },
+    {
+      "date": "2023-07-04",
+      "cheval": "HERMES DU PRESSOIR",
+      "hippodrome": "BIARRITZ",
+      "discipline": "attele",
+      "classement": 3,
+      "priorite": "historique"
+    },
+    {
+      "date": "2023-07-02",
+      "cheval": "GOSPEL",
+      "hippodrome": "ECOMMOY",
+      "discipline": "monte",
+      "classement": 2,
+      "priorite": "historique"
+    },
+    {
+      "date": "2023-06-11",
+      "cheval": "ISOLEE DU BOUILLON",
+      "hippodrome": "SAVIGNY-SUR-BRAYE",
+      "discipline": "attele",
+      "classement": 1,
+      "priorite": "historique"
+    },
+    {
+      "date": "2023-05-29",
+      "cheval": "HANANE MONTAVAL",
+      "hippodrome": "DURTAL",
+      "discipline": "attele",
+      "classement": 2,
+      "priorite": "historique"
+    },
+    {
+      "date": "2023-05-14",
+      "cheval": "FANTOMAS DU VAL",
+      "hippodrome": "CARPENTRAS",
+      "discipline": "attele",
+      "classement": 1,
+      "priorite": "historique"
+    },
+    {
+      "date": "2023-05-14",
+      "cheval": "ISOLEE DU BOUILLON",
+      "hippodrome": "ALENCON",
+      "discipline": "attele",
+      "classement": 3,
+      "priorite": "historique"
+    },
+    {
+      "date": "2023-05-01",
+      "cheval": "JUNINIO FLEURY",
+      "hippodrome": "FOUGERES",
+      "discipline": "attele",
+      "classement": 2,
+      "priorite": "historique"
+    },
+    {
+      "date": "2023-05-01",
+      "cheval": "KOBLENZA DAIRPET",
+      "hippodrome": "BERNAY",
+      "discipline": "attele",
+      "classement": 2,
+      "priorite": "historique"
+    },
+    {
+      "date": "2023-04-23",
+      "cheval": "JUNINIO FLEURY",
+      "hippodrome": "SAINT-AUBIN-LES-ELBEUF",
+      "discipline": "attele",
+      "classement": 2,
+      "priorite": "historique"
+    },
+    {
+      "date": "2023-03-26",
+      "cheval": "HOMAYA DU BOCAGE",
+      "hippodrome": "CHARTRES",
+      "discipline": "attele",
+      "classement": 2,
+      "priorite": "historique"
+    },
+    {
+      "date": "2023-03-26",
+      "cheval": "JERRY LOOK",
+      "hippodrome": "GOURNAY-EN-BRAY",
+      "discipline": "attele",
+      "classement": 1,
+      "priorite": "historique"
+    },
+    {
+      "date": "2023-02-25",
+      "cheval": "ISBA QUICK",
+      "hippodrome": "MONTAUBAN",
+      "discipline": "attele",
+      "classement": 2,
+      "priorite": "historique"
+    },
+    {
+      "date": "2022-10-09",
+      "cheval": "JETHAN DE MONGOCHY",
+      "hippodrome": "REIMS",
+      "discipline": "attele",
+      "classement": 1,
+      "priorite": "historique"
+    },
+    {
+      "date": "2022-10-02",
+      "cheval": "ILLAM DE MONGOCHY",
+      "hippodrome": "GOURNAY-EN-BRAY",
+      "discipline": "attele",
+      "classement": 1,
+      "priorite": "historique"
+    },
+    {
+      "date": "2022-08-28",
+      "cheval": "HANANE MONTAVAL",
+      "hippodrome": "ROYAN-ATLANTIQUE",
+      "discipline": "attele",
+      "classement": 2,
+      "priorite": "historique"
+    },
+    {
+      "date": "2022-08-17",
+      "cheval": "JETHAN DE MONGOCHY",
+      "hippodrome": "ROYAN-ATLANTIQUE",
+      "discipline": "attele",
+      "classement": 3,
+      "priorite": "historique"
+    },
+    {
+      "date": "2022-08-09",
+      "cheval": "DARWIN LA MESANGE",
+      "hippodrome": "TRIE-SUR-BAISE",
+      "discipline": "attele",
+      "classement": 3,
+      "priorite": "historique"
+    },
+    {
+      "date": "2022-07-31",
+      "cheval": "IVAN DRAGO",
+      "hippodrome": "VILLENEUVE-SUR-LOT",
+      "discipline": "attele",
+      "classement": 3,
+      "priorite": "historique"
+    },
+    {
+      "date": "2022-07-17",
+      "cheval": "HOMAYA DU BOCAGE",
+      "hippodrome": "BAGNOLES DE L'ORNE",
+      "discipline": "attele",
+      "classement": 2,
+      "priorite": "historique"
+    },
+    {
+      "date": "2022-07-11",
+      "cheval": "IVAN DRAGO",
+      "hippodrome": "BIARRITZ",
+      "discipline": "attele",
+      "classement": 2,
+      "priorite": "historique"
+    },
+    {
+      "date": "2022-07-03",
+      "cheval": "JETHAN DE MONGOCHY",
+      "hippodrome": "LE TOUQUET",
+      "discipline": "attele",
+      "classement": 2,
+      "priorite": "historique"
+    },
+    {
+      "date": "2022-06-18",
+      "cheval": "JETHAN DE MONGOCHY",
+      "hippodrome": "LISIEUX",
+      "discipline": "attele",
+      "classement": 2,
+      "priorite": "historique"
+    },
+    {
+      "date": "2022-06-05",
+      "cheval": "IVAN DRAGO",
+      "hippodrome": "MONTAUBAN",
+      "discipline": "attele",
+      "classement": 3,
+      "priorite": "historique"
+    },
+    {
+      "date": "2022-04-30",
+      "cheval": "JULY DU GUESNE",
+      "hippodrome": "GOURNAY-EN-BRAY",
+      "discipline": "attele",
+      "classement": 1,
+      "priorite": "historique"
+    },
+    {
+      "date": "2022-04-17",
+      "cheval": "HOMAYA DU BOCAGE",
+      "hippodrome": "ECOMMOY",
+      "discipline": "attele",
+      "classement": 2,
+      "priorite": "historique"
+    },
+    {
+      "date": "2022-04-17",
+      "cheval": "JULY DU GUESNE",
+      "hippodrome": "LES ANDELYS",
+      "discipline": "attele",
+      "classement": 2,
+      "priorite": "historique"
+    },
+    {
+      "date": "2022-04-10",
+      "cheval": "HERMES PLANCHETTE",
+      "hippodrome": "RAMBOUILLET",
+      "discipline": "attele",
+      "classement": 2,
+      "priorite": "historique"
+    },
+    {
+      "date": "2022-04-10",
+      "cheval": "JULY DU GUESNE",
+      "hippodrome": "LE MONT-SAINT-MICHEL",
+      "discipline": "attele",
+      "classement": 1,
+      "priorite": "historique"
+    },
+    {
+      "date": "2022-04-03",
+      "cheval": "HOMAYA DU BOCAGE",
+      "hippodrome": "VIRE NORMANDIE",
+      "discipline": "attele",
+      "classement": 3,
+      "priorite": "historique"
+    },
+    {
+      "date": "2022-04-03",
+      "cheval": "JULY DU GUESNE",
+      "hippodrome": "VIRE NORMANDIE",
+      "discipline": "attele",
+      "classement": 2,
+      "priorite": "historique"
+    },
+    {
+      "date": "2021-12-04",
+      "cheval": "HERMES DU FOSSE",
+      "hippodrome": "REIMS",
+      "discipline": "attele",
+      "classement": 1,
+      "priorite": "historique"
+    },
+    {
+      "date": "2021-10-18",
+      "cheval": "HIP HOP JULRY",
+      "hippodrome": "CASTERA-VERDUZAN",
+      "discipline": "attele",
+      "classement": 1,
+      "priorite": "historique"
+    },
+    {
+      "date": "2021-09-27",
+      "cheval": "FLEUR VIVANCIERE",
+      "hippodrome": "VIC-FEZENSAC",
+      "discipline": "attele",
+      "classement": 3,
+      "priorite": "historique"
+    },
+    {
+      "date": "2021-09-26",
+      "cheval": "HIP HOP JULRY",
+      "hippodrome": "VILLENEUVE-SUR-LOT",
+      "discipline": "attele",
+      "classement": 3,
+      "priorite": "historique"
+    },
+    {
+      "date": "2021-09-26",
+      "cheval": "IDEE FLORALE",
+      "hippodrome": "BIHOREL-LES-ROUEN",
+      "discipline": "attele",
+      "classement": 1,
+      "priorite": "historique"
+    },
+    {
+      "date": "2021-09-05",
+      "cheval": "INTREPID ITALIAN",
+      "hippodrome": "NIORT",
+      "discipline": "galop",
+      "classement": 1,
+      "priorite": "historique"
+    },
+    {
+      "date": "2021-08-30",
+      "cheval": "FLEUR VIVANCIERE",
+      "hippodrome": "CAZAUBON",
+      "discipline": "attele",
+      "classement": 1,
+      "priorite": "historique"
+    },
+    {
+      "date": "2021-08-07",
+      "cheval": "IBERIK DE MONGOCHY",
+      "hippodrome": "CARENTAN",
+      "discipline": "attele",
+      "classement": 2,
+      "priorite": "historique"
+    },
+    {
+      "date": "2021-07-31",
+      "cheval": "IDEE FLORALE",
+      "hippodrome": "RANES",
+      "discipline": "attele",
+      "classement": 3,
+      "priorite": "historique"
+    },
+    {
+      "date": "2021-07-05",
+      "cheval": "CAID DORE",
+      "hippodrome": "EAUZE",
+      "discipline": "attele",
+      "classement": 2,
+      "priorite": "historique"
+    },
+    {
+      "date": "2021-07-05",
+      "cheval": "IBERIK DE MONGOCHY",
+      "hippodrome": "SABLE-SUR-SARTHE",
+      "discipline": "attele",
+      "classement": 2,
+      "priorite": "historique"
+    },
+    {
+      "date": "2021-06-06",
+      "cheval": "CAID DORE",
+      "hippodrome": "SABLE-SUR-SARTHE",
+      "discipline": "attele",
+      "classement": 1,
+      "priorite": "historique"
+    },
+    {
+      "date": "2021-04-18",
+      "cheval": "GOSPEL",
+      "hippodrome": "TOURS-CHAMBRAY",
+      "discipline": "monte",
+      "classement": 1,
+      "priorite": "historique"
+    },
+    {
+      "date": "2021-04-11",
+      "cheval": "GINKO",
+      "hippodrome": "RAMBOUILLET",
+      "discipline": "attele",
+      "classement": 3,
+      "priorite": "historique"
+    },
+    {
+      "date": "2021-03-07",
+      "cheval": "GOSPEL",
+      "hippodrome": "CHALLANS",
+      "discipline": "monte",
+      "classement": 2,
+      "priorite": "historique"
+    },
+    {
+      "date": "2021-02-06",
+      "cheval": "FLEUR VIVANCIERE",
+      "hippodrome": "MONTAUBAN",
+      "discipline": "attele",
+      "classement": 1,
+      "priorite": "historique"
+    },
+    {
+      "date": "2020-12-14",
+      "cheval": "FLEUR VIVANCIERE",
+      "hippodrome": "BORDEAUX",
+      "discipline": "attele",
+      "classement": 3,
+      "priorite": "historique"
+    },
+    {
+      "date": "2020-12-06",
+      "cheval": "GOSPEL",
+      "hippodrome": "CHATEAUBRIANT",
+      "discipline": "attele",
+      "classement": 2,
+      "priorite": "historique"
+    },
+    {
+      "date": "2020-09-20",
+      "cheval": "FEEL SO GOOD",
+      "hippodrome": "VILLEDIEU-LES-POELES",
+      "discipline": "attele",
+      "classement": 2,
+      "priorite": "historique"
+    },
+    {
+      "date": "2020-09-06",
+      "cheval": "FETICHE ATOUT",
+      "hippodrome": "ALENCON",
+      "discipline": "attele",
+      "classement": 1,
+      "priorite": "historique"
+    },
+    {
+      "date": "2020-08-15",
+      "cheval": "GREAT FIRE",
+      "hippodrome": "FRANCHEVILLE-LA BARRE",
+      "discipline": "attele",
+      "classement": 3,
+      "priorite": "historique"
+    },
+    {
+      "date": "2020-05-17",
+      "cheval": "GINKO",
+      "hippodrome": "MAUQUENCHY",
+      "discipline": "attele",
+      "classement": 2,
+      "priorite": "historique"
+    },
+    {
+      "date": "2019-09-15",
+      "cheval": "CRYSTAL GIRL",
+      "hippodrome": "LAON",
+      "discipline": "attele",
+      "classement": 3,
+      "priorite": "historique"
+    },
+    {
+      "date": "2019-08-17",
+      "cheval": "GOSPEL",
+      "hippodrome": "SAINT-PIERRE-EN-AUGE",
+      "discipline": "monte",
+      "classement": 1,
+      "priorite": "historique"
+    },
+    {
+      "date": "2019-08-06",
+      "cheval": "ETOILE DE MONGOCHY",
+      "hippodrome": "TRIE-SUR-BAISE",
+      "discipline": "attele",
+      "classement": 2,
+      "priorite": "historique"
+    },
+    {
+      "date": "2019-07-31",
+      "cheval": "GOSPEL",
+      "hippodrome": "DOZULE",
+      "discipline": "attele",
+      "classement": 3,
+      "priorite": "historique"
+    },
+    {
+      "date": "2019-07-07",
+      "cheval": "ETOILE DE MONGOCHY",
+      "hippodrome": "MONPAZIER",
+      "discipline": "attele",
+      "classement": 2,
+      "priorite": "historique"
+    },
+    {
+      "date": "2019-06-16",
+      "cheval": "CRYSTAL GIRL",
+      "hippodrome": "LES ANDELYS",
+      "discipline": "attele",
+      "classement": 3,
+      "priorite": "historique"
+    },
+    {
+      "date": "2019-06-10",
+      "cheval": "CRYSTAL GIRL",
+      "hippodrome": "VILLEDIEU-LES-POELES",
+      "discipline": "attele",
+      "classement": 2,
+      "priorite": "historique"
+    },
+    {
+      "date": "2019-06-03",
+      "cheval": "CRYSTAL GIRL",
+      "hippodrome": "EAUZE",
+      "discipline": "attele",
+      "classement": 1,
+      "priorite": "historique"
+    },
+    {
+      "date": "2019-04-28",
+      "cheval": "FETICHE ATOUT",
+      "hippodrome": "SAINT-AUBIN-LES-ELBEUF",
+      "discipline": "monte",
+      "classement": 1,
+      "priorite": "historique"
+    },
+    {
+      "date": "2018-06-03",
+      "cheval": "ELFE ATOUT",
+      "hippodrome": "LAON",
+      "discipline": "attele",
+      "classement": 1,
+      "priorite": "historique"
+    },
+    {
+      "date": "2018-04-02",
+      "cheval": "VALMIN DE GUEUDE",
+      "hippodrome": "VILLEDIEU-LES-POELES",
+      "discipline": "attele",
+      "classement": 1,
+      "priorite": "historique"
+    },
+    {
+      "date": "2017-06-17",
+      "cheval": "ELFE ATOUT",
+      "hippodrome": "LISIEUX",
+      "discipline": "attele",
+      "classement": 3,
+      "priorite": "historique"
+    },
+    {
+      "date": "2017-06-05",
+      "cheval": "ETOILE DE MONGOCHY",
+      "hippodrome": "VILLEDIEU-LES-POELES",
+      "discipline": "attele",
+      "classement": 3,
+      "priorite": "historique"
+    },
+    {
+      "date": "2017-05-28",
+      "cheval": "ELFE ATOUT",
+      "hippodrome": "ARGENTAN",
+      "discipline": "attele",
+      "classement": 1,
+      "priorite": "historique"
+    },
+    {
+      "date": "2017-05-25",
+      "cheval": "ETOILE DE MONGOCHY",
+      "hippodrome": "BIHOREL-LES-ROUEN",
+      "discipline": "attele",
+      "classement": 3,
+      "priorite": "historique"
+    },
+    {
+      "date": "2017-03-19",
+      "cheval": "VALMIN DE GUEUDE",
+      "hippodrome": "CHOLET",
+      "discipline": "attele",
+      "classement": 2,
+      "priorite": "historique"
+    },
+    {
+      "date": "2017-03-05",
+      "cheval": "VALMIN DE GUEUDE",
+      "hippodrome": "SEICHES-SUR-LE-LOIR",
+      "discipline": "attele",
+      "classement": 3,
+      "priorite": "historique"
+    },
+    {
+      "date": "2016-10-15",
+      "cheval": "VALMIN DE GUEUDE",
+      "hippodrome": "PARAY-LE-MONIAL",
+      "discipline": "attele",
+      "classement": 3,
+      "priorite": "historique"
+    },
+    {
+      "date": "2016-09-18",
+      "cheval": "ACTRICE DE CERISY",
+      "hippodrome": "AGEN-LA-GARENNE",
+      "discipline": "attele",
+      "classement": 2,
+      "priorite": "historique"
+    },
+    {
+      "date": "2016-09-11",
+      "cheval": "ETOILE DE MONGOCHY",
+      "hippodrome": "BERNAY",
+      "discipline": "attele",
+      "classement": 3,
+      "priorite": "historique"
+    },
+    {
+      "date": "2016-08-01",
+      "cheval": "BEAUTE D'ONDEE",
+      "hippodrome": "BRÉHAL",
+      "discipline": "attele",
+      "classement": 3,
+      "priorite": "historique"
+    },
+    {
+      "date": "2016-04-24",
+      "cheval": "VALMIN DE GUEUDE",
+      "hippodrome": "GRENADE-SUR-GARONNE",
+      "discipline": "attele",
+      "classement": 1,
+      "priorite": "historique"
+    },
+    {
+      "date": "2015-12-20",
+      "cheval": "TYCOZ DE LADY",
+      "hippodrome": "MESLAY-DU-MAINE",
+      "discipline": "monte",
+      "classement": 1,
+      "priorite": "historique"
+    },
+    {
+      "date": "2015-12-05",
+      "cheval": "ACTRICE DE CERISY",
+      "hippodrome": "GRENADE-SUR-GARONNE",
+      "discipline": "attele",
+      "classement": 1,
+      "priorite": "historique"
+    },
+    {
+      "date": "2015-09-13",
+      "cheval": "VALMIN DE GUEUDE",
+      "hippodrome": "LANGON-LIBOURNE",
+      "discipline": "attele",
+      "classement": 2,
+      "priorite": "historique"
+    },
+    {
+      "date": "2015-08-01",
+      "cheval": "VALMIN DE GUEUDE",
+      "hippodrome": "VILLEREAL",
+      "discipline": "attele",
+      "classement": 2,
+      "priorite": "historique"
+    },
+    {
+      "date": "2015-07-21",
+      "cheval": "BEAUTE D'ONDEE",
+      "hippodrome": "PORNICHET",
+      "discipline": "attele",
+      "classement": 3,
+      "priorite": "historique"
+    },
+    {
+      "date": "2015-07-06",
+      "cheval": "BEAUTE D'ONDEE",
+      "hippodrome": "SABLE-SUR-SARTHE",
+      "discipline": "attele",
+      "classement": 1,
+      "priorite": "historique"
+    },
+    {
+      "date": "2015-06-21",
+      "cheval": "BEAUTE D'ONDEE",
+      "hippodrome": "QUESTEMBERT",
+      "discipline": "attele",
+      "classement": 3,
+      "priorite": "historique"
+    },
+    {
+      "date": "2015-06-13",
+      "cheval": "UKAPI DE GODISSON",
+      "hippodrome": "LE TOUQUET",
+      "discipline": "attele",
+      "classement": 3,
+      "priorite": "historique"
+    },
+    {
+      "date": "2015-06-07",
+      "cheval": "CALIE DE POMMERAYE",
+      "hippodrome": "GOURNAY-EN-BRAY",
+      "discipline": "attele",
+      "classement": 1,
+      "priorite": "historique"
+    },
+    {
+      "date": "2015-04-19",
+      "cheval": "CALIE DE POMMERAYE",
+      "hippodrome": "JULLOUVILLE-LES-PINS",
+      "discipline": "attele",
+      "classement": 3,
+      "priorite": "historique"
+    },
+    {
+      "date": "2015-04-06",
+      "cheval": "VALMIN DE GUEUDE",
+      "hippodrome": "CASTILLONNES",
+      "discipline": "attele",
+      "classement": 3,
+      "priorite": "historique"
+    },
+    {
+      "date": "2015-04-05",
+      "cheval": "ACTRICE DE CERISY",
+      "hippodrome": "BEAUMONT DE LOMAGNE",
+      "discipline": "attele",
+      "classement": 1,
+      "priorite": "historique"
+    },
+    {
+      "date": "2015-03-29",
+      "cheval": "TYCOZ DE LADY",
+      "hippodrome": "GRAIGNES",
+      "discipline": "attele",
+      "classement": 3,
+      "priorite": "historique"
+    },
+    {
+      "date": "2014-10-26",
+      "cheval": "VALMIN DE GUEUDE",
+      "hippodrome": "GRENADE-SUR-GARONNE",
+      "discipline": "attele",
+      "classement": 2,
+      "priorite": "historique"
+    },
+    {
+      "date": "2014-09-07",
+      "cheval": "ACTRICE DE CERISY",
+      "hippodrome": "BEAUMONT-DE-LOMAGNE",
+      "discipline": "attele",
+      "classement": 2,
+      "priorite": "historique"
+    },
+    {
+      "date": "2014-07-20",
+      "cheval": "RHEA SILVIA",
+      "hippodrome": "LES ANDELYS",
+      "discipline": "monte",
+      "classement": 2,
+      "priorite": "historique"
+    },
+    {
+      "date": "2014-07-15",
+      "cheval": "UKAPI DE GODISSON",
+      "hippodrome": "BIARRITZ",
+      "discipline": "monte",
+      "classement": 1,
+      "priorite": "historique"
+    },
+    {
+      "date": "2014-06-15",
+      "cheval": "UKAPI DE GODISSON",
+      "hippodrome": "LUXE",
+      "discipline": "attele",
+      "classement": 1,
+      "priorite": "historique"
+    },
+    {
+      "date": "2014-06-01",
+      "cheval": "RHEA SILVIA",
+      "hippodrome": "LIGNIERES EN BERRY",
+      "discipline": "monte",
+      "classement": 2,
+      "priorite": "historique"
+    },
+    {
+      "date": "2014-05-08",
+      "cheval": "RHEA SILVIA",
+      "hippodrome": "SAINT-AUBIN-LES-ELBEUF",
+      "discipline": "monte",
+      "classement": 1,
+      "priorite": "historique"
+    },
+    {
+      "date": "2014-01-29",
+      "cheval": "ADAMS",
+      "hippodrome": "BORDEAUX",
+      "discipline": "attele",
+      "classement": 1,
+      "priorite": "historique"
+    },
+    {
+      "date": "2013-11-10",
+      "cheval": "ACTRICE DE CERISY",
+      "hippodrome": "BORDEAUX",
+      "discipline": "attele",
+      "classement": 2,
+      "priorite": "historique"
+    },
+    {
+      "date": "2013-10-18",
+      "cheval": "ADAMS",
+      "hippodrome": "AMIENS",
+      "discipline": "attele",
+      "classement": 1,
+      "priorite": "historique"
+    },
+    {
+      "date": "2013-09-22",
+      "cheval": "TENOR DEBOUT",
+      "hippodrome": "ALENCON",
+      "discipline": "attele",
+      "classement": 3,
+      "priorite": "historique"
+    },
+    {
+      "date": "2013-09-08",
+      "cheval": "RHEA SILVIA",
+      "hippodrome": "COMPIEGNE",
+      "discipline": "monte",
+      "classement": 1,
+      "priorite": "historique"
+    },
+    {
+      "date": "2013-08-31",
+      "cheval": "RHEA SILVIA",
+      "hippodrome": "EAUZE",
+      "discipline": "monte",
+      "classement": 3,
+      "priorite": "historique"
+    },
+    {
+      "date": "2013-08-22",
+      "cheval": "TENOR DEBOUT",
+      "hippodrome": "MONTIGNAC-CHARENTE",
+      "discipline": "attele",
+      "classement": 2,
+      "priorite": "historique"
+    },
+    {
+      "date": "2013-08-15",
+      "cheval": "RHEA SILVIA",
+      "hippodrome": "CARENTAN",
+      "discipline": "monte",
+      "classement": 1,
+      "priorite": "historique"
+    },
+    {
+      "date": "2013-08-11",
+      "cheval": "TENOR DEBOUT",
+      "hippodrome": "LE SAP",
+      "discipline": "attele",
+      "classement": 1,
+      "priorite": "historique"
+    },
+    {
+      "date": "2013-08-06",
+      "cheval": "RHEA SILVIA",
+      "hippodrome": "AVRANCHES",
+      "discipline": "monte",
+      "classement": 2,
+      "priorite": "historique"
+    },
+    {
+      "date": "2013-07-27",
+      "cheval": "RHEA SILVIA",
+      "hippodrome": "COMPIEGNE",
+      "discipline": "monte",
+      "classement": 1,
+      "priorite": "historique"
+    },
+    {
+      "date": "2013-07-21",
+      "cheval": "RHEA SILVIA",
+      "hippodrome": "LES ANDELYS",
+      "discipline": "monte",
+      "classement": 1,
+      "priorite": "historique"
+    },
+    {
+      "date": "2013-07-14",
+      "cheval": "RHEA SILVIA",
+      "hippodrome": "FRANCHEVILLE-LA BARRE",
+      "discipline": "monte",
+      "classement": 2,
+      "priorite": "historique"
+    },
+    {
+      "date": "2013-06-23",
+      "cheval": "RHUM BARBES",
+      "hippodrome": "LES ANDELYS",
+      "discipline": "monte",
+      "classement": 1,
+      "priorite": "historique"
+    },
+    {
+      "date": "2013-05-26",
+      "cheval": "RHEA SILVIA",
+      "hippodrome": "RAMBOUILLET",
+      "discipline": "monte",
+      "classement": 1,
+      "priorite": "historique"
+    },
+    {
+      "date": "2013-05-19",
+      "cheval": "RHUM BARBES",
+      "hippodrome": "LE NEUBOURG",
+      "discipline": "monte",
+      "classement": 1,
+      "priorite": "historique"
+    },
+    {
+      "date": "2013-02-17",
+      "cheval": "URANUS DU COURS",
+      "hippodrome": "MONTAUBAN",
+      "discipline": "attele",
+      "classement": 2,
+      "priorite": "historique"
+    },
+    {
+      "date": "2013-01-13",
+      "cheval": "ADAMS",
+      "hippodrome": "ARGENTAN",
+      "discipline": "attele",
+      "classement": 2,
+      "priorite": "historique"
+    },
+    {
+      "date": "2012-08-19",
+      "cheval": "TENDRESSE DE RHISA",
+      "hippodrome": "SAINT-PIERRE-EN-AUGE",
+      "discipline": "attele",
+      "classement": 2,
+      "priorite": "historique"
+    },
+    {
+      "date": "2012-08-06",
+      "cheval": "URANUS DU COURS",
+      "hippodrome": "AUCH",
+      "discipline": "attele",
+      "classement": 2,
+      "priorite": "historique"
+    },
+    {
+      "date": "2012-07-30",
+      "cheval": "URANUS DU COURS",
+      "hippodrome": "GABARRET",
+      "discipline": "attele",
+      "classement": 2,
+      "priorite": "historique"
+    },
+    {
+      "date": "2012-07-19",
+      "cheval": "SKY IS BLUE",
+      "hippodrome": "BIARRITZ",
+      "discipline": "attele",
+      "classement": 1,
+      "priorite": "historique"
+    },
+    {
+      "date": "2012-05-13",
+      "cheval": "RHEA SILVIA",
+      "hippodrome": "DREUX",
+      "discipline": "monte",
+      "classement": 3,
+      "priorite": "historique"
+    },
+    {
+      "date": "2012-04-15",
+      "cheval": "RHEA SILVIA",
+      "hippodrome": "SAINT-AUBIN-LES-ELBEUF",
+      "discipline": "monte",
+      "classement": 2,
+      "priorite": "historique"
+    },
+    {
+      "date": "2011-10-02",
+      "cheval": "ROMEO LAP",
+      "hippodrome": "RAMBOUILLET",
+      "discipline": "monte",
+      "classement": 1,
+      "priorite": "historique"
+    },
+    {
+      "date": "2011-09-18",
+      "cheval": "SKY IS BLUE",
+      "hippodrome": "CARPENTRAS",
+      "discipline": "attele",
+      "classement": 1,
+      "priorite": "historique"
+    },
+    {
+      "date": "2011-08-21",
+      "cheval": "ROMEO LAP",
+      "hippodrome": "SAINT-PIERRE-EN-AUGE",
+      "discipline": "attele",
+      "classement": 3,
+      "priorite": "historique"
+    },
+    {
+      "date": "2011-08-20",
+      "cheval": "SURCOUF BREIZH",
+      "hippodrome": "GRAIGNES",
+      "discipline": "attele",
+      "classement": 3,
+      "priorite": "historique"
+    },
+    {
+      "date": "2011-08-15",
+      "cheval": "ROMEO LAP",
+      "hippodrome": "DIEPPE",
+      "discipline": "attele",
+      "classement": 3,
+      "priorite": "historique"
+    },
+    {
+      "date": "2010-05-09",
+      "cheval": "QUALIMERO",
+      "hippodrome": "GOURNAY-EN-BRAY",
+      "discipline": "attele",
+      "classement": 1,
+      "priorite": "historique"
+    },
+    {
+      "date": "2009-11-21",
+      "cheval": "OLGA DE LA FONTE",
+      "hippodrome": "CORDEMAIS",
+      "discipline": "attele",
+      "classement": 1,
+      "priorite": "historique"
+    },
+    {
+      "date": "2009-09-27",
+      "cheval": "OLGA DE LA FONTE",
+      "hippodrome": "AVIGNON-LE PONTET",
+      "discipline": "attele",
+      "classement": 3,
+      "priorite": "historique"
+    },
+    {
+      "date": "2009-09-12",
+      "cheval": "OLGA DE LA FONTE",
+      "hippodrome": "AVIGNON - LE PONTET",
+      "discipline": "attele",
+      "classement": 1,
+      "priorite": "historique"
+    },
+    {
+      "date": "2009-08-22",
+      "cheval": "OLGA DE LA FONTE",
+      "hippodrome": "SAINT-PIERRE-EN-AUGE",
+      "discipline": "attele",
+      "classement": 3,
+      "priorite": "historique"
+    },
+    {
+      "date": "2009-08-16",
+      "cheval": "OLGA DE LA FONTE",
+      "hippodrome": "BACQUEVILLE-EN-CAUX",
+      "discipline": "attele",
+      "classement": 3,
+      "priorite": "historique"
+    },
+    {
+      "date": "2009-07-14",
+      "cheval": "OLGA DE LA FONTE",
+      "hippodrome": "FRANCHEVILLE-LA BARRE",
+      "discipline": "attele",
+      "classement": 1,
+      "priorite": "historique"
+    },
+    {
+      "date": "2009-05-31",
+      "cheval": "OLGA DE LA FONTE",
+      "hippodrome": "GOURNAY-EN-BRAY",
+      "discipline": "attele",
+      "classement": 2,
+      "priorite": "historique"
+    },
+    {
+      "date": "2009-05-10",
+      "cheval": "OLGA DE LA FONTE",
+      "hippodrome": "ARRAS",
+      "discipline": "attele",
+      "classement": 2,
+      "priorite": "historique"
+    },
+    {
+      "date": "2008-10-27",
+      "cheval": "OLGA DE LA FONTE",
+      "hippodrome": "LE CROISE-LAROCHE",
+      "discipline": "attele",
+      "classement": 3,
+      "priorite": "historique"
+    },
+    {
+      "date": "2008-08-24",
+      "cheval": "OLGA DE LA FONTE",
+      "hippodrome": "GOURNAY-EN-BRAY",
+      "discipline": "attele",
+      "classement": 3,
+      "priorite": "historique"
+    },
+    {
+      "date": "2008-07-28",
+      "cheval": "OLGA DE LA FONTE",
+      "hippodrome": "BRÉHAL",
+      "discipline": "attele",
+      "classement": 3,
+      "priorite": "historique"
+    },
+    {
+      "date": "2008-07-20",
+      "cheval": "OLGA DE LA FONTE",
+      "hippodrome": "AVRANCHES",
+      "discipline": "attele",
+      "classement": 3,
+      "priorite": "historique"
+    },
+    {
+      "date": "2008-07-06",
+      "cheval": "OLGA DE LA FONTE",
+      "hippodrome": "GOURNAY-EN-BRAY",
+      "discipline": "attele",
+      "classement": 3,
+      "priorite": "historique"
+    },
+    {
+      "date": "2008-06-15",
+      "cheval": "OLGA DE LA FONTE",
+      "hippodrome": "ELBEUF",
+      "discipline": "attele",
+      "classement": 3,
+      "priorite": "historique"
+    }
+  ]
+}
