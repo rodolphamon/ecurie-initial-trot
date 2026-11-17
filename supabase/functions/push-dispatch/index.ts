@@ -14,7 +14,9 @@ const PILOT_LAUNCH_AT = Date.parse("2026-11-30T23:00:00Z");
 // La source brute garantit au moteur Push la dernière performance vérifiée.
 const editorialUrl = "https://raw.githubusercontent.com/rodolphamon/ecurie-initial-trot/main/docs/chevaux/data/editorial.json";
 const horsesUrl = APP + "/chevaux/data/chevaux.json";
-const WITHDRAWN = new Set(["non-partant", "forfait", "elimine", "np"]);
+const NON_PARTANT = new Set(["non-partant", "np"]);
+const FORFAIT = "forfait";
+const ELIMINE = "elimine";
 const CONFIRMED = new Set(["partant", "declare"]);
 type Event = { date: string; hippodrome?: string; heure?: string; statut?: string; prix?: string; course?: string };
 type Race = { event_key: string; cheval_slug: string; cheval_nom: string; date_course: string; hippodrome: string; course: string|null; statut: string; depart: string|null };
@@ -123,8 +125,22 @@ async function run() {
         if(CONFIRMED.has(row.statut)&&!CONFIRMED.has(old?.statut||"") && row.date_course>=clock.date) {
           await saveAlert({id:"confirmed:"+row.event_key,categorie:"confirmed",cheval_slug:slug,payload:detail,expires_at:iso(now+6*3600_000)});counts.alerts++;
         }
-        if(WITHDRAWN.has(row.statut)&&!WITHDRAWN.has(old?.statut||"")) {
-          await saveAlert({id:"withdrawn:"+row.event_key,categorie:"withdrawn",cheval_slug:slug,payload:detail,expires_at:iso(now+6*3600_000)});counts.alerts++;
+        // Non-partant : seulement après une déclaration partant antérieure.
+        // Forfait / éliminé : statuts différents, sans confusion avec un non-partant.
+        if(old && row.date_course>=clock.date){
+          const wasConfirmed=CONFIRMED.has(old.statut);
+          const nonPartant=NON_PARTANT.has(row.statut)&&wasConfirmed;
+          const forfait=row.statut===FORFAIT&&(old.statut==="engage"||wasConfirmed);
+          const elimine=row.statut===ELIMINE&&(old.statut==="engage"||wasConfirmed);
+          if(nonPartant||forfait||elimine){
+            await saveAlert({
+              id:"withdrawn:"+row.statut+":"+row.event_key,categorie:"withdrawn",
+              cheval_slug:slug,
+              payload:{...detail,statut:row.statut,event_key:row.event_key},
+              expires_at:iso(now+6*3600_000)
+            });
+            counts.alerts++;
+          }
         }
       }
       if(CONFIRMED.has(row.statut)&&row.depart){
@@ -205,6 +221,13 @@ async function run() {
       const raceKey=alert.id.slice(alert.categorie.length+1);
       if(!CONFIRMED.has(currentRaceStates.get(raceKey)||""))continue;
     }
+    if(alert.categorie==="withdrawn"){
+      // Écarte les anciennes notifications incorrectes sans historique de statut
+      // et les alertes devenues obsolètes après une nouvelle modification.
+      const alertKey=String(alert.payload?.event_key||"");
+      const expectedStatus=String(alert.payload?.statut||"");
+      if(!alertKey||!expectedStatus||currentRaceStates.get(alertKey)!==expectedStatus)continue;
+    }
     for(const sub of subs||[]){
       if(Date.parse(sub.created_at)>Date.parse(alert.created_at))continue;
       const member=sub.audience==="associate" && !!sub.user_id && active.has(sub.user_id);
@@ -236,7 +259,21 @@ async function run() {
           body:annonceCourse(p.nom,p.hippodrome,p.heure,jourCourse(p.date,clock.date)),
           url:APP+"/chevaux/"+alert.cheval_slug+"/"};
       }else if(alert.categorie==="withdrawn"){
-        message={title:"🚫 Non-partant · "+esc(p.nom),body:"Le départ prévu à "+esc(p.hippodrome)+" est annulé.",url:APP+"/engagements/"};
+        const status=String(p.statut||"");
+        const venue=esc(p.hippodrome);
+        if(NON_PARTANT.has(status)){
+          message={title:"🚫 Non-partant · "+esc(p.nom),
+            body:esc(p.nom)+" ne prendra finalement pas le départ à "+venue+".",
+            url:APP+"/engagements/"};
+        }else if(status===FORFAIT){
+          message={title:"📋 Forfait · "+esc(p.nom),
+            body:esc(p.nom)+" est forfait pour sa course à "+venue+".",
+            url:APP+"/engagements/"};
+        }else if(status===ELIMINE){
+          message={title:"⚠️ Éliminé · "+esc(p.nom),
+            body:esc(p.nom)+" est éliminé de sa course à "+venue+".",
+            url:APP+"/engagements/"};
+        }
       }else if(alert.categorie==="before15"){
         message={title:"⏰ Départ imminent · "+esc(p.nom),body:esc(p.hippodrome)+" · environ "+esc(p.diff)+" min avant le départ.",url:APP+"/engagements/"};
       }else if(alert.categorie==="results"){
