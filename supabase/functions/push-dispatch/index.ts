@@ -15,8 +15,6 @@ const PILOT_LAUNCH_AT = Date.parse("2026-11-30T23:00:00Z");
 const editorialUrl = "https://raw.githubusercontent.com/rodolphamon/ecurie-initial-trot/main/docs/chevaux/data/editorial.json";
 const horsesUrl = APP + "/chevaux/data/chevaux.json";
 const NON_PARTANT = new Set(["non-partant", "np"]);
-const FORFAIT = "forfait";
-const ELIMINE = "elimine";
 const CONFIRMED = new Set(["partant", "declare"]);
 type Event = { date: string; hippodrome?: string; heure?: string; statut?: string; prix?: string; course?: string };
 type Race = { event_key: string; cheval_slug: string; cheval_nom: string; date_course: string; hippodrome: string; course: string|null; statut: string; depart: string|null };
@@ -125,22 +123,18 @@ async function run() {
         if(CONFIRMED.has(row.statut)&&!CONFIRMED.has(old?.statut||"") && row.date_course>=clock.date) {
           await saveAlert({id:"confirmed:"+row.event_key,categorie:"confirmed",cheval_slug:slug,payload:detail,expires_at:iso(now+6*3600_000)});counts.alerts++;
         }
-        // Non-partant : seulement après une déclaration partant antérieure.
-        // Forfait / éliminé : statuts différents, sans confusion avec un non-partant.
-        if(old && row.date_course>=clock.date){
-          const wasConfirmed=CONFIRMED.has(old.statut);
-          const nonPartant=NON_PARTANT.has(row.statut)&&wasConfirmed;
-          const forfait=row.statut===FORFAIT&&(old.statut==="engage"||wasConfirmed);
-          const elimine=row.statut===ELIMINE&&(old.statut==="engage"||wasConfirmed);
-          if(nonPartant||forfait||elimine){
-            await saveAlert({
-              id:"withdrawn:"+row.statut+":"+row.event_key,categorie:"withdrawn",
-              cheval_slug:slug,
-              payload:{...detail,statut:row.statut,event_key:row.event_key},
-              expires_at:iso(now+6*3600_000)
-            });
-            counts.alerts++;
-          }
+        // Seul le NON-PARTANT peut générer une notification de retrait.
+        // Il faut une déclaration antérieure : "declare" ou "partant".
+        // Les statuts "forfait" et "elimine" n'envoient AUCUNE notification.
+        if(old && row.date_course>=clock.date &&
+           CONFIRMED.has(old.statut) && NON_PARTANT.has(row.statut)){
+          await saveAlert({
+            id:"withdrawn:"+row.statut+":"+row.event_key,categorie:"withdrawn",
+            cheval_slug:slug,
+            payload:{...detail,statut:row.statut,event_key:row.event_key},
+            expires_at:iso(now+6*3600_000)
+          });
+          counts.alerts++;
         }
       }
       if(CONFIRMED.has(row.statut)&&row.depart){
@@ -226,7 +220,8 @@ async function run() {
       // et les alertes devenues obsolètes après une nouvelle modification.
       const alertKey=String(alert.payload?.event_key||"");
       const expectedStatus=String(alert.payload?.statut||"");
-      if(!alertKey||!expectedStatus||currentRaceStates.get(alertKey)!==expectedStatus)continue;
+      if(!alertKey||!NON_PARTANT.has(expectedStatus)||
+         currentRaceStates.get(alertKey)!==expectedStatus)continue;
     }
     for(const sub of subs||[]){
       if(Date.parse(sub.created_at)>Date.parse(alert.created_at))continue;
@@ -264,14 +259,6 @@ async function run() {
         if(NON_PARTANT.has(status)){
           message={title:"🚫 Non-partant · "+esc(p.nom),
             body:esc(p.nom)+" ne prendra finalement pas le départ à "+venue+".",
-            url:APP+"/engagements/"};
-        }else if(status===FORFAIT){
-          message={title:"📋 Forfait · "+esc(p.nom),
-            body:esc(p.nom)+" est forfait pour sa course à "+venue+".",
-            url:APP+"/engagements/"};
-        }else if(status===ELIMINE){
-          message={title:"⚠️ Éliminé · "+esc(p.nom),
-            body:esc(p.nom)+" est éliminé de sa course à "+venue+".",
             url:APP+"/engagements/"};
         }
       }else if(alert.categorie==="before15"){
