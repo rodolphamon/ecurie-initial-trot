@@ -99,7 +99,17 @@ resize();
 }
 function resize(){try{window.parent.postMessage({kind:"ecurie-initial-engagements-height",height:document.documentElement.scrollHeight}, "*")}catch(_){}}
 document.querySelectorAll("[data-filter]").forEach(b=>b.addEventListener("click",()=>{filter=b.dataset.filter;document.querySelectorAll("[data-filter]").forEach(a=>a.setAttribute("aria-pressed",String(a===b)));render()}));
-Promise.all(["../chevaux/data/editorial.json","../chevaux/data/chevaux.json"].map(async path=>{const r=await fetch(path+"?v="+Date.now(),{cache:"no-store"});if(!r.ok)throw Error("Accès aux données indisponible");return r.json()})).then(([data,profiles])=>{
+Promise.all(["../chevaux/data/editorial.json","../chevaux/data/chevaux.json"].map(async path=>{const r=await fetch(path+"?v="+Date.now(),{cache:"no-store"});if(!r.ok)throw Error("Accès aux données indisponible");return r.json()})).then(async ([data,profiles])=>{
+try{
+ const {createClient}=await import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm');
+ const db=createClient('https://yeecwaaizmvrhwobukfa.supabase.co','sb_publishable_xUy2EJA3u3cKWl8BB4GNPQ_qhV9Pes3');
+ const {data:published,error}=await db.from('ei_contributions_engagements').select('cheval_slug,engagements');
+ if(error)throw error;
+ const valid=new Set((profiles.horses||[]).map(h=>h.id));
+ data.engagements=data.engagements||{};
+ for(const row of published||[])if(valid.has(row.cheval_slug)&&Array.isArray(row.engagements))
+   data.engagements[row.cheval_slug]=row.engagements;
+}catch(error){console.warn('Engagements contributeurs indisponibles : données de référence conservées',error)}
 const ids=new Map((profiles.horses||[]).map(x=>[x.id,x])),seen=new Set(),now=paris();
 for(const [id,engs] of Object.entries(data.engagements||{})){const horse=ids.get(id);if(!horse)continue;for(const e of Array.isArray(engs)?engs:[]){
 if(!/^\d{4}-\d{2}-\d{2}$/.test(e.date||""))continue;
