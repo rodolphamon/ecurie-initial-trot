@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#171717">
+<title>Contributions · Écurie Initial</title><link rel="manifest" href="../manifest.webmanifest"><link rel="icon" href="../icon-ei-192.png">
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f8f6f3;color:#23211f;font:15px/1.5 Arial,Helvetica,sans-serif}header{background:#171717;color:white;padding:18px 20px}header strong{font-size:22px}header span{color:#ff862b}main{max-width:930px;margin:auto;padding:20px 14px 105px}
+h1{font-size:27px;margin:4px 0 10px}h2{font-size:20px;margin:0 0 10px}a{color:#a34b0d}.muted{color:#69615c}.card{padding:19px;background:#fff;border:1px solid #e9ddd2;border-radius:14px;margin:15px 0}.flex{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.tabs{display:flex;gap:8px;margin:15px 0}.tabs button{background:white;color:#222;border:1px solid #e6c8b0}.tabs button.on{background:#171717;color:#fff}
+button,.btn{font:inherit;cursor:pointer;padding:10px 15px;background:#f47721;color:#1b1b1b;border:0;border-radius:9px;font-weight:750;text-decoration:none;display:inline-block}button:disabled{opacity:.5;cursor:wait}.outline{background:#f3f0ed}.danger{background:#f8e7e5;color:#8b211d}.row{border:1px solid #eadfd4;border-radius:12px;background:#fefdfc;margin:12px 0;padding:14px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.row-actions{grid-column:1/-1;display:flex;justify-content:flex-end}
+label{display:block;font-weight:bold;font-size:13px;margin-bottom:6px}input,select,textarea{width:100%;border:1px solid #d8c9ba;background:white;border-radius:8px;padding:11px;font:inherit;color:#222}textarea{min-height:72px;resize:vertical}input:focus,select:focus,textarea:focus{outline:2px solid #f47721}#msg{font-weight:650;min-height:20px;margin:12px 0}#msg.bad{color:#a22}#msg.good{color:#157044}[hidden]{display:none!important}
+.notice{border-left:4px solid #f47721;background:#fff6ee;padding:12px 15px}.full{grid-column:1/-1}.span2{grid-column:span 2}
+@media(max-width:650px){.row{grid-template-columns:repeat(2,minmax(0,1fr))}.span2{grid-column:1/-1}h1{font-size:23px}}
+</style></head>
+<body><header><strong>ÉCURIE <span>INITIAL</span></strong><div>Gestion des données — contributeurs autorisés</div></header>
+<main><nav><a href="../mes-chevaux/">← Retour à mon espace</a></nav><h1>Engagements et gains</h1>
+<p class="muted">Les modifications enregistrées ici sont publiées directement sur les fiches chevaux, le calendrier et l’application. Aucune validation supplémentaire n’est demandée.</p>
+<div id="loading" class="card">Vérification des autorisations…</div>
+<div id="denied" class="card" hidden><p>Vous n’avez pas accès à cette rubrique. Le gérant doit vous attribuer le rôle Contributeur. L’accès général reste également fermé avant le 1er décembre, sauf autorisation de test.</p><a href="../connexion/">Se connecter ou vérifier mon invitation</a></div>
+<section id="work" hidden>
+<div class="card"><label for="horse">Cheval concerné</label><select id="horse"><option value="">Sélectionner un cheval…</option></select><p id="horsehint" class="muted"></p></div>
+<div class="tabs"><button type="button" id="tabEng" class="on">📅 Engagements</button><button type="button" id="tabGain">💶 Gains de carrière</button></div>
+<div id="engSection" class="card"><h2>Engagements du cheval</h2><p class="muted">Ajouter un engagement, le modifier ou l’enlever. En cas d’heure ou de jockey inconnu, laisser le champ vide. Le calendrier n’affiche que les prochaines courses.</p><div id="events"></div><div class="flex"><button type="button" class="outline" id="add">+ Ajouter un engagement</button><button type="button" id="saveEng">Publier les engagements</button></div></div>
+<div id="gainSection" class="card" hidden><h2>Gains du cheval</h2><p id="currentGain" class="muted"></p><form id="gainForm"><label for="gain">Gains totaux de carrière (€)</label><input id="gain" type="number" min="0" max="1000000000" step="1" required><label for="source">Lien vers la source vérifiée (LeTROT, France Galop…)</label><input id="source" type="url" placeholder="https://..." pattern="https://.*" required><p class="muted">Ne pas confondre les gains totaux du cheval avec les gains de l’année ou les allocations d’une course.</p><button type="submit">Publier les gains</button></form></div>
+<p id="msg" role="status" aria-live="polite"></p>
+<div class="notice"><strong>Publication directe.</strong> Après l’enregistrement, actualisez une fiche cheval ou le calendrier pour constater la mise à jour.</div>
+</section>
+</main>
+<script type="module">
+import {createClient} from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+const db=createClient('https://yeecwaaizmvrhwobukfa.supabase.co','sb_publishable_xUy2EJA3u3cKWl8BB4GNPQ_qhV9Pes3');
+const $=s=>document.getElementById(s);
+const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let profiles=[],editor={},trot={},galop={},liveEng={},liveGains={},canEng=false,canGain=false,active='eng',events=[],horseId='';
+const fields=[['date','Date','date'],['hippodrome','Hippodrome','text'],['statut','Statut','select'],['heure','Heure de départ','time'],['prix','Prix de la course','text'],['course','Course (ex. R1C5)','text'],['type','Discipline / type','text'],['distance','Distance','text'],['numero','N° du cheval','text'],['driver','Driver (trot)','text'],['jockey','Jockey (galop)','text'],['source_description','Source / justification','text']];
+const statuses=[['engage','Engagé'],['declare','Déclaré partant'],['partant','Partant confirmé'],['non-partant','Non-partant'],['forfait','Forfait'],['elimine','Éliminé'],['qualification','Qualification']];
+function msg(t,bad=false){$('msg').textContent=t;$('msg').className=bad?'bad':'good'}
+async function getJson(path){const r=await fetch(path+'?v='+Date.now(),{cache:'no-store'});if(!r.ok)throw Error('Données indisponibles : '+path);return r.json()}
+function choice(){const p=profiles.find(x=>x.id===horseId);return p||null}
+function renderEvents(){
+  const host=$('events');host.replaceChildren();
+  if(!horseId){host.textContent='Sélectionnez un cheval.';return}
+  if(!events.length){const p=document.createElement('p');p.className='muted';p.textContent='Aucun engagement enregistré pour ce cheval.';host.append(p)}
+  events.forEach((event,index)=>{
+    const group=document.createElement('div');group.className='row';group.dataset.index=String(index);
+    for(const [key,label,type] of fields){
+      const wrap=document.createElement('div');if(['source_description','prix'].includes(key))wrap.className='span2';
+      const lab=document.createElement('label');lab.textContent=label;
+      let input;
+      if(type==='select'){input=document.createElement('select');for(const [v,t] of statuses){const o=document.createElement('option');o.value=v;o.textContent=t;input.append(o)}}
+      else{input=document.createElement('input');input.type=type;input.maxLength=key==='source_description'?300:120}
+      input.dataset.field=key;input.value=event[key]??(key==='statut'?'engage':'');
+      input.oninput=()=>{events[index][key]=input.value};input.onchange=()=>{events[index][key]=input.value};
+      lab.htmlFor='ev'+index+key;input.id='ev'+index+key;
+      wrap.append(lab,input);group.append(wrap);
+    }
+    const actions=document.createElement('div');actions.className='row-actions';
+    const del=document.createElement('button');del.type='button';del.className='danger';del.textContent='Supprimer cette course';
+    del.onclick=()=>{if(confirm('Retirer cet engagement de la liste ? La suppression sera publiée seulement après enregistrement.')){events.splice(index,1);renderEvents()}};
+    actions.append(del);group.append(actions);host.append(group);
+  });
+}
+function selectHorse(){
+  horseId=$('horse').value;
+  const p=choice();
+  const list=liveEng[horseId]?.engagements??editor.engagements?.[horseId]??[];
+  events=structuredClone(Array.isArray(list)?list:[]);
+  const staticGain=p?.casaque==='galop'?galop[p.id]?.gains:trot[p?.id]?.gains;
+  const value=liveGains[horseId]?.gains??staticGain;
+  $('currentGain').textContent=p?'Montant actuellement affiché : '+(Number.isFinite(value)?new Intl.NumberFormat('fr-FR').format(value)+' €':'non renseigné'): 'Choisissez un cheval.';
+  $('horsehint').textContent=p?(p.discipline+' — '+p.name):'';
+  $('gain').value=Number.isFinite(value)?String(value):'';
+  $('source').value=liveGains[horseId]?.source_url||(p?.horseLink?.startsWith('https://')?p.horseLink:'');
+  $('saveEng').disabled=!horseId||!canEng;
+  $('add').disabled=!horseId||!canEng;
+  $('gainForm').querySelector('button').disabled=!horseId||!canGain;
+  renderEvents();msg('');
+}
+function tab(which){
+  active=which;$('engSection').hidden=which!=='eng';$('gainSection').hidden=which!=='gain';
+  $('tabEng').classList.toggle('on',which==='eng');$('tabGain').classList.toggle('on',which==='gain');
+}
+$('tabEng').onclick=()=>tab('eng');$('tabGain').onclick=()=>tab('gain');
+$('horse').onchange=selectHorse;
+$('add').onclick=()=>{events.push({date:'',hippodrome:'',statut:'engage'});renderEvents();$('events').lastElementChild?.scrollIntoView({behavior:'smooth',block:'center'})};
+$('saveEng').onclick=async()=>{
+  if(!horseId||!canEng)return;
+  const normalized=[];
+  for(const event of events){
+    if(!/^\d{4}-\d{2}-\d{2}$/.test(event.date||'')){msg('Chaque engagement doit avoir une date valide.',true);return}
+    if(!String(event.hippodrome||'').trim()){msg('Chaque engagement doit préciser son hippodrome.',true);return}
+    const clean={...event};
+    for(const [k] of fields)if(typeof clean[k]==='string'){clean[k]=clean[k].trim();if(!clean[k])delete clean[k]}
+    clean.statut=clean.statut||'engage';normalized.push(clean);
+  }
+  const btn=$('saveEng');btn.disabled=true;msg('Publication des engagements en cours…');
+  try{
+    const {data,error}=await db.from('ei_contributions_engagements').upsert({cheval_slug:horseId,engagements:normalized},{onConflict:'cheval_slug'}).select('cheval_slug,engagements,updated_at').single();
+    if(error)throw error;liveEng[horseId]=data;events=structuredClone(normalized);
+    msg('Engagements publiés pour '+choice().name+' : '+normalized.length+' course(s).');
+  }catch(e){msg('Publication refusée : '+(e.message||'erreur inconnue'),true)}
+  finally{btn.disabled=false}
+};
+$('gainForm').onsubmit=async e=>{
+  e.preventDefault();if(!horseId||!canGain)return;
+  const gains=Number($('gain').value),source=$('source').value.trim();
+  if(!Number.isSafeInteger(gains)||gains<0||gains>1000000000){msg('Montant de gains incorrect.',true);return}
+  try{if(new URL(source).protocol!=='https:')throw Error()}catch{msg('Fournissez une URL HTTPS de la source.',true);return}
+  const btn=$('gainForm').querySelector('button');btn.disabled=true;msg('Publication des gains en cours…');
+  try{
+    const {data,error}=await db.from('ei_contributions_gains').upsert({cheval_slug:horseId,gains,source_url:source},{onConflict:'cheval_slug'}).select('cheval_slug,gains,source_url,updated_at').single();
+    if(error)throw error;liveGains[horseId]=data;
+    $('currentGain').textContent='Montant actuellement affiché : '+new Intl.NumberFormat('fr-FR').format(gains)+' €';
+    msg('Gains publiés pour '+choice().name+' : '+new Intl.NumberFormat('fr-FR').format(gains)+' €.');
+  }catch(e){msg('Publication refusée : '+(e.message||'erreur inconnue'),true)}
+  finally{btn.disabled=false}
+};
+async function init(){
+  try{
+    const {data:{user},error:authError}=await db.auth.getUser();if(authError||!user)throw Error('Connexion requise');
+    const {data:member,error:memberError}=await db.from('associes').select('actif,administrateur').eq('user_id',user.id).maybeSingle();
+    if(memberError||!member?.actif)throw Error('Compte associé inactif');
+    const [permissionEng,permissionGain]=await Promise.all([
+      db.rpc('ei_peut_contribuer',{section:'engagements'}),
+      db.rpc('ei_peut_contribuer',{section:'gains'})
+    ]);
+    if(permissionEng.error||permissionGain.error)throw Error('Autorisations indisponibles');
+    canEng=permissionEng.data===true;canGain=permissionGain.data===true;
+    if(!canEng&&!canGain)throw Error('Rôle Contributeur non attribué ou préouverture en cours');
+    const [horseData,editorData,trotData,galopData,engData,gainData]=await Promise.all([
+      getJson('../../chevaux/data/chevaux.json'),getJson('../../chevaux/data/editorial.json'),
+      getJson('../../data/effectif-trot.json'),getJson('../../data/effectif-galop.json'),
+      db.from('ei_contributions_engagements').select('cheval_slug,engagements,updated_at'),
+      db.from('ei_contributions_gains').select('cheval_slug,gains,source_url,updated_at')
+    ]);
+    if(engData.error||gainData.error)throw Error('Impossible de charger les corrections publiées');
+    profiles=(horseData.horses||[]).sort((a,b)=>a.name.localeCompare(b.name,'fr'));
+    editor=editorData;trot=trotData.horses||{};galop=Object.fromEntries((galopData.horses||[]).map(h=>[h.id,h]));
+    liveEng=Object.fromEntries((engData.data||[]).map(v=>[v.cheval_slug,v]));
+    liveGains=Object.fromEntries((gainData.data||[]).map(v=>[v.cheval_slug,v]));
+    for(const p of profiles){const option=document.createElement('option');option.value=p.id;option.textContent=p.name;$('horse').append(option)}
+    $('tabEng').hidden=!canEng;$('tabGain').hidden=!canGain;
+    tab(canEng?'eng':'gain');
+    const wanted=new URLSearchParams(location.search).get('cheval');
+    if(wanted&&profiles.some(p=>p.id===wanted))$('horse').value=wanted;
+    selectHorse();$('work').hidden=false;
+  }catch(e){$('denied').hidden=false;console.error('Accès contributeur :',e.message)}
+  finally{$('loading').hidden=true}
+}
+init();
+</script><script defer src="../nav.js?v=20261115b"></script></body></html>
