@@ -71,10 +71,11 @@
 .ei-app-installed .wordmark-slogan-line{display:block;color:#191919;white-space:nowrap}
 .ei-app-installed .wordmark-slogan-date{display:block;color:var(--accent);font-weight:900;margin-top:2px;white-space:nowrap}
 .ei-app-installed .wordmark-slogan{
-  display:block;flex:0 1 240px;max-width:38%;margin-left:auto;
-  font-size:clamp(9px,1.1vw,11px);line-height:1.4;letter-spacing:.45px;
-  font-weight:750;color:#191919;text-align:right;text-wrap:balance
+  display:block;flex:0 1 330px;max-width:44%;margin-left:auto;
+  font-size:clamp(13px,1.45vw,16px);line-height:1.3;letter-spacing:.2px;
+  font-weight:800;color:#191919;text-align:right;text-wrap:balance
 }
+.ei-app-installed .wordmark-slogan-date{font-size:1.15em}
 @media(max-width:590px){
   .ei-app-installed .top-inner{min-height:0;padding:12px 0;gap:7px}
   .ei-app-installed .wordmark{gap:8px;flex-shrink:0}
@@ -85,16 +86,17 @@
     font-size:clamp(16px,4.6vw,19px);letter-spacing:-.6px;padding-bottom:5px
   }
   .ei-app-installed .wordmark-slogan{
-    flex:1 1 105px;min-width:0;max-width:none;
-    font-size:clamp(8px,2.15vw,9.5px);letter-spacing:.05px;line-height:1.25
+    flex:1 1 112px;min-width:0;max-width:none;
+    font-size:clamp(10px,2.8vw,12px);letter-spacing:0;line-height:1.2
   }
+  .ei-app-installed .wordmark-slogan-line{white-space:normal}
   .ei-app-installed .top-nav{display:none!important}
 }
 @media(max-width:360px){
   .ei-app-installed .wordmark{gap:6px}
   .ei-app-installed .wordmark-logo{width:38px;height:38px;flex-basis:38px}
   .ei-app-installed .wordmark-title{font-size:15.5px;letter-spacing:-.7px}
-  .ei-app-installed .wordmark-slogan{font-size:8px}
+  .ei-app-installed .wordmark-slogan{font-size:10px}
 }
 
 /* Liens vers les replays des performances : site et application */
