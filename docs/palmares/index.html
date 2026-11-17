@@ -20,14 +20,14 @@ td:first-child,th:first-child{text-align:center;width:75px}td.date{white-space:n
 .rank-cell{text-align:center;font-size:25px;white-space:nowrap;width:55px}.pal-card-medal{font-size:27px;line-height:1.1;display:block;text-align:center;margin:3px 0}.pal-card-silk{flex-direction:column;gap:2px}
 /* La table reste dédiée aux ordinateurs; sur téléphone chaque victoire possède une vraie fiche. */
 .cards{display:none}
-.pal-card{display:grid;grid-template-columns:52px minmax(0,1fr) auto;gap:12px;align-items:center;padding:12px 14px;background:#fff;border:1px solid #e9e7e5;border-left:4px solid var(--orange);border-radius:12px;box-shadow:0 3px 12px rgba(33,24,16,.035);min-width:0}
+.pal-card{display:grid;grid-template-columns:78px minmax(0,1fr) auto;grid-template-rows:auto auto;column-gap:10px;row-gap:3px;align-items:start;padding:12px 14px;background:#fff;border:1px solid #e9e7e5;border-left:4px solid var(--orange);border-radius:12px;box-shadow:0 3px 12px rgba(33,24,16,.035);min-width:0}
 .pal-card:nth-child(even){background:#fffbf8}
-.pal-card-silk{display:flex;align-items:center;justify-content:center;min-height:0;padding-top:0}
+.pal-card-date{grid-column:1;grid-row:1;align-self:center;justify-self:start;display:block;font-size:12px;font-weight:800;color:#b95819;font-variant-numeric:tabular-nums;white-space:nowrap}
+.pal-card-name{grid-column:2;grid-row:1;align-self:center;min-width:0;font-size:17px;font-weight:900;line-height:1.25;color:#1d1d1d;overflow-wrap:anywhere}
+.pal-card-silk{grid-column:1;grid-row:2;display:flex;align-items:flex-start;justify-content:center;min-height:0;padding-top:9px}
 .pal-card-silk .robe{height:54px;width:46px;object-fit:contain}
-.pal-card-main{min-width:0;display:flex;flex-direction:column;justify-content:center}
-.pal-card-head{display:contents}
-.pal-card-date{display:block;margin-bottom:9px;font-size:12px;font-weight:800;color:#b95819;font-variant-numeric:tabular-nums}
-.pal-card-name{font-size:17px;font-weight:900;line-height:1.25;color:#1d1d1d;overflow-wrap:anywhere}
+.pal-card-main{grid-column:2;grid-row:2;min-width:0;display:flex;flex-direction:column;justify-content:flex-start;padding-top:3px}
+.pal-card-actions{grid-column:3;grid-row:1 / span 2}
 .pal-card-place{font-size:13px;color:#66616a;margin-top:5px;line-height:1.35;overflow-wrap:anywhere}
 .pal-card-jockey{font-size:13px;color:#37383e;margin-top:6px;line-height:1.35;font-weight:600}
 .pal-card-jockey-label{font-weight:500;color:#7d7d83;margin-right:5px}.pal-card-trainer{font-size:12px;line-height:1.35;color:#5f6065;margin-top:5px;overflow-wrap:anywhere}.pal-card-trainer-label{font-weight:500;color:#7d7d83;margin-right:5px}
@@ -58,7 +58,9 @@ td:first-child,th:first-child{text-align:center;width:75px}td.date{white-space:n
  .nav{gap:10px}
 }
 @media(max-width:370px){
- .pal-card{grid-template-columns:42px minmax(0,1fr) auto;gap:7px;padding:10px 9px}
+ .pal-card{grid-template-columns:69px minmax(0,1fr) auto;column-gap:7px;row-gap:3px;padding:10px 9px}
+ .pal-card-date{font-size:11px}
+ .pal-card-silk{padding-top:8px}
  .pal-card-silk .robe{height:49px;width:40px}
  .pal-card-name{font-size:16px}
  .pal-card-disc{font-size:11px;padding:4px 6px}
@@ -411,7 +413,7 @@ function render(){
   const label=(r.discipline==="galop"||r.discipline==="obstacle"||r.discipline==="monte")?"Jockey":r.discipline==="attele"?"Driver":"Jockey / Driver";
   const jockey=r.jockey?'<div class="pal-card-jockey"><span class="pal-card-jockey-label">'+label+' :</span>'+esc(jockeyUnifie(r.jockey))+'</div>':"";
   const trainer='<div class="pal-card-trainer"><span class="pal-card-trainer-label">Entraîneur :</span>'+esc(entraineurUnifie(r.entraineur)||"—")+'</div>';
-  return '<article class="pal-card"><div class="pal-card-silk">'+jersey(casaquePourCourse(r))+'</div><div class="pal-card-main"><time class="pal-card-date" datetime="'+esc(r.date)+'">'+esc(dateFR(r.date))+'</time><div class="pal-card-name">'+esc(r.cheval)+'</div><div class="pal-card-place">'+esc(hippodromeUnifie(r.hippodrome))+'</div>'+jockey+trainer+'</div><div class="pal-card-actions"><span class="pal-card-disc'+(r.discipline==="trot"?' is-unclassified':'')+'">'+disc(r.discipline)+'</span><span class="pal-card-medal" aria-label="Classement : '+(r.classement||1)+'">'+medaille(r)+'</span>'+replayButton(r,true)+'</div></article>';
+  return '<article class="pal-card"><time class="pal-card-date" datetime="'+esc(r.date)+'">'+esc(dateFR(r.date))+'</time><div class="pal-card-name">'+esc(r.cheval)+'</div><div class="pal-card-silk">'+jersey(casaquePourCourse(r))+'</div><div class="pal-card-main"><div class="pal-card-place">'+esc(hippodromeUnifie(r.hippodrome))+'</div>'+jockey+trainer+'</div><div class="pal-card-actions"><span class="pal-card-disc'+(r.discipline==="trot"?' is-unclassified':'')+'">'+disc(r.discipline)+'</span><span class="pal-card-medal" aria-label="Classement : '+(r.classement||1)+'">'+medaille(r)+'</span>'+replayButton(r,true)+'</div></article>';
  }).join("");
  for(const button of $("legend").querySelectorAll("button[data-discipline]"))button.setAttribute("aria-pressed",button.dataset.discipline===state.discipline?"true":"false");
  $("empty").hidden=data.length>0;
