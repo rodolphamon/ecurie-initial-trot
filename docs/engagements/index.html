@@ -32,6 +32,9 @@ h1{font-size:clamp(23px,4vw,35px);line-height:1.12;letter-spacing:-.6px;margin:6
 .events{display:grid;gap:10px}
 .event{background:var(--paper);border:1px solid var(--line);border-radius:12px;display:grid;grid-template-columns:64px minmax(0,1fr);align-items:center;gap:12px;box-shadow:0 5px 16px rgba(69,45,19,.045);overflow:hidden;padding:13px 15px;border-left:5px solid var(--orange)}
 .event.is-partant{border-left-color:#43a46c}
+.event.is-status-engage,.event.is-status-declare{border-left-color:#3b6ba8}
+.event.is-status-forfait,.event.is-status-non-partant,.event.is-status-elimine{border-left-color:#c44343}
+.event.is-status-qualification{border-left-color:#b18a31}
 .when{font-variant-numeric:tabular-nums;color:#8c6e54;font-weight:900;text-align:center;font-size:13px;min-width:0}
 .when .time{display:block;font-size:19px;color:#c55e16;line-height:1.25;margin-top:3px}
 .when .unknown{font-size:12px;font-weight:700;color:#968679}
@@ -47,6 +50,7 @@ h1{font-size:clamp(23px,4vw,35px);line-height:1.12;letter-spacing:-.6px;margin:6
 .flag{display:flex;align-items:center;justify-content:flex-start;gap:6px 12px;flex-wrap:wrap;min-width:0;margin-top:8px}
 .pill{display:inline-block;padding:6px 9px;border-radius:999px;background:var(--warm);color:#a44b0b;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.25px;border:1px solid #f2d2b4}
 .pill.partant{background:var(--green-bg);border-color:#bde3c9;color:var(--green)}
+.pill.engage{background:#e8efff;border-color:#cdd9f4;color:#345b9d}
 .pill.declare{background:#e8efff;border-color:#cdd9f4;color:#345b9d}
 .pill.non-partant,.pill.forfait,.pill.elimine{background:#ffebea;border-color:#f2cccc;color:#a52f2f}
 .pill.qualification{background:#fff4d6;border-color:#eddbac;color:#805d1f}
@@ -136,7 +140,7 @@ const cordeValue=e.corde;
 const corde=isGalop && (typeof cordeValue==="number"||typeof cordeValue==="string") && /^(?:[1-9]|1[0-9]|2[0-9]|3[0-9])$/.test(String(cordeValue).trim())
   ? String(Number(cordeValue)) : null;
 const silkFile=horse.casaque==="galop"?"casaque-galop.svg":horse.casaque==="orange"?"casaque-orange.svg":"casaque-blanche.svg";
-return '<article class="event'+(isPartant(e)?' is-partant':'')+'">'
+return '<article class="event'+(isPartant(e)?' is-partant':'')+' is-status-'+esc(Object.hasOwn(labels,e.statut)?e.statut:'engage')+'">'
 +'<div class="when"><span class="silk-icon" role="img" aria-label="Casaque de '+esc(horse.name)+'" style="background-image:url(\'../assets/'+silkFile+'\')"></span></div>'
 +'<div class="horse"><div class="horse-heading"><strong><a target="_blank" rel="noopener noreferrer" href="'+BASE+encodeURIComponent(id)+'/">'+esc(horse.name)+'</a></strong>'+(isPartant(e)&&time?'<span class="start-time">'+esc(time)+'</span>':'')+'<span class="pill '+esc(e.statut||"engage")+'" title="'+esc(label)+'" aria-label="'+esc(label)+'"><span class="pill-full">'+esc(label)+'</span><span class="pill-compact" aria-hidden="true">'+esc(shortLabels[e.statut]||label)+'</span></span></div>'
 +'<div class="horse-meta"><span class="place" title="'+esc((e.hippodrome||"Hippodrome à confirmer")+' · '+(horse.discipline||"")+(e.numero?' · N° '+e.numero:''))+'">'+esc(e.hippodrome||"Hippodrome à confirmer")+' · '+esc(horse.discipline||"")+(e.numero?' · N° '+esc(e.numero):'')+'</span>'+(person?'<span class="person">'+esc(person)+'</span>':'')+'</div>'
