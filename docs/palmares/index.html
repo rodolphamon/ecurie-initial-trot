@@ -511,9 +511,16 @@ function render(){
   :state.placing==="third"?(total===1?"troisième place":"troisièmes places")
   :(total===1?"podium":"podiums");
  const libelleDiscipline={attele:"Attelé",monte:"Monté",galop:"Galop",obstacle:"Obstacle"};
+ // Le résumé doit suivre toute la recherche : marche, année, puis filtres nominatifs.
+ const details=[];
+ if(type)details.push(libelleDiscipline[type]||type);
+ if(horse)details.push("Cheval : "+horse);
+ if(pilot)details.push("Jockey / Driver : "+pilot);
+ if(trainer)details.push("Entraîneur : "+trainer);
+ if(hippodrome)details.push("Hippodrome : "+hippodrome);
  $("count").hidden=!filtersActive;
  $("count").textContent=filtersActive?
-  new Intl.NumberFormat("fr-FR").format(total)+" "+typeDePlace+(year?" en "+year:"")+(type?" · "+(libelleDiscipline[type]||type):""):"";
+  new Intl.NumberFormat("fr-FR").format(total)+" "+typeDePlace+(year?" en "+year:"")+(details.length?" · "+details.join(" · "):""):"";
  $("page").textContent="Page "+state.page+" / "+pages;
  $("prev").disabled=state.page===1;$("next").disabled=state.page===pages;
  postHeight();
