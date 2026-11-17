@@ -159,7 +159,7 @@ function horse(s){
       const declared=x.statut==='declare'||x.statut==='partant';
       return '<tr><td>'+esc(dateFR(x.date))+'</td><td>'+esc(x.hippodrome)+'</td>'
         +(hasDeclared?'<td><span class="rank">'+esc(declared?(x.heure||'—'):'—')+'</span></td>':'')
-        +'<td>'+esc([x.course,x.prix||x.type].filter(Boolean).join(' · ')||'Course')+'</td>'
+        +'<td>'+esc([x.course,x.prix||x.type,x.type_course,x.surface].filter(Boolean).join(' · ')||'Course')+'</td>'
         +(hasDeclared?'<td>'+esc(declared?(x.driver||x.jockey||'—'):'—')+'</td>':'')+'</tr>';
     }).join('')+'</tbody></table></div>'
     :'<div class="empty">Aucun prochain engagement renseigné.</div>';
