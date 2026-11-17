@@ -287,7 +287,13 @@ async function run() {
       }
       counts.attempts++;
       try{
-        const delivered=await sendPushNotification({endpoint:sub.endpoint,keys:{p256dh:sub.p256dh,auth:sub.auth_secret}},message,vapid);
+        // Les rappels imminents exigent une livraison prioritaire sur les appareils en veille.
+        // Une durée de rétention limitée évite les rappels périmés bien après le départ.
+        const pushOptions=alert.categorie==="before15"?{urgency:"high" as const,ttl:900}:{};
+        const delivered=await sendPushNotification(
+          {endpoint:sub.endpoint,keys:{p256dh:sub.p256dh,auth:sub.auth_secret}},
+          message,vapid,pushOptions
+        );
         if(!delivered){
           await sb.from("ei_push_subscriptions").delete().eq("id",sub.id);
         }else counts.sent++;
