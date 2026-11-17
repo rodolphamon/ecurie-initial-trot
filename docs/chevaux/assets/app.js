@@ -136,7 +136,7 @@ function latestResults(s){
   performances.sort((a,b)=>
     (b.result.date+(b.result.heure||'')).localeCompare(a.result.date+(a.result.heure||''))||
     a.p.name.localeCompare(b.p.name,'fr',{sensitivity:'base'}));
-  const rows=performances.slice(0,7).map(({p,result})=>{
+  const rows=performances.slice(0,15).map(({p,result})=>{
     const rank=String(result.rang||'').trim();
     const medal=/^1(?:er|re|ère)?\b/i.test(rank)?' gold':/^2e\b/i.test(rank)?' silver':/^3e\b/i.test(rank)?' bronze':'';
     const direct=absoluteUrl(result.video_url);
@@ -165,8 +165,8 @@ function latestResults(s){
       +'</li>';
   }).join('');
   return '<section class="recent-results" aria-labelledby="recent-results-title">'
-    +'<div class="recent-heading"><h2 id="recent-results-title">🏁 Nos derniers résultats</h2><span>Trot &amp; galop</span></div>'
-    +(rows?'<ol class="recent-list">'+rows+'</ol>':'<p class="recent-empty">Aucun résultat récent enregistré pour le moment.</p>')
+    +'<div class="recent-heading"><h2 id="recent-results-title">🏁 Nos derniers résultats</h2><span>'+(performances.length>5?'↓ Défiler · ':'')+'Trot &amp; galop</span></div>'
+    +(rows?'<ol class="recent-list" aria-label="Les 15 dernières performances, faire défiler pour les suivantes" tabindex="0">'+rows+'</ol>':'<p class="recent-empty">Aucun résultat récent enregistré pour le moment.</p>')
     +'</section>';
 }
 
