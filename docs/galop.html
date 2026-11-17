@@ -32,8 +32,8 @@ fetch('data/effectif-galop.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Err
   for(const row of valeursResult.data||[])if(horses.has(row.cheval_slug)&&Number.isFinite(Number(row.valeur))){
     const h=horses.get(row.cheval_slug),n=Number(row.valeur);
     if(/obstacle/i.test(h.discipline||'')){
-      if(row.discipline_valeur==='plat')h.value_plat=n;
-      if(row.discipline_valeur==='obstacle')h.value_obstacle=n;
+      if(row.discipline_valeur==='plat'){h.value_plat=n;h.value_historique_non_ventilee=null;}
+      if(row.discipline_valeur==='obstacle'){h.value_obstacle=n;h.value_historique_non_ventilee=null;}
     }else if(row.discipline_valeur==='plat')h.value=n;
   }
  }catch(err){console.warn('Données sportives en direct indisponibles ; affichage de référence',err)}
