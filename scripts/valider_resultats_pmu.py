@@ -13,7 +13,7 @@ import copy
 import io
 import json
 import tempfile
-from datetime import datetime
+from datetime import datetime, timedelta
 from pathlib import Path
 from unittest.mock import patch
 
@@ -110,6 +110,68 @@ def test_offline():
     print("[OK] TESTS ISOLÉS TERMINÉS : aucune fiche ni notification modifiée")
 
 
+def test_polling_timing():
+    """Simulation accélérée : H+12, passages à 45 s et arrêt à l'officialisation."""
+    start = datetime(2026, 11, 17, 15, 50, tzinfo=pmu.PARIS)
+    threshold = datetime(2026, 11, 17, 15, 52, tzinfo=pmu.PARIS)
+    data = fixture()
+    assert pmu.due_events(data, start) == [], "Recherche déclenchée avant H+12"
+    assert len(pmu.due_events(data, threshold - timedelta(seconds=1))) == 0
+    assert len(pmu.due_events(data, threshold)) == 1
+    assert len(pmu.due_events(data, start, early_minutes=5)) == 1, (
+        "Le moteur doit se préparer quelques minutes avant H+12"
+    )
+    clock = [start]
+    checks = []
+    sleeps = []
+
+    class SimulatedDatetime(datetime):
+        @classmethod
+        def now(cls, tz=None):
+            return clock[0]
+
+    def monotonic():
+        return (clock[0] - start).total_seconds()
+
+    def sleep(seconds):
+        assert seconds > 0
+        sleeps.append(seconds)
+        clock[0] += timedelta(seconds=seconds)
+
+    def programme_at_time(day):
+        checks.append(clock[0])
+        assert clock[0] >= threshold, "PMU consulté AVANT H+12"
+        is_final = clock[0] >= datetime(2026, 11, 17, 15, 53, tzinfo=pmu.PARIS)
+        return programme(definitive=is_final), "https://example.invalid/source"
+
+    with tempfile.TemporaryDirectory() as directory:
+        root = Path(directory)
+        horse_file = root / "chevaux.json"
+        out_file = root / "editorial.json"
+        horse_file.write_text(json.dumps({"horses": [
+            {"id": "master-pat", "name": "MASTER PAT"}
+        ]}), encoding="utf-8")
+        with patch.object(pmu, "HORSES", horse_file), \\
+             patch.object(pmu, "DATA", out_file), \\
+             patch.object(pmu, "datetime", SimulatedDatetime), \\
+             patch.object(pmu.time, "monotonic", side_effect=monotonic), \\
+             patch.object(pmu.time, "sleep", side_effect=sleep), \\
+             patch.object(pmu, "fetch_programme", side_effect=programme_at_time), \\
+             patch.object(pmu, "fetch_participants",
+                          return_value=[{"numPmu": 5, "nom": "MASTER PAT"}]), \\
+             contextlib.redirect_stdout(io.StringIO()):
+            assert pmu.poll_results(data, poll_seconds=240, interval_seconds=45)
+        official = json.loads(out_file.read_text(encoding="utf-8"))
+        assert official["performances"]["master-pat"][0]["rang"] == "2e"
+        assert len(checks) >= 2
+        assert all(t >= threshold for t in checks)
+        assert all(0 < seconds <= 45 for seconds in sleeps)
+        assert clock[0] < datetime(2026, 11, 17, 15, 54, tzinfo=pmu.PARIS), (
+            "La recherche continue après officialisation"
+        )
+    print("[OK] Démarrage H+12 min, interrogations à 45 s, arrêt dès arrivée définitive")
+
+
 def test_live():
     # Ces classements ont été saisis par le gérant le 16/11/2026 :
     # la vérification externe sert ici à contrôler la chaîne source -> identité -> rang.
@@ -177,5 +239,6 @@ if __name__ == "__main__":
                         help="Contrôle strict du flux PMU réel sur les courses du 16/11/2026")
     args = parser.parse_args()
     test_offline()
+    test_polling_timing()
     if args.live:
         test_live()
