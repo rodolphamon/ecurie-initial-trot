@@ -11,7 +11,26 @@ const silkName=p=>p.casaque==='galop'?'casaque-galop.svg':p.casaque==='orange'?'
 const silk=p=>base+'../assets/'+silkName(p);
 function photoMarkup(p,style){let img=base+'photos/'+p.id+'.jpg?v='+encodeURIComponent(p.photoVersion||'1');return '<div class="'+(style==='hero'?'hero-photo':'horse-card-photo')+'">'+(style==='card'?'<span class="kind">'+esc(p.discipline)+'</span>':'')+'<img class="photo" src="'+img+'" alt="Photo de '+esc(p.name)+'" loading="lazy" onerror="this.hidden=true;this.nextElementSibling.hidden=false;this.parentNode.classList.add(\'no-photo\')" /><img class="silk" hidden src="'+silk(p)+'" alt="Casaque de l’Écurie Initial"/>'+(style==='hero'?'<span class="placeholder-tag" hidden>Photographie à venir</span>':'')+'</div>'}
 async function load(){let paths=[base+'data/chevaux.json',base+'data/editorial.json',base+'../data/effectif-trot.json',base+'../data/effectif-galop.json'];let requests=await Promise.all(paths.map(async p=>{let r=await fetch(p,{cache:'no-store'});if(!r.ok)throw Error('Impossible de charger '+p);return r.json()}));let [all,editor,trot,galop]=requests;
-try{const q=await fetch(base+'data/qualifications.json',{cache:'no-store'});if(q.ok){let videos=await q.json();editor.qualifications={...(editor.qualifications||{}),...(videos.qualifications||{})};}}catch(e){console.warn('Vidéos de qualification temporairement indisponibles',e)}let gallop=new Map((galop.horses||[]).map(h=>[h.id,h]));const replayIndex=Object.create(null);try{let response=await fetch(base+'../palmares/replays.json',{cache:'no-store'});if(response.ok){let data=await response.json();for(const replay of data.replays||[]){let url=absoluteUrl(replay.url);
+try{const q=await fetch(base+'data/qualifications.json',{cache:'no-store'});if(q.ok){let videos=await q.json();editor.qualifications={...(editor.qualifications||{}),...(videos.qualifications||{})};}}catch(e){console.warn('Vidéos de qualification temporairement indisponibles',e)}let gallop=new Map((galop.horses||[]).map(h=>[h.id,h]));const replayIndex=Object.create(null);
+try{
+ const {createClient}=await import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm');
+ const client=createClient('https://yeecwaaizmvrhwobukfa.supabase.co','sb_publishable_xUy2EJA3u3cKWl8BB4GNPQ_qhV9Pes3');
+ const [en,ga]=await Promise.all([
+   client.from('ei_contributions_engagements').select('cheval_slug,engagements'),
+   client.from('ei_contributions_gains').select('cheval_slug,gains')
+ ]);
+ if(en.error||ga.error)throw Error('Source des contributions indisponible');
+ const valid=new Set((all.horses||[]).map(h=>h.id));
+ editor.engagements=editor.engagements||{};
+ for(const row of en.data||[])if(valid.has(row.cheval_slug)&&Array.isArray(row.engagements))
+   editor.engagements[row.cheval_slug]=row.engagements;
+ for(const row of ga.data||[]){
+   if(!valid.has(row.cheval_slug)||!Number.isSafeInteger(Number(row.gains)))continue;
+   if(gallop.has(row.cheval_slug))gallop.set(row.cheval_slug,{...gallop.get(row.cheval_slug),gains:Number(row.gains)});
+   else if(trot.horses?.[row.cheval_slug])trot.horses[row.cheval_slug].gains=Number(row.gains);
+ }
+}catch(error){console.warn('Contributions en direct indisponibles, affichage des données de référence',error)}
+try{let response=await fetch(base+'../palmares/replays.json',{cache:'no-store'});if(response.ok){let data=await response.json();for(const replay of data.replays||[]){let url=absoluteUrl(replay.url);
 let sourceLetrot=absoluteUrl(replay.lien_replay_original);
 let resultatLetrot=absoluteUrl(replay.lien_letrot_precedent);
 if(url&&replay.date&&replay.cheval){
