@@ -33,10 +33,10 @@ jobs:
         if: github.event_name != 'schedule'
         run: python scripts/monitor_pmu_results.py --self-test --probe
       - name: Chercher les classements définitifs (écriture si confirmés)
-        if: github.event_name == 'schedule'
+        if: github.event_name == 'schedule' || github.event_name == 'push' || github.event_name == 'workflow_dispatch'
         run: python scripts/monitor_pmu_results.py --apply --poll --poll-seconds 240 --interval-seconds 45
       - name: Contrôler les gains LeTROT après nouvelle arrivée
-        if: github.event_name == 'schedule'
+        if: github.event_name == 'schedule' || github.event_name == 'push' || github.event_name == 'workflow_dispatch'
         run: |
           if git diff --quiet -- docs/chevaux/data/editorial.json; then
             echo "Aucun nouveau résultat publié : contrôle quotidien séparé des gains."
@@ -46,7 +46,7 @@ jobs:
             python scripts/synchroniser_gains_trot.py --apply --recent
           fi
       - name: Enregistrer les résultats définitifs vérifiés
-        if: github.event_name == 'schedule'
+        if: github.event_name == 'schedule' || github.event_name == 'push' || github.event_name == 'workflow_dispatch'
         id: save
         run: |
           if git diff --quiet -- docs/chevaux/data/editorial.json docs/data/effectif-trot.json; then
@@ -58,6 +58,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add docs/chevaux/data/editorial.json docs/data/effectif-trot.json
           git commit -m "Résultat PMU et gains de carrière LeTROT vérifiés (Écurie Initial)"
+          git pull --rebase origin main
           git push
           echo "changed=true" >> "$GITHUB_OUTPUT"
       - name: Déclencher la publication GitHub Pages après modification
@@ -73,7 +74,7 @@ jobs:
           cat /tmp/ei-pages.json
           if [ "$CODE" != "201" ] && [ "$CODE" != "202" ]; then exit 1; fi
       - name: Tester la possibilité de reconstruire les Pages (sans changer les résultats)
-        if: github.event_name == 'push'
+        if: github.event_name == 'push' && steps.save.outputs.changed != 'true'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
