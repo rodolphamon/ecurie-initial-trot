@@ -6,8 +6,11 @@ on:
       - "scripts/monitor_pmu_results.py"
       - ".github/workflows/surveiller-resultats-pmu.yml"
   schedule:
-    # Toutes les 5 minutes, de 08h à 23h à Paris en hiver.
-    - cron: '*/5 7-22 * * *'
+    # GitHub déclenche au mieux toutes les 5 min ; un job interroge
+    # ensuite le PMU toutes les 45 s dès H+12 min après le départ prévu.
+    # Couverture étendue pour les réunions en soirée (heures UTC).
+    - cron: '*/5 6-23 * * *'
+    - cron: '*/5 0 * * *'
   workflow_dispatch:
 permissions:
   contents: write
@@ -18,7 +21,7 @@ concurrency:
 jobs:
   monitor:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 9
     steps:
       - uses: actions/checkout@v4
         with:
@@ -31,7 +34,7 @@ jobs:
         run: python scripts/monitor_pmu_results.py --self-test --probe
       - name: Chercher les classements définitifs (écriture si confirmés)
         if: github.event_name == 'schedule'
-        run: python scripts/monitor_pmu_results.py --apply
+        run: python scripts/monitor_pmu_results.py --apply --poll --poll-seconds 240 --interval-seconds 45
       - name: Enregistrer les résultats définitifs vérifiés
         if: github.event_name == 'schedule'
         id: save
