@@ -1,0 +1,65 @@
+name: Contrôler les gains de carrière LeTROT
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/synchroniser_gains_trot.py'
+      - '.github/workflows/controler-gains-trot.yml'
+  schedule:
+    # Vérification quotidienne des cumuls ; GitHub peut différer l'exécution.
+    - cron: '27 8 * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+  pages: write
+concurrency:
+  group: controle-gains-trot
+  cancel-in-progress: false
+jobs:
+  gains:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Récupérer les données des chevaux
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Installer Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Tester les règles sans réseau ni modification
+        run: python scripts/synchroniser_gains_trot.py --self-test
+      - name: Vérifier les cumuls officiels LeTROT
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        run: python scripts/synchroniser_gains_trot.py --apply --all
+      - name: Enregistrer uniquement les cumuls officiels vérifiés
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        id: save
+        run: |
+          if git diff --quiet -- docs/data/effectif-trot.json; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "Aucun cumul LeTROT nouveau supérieur vérifié."
+            exit 0
+          fi
+          git config user.name "Écurie Initial · gains automatiques"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data/effectif-trot.json
+          git commit -m "Actualiser les gains de carrière confirmés par LeTROT"
+          git pull --rebase origin main
+          git push origin HEAD:main
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+      - name: Actualiser les Pages après modification
+        if: steps.save.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          CODE=$(curl -sS -o /tmp/ei-gains-pages.json -w '%{http_code}' -X POST \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/$GITHUB_REPOSITORY/pages/builds")
+          echo "Publication GitHub Pages : HTTP $CODE"
+          if [ "$CODE" != "201" ] && [ "$CODE" != "202" ]; then
+            cat /tmp/ei-gains-pages.json
+            exit 1
+          fi
