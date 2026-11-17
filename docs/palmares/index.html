@@ -505,7 +505,9 @@ function render(){
  $("empty").hidden=data.length>0;
  // Décrire précisément les performances correspondant aux filtres actifs.
  const filtersActive=!!(hippodrome||year||type||horse||pilot||trainer||state.placing!=="all");
- const total=data.length;
+ // Même périmètre que les compteurs OR, ARGENT et BRONZE en haut du palmarès.
+ // Les performances sous casaques extérieures restent dans la liste, mais hors décompte.
+ const total=data.filter(victoireAdmiseAuCompteur).length;
  const typeDePlace=state.placing==="win"?(total===1?"victoire":"victoires")
   :state.placing==="second"?(total===1?"deuxième place":"deuxièmes places")
   :state.placing==="third"?(total===1?"troisième place":"troisièmes places")
