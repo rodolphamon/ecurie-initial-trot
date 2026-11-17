@@ -3,7 +3,7 @@
 <title>Contributions · Écurie Initial</title><link rel="manifest" href="../manifest.webmanifest"><link rel="icon" href="../icon-ei-192.png">
 <style>
 *{box-sizing:border-box}body{margin:0;background:#f8f6f3;color:#23211f;font:15px/1.5 Arial,Helvetica,sans-serif}header{background:#171717;color:white;padding:18px 20px}header strong{font-size:22px}header span{color:#ff862b}main{max-width:930px;margin:auto;padding:20px 14px 105px}
-h1{font-size:27px;margin:4px 0 10px}h2{font-size:20px;margin:0 0 10px}a{color:#a34b0d}.muted{color:#69615c}.card{padding:19px;background:#fff;border:1px solid #e9ddd2;border-radius:14px;margin:15px 0}.flex{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.tabs{display:flex;gap:8px;margin:15px 0}.tabs button{background:white;color:#222;border:1px solid #e6c8b0}.tabs button.on{background:#171717;color:#fff}
+h1{font-size:27px;margin:4px 0 10px}h2{font-size:20px;margin:0 0 10px}a{color:#a34b0d}.muted{color:#69615c}.card{padding:19px;background:#fff;border:1px solid #e9ddd2;border-radius:14px;margin:15px 0}.flex{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.tabs{display:flex;gap:8px;margin:15px 0;flex-wrap:wrap}.tabs button{background:white;color:#222;border:1px solid #e6c8b0}.tabs button.on{background:#171717;color:#fff}
 button,.btn{font:inherit;cursor:pointer;padding:10px 15px;background:#f47721;color:#1b1b1b;border:0;border-radius:9px;font-weight:750;text-decoration:none;display:inline-block}button:disabled{opacity:.5;cursor:wait}.outline{background:#f3f0ed}.danger{background:#f8e7e5;color:#8b211d}.row{border:1px solid #eadfd4;border-radius:12px;background:#fefdfc;margin:12px 0;padding:14px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.row-actions{grid-column:1/-1;display:flex;justify-content:flex-end}
 label{display:block;font-weight:bold;font-size:13px;margin-bottom:6px}input,select,textarea{width:100%;border:1px solid #d8c9ba;background:white;border-radius:8px;padding:11px;font:inherit;color:#222}textarea{min-height:72px;resize:vertical}input:focus,select:focus,textarea:focus{outline:2px solid #f47721}#msg{font-weight:650;min-height:20px;margin:12px 0}#msg.bad{color:#a22}#msg.good{color:#157044}[hidden]{display:none!important}
 .notice{border-left:4px solid #f47721;background:#fff6ee;padding:12px 15px}.full{grid-column:1/-1}.span2{grid-column:span 2}
@@ -11,12 +11,12 @@ label{display:block;font-weight:bold;font-size:13px;margin-bottom:6px}input,sele
 </style></head>
 <body><header><strong>ÉCURIE <span>INITIAL</span></strong><div>Gestion des données — contributeurs autorisés</div></header>
 <main><nav><a href="../mes-chevaux/">← Retour à mon espace</a></nav><h1>Gestion sportive des chevaux</h1>
-<p class="muted">Les modifications enregistrées ici sont publiées directement sur les fiches chevaux, le calendrier et l’application. Aucune validation supplémentaire n’est demandée.</p>
+<p class="muted">Modifiez les engagements, gains, valeurs handicap (galop) et records absolus (trot). Sélectionnez un cheval pour activer les champs qui le concernent. Les changements enregistrés sont publiés directement sur les fiches, le calendrier et l’application.</p>
 <div id="loading" class="card">Vérification des autorisations…</div>
 <div id="denied" class="card" hidden><p>Vous n’avez pas accès à cette rubrique. Le gérant doit vous attribuer le rôle Contributeur. L’accès général reste également fermé avant le 1er décembre, sauf autorisation de test.</p><a href="../connexion/">Se connecter ou vérifier mon invitation</a></div>
 <section id="work" hidden>
 <div class="card"><label for="horse">Cheval concerné</label><select id="horse"><option value="">Sélectionner un cheval…</option></select><p id="horsehint" class="muted"></p></div>
-<div class="tabs"><button type="button" id="tabEng" class="on">📅 Engagements</button><button type="button" id="tabGain">💶 Gains de carrière</button><button type="button" id="tabValue" hidden>📊 Valeur handicap</button><button type="button" id="tabRecord" hidden>⏱️ Record trot</button></div>
+<div class="tabs"><button type="button" id="tabEng" class="on">📅 Engagements</button><button type="button" id="tabGain">💶 Gains de carrière</button><button type="button" id="tabValue" hidden>📊 Valeur handicap (galop)</button><button type="button" id="tabRecord" hidden>⏱️ Record absolu (trot)</button></div>
 <div id="engSection" class="card"><h2>Engagements du cheval</h2><p class="muted">Ajouter un engagement, le modifier ou l’enlever. En cas d’heure ou de jockey inconnu, laisser le champ vide. Le calendrier n’affiche que les prochaines courses.</p><div id="events"></div><div class="flex"><button type="button" class="outline" id="add">+ Ajouter un engagement</button><button type="button" id="saveEng">Publier les engagements</button></div></div>
 <div id="gainSection" class="card" hidden><h2>Gains du cheval</h2><p id="currentGain" class="muted"></p><form id="gainForm"><label for="gain">Gains totaux de carrière (€)</label><input id="gain" type="number" min="0" max="1000000000" step="1" required><label for="source">Lien vers la source vérifiée (LeTROT, France Galop…)</label><input id="source" type="url" placeholder="https://..." pattern="https://.*" required><p class="muted">Ne pas confondre les gains totaux du cheval avec les gains de l’année ou les allocations d’une course.</p><button type="submit">Publier les gains</button></form></div>
 <div id="valueSection" class="card" hidden><h2>Valeur handicap — galop</h2><p id="currentValue" class="muted"></p><form id="valueForm"><label for="value">Valeur handicap actuelle</label><input id="value" type="number" min="0" max="120" step="0.1" placeholder="Ex. 31,5" required><label for="valueSource">Lien vers la source vérifiée (France Galop)</label><input id="valueSource" type="url" placeholder="https://..." pattern="https://.*" required><p class="muted">La valeur handicap concerne uniquement les chevaux de galop.</p><button type="submit">Publier la valeur handicap</button></form></div>
@@ -74,8 +74,12 @@ function selectHorse(){
   $('add').disabled=!horseId||!canEng;
   $('gainForm').querySelector('button').disabled=!horseId||!canGain;
   const isGalop=p?.casaque==='galop';
-  $('tabValue').hidden=!isGalop||!canValue;
-  $('tabRecord').hidden=isGalop||!canRecord||!p;
+  // Les deux rubriques restent visibles, même avant le choix d'un cheval.
+  // Seule la rubrique incompatible avec la discipline choisie est désactivée.
+  $('tabValue').hidden=!canValue;
+  $('tabRecord').hidden=!canRecord;
+  $('tabValue').disabled=!!p&&!isGalop;
+  $('tabRecord').disabled=!!p&&isGalop;
   const currentVal=liveValues[horseId]?.valeur??galop[horseId]?.value;
   const currentRec=liveRecords[horseId]?.chrono??trot[horseId]?.record;
   $('currentValue').textContent=p&&isGalop?'Valeur actuellement affichée : '+(currentVal??'non renseignée'):'Choisissez un cheval de galop.';
@@ -86,7 +90,8 @@ function selectHorse(){
   $('recordSource').value=liveRecords[horseId]?.source_url||trot[horseId]?.record_source_url||(!isGalop&&p?.horseLink?.startsWith('https://')?p.horseLink:'');
   $('valueForm').querySelector('button').disabled=!horseId||!isGalop||!canValue;
   $('recordForm').querySelector('button').disabled=!horseId||isGalop||!canRecord;
-  if((active==='value'&&!isGalop)||(active==='record'&&isGalop))tab(canEng?'eng':canGain?'gain':isGalop?'value':'record');
+  if((active==='value'&&p&&!isGalop)||(active==='record'&&p&&isGalop))
+    tab(canEng?'eng':canGain?'gain':isGalop?'value':'record');
   renderEvents();msg('');
 }
 function tab(which){
@@ -185,6 +190,7 @@ async function init(){
     liveRecords=Object.fromEntries((recordData.data||[]).map(v=>[v.cheval_slug,v]));
     for(const p of profiles){const option=document.createElement('option');option.value=p.id;option.textContent=p.name;$('horse').append(option)}
     $('tabEng').hidden=!canEng;$('tabGain').hidden=!canGain;
+    $('tabValue').hidden=!canValue;$('tabRecord').hidden=!canRecord;
     tab(canEng?'eng':canGain?'gain':canValue?'value':'record');
     const wanted=new URLSearchParams(location.search).get('cheval');
     if(wanted&&profiles.some(p=>p.id===wanted))$('horse').value=wanted;
