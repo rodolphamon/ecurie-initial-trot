@@ -8,6 +8,10 @@
   const script = document.currentScript;
   if (!script) return;
   const applicationBase = new URL("./", script.src);
+  // En-tête Écurie Initial partagé par toutes les rubriques et fiches.
+  const headerScript = document.createElement("script");
+  headerScript.src = new URL("header.js?v=20261117universel1", applicationBase).href;
+  document.body.appendChild(headerScript);
   const siteBase = new URL("../", applicationBase);
   const currentPath = window.location.pathname;
   const chevauxBase = new URL("chevaux/", siteBase);
