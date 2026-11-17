@@ -85,6 +85,9 @@ def check_case(name, *, definitive=True, arrival=None, venue="CHANTILLY",
                 assert entry["rang"] == expected_rank, name
                 assert entry["officiel"] is True and entry["statut"] == "officiel", name
                 assert entry["numero"] == 5 and entry["course"] == "R1C7", name
+                assert entry["video_url"] == "https://www.equidia.fr/courses/2026-11-17/R1/C7", name
+                assert entry["course_url"] == entry["video_url"], name
+                assert entry["video_source"] == "equidia_course", name
                 # Deuxième passage : aucune insertion supplémentaire.
                 assert pmu.apply(data, now, is_dry_run=False) is False, name + " : doublon"
             else:
@@ -106,6 +109,14 @@ def test_offline():
     assert pmu.rank_in_arrival(race, 8) == (2, None)
     assert pmu.rank_in_arrival(race, 9) == (4, None)
     assert pmu.rank_in_arrival(race, 17)[0] is None
+    assert pmu.equidia_course_url("2026-11-17", "R1C7") == (
+        "https://www.equidia.fr/courses/2026-11-17/R1/C7")
+    try:
+        pmu.equidia_course_url("2026-11-17", "C7")
+        raise AssertionError("Lien Equidia produit sans numéro de réunion")
+    except ValueError:
+        pass
+    print("[OK] Lien Equidia construit depuis la course vérifiée (vidéo non présumée en ligne)")
     print("[OK] Rangs et ex æquo")
     print("[OK] TESTS ISOLÉS TERMINÉS : aucune fiche ni notification modifiée")
 
@@ -229,6 +240,10 @@ def test_live():
             assert len(entries) == 1, slug + " : nombre de performances incorrect"
             assert entries[0]["rang"] == expected_rank, slug + " : mauvais rang"
             assert entries[0]["officiel"] is True, slug + " : non officialisé"
+            expected_course = "C6" if slug == "zartop" else "C8"
+            expected_url = "https://www.equidia.fr/courses/2026-11-16/R3/" + expected_course
+            assert entries[0]["video_url"] == expected_url, slug + " : mauvaise course Equidia"
+            assert entries[0]["video_source"] == "equidia_course", slug
         print("[OK] Chaîne PMU -> classement -> JSON : 2 résultats dans un fichier temporaire")
     print("[OK] Fichier temporaire effacé ; site, application et notifications inchangés")
 
