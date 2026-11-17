@@ -117,7 +117,7 @@ body.ei-prelaunch{padding-bottom:0!important}
 <h2 class="home-title">À découvrir</h2>
 <div class="cards">
 <a class="card" href="../chevaux/"><strong>🐎 Effectif et résultats</strong><small>Découvrez nos chevaux, leurs fiches et leurs performances.</small></a>
-<a class="card" href="../engagements/"><strong>📅 Prochains partants</strong><span class="upcoming-lines"><span class="upcoming-line">Prochain partant : <b id="homeNextPartant">À venir</b></span><span class="upcoming-line">Prochain engagement : <b id="homeNextEngage">À venir</b></span></span></a>
+<a class="card" href="../engagements/"><strong>📅 Prochains partants</strong><small>Retrouvez les chevaux engagés et les partants à venir.</small></a>
 <a class="card" href="../palmares/"><strong>🏆 Victoires & podiums</strong><small>Revivez nos victoires et nos plus belles places d’honneur.</small></a>
 <a class="card" href="notifications/"><strong>🔔 Notifications</strong><small>Restez informés des partants et des résultats.</small></a>
 <a class="card" href="devenir-associe/"><strong>🧡 Devenir associé</strong><small>Vivez les émotions des courses à nos côtés.</small></a>
@@ -180,12 +180,6 @@ window.loadHomeDashboard=async function(){
     }
    }
    upcoming.sort((a,b)=>a.moment.localeCompare(b.moment));
-   // Distinguer la prochaine course confirmée du premier engagement encore ouvert.
-   const nextConfirmed=upcoming.find(x=>["partant","declare"].includes(x.e.statut));
-   const nextEntered=upcoming.find(x=>x.e.statut==="engage");
-   const succinct=x=>x?known.get(x.slug)+" · "+stamp(x.e.date):"Aucun annoncé";
-   get("homeNextPartant").textContent=succinct(nextConfirmed);
-   get("homeNextEngage").textContent=succinct(nextEntered);
    const next=upcoming[0];
    if(next){
     get("dashNextLabel").textContent=["partant","declare"].includes(next.e.statut)?"Prochain partant":"Prochain engagement";
