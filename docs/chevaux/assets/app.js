@@ -183,8 +183,6 @@ function catalog(s){
   host.innerHTML=header()+
     '<main class="shell">'+
       '<div class="breadcrumb"><a href="https://www.ecurie-initial.com/">Accueil</a> / Nos chevaux</div>'+
-      '<span class="eyebrow">Effectif de l’Écurie Initial</span>'+
-      '<h1 class="page-title">Nos chevaux</h1><div class="orange-line"></div>'+
       latestResults(s)+
       '<div class="filter-strip" role="group" aria-label="Filtrer les chevaux">'+
         '<select id="filter-horse" aria-label="Choisir un cheval">'+horseOptions+'</select>'+
