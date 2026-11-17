@@ -9,7 +9,8 @@
       "jockey": "Léo ROUSSEL",
       "entraineur": "Gilles PANNIER",
       "casaque": "galop",
-      "source_resultat": "Résultat communiqué par le gérant de l'Écurie Initial le 16/11/2026 ; en attente de recoupement officiel"
+      "source_resultat": "Résultat communiqué par le gérant de l'Écurie Initial le 16/11/2026 ; en attente de recoupement officiel",
+      "source_officielle": "https://www.equidia.fr/courses/2026-11-16/R3/C6"
     },
     {
       "date": "2026-11-08",
@@ -31,7 +32,8 @@
       "casaque": "blanche",
       "jockey": "A. ANGOT",
       "entraineur": "Laurent BARASSIN",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Laurent BARASSIN à Lisieux"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Laurent BARASSIN à Lisieux",
+      "source_officielle": "https://www.equidia.fr/courses/2026-11-01/R16/C2"
     },
     {
       "date": "2026-10-30",
@@ -42,7 +44,8 @@
       "casaque": "nathalie",
       "jockey": "M. DAOUGABEL",
       "entraineur": "Mathieu DAOUGABEL",
-      "proprietaire": "Nathalie HAMON"
+      "proprietaire": "Nathalie HAMON",
+      "source_officielle": "https://www.equidia.fr/courses/2026-10-30/R5/C5"
     },
     {
       "date": "2026-10-25",
@@ -64,7 +67,8 @@
       "discipline": "galop",
       "entraineur": "Gilles PANNIER",
       "casaque": "galop",
-      "jockey": "O. D'ANDIGNÉ"
+      "jockey": "O. D'ANDIGNÉ",
+      "source_officielle": "https://www.equidia.fr/courses/2026-10-22/R2/C1"
     },
     {
       "date": "2026-10-20",
@@ -74,7 +78,8 @@
       "discipline": "galop",
       "entraineur": "Gilles PANNIER",
       "casaque": "galop",
-      "jockey": "C. DEMURO"
+      "jockey": "C. DEMURO",
+      "source_officielle": "https://www.equidia.fr/courses/2026-10-20/R1/C7"
     },
     {
       "date": "2026-10-17",
@@ -85,7 +90,8 @@
       "jockey": "Adrien LAMY",
       "casaque": "blanche",
       "entraineur": "Laurent BARASSIN",
-      "source_entraineur": "https://www.journalduturf.com/arrivees-rapports-pmu/574130_prix-du-maine.html?tab=resultat"
+      "source_entraineur": "https://www.journalduturf.com/arrivees-rapports-pmu/574130_prix-du-maine.html?tab=resultat",
+      "source_officielle": "https://www.equidia.fr/courses/2026-10-17/R5/C7"
     },
     {
       "date": "2026-10-03",
@@ -96,7 +102,8 @@
       "jockey": "Mathieu DAOUGABEL",
       "casaque": "nathalie",
       "entraineur": "Mathieu DAOUGABEL",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2026-10-03/R9/C4"
     },
     {
       "date": "2026-09-28",
@@ -108,7 +115,8 @@
       "proprietaire": "Écurie Initial",
       "jockey": "Patrice PACAUD",
       "entraineur": "Vincent HEBERT",
-      "source_entraineur": "https://www.infos-entrainement.fr/reunions-pmu-courses-du-jour/2026-09-28/r2/c7"
+      "source_entraineur": "https://www.infos-entrainement.fr/reunions-pmu-courses-du-jour/2026-09-28/r2/c7",
+      "source_officielle": "https://www.equidia.fr/courses/2026-09-28/R2/C7"
     },
     {
       "date": "2026-09-27",
@@ -142,7 +150,8 @@
       "proprietaire": "Écurie Initial",
       "jockey": "Gilles MAILLARD",
       "entraineur": "Laurent BARASSIN",
-      "source_entraineur": "https://www.turfoo.fr/fiches/chevaux/nostalgie-dairpet/"
+      "source_entraineur": "https://www.turfoo.fr/fiches/chevaux/nostalgie-dairpet/",
+      "source_officielle": "https://www.equidia.fr/courses/2026-09-20/R12/C1"
     },
     {
       "date": "2026-09-14",
@@ -152,7 +161,8 @@
       "discipline": "galop",
       "entraineur": "Gilles PANNIER",
       "casaque": "galop",
-      "jockey": "M. GUYON"
+      "jockey": "M. GUYON",
+      "source_officielle": "https://www.equidia.fr/courses/2026-09-14/R4/C6"
     },
     {
       "date": "2026-09-13",
@@ -162,7 +172,8 @@
       "discipline": "galop",
       "entraineur": "Gilles PANNIER",
       "casaque": "galop",
-      "jockey": "A. MOLINS"
+      "jockey": "A. MOLINS",
+      "source_officielle": "https://www.equidia.fr/courses/2026-09-13/R1/C1"
     },
     {
       "date": "2026-09-01",
@@ -172,7 +183,8 @@
       "discipline": "galop",
       "entraineur": "Gilles PANNIER",
       "casaque": "galop",
-      "jockey": "L. BOISSEAU"
+      "jockey": "L. BOISSEAU",
+      "source_officielle": "https://www.equidia.fr/courses/2026-09-01/R1/C3"
     },
     {
       "date": "2026-08-28",
@@ -184,7 +196,8 @@
       "proprietaire": "Écurie Initial",
       "jockey": "Antoine WIELS",
       "entraineur": "Laurent BARASSIN",
-      "source_entraineur": "https://www.turfoo.fr/fiches/chevaux/nostalgie-dairpet/"
+      "source_entraineur": "https://www.turfoo.fr/fiches/chevaux/nostalgie-dairpet/",
+      "source_officielle": "https://www.equidia.fr/courses/2026-08-28/R6/C8"
     },
     {
       "date": "2026-08-26",
@@ -196,7 +209,8 @@
       "proprietaire": "Écurie Initial",
       "jockey": "David THOMAIN",
       "entraineur": "Pierre-Louis DESAUNETTE",
-      "source_entraineur": "https://www.geny.com/cheval/2824299-moscantida-peal/course/1678936"
+      "source_entraineur": "https://www.geny.com/cheval/2824299-moscantida-peal/course/1678936",
+      "source_officielle": "https://www.equidia.fr/courses/2026-08-26/R2/C6"
     },
     {
       "date": "2026-08-25",
@@ -207,7 +221,8 @@
       "jockey": "Antonin ANDRE",
       "casaque": "blanche",
       "entraineur": "Pierre-Louis DESAUNETTE",
-      "source_entraineur": "https://turfoo.fr/fiches/chevaux/nebraska-fleury/"
+      "source_entraineur": "https://turfoo.fr/fiches/chevaux/nebraska-fleury/",
+      "source_officielle": "https://www.equidia.fr/courses/2026-08-25/R5/C5"
     },
     {
       "date": "2026-08-23",
@@ -217,7 +232,8 @@
       "discipline": "galop",
       "entraineur": "Gilles PANNIER",
       "casaque": "galop",
-      "jockey": "L. BOISSEAU"
+      "jockey": "L. BOISSEAU",
+      "source_officielle": "https://www.equidia.fr/courses/2026-08-23/R1/C8"
     },
     {
       "date": "2026-08-20",
@@ -229,7 +245,8 @@
       "proprietaire": "Écurie Initial",
       "jockey": "Mathias LEGROS",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "https://www.geny.com/cheval/2837238-lord-on-way/course/1679027"
+      "source_entraineur": "https://www.geny.com/cheval/2837238-lord-on-way/course/1679027",
+      "source_officielle": "https://www.equidia.fr/courses/2026-08-20/R4/C5"
     },
     {
       "date": "2026-08-18",
@@ -239,7 +256,8 @@
       "discipline": "galop",
       "entraineur": "Gilles PANNIER",
       "casaque": "galop",
-      "jockey": "C. DEMURO"
+      "jockey": "C. DEMURO",
+      "source_officielle": "https://www.equidia.fr/courses/2026-08-18/R1/C7"
     },
     {
       "date": "2026-08-16",
@@ -249,7 +267,8 @@
       "discipline": "galop",
       "entraineur": "Gilles PANNIER",
       "casaque": "galop",
-      "jockey": "M. BARZALONA"
+      "jockey": "M. BARZALONA",
+      "source_officielle": "https://www.equidia.fr/courses/2026-08-16/R1/C9"
     },
     {
       "date": "2026-08-15",
@@ -273,7 +292,8 @@
       "proprietaire": "Écurie Initial",
       "jockey": "Benjamin ROCHARD",
       "entraineur": "Pierre-Louis DESAUNETTE",
-      "source_entraineur": "https://www.turfoo.fr/fiches/chevaux/moscantida-peal/"
+      "source_entraineur": "https://www.turfoo.fr/fiches/chevaux/moscantida-peal/",
+      "source_officielle": "https://www.equidia.fr/courses/2026-08-08/R3/C1"
     },
     {
       "date": "2026-08-03",
@@ -294,7 +314,8 @@
       "discipline": "galop",
       "entraineur": "Gilles PANNIER",
       "casaque": "galop",
-      "jockey": "L. BOISSEAU"
+      "jockey": "L. BOISSEAU",
+      "source_officielle": "https://www.equidia.fr/courses/2026-08-03/R1/C6"
     },
     {
       "date": "2026-07-30",
@@ -304,7 +325,8 @@
       "discipline": "galop",
       "entraineur": "Gilles PANNIER",
       "casaque": "galop",
-      "jockey": "M. BARZALONA"
+      "jockey": "M. BARZALONA",
+      "source_officielle": "https://www.equidia.fr/courses/2026-07-30/R1/C3"
     },
     {
       "date": "2026-07-26",
@@ -316,7 +338,8 @@
       "proprietaire": "Écurie Initial",
       "jockey": "Clément FRECELLE",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2026-07-26/R3/C6"
     },
     {
       "date": "2026-07-19",
@@ -326,7 +349,8 @@
       "discipline": "galop",
       "entraineur": "Gilles PANNIER",
       "casaque": "galop",
-      "jockey": "A. MOLINS"
+      "jockey": "A. MOLINS",
+      "source_officielle": "https://www.equidia.fr/courses/2026-07-19/R1/C8"
     },
     {
       "date": "2026-07-12",
@@ -349,7 +373,8 @@
       "jockey": "Patrice PACAUD",
       "casaque": "blanche",
       "entraineur": "Vincent HEBERT",
-      "source_entraineur": "https://www.turfoo.fr/index.php/fiches/chevaux/mandragora-fleury/"
+      "source_entraineur": "https://www.turfoo.fr/index.php/fiches/chevaux/mandragora-fleury/",
+      "source_officielle": "https://www.equidia.fr/courses/2026-07-12/R10/C3"
     },
     {
       "date": "2026-07-12",
@@ -370,7 +395,8 @@
       "discipline": "galop",
       "entraineur": "Gilles PANNIER",
       "casaque": "galop",
-      "jockey": "A. MOLINS"
+      "jockey": "A. MOLINS",
+      "source_officielle": "https://www.equidia.fr/courses/2026-07-02/R1/C8"
     },
     {
       "date": "2026-06-29",
@@ -382,7 +408,8 @@
       "proprietaire": "Écurie Initial",
       "jockey": "Alexis COLLETTE",
       "entraineur": "Pierre-Louis DESAUNETTE",
-      "source_entraineur": "https://www.turfoo.fr/fiches/chevaux/moscantida-peal/"
+      "source_entraineur": "https://www.turfoo.fr/fiches/chevaux/moscantida-peal/",
+      "source_officielle": "https://www.equidia.fr/courses/2026-06-29/R2/C4"
     },
     {
       "date": "2026-06-10",
@@ -392,7 +419,8 @@
       "discipline": "galop",
       "entraineur": "Gilles PANNIER",
       "casaque": "galop",
-      "jockey": "L. ROUSSEL"
+      "jockey": "L. ROUSSEL",
+      "source_officielle": "https://www.equidia.fr/courses/2026-06-10/R3/C6"
     },
     {
       "date": "2026-05-29",
@@ -403,7 +431,8 @@
       "jockey": "François LAGADEUC",
       "casaque": "blanche",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "https://www.geny.com/cheval/2692098-isolee-du-bouillon/course/1645777"
+      "source_entraineur": "https://www.geny.com/cheval/2692098-isolee-du-bouillon/course/1645777",
+      "source_officielle": "https://www.equidia.fr/courses/2026-05-29/R1/C4"
     },
     {
       "date": "2026-05-26",
@@ -415,7 +444,8 @@
       "proprietaire": "Écurie Initial",
       "jockey": "François LAGADEUC",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2026-05-26/R1/C3"
     },
     {
       "date": "2026-05-25",
@@ -425,7 +455,8 @@
       "discipline": "galop",
       "entraineur": "Gilles PANNIER",
       "casaque": "galop",
-      "jockey": "L. BOISSEAU"
+      "jockey": "L. BOISSEAU",
+      "source_officielle": "https://www.equidia.fr/courses/2026-05-25/R1/C6"
     },
     {
       "date": "2026-05-25",
@@ -457,7 +488,8 @@
       "discipline": "galop",
       "entraineur": "Gilles PANNIER",
       "casaque": "galop",
-      "jockey": "A. MOLINS"
+      "jockey": "A. MOLINS",
+      "source_officielle": "https://www.equidia.fr/courses/2026-05-17/R6/C2"
     },
     {
       "date": "2026-05-17",
@@ -467,7 +499,8 @@
       "discipline": "galop",
       "entraineur": "Gilles PANNIER",
       "casaque": "galop",
-      "jockey": "L. BOISSEAU"
+      "jockey": "L. BOISSEAU",
+      "source_officielle": "https://www.equidia.fr/courses/2026-05-17/R6/C1"
     },
     {
       "date": "2026-05-10",
@@ -477,7 +510,8 @@
       "discipline": "galop",
       "entraineur": "Gilles PANNIER",
       "casaque": "galop",
-      "jockey": "C. DEMURO"
+      "jockey": "C. DEMURO",
+      "source_officielle": "https://www.equidia.fr/courses/2026-05-10/R1/C8"
     },
     {
       "date": "2026-05-03",
@@ -498,7 +532,8 @@
       "jockey": "Benjamin ROCHARD",
       "casaque": "blanche",
       "entraineur": "Pierre-Louis DESAUNETTE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2026-04-21/R4/C4"
     },
     {
       "date": "2026-04-19",
@@ -508,7 +543,8 @@
       "discipline": "attele",
       "jockey": "Florian JULIEN",
       "entraineur": "Florian JULIEN",
-      "casaque": "julien"
+      "casaque": "julien",
+      "source_officielle": "https://www.equidia.fr/courses/2026-04-19/R9/C9"
     },
     {
       "date": "2026-04-17",
@@ -520,7 +556,8 @@
       "proprietaire": "Écurie Initial",
       "jockey": "Mathias LEGROS",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "https://www.geny.com/cheval/2692098-isolee-du-bouillon/course/1645777"
+      "source_entraineur": "https://www.geny.com/cheval/2692098-isolee-du-bouillon/course/1645777",
+      "source_officielle": "https://www.equidia.fr/courses/2026-04-17/R1/C1"
     },
     {
       "date": "2026-04-12",
@@ -531,7 +568,8 @@
       "jockey": "Sébastien ERNAULT",
       "casaque": "blanche",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2026-04-12/R5/C6"
     },
     {
       "date": "2026-04-12",
@@ -553,7 +591,8 @@
       "discipline": "galop",
       "entraineur": "Gilles PANNIER",
       "casaque": "galop",
-      "jockey": "H. LEBOUC"
+      "jockey": "H. LEBOUC",
+      "source_officielle": "https://www.equidia.fr/courses/2026-04-09/R4/C6"
     },
     {
       "date": "2026-04-06",
@@ -575,7 +614,8 @@
       "proprietaire": "Écurie Initial",
       "jockey": "Guillaume LENAIN",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2026-04-06/R4/C4"
     },
     {
       "date": "2026-04-04",
@@ -585,7 +625,8 @@
       "discipline": "galop",
       "entraineur": "Gilles PANNIER",
       "casaque": "galop",
-      "jockey": "H. LEBOUC"
+      "jockey": "H. LEBOUC",
+      "source_officielle": "https://www.equidia.fr/courses/2026-04-04/R4/C8"
     },
     {
       "date": "2026-03-15",
@@ -597,7 +638,8 @@
       "proprietaire": "Écurie Initial",
       "jockey": "Amaury BOURGOIN-TIMBERT",
       "entraineur": "Pierre-Louis DESAUNETTE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2026-03-15/R5/C3"
     },
     {
       "date": "2026-03-12",
@@ -609,7 +651,8 @@
       "proprietaire": "Écurie Initial",
       "jockey": "Vincent HEBERT",
       "entraineur": "Vincent HEBERT",
-      "source_entraineur": "https://turfoo.fr/fiches/chevaux/nebraska-fleury/"
+      "source_entraineur": "https://turfoo.fr/fiches/chevaux/nebraska-fleury/",
+      "source_officielle": "https://www.equidia.fr/courses/2026-03-12/R3/C2"
     },
     {
       "date": "2026-02-27",
@@ -619,7 +662,8 @@
       "discipline": "galop",
       "entraineur": "Gilles PANNIER",
       "casaque": "galop",
-      "jockey": "L. ROUSSEL"
+      "jockey": "L. ROUSSEL",
+      "source_officielle": "https://www.equidia.fr/courses/2026-02-27/R4/C7"
     },
     {
       "date": "2026-02-23",
@@ -642,7 +686,8 @@
       "proprietaire": "Écurie Initial",
       "jockey": "Mary-Kate DUVAL",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2026-02-16/R1/C3"
     },
     {
       "date": "2026-02-05",
@@ -652,7 +697,8 @@
       "discipline": "galop",
       "entraineur": "Gilles PANNIER",
       "casaque": "galop",
-      "jockey": "A. BOURGEAIS"
+      "jockey": "A. BOURGEAIS",
+      "source_officielle": "https://www.equidia.fr/courses/2026-02-05/R4/C1"
     },
     {
       "date": "2026-02-02",
@@ -663,7 +709,8 @@
       "jockey": "Matthias LEGROS",
       "casaque": "blanche",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2026-02-02/R4/C1"
     },
     {
       "date": "2026-02-01",
@@ -673,7 +720,8 @@
       "discipline": "attele",
       "jockey": "Florian JULIEN",
       "entraineur": "Florian JULIEN",
-      "casaque": "julien"
+      "casaque": "julien",
+      "source_officielle": "https://www.equidia.fr/courses/2026-02-01/R10/C5"
     },
     {
       "date": "2026-01-30",
@@ -684,7 +732,8 @@
       "entraineur": "Gilles PANNIER",
       "casaque": "galop",
       "jockey": "L. BOISSEAU",
-      "source_entraineur": "https://www.racingpost.com/results/206/deauville/2026-01-30/912703/"
+      "source_entraineur": "https://www.racingpost.com/results/206/deauville/2026-01-30/912703/",
+      "source_officielle": "https://www.equidia.fr/courses/2026-01-30/R1/C4"
     },
     {
       "date": "2026-01-25",
@@ -695,7 +744,8 @@
       "jockey": "Eva BOUCLET",
       "casaque": "blanche",
       "entraineur": "Charley HESLOUIN",
-      "source_entraineur": "https://www.geny.com/cheval/2664298-indice-deladou/course/1692779"
+      "source_entraineur": "https://www.geny.com/cheval/2664298-indice-deladou/course/1692779",
+      "source_officielle": "https://www.equidia.fr/courses/2026-01-25/R1/C2"
     },
     {
       "date": "2025-12-21",
@@ -716,7 +766,8 @@
       "entraineur": "Gilles PANNIER",
       "casaque": "galop",
       "jockey": "D. PROVOST",
-      "source_entraineur": "https://www.iturf.fr/courses/master-pat.html"
+      "source_entraineur": "https://www.iturf.fr/courses/master-pat.html",
+      "source_officielle": "https://www.equidia.fr/courses/2025-12-13/R4/C4"
     },
     {
       "date": "2025-12-12",
@@ -727,7 +778,8 @@
       "jockey": "Matthias LEGROS",
       "casaque": "blanche",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2025-12-12/R1/C7"
     },
     {
       "date": "2025-11-23",
@@ -739,7 +791,8 @@
       "proprietaire": "Écurie Initial",
       "jockey": "Romain LE CREPS",
       "entraineur": "N. CATHERINE",
-      "source_entraineur": "https://www.infogoetz.fr/pronostics-du-23-11-2025-a-FR-CHERBOURG%2Ccourse-4-214061%2C1783072"
+      "source_entraineur": "https://www.infogoetz.fr/pronostics-du-23-11-2025-a-FR-CHERBOURG%2Ccourse-4-214061%2C1783072",
+      "source_officielle": "https://www.equidia.fr/courses/2025-11-23/R8/C4"
     },
     {
       "date": "2025-11-20",
@@ -751,7 +804,8 @@
       "proprietaire": "Écurie Initial",
       "jockey": "Cédric TERRY",
       "entraineur": "Pierre-Louis DESAUNETTE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2025-11-20/R4/C2"
     },
     {
       "date": "2025-11-16",
@@ -761,7 +815,8 @@
       "discipline": "attele",
       "jockey": "Florian JULIEN",
       "entraineur": "Florian JULIEN",
-      "casaque": "julien"
+      "casaque": "julien",
+      "source_officielle": "https://www.equidia.fr/courses/2025-11-16/R7/C6"
     },
     {
       "date": "2025-11-03",
@@ -772,7 +827,8 @@
       "jockey": "Michel HANQUIER",
       "casaque": "nathalie",
       "entraineur": "Michel HANQUIER",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2025-11-03/R6/C4"
     },
     {
       "date": "2025-10-17",
@@ -782,7 +838,8 @@
       "discipline": "galop",
       "entraineur": "Gilles PANNIER",
       "casaque": "galop",
-      "jockey": "A. MOLINS"
+      "jockey": "A. MOLINS",
+      "source_officielle": "https://www.equidia.fr/courses/2025-10-17/R5/C3"
     },
     {
       "date": "2025-09-23",
@@ -793,7 +850,8 @@
       "jockey": "Matthias LEGROS",
       "casaque": "blanche",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2025-09-23/R3/C5"
     },
     {
       "date": "2025-09-20",
@@ -804,7 +862,8 @@
       "entraineur": "Gilles PANNIER",
       "casaque": "galop",
       "jockey": "D. PROVOST",
-      "source_entraineur": "https://www.iturf.fr/courses/master-pat.html"
+      "source_entraineur": "https://www.iturf.fr/courses/master-pat.html",
+      "source_officielle": "https://www.equidia.fr/courses/2025-09-20/R2/C4"
     },
     {
       "date": "2025-09-12",
@@ -815,7 +874,8 @@
       "entraineur": "Gilles PANNIER",
       "casaque": "galop",
       "jockey": "L. BOISSEAU",
-      "source_entraineur": "https://iturf.b-cdn.net/courses/on-lockdown.html"
+      "source_entraineur": "https://iturf.b-cdn.net/courses/on-lockdown.html",
+      "source_officielle": "https://www.equidia.fr/courses/2025-09-12/R5/C2"
     },
     {
       "date": "2025-08-29",
@@ -825,7 +885,8 @@
       "discipline": "galop",
       "entraineur": "Gilles PANNIER",
       "casaque": "galop",
-      "jockey": "A. MOLINS"
+      "jockey": "A. MOLINS",
+      "source_officielle": "https://www.equidia.fr/courses/2025-08-29/R5/C1"
     },
     {
       "date": "2025-08-27",
@@ -836,7 +897,8 @@
       "jockey": "Matthias LEGROS",
       "casaque": "blanche",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2025-08-27/R2/C4"
     },
     {
       "date": "2025-08-23",
@@ -857,7 +919,8 @@
       "jockey": "Matthias LEGROS",
       "casaque": "blanche",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "https://www.zone-turf.fr/rapports/r2-c4-prix-boucherie-leonard-et-gerard-lievre-1107427.html"
+      "source_entraineur": "https://www.zone-turf.fr/rapports/r2-c4-prix-boucherie-leonard-et-gerard-lievre-1107427.html",
+      "source_officielle": "https://www.equidia.fr/courses/2025-08-19/R2/C4"
     },
     {
       "date": "2025-08-14",
@@ -868,7 +931,8 @@
       "jockey": "Matthias LEGROS",
       "casaque": "blanche",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2025-08-14/R4/C2"
     },
     {
       "date": "2025-08-11",
@@ -891,7 +955,8 @@
       "jockey": "Matthias LEGROS",
       "casaque": "blanche",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2025-08-09/R3/C3"
     },
     {
       "date": "2025-08-03",
@@ -912,7 +977,8 @@
       "jockey": "Michel-Xavier CHARLOT",
       "casaque": "nathalie",
       "entraineur": "Michel HANQUIER",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2025-08-02/R10/C1"
     },
     {
       "date": "2025-07-22",
@@ -924,7 +990,8 @@
       "proprietaire": "Écurie Initial",
       "jockey": "Vincent HEBERT",
       "entraineur": "Vincent HEBERT",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2025-07-22/R5/C6"
     },
     {
       "date": "2025-07-13",
@@ -946,7 +1013,8 @@
       "jockey": "Sébastien ERNAULT",
       "casaque": "blanche",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2025-06-15/R3/C7"
     },
     {
       "date": "2025-06-13",
@@ -956,7 +1024,8 @@
       "discipline": "galop",
       "entraineur": "Gilles PANNIER",
       "casaque": "galop",
-      "jockey": "A. MOLINS"
+      "jockey": "A. MOLINS",
+      "source_officielle": "https://www.equidia.fr/courses/2025-06-13/R4/C6"
     },
     {
       "date": "2025-06-08",
@@ -967,7 +1036,8 @@
       "jockey": "Matthias LEGROS",
       "casaque": "blanche",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2025-06-08/R5/C7"
     },
     {
       "date": "2025-05-31",
@@ -978,7 +1048,8 @@
       "jockey": "Michel HANQUIER",
       "casaque": "blanche",
       "entraineur": "Michel HANQUIER",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Bruno MARIE avant le 04/06/2024, Michel HANQUIER à partir du 04/06/2024"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Bruno MARIE avant le 04/06/2024, Michel HANQUIER à partir du 04/06/2024",
+      "source_officielle": "https://www.equidia.fr/courses/2025-05-31/R4/C2"
     },
     {
       "date": "2025-05-27",
@@ -988,7 +1059,8 @@
       "discipline": "galop",
       "entraineur": "Gilles PANNIER",
       "casaque": "galop",
-      "jockey": "A. MOLINS"
+      "jockey": "A. MOLINS",
+      "source_officielle": "https://www.equidia.fr/courses/2025-05-27/R3/C8"
     },
     {
       "date": "2025-05-20",
@@ -999,7 +1071,8 @@
       "jockey": "Eva BOUCLET",
       "casaque": "blanche",
       "entraineur": "Charley HESLOUIN",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2025-05-20/R2/C2"
     },
     {
       "date": "2025-05-17",
@@ -1010,7 +1083,8 @@
       "jockey": "Vincent HEBERT",
       "casaque": "blanche",
       "entraineur": "Vincent HEBERT",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2025-05-17/R3/C2"
     },
     {
       "date": "2025-05-09",
@@ -1020,7 +1094,8 @@
       "discipline": "galop",
       "entraineur": "Gilles PANNIER",
       "casaque": "galop",
-      "jockey": "A. MOLINS"
+      "jockey": "A. MOLINS",
+      "source_officielle": "https://www.equidia.fr/courses/2025-05-09/R4/C6"
     },
     {
       "date": "2025-05-09",
@@ -1031,7 +1106,8 @@
       "entraineur": "Gilles PANNIER",
       "casaque": "galop",
       "jockey": "A. MOLINS",
-      "proprietaire": "Écurie Initial"
+      "proprietaire": "Écurie Initial",
+      "source_officielle": "https://www.equidia.fr/courses/2025-05-09/R4/C8"
     },
     {
       "date": "2025-05-04",
@@ -1041,7 +1117,8 @@
       "discipline": "galop",
       "entraineur": "Gilles PANNIER",
       "casaque": "galop",
-      "jockey": "L. ROUSSEL"
+      "jockey": "L. ROUSSEL",
+      "source_officielle": "https://www.equidia.fr/courses/2025-05-04/R1/C8"
     },
     {
       "date": "2025-04-25",
@@ -1052,7 +1129,8 @@
       "entraineur": "Gilles PANNIER",
       "casaque": "galop",
       "jockey": "A. MOLINS",
-      "proprietaire": "Écurie Initial"
+      "proprietaire": "Écurie Initial",
+      "source_officielle": "https://www.equidia.fr/courses/2025-04-25/R4/C4"
     },
     {
       "date": "2025-04-18",
@@ -1062,7 +1140,8 @@
       "discipline": "galop",
       "entraineur": "Gilles PANNIER",
       "casaque": "galop",
-      "jockey": "C. LECOEUVRE"
+      "jockey": "C. LECOEUVRE",
+      "source_officielle": "https://www.equidia.fr/courses/2025-04-18/R4/C6"
     },
     {
       "date": "2025-04-17",
@@ -1074,7 +1153,8 @@
       "proprietaire": "Écurie Initial",
       "jockey": "Mathias LEGROS",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2025-04-17/R4/C7"
     },
     {
       "date": "2025-04-13",
@@ -1084,7 +1164,8 @@
       "discipline": "attele",
       "jockey": "Florian JULIEN",
       "entraineur": "Jackie JULIEN",
-      "casaque": "julien"
+      "casaque": "julien",
+      "source_officielle": "https://www.equidia.fr/courses/2025-04-13/R11/C5"
     },
     {
       "date": "2025-03-28",
@@ -1094,7 +1175,8 @@
       "discipline": "galop",
       "entraineur": "Gilles PANNIER",
       "casaque": "galop",
-      "jockey": "B. MARIE"
+      "jockey": "B. MARIE",
+      "source_officielle": "https://www.equidia.fr/courses/2025-03-28/R4/C5"
     },
     {
       "date": "2025-03-23",
@@ -1105,7 +1187,8 @@
       "jockey": "Charley HESLOUIN",
       "casaque": "blanche",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2025-03-23/R8/C4"
     },
     {
       "date": "2025-03-21",
@@ -1116,7 +1199,8 @@
       "jockey": "Jean-Christophe SOREL",
       "casaque": "blanche",
       "entraineur": "G. TOURON",
-      "source_entraineur": "https://www.iturf.fr/courses/johanna-eleven.html"
+      "source_entraineur": "https://www.iturf.fr/courses/johanna-eleven.html",
+      "source_officielle": "https://www.equidia.fr/courses/2025-03-21/R2/C5"
     },
     {
       "date": "2025-03-20",
@@ -1128,7 +1212,8 @@
       "proprietaire": "Écurie Initial",
       "jockey": "Vincent HEBERT",
       "entraineur": "Vincent HEBERT",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2025-03-20/R3/C3"
     },
     {
       "date": "2025-03-16",
@@ -1138,7 +1223,8 @@
       "discipline": "galop",
       "entraineur": "Gilles PANNIER",
       "casaque": "galop",
-      "jockey": "B. MARIE"
+      "jockey": "B. MARIE",
+      "source_officielle": "https://www.equidia.fr/courses/2025-03-16/R1/C7"
     },
     {
       "date": "2025-03-11",
@@ -1150,7 +1236,8 @@
       "proprietaire": "Écurie Initial",
       "jockey": "Mathias LEGROS",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "https://www.geny.com/cheval/2780422-lariflette/course/1552851"
+      "source_entraineur": "https://www.geny.com/cheval/2780422-lariflette/course/1552851",
+      "source_officielle": "https://www.equidia.fr/courses/2025-03-11/R4/C7"
     },
     {
       "date": "2025-03-02",
@@ -1161,7 +1248,8 @@
       "casaque": "blanche",
       "jockey": "Michel HANQUIER",
       "entraineur": "Michel HANQUIER",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2025-03-02/R9/C4"
     },
     {
       "date": "2025-02-20",
@@ -1172,7 +1260,8 @@
       "casaque": "blanche",
       "jockey": "Mathias LEGROS",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2025-02-20/R1/C7"
     },
     {
       "date": "2025-02-15",
@@ -1183,7 +1272,8 @@
       "casaque": "blanche",
       "jockey": "Benjamin CANDELLE-GARDENQ",
       "entraineur": "Michel HANQUIER",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Bruno MARIE avant le 04/06/2024, Michel HANQUIER à partir du 04/06/2024"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Bruno MARIE avant le 04/06/2024, Michel HANQUIER à partir du 04/06/2024",
+      "source_officielle": "https://www.equidia.fr/courses/2025-02-15/R3/C1"
     },
     {
       "date": "2025-01-20",
@@ -1194,7 +1284,8 @@
       "jockey": "Matthias LEGROS",
       "casaque": "blanche",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2025-01-20/R3/C4"
     },
     {
       "date": "2025-01-12",
@@ -1205,7 +1296,8 @@
       "jockey": "Benjamin-Thomas MARIE",
       "casaque": "blanche",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2025-01-12/R5/C7"
     },
     {
       "date": "2025-01-04",
@@ -1215,7 +1307,8 @@
       "discipline": "galop",
       "entraineur": "Gilles PANNIER",
       "casaque": "galop",
-      "jockey": "A. MOLINS"
+      "jockey": "A. MOLINS",
+      "source_officielle": "https://www.equidia.fr/courses/2025-01-04/R4/C4"
     },
     {
       "date": "2024-12-23",
@@ -1226,7 +1319,8 @@
       "jockey": "Maxence VAUDOIT",
       "casaque": "blanche",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2024-12-23/R6/C3"
     },
     {
       "date": "2024-12-05",
@@ -1237,7 +1331,8 @@
       "jockey": "David BEKAERT",
       "casaque": "blanche",
       "entraineur": "G. TOURON",
-      "source_entraineur": "https://www.iturf.fr/courses/johanna-eleven.html"
+      "source_entraineur": "https://www.iturf.fr/courses/johanna-eleven.html",
+      "source_officielle": "https://www.equidia.fr/courses/2024-12-05/R4/C3"
     },
     {
       "date": "2024-10-10",
@@ -1248,7 +1343,8 @@
       "jockey": "Maxence VAUDOIT",
       "casaque": "blanche",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2024-10-10/R4/C5"
     },
     {
       "date": "2024-10-06",
@@ -1270,7 +1366,8 @@
       "jockey": "Antonin ANDRE",
       "casaque": "blanche",
       "entraineur": "Thibaut BARASSIN",
-      "source_entraineur": "https://www.journalduturf.com/fiche-cheval/jehan.html"
+      "source_entraineur": "https://www.journalduturf.com/fiche-cheval/jehan.html",
+      "source_officielle": "https://www.equidia.fr/courses/2024-10-05/R3/C6"
     },
     {
       "date": "2024-09-22",
@@ -1292,7 +1389,8 @@
       "casaque": "blanche",
       "jockey": "Matthias LEGROS",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2024-09-10/R4/C6"
     },
     {
       "date": "2024-09-05",
@@ -1303,7 +1401,8 @@
       "jockey": "Matthias LEGROS",
       "casaque": "blanche",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2024-09-05/R4/C5"
     },
     {
       "date": "2024-08-30",
@@ -1314,7 +1413,8 @@
       "casaque": "blanche",
       "jockey": "Bruno MARIE",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2024-08-30/R1/C7"
     },
     {
       "date": "2024-08-04",
@@ -1336,7 +1436,8 @@
       "jockey": "Maxence VAUDOIT",
       "casaque": "blanche",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2024-08-03/R10/C4"
     },
     {
       "date": "2024-07-30",
@@ -1346,7 +1447,8 @@
       "discipline": "galop",
       "entraineur": "Gilles PANNIER",
       "casaque": "galop",
-      "jockey": "M. VELON"
+      "jockey": "M. VELON",
+      "source_officielle": "https://www.equidia.fr/courses/2024-07-30/R1/C6"
     },
     {
       "date": "2024-07-27",
@@ -1357,7 +1459,8 @@
       "jockey": "Matthias LEGROS",
       "casaque": "blanche",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2024-07-27/R8/C7"
     },
     {
       "date": "2024-07-14",
@@ -1379,7 +1482,8 @@
       "casaque": "blanche",
       "jockey": "Matthias LEGROS",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2024-07-08/R1/C4"
     },
     {
       "date": "2024-07-04",
@@ -1390,7 +1494,8 @@
       "casaque": "blanche",
       "jockey": "Michel HANQUIER",
       "entraineur": "Michel HANQUIER",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Bruno MARIE avant le 04/06/2024, Michel HANQUIER à partir du 04/06/2024"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Bruno MARIE avant le 04/06/2024, Michel HANQUIER à partir du 04/06/2024",
+      "source_officielle": "https://www.equidia.fr/courses/2024-07-04/R6/C7"
     },
     {
       "date": "2024-06-27",
@@ -1401,7 +1506,8 @@
       "casaque": "blanche",
       "jockey": "Alexandre ABRIVARD",
       "entraineur": "Jean-Charles FERON",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2024-06-27/R4/C6"
     },
     {
       "date": "2024-06-16",
@@ -1423,7 +1529,8 @@
       "jockey": "Michel HANQUIER",
       "casaque": "blanche",
       "entraineur": "Michel HANQUIER",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Bruno MARIE avant le 04/06/2024, Michel HANQUIER à partir du 04/06/2024"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Bruno MARIE avant le 04/06/2024, Michel HANQUIER à partir du 04/06/2024",
+      "source_officielle": "https://www.equidia.fr/courses/2024-06-15/R5/C6"
     },
     {
       "date": "2024-06-09",
@@ -1466,7 +1573,8 @@
       "entraineur": "Gilles PANNIER",
       "casaque": "galop",
       "jockey": "C. PACAUT",
-      "proprietaire": "Écurie Initial"
+      "proprietaire": "Écurie Initial",
+      "source_officielle": "https://www.equidia.fr/courses/2024-05-25/R4/C7"
     },
     {
       "date": "2024-05-09",
@@ -1488,7 +1596,8 @@
       "jockey": "Benjamin-Thomas MARIE",
       "casaque": "blanche",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2024-05-07/R4/C8"
     },
     {
       "date": "2024-04-27",
@@ -1510,7 +1619,8 @@
       "jockey": "Benjamin-Thomas MARIE",
       "casaque": "blanche",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2024-04-23/R4/C8"
     },
     {
       "date": "2024-04-18",
@@ -1521,7 +1631,8 @@
       "jockey": "Matthias LEGROS",
       "casaque": "blanche",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2024-04-18/R4/C7"
     },
     {
       "date": "2024-04-06",
@@ -1544,7 +1655,8 @@
       "casaque": "nathalie",
       "entraineur": "Pierre-Louis DESAUNETTE",
       "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
-      "source_correction": "https://www.zeturf.fr/fr/course-du-jour/2024-04-01/R8C8-strasbourg-prix-de-marmoutier"
+      "source_correction": "https://www.zeturf.fr/fr/course-du-jour/2024-04-01/R8C8-strasbourg-prix-de-marmoutier",
+      "source_officielle": "https://www.equidia.fr/courses/2024-04-01/R8/C8"
     },
     {
       "date": "2024-03-24",
@@ -1577,7 +1689,8 @@
       "jockey": "François LAGADEUC",
       "casaque": "nathalie",
       "entraineur": "Pierre-Louis DESAUNETTE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2024-02-15/R4/C3"
     },
     {
       "date": "2024-02-15",
@@ -1588,7 +1701,8 @@
       "casaque": "blanche",
       "jockey": "Matthias LEGROS",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2024-02-15/R4/C2"
     },
     {
       "date": "2024-02-12",
@@ -1599,7 +1713,8 @@
       "casaque": "blanche",
       "jockey": "Guy BEAUDOUIN",
       "entraineur": "Frédéric CLOZIER",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Charley HESLOUIN puis Frédéric CLOZIER à partir de la victoire de Villeneuve-sur-Lot du 10/09/2023"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Charley HESLOUIN puis Frédéric CLOZIER à partir de la victoire de Villeneuve-sur-Lot du 10/09/2023",
+      "source_officielle": "https://www.equidia.fr/courses/2024-02-12/R3/C1"
     },
     {
       "date": "2024-02-04",
@@ -1610,7 +1725,8 @@
       "jockey": "Benjamin ROCHARD",
       "casaque": "blanche",
       "entraineur": "Pierre-Louis DESAUNETTE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2024-02-04/R1/C2"
     },
     {
       "date": "2024-01-31",
@@ -1621,7 +1737,8 @@
       "jockey": "François LAGADEUC",
       "casaque": "nathalie",
       "entraineur": "Pierre-Louis DESAUNETTE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2024-01-31/R3/C8"
     },
     {
       "date": "2024-01-16",
@@ -1632,7 +1749,8 @@
       "jockey": "Adrien MERIEL",
       "casaque": "nathalie",
       "entraineur": "Pierre-Louis DESAUNETTE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2024-01-16/R4/C4"
     },
     {
       "date": "2024-01-05",
@@ -1643,7 +1761,8 @@
       "jockey": "Matthias LEGROS",
       "casaque": "blanche",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2024-01-05/R2/C5"
     },
     {
       "date": "2023-12-27",
@@ -1654,7 +1773,8 @@
       "casaque": "blanche",
       "jockey": "Robin LAMY",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Bruno MARIE avant le 04/06/2024, Michel HANQUIER à partir du 04/06/2024"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Bruno MARIE avant le 04/06/2024, Michel HANQUIER à partir du 04/06/2024",
+      "source_officielle": "https://www.equidia.fr/courses/2023-12-27/R3/C5"
     },
     {
       "date": "2023-12-17",
@@ -1665,7 +1785,8 @@
       "jockey": "Barbara GUENET",
       "casaque": "blanche",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Bruno MARIE avant le 04/06/2024, Michel HANQUIER à partir du 04/06/2024"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Bruno MARIE avant le 04/06/2024, Michel HANQUIER à partir du 04/06/2024",
+      "source_officielle": "https://www.equidia.fr/courses/2023-12-17/R10/C9"
     },
     {
       "date": "2023-11-10",
@@ -1676,7 +1797,8 @@
       "jockey": "Eva BOUCLET",
       "casaque": "blanche",
       "entraineur": "Charley HESLOUIN",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2023-11-10/R5/C1"
     },
     {
       "date": "2023-11-05",
@@ -1698,7 +1820,8 @@
       "casaque": "blanche",
       "jockey": "Bruno MARIE",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2023-11-05/R9/C3"
     },
     {
       "date": "2023-10-24",
@@ -1710,7 +1833,8 @@
       "jockey": "Coralie PACAUT",
       "entraineur": "Gilles PANNIER",
       "proprietaire": "Rodolphe HAMON",
-      "source": "https://www.france-sire.com/cheval-432932-mymap.php"
+      "source": "https://www.france-sire.com/cheval-432932-mymap.php",
+      "source_officielle": "https://www.equidia.fr/courses/2023-10-24/R3/C3"
     },
     {
       "date": "2023-09-18",
@@ -1721,7 +1845,8 @@
       "casaque": "blanche",
       "jockey": "Marion DONABEDIAN",
       "entraineur": "Jean-Charles FERON",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2023-09-18/R3/C3"
     },
     {
       "date": "2023-09-17",
@@ -1764,7 +1889,8 @@
       "casaque": "blanche",
       "jockey": "Eva BOUCLET",
       "entraineur": "Charley HESLOUIN",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2023-09-01/R1/C5"
     },
     {
       "date": "2023-08-08",
@@ -1786,7 +1912,8 @@
       "jockey": "Léo JORDAN-GUENET",
       "casaque": "blanche",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Bruno MARIE sans changement"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Bruno MARIE sans changement",
+      "source_officielle": "https://www.equidia.fr/courses/2023-08-07/R4/C8"
     },
     {
       "date": "2023-08-06",
@@ -1808,7 +1935,8 @@
       "casaque": "blanche",
       "jockey": "Eva BOUCLET",
       "entraineur": "Charley HESLOUIN",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2023-07-30/R3/C5"
     },
     {
       "date": "2023-07-30",
@@ -1854,7 +1982,8 @@
       "casaque": "blanche",
       "jockey": "Paul Philippe PLOQUIN",
       "entraineur": "Pierre-Louis DESAUNETTE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Benoît BARASSIN jusqu'au 17/08/2019, puis Bruno MARIE, puis Pierre-Louis DESAUNETTE après le 03/08/2020"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Benoît BARASSIN jusqu'au 17/08/2019, puis Bruno MARIE, puis Pierre-Louis DESAUNETTE après le 03/08/2020",
+      "source_officielle": "https://www.equidia.fr/courses/2023-05-31/R4/C2"
     },
     {
       "date": "2023-05-29",
@@ -1876,7 +2005,8 @@
       "jockey": "Bruno MARIE",
       "casaque": "nathalie",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2023-05-16/R4/C4"
     },
     {
       "date": "2023-05-14",
@@ -1919,7 +2049,8 @@
       "casaque": "blanche",
       "jockey": "Sébastien LABOUTIQUE",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Bruno MARIE sans changement"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Bruno MARIE sans changement",
+      "source_officielle": "https://www.equidia.fr/courses/2023-04-30/R6/C7"
     },
     {
       "date": "2023-04-24",
@@ -1929,7 +2060,8 @@
       "discipline": "galop",
       "entraineur": "Gilles PANNIER",
       "casaque": "galop",
-      "jockey": "J. CLAUDIC"
+      "jockey": "J. CLAUDIC",
+      "source_officielle": "https://www.equidia.fr/courses/2023-04-24/R4/C3"
     },
     {
       "date": "2023-04-23",
@@ -1950,7 +2082,8 @@
       "casaque": "blanche",
       "jockey": "Jean Charles FERON",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2023-03-29/R1/C5"
     },
     {
       "date": "2023-03-26",
@@ -1974,7 +2107,8 @@
       "casaque": "blanche",
       "jockey": "Alexis COLLETTE",
       "entraineur": "Charley HESLOUIN",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2023-03-16/R1/C2"
     },
     {
       "date": "2023-03-10",
@@ -1985,7 +2119,8 @@
       "jockey": "Bruno MARIE",
       "casaque": "blanche",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2023-03-10/R3/C6"
     },
     {
       "date": "2023-02-25",
@@ -2007,7 +2142,8 @@
       "jockey": "François LAGADEUC",
       "casaque": "blanche",
       "entraineur": "Pierre-Louis DESAUNETTE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2023-02-24/R1/C6"
     },
     {
       "date": "2023-02-14",
@@ -2018,7 +2154,8 @@
       "jockey": "Adrien LAMY",
       "casaque": "blanche",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2023-02-14/R1/C2"
     },
     {
       "date": "2023-02-07",
@@ -2029,7 +2166,8 @@
       "casaque": "blanche",
       "jockey": "Bruno MARIE",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2023-02-07/R3/C3"
     },
     {
       "date": "2023-02-05",
@@ -2040,7 +2178,8 @@
       "jockey": "François LAGADEUC",
       "casaque": "blanche",
       "entraineur": "Pierre-Louis DESAUNETTE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2023-02-05/R1/C2"
     },
     {
       "date": "2023-01-29",
@@ -2051,7 +2190,8 @@
       "jockey": "Bruno MARIE",
       "casaque": "blanche",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2023-01-29/R2/C2"
     },
     {
       "date": "2023-01-28",
@@ -2061,7 +2201,8 @@
       "discipline": "attele",
       "jockey": "Vincent HEBERT",
       "entraineur": "Vincent HEBERT",
-      "casaque": "homa"
+      "casaque": "homa",
+      "source_officielle": "https://www.equidia.fr/courses/2023-01-28/R9/C3"
     },
     {
       "date": "2023-01-21",
@@ -2072,7 +2213,8 @@
       "jockey": "Alexandre GUILLEMIN",
       "casaque": "nathalie",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2023-01-21/R7/C7"
     },
     {
       "date": "2023-01-07",
@@ -2083,7 +2225,8 @@
       "jockey": "François TUGEND",
       "casaque": "blanche",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2023-01-07/R9/C4"
     },
     {
       "date": "2022-12-30",
@@ -2094,7 +2237,8 @@
       "casaque": "blanche",
       "jockey": "Romain LE CREPS",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2022-12-30/R3/C5"
     },
     {
       "date": "2022-12-22",
@@ -2105,7 +2249,8 @@
       "casaque": "blanche",
       "jockey": "François LAGADEUC",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2022-12-22/R5/C2"
     },
     {
       "date": "2022-12-11",
@@ -2117,7 +2262,8 @@
       "casaque": "blanche",
       "entraineur": "Pierre-Louis DESAUNETTE",
       "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
-      "source_correction": "https://www.zeturf.fr/fr/course-du-jour/2022-12-11/R1C9-vincennes-prix-de-rostrenen"
+      "source_correction": "https://www.zeturf.fr/fr/course-du-jour/2022-12-11/R1C9-vincennes-prix-de-rostrenen",
+      "source_officielle": "https://www.equidia.fr/courses/2022-12-11/R1/C9"
     },
     {
       "date": "2022-11-27",
@@ -2128,7 +2274,8 @@
       "jockey": "François LAGADEUC",
       "casaque": "blanche",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2022-11-27/R10/C3"
     },
     {
       "date": "2022-11-15",
@@ -2139,7 +2286,8 @@
       "jockey": "Dominik LOCQUENEUX",
       "casaque": "blanche",
       "entraineur": "Dominik LOCQUENEUX",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Ripoll Rigo, Bruno MARIE à partir du 25/12/2021, Dominik LOCQUENEUX à partir du 10/06/2022, Alexis MARIE à partir du 20/06/2023"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Ripoll Rigo, Bruno MARIE à partir du 25/12/2021, Dominik LOCQUENEUX à partir du 10/06/2022, Alexis MARIE à partir du 20/06/2023",
+      "source_officielle": "https://www.equidia.fr/courses/2022-11-15/R3/C4"
     },
     {
       "date": "2022-10-21",
@@ -2149,7 +2297,8 @@
       "discipline": "galop",
       "entraineur": "Gilles PANNIER",
       "casaque": "galop",
-      "jockey": "C. LECOEUVRE"
+      "jockey": "C. LECOEUVRE",
+      "source_officielle": "https://www.equidia.fr/courses/2022-10-21/R4/C5"
     },
     {
       "date": "2022-10-09",
@@ -2160,7 +2309,8 @@
       "casaque": "blanche",
       "jockey": "Bruno MARIE",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2022-10-09/R9/C2"
     },
     {
       "date": "2022-10-07",
@@ -2170,7 +2320,8 @@
       "discipline": "galop",
       "entraineur": "Gilles PANNIER",
       "casaque": "galop",
-      "jockey": "C. LECOEUVRE"
+      "jockey": "C. LECOEUVRE",
+      "source_officielle": "https://www.equidia.fr/courses/2022-10-07/R4/C6"
     },
     {
       "date": "2022-09-11",
@@ -2181,7 +2332,8 @@
       "jockey": "François LAGADEUC",
       "casaque": "nathalie",
       "entraineur": "Pierre-Louis DESAUNETTE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2022-09-11/R11/C7"
     },
     {
       "date": "2022-08-30",
@@ -2192,7 +2344,8 @@
       "casaque": "blanche",
       "jockey": "Adrien LAMY",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2022-08-30/R5/C7"
     },
     {
       "date": "2022-08-28",
@@ -2214,7 +2367,8 @@
       "casaque": "blanche",
       "jockey": "Cédric PARYS",
       "entraineur": "Alexis MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2022-08-23/R5/C8"
     },
     {
       "date": "2022-08-17",
@@ -2235,7 +2389,8 @@
       "casaque": "blanche",
       "jockey": "Bruno MARIE",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2022-08-16/R4/C7"
     },
     {
       "date": "2022-08-09",
@@ -2257,7 +2412,8 @@
       "jockey": "Adrien MERIEL",
       "casaque": "nathalie",
       "entraineur": "Pierre-Louis DESAUNETTE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2022-08-08/R6/C5"
     },
     {
       "date": "2022-07-31",
@@ -2311,7 +2467,8 @@
       "jockey": "Bruno MARIE",
       "casaque": "blanche",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2022-06-30/R4/C4"
     },
     {
       "date": "2022-06-18",
@@ -2343,7 +2500,8 @@
       "casaque": "blanche",
       "jockey": "Gaëtan GILLARD",
       "entraineur": "Pierre-Louis DESAUNETTE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Benoît BARASSIN jusqu'au 17/08/2019, puis Bruno MARIE, puis Pierre-Louis DESAUNETTE après le 03/08/2020"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Benoît BARASSIN jusqu'au 17/08/2019, puis Bruno MARIE, puis Pierre-Louis DESAUNETTE après le 03/08/2020",
+      "source_officielle": "https://www.equidia.fr/courses/2022-05-19/R4/C2"
     },
     {
       "date": "2022-04-17",
@@ -2409,7 +2567,8 @@
       "casaque": "blanche",
       "jockey": "Bruno MARIE",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2022-03-22/R4/C7"
     },
     {
       "date": "2022-03-20",
@@ -2420,7 +2579,8 @@
       "jockey": "Alexandre GUILLEMIN",
       "casaque": "nathalie",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2022-03-20/R5/C5"
     },
     {
       "date": "2022-03-04",
@@ -2431,7 +2591,8 @@
       "jockey": "Alexandre GUILLEMIN",
       "casaque": "nathalie",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2022-03-04/R5/C6"
     },
     {
       "date": "2022-02-05",
@@ -2442,7 +2603,8 @@
       "casaque": "blanche",
       "jockey": "Gabin FAVRIS",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2022-02-05/R3/C1"
     },
     {
       "date": "2022-02-03",
@@ -2453,7 +2615,8 @@
       "jockey": "François LAGADEUC",
       "casaque": "blanche",
       "entraineur": "Pierre-Louis DESAUNETTE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2022-02-03/R1/C4"
     },
     {
       "date": "2022-02-01",
@@ -2465,7 +2628,8 @@
       "casaque": "nathalie",
       "entraineur": "Bruno MARIE",
       "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
-      "source_correction": "https://www.zeturf.fr/fr/course-du-jour/2022-02-01/R3C2-bordeaux-le-bouscat-prix-de-l-hippodrome-de-villereal"
+      "source_correction": "https://www.zeturf.fr/fr/course-du-jour/2022-02-01/R3C2-bordeaux-le-bouscat-prix-de-l-hippodrome-de-villereal",
+      "source_officielle": "https://www.equidia.fr/courses/2022-02-01/R3/C2"
     },
     {
       "date": "2022-01-16",
@@ -2476,7 +2640,8 @@
       "jockey": "Bruno MARIE",
       "casaque": "nathalie",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2022-01-16/R8/C3"
     },
     {
       "date": "2021-12-13",
@@ -2487,7 +2652,8 @@
       "jockey": "Jean-Philippe MONCLIN",
       "casaque": "blanche",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2021-12-13/R4/C7"
     },
     {
       "date": "2021-11-26",
@@ -2498,7 +2664,8 @@
       "casaque": "blanche",
       "jockey": "Alexandre GUILLEMIN",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2021-11-26/R4/C4"
     },
     {
       "date": "2021-11-03",
@@ -2509,7 +2676,8 @@
       "casaque": "blanche",
       "jockey": "François LAGADEUC",
       "entraineur": "Pierre-Louis DESAUNETTE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2021-11-03/R1/C2"
     },
     {
       "date": "2021-10-26",
@@ -2520,7 +2688,8 @@
       "casaque": "blanche",
       "jockey": "Bruno MARIE",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2021-10-26/R4/C7"
     },
     {
       "date": "2021-09-28",
@@ -2530,7 +2699,8 @@
       "discipline": "attele",
       "jockey": "Gabriele GELORMINI",
       "entraineur": "Bruno MARIE",
-      "casaque": "blanche"
+      "casaque": "blanche",
+      "source_officielle": "https://www.equidia.fr/courses/2021-09-28/R4/C7"
     },
     {
       "date": "2021-09-27",
@@ -2564,7 +2734,8 @@
       "casaque": "galop_rodolphe",
       "jockey": "J. MOBIAN",
       "proprietaire": "R. HAMON / R. LE CREPS / N. BARRE",
-      "compteInitial": false
+      "compteInitial": false,
+      "source_officielle": "https://www.equidia.fr/courses/2021-09-17/R4/C2"
     },
     {
       "date": "2021-08-07",
@@ -2587,7 +2758,8 @@
       "casaque": "galop_rodolphe",
       "jockey": "M. GUYON",
       "proprietaire": "R. HAMON / R. LE CREPS",
-      "compteInitial": false
+      "compteInitial": false,
+      "source_officielle": "https://www.equidia.fr/courses/2021-08-03/R1/C7"
     },
     {
       "date": "2021-08-01",
@@ -2598,7 +2770,8 @@
       "jockey": "Bruno MARIE",
       "casaque": "nathalie",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2021-08-01/R9/C5"
     },
     {
       "date": "2021-07-31",
@@ -2620,7 +2793,8 @@
       "jockey": "Bruno MARIE",
       "casaque": "nathalie",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2021-07-26/R3/C8"
     },
     {
       "date": "2021-07-14",
@@ -2632,7 +2806,8 @@
       "casaque": "galop_rodolphe",
       "jockey": "M. GUYON",
       "proprietaire": "R. HAMON / R. LE CREPS",
-      "compteInitial": false
+      "compteInitial": false,
+      "source_officielle": "https://www.equidia.fr/courses/2021-07-14/R1/C6"
     },
     {
       "date": "2021-07-05",
@@ -2665,7 +2840,8 @@
       "entraineur": "Gilles PANNIER",
       "casaque": "galop_rodolphe",
       "jockey": "B. MARIE",
-      "proprietaire": "Rodolphe HAMON"
+      "proprietaire": "Rodolphe HAMON",
+      "source_officielle": "https://www.equidia.fr/courses/2021-06-10/R1/C8"
     },
     {
       "date": "2021-05-22",
@@ -2676,7 +2852,8 @@
       "jockey": "Paul-Philippe PLOQUIN",
       "casaque": "blanche",
       "entraineur": "Pierre-Louis DESAUNETTE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Benoît BARASSIN jusqu'au 17/08/2019, puis Bruno MARIE, puis Pierre-Louis DESAUNETTE après le 03/08/2020"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Benoît BARASSIN jusqu'au 17/08/2019, puis Bruno MARIE, puis Pierre-Louis DESAUNETTE après le 03/08/2020",
+      "source_officielle": "https://www.equidia.fr/courses/2021-05-22/R4/C6"
     },
     {
       "date": "2021-05-14",
@@ -2687,7 +2864,8 @@
       "entraineur": "Gilles PANNIER",
       "casaque": "galop_rodolphe",
       "jockey": "B. MARIE",
-      "proprietaire": "Rodolphe HAMON"
+      "proprietaire": "Rodolphe HAMON",
+      "source_officielle": "https://www.equidia.fr/courses/2021-05-14/R5/C1"
     },
     {
       "date": "2021-05-08",
@@ -2698,7 +2876,8 @@
       "jockey": "François LAGADEUC",
       "casaque": "blanche",
       "entraineur": "Pierre-Louis DESAUNETTE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2021-05-08/R11/C5"
     },
     {
       "date": "2021-05-02",
@@ -2709,7 +2888,8 @@
       "jockey": "Bruno MARIE",
       "casaque": "nathalie",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2021-05-02/R4/C6"
     },
     {
       "date": "2021-04-24",
@@ -2720,7 +2900,8 @@
       "entraineur": "Gilles PANNIER",
       "casaque": "galop_rodolphe",
       "jockey": "B. MARIE",
-      "proprietaire": "Rodolphe HAMON"
+      "proprietaire": "Rodolphe HAMON",
+      "source_officielle": "https://www.equidia.fr/courses/2021-04-24/R4/C1"
     },
     {
       "date": "2021-04-22",
@@ -2731,7 +2912,8 @@
       "entraineur": "Carla O'HALLORAN",
       "casaque": "galop_rodolphe",
       "jockey": "F. LEFEBVRE",
-      "proprietaire": "Rodolphe HAMON"
+      "proprietaire": "Rodolphe HAMON",
+      "source_officielle": "https://www.equidia.fr/courses/2021-04-22/R3/C1"
     },
     {
       "date": "2021-04-11",
@@ -2766,7 +2948,8 @@
       "jockey": "Benjamin ROCHARD",
       "casaque": "blanche",
       "entraineur": "Pierre-Louis DESAUNETTE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Benoît BARASSIN jusqu'au 17/08/2019, puis Bruno MARIE, puis Pierre-Louis DESAUNETTE après le 03/08/2020"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Benoît BARASSIN jusqu'au 17/08/2019, puis Bruno MARIE, puis Pierre-Louis DESAUNETTE après le 03/08/2020",
+      "source_officielle": "https://www.equidia.fr/courses/2021-01-12/R3/C1"
     },
     {
       "date": "2021-01-01",
@@ -2777,7 +2960,8 @@
       "jockey": "François LAGADEUC",
       "casaque": "blanche",
       "entraineur": "Charley MOTTIER",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2021-01-01/R1/C6"
     },
     {
       "date": "2020-12-14",
@@ -2799,7 +2983,8 @@
       "jockey": "François LAGADEUC",
       "casaque": "blanche",
       "entraineur": "Charley MOTTIER",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2020-12-06/R1/C5"
     },
     {
       "date": "2020-12-06",
@@ -2821,7 +3006,8 @@
       "casaque": "blanche",
       "jockey": "Charley MOTTIER",
       "entraineur": "Charley MOTTIER",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2020-10-31/R3/C5"
     },
     {
       "date": "2020-09-20",
@@ -2854,7 +3040,8 @@
       "jockey": "Yoann LEBOURGEOIS",
       "casaque": "blanche",
       "entraineur": "Charley MOTTIER",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2020-06-24/R4/C2"
     },
     {
       "date": "2020-06-11",
@@ -2865,7 +3052,8 @@
       "casaque": "blanche",
       "jockey": "Bruno MARIE",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2020-06-11/R2/C4"
     },
     {
       "date": "2020-06-04",
@@ -2876,7 +3064,8 @@
       "casaque": "blanche",
       "jockey": "Adrien LAMY",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2020-06-04/R2/C6"
     },
     {
       "date": "2020-06-02",
@@ -2887,7 +3076,8 @@
       "casaque": "blanche",
       "jockey": "Yoann LEBOURGEOIS",
       "entraineur": "Charley MOTTIER",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2020-06-02/R4/C2"
     },
     {
       "date": "2020-05-17",
@@ -2909,7 +3099,8 @@
       "casaque": "blanche",
       "jockey": "Christopher CORBINEAU",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Benoît BARASSIN jusqu'au 17/08/2019, puis Bruno MARIE, puis Pierre-Louis DESAUNETTE après le 03/08/2020"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Benoît BARASSIN jusqu'au 17/08/2019, puis Bruno MARIE, puis Pierre-Louis DESAUNETTE après le 03/08/2020",
+      "source_officielle": "https://www.equidia.fr/courses/2020-05-15/R5/C3"
     },
     {
       "date": "2020-02-26",
@@ -2920,7 +3111,8 @@
       "casaque": "blanche",
       "jockey": "Sylvain DIEUDONNE",
       "entraineur": "Charley MOTTIER",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2020-02-26/R4/C3"
     },
     {
       "date": "2019-09-15",
@@ -2942,7 +3134,8 @@
       "casaque": "blanche",
       "jockey": "Cyril GAZENGEL",
       "entraineur": "Thomas TROUSSARD",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Benoît BARASSIN jusqu'au 24/02/2019, puis Thomas TROUSSARD, puis Virgile FOUCAULT à partir du 20/05/2020"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Benoît BARASSIN jusqu'au 24/02/2019, puis Thomas TROUSSARD, puis Virgile FOUCAULT à partir du 20/05/2020",
+      "source_officielle": "https://www.equidia.fr/courses/2019-08-12/R2/C4"
     },
     {
       "date": "2019-08-06",
@@ -2986,7 +3179,8 @@
       "jockey": "Gregory TOQUE",
       "casaque": "blanche",
       "entraineur": "Thomas TROUSSARD",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Benoît BARASSIN jusqu'au 24/02/2019, puis Thomas TROUSSARD, puis Virgile FOUCAULT à partir du 20/05/2020"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Benoît BARASSIN jusqu'au 24/02/2019, puis Thomas TROUSSARD, puis Virgile FOUCAULT à partir du 20/05/2020",
+      "source_officielle": "https://www.equidia.fr/courses/2019-06-30/R8/C2"
     },
     {
       "date": "2019-06-16",
@@ -3019,7 +3213,8 @@
       "jockey": "Bruno MARIE",
       "casaque": "nathalie",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2018-09-16/R11/C5"
     },
     {
       "date": "2018-07-02",
@@ -3030,7 +3225,8 @@
       "jockey": "Jean-Michel BAZIRE",
       "casaque": "nathalie",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2018-07-02/R4/C6"
     },
     {
       "date": "2018-06-19",
@@ -3041,7 +3237,8 @@
       "jockey": "Bruno MARIE",
       "casaque": "nathalie",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2018-06-19/R4/C6"
     },
     {
       "date": "2018-04-28",
@@ -3052,7 +3249,8 @@
       "jockey": "Bruno MARIE",
       "casaque": "blanche",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2018-04-28/R4/C3"
     },
     {
       "date": "2017-07-18",
@@ -3063,7 +3261,8 @@
       "jockey": "Benoît BARASSIN",
       "casaque": "blanche",
       "entraineur": "Benoît BARASSIN",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Benoît BARASSIN jusqu'au 24/02/2019, puis Thomas TROUSSARD, puis Virgile FOUCAULT à partir du 20/05/2020"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Benoît BARASSIN jusqu'au 24/02/2019, puis Thomas TROUSSARD, puis Virgile FOUCAULT à partir du 20/05/2020",
+      "source_officielle": "https://www.equidia.fr/courses/2017-07-18/R5/C6"
     },
     {
       "date": "2017-06-17",
@@ -3107,7 +3306,8 @@
       "casaque": "blanche",
       "jockey": "Lolita BALAYN",
       "entraineur": "Benoît BARASSIN",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Guillaume CARDINE jusqu'au 22/06/2016, puis Benoît BARASSIN"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Guillaume CARDINE jusqu'au 22/06/2016, puis Benoît BARASSIN",
+      "source_officielle": "https://www.equidia.fr/courses/2017-05-23/R5/C4"
     },
     {
       "date": "2017-04-09",
@@ -3118,7 +3318,8 @@
       "casaque": "blanche",
       "jockey": "Gabriel MONTHULE",
       "entraineur": "Romain LE CREPS",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2017-04-09/R2/C3"
     },
     {
       "date": "2017-04-07",
@@ -3129,7 +3330,8 @@
       "jockey": "Pierre HOUEL",
       "casaque": "blanche",
       "entraineur": "Benoît BARASSIN",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Guillaume CARDINE jusqu'au 22/06/2016, puis Benoît BARASSIN"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Guillaume CARDINE jusqu'au 22/06/2016, puis Benoît BARASSIN",
+      "source_officielle": "https://www.equidia.fr/courses/2017-04-07/R1/C3"
     },
     {
       "date": "2017-03-19",
@@ -3164,7 +3366,8 @@
       "jockey": "Charley MOTTIER",
       "casaque": "blanche",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Bruno MARIE à partir du 15/10/2016, auparavant Romain LE CREPS"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Bruno MARIE à partir du 15/10/2016, auparavant Romain LE CREPS",
+      "source_officielle": "https://www.equidia.fr/courses/2017-02-19/R9/C8"
     },
     {
       "date": "2017-02-14",
@@ -3175,7 +3378,8 @@
       "jockey": "Bruno MARIE",
       "casaque": "blanche",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2017-02-14/R1/C2"
     },
     {
       "date": "2017-02-02",
@@ -3186,7 +3390,8 @@
       "jockey": "Bruno MARIE",
       "casaque": "blanche",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2017-02-02/R1/C8"
     },
     {
       "date": "2017-01-30",
@@ -3197,7 +3402,8 @@
       "casaque": "blanche",
       "jockey": "Romain LE CREPS",
       "entraineur": "Romain LE CREPS",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2017-01-30/R4/C1"
     },
     {
       "date": "2017-01-23",
@@ -3208,7 +3414,8 @@
       "casaque": "blanche",
       "jockey": "Bruno MARIE",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2017-01-23/R3/C5"
     },
     {
       "date": "2016-12-26",
@@ -3219,7 +3426,8 @@
       "casaque": "blanche",
       "jockey": "Charley HESLOUIN",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Bruno MARIE à partir du 15/10/2016, auparavant Romain LE CREPS"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Bruno MARIE à partir du 15/10/2016, auparavant Romain LE CREPS",
+      "source_officielle": "https://www.equidia.fr/courses/2016-12-26/R3/C1"
     },
     {
       "date": "2016-12-04",
@@ -3230,7 +3438,8 @@
       "jockey": "Charley HESLOUIN",
       "casaque": "blanche",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Bruno MARIE à partir du 15/10/2016, auparavant Romain LE CREPS"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Bruno MARIE à partir du 15/10/2016, auparavant Romain LE CREPS",
+      "source_officielle": "https://www.equidia.fr/courses/2016-12-04/R7/C6"
     },
     {
       "date": "2016-11-21",
@@ -3241,7 +3450,8 @@
       "casaque": "blanche",
       "jockey": "Michel POIRIER",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Bruno MARIE à partir du 15/10/2016, auparavant Romain LE CREPS"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Bruno MARIE à partir du 15/10/2016, auparavant Romain LE CREPS",
+      "source_officielle": "https://www.equidia.fr/courses/2016-11-21/R7/C7"
     },
     {
       "date": "2016-11-06",
@@ -3252,7 +3462,8 @@
       "jockey": "Rodolphe HAMON",
       "casaque": "blanche",
       "entraineur": "Bruno MARIE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Bruno MARIE à partir du 15/10/2016, auparavant Romain LE CREPS"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Bruno MARIE à partir du 15/10/2016, auparavant Romain LE CREPS",
+      "source_officielle": "https://www.equidia.fr/courses/2016-11-06/R3/C2"
     },
     {
       "date": "2016-10-15",
@@ -3274,7 +3485,8 @@
       "jockey": "Pierre HOUEL",
       "casaque": "blanche",
       "entraineur": "Benoît BARASSIN",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Guillaume CARDINE jusqu'au 22/06/2016, puis Benoît BARASSIN"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Guillaume CARDINE jusqu'au 22/06/2016, puis Benoît BARASSIN",
+      "source_officielle": "https://www.equidia.fr/courses/2016-10-10/R4/C6"
     },
     {
       "date": "2016-09-20",
@@ -3285,7 +3497,8 @@
       "jockey": "Eric RAFFIN",
       "casaque": "blanche",
       "entraineur": "Benoît BARASSIN",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Guillaume CARDINE jusqu'au 22/06/2016, puis Benoît BARASSIN"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Guillaume CARDINE jusqu'au 22/06/2016, puis Benoît BARASSIN",
+      "source_officielle": "https://www.equidia.fr/courses/2016-09-20/R5/C7"
     },
     {
       "date": "2016-09-18",
@@ -3318,7 +3531,8 @@
       "jockey": "Pierre HOUEL",
       "casaque": "blanche",
       "entraineur": "Benoît BARASSIN",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Guillaume CARDINE jusqu'au 22/06/2016, puis Benoît BARASSIN"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Guillaume CARDINE jusqu'au 22/06/2016, puis Benoît BARASSIN",
+      "source_officielle": "https://www.equidia.fr/courses/2016-09-08/R3/C7"
     },
     {
       "date": "2016-08-30",
@@ -3329,7 +3543,8 @@
       "jockey": "Pierre HOUEL",
       "casaque": "blanche",
       "entraineur": "Benoît BARASSIN",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Guillaume CARDINE jusqu'au 22/06/2016, puis Benoît BARASSIN"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Guillaume CARDINE jusqu'au 22/06/2016, puis Benoît BARASSIN",
+      "source_officielle": "https://www.equidia.fr/courses/2016-08-30/R5/C7"
     },
     {
       "date": "2016-08-01",
@@ -3351,7 +3566,8 @@
       "jockey": "François LAGADEUC",
       "casaque": "blanche",
       "entraineur": "Guillaume CARDINE",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Guillaume CARDINE jusqu'au 22/06/2016, puis Benoît BARASSIN"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Guillaume CARDINE jusqu'au 22/06/2016, puis Benoît BARASSIN",
+      "source_officielle": "https://www.equidia.fr/courses/2016-04-02/R3/C3"
     },
     {
       "date": "2015-12-06",
@@ -3362,7 +3578,8 @@
       "casaque": "blanche",
       "jockey": "Paul COUETIL",
       "entraineur": "Hervé BIHEL",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2015-12-06/R7/C9"
     },
     {
       "date": "2015-09-13",
@@ -3395,7 +3612,8 @@
       "casaque": "blanche",
       "jockey": "Adrien LAMY",
       "entraineur": "Hervé BIHEL",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2015-07-31/R4/C2"
     },
     {
       "date": "2015-07-26",
@@ -3406,7 +3624,8 @@
       "jockey": "Franck NIVARD",
       "casaque": "blanche",
       "entraineur": "Hervé BIHEL",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2015-07-26/R3/C6"
     },
     {
       "date": "2015-07-21",
@@ -3483,7 +3702,8 @@
       "jockey": "Hervé BIHEL",
       "casaque": "blanche",
       "entraineur": "Hervé BIHEL",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2014-11-02/R9/C5"
     },
     {
       "date": "2014-10-26",
@@ -3544,7 +3764,8 @@
       "entraineur": "Alexandre MARQUET",
       "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026 : Benoît CAILLIAU en 2013, Alexandre MARQUET à partir de 2014",
       "source_discipline": "https://www.zone-turf.fr/cheval/rhea-silvia-43685/",
-      "correction_discipline": "Course au trot monté, discipline vérifiée dans les archives de résultats Zone-Turf (rectification 15/11/2026)."
+      "correction_discipline": "Course au trot monté, discipline vérifiée dans les archives de résultats Zone-Turf (rectification 15/11/2026).",
+      "source_officielle": "https://www.equidia.fr/courses/2014-04-16/R1/C7"
     },
     {
       "date": "2013-12-30",
@@ -3555,7 +3776,8 @@
       "jockey": "Romain LE CREPS",
       "casaque": "blanche",
       "entraineur": "Romain LE CREPS",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2013-12-30/R3/C1"
     },
     {
       "date": "2013-11-10",
@@ -3625,7 +3847,8 @@
       "jockey": "Elisabeth ALLAIRE",
       "casaque": "nathalie",
       "entraineur": "Benoît CAILLIAU",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2013-07-27/R7/C5"
     },
     {
       "date": "2013-07-14",
@@ -3731,7 +3954,8 @@
       "casaque": "historique",
       "proprietaire": "Rodolphe HAMON",
       "entraineur": "Benoît CAILLIAU",
-      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026"
+      "source_entraineur": "Confirmation du propriétaire Écurie Initial, 15/11/2026",
+      "source_officielle": "https://www.equidia.fr/courses/2011-08-30/R7/C8"
     },
     {
       "date": "2011-08-21",
