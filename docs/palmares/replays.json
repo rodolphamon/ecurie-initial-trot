@@ -1,6 +1,6 @@
 {
-  "version": 98,
-  "note": "Liens de courses historiques (LeTROT, Equidia, ZEturf, Dailymotion). Les pages ZEturf indiquant « Replay » ont été recoupées par cheval/date/R/C ; accès et lecture effective des lecteurs vidéo non garantis. Certains anciens liens Equidia sont reconstruits et restent à vérifier. Les vidéos de qualifications sont dans docs/chevaux/data/qualifications.json.",
+  "version": 99,
+  "note": "Liens de courses historiques (LeTROT, Equidia, ZEturf, Dailymotion). Les pages ZEturf indiquant « Replay » ont été recoupées par cheval/date/R/C ; accès et lecture effective des lecteurs vidéo non garantis. Certains anciens liens Equidia sont reconstruits et restent à vérifier. Les vidéos de qualifications sont dans docs/chevaux/data/qualifications.json. Priorité LeTROT appliquée à 35 liens officiels déjà référencés le 18/11/2026 ; anciennes URL conservées sous lien_url_avant_priorite_letrot. La présence d'une page officielle ne prouve pas que la vidéo se lit effectivement.",
   "replays": [
     {
       "date": "2026-11-16",
@@ -404,12 +404,13 @@
       "date": "2026-09-21",
       "cheval": "LORD ON WAY",
       "hippodrome": "LA CAPELLE",
-      "url": "https://www.equidia.fr/courses/2026-09-21/R1/C7",
+      "url": "https://www.letrot.com/fr/courses/replay-courses/2026-09-21/202/7",
       "justificatif": "https://www.province-courses.fr/24H/article_PDF.php?id=43211",
       "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2026-09-21/202/7",
       "lien_letrot_precedent": "https://www.letrot.com/courses/2026-09-21/202/7",
       "preuve_lien_equidia": "https://turfin.fr/course/2026-09-21/r1c7-la-capelle-prix-office-de-tourisme-de-thierache",
-      "controle": "Lien direct vers la fiche de course Equidia indiqué sur Turfin ; lecture du replay non testée depuis cet environnement"
+      "controle": "Lien direct vers la fiche de course Equidia indiqué sur Turfin ; lecture du replay non testée depuis cet environnement",
+      "lien_url_avant_priorite_letrot": "https://www.equidia.fr/courses/2026-09-21/R1/C7"
     },
     {
       "date": "2026-09-20",
@@ -496,7 +497,7 @@
       "cheval": "LORD ON WAY",
       "hippodrome": "LYON-PARILLY",
       "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2026-09-04/R3C6-lyon-parilly-prix-yvan-berger?prefill=15",
-      "url": "https://www.zeturf.fr/fr/course-du-jour/2026-09-04/R3C6-lyon-parilly-prix-yvan-berger?prefill=15",
+      "url": "https://www.letrot.com/courses/2026-09-04/6901/6",
       "justificatif_code_hippodrome": "https://www.leshippodromesdelyon.fr/wp-content/uploads/2019/04/2019BROCHUREsem1.pdf",
       "controle": "Prix Yvan Berger R3C6, LORD ON WAY 1er, Replay indiqué. Correspondance de la course recoupée sur la page ZEturf ; page marquée « Replay », lecture effective de la vidéo non testée.",
       "lien_letrot_precedent": "https://www.letrot.com/courses/2026-09-04/6901/6",
@@ -507,7 +508,8 @@
         "source": "https://www.zeturf.fr/fr/course-du-jour/2026-09-04/R3C6-lyon-parilly-prix-yvan-berger?prefill=15",
         "course": "R3C6",
         "lecture_video": "non_testee"
-      }
+      },
+      "lien_url_avant_priorite_letrot": "https://www.zeturf.fr/fr/course-du-jour/2026-09-04/R3C6-lyon-parilly-prix-yvan-berger?prefill=15"
     },
     {
       "date": "2026-09-04",
@@ -1137,11 +1139,12 @@
       "cheval": "JUNINIO FLEURY",
       "hippodrome": "AGEN-LA-GARENNE",
       "justificatif": "https://www.zeturf.es/en/course-du-jour/2026-04-19/R9C7-agen-prix-max-gerbeaud",
-      "url": "https://www.equidia.fr/courses/2026-04-19/R9/C7",
+      "url": "https://www.letrot.com/courses/2026-04-19/4701/7",
       "justificatif_code_hippodrome": "https://pro.letrot.com/siteletrotws-LMeiJS3SZYjkmC1qpyBvHCsYjfwGkj/publication?annee=2025&semaine=44&type=BULLETIN",
       "controle": "Course référencée par Turfin (R et C concordants) ; lecture du replay Equidia non testée ici",
       "lien_letrot_precedent": "https://www.letrot.com/courses/2026-04-19/4701/7",
-      "preuve_identification_course": "https://turfin.fr/course/2026-04-19/r9c7-agen-la-garenne"
+      "preuve_identification_course": "https://turfin.fr/course/2026-04-19/r9c7-agen-la-garenne",
+      "lien_url_avant_priorite_letrot": "https://www.equidia.fr/courses/2026-04-19/R9/C7"
     },
     {
       "date": "2026-04-17",
@@ -1260,11 +1263,12 @@
       "cheval": "MONA LISA STARDUST",
       "hippodrome": "AGEN-LA-GARENNE",
       "justificatif": "https://www.canalturf.com/resultats-PMU/2026-03-15/agen-le-passage/400149_prix-de-l-hippodrome-de-manacor.html",
-      "url": "https://www.equidia.fr/courses/2026-03-15/R8/C2",
+      "url": "https://www.letrot.com/courses/2026-03-15/4701/2",
       "justificatif_code_hippodrome": "https://pro.letrot.com/siteletrotws-LMeiJS3SZYjkmC1qpyBvHCsYjfwGkj/publication?annee=2025&semaine=44&type=BULLETIN",
       "controle": "Course référencée par Turfin (R et C concordants) ; lecture du replay Equidia non testée ici",
       "lien_letrot_precedent": "https://www.letrot.com/courses/2026-03-15/4701/2",
-      "preuve_identification_course": "https://turfin.fr/course/2026-03-15/r8c2-agen-la-garenne-prix-de-l-hippodrome-de-manacor"
+      "preuve_identification_course": "https://turfin.fr/course/2026-03-15/r8c2-agen-la-garenne-prix-de-l-hippodrome-de-manacor",
+      "lien_url_avant_priorite_letrot": "https://www.equidia.fr/courses/2026-03-15/R8/C2"
     },
     {
       "date": "2026-03-12",
@@ -1327,11 +1331,12 @@
       "cheval": "JUNINIO FLEURY",
       "hippodrome": "AGEN-LA-GARENNE",
       "justificatif": "https://www.geny.com/course/1633107-2026-02-14-agen-le-passage-prix-de-sauvagnas/arrivee-rapports",
-      "url": "https://www.equidia.fr/courses/2026-02-14/R4/C1",
+      "url": "https://www.letrot.com/courses/2026-02-14/4701/1",
       "justificatif_code_hippodrome": "https://pro.letrot.com/siteletrotws-LMeiJS3SZYjkmC1qpyBvHCsYjfwGkj/publication?annee=2025&semaine=44&type=BULLETIN",
       "controle": "Course référencée par Turfin (R et C concordants) ; lecture du replay Equidia non testée ici",
       "lien_letrot_precedent": "https://www.letrot.com/courses/2026-02-14/4701/1",
-      "preuve_identification_course": "https://turfin.fr/course/2026-02-14/r4c1-agen-la-garenne"
+      "preuve_identification_course": "https://turfin.fr/course/2026-02-14/r4c1-agen-la-garenne",
+      "lien_url_avant_priorite_letrot": "https://www.equidia.fr/courses/2026-02-14/R4/C1"
     },
     {
       "date": "2026-02-05",
@@ -1361,12 +1366,13 @@
       "date": "2026-01-30",
       "cheval": "LARIFLETTE",
       "hippodrome": "VINCENNES",
-      "url": "https://www.equidia.fr/courses/2026-01-30/R3/C3",
+      "url": "https://www.letrot.com/fr/courses/replay-courses/2026-01-30/7500/3",
       "justificatif": "https://www.canalturf.com/resultats-PMU/2026-01-30/paris-vincennes/396123_prix-de-figeac.html",
       "controle": "Lien direct vers la fiche de course Equidia indiqué sur Turfin ; lecture du replay non testée depuis cet environnement",
       "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2026-01-30/7500/3",
       "lien_letrot_precedent": "https://www.letrot.com/courses/2026-01-30/7500/3",
-      "preuve_lien_equidia": "https://turfin.fr/course/2026-01-30/r3c3-vincennes-prix-de-figeac"
+      "preuve_lien_equidia": "https://turfin.fr/course/2026-01-30/r3c3-vincennes-prix-de-figeac",
+      "lien_url_avant_priorite_letrot": "https://www.equidia.fr/courses/2026-01-30/R3/C3"
     },
     {
       "date": "2026-01-30",
@@ -1444,12 +1450,13 @@
       "date": "2025-11-07",
       "cheval": "INDICE DELADOU",
       "hippodrome": "VINCENNES",
-      "url": "https://www.equidia.fr/courses/2025-11-07/R1/C2",
+      "url": "https://www.letrot.com/fr/courses/replay-courses/2025-11-07/7500/2",
       "justificatif": "https://www.geny.com/course/1613944-2025-11-07-vincennes-prix-nemesis/arrivee-rapports",
       "controle": "Lien direct vers la fiche de course Equidia indiqué sur Turfin ; lecture du replay non testée depuis cet environnement",
       "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2025-11-07/7500/2",
       "lien_letrot_precedent": "https://www.letrot.com/courses/2025-11-07/7500/2",
-      "preuve_lien_equidia": "https://turfin.fr/course/2025-11-07/r1c2-vincennes-prix-nemesis"
+      "preuve_lien_equidia": "https://turfin.fr/course/2025-11-07/r1c2-vincennes-prix-nemesis",
+      "lien_url_avant_priorite_letrot": "https://www.equidia.fr/courses/2025-11-07/R1/C2"
     },
     {
       "date": "2025-11-03",
@@ -1479,12 +1486,13 @@
       "date": "2025-10-08",
       "cheval": "ISOLEE DU BOUILLON",
       "hippodrome": "ENGHIEN",
-      "url": "https://www.equidia.fr/courses/2025-10-08/R1/C6",
+      "url": "https://www.letrot.com/fr/courses/replay-courses/2025-10-08/7502/6",
       "justificatif": "https://province-courses.fr/24H/article_PDF.php?id=35853",
       "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2025-10-08/7502/6",
       "lien_letrot_precedent": "https://www.letrot.com/courses/2025-10-08/7502/6",
       "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2025-10-08/R1C6-enghien-soisy-prix-des-gobelins",
-      "controle": "Course et R/C confirmés par résultats publiés ; disponibilité de la vidéo Equidia non vérifiée"
+      "controle": "Course et R/C confirmés par résultats publiés ; disponibilité de la vidéo Equidia non vérifiée",
+      "lien_url_avant_priorite_letrot": "https://www.equidia.fr/courses/2025-10-08/R1/C6"
     },
     {
       "date": "2025-10-06",
@@ -1514,11 +1522,12 @@
       "date": "2025-09-23",
       "cheval": "MANDRAGORA FLEURY",
       "hippodrome": "VINCENNES",
-      "url": "https://www.equidia.fr/courses/2025-09-23/R3/C6",
+      "url": "https://www.letrot.com/fr/courses/replay-courses/2025-09-23/7500/6",
       "justificatif": "https://www.canalturf.com/resultats-PMU/2025-09-23/paris-vincennes/384239_prix-hydrus.html",
       "controle": "R3C6 Prix Hydrus confirmé par Canalturf et ZEturf (Mandragora Fleury gagnante) ; disponibilité de la vidéo Equidia non testée",
       "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2025-09-23/7500/6",
-      "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2025-09-23/R3C6-vincennes-prix-hydrus"
+      "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2025-09-23/R3C6-vincennes-prix-hydrus",
+      "lien_url_avant_priorite_letrot": "https://www.equidia.fr/courses/2025-09-23/R3/C6"
     },
     {
       "date": "2025-09-21",
@@ -1548,12 +1557,13 @@
       "date": "2025-09-18",
       "cheval": "INDICE DELADOU",
       "hippodrome": "VINCENNES",
-      "url": "https://www.equidia.fr/courses/2025-09-18/R1/C6",
+      "url": "https://www.letrot.com/fr/courses/replay-courses/2025-09-18/7500/6",
       "justificatif": "https://www.canalturf.com/resultats-PMU/2025-09-18/paris-vincennes/383758_prix-gaston-roussel.html",
       "controle": "Date, hippodrome, R/C et victoire confirmés dans le résultat Canalturf ; disponibilité du replay Equidia non testée",
       "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2025-09-18/7500/6",
       "lien_letrot_precedent": "https://www.letrot.com/courses/2025-09-18/7500/6",
-      "preuve_identification_course": "https://www.canalturf.com/resultats-PMU/2025-09-18/paris-vincennes/383758_prix-gaston-roussel.html"
+      "preuve_identification_course": "https://www.canalturf.com/resultats-PMU/2025-09-18/paris-vincennes/383758_prix-gaston-roussel.html",
+      "lien_url_avant_priorite_letrot": "https://www.equidia.fr/courses/2025-09-18/R1/C6"
     },
     {
       "date": "2025-09-12",
@@ -1567,12 +1577,13 @@
       "date": "2025-09-03",
       "cheval": "INDICE DELADOU",
       "hippodrome": "LA CAPELLE",
-      "url": "https://www.equidia.fr/courses/2025-09-03/R1/C4",
+      "url": "https://www.letrot.com/fr/courses/replay-courses/2025-09-03/202/4",
       "justificatif": "https://www.canalturf.com/resultats-PMU/2025-09-03/la-capelle/382288_prix-francois-caille.html",
       "controle": "Date, hippodrome, R/C et victoire confirmés dans le résultat Canalturf ; disponibilité du replay Equidia non testée",
       "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2025-09-03/202/4",
       "lien_letrot_precedent": "https://www.letrot.com/courses/2025-09-03/202/4",
-      "preuve_identification_course": "https://www.canalturf.com/resultats-PMU/2025-09-03/la-capelle/382288_prix-francois-caille.html"
+      "preuve_identification_course": "https://www.canalturf.com/resultats-PMU/2025-09-03/la-capelle/382288_prix-francois-caille.html",
+      "lien_url_avant_priorite_letrot": "https://www.equidia.fr/courses/2025-09-03/R1/C4"
     },
     {
       "date": "2025-08-29",
@@ -1682,12 +1693,13 @@
       "date": "2025-06-15",
       "cheval": "LOVE ME MAZELI",
       "hippodrome": "LA CAPELLE",
-      "url": "https://www.equidia.fr/courses/2025-06-15/R5/C6",
+      "url": "https://www.letrot.com/fr/courses/replay-courses/2025-06-15/202/6",
       "justificatif": "https://www.canalturf.com/resultats-PMU/2025-06-15/la-capelle/374542_prix-du-croise-laroche.html",
       "controle": "Date, hippodrome, R/C et victoire confirmés dans le résultat Canalturf ; disponibilité du replay Equidia non testée",
       "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2025-06-15/202/6",
       "lien_letrot_precedent": "https://www.letrot.com/courses/2025-06-15/202/6",
-      "preuve_identification_course": "https://www.canalturf.com/resultats-PMU/2025-06-15/la-capelle/374542_prix-du-croise-laroche.html"
+      "preuve_identification_course": "https://www.canalturf.com/resultats-PMU/2025-06-15/la-capelle/374542_prix-du-croise-laroche.html",
+      "lien_url_avant_priorite_letrot": "https://www.equidia.fr/courses/2025-06-15/R5/C6"
     },
     {
       "date": "2025-06-13",
@@ -1814,12 +1826,13 @@
       "date": "2025-04-04",
       "cheval": "LARIFLETTE",
       "hippodrome": "VINCENNES",
-      "url": "https://www.equidia.fr/courses/2025-04-04/R1/C2",
+      "url": "https://www.letrot.com/fr/courses/replay-courses/2025-04-04/7500/2",
       "justificatif": "https://www.iturf.fr/programme/course/2025-04-04/R1C2/Prix-de-Suresnes",
       "controle": "ZEturf confirme la réunion, la course et le cheval vainqueur ; replay Equidia non testé",
       "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2025-04-04/7500/2",
       "lien_letrot_precedent": "https://www.letrot.com/courses/2025-04-04/7500/2",
-      "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2025-04-04/R1C2-vincennes-prix-de-suresnes"
+      "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2025-04-04/R1C2-vincennes-prix-de-suresnes",
+      "lien_url_avant_priorite_letrot": "https://www.equidia.fr/courses/2025-04-04/R1/C2"
     },
     {
       "date": "2025-04-01",
@@ -1905,12 +1918,13 @@
       "date": "2025-02-07",
       "cheval": "LARIFLETTE",
       "hippodrome": "VINCENNES",
-      "url": "https://www.equidia.fr/courses/2025-02-07/R1/C1",
+      "url": "https://www.letrot.com/fr/courses/replay-courses/2025-02-07/7500/1",
       "justificatif": "https://province-courses.fr/redirection_24h.php?id-journal=2652",
       "controle": "Course et R/C confirmés par résultats publiés ; disponibilité de la vidéo Equidia non vérifiée",
       "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2025-02-07/7500/1",
       "lien_letrot_precedent": "https://www.letrot.com/courses/2025-02-07/7500/1",
-      "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2025-02-07/R1C1-vincennes-prix-jacques-orliaguet"
+      "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2025-02-07/R1C1-vincennes-prix-jacques-orliaguet",
+      "lien_url_avant_priorite_letrot": "https://www.equidia.fr/courses/2025-02-07/R1/C1"
     },
     {
       "date": "2025-01-20",
@@ -1972,12 +1986,13 @@
       "date": "2024-10-19",
       "cheval": "LARIFLETTE",
       "hippodrome": "ENGHIEN",
-      "url": "https://www.equidia.fr/courses/2024-10-19/R4/C7",
+      "url": "https://www.letrot.com/fr/courses/replay-courses/2024-10-19/7502/7",
       "justificatif": "https://www.canalturf.com/resultats-PMU/2024-10-19/enghien/352926_prix-du-maine.html",
       "controle": "Résultat public : date, cheval gagnant, hippodrome et R/C confirmés ; lecture vidéo Equidia non testée",
       "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2024-10-19/7502/7",
       "lien_letrot_precedent": "https://www.letrot.com/courses/2024-10-19/7502/7",
-      "preuve_identification_course": "https://www.canalturf.com/resultats-PMU/2024-10-19/enghien/352926_prix-du-maine.html"
+      "preuve_identification_course": "https://www.canalturf.com/resultats-PMU/2024-10-19/enghien/352926_prix-du-maine.html",
+      "lien_url_avant_priorite_letrot": "https://www.equidia.fr/courses/2024-10-19/R4/C7"
     },
     {
       "date": "2024-10-10",
@@ -1991,12 +2006,13 @@
       "date": "2024-10-10",
       "cheval": "LARIFLETTE",
       "hippodrome": "ENGHIEN",
-      "url": "https://www.equidia.fr/courses/2024-10-10/R4/C7",
+      "url": "https://www.letrot.com/fr/courses/replay-courses/2024-10-10/7502/7",
       "justificatif": "https://www.canalturf.com/resultats-PMU/2024-10-10/enghien/352078_prix-de-mauron.html",
       "controle": "Résultat public : date, cheval gagnant, hippodrome et R/C confirmés ; lecture vidéo Equidia non testée",
       "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2024-10-10/7502/7",
       "lien_letrot_precedent": "https://www.letrot.com/courses/2024-10-10/7502/7",
-      "preuve_identification_course": "https://www.canalturf.com/resultats-PMU/2024-10-10/enghien/352078_prix-de-mauron.html"
+      "preuve_identification_course": "https://www.canalturf.com/resultats-PMU/2024-10-10/enghien/352078_prix-de-mauron.html",
+      "lien_url_avant_priorite_letrot": "https://www.equidia.fr/courses/2024-10-10/R4/C7"
     },
     {
       "date": "2024-10-05",
@@ -2010,12 +2026,13 @@
       "date": "2024-10-01",
       "cheval": "LARIFLETTE",
       "hippodrome": "VINCENNES",
-      "url": "https://www.equidia.fr/courses/2024-10-01/R4/C6",
+      "url": "https://www.letrot.com/fr/courses/replay-courses/2024-10-01/7500/6",
       "justificatif": "https://www.canalturf.com/resultats-PMU/2024-10-01/paris-vincennes/351257_prix-de-perros-guirec.html",
       "controle": "Résultat Canalturf : date, cheval gagnant, hippodrome et R/C confirmés ; lecture vidéo Equidia non testée",
       "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2024-10-01/7500/6",
       "lien_letrot_precedent": "https://www.letrot.com/courses/2024-10-01/7500/6",
-      "preuve_identification_course": "https://www.canalturf.com/resultats-PMU/2024-10-01/paris-vincennes/351257_prix-de-perros-guirec.html"
+      "preuve_identification_course": "https://www.canalturf.com/resultats-PMU/2024-10-01/paris-vincennes/351257_prix-de-perros-guirec.html",
+      "lien_url_avant_priorite_letrot": "https://www.equidia.fr/courses/2024-10-01/R4/C6"
     },
     {
       "date": "2024-09-10",
@@ -2134,23 +2151,25 @@
       "date": "2024-05-17",
       "cheval": "FAVORI DE L'ITON",
       "hippodrome": "VINCENNES",
-      "url": "https://www.equidia.fr/courses/2024-05-17/R1/C4",
+      "url": "https://www.letrot.com/fr/courses/replay-courses/2024-05-17/7500/4",
       "justificatif": "https://www.canalturf.com/resultats-PMU/2024-05-17/paris-vincennes/339017_prix-de-nogent-prix-jean-gabin.html",
       "controle": "Résultat Canalturf : date, cheval gagnant, hippodrome et R/C confirmés ; lecture vidéo Equidia non testée",
       "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2024-05-17/7500/4",
       "lien_letrot_precedent": "https://www.letrot.com/courses/2024-05-17/7500/4",
-      "preuve_identification_course": "https://www.canalturf.com/resultats-PMU/2024-05-17/paris-vincennes/339017_prix-de-nogent-prix-jean-gabin.html"
+      "preuve_identification_course": "https://www.canalturf.com/resultats-PMU/2024-05-17/paris-vincennes/339017_prix-de-nogent-prix-jean-gabin.html",
+      "lien_url_avant_priorite_letrot": "https://www.equidia.fr/courses/2024-05-17/R1/C4"
     },
     {
       "date": "2024-05-14",
       "cheval": "IBERIK DE MONGOCHY",
       "hippodrome": "VINCENNES",
-      "url": "https://www.equidia.fr/courses/2024-05-14/R4/C3",
+      "url": "https://www.letrot.com/fr/courses/replay-courses/2024-05-14/7500/3",
       "justificatif": "https://www.geny.com/course/1488381-2024-05-14-vincennes-prix-emile-neveux/arrivee-rapports",
       "controle": "Course, réunion et victoire vérifiées sur les résultats publiés ; lecture effective du replay Equidia non testée",
       "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2024-05-14/7500/3",
       "lien_letrot_precedent": "https://www.letrot.com/courses/2024-05-14/7500/3",
-      "preuve_identification_course": "https://www.geny.com/course/1488381-2024-05-14-vincennes-prix-emile-neveux/arrivee-rapports"
+      "preuve_identification_course": "https://www.geny.com/course/1488381-2024-05-14-vincennes-prix-emile-neveux/arrivee-rapports",
+      "lien_url_avant_priorite_letrot": "https://www.equidia.fr/courses/2024-05-14/R4/C3"
     },
     {
       "date": "2024-05-09",
@@ -2343,12 +2362,13 @@
       "date": "2023-09-07",
       "cheval": "KOBLENZA DAIRPET",
       "hippodrome": "VINCENNES",
-      "url": "https://www.equidia.fr/courses/2023-09-07/R4/C6",
+      "url": "https://www.letrot.com/fr/courses/replay-courses/2023-09-07/7500/6",
       "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2023-09-07/R4C6-vincennes-prix-de-givors",
       "controle": "Résultat public : date, cheval gagnant, hippodrome et R/C confirmés ; lecture vidéo Equidia non testée",
       "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2023-09-07/7500/6",
       "lien_letrot_precedent": "https://www.letrot.com/courses/2023-09-07/7500/6",
-      "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2023-09-07/R4C6-vincennes-prix-de-givors"
+      "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2023-09-07/R4C6-vincennes-prix-de-givors",
+      "lien_url_avant_priorite_letrot": "https://www.equidia.fr/courses/2023-09-07/R4/C6"
     },
     {
       "date": "2023-09-01",
@@ -2620,12 +2640,13 @@
       "date": "2022-10-12",
       "cheval": "ILLAM DE MONGOCHY",
       "hippodrome": "ENGHIEN",
-      "url": "https://www.equidia.fr/courses/2022-10-12/R1/C2",
+      "url": "https://www.letrot.com/fr/courses/replay-courses/2022-10-12/7502/2",
       "justificatif": "https://www.canalturf.com/resultats-PMU/2022-10-12/enghien/287560_prix-de-la-tour-montparnasse.html",
       "controle": "Résultat Canalturf : date, cheval gagnant, hippodrome et R/C confirmés ; lecture vidéo Equidia non testée",
       "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2022-10-12/7502/2",
       "lien_letrot_precedent": "https://www.letrot.com/courses/2022-10-12/7502/2",
-      "preuve_identification_course": "https://www.canalturf.com/resultats-PMU/2022-10-12/enghien/287560_prix-de-la-tour-montparnasse.html"
+      "preuve_identification_course": "https://www.canalturf.com/resultats-PMU/2022-10-12/enghien/287560_prix-de-la-tour-montparnasse.html",
+      "lien_url_avant_priorite_letrot": "https://www.equidia.fr/courses/2022-10-12/R1/C2"
     },
     {
       "date": "2022-10-09",
@@ -2663,12 +2684,13 @@
       "date": "2022-08-31",
       "cheval": "HELIOS BONBON",
       "hippodrome": "VINCENNES",
-      "url": "https://www.equidia.fr/courses/2022-08-31/R3/C2",
+      "url": "https://www.letrot.com/fr/courses/replay-courses/2022-08-31/7500/2",
       "justificatif": "https://www.canalturf.com/resultats-PMU/2022-08-31/paris-vincennes/283728_prix-de-bosc-renoult.html",
       "controle": "Course, réunion et victoire vérifiées sur les résultats publiés ; lecture effective du replay Equidia non testée",
       "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2022-08-31/7500/2",
       "lien_letrot_precedent": "https://www.letrot.com/courses/2022-08-31/7500/2",
-      "preuve_identification_course": "https://www.canalturf.com/resultats-PMU/2022-08-31/paris-vincennes/283728_prix-de-bosc-renoult.html"
+      "preuve_identification_course": "https://www.canalturf.com/resultats-PMU/2022-08-31/paris-vincennes/283728_prix-de-bosc-renoult.html",
+      "lien_url_avant_priorite_letrot": "https://www.equidia.fr/courses/2022-08-31/R3/C2"
     },
     {
       "date": "2022-08-30",
@@ -2716,12 +2738,13 @@
       "date": "2022-08-13",
       "cheval": "INDICE DELADOU",
       "hippodrome": "ENGHIEN",
-      "url": "https://www.equidia.fr/courses/2022-08-13/R3/C5",
+      "url": "https://www.letrot.com/fr/courses/replay-courses/2022-08-13/7502/5",
       "justificatif": "https://www.canalturf.com/resultats-PMU/2022-08-13/enghien/282144_prix-de-la-place-de-valois.html",
       "controle": "Course, réunion et victoire vérifiées sur les résultats publiés ; lecture effective du replay Equidia non testée",
       "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2022-08-13/7502/5",
       "lien_letrot_precedent": "https://www.letrot.com/courses/2022-08-13/7502/5",
-      "preuve_identification_course": "https://www.canalturf.com/resultats-PMU/2022-08-13/enghien/282144_prix-de-la-place-de-valois.html"
+      "preuve_identification_course": "https://www.canalturf.com/resultats-PMU/2022-08-13/enghien/282144_prix-de-la-place-de-valois.html",
+      "lien_url_avant_priorite_letrot": "https://www.equidia.fr/courses/2022-08-13/R3/C5"
     },
     {
       "date": "2022-08-08",
@@ -2767,12 +2790,13 @@
       "date": "2022-05-17",
       "cheval": "HERMES PLANCHETTE",
       "hippodrome": "VINCENNES",
-      "url": "https://www.equidia.fr/courses/2022-05-17/R4/C7",
+      "url": "https://www.letrot.com/fr/courses/replay-courses/2022-05-17/7500/7",
       "justificatif": "https://www.gbet.fr/chevaux/hermes-planchette-49226/",
       "controle": "Course et R/C confirmés par résultats publiés ; disponibilité de la vidéo Equidia non vérifiée",
       "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2022-05-17/7500/7",
       "lien_letrot_precedent": "https://www.letrot.com/courses/2022-05-17/7500/7",
-      "preuve_identification_course": "https://www.gbet.fr/chevaux/hermes-planchette-49226/"
+      "preuve_identification_course": "https://www.gbet.fr/chevaux/hermes-planchette-49226/",
+      "lien_url_avant_priorite_letrot": "https://www.equidia.fr/courses/2022-05-17/R4/C7"
     },
     {
       "date": "2022-05-08",
@@ -2851,12 +2875,13 @@
       "date": "2022-02-22",
       "cheval": "IBERIK DE MONGOCHY",
       "hippodrome": "VINCENNES",
-      "url": "https://www.equidia.fr/courses/2022-02-22/R1/C4",
+      "url": "https://www.letrot.com/fr/courses/replay-courses/2022-02-22/7500/4",
       "justificatif": "https://www.zone-turf.fr/rapports/r1-c4-prix-d-avenches-812212.html",
       "controle": "Résultat public confirme date, hippodrome, R/C et victoire ; lecture du replay Equidia non testée",
       "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2022-02-22/7500/4",
       "lien_letrot_precedent": "https://www.letrot.com/courses/2022-02-22/7500/4",
-      "preuve_identification_course": "https://www.zone-turf.fr/rapports/r1-c4-prix-d-avenches-812212.html"
+      "preuve_identification_course": "https://www.zone-turf.fr/rapports/r1-c4-prix-d-avenches-812212.html",
+      "lien_url_avant_priorite_letrot": "https://www.equidia.fr/courses/2022-02-22/R1/C4"
     },
     {
       "date": "2022-02-05",
@@ -2887,12 +2912,13 @@
       "date": "2022-01-29",
       "cheval": "DARWIN LA MESANGE",
       "hippodrome": "VINCENNES",
-      "url": "https://www.equidia.fr/courses/2022-01-29/R1/C8",
+      "url": "https://www.letrot.com/fr/courses/replay-courses/2022-01-29/7500/8",
       "justificatif": "https://www.canalturf.com/resultats-PMU/2022-01-29_resultats-rapports-des-courses-du-samedi-29-janvier-2022.html",
       "controle": "Réunion, course et victoire confirmées dans les résultats publics ; lecture vidéo Equidia non testée",
       "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2022-01-29/7500/8",
       "lien_letrot_precedent": "https://www.letrot.com/courses/2022-01-29/7500/8",
-      "preuve_identification_course": "https://www.infos-entrainement.fr/reunions-pmu-courses-du-jour/2022-01-29/r1/c8"
+      "preuve_identification_course": "https://www.infos-entrainement.fr/reunions-pmu-courses-du-jour/2022-01-29/r1/c8",
+      "lien_url_avant_priorite_letrot": "https://www.equidia.fr/courses/2022-01-29/R1/C8"
     },
     {
       "date": "2022-01-16",
@@ -2914,12 +2940,13 @@
       "date": "2021-12-31",
       "cheval": "DARWIN LA MESANGE",
       "hippodrome": "VINCENNES",
-      "url": "https://www.equidia.fr/courses/2021-12-31/R1/C1",
+      "url": "https://www.letrot.com/fr/courses/replay-courses/2021-12-31/7500/1",
       "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2021-12-31/R1C1-vincennes-prix-de-saint-germain",
       "controle": "ZEturf confirme la réunion, la course et le cheval vainqueur ; replay Equidia non testé",
       "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2021-12-31/7500/1",
       "lien_letrot_precedent": "https://www.letrot.com/courses/2021-12-31/7500/1",
-      "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2021-12-31/R1C1-vincennes-prix-de-saint-germain"
+      "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2021-12-31/R1C1-vincennes-prix-de-saint-germain",
+      "lien_url_avant_priorite_letrot": "https://www.equidia.fr/courses/2021-12-31/R1/C1"
     },
     {
       "date": "2021-12-13",
@@ -2958,12 +2985,13 @@
       "date": "2021-11-16",
       "cheval": "HERMES PLANCHETTE",
       "hippodrome": "VINCENNES",
-      "url": "https://www.equidia.fr/courses/2021-11-16/R3/C7",
+      "url": "https://www.letrot.com/fr/courses/replay-courses/2021-11-16/7500/7",
       "justificatif": "https://www.canalturf.com/resultats-PMU/2021-11-16/paris-vincennes/258468_prix-unitas.html",
       "controle": "Course, réunion et victoire vérifiées sur les résultats publiés ; lecture effective du replay Equidia non testée",
       "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2021-11-16/7500/7",
       "lien_letrot_precedent": "https://www.letrot.com/courses/2021-11-16/7500/7",
-      "preuve_identification_course": "https://www.canalturf.com/resultats-PMU/2021-11-16/paris-vincennes/258468_prix-unitas.html"
+      "preuve_identification_course": "https://www.canalturf.com/resultats-PMU/2021-11-16/paris-vincennes/258468_prix-unitas.html",
+      "lien_url_avant_priorite_letrot": "https://www.equidia.fr/courses/2021-11-16/R3/C7"
     },
     {
       "date": "2021-11-03",
@@ -2985,12 +3013,13 @@
       "date": "2021-10-19",
       "cheval": "IBERIK DE MONGOCHY",
       "hippodrome": "VINCENNES",
-      "url": "https://www.equidia.fr/courses/2021-10-19/R1/C4",
+      "url": "https://www.letrot.com/fr/courses/replay-courses/2021-10-19/7500/4",
       "justificatif": "https://www.geny.com/course/1268733-2021-10-19-vincennes-prix-phact/arrivee-rapports",
       "controle": "Résultat public confirme date, hippodrome, R/C et victoire ; lecture du replay Equidia non testée",
       "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2021-10-19/7500/4",
       "lien_letrot_precedent": "https://www.letrot.com/courses/2021-10-19/7500/4",
-      "preuve_identification_course": "https://www.gbet.fr/courses/vincennes/2021-10-19/r1/c4/prix-phact/"
+      "preuve_identification_course": "https://www.gbet.fr/courses/vincennes/2021-10-19/r1/c4/prix-phact/",
+      "lien_url_avant_priorite_letrot": "https://www.equidia.fr/courses/2021-10-19/R1/C4"
     },
     {
       "date": "2021-09-28",
@@ -3004,12 +3033,13 @@
       "date": "2021-09-23",
       "cheval": "IBERIK DE MONGOCHY",
       "hippodrome": "VINCENNES",
-      "url": "https://www.equidia.fr/courses/2021-09-23/R1/C2",
+      "url": "https://www.letrot.com/fr/courses/replay-courses/2021-09-23/7500/2",
       "justificatif": "https://www.gbet.fr/courses/vincennes/2021-09-23/r1/c2/prix-de-bagneres/",
       "controle": "Résultat public confirme date, hippodrome, R/C et victoire ; lecture du replay Equidia non testée",
       "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2021-09-23/7500/2",
       "lien_letrot_precedent": "https://www.letrot.com/courses/2021-09-23/7500/2",
-      "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2021-09-23/R1C2-vincennes-prix-de-bagneres"
+      "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2021-09-23/R1C2-vincennes-prix-de-bagneres",
+      "lien_url_avant_priorite_letrot": "https://www.equidia.fr/courses/2021-09-23/R1/C2"
     },
     {
       "date": "2021-09-17",
@@ -3023,12 +3053,13 @@
       "date": "2021-08-30",
       "cheval": "IBERIK DE MONGOCHY",
       "hippodrome": "VINCENNES",
-      "url": "https://www.equidia.fr/courses/2021-08-30/R1/C2",
+      "url": "https://www.letrot.com/fr/courses/replay-courses/2021-08-30/7500/2",
       "justificatif": "https://www.canalturf.com/resultats-PMU/2021-08-30/paris-vincennes/251623_prix-andre-choisselet.html",
       "controle": "Prix André Choisselet R1C2, victoire IBERIK DE MONGOCHY vérifiée dans l'arrivée Zone-Turf ; lecture vidéo Equidia non testée",
       "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2021-08-30/7500/2",
       "lien_letrot_precedent": "https://www.letrot.com/courses/2021-08-30/7500/2",
-      "preuve_identification_course": "https://www.zone-turf.fr/rapports/r1-c2-prix-andre-choisselet-759028.html"
+      "preuve_identification_course": "https://www.zone-turf.fr/rapports/r1-c2-prix-andre-choisselet-759028.html",
+      "lien_url_avant_priorite_letrot": "https://www.equidia.fr/courses/2021-08-30/R1/C2"
     },
     {
       "date": "2021-08-03",
@@ -3308,12 +3339,13 @@
       "date": "2020-02-11",
       "cheval": "FETICHE ATOUT",
       "hippodrome": "VINCENNES",
-      "url": "https://www.equidia.fr/courses/2020-02-11/R1/C4",
+      "url": "https://www.letrot.com/fr/courses/replay-courses/2020-02-11/7500/4",
       "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2020-02-11/R1C4-vincennes-prix-de-forcalquier",
       "controle": "ZEturf confirme la réunion, la course et le cheval vainqueur ; replay Equidia non testé",
       "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2020-02-11/7500/4",
       "lien_letrot_precedent": "https://www.letrot.com/courses/2020-02-11/7500/4",
-      "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2020-02-11/R1C4-vincennes-prix-de-forcalquier"
+      "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2020-02-11/R1C4-vincennes-prix-de-forcalquier",
+      "lien_url_avant_priorite_letrot": "https://www.equidia.fr/courses/2020-02-11/R1/C4"
     },
     {
       "date": "2020-02-01",
@@ -3457,7 +3489,7 @@
       "date": "2017-03-04",
       "cheval": "DJANGO DE MONGOCHY",
       "hippodrome": "VINCENNES",
-      "url": "https://www.dailymotion.com/video/x5dxub9",
+      "url": "https://www.letrot.com/fr/courses/replay-courses/2017-03-04/7500/8",
       "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2017-03-04/R1C8-vincennes-prix-de-monpazier",
       "controle": "Vidéo de la chaîne historique Écurie-Initial, titre et date correspondant au résultat, player Dailymotion accessible ; lecture intégrale non vérifiée. Victoire Django de Mongochy Vincennes 04/03/2017",
       "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2017-03-04/7500/8",
@@ -3466,7 +3498,8 @@
       "lien_fiche_course_precedent": "https://www.equidia.fr/courses/2017-03-04/R1/C8",
       "source_video": "https://www.dailymotion.com/user/Ecurie-Initial",
       "preuve_video": "https://www.dailymotion.com/video/x5dxub9",
-      "nature_lien": "video_course_dailymotion"
+      "nature_lien": "video_course_dailymotion",
+      "lien_url_avant_priorite_letrot": "https://www.dailymotion.com/video/x5dxub9"
     },
     {
       "date": "2017-02-26",
@@ -3560,7 +3593,7 @@
       "date": "2016-11-01",
       "cheval": "CALIE DE POMMERAYE",
       "hippodrome": "VINCENNES",
-      "url": "https://www.dailymotion.com/video/x50j15e",
+      "url": "https://www.letrot.com/fr/courses/replay-courses/2016-11-01/7500/7",
       "justificatif": "https://www.canalturf.com/resultats-PMU/2016-11-01/paris-vincennes/143560_prix-justicia.html",
       "controle": "Vidéo de la chaîne historique Écurie-Initial, titre et date correspondant au résultat, player Dailymotion accessible ; lecture intégrale non vérifiée. Victoire Calie de Pommeraye Vincennes 01/11/2016",
       "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2016-11-01/7500/7",
@@ -3569,7 +3602,8 @@
       "lien_fiche_course_precedent": "https://www.equidia.fr/courses/2016-11-01/R5/C7",
       "source_video": "https://www.dailymotion.com/user/Ecurie-Initial",
       "preuve_video": "https://www.dailymotion.com/video/x50j15e",
-      "nature_lien": "video_course_dailymotion"
+      "nature_lien": "video_course_dailymotion",
+      "lien_url_avant_priorite_letrot": "https://www.dailymotion.com/video/x50j15e"
     },
     {
       "date": "2016-10-10",
@@ -3770,7 +3804,7 @@
       "date": "2013-12-27",
       "cheval": "ADAMS",
       "hippodrome": "VINCENNES",
-      "url": "https://www.dailymotion.com/video/x190dh8",
+      "url": "https://www.letrot.com/fr/courses/replay-courses/2013-12-27/7500/8",
       "justificatif": "https://www.canalturf.com/resultats-PMU/2013-12-27_resultats-rapports-des-courses-du-vendredi-27-decembre-2013.html",
       "controle": "Vidéo de la chaîne historique Écurie-Initial, titre et date correspondant au résultat, player Dailymotion accessible ; lecture intégrale non vérifiée. Victoire Adams Vincennes 27/12/2013",
       "lien_replay_original": "https://www.letrot.com/fr/courses/replay-courses/2013-12-27/7500/8",
@@ -3779,7 +3813,8 @@
       "lien_fiche_course_precedent": "https://www.equidia.fr/courses/2013-12-27/R1/C8",
       "source_video": "https://www.dailymotion.com/user/Ecurie-Initial",
       "preuve_video": "https://www.dailymotion.com/video/x190dh8",
-      "nature_lien": "video_course_dailymotion"
+      "nature_lien": "video_course_dailymotion",
+      "lien_url_avant_priorite_letrot": "https://www.dailymotion.com/video/x190dh8"
     },
     {
       "date": "2013-10-18",
