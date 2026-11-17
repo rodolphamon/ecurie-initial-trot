@@ -241,10 +241,9 @@ function replayPreference(value,record){
 function replayButton(result,mobile){
  const url=replayUrl(result.video)||resultatUrl(result.source);
  if(!url)return "";
- // Le libellé reste identique pour un replay disponible ou une page de
- // résultats où la vidéo apparaîtra plus tard. L'URL reste inchangée.
+ // Vidéo prioritaire ; sinon lien Résultat lorsque la vidéo n'est pas connue.
  const isReplay=!!result.video&&result.videoSource==="video";
- const label="Replay";
+ const label=isReplay?"Vidéo":"Résultat";
  const svg='<svg viewBox="0 0 24 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="1.5" y="1.5" width="21" height="17" rx="4" stroke="currentColor" stroke-width="1.7"/><path d="m10 6 6.2 4L10 14V6Z" fill="currentColor"/></svg>';
  const title=(isReplay?"Replay disponible":"Page de course (replay selon disponibilité)")+" : "+result.cheval+" du "+result.date.split("-").reverse().join("/");
  const symbol=svg;
@@ -253,10 +252,24 @@ function replayButton(result,mobile){
 }
 async function loadReplays(){
  try{
-  const response=await fetch("./replays.json",{cache:"no-store"});
-  if(!response.ok)throw Error("Replays non disponibles");
-  const obj=await response.json();
-  const candidates=Array.isArray(obj.replays)?obj.replays:[];
+  // Réutiliser les liens déjà présents sur les fiches chevaux, y compris
+  // lorsqu'ils ne sont pas encore copiés dans replays.json.
+  // Chaque source est indépendante : l'une peut fonctionner même si l'autre échoue.
+  const [archive,fiche]=await Promise.allSettled([
+    fetch("./replays.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw Error("Replays indisponibles");return r.json()}),
+    fetch("../chevaux/data/editorial.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw Error("Fiches indisponibles");return r.json()})
+  ]);
+  const archiveLinks=archive.status==="fulfilled"&&Array.isArray(archive.value.replays)?archive.value.replays:[];
+  const performances=fiche.status==="fulfilled"?fiche.value.performances||{}:{};
+  const ficheLinks=[];
+  for(const [slug,list] of Object.entries(performances)){
+    if(!Array.isArray(list))continue;
+    for(const course of list){
+      if(!course||!course.date||!course.hippodrome||!course.video_url)continue;
+      ficheLinks.push({date:course.date,cheval:slug.replace(/-/g," "),hippodrome:course.hippodrome,url:course.video_url});
+    }
+  }
+  const candidates=[...archiveLinks,...ficheLinks];
   const normalizeReplayKey=v=>String(v||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toUpperCase().replace(/[^A-Z0-9]/g,"");
   const byHorseAndDate=new Map();
   for(const r of results){
@@ -417,7 +430,9 @@ function render(){
  }).join("");
  for(const button of $("legend").querySelectorAll("button[data-discipline]"))button.setAttribute("aria-pressed",button.dataset.discipline===state.discipline?"true":"false");
  $("empty").hidden=data.length>0;
- $("count").textContent=(!hippodrome&&!year&&!type&&!horse&&!pilot&&!trainer)?"Toutes les courses de nos archives":data.length+" course"+(data.length>1?"s":"")+" trouvée"+(data.length>1?"s":"");
+ const filtersActive=!!(hippodrome||year||type||horse||pilot||trainer);
+ $("count").hidden=!filtersActive;
+ $("count").textContent=filtersActive?data.length+" course"+(data.length>1?"s":"")+" trouvée"+(data.length>1?"s":""):"";
  $("page").textContent="Page "+state.page+" / "+pages;
  $("prev").disabled=state.page===1;$("next").disabled=state.page===pages;
  postHeight();
