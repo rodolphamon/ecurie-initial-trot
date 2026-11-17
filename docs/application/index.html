@@ -194,6 +194,42 @@ body.ei-prelaunch{padding-bottom:0!important}
   .home-dashboard #dashResultLink .dash-result-heading{font-size:9.2px}
 }
 
+/* Prochain partant : casaque officielle a droite sur les deux lignes de donnees. */
+.home-dashboard #dashNextLink{
+  display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto auto;
+  align-content:center;align-items:center;column-gap:6px;row-gap:4px;
+}
+.home-dashboard #dashNextLink.has-next-silk{grid-template-columns:minmax(0,1fr) 43px}
+.home-dashboard #dashNextLink .dash-label{
+  grid-column:1/-1;grid-row:1;text-align:center;line-height:1.2;
+}
+.home-dashboard #dashNextLink .dash-next-identity{
+  grid-column:1;grid-row:2;align-self:end;
+}
+.home-dashboard #dashNextLink #dashNextDetail{
+  grid-column:1;grid-row:3;align-self:start;
+}
+.home-dashboard #dashNextLink .dash-next-silk{
+  grid-column:2;grid-row:2/4;width:43px;height:54px;object-fit:contain;
+  justify-self:center;align-self:center;background:transparent;pointer-events:none;
+}
+.home-dashboard #dashNextLink .dash-next-silk[hidden]{display:none}
+/* Le classement commence au niveau du cheval et du jockey, pas du titre. */
+.home-dashboard #dashResultLink .dash-result-score{
+  grid-column:4;grid-row:2;align-self:start;margin-top:4px;
+  height:54px;min-height:54px;
+}
+@media(max-width:600px){
+  .home-dashboard #dashNextLink{column-gap:4px;row-gap:3px}
+  .home-dashboard #dashNextLink.has-next-silk{grid-template-columns:minmax(0,1fr) 38px}
+  .home-dashboard #dashNextLink .dash-next-silk{width:38px;height:49px}
+}
+@media(max-width:355px){
+  .home-dashboard #dashNextLink{column-gap:3px}
+  .home-dashboard #dashNextLink.has-next-silk{grid-template-columns:minmax(0,1fr) 32px}
+  .home-dashboard #dashNextLink .dash-next-silk{width:32px;height:44px}
+}
+
 /* Bandeau d'accueil sur une seule ligne, sous le liseré orange. */
 #appContent .home-welcome{
   display:flex;align-items:center;justify-content:center;
@@ -217,7 +253,7 @@ body.ei-prelaunch{padding-bottom:0!important}
 <h2 class="home-title"><span class="orange-dot" aria-hidden="true"></span>En ce moment</h2>
 <div class="home-dashboard" aria-label="Actualité de l'écurie">
 <a href="../chevaux/"><span class="dash-label">Effectif</span><strong class="dash-number" id="dashHorses">—</strong><span class="dash-detail">chevaux à suivre</span></a>
-<a href="../engagements/"><span class="dash-label" id="dashNextLabel">Prochain rendez-vous</span><span class="dash-next-identity"><strong id="dashNextHorse">À venir</strong><span id="dashNextJockey" class="dash-next-jockey" hidden></span></span><span class="dash-detail" id="dashNextDetail">Voir les engagements</span></a>
+<a href="../engagements/" id="dashNextLink"><span class="dash-label" id="dashNextLabel">Prochain rendez-vous</span><span class="dash-next-identity"><strong id="dashNextHorse">À venir</strong><span id="dashNextJockey" class="dash-next-jockey" hidden></span></span><span class="dash-detail" id="dashNextDetail">Voir les engagements</span><img class="dash-next-silk" id="dashNextSilk" alt="" width="43" height="54" hidden></a>
 <a href="../chevaux/" id="dashResultLink"><span class="dash-label dash-result-heading">Dernière performance</span><span class="dash-result-copy"><strong id="dashResultHorse">À venir</strong><span class="dash-detail" id="dashResultDetail">Voir les performances</span></span><img class="dash-result-silk" id="dashResultSilk" alt="" width="43" height="57" hidden><span class="dash-result-people" aria-label="Jockey ou driver et entraîneur"><span id="dashResultRider" class="dash-result-person" hidden></span><span id="dashResultTrainer" class="dash-result-person" hidden></span></span><span class="dash-result-score" id="dashResultRank" aria-label="Classement" hidden>—</span></a>
 </div>
 <h2 class="home-title"><span class="orange-dot" aria-hidden="true"></span>À découvrir</h2>
@@ -290,11 +326,21 @@ window.loadHomeDashboard=async function(){
    if(next){
     get("dashNextLabel").textContent=["partant","declare"].includes(next.e.statut)?"Prochain partant":"Prochain engagement";
     get("dashNextHorse").textContent=known.get(next.slug);
-     const nextJockey=get("dashNextJockey"),nextJockeyName=String(next.e.jockey||next.e.driver||"").trim();
+     const nextJockey=get("dashNextJockey"),nextJockeyName=String(next.e.jockey||next.e.driver||"").trim().replace(/^./,c=>c.toLocaleUpperCase("fr"));
      nextJockey.textContent=nextJockeyName;nextJockey.hidden=!nextJockeyName;nextJockey.title=nextJockeyName;
     get("dashNextDetail").textContent=[next.e.hippodrome,stamp(next.e.date)].filter(Boolean).join(" · ")+hh(next.e.heure);
+    const nextSilk=get("dashNextSilk"),nextHorse=horses.find(h=>h.id===next.slug);
+    const nextSilkName=nextHorse?.casaque==="galop"?"casaque-galop.svg":nextHorse?.casaque==="orange"?"casaque-orange.svg":nextHorse?.casaque==="blanche"?"casaque-blanche.svg":"";
+    if(nextSilkName){
+      nextSilk.alt="Casaque de "+nextHorse.name;
+      nextSilk.onerror=()=>{nextSilk.hidden=true;get("dashNextLink").classList.remove("has-next-silk")};
+      nextSilk.src="../assets/"+nextSilkName;nextSilk.hidden=false;
+      get("dashNextLink").classList.add("has-next-silk");
+    }else{
+      nextSilk.hidden=true;nextSilk.removeAttribute("src");get("dashNextLink").classList.remove("has-next-silk");
+    }
    }else{
-    get("dashNextLabel").textContent="Prochain rendez-vous";get("dashNextHorse").textContent="Aucun annoncé";get("dashNextJockey").hidden=true;get("dashNextJockey").textContent="";get("dashNextDetail").textContent="Voir les engagements";
+    get("dashNextLabel").textContent="Prochain rendez-vous";get("dashNextHorse").textContent="Aucun annoncé";get("dashNextJockey").hidden=true;get("dashNextJockey").textContent="";get("dashNextDetail").textContent="Voir les engagements";get("dashNextSilk").hidden=true;get("dashNextSilk").removeAttribute("src");get("dashNextLink").classList.remove("has-next-silk");
    }
    for(const [slug,perfs] of Object.entries(editorial.performances||{})){
     if(!known.has(slug)||!Array.isArray(perfs))continue;
