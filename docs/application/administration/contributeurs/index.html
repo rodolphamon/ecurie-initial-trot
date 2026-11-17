@@ -1,0 +1,59 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#171717">
+<title>Attribution Contributeur · Écurie Initial</title>
+<style>*{box-sizing:border-box}body{margin:0;background:#f8f6f3;color:#27221e;font:15px/1.5 Arial,sans-serif}header{background:#171717;color:#fff;padding:20px}header strong{font-size:22px}header span{color:#f47721}
+main{max-width:730px;margin:auto;padding:20px 15px 85px}.card{background:#fff;border:1px solid #e8ddd3;border-radius:14px;padding:20px;margin:15px 0}h1{font-size:25px;margin:7px 0}button{background:#f47721;border:0;padding:12px 18px;border-radius:8px;font:inherit;font-weight:bold;cursor:pointer}button:disabled{opacity:.5}a{color:#a94b0d}.muted{color:#635d58}[hidden]{display:none!important}#status{min-height:20px}.warning{background:#fff5eb;padding:13px;border-left:4px solid #f47721}</style>
+</head><body><header><strong>ÉCURIE <span>INITIAL</span></strong><div>Attribution des rôles</div></header>
+<main><nav><a href="../">← Administration</a></nav><div class="card">
+<h1>Contributeur — Arnaud PUSKAS</h1><p>Autorisation limitée aux <strong>engagements</strong> et aux <strong>gains de carrière</strong>. Publication directe. Aucun droit d’administration ni d’accès à la gestion des associés.</p>
+<p id="loading">Recherche du compte associé…</p><p id="denied" hidden>Réservé au gérant administrateur. <a href="../../connexion/">Se connecter</a></p>
+<div id="unregistered" hidden class="warning"><strong>En attente d’inscription.</strong><p>Arnaud PUSKAS figure dans le répertoire des propriétaires mais aucun compte actif correspondant n’est encore identifié dans l’application. Préparez son invitation, puis revenez sur cette page pour attribuer ses droits.</p><p><a href="../">Gérer les invitations aux associés</a></p></div>
+<div id="ready" hidden><p><strong>Compte :</strong> <span id="person"></span></p><p><strong>Rôle :</strong> <span id="role"></span></p><p><button type="button" id="toggle"></button></p><p class="muted">Les droits sont enregistrés directement dans Supabase, liés à l’identifiant sécurisé de son compte.</p></div>
+<p id="status" role="status" aria-live="polite"></p>
+</div>
+<div class="card"><h2>Accès d’Arnaud</h2><p>Après activation, il peut ouvrir <a href="../../contribution/">Gestion des engagements et gains</a> depuis son espace personnel. La restriction de préouverture jusqu’au 1er décembre reste applicable, sauf s’il est autorisé comme testeur.</p></div>
+</main>
+<script type="module">
+import {createClient} from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+const db=createClient('https://yeecwaaizmvrhwobukfa.supabase.co','sb_publishable_xUy2EJA3u3cKWl8BB4GNPQ_qhV9Pes3');
+const $=id=>document.getElementById(id);
+const norm=s=>String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toUpperCase().replace(/\s+/g,' ').trim();
+let candidate=null,role=null;
+async function refresh(){
+ const {data,error}=await db.from('ei_contributeurs').select('user_id,actif,engagements,gains').eq('user_id',candidate.user_id).maybeSingle();
+ if(error)throw error;
+ role=data;
+ $('role').textContent=role?.actif&&role.engagements&&role.gains?'Actif — engagements et gains':'Non activé';
+ $('toggle').textContent=role?.actif?'Désactiver le rôle Contributeur':'Activer le rôle Contributeur';
+ $('ready').hidden=false;
+}
+$('toggle').onclick=async()=>{
+ const btn=$('toggle');btn.disabled=true;$('status').textContent='Enregistrement…';
+ try{
+  const shouldActivate=!(role?.actif);
+  let result;
+  if(shouldActivate)
+    result=await db.from('ei_contributeurs').upsert({user_id:candidate.user_id,actif:true,engagements:true,gains:true},{onConflict:'user_id'});
+  else result=await db.from('ei_contributeurs').update({actif:false}).eq('user_id',candidate.user_id);
+  if(result.error)throw result.error;
+  await refresh();
+  $('status').textContent=shouldActivate?'Droits Contributeur activés pour Arnaud PUSKAS.':'Droits Contributeur désactivés.';
+ }catch(e){$('status').textContent='Modification refusée : '+(e.message||'erreur inconnue')}
+ finally{btn.disabled=false}
+};
+async function init(){
+ try{
+  const {data:{user},error}=await db.auth.getUser();
+  if(error||!user)throw Error('Non connecté');
+  const {data:member}=await db.from('associes').select('actif,administrateur').eq('user_id',user.id).maybeSingle();
+  if(!member?.actif||!member.administrateur)throw Error('Administrateur requis');
+  const {data:members,error:fetchError}=await db.from('associes').select('user_id,nom_affiche,actif').ilike('nom_affiche','%PUSKAS%');
+  if(fetchError)throw fetchError;
+  const matches=(members||[]).filter(a=>a.actif&&norm(a.nom_affiche)==='ARNAUD PUSKAS');
+  if(matches.length!==1){$('unregistered').hidden=false;return}
+  candidate=matches[0];$('person').textContent=candidate.nom_affiche;
+  await refresh();
+ }catch(e){$('denied').hidden=false;$('status').textContent=e.message}
+ finally{$('loading').hidden=true}
+}
+init();
+</script><script defer src="../../nav.js?v=20261115b"></script></body></html>
