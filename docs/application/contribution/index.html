@@ -105,7 +105,7 @@ function selectHorse(){
   const currentRec=liveRecords[horseId]?.chrono??trot[horseId]?.record;
   $('obstacleValueBlock').hidden=!isObstacle;
   const legacy=isObstacle?galop[horseId]?.value:null;
-  $('legacyValue').hidden=!isObstacle||legacy==null;
+  $('legacyValue').hidden=!isObstacle||legacy==null||!!platEntry||!!obstacleEntry;
   $('legacyValue').textContent=legacy==null?'':'Ancienne valeur du dossier : '+String(legacy).replace('.',',')+' (discipline non indiquée). À ventiler entre plat et obstacle avant de la reprendre.';
   $('currentValue').textContent=p&&isGalop?'Valeur plat actuellement affichée : '+(platValue==null?'non renseignée':String(platValue).replace('.',',')):'Choisissez un cheval de galop.';
   $('value').value=platValue==null?'':String(platValue);
