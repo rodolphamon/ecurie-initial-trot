@@ -33,6 +33,37 @@ function parisDeparture(date: string, heure?: string): string|null {
   return new Date(Date.parse(date+"T"+heure+":00Z")-off*3600000).toISOString();
 }
 const esc=(s:unknown)=>String(s||"").slice(0,240);
+// Annonce lisible, en reprenant exclusivement l'hippodrome et l'heure déclarés.
+function annonceCourse(nom:unknown, hippodrome:unknown, heure:unknown, jour:string):string {
+  const horse=esc(nom).trim();
+  const venue=esc(hippodrome).trim();
+  const hour=esc(heure).trim();
+  const m=hour.match(/^(\d{1,2}):(\d{2})$/);
+  const quand=m?" à "+Number(m[1])+"h"+m[2]:"";
+  const ou=venue && venue!=="Hippodrome à confirmer"?" à "+venue:"";
+  return horse+" court "+jour+quand+ou+".";
+}
+function jourCourse(date:unknown, aujourdHui:string):string {
+  const course=esc(date);
+  if(course===aujourdHui)return "aujourd’hui";
+  const demain=new Date(Date.parse(aujourdHui+"T00:00:00Z")+86400000).toISOString().slice(0,10);
+  if(course===demain)return "demain";
+  return /^\d{4}-\d{2}-\d{2}$/.test(course)
+    ? "le "+course.slice(8,10)+"/"+course.slice(5,7)+"/"+course.slice(0,4)
+    : "à une date à confirmer";
+}
+function resumePartants(partants:{nom:string;hippodrome?:string;heure?:string}[]):string {
+  const annonces=partants.map(p=>annonceCourse(p.nom,p.hippodrome,p.heure,"aujourd’hui"));
+  let texte="";
+  for(let i=0;i<annonces.length;i++){
+    const encore=annonces.length-i-1;
+    const nouvelle=texte+(texte?" ":"")+annonces[i];
+    const suffixe=encore>0?" Et "+encore+" autre"+(encore>1?"s":"")+" partant"+(encore>1?"s":"")+".":"";
+    if(nouvelle.length+suffixe.length>220 && texte)return texte+suffixe;
+    texte=nouvelle;
+  }
+  return texte;
+}
 const key=(slug:string,e:Event)=>[slug,e.date,esc(e.hippodrome).normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase()].join("|");
 async function saveAlert(row: Alert) {
   const {error}=await sb.from("ei_push_alerts").upsert(row,{onConflict:"id",ignoreDuplicates:true});
@@ -184,14 +215,16 @@ async function run() {
       let message:{title:string,body:string,url:string}|null=null;
       const p=alert.payload||{};
       if(alert.categorie==="daily"){
-        const ps=(Array.isArray(p.partants)?p.partants:[]) as {slug:string;nom:string;heure:string}[];
+        const ps=(Array.isArray(p.partants)?p.partants:[]) as {slug:string;nom:string;hippodrome:string;heure:string}[];
         const chosen=member&&sub.scope==="mine"?ps.filter(x=>owned.has(x.slug)):ps;
         if(!chosen.length)continue;
-        message={title:"🐎 Partants du jour · Écurie Initial",
-          body:chosen.map(x=>x.nom+(x.heure?" "+x.heure:"")).join(" · ").slice(0,190),
+        message={title:chosen.length===1?"🐎 Partant du jour · Écurie Initial":"🐎 Partants du jour · Écurie Initial",
+          body:resumePartants(chosen),
           url:APP+"/engagements/"};
       }else if(alert.categorie==="confirmed"){
-        message={title:"✅ Partant confirmé · "+esc(p.nom),body:esc(p.hippodrome)+" · "+esc(p.date)+(p.heure?" à "+esc(p.heure):""),url:APP+"/chevaux/"+alert.cheval_slug+"/"};
+        message={title:"✅ Partant confirmé · "+esc(p.nom),
+          body:annonceCourse(p.nom,p.hippodrome,p.heure,jourCourse(p.date,clock.date)),
+          url:APP+"/chevaux/"+alert.cheval_slug+"/"};
       }else if(alert.categorie==="withdrawn"){
         message={title:"🚫 Non-partant · "+esc(p.nom),body:"Le départ prévu à "+esc(p.hippodrome)+" est annulé.",url:APP+"/engagements/"};
       }else if(alert.categorie==="before15"){
