@@ -41,8 +41,8 @@ try{
    if(!valid.has(row.cheval_slug)||!gallop.has(row.cheval_slug)||!Number.isFinite(n))continue;
    const h=gallop.get(row.cheval_slug);
    if(/obstacle/i.test(h.discipline||'')){
-     if(row.discipline_valeur==='plat')gallop.set(row.cheval_slug,{...h,value_plat:n});
-     if(row.discipline_valeur==='obstacle')gallop.set(row.cheval_slug,{...h,value_obstacle:n});
+     if(row.discipline_valeur==='plat')gallop.set(row.cheval_slug,{...h,value_plat:n,value_historique_non_ventilee:null});
+     if(row.discipline_valeur==='obstacle')gallop.set(row.cheval_slug,{...h,value_obstacle:n,value_historique_non_ventilee:null});
    }else if(row.discipline_valeur==='plat'){
      gallop.set(row.cheval_slug,{...h,value:n});
    }
