@@ -32,6 +32,7 @@ a{color:#a84f13}
 <dt>Service Push</dt><dd id="provider">Vérification…</dd>
 <dt>Dernier Push reçu du serveur</dt><dd id="last">Vérification…</dd>
 <dt>Dernier Push affiché</dt><dd id="display">Vérification…</dd>
+<dt>Dernier clic sur notification</dt><dd id="lastClick">Aucun clic encore enregistré</dd>
 </dl>
 </section>
 <section class="card">
@@ -39,6 +40,9 @@ a{color:#a84f13}
 <p style="display:flex;align-items:center;gap:12px"><img src="/application/icon-ei-192.png" width="68" height="68" alt="Logo officiel de l’application Écurie Initial" style="object-fit:contain;background:#fff;border:1px solid #ddd;border-radius:8px"> <span>Un seul logo officiel doit apparaître à gauche, sans pictogramme supplémentaire à droite. La petite icône Android de la barre d’état reste gérée séparément.</span></p>
 <p>Cliquez ici : une notification locale doit apparaître, sans passer par le serveur.</p>
 <button id="local" type="button">Tester le logo unique à gauche</button>
+<p style="margin-top:14px">Vérifier le clic sur une notification, sans prévenir d'autres associés :</p>
+<button id="testLink" type="button">🔗 Tester le lien vers la fiche ANDRESY</button>
+<p class="muted">Cliquez ensuite sur la notification reçue : la fiche d'ANDRESY doit s'ouvrir. Revenez sur cette page pour vérifier le résultat du clic.</p>
 <p id="result" role="status" aria-live="polite"></p>
 <small>Si ce test local fonctionne mais que les notifications automatiques n’arrivent pas, vérifiez « Dernier Push reçu » ci-dessus. Si le test local échoue, vérifiez les autorisations Android/iPhone et les notifications de l’application.</small>
 </section>
@@ -60,11 +64,11 @@ function readLastPush(){
     const db=r.result;
     if(!db.objectStoreNames.contains('events')){db.close();resolve({received:null,display:null});return}
     const tx=db.transaction('events','readonly'),store=tx.objectStore('events');
-    const reads=['last_received','last_display','last'].map(k=>new Promise(done=>{
+    const reads=['last_received','last_display','last','last_click'].map(k=>new Promise(done=>{
      const req=store.get(k);req.onsuccess=()=>done(req.result||null);req.onerror=()=>done(null);
     }));
-    Promise.all(reads).then(([received,display,legacy])=>{
-      db.close();resolve({received,display:display||legacy||null});
+    Promise.all(reads).then(([received,display,legacy,click])=>{
+      db.close();resolve({received,display:display||legacy||null,click:click||null});
     }).catch(()=>{db.close();resolve({received:null,display:null})});
    };
   }catch(e){resolve({received:null,display:null})}
@@ -88,7 +92,29 @@ async function check(){
  const last=await readLastPush();
  el('last').textContent=last.received?.at?new Date(last.received.at).toLocaleString('fr-FR'):'Aucune réception enregistrée';
  el('display').textContent=last.display?.at?(last.display.status==='shown'?'Affiché le ':'Erreur le ')+new Date(last.display.at).toLocaleString('fr-FR')+(last.display.status==='error'?' : '+(last.display.error||'inconnue'):''):'Aucun affichage enregistré';
+ const clicked=last.click;
+ el('lastClick').textContent=clicked?.at
+  ?(clicked.status==='click-opened'?'Ouverture demandée':'Échec du clic')+' le '+new Date(clicked.at).toLocaleString('fr-FR')+' : '+(clicked.route||'destination non précisée')+(clicked.error?' — '+clicked.error:'')
+  :'Aucun clic encore enregistré';
 }
+el('testLink').onclick=async()=>{
+ const btn=el('testLink');btn.disabled=true;el('result').textContent='';
+ try{
+  if(!('Notification' in window)||Notification.permission!=='granted')throw Error('Notifications non autorisées sur ce téléphone.');
+  const registration=await navigator.serviceWorker.getRegistration('../');
+  if(!registration?.active)throw Error('Service worker indisponible.');
+  await registration.update();
+  await registration.showNotification('🔗 Test du lien · ANDRESY',{
+   body:'Appuyez ici pour ouvrir directement la fiche ANDRESY.',
+   icon:'/application/notification-transparent-192.png',
+   badge:'/application/notification-ei-badge.png',
+   tag:'ei-link-diagnostic-'+Date.now(),
+   data:{url:new URL('/chevaux/andresy/',location.origin).href}
+  });
+  el('result').textContent='Notification test créée. Appuyez dessus pour vérifier la redirection vers ANDRESY.';
+ }catch(error){el('result').textContent='Erreur du test : '+(error?.message||String(error))}
+ finally{btn.disabled=false}
+};
 el('local').onclick=async()=>{
  const b=el('local');b.disabled=true;el('result').textContent='';
  try{
