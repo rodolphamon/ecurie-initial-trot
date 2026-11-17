@@ -117,7 +117,15 @@
 .recent-results{background:#fff;border:1px solid var(--line);border-radius:13px;overflow:hidden;box-shadow:var(--shadow);margin:0 0 16px}
 .recent-heading{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;background:#fff9f4;border-bottom:1px solid #f0e1d5;padding:9px 14px}
 .recent-heading h2{font-size:18px;line-height:1.25;letter-spacing:-.3px;margin:0;font-weight:900}
-.recent-heading>span{font-size:10px;text-transform:uppercase;letter-spacing:.45px;color:#8c481a;font-weight:800}
+/* Indicateur de défilement discret et réellement cliquable. */
+.recent-scroll-hint{display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;gap:6px;
+  border:1px solid #f5d1b6;background:#fff;color:#853b0e;border-radius:999px;
+  padding:4px 10px 4px 5px;cursor:pointer;font:800 12px/1.15 Arial,Helvetica,sans-serif;
+  white-space:nowrap;transition:background .15s,border-color .15s}
+.recent-scroll-hint:hover{background:#fff0e4;border-color:#f47721}
+.recent-scroll-hint:focus-visible{outline:2px solid #cf5912;outline-offset:2px}
+.recent-scroll-arrow{display:grid;place-items:center;width:23px;height:23px;flex:0 0 23px;
+  border-radius:50%;background:#f47721;color:#fff;font-size:18px;line-height:1}
 .recent-list{
   --recent-row-height:62px;
   list-style:none;margin:0;padding:0 8px 0 10px;display:block;
@@ -161,8 +169,10 @@
   .recent-side{gap:4px}
   .recent-rank{font-size:24px;padding:5px 7px;min-height:40px}
   .recent-action{font-size:12px;padding:6px 7px}
-  .recent-heading{padding:9px 10px}
-  .recent-heading h2{font-size:16px}
+  .recent-heading{padding:9px 10px;flex-wrap:nowrap;gap:6px}
+  .recent-heading h2{font-size:16px;min-width:0}
+  .recent-scroll-hint{font-size:11px;gap:5px;padding:3px 8px 3px 4px}
+  .recent-scroll-arrow{width:21px;height:21px;flex-basis:21px;font-size:16px}
 }
 
 /* Texte non numérique : garder les statuts complets lisibles. */
@@ -176,4 +186,9 @@
   .recent-horse-long{font-size:12px}
   .recent-meta{font-size:11px}
   .recent-action{font-size:11px;padding:6px 5px}
+}
+
+@media(max-width:390px){
+  .recent-heading h2{font-size:14px}
+  .recent-scroll-hint{font-size:10px;padding-right:6px}
 }
