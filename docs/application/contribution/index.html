@@ -148,7 +148,7 @@ $('recordForm').onsubmit=async e=>{
  e.preventDefault();
  const p=choice();if(!horseId||p?.casaque==='galop'||!canRecord)return;
  const chrono=$('record').value.trim().replace(/[’‘]/g,"'").replace(/[″”]/g,'"'),source_url=$('recordSource').value.trim();
- if(!/^[0-9]{1,2}'[0-5][0-9]"[0-9]$/.test(chrono)){msg('Chrono invalide : utilisez le format 1\\'12"4.',true);return}
+ if(!/^[0-9]{1,2}'[0-5][0-9]"[0-9]$/.test(chrono)){msg("Chrono invalide : utilisez le format 1'12\"4.",true);return}
  try{if(new URL(source_url).protocol!=='https:')throw Error()}catch{msg('Lien HTTPS de vérification requis.',true);return}
  const btn=$('recordForm').querySelector('button');btn.disabled=true;msg('Publication du record…');
  try{
