@@ -138,7 +138,37 @@ def test_live():
         )
         print(f"[OK] PMU réel {day} {code} : {horse} n°{numbers[0]}, {rank}e, définitif")
     print("[OK] SOURCE PMU VÉRIFIÉE : " + url)
-    print("[OK] Aucun enregistrement, aucun envoi de notification")
+
+    # Contrôle de bout en bout : le vrai moteur ajoute les deux performances
+    # depuis le PMU dans un FICHIER TEMPORAIRE, jamais sur le site de l'écurie.
+    isolated = {
+        "engagements": {
+            "zartop": [{"date": day, "heure": "15:00", "hippodrome": "Le Mans",
+                        "statut": "partant", "course": "R3C6", "numero": 3}],
+            "on-lockdown": [{"date": day, "heure": "16:00", "hippodrome": "Le Mans",
+                             "statut": "partant", "course": "R3C8", "numero": 4}]
+        },
+        "performances": {}
+    }
+    with tempfile.TemporaryDirectory() as directory:
+        root = Path(directory)
+        horses = root / "chevaux.json"
+        output = root / "editorial.json"
+        horses.write_text(json.dumps({"horses": [
+            {"id": "zartop", "name": "ZARTOP"},
+            {"id": "on-lockdown", "name": "ON LOCKDOWN"}
+        ]}), encoding="utf-8")
+        with patch.object(pmu, "HORSES", horses), patch.object(pmu, "DATA", output):
+            assert pmu.apply(isolated, datetime(2026, 11, 16, 18, 0, tzinfo=pmu.PARIS),
+                             is_dry_run=False), "Moteur réel : aucun résultat inséré"
+        saved = json.loads(output.read_text(encoding="utf-8"))
+        for slug, expected_rank in [("zartop", "2e"), ("on-lockdown", "5e")]:
+            entries = saved["performances"].get(slug, [])
+            assert len(entries) == 1, slug + " : nombre de performances incorrect"
+            assert entries[0]["rang"] == expected_rank, slug + " : mauvais rang"
+            assert entries[0]["officiel"] is True, slug + " : non officialisé"
+        print("[OK] Chaîne PMU -> classement -> JSON : 2 résultats dans un fichier temporaire")
+    print("[OK] Fichier temporaire effacé ; site, application et notifications inchangés")
 
 
 if __name__ == "__main__":
