@@ -119,7 +119,58 @@ function searchScore(p,query){
  return best<=allowance?best:Infinity;
 }
 
-function catalog(s){let host=$('#app');host.innerHTML=header()+'<main class="shell"><div class="breadcrumb"><a href="https://www.ecurie-initial.com/">Accueil</a> / Nos chevaux</div><span class="eyebrow">Effectif de l’Écurie Initial</span><h1 class="page-title">Nos chevaux</h1><div class="orange-line"></div><p class="lead">Découvrez les chevaux de l’écurie, leurs performances, leurs gains et leurs prochains engagements.</p><div class="filter-strip"><input type="search" aria-label="Rechercher un cheval" id="q" placeholder="Rechercher un cheval ou un entraîneur..."><div class="filter-buttons"><button data-filter="Tous" aria-pressed="true">Tous les chevaux</button><button data-filter="Trot" aria-pressed="false">Trot</button><button data-filter="Galop" aria-pressed="false">Galop et obstacle</button></div></div><div class="grid" id="cards"></div></main>'+footer();let filter='Tous',input=$('#q'),buttons=[...document.querySelectorAll('[data-filter]')];function redraw(){let q=normalizeSearch(input.value);let shown=s.profiles.filter(p=>(filter==='Tous'||(filter==='Trot'?p.casaque!=='galop':p.casaque==='galop'))).map(p=>({p,score:searchScore(p,q)})).filter(x=>Number.isFinite(x.score)).sort((a,b)=>a.score-b.score||a.p.name.localeCompare(b.p.name,'fr',{sensitivity:'base'})).map(x=>x.p);$('#cards').innerHTML=shown.map(p=>{let d=currentData(p,s),key=p.casaque==='galop'?(/obstacle/i.test(p.discipline||'')?'Valeurs':'Valeur'):'Record';return '<a class="horse-card" href="'+encodeURIComponent(p.id)+'/">'+photoMarkup(p,'card')+'<div class="horse-card-body"><h2>'+esc(p.name)+'</h2><p>'+esc(p.trainer||'Entraîneur non renseigné')+'</p><div class="card-bottom"><span>'+key+' : <b>'+esc(metric(p,d))+'</b></span><span>Découvrir la fiche →</span></div></div></a>'}).join('')||'<p class="empty">Aucun cheval ne correspond à cette recherche.</p>'}input.addEventListener('input',redraw);buttons.forEach(b=>b.addEventListener('click',()=>{filter=b.dataset.filter;buttons.forEach(x=>x.setAttribute('aria-pressed',String(x===b)));redraw()}));redraw()}
+/* Sept dernières courses, toutes disciplines confondues. Source unique :
+   le même editorial.json que les fiches chevaux et l'application. */
+function latestResults(s){
+  const today=currentParis().slice(0,10);
+  const performances=[];
+  for(const p of s.profiles){
+    for(const result of s.editor.performances?.[p.id]||[]){
+      if(!result||!/^\d{4}-\d{2}-\d{2}$/.test(result.date||'')||result.date>today)continue;
+      const rang=normalizeSearch(result.rang);
+      // Les non-partants, annulations et qualifications ne sont pas des courses disputées.
+      if(!rang||/^(?:np\b|non partant|annul|report|qualifi)/.test(rang))continue;
+      performances.push({p,result});
+    }
+  }
+  performances.sort((a,b)=>
+    (b.result.date+(b.result.heure||'')).localeCompare(a.result.date+(a.result.heure||''))||
+    a.p.name.localeCompare(b.p.name,'fr',{sensitivity:'base'}));
+  const rows=performances.slice(0,7).map(({p,result})=>{
+    const rank=String(result.rang||'').trim();
+    const medal=/^1(?:er|re|ère)?\b/i.test(rank)?' gold':/^2e\b/i.test(rank)?' silver':/^3e\b/i.test(rank)?' bronze':'';
+    const direct=absoluteUrl(result.video_url);
+    const course=absoluteUrl(result.course_url);
+    const source=absoluteUrl(result.source_url);
+    const indexed=s.replayIndex[result.date+'|'+normalizeSearch(p.name)];
+    const autoEquidia=result.video_source==='equidia_course' &&
+      /^https:\/\/www\.equidia\.fr\/courses\/\d{4}-\d{2}-\d{2}\/R\d+\/C\d+\/?$/i.test(direct);
+    // La page Equidia de la course est disponible immédiatement ;
+    // ne pas prétendre que la vidéo elle-même est déjà publiée.
+    const video=autoEquidia?direct:
+      indexed&&indexed.kind!=='course'?indexed.url:
+      direct||'';
+    const resultUrl=!video?(course||
+      (indexed&&indexed.kind==='course'?indexed.url:'')||
+      (/\/(?:course|courses|arrivees|arrivee-rapports|rapports)\//i.test(source)?source:'')):'';
+    const link=video
+      ?'<a class="recent-action" href="'+esc(video)+'" target="_blank" rel="noopener noreferrer" aria-label="'+esc('Page vidéo de '+p.name+' du '+dateFR(result.date)+' ; replay selon disponibilité')+'">▶ Vidéo</a>'
+      :resultUrl
+        ?'<a class="recent-action recent-action-result" href="'+esc(resultUrl)+'" target="_blank" rel="noopener noreferrer" aria-label="'+esc('Résultat de '+p.name+' du '+dateFR(result.date))+'">Résultat</a>'
+        :'';
+    return '<li class="recent-item">'
+      +'<div class="recent-content"><a class="recent-horse" href="'+encodeURIComponent(p.id)+'/">'+esc(p.name)+'</a>'
+      +'<div class="recent-meta"><time datetime="'+esc(result.date)+'">'+esc(dateFR(result.date))+'</time> · '+esc(result.hippodrome||'Hippodrome non renseigné')+' · '+(p.casaque==='galop'?'Galop':'Trot')+'</div></div>'
+      +'<div class="recent-side"><span class="recent-rank'+medal+'">'+esc(rank)+'</span>'+link+'</div>'
+      +'</li>';
+  }).join('');
+  return '<section class="recent-results" aria-labelledby="recent-results-title">'
+    +'<div class="recent-heading"><h2 id="recent-results-title">🏁 Nos derniers résultats</h2><span>Trot &amp; galop</span></div>'
+    +(rows?'<ol class="recent-list">'+rows+'</ol>':'<p class="recent-empty">Aucun résultat récent enregistré pour le moment.</p>')
+    +'</section>';
+}
+
+function catalog(s){let host=$('#app');host.innerHTML=header()+'<main class="shell"><div class="breadcrumb"><a href="https://www.ecurie-initial.com/">Accueil</a> / Nos chevaux</div><span class="eyebrow">Effectif de l’Écurie Initial</span><h1 class="page-title">Nos chevaux</h1><div class="orange-line"></div><p class="lead">Découvrez les chevaux de l’écurie, leurs performances, leurs gains et leurs prochains engagements.</p>'+latestResults(s)+'<div class="filter-strip"><input type="search" aria-label="Rechercher un cheval" id="q" placeholder="Rechercher un cheval ou un entraîneur..."><div class="filter-buttons"><button data-filter="Tous" aria-pressed="true">Tous les chevaux</button><button data-filter="Trot" aria-pressed="false">Trot</button><button data-filter="Galop" aria-pressed="false">Galop et obstacle</button></div></div><div class="grid" id="cards"></div></main>'+footer();let filter='Tous',input=$('#q'),buttons=[...document.querySelectorAll('[data-filter]')];function redraw(){let q=normalizeSearch(input.value);let shown=s.profiles.filter(p=>(filter==='Tous'||(filter==='Trot'?p.casaque!=='galop':p.casaque==='galop'))).map(p=>({p,score:searchScore(p,q)})).filter(x=>Number.isFinite(x.score)).sort((a,b)=>a.score-b.score||a.p.name.localeCompare(b.p.name,'fr',{sensitivity:'base'})).map(x=>x.p);$('#cards').innerHTML=shown.map(p=>{let d=currentData(p,s),key=p.casaque==='galop'?(/obstacle/i.test(p.discipline||'')?'Valeurs':'Valeur'):'Record';return '<a class="horse-card" href="'+encodeURIComponent(p.id)+'/">'+photoMarkup(p,'card')+'<div class="horse-card-body"><h2>'+esc(p.name)+'</h2><p>'+esc(p.trainer||'Entraîneur non renseigné')+'</p><div class="card-bottom"><span>'+key+' : <b>'+esc(metric(p,d))+'</b></span><span>Découvrir la fiche →</span></div></div></a>'}).join('')||'<p class="empty">Aucun cheval ne correspond à cette recherche.</p>'}input.addEventListener('input',redraw);buttons.forEach(b=>b.addEventListener('click',()=>{filter=b.dataset.filter;buttons.forEach(x=>x.setAttribute('aria-pressed',String(x===b)));redraw()}));redraw()}
 function info(label,value){return '<div class="info-item"><span>'+esc(label)+'</span><strong>'+esc(value||'—')+'</strong></div>'}
 function stats(label,value){return '<div class="summary-card"><span>'+esc(label)+'</span><strong>'+esc(value||'—')+'</strong></div>'}
 function horse(s){
