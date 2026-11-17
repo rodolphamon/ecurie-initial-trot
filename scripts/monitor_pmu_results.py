@@ -13,6 +13,7 @@ import json
 import os
 import re
 import sys
+import time
 import unicodedata
 import urllib.error
 import urllib.request
@@ -26,6 +27,9 @@ HORSES = ROOT / "docs/chevaux/data/chevaux.json"
 PMU = "https://online.turfinfo.api.pmu.fr/rest/client/1"
 STATUSES = {"partant", "declare"}
 PARIS = ZoneInfo("Europe/Paris")
+RESULT_DELAY = timedelta(minutes=12)
+FAST_WINDOW = timedelta(minutes=90)
+MAX_LOOKBACK = timedelta(hours=12)
 
 
 def normalize(value):
@@ -159,7 +163,7 @@ def local_time(day, hour):
     return datetime.fromisoformat(day + "T" + hour).replace(tzinfo=PARIS)
 
 
-def due_events(data, current):
+def due_events(data, current, early_minutes=0):
     result = []
     for slug, events in data.get("engagements", {}).items():
         if not isinstance(events, list):
@@ -172,7 +176,7 @@ def due_events(data, current):
             if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", day) or not re.fullmatch(r"R\d+C\d+", str(code), re.I) or not bib:
                 continue
             depart = local_time(day, hour)
-            if depart is None or not timedelta(minutes=2) <= current - depart <= timedelta(hours=12):
+            if depart is None or not RESULT_DELAY - timedelta(minutes=early_minutes) <= current - depart <= MAX_LOOKBACK:
                 continue
             # Ne jamais dupliquer ou remplacer un résultat saisi par l'écurie.
             existing = data.get("performances", {}).get(slug, [])
@@ -183,7 +187,7 @@ def due_events(data, current):
     return result
 
 
-def apply(data, current, is_dry_run=False, probe=False):
+def apply(data, current, is_dry_run=False, probe=False, finalized=None):
     horses = json.loads(HORSES.read_text(encoding='utf-8')).get('horses', [])
     horse_names = {h['id']: h['name'] for h in horses if isinstance(h, dict) and h.get('id') and h.get('name')}
     events = due_events(data, current)
@@ -234,6 +238,10 @@ def apply(data, current, is_dry_run=False, probe=False):
             if err:
                 print(f"[PMU] {slug} : {err}")
                 continue
+            if race.get("arriveeDefinitive") is True and finalized is not None:
+                # Fin de surveillance rapide après officialisation, même si le
+                # cheval n'est pas classé (ne jamais en inventer le rang).
+                finalized.add((slug, day, evt["course"], bib))
             rank, err = rank_in_arrival(race, bib)
             if err:
                 print(f"[PMU] {slug} : {err}")
@@ -277,6 +285,70 @@ def apply(data, current, is_dry_run=False, probe=False):
     return True
 
 
+def event_key(item):
+    slug, evt, bib = item
+    return slug, evt["date"], evt["course"], bib
+
+
+def poll_results(data, poll_seconds=240, interval_seconds=45, early_minutes=5):
+    """Poll toutes les ~45 s après H+12, sans tenir un job actif hors courses.
+
+    L'ordonnanceur GitHub est limité à 5 min et peut démarrer en retard.
+    Chaque déclenchement prévu toutes les 5 min couvre sa tranche avec des
+    interrogations rapprochées ; un contrôle de rattrapage existe jusqu'à H+12h.
+    """
+    if poll_seconds < 0 or interval_seconds <= 0 or not 0 <= early_minutes <= 10:
+        raise ValueError("Paramètres de surveillance invalides")
+    deadline = time.monotonic() + poll_seconds
+    finalized = set()
+    changed_any = False
+    cycles = 0
+    while True:
+        current = datetime.now(PARIS)
+        candidates = due_events(data, current, early_minutes=early_minutes)
+        fast = [
+            item for item in candidates
+            if event_key(item) not in finalized
+            and current - local_time(item[1]["date"], item[1]["heure"]) <= FAST_WINDOW
+        ]
+        active = due_events(data, current)
+        if not fast:
+            # Un résultat officialisé tardivement reste contrôlé à chaque
+            # exécution de 5 min, sans monopoliser le runner.
+            if cycles == 0 and active:
+                changed_any |= apply(data, current, finalized=finalized)
+            print("[PMU] Aucun partant nécessitant une surveillance rapprochée")
+            break
+        if active:
+            cycles += 1
+            changed_any |= apply(data, current, finalized=finalized)
+        else:
+            print("[PMU] Partant identifié : début de recherche à H+12 min")
+        remaining = deadline - time.monotonic()
+        if remaining <= 0:
+            print("[PMU] Fin de cette tranche de contrôle, reprise au prochain déclenchement")
+            break
+        pending = [
+            item for item in due_events(data, current, early_minutes=early_minutes)
+            if event_key(item) not in finalized
+            and current - local_time(item[1]["date"], item[1]["heure"]) <= FAST_WINDOW
+        ]
+        if not pending:
+            print("[PMU] Toutes les arrivées recherchées sont officielles ou déjà enregistrées")
+            break
+        # Pour les courses à venir, attendre exactement H+12 au maximum ;
+        # jamais interroger une arrivée avant ce seuil.
+        next_delay = min(max(0., (local_time(e["date"], e["heure"]) + RESULT_DELAY - current).total_seconds())
+                         for _, e, _ in pending)
+        pause = min(interval_seconds, remaining)
+        if not active and next_delay > 0:
+            pause = min(pause, next_delay)
+        if pause > 0:
+            print(f"[PMU] Nouvelle vérification dans {pause:.0f} secondes")
+            time.sleep(pause)
+    return changed_any
+
+
 def self_test():
     fixture = {"reunions": [{"numOfficiel": 1, "hippodrome": {"libelleCourt": "CHANTILLY"},
                              "courses": [{"numOrdre": 7, "arriveeDefinitive": True,
@@ -298,12 +370,20 @@ if __name__ == "__main__":
     parser.add_argument("--apply", action="store_true", help="Active l'ajout des résultats définitifs")
     parser.add_argument("--probe", action="store_true", help="Teste aussi l'accès PMU sans course")
     parser.add_argument("--self-test", action="store_true")
+    parser.add_argument("--poll", action="store_true",
+                        help="Interroge le PMU toutes les 45 s autour des arrivées")
+    parser.add_argument("--poll-seconds", type=int, default=240)
+    parser.add_argument("--interval-seconds", type=int, default=45)
     args = parser.parse_args()
     if args.self_test:
         self_test()
     if not DATA.is_file():
         sys.exit("editorial.json absent")
     original = json.loads(DATA.read_text(encoding="utf-8"))
-    changed = apply(original, datetime.now(PARIS), is_dry_run=not args.apply, probe=args.probe)
+    if args.poll and args.apply:
+        changed = poll_results(original, poll_seconds=args.poll_seconds,
+                               interval_seconds=args.interval_seconds)
+    else:
+        changed = apply(original, datetime.now(PARIS), is_dry_run=not args.apply, probe=args.probe)
     if changed:
         print("[PMU] Changement prêt pour commit et publication GitHub Pages")
