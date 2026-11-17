@@ -100,6 +100,17 @@ td:first-child,th:first-child{text-align:center;width:75px}td.date{white-space:n
 .podium-gold .podium-plinth{height:104px;background:linear-gradient(145deg,#ffe6a2,#f2c867 55%,#dba340);border:1px solid #d4a444}
 .podium-bronze .podium-plinth{height:61px;background:linear-gradient(140deg,#f5d2b6,#d89a72 65%,#b97a55);border:1px solid #bf8056}
 .podium .podium-count,.podium #counter{font-size:clamp(35px,5.6vw,56px);font-weight:900;line-height:1.05;letter-spacing:-.05em;font-variant-numeric:tabular-nums;color:#272322}
+/* Couronne de laurier SVG, réservée à la marche OR, discrète et non interactive. */
+.podium-gold .podium-plinth{isolation:isolate}
+.victory-laurel{position:absolute;top:50%;width:clamp(16px,3.1vw,31px);height:77%;color:#9b671c;opacity:.62;pointer-events:none;z-index:0;transform:translateY(-50%)}
+.victory-laurel-left{left:3.5%}
+.victory-laurel-right{right:3.5%;transform:translateY(-50%) scaleX(-1)}
+.podium-gold .podium-count{position:relative;z-index:1;text-shadow:0 1px 0 #ffebb5}
+@media(max-width:790px){
+ .victory-laurel{width:clamp(15px,4.8vw,21px);height:72%;opacity:.55}
+ .victory-laurel-left{left:2%}
+ .victory-laurel-right{right:2%}
+}
 .podium-label{font-size:clamp(10px,1.6vw,13px);font-weight:900;letter-spacing:.08em;line-height:1.1}
 .podium-step[aria-pressed="true"] .podium-plinth{outline:3px solid #f47721;outline-offset:1px;box-shadow:inset 0 2px 0 #fff9,0 0 0 5px #f4772122,0 4px 8px #0002}
 .podium-step[aria-pressed="true"] .podium-medal{transform:translateY(-2px);box-shadow:0 0 0 3px #fff,0 0 0 5px #f47721,0 2px 4px #0002}
@@ -140,7 +151,7 @@ td:first-child,th:first-child{text-align:center;width:75px}td.date{white-space:n
     </button>
     <button class="podium-step podium-gold" type="button" data-placing="win" aria-pressed="false" aria-label="Filtrer les victoires">
       <span class="podium-medal medal medal-1" aria-hidden="true">1</span>
-      <span class="podium-plinth"><output class="podium-count" id="counter" aria-label="Victoires" aria-live="polite">172</output></span>
+      <span class="podium-plinth"><svg class="victory-laurel victory-laurel-left" viewBox="0 0 36 92" aria-hidden="true" focusable="false"><path d="M30 87C14 74 10 55 15 36C17 24 22 15 28 8" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/><path d="M28 79Q12 75 4 63Q19 64 28 79ZM22 69Q7 64 5 50Q20 55 22 69ZM17 57Q3 49 7 37Q20 44 17 57ZM16 44Q6 32 13 22Q23 34 16 44ZM20 31Q15 18 27 8Q28 23 20 31ZM27 75Q36 63 34 52Q23 61 27 75ZM21 62Q36 52 34 40Q23 47 21 62ZM17 49Q32 39 32 27Q21 33 17 49ZM17 36Q30 27 29 16Q21 22 17 36Z" fill="currentColor"/></svg><output class="podium-count" id="counter" aria-label="Victoires" aria-live="polite">172</output><svg class="victory-laurel victory-laurel-right" viewBox="0 0 36 92" aria-hidden="true" focusable="false"><path d="M30 87C14 74 10 55 15 36C17 24 22 15 28 8" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/><path d="M28 79Q12 75 4 63Q19 64 28 79ZM22 69Q7 64 5 50Q20 55 22 69ZM17 57Q3 49 7 37Q20 44 17 57ZM16 44Q6 32 13 22Q23 34 16 44ZM20 31Q15 18 27 8Q28 23 20 31ZM27 75Q36 63 34 52Q23 61 27 75ZM21 62Q36 52 34 40Q23 47 21 62ZM17 49Q32 39 32 27Q21 33 17 49ZM17 36Q30 27 29 16Q21 22 17 36Z" fill="currentColor"/></svg></span>
     </button>
     <button class="podium-step podium-bronze" type="button" data-placing="third" aria-pressed="false" aria-label="Filtrer les troisièmes places">
       <span class="podium-medal medal medal-3" aria-hidden="true">3</span>
