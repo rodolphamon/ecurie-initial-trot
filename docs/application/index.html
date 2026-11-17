@@ -65,13 +65,9 @@ body.ei-prelaunch{padding-bottom:0!important}
 #prelaunch .prelaunch-hint{color:#777;font-size:13px;margin:14px 4px}
 
 /* Accueil expérimental : affichage compact et actualités dynamiques */
-.intro.intro-compact{display:flex;align-items:center;gap:12px;padding:15px 18px;border-radius:15px;background:linear-gradient(120deg,#232020,#482d20)}
-.intro-compact .intro-star{display:grid;place-items:center;flex:0 0 34px;height:34px;border-radius:10px;background:#f4772124;color:#ffad70;font-size:22px}
-.intro-compact h1{margin:0 0 4px;font-size:clamp(19px,3vw,25px);line-height:1.18}
-.intro-compact p{font-size:13px;line-height:1.4;color:#f2e8df}
-#appContent .tabs{margin:14px 0 16px}
-#appContent .tabs button{padding:11px 8px}
-#publicArea .home-title{font-size:19px;font-weight:900;margin:16px 0 9px}
+#appContent .tabs{margin:5px 0 12px}
+#appContent .tabs button{padding:10px 8px}
+#publicArea .home-title{font-size:19px;font-weight:900;margin:12px 0 8px}
 .home-title .orange-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:8px;background:var(--o);vertical-align:2px}
 .home-dashboard{display:grid;grid-template-columns:minmax(0,.86fr) minmax(0,1.14fr);gap:9px}
 .home-dashboard a{min-width:0;min-height:97px;padding:12px 13px;background:#fff;border:1px solid #e6ddd5;border-left:4px solid var(--o);border-radius:13px;display:flex;flex-direction:column;justify-content:center;gap:5px;text-decoration:none;color:#222;box-shadow:0 2px 7px #00000006}
@@ -82,15 +78,14 @@ body.ei-prelaunch{padding-bottom:0!important}
 .home-dashboard strong{font-size:clamp(16px,3vw,21px);font-weight:900;line-height:1.1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .home-dashboard .dash-number{font-size:34px;font-variant-numeric:tabular-nums}
 .home-dashboard .dash-detail{font-size:12px;color:#6a6159;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-#publicArea .cards{gap:10px}
-#publicArea .cards a.card{padding:12px 13px;min-height:77px}
-#publicArea .cards a.card strong{font-size:15px;line-height:1.25}
-#publicArea .cards a.card small{font-size:12px;line-height:1.25;margin-top:5px}
-@media(max-width:600px){.intro.intro-compact{padding:13px 14px;gap:10px}.intro-compact h1{font-size:19px}.intro-compact p{font-size:12px}.intro-compact .intro-star{flex-basis:29px;height:29px;font-size:19px}#publicArea .home-title{font-size:18px}#publicArea .cards a.card{padding:11px;min-height:74px}#publicArea .cards a.card strong{font-size:14px}#publicArea .cards a.card small{font-size:11px}.home-dashboard a{min-height:91px;padding:10px 11px}.home-dashboard a:last-child{min-height:73px}.home-dashboard .dash-detail{font-size:11px}.home-dashboard strong{font-size:16px}}
+#publicArea .cards{gap:8px}
+#publicArea .cards a.card{padding:9px 11px;min-height:66px}
+#publicArea .cards a.card strong{font-size:14px;line-height:1.22}
+#publicArea .cards a.card small{font-size:11px;line-height:1.2;margin-top:3px}
+@media(max-width:600px){#publicArea .home-title{font-size:18px;margin:11px 0 7px}#publicArea .cards a.card{padding:9px 10px;min-height:61px}#publicArea .cards a.card strong{font-size:13.5px}#publicArea .cards a.card small{font-size:10.5px}.home-dashboard a{min-height:86px;padding:10px 11px}.home-dashboard a:last-child{min-height:68px}.home-dashboard .dash-detail{font-size:11px}.home-dashboard strong{font-size:16px}}
 @media(max-width:355px){.home-dashboard{grid-template-columns:1fr 1fr}.home-dashboard a{padding:9px}.home-dashboard .dash-label{font-size:9px}}
 
 </style><link rel="apple-touch-icon" href="icon-ei-192.png"></head><body class="ei-prelaunch"><header><div class="brand"><img src="icon-ei-192.png" alt="Emblème officiel Écurie Initial"><div class="brand-copy"><strong>ÉCURIE <span class="brand-initial"><span class="brand-initial-i">I</span>NITIAL</span></strong></div><p class="brand-slogan"><span class="brand-slogan-line">PARTAGEONS NOTRE PASSION</span><span class="brand-slogan-date">DEPUIS 2011</span></p></div></header><div id="prelaunch" hidden><div class="prelaunch-box"><h1>🐎 Bientôt votre espace Écurie Initial</h1><p><strong>Ouverture officielle le mardi 1er décembre 2026.</strong></p><p>Vous avez reçu une invitation ? Vous pouvez dès maintenant confirmer votre inscription et définir votre mot de passe. L’accès à l’application sera disponible à partir du 1er décembre.</p><p>Jusqu’à cette date, les cinq comptes pilotes et les contributeurs expressément autorisés assurent les derniers essais.</p><a href="connexion/">Confirmer mon invitation ou me connecter</a><p style="font-size:13px;color:#f7e9df;margin:18px 0 0"><strong>Vous pouvez installer l'application dès maintenant :</strong><br>Android : ouvrez cette page dans Chrome puis « Installer l'application ».<br>iPhone : ouvrez cette page dans Safari, puis « Partager » → « Sur l'écran d'accueil ».</p></div><p class="prelaunch-hint">Notre site public reste accessible sur <a href="https://www.ecurie-initial.com/" style="background:none;color:#a54c0b;padding:0;font:inherit;text-decoration:underline">www.ecurie-initial.com</a>.</p></div><main id="appContent" hidden>
-<section class="intro intro-compact"><span class="intro-star" aria-hidden="true">★</span><div><h1>L’écurie au quotidien</h1><p>Nos chevaux, leurs courses et leurs résultats, au même endroit.</p></div></section>
 <div class="tabs"><button class="active" id="publicTab" type="button">Espace public</button><button id="privateTab" type="button">Espace associés 🔒</button></div>
 <div id="publicArea">
 <h2 class="home-title"><span class="orange-dot" aria-hidden="true"></span>En ce moment</h2>
