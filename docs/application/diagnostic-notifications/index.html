@@ -36,11 +36,9 @@ a{color:#a84f13}
 </section>
 <section class="card">
 <h2>Vérifier l’affichage sur ce téléphone</h2>
-<p style="display:flex;align-items:center;gap:12px"><img src="/application/icon-ei-192.png" width="68" height="68" alt="Logo officiel de l’application Écurie Initial" style="object-fit:contain;background:#fff;border:1px solid #ddd;border-radius:8px"> <span>Le logo officiel de l’application doit apparaître à gauche et à droite. La petite icône Android de la barre d’état reste gérée séparément.</span></p>
+<p style="display:flex;align-items:center;gap:12px"><img src="/application/icon-ei-192.png" width="68" height="68" alt="Logo officiel de l’application Écurie Initial" style="object-fit:contain;background:#fff;border:1px solid #ddd;border-radius:8px"> <span>Un seul logo officiel doit apparaître à gauche, sans pictogramme supplémentaire à droite. La petite icône Android de la barre d’état reste gérée séparément.</span></p>
 <p>Cliquez ici : une notification locale doit apparaître, sans passer par le serveur.</p>
-<button id="local" type="button">Tester les deux logos officiels</button>
-<p><button id="single" type="button" style="background:#222;color:white">Tester un seul logo à gauche (essai)</button></p>
-<p><small>Essai sur ce téléphone uniquement : on teste une image transparente à droite. Si Android conserve un pictogramme de remplacement, nous garderons le modèle actuel. Les vraies notifications restent inchangées.</small></p>
+<button id="local" type="button">Tester le logo unique à gauche</button>
 <p id="result" role="status" aria-live="polite"></p>
 <small>Si ce test local fonctionne mais que les notifications automatiques n’arrivent pas, vérifiez « Dernier Push reçu » ci-dessus. Si le test local échoue, vérifiez les autorisations Android/iPhone et les notifications de l’application.</small>
 </section>
@@ -99,33 +97,13 @@ el('local').onclick=async()=>{
   const r=await navigator.serviceWorker.getRegistration('../');
   if(!r?.active)throw Error('Le service worker de l’application n’est pas actif sur cet appareil.');
   await r.update().catch(()=>{});
-  for(const u of ['/application/icon-ei-192.png','/application/notification-ei-badge.png']){
+  for(const u of ['/application/notification-transparent-192.png','/application/notification-ei-badge.png']){
     const res=await fetch(u,{cache:'no-store'});
     if(!res.ok || !(res.headers.get('content-type')||'').includes('image/png'))throw Error('Icône indisponible ('+res.status+') : '+u+'. Réessayez après la publication.');
   }
-  await r.showNotification('🔔 Écurie Initial · Test des logos',{body:'Le même logo officiel Écurie Initial doit apparaître des deux côtés.',icon:'/application/icon-ei-192.png',badge:'/application/notification-ei-badge.png',tag:'ei-local-diagnostic-'+Date.now()});
-  el('result').textContent='La notification avec les deux logos officiels a été demandée. Vérifiez le volet des notifications.';
+  await r.showNotification('🔔 Écurie Initial · Test du logo unique',{body:'Le logo officiel doit apparaître uniquement à gauche.',icon:'/application/notification-transparent-192.png',badge:'/application/notification-ei-badge.png',tag:'ei-local-diagnostic-'+Date.now()});
+  el('result').textContent='La notification avec le seul logo officiel à gauche a été demandée. Vérifiez le volet des notifications.';
  }catch(e){el('result').textContent='Échec : '+(e?.message||String(e))}
- finally{b.disabled=false;await check()}
-};
-el('single').onclick=async()=>{
- const b=el('single');b.disabled=true;el('result').textContent='';
- try{
-  if(!('Notification' in window)||Notification.permission!=='granted')throw Error('Autorisez les notifications sur ce téléphone.');
-  const r=await navigator.serviceWorker.getRegistration('../');
-  if(!r?.active)throw Error('Le service worker de l’application est absent.');
-  for(const u of ['/application/notification-transparent-192.png','/application/notification-ei-badge.png']){
-   const res=await fetch(u,{cache:'no-store'});
-   if(!res.ok || !(res.headers.get('content-type')||'').includes('image/png'))throw Error('Image test indisponible : '+u);
-  }
-  await r.showNotification('🔔 Écurie Initial · Essai un seul logo',{
-   body:'Vérifiez si le logo à gauche apparaît seul, sans F ni logo supplémentaire à droite.',
-   icon:'/application/notification-transparent-192.png',
-   badge:'/application/notification-ei-badge.png',
-   tag:'ei-one-logo-diagnostic-'+Date.now()
-  });
-  el('result').textContent='Essai envoyé sur ce téléphone seulement. Ouvrez le volet de notifications pour vérifier la partie droite.';
- }catch(e){el('result').textContent='Essai impossible : '+(e?.message||String(e))}
  finally{b.disabled=false;await check()}
 };
 check();
