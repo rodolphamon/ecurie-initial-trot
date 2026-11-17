@@ -159,6 +159,40 @@ body.ei-prelaunch{padding-bottom:0!important}
  .home-dashboard .dash-result-copy strong{font-size:15px}
  .home-dashboard .dash-result-people{font-size:9.2px}
 }
+
+/* Accueil : titre sur une ligne et deux lignes parfaitement alignees autour de la casaque. */
+.home-dashboard #dashResultLink{
+  grid-template-rows:auto auto;
+  grid-template-columns:minmax(0,1.3fr) 43px minmax(0,1fr) auto;
+  column-gap:6px;row-gap:3px;align-items:center;
+}
+.home-dashboard #dashResultLink .dash-result-heading{
+  grid-column:1 / 4;grid-row:1;white-space:nowrap;
+  font-size:10px;letter-spacing:.4px;line-height:1.15;align-self:start;
+}
+.home-dashboard #dashResultLink .dash-result-copy,
+.home-dashboard #dashResultLink .dash-result-people{
+  grid-row:2;display:grid;grid-template-rows:26px 24px;
+  align-items:center;align-content:center;gap:0;min-width:0;
+}
+.home-dashboard #dashResultLink .dash-result-copy{grid-column:1}
+.home-dashboard #dashResultLink .dash-result-people{grid-column:3}
+.home-dashboard #dashResultLink .dash-result-copy strong,
+.home-dashboard #dashResultLink .dash-result-people .dash-result-person:first-child{grid-row:1}
+.home-dashboard #dashResultLink .dash-result-copy .dash-detail,
+.home-dashboard #dashResultLink .dash-result-people .dash-result-person:last-child{grid-row:2}
+.home-dashboard #dashResultLink .dash-result-silk{
+  grid-column:2;grid-row:2;align-self:center;transform:translateY(6px)
+}
+.home-dashboard #dashResultLink .dash-result-score{grid-column:4;grid-row:1 / 3;align-self:center}
+@media(max-width:600px){
+  .home-dashboard #dashResultLink{grid-template-columns:minmax(0,1.32fr) 41px minmax(0,1fr) auto;column-gap:5px}
+  .home-dashboard #dashResultLink .dash-result-heading{font-size:9.8px}
+}
+@media(max-width:355px){
+  .home-dashboard #dashResultLink{grid-template-columns:minmax(0,1.3fr) 35px minmax(0,1fr) auto;column-gap:4px}
+  .home-dashboard #dashResultLink .dash-result-heading{font-size:9.2px}
+}
 </style><link rel="apple-touch-icon" href="icon-ei-192.png"></head><body class="ei-prelaunch"><header><div class="brand"><img src="icon-ei-192.png" alt="Emblème officiel Écurie Initial"><div class="brand-copy"><strong>ÉCURIE <span class="brand-initial"><span class="brand-initial-i">I</span>NITIAL</span></strong></div><p class="brand-slogan"><span class="brand-slogan-line">PARTAGEONS NOTRE PASSION</span><span class="brand-slogan-date">DEPUIS 2011</span></p></div></header><div id="prelaunch" hidden><div class="prelaunch-box"><h1>🐎 Bientôt votre espace Écurie Initial</h1><p><strong>Ouverture officielle le mardi 1er décembre 2026.</strong></p><p>Vous avez reçu une invitation ? Vous pouvez dès maintenant confirmer votre inscription et définir votre mot de passe. L’accès à l’application sera disponible à partir du 1er décembre.</p><p>Jusqu’à cette date, les cinq comptes pilotes et les contributeurs expressément autorisés assurent les derniers essais.</p><a href="connexion/">Confirmer mon invitation ou me connecter</a><p style="font-size:13px;color:#f7e9df;margin:18px 0 0"><strong>Vous pouvez installer l'application dès maintenant :</strong><br>Android : ouvrez cette page dans Chrome puis « Installer l'application ».<br>iPhone : ouvrez cette page dans Safari, puis « Partager » → « Sur l'écran d'accueil ».</p></div><p class="prelaunch-hint">Notre site public reste accessible sur <a href="https://www.ecurie-initial.com/" style="background:none;color:#a54c0b;padding:0;font:inherit;text-decoration:underline">www.ecurie-initial.com</a>.</p></div><main id="appContent" hidden>
 <div class="tabs"><button class="active" id="publicTab" type="button">Espace public</button><button id="privateTab" type="button">Espace associés 🔒</button></div>
 <div id="publicArea">
@@ -166,7 +200,7 @@ body.ei-prelaunch{padding-bottom:0!important}
 <div class="home-dashboard" aria-label="Actualité de l'écurie">
 <a href="../chevaux/"><span class="dash-label">Effectif</span><strong class="dash-number" id="dashHorses">—</strong><span class="dash-detail">chevaux à suivre</span></a>
 <a href="../engagements/"><span class="dash-label" id="dashNextLabel">Prochain rendez-vous</span><span class="dash-next-identity"><strong id="dashNextHorse">À venir</strong><span id="dashNextJockey" class="dash-next-jockey" hidden></span></span><span class="dash-detail" id="dashNextDetail">Voir les engagements</span></a>
-<a href="../chevaux/" id="dashResultLink"><span class="dash-result-copy"><span class="dash-label">Dernière performance</span><strong id="dashResultHorse">À venir</strong><span class="dash-detail" id="dashResultDetail">Voir les performances</span></span><img class="dash-result-silk" id="dashResultSilk" alt="" width="43" height="57" hidden><span class="dash-result-people" aria-label="Jockey ou driver et entraîneur"><span id="dashResultRider" class="dash-result-person" hidden></span><span id="dashResultTrainer" class="dash-result-person" hidden></span></span><span class="dash-result-score" id="dashResultRank" aria-label="Classement" hidden>—</span></a>
+<a href="../chevaux/" id="dashResultLink"><span class="dash-label dash-result-heading">Dernière performance</span><span class="dash-result-copy"><strong id="dashResultHorse">À venir</strong><span class="dash-detail" id="dashResultDetail">Voir les performances</span></span><img class="dash-result-silk" id="dashResultSilk" alt="" width="43" height="57" hidden><span class="dash-result-people" aria-label="Jockey ou driver et entraîneur"><span id="dashResultRider" class="dash-result-person" hidden></span><span id="dashResultTrainer" class="dash-result-person" hidden></span></span><span class="dash-result-score" id="dashResultRank" aria-label="Classement" hidden>—</span></a>
 </div>
 <h2 class="home-title">À découvrir</h2>
 <div class="cards">
