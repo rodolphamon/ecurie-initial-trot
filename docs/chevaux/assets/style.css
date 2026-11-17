@@ -169,8 +169,8 @@
 @media(max-width:760px){
   .recent-rank-long{font-size:11px;max-width:69px;padding:4px 5px}
 }
-@media(max-width:370px){
-  .recent-rank:not(.recent-rank-long){font-size:20px;padding:5px 5px}
+@media(max-width:350px){
+  .recent-rank:not(.recent-rank-long){font-size:21px;padding:5px 5px}
   .recent-horse{font-size:13px}
   .recent-meta{font-size:11px}
   .recent-action{font-size:11px;padding:6px 5px}
