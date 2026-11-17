@@ -170,7 +170,46 @@ function latestResults(s){
     +'</section>';
 }
 
-function catalog(s){let host=$('#app');host.innerHTML=header()+'<main class="shell"><div class="breadcrumb"><a href="https://www.ecurie-initial.com/">Accueil</a> / Nos chevaux</div><span class="eyebrow">Effectif de l’Écurie Initial</span><h1 class="page-title">Nos chevaux</h1><div class="orange-line"></div>'+latestResults(s)+'<div class="filter-strip"><input type="search" aria-label="Rechercher un cheval" id="q" placeholder="Rechercher un cheval ou un entraîneur..."><div class="filter-buttons"><button data-filter="Tous" aria-pressed="true">Tous les chevaux</button><button data-filter="Trot" aria-pressed="false">Trot</button><button data-filter="Galop" aria-pressed="false">Galop et obstacle</button></div></div><div class="grid" id="cards"></div></main>'+footer();let filter='Tous',input=$('#q'),buttons=[...document.querySelectorAll('[data-filter]')];function redraw(){let q=normalizeSearch(input.value);let shown=s.profiles.filter(p=>(filter==='Tous'||(filter==='Trot'?p.casaque!=='galop':p.casaque==='galop'))).map(p=>({p,score:searchScore(p,q)})).filter(x=>Number.isFinite(x.score)).sort((a,b)=>a.score-b.score||a.p.name.localeCompare(b.p.name,'fr',{sensitivity:'base'})).map(x=>x.p);$('#cards').innerHTML=shown.map(p=>{let d=currentData(p,s),key=p.casaque==='galop'?(/obstacle/i.test(p.discipline||'')?'Valeurs':'Valeur'):'Record';return '<a class="horse-card" href="'+encodeURIComponent(p.id)+'/">'+photoMarkup(p,'card')+'<div class="horse-card-body"><h2>'+esc(p.name)+'</h2><p>'+esc(p.trainer||'Entraîneur non renseigné')+'</p><div class="card-bottom"><span>'+key+' : <b>'+esc(metric(p,d))+'</b></span><span>Découvrir la fiche →</span></div></div></a>'}).join('')||'<p class="empty">Aucun cheval ne correspond à cette recherche.</p>'}input.addEventListener('input',redraw);buttons.forEach(b=>b.addEventListener('click',()=>{filter=b.dataset.filter;buttons.forEach(x=>x.setAttribute('aria-pressed',String(x===b)));redraw()}));redraw()}
+function catalog(s){
+  const host=$('#app');
+  const alphabetical=[...s.profiles].sort((a,b)=>a.name.localeCompare(b.name,'fr',{sensitivity:'base'}));
+  // Une seule option par entraîneur, même si plusieurs chevaux sont entraînés par lui.
+  const trainers=[...new Set(alphabetical.map(p=>p.trainer).filter(Boolean))]
+    .sort((a,b)=>a.localeCompare(b,'fr',{sensitivity:'base'}));
+  const horseOptions='<option value="">Tous les chevaux</option>'+
+    alphabetical.map(p=>'<option value="'+esc(p.id)+'">'+esc(p.name)+'</option>').join('');
+  const trainerOptions='<option value="">Tous les entraîneurs</option>'+
+    trainers.map(name=>'<option value="'+esc(name)+'">'+esc(name)+'</option>').join('');
+  host.innerHTML=header()+
+    '<main class="shell">'+
+      '<div class="breadcrumb"><a href="https://www.ecurie-initial.com/">Accueil</a> / Nos chevaux</div>'+
+      '<span class="eyebrow">Effectif de l’Écurie Initial</span>'+
+      '<h1 class="page-title">Nos chevaux</h1><div class="orange-line"></div>'+
+      latestResults(s)+
+      '<div class="filter-strip" role="group" aria-label="Filtrer les chevaux">'+
+        '<select id="filter-horse" aria-label="Choisir un cheval">'+horseOptions+'</select>'+
+        '<select id="filter-trainer" aria-label="Choisir un entraîneur">'+trainerOptions+'</select>'+
+      '</div>'+
+      '<div class="grid" id="cards"></div>'+
+    '</main>'+footer();
+  const horseSelect=$('#filter-horse'),trainerSelect=$('#filter-trainer');
+  function redraw(){
+    const selectedHorse=horseSelect.value,selectedTrainer=trainerSelect.value;
+    const shown=alphabetical.filter(p=>
+      (!selectedHorse||p.id===selectedHorse)&&
+      (!selectedTrainer||p.trainer===selectedTrainer));
+    $('#cards').innerHTML=shown.map(p=>{
+      const d=currentData(p,s);
+      const key=p.casaque==='galop'?(/obstacle/i.test(p.discipline||'')?'Valeurs':'Valeur'):'Record';
+      return '<a class="horse-card" href="'+encodeURIComponent(p.id)+'/">'+photoMarkup(p,'card')+
+        '<div class="horse-card-body"><h2>'+esc(p.name)+'</h2><p>'+esc(p.trainer||'Entraîneur non renseigné')+'</p>'+
+        '<div class="card-bottom"><span>'+key+' : <b>'+esc(metric(p,d))+'</b></span><span>Découvrir la fiche →</span></div></div></a>';
+    }).join('')||'<p class="empty">Aucun cheval ne correspond à ces critères.</p>';
+  }
+  horseSelect.addEventListener('change',redraw);
+  trainerSelect.addEventListener('change',redraw);
+  redraw();
+}
 function info(label,value){return '<div class="info-item"><span>'+esc(label)+'</span><strong>'+esc(value||'—')+'</strong></div>'}
 function stats(label,value){return '<div class="summary-card"><span>'+esc(label)+'</span><strong>'+esc(value||'—')+'</strong></div>'}
 function horse(s){
