@@ -162,7 +162,7 @@ async function setup(){
     // sans affirmer que le replay est déjà en ligne.
     if(result.video_source==='equidia_course' &&
        /^https:\/\/www\.equidia\.fr\/courses\/\d{4}-\d{2}-\d{2}\/R\d+\/C\d+\/?$/i.test(result.video_url||'')){
-      const video=el('a','▶ Vidéo','ei-video-result');
+      const video=el('a','▶ Replay','ei-video-result');
       video.href=result.video_url;
       video.target='_blank';
       video.rel='noopener noreferrer';
