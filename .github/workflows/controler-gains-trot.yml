@@ -30,6 +30,9 @@ jobs:
           python-version: '3.11'
       - name: Tester les règles sans réseau ni modification
         run: python scripts/synchroniser_gains_trot.py --self-test
+      - name: Diagnostic d'accès réel LeTROT (simulation sans écriture)
+        if: github.event_name == 'push'
+        run: python scripts/synchroniser_gains_trot.py --all
       - name: Vérifier les cumuls officiels LeTROT
         if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
         run: python scripts/synchroniser_gains_trot.py --apply --all
