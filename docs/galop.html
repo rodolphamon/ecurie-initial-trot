@@ -1,21 +1,41 @@
-<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Effectif Galop — Écurie Initial</title><style>:root{--orange:#f47721;--dark:#171717}*{box-sizing:border-box}html,body{margin:0;padding:0;background:#fff;color:#222;font:15px Arial,Helvetica,sans-serif}.scroll{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}table{width:max-content;min-width:100%;table-layout:auto;border-collapse:collapse;background:#fff}thead{background:var(--dark);color:#fff}th,td{padding:10px 12px;border-bottom:1px solid #ececec;text-align:left;vertical-align:middle}th{font-weight:700;font-size:14px}tbody tr:nth-child(even){background:#fff7f0}tbody tr:hover{background:#ffecdc}td:first-child{font-weight:700;min-width:0;white-space:nowrap}td:nth-child(2){width:80px;white-space:nowrap}td:nth-child(3){width:135px;text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}th:nth-child(3){text-align:right}td:nth-child(4){min-width:155px}.rest{display:block;color:#aa5519;font-size:12px;font-weight:600;margin-top:3px}@media(max-width:600px){th,td{padding:8px 9px}}a.ei-horse-link{color:inherit;text-decoration:underline;text-decoration-color:#f47721;text-underline-offset:3px}a.ei-horse-link:hover{color:#cf5b0c}</style></head><body><main class="scroll"><table><thead><tr><th>Cheval</th><th>Valeur</th><th>Gains</th><th>Entraîneur</th></tr></thead><tbody id="rows"></tbody></table></main><script>
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Effectif Galop — Écurie Initial</title><style>:root{--orange:#f47721;--dark:#171717}*{box-sizing:border-box}html,body{margin:0;padding:0;background:#fff;color:#222;font:15px Arial,Helvetica,sans-serif}.scroll{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}table{width:max-content;min-width:100%;table-layout:auto;border-collapse:collapse;background:#fff}thead{background:var(--dark);color:#fff}th,td{padding:10px 12px;border-bottom:1px solid #ececec;text-align:left;vertical-align:middle}th{font-weight:700;font-size:14px}tbody tr:nth-child(even){background:#fff7f0}tbody tr:hover{background:#ffecdc}td:first-child{font-weight:700;min-width:0;white-space:nowrap}td:nth-child(2){min-width:140px;white-space:normal}td:nth-child(3){width:135px;text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}th:nth-child(3){text-align:right}td:nth-child(4){min-width:155px}.rest{display:block;color:#aa5519;font-size:12px;font-weight:600;margin-top:3px}@media(max-width:600px){th,td{padding:8px 9px}}a.ei-horse-link{color:inherit;text-decoration:underline;text-decoration-color:#f47721;text-underline-offset:3px}a.ei-horse-link:hover{color:#cf5b0c}</style></head><body><main class="scroll"><table><thead><tr><th>Cheval</th><th>Valeur</th><th>Gains</th><th>Entraîneur</th></tr></thead><tbody id="rows"></tbody></table></main><script>
 const tbody=document.getElementById('rows');
 const el=(tag,txt)=>{const x=document.createElement(tag);if(txt!==undefined)x.textContent=txt;return x;};
-function display(data){tbody.replaceChildren();for(const h of (data.horses||[])){const tr=el('tr');const c=el('td');const link=el('a',h.name);link.href='chevaux/'+encodeURIComponent(h.id)+'/';link.className='ei-horse-link';link.target='_blank';link.rel='noopener';c.append(link);if(h.status==='au repos'){const rest=el('span','Au repos');rest.className='rest';c.append(rest);}tr.append(c);tr.append(el('td',Number.isFinite(h.value)?String(h.value).replace('.',','):'—'));tr.append(el('td',Number.isFinite(h.gains)?new Intl.NumberFormat('fr-FR').format(h.gains)+' €':'—'));tr.append(el('td',h.trainer||'—'));tbody.append(tr);}}
+function display(data){tbody.replaceChildren();for(const h of (data.horses||[])){const tr=el('tr');const c=el('td');const link=el('a',h.name);link.href='chevaux/'+encodeURIComponent(h.id)+'/';link.className='ei-horse-link';link.target='_blank';link.rel='noopener';c.append(link);if(h.status==='au repos'){const rest=el('span','Au repos');rest.className='rest';c.append(rest);}tr.append(c);
+ const valCell=el('td');
+ if(/obstacle/i.test(h.discipline||'')){
+   const v=n=>n==null?'—':String(n).replace('.',',');
+   valCell.append(el('div','Plat : '+v(h.value_plat)),el('div','Obstacle : '+v(h.value_obstacle)));
+   if(h.value_historique_non_ventilee!=null){
+     const note=el('small','Anc. non ventilée : '+v(h.value_historique_non_ventilee));
+     note.style.color='#876d59';valCell.append(note);
+   }
+ }else valCell.textContent=Number.isFinite(h.value)?String(h.value).replace('.',','):'—';
+ tr.append(valCell);tr.append(el('td',Number.isFinite(h.gains)?new Intl.NumberFormat('fr-FR').format(h.gains)+' €':'—'));tr.append(el('td',h.trainer||'—'));tbody.append(tr);}}
 fetch('data/effectif-galop.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('HTTP '+r.status);return r.json();}).then(async data=>{
  try{
   const {createClient}=await import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm');
   const db=createClient('https://yeecwaaizmvrhwobukfa.supabase.co','sb_publishable_xUy2EJA3u3cKWl8BB4GNPQ_qhV9Pes3');
   const [gainsResult,valeursResult]=await Promise.all([
    db.from('ei_contributions_gains').select('cheval_slug,gains'),
-   db.from('ei_contributions_valeurs').select('cheval_slug,valeur')
+   db.from('ei_contributions_valeurs').select('cheval_slug,discipline_valeur,valeur')
   ]);
   if(gainsResult.error||valeursResult.error)throw Error('Modifications en direct indisponibles');
   const horses=new Map((data.horses||[]).map(h=>[h.id,h]));
+  for(const h of data.horses||[])if(/obstacle/i.test(h.discipline||'')){
+    h.value_historique_non_ventilee=h.value??null;
+    h.value_plat=h.value_plat??null;
+    h.value_obstacle=h.value_obstacle??null;
+  }
   for(const row of gainsResult.data||[])if(horses.has(row.cheval_slug)&&Number.isSafeInteger(Number(row.gains)))
    horses.get(row.cheval_slug).gains=Number(row.gains);
-  for(const row of valeursResult.data||[])if(horses.has(row.cheval_slug)&&Number.isFinite(Number(row.valeur)))
-   horses.get(row.cheval_slug).value=Number(row.valeur);
+  for(const row of valeursResult.data||[])if(horses.has(row.cheval_slug)&&Number.isFinite(Number(row.valeur))){
+    const h=horses.get(row.cheval_slug),n=Number(row.valeur);
+    if(/obstacle/i.test(h.discipline||'')){
+      if(row.discipline_valeur==='plat')h.value_plat=n;
+      if(row.discipline_valeur==='obstacle')h.value_obstacle=n;
+    }else if(row.discipline_valeur==='plat')h.value=n;
+  }
  }catch(err){console.warn('Données sportives en direct indisponibles ; affichage de référence',err)}
  display(data);
 }).catch(()=>tbody.replaceChildren());
