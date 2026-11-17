@@ -563,7 +563,8 @@ async function run() {
       try{
         // Les rappels imminents exigent une livraison prioritaire sur les appareils en veille.
         // Une durée de rétention limitée évite les rappels périmés bien après le départ.
-        const pushOptions=alert.categorie==="before15"?{urgency:"high" as const,ttl:900}:{};
+        const pushOptions=alert.categorie==="before15"?{urgency:"high" as const,ttl:900}:
+          alert.categorie==="private_news"?{urgency:"high" as const}:{};
         const delivered=await sendPushNotification(
           {endpoint:sub.endpoint,keys:{p256dh:sub.p256dh,auth:sub.auth_secret}},
           message,vapid,pushOptions
