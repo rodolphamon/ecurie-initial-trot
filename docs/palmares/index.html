@@ -98,7 +98,7 @@ td:first-child,th:first-child{text-align:center;width:75px}td.date{white-space:n
 .podium-silver .podium-plinth{height:76px;background:linear-gradient(140deg,#f7f9fa,#d3d9df 62%,#bbc4cb);border:1px solid #b2bdc8}
 .podium-gold .podium-plinth{height:104px;background:linear-gradient(145deg,#ffe6a2,#f2c867 55%,#dba340);border:1px solid #d4a444}
 .podium-bronze .podium-plinth{height:61px;background:linear-gradient(140deg,#f5d2b6,#d89a72 65%,#b97a55);border:1px solid #bf8056}
-.podium .podium-count,.podium #counter{font-size:clamp(25px,4.7vw,43px);font-weight:900;line-height:1.05;letter-spacing:-.05em;font-variant-numeric:tabular-nums;color:#272322}
+.podium .podium-count,.podium #counter{font-size:clamp(35px,5.6vw,56px);font-weight:900;line-height:1.05;letter-spacing:-.05em;font-variant-numeric:tabular-nums;color:#272322}
 .podium-label{font-size:clamp(10px,1.6vw,13px);font-weight:900;letter-spacing:.08em;line-height:1.1}
 .podium-step[aria-pressed="true"] .podium-plinth{outline:3px solid #f47721;outline-offset:1px;box-shadow:inset 0 2px 0 #fff9,0 0 0 5px #f4772122,0 4px 8px #0002}
 .podium-step[aria-pressed="true"] .podium-medal{transform:translateY(-2px);box-shadow:0 0 0 3px #fff,0 0 0 5px #f47721,0 2px 4px #0002}
@@ -115,7 +115,7 @@ td:first-child,th:first-child{text-align:center;width:75px}td.date{white-space:n
  .podium-silver .podium-plinth{height:65px}
  .podium-gold .podium-plinth{height:91px}
  .podium-bronze .podium-plinth{height:53px}
- .podium .podium-count,.podium #counter{font-size:clamp(23px,6.9vw,33px)}
+ .podium .podium-count,.podium #counter{font-size:clamp(35px,10.8vw,46px)}
  .podium-label{font-size:10px}
  .podium-total{font-size:11px;padding:3px 9px}
  .podium-total strong{font-size:14px}
@@ -126,7 +126,7 @@ td:first-child,th:first-child{text-align:center;width:75px}td.date{white-space:n
  .podium-silver .podium-plinth{height:62px}
  .podium-gold .podium-plinth{height:86px}
  .podium-bronze .podium-plinth{height:50px}
- .podium .podium-count,.podium #counter{font-size:24px}
+ .podium .podium-count,.podium #counter{font-size:clamp(33px,10vw,38px)}
  .podium-label{font-size:10px}
 }
 </style></head><body>
@@ -135,15 +135,15 @@ td:first-child,th:first-child{text-align:center;width:75px}td.date{white-space:n
   <div class="podium" role="group" aria-label="Choisir une marche pour afficher les performances correspondantes">
     <button class="podium-step podium-silver" type="button" data-placing="second" aria-pressed="false" aria-label="Filtrer les deuxièmes places">
       <span class="podium-medal medal medal-2" aria-hidden="true">2</span>
-      <span class="podium-plinth"><output class="podium-count" id="silverCounter" aria-label="Deuxièmes places" aria-live="polite">0</output><span class="podium-label">ARGENT</span></span>
+      <span class="podium-plinth"><output class="podium-count" id="silverCounter" aria-label="Deuxièmes places" aria-live="polite">0</output></span>
     </button>
     <button class="podium-step podium-gold" type="button" data-placing="win" aria-pressed="false" aria-label="Filtrer les victoires">
       <span class="podium-medal medal medal-1" aria-hidden="true">1</span>
-      <span class="podium-plinth"><output class="podium-count" id="counter" aria-label="Victoires" aria-live="polite">172</output><span class="podium-label">OR</span></span>
+      <span class="podium-plinth"><output class="podium-count" id="counter" aria-label="Victoires" aria-live="polite">172</output></span>
     </button>
     <button class="podium-step podium-bronze" type="button" data-placing="third" aria-pressed="false" aria-label="Filtrer les troisièmes places">
       <span class="podium-medal medal medal-3" aria-hidden="true">3</span>
-      <span class="podium-plinth"><output class="podium-count" id="bronzeCounter" aria-label="Troisièmes places" aria-live="polite">0</output><span class="podium-label">BRONZE</span></span>
+      <span class="podium-plinth"><output class="podium-count" id="bronzeCounter" aria-label="Troisièmes places" aria-live="polite">0</output></span>
     </button>
   </div>
   <button class="podium-total" type="button" data-placing="all" aria-pressed="true" aria-label="Afficher tous les podiums">
