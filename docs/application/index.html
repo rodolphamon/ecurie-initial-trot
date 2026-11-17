@@ -128,14 +128,45 @@ body.ei-prelaunch{padding-bottom:0!important}
 }
 
 
+
+/* Dernier resultat : casaque, jockey et entraineur distincts avant la place. */
+.home-dashboard{grid-template-columns:minmax(0,.64fr) minmax(0,1.36fr)}
+.home-dashboard a:first-child .dash-detail{white-space:normal;overflow:visible;line-height:1.2}
+.home-dashboard .dash-next-identity{display:flex;align-items:baseline;gap:6px;white-space:nowrap;width:100%;min-width:0}
+.home-dashboard .dash-next-identity #dashNextHorse{flex:0 0 auto;min-width:0;max-width:52%;font-size:clamp(15px,2.9vw,19px)}
+.home-dashboard .dash-next-jockey{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#63534b;font-weight:700;font-size:clamp(10px,1.9vw,12px);letter-spacing:-.025em}
+.home-dashboard .dash-next-jockey[hidden]{display:none}
+.home-dashboard #dashResultLink{display:grid;grid-template-columns:minmax(0,1.3fr) 43px minmax(0,1fr) auto;align-items:center;justify-content:initial;gap:6px}
+.home-dashboard #dashResultLink .dash-result-copy{flex:initial;max-width:none;min-width:0}
+.home-dashboard #dashResultLink .dash-result-silk{position:static;transform:none;left:auto;top:auto;width:43px;height:57px;object-fit:contain;justify-self:center}
+.home-dashboard .dash-result-people{display:flex;flex-direction:column;justify-content:center;gap:6px;min-width:0;font-size:clamp(10px,1.9vw,12px);font-weight:750;line-height:1.2;color:#403730}
+.home-dashboard .dash-result-person{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.home-dashboard .dash-result-person[hidden]{display:none}
+@media(max-width:600px){
+ .home-dashboard .dash-next-identity #dashNextHorse{font-size:clamp(13px,4vw,16px)}
+ .home-dashboard .dash-next-jockey{font-size:clamp(9.5px,2.6vw,11px)}
+ .home-dashboard #dashResultLink{gap:5px;grid-template-columns:minmax(0,1.32fr) 41px minmax(0,1fr) auto}
+ .home-dashboard #dashResultLink .dash-result-silk{width:41px;height:53px}
+ .home-dashboard #dashResultLink .dash-result-score{min-width:61px;padding-left:4px;padding-right:4px}
+ .home-dashboard .dash-result-copy strong{font-size:clamp(16px,4.45vw,19px)}
+ .home-dashboard .dash-result-people{font-size:clamp(9.5px,2.75vw,11.5px);gap:5px}
+}
+@media(max-width:355px){
+ .home-dashboard{grid-template-columns:minmax(0,.61fr) minmax(0,1.39fr)}
+ .home-dashboard #dashResultLink{grid-template-columns:minmax(0,1.3fr) 35px minmax(0,1fr) auto;gap:4px}
+ .home-dashboard #dashResultLink .dash-result-silk{width:35px;height:49px}
+ .home-dashboard #dashResultLink .dash-result-score{min-width:52px}
+ .home-dashboard .dash-result-copy strong{font-size:15px}
+ .home-dashboard .dash-result-people{font-size:9.2px}
+}
 </style><link rel="apple-touch-icon" href="icon-ei-192.png"></head><body class="ei-prelaunch"><header><div class="brand"><img src="icon-ei-192.png" alt="Emblème officiel Écurie Initial"><div class="brand-copy"><strong>ÉCURIE <span class="brand-initial"><span class="brand-initial-i">I</span>NITIAL</span></strong></div><p class="brand-slogan"><span class="brand-slogan-line">PARTAGEONS NOTRE PASSION</span><span class="brand-slogan-date">DEPUIS 2011</span></p></div></header><div id="prelaunch" hidden><div class="prelaunch-box"><h1>🐎 Bientôt votre espace Écurie Initial</h1><p><strong>Ouverture officielle le mardi 1er décembre 2026.</strong></p><p>Vous avez reçu une invitation ? Vous pouvez dès maintenant confirmer votre inscription et définir votre mot de passe. L’accès à l’application sera disponible à partir du 1er décembre.</p><p>Jusqu’à cette date, les cinq comptes pilotes et les contributeurs expressément autorisés assurent les derniers essais.</p><a href="connexion/">Confirmer mon invitation ou me connecter</a><p style="font-size:13px;color:#f7e9df;margin:18px 0 0"><strong>Vous pouvez installer l'application dès maintenant :</strong><br>Android : ouvrez cette page dans Chrome puis « Installer l'application ».<br>iPhone : ouvrez cette page dans Safari, puis « Partager » → « Sur l'écran d'accueil ».</p></div><p class="prelaunch-hint">Notre site public reste accessible sur <a href="https://www.ecurie-initial.com/" style="background:none;color:#a54c0b;padding:0;font:inherit;text-decoration:underline">www.ecurie-initial.com</a>.</p></div><main id="appContent" hidden>
 <div class="tabs"><button class="active" id="publicTab" type="button">Espace public</button><button id="privateTab" type="button">Espace associés 🔒</button></div>
 <div id="publicArea">
 <h2 class="home-title"><span class="orange-dot" aria-hidden="true"></span>En ce moment</h2>
 <div class="home-dashboard" aria-label="Actualité de l'écurie">
 <a href="../chevaux/"><span class="dash-label">Effectif</span><strong class="dash-number" id="dashHorses">—</strong><span class="dash-detail">chevaux à suivre</span></a>
-<a href="../engagements/"><span class="dash-label" id="dashNextLabel">Prochain rendez-vous</span><strong id="dashNextHorse">À venir</strong><span class="dash-detail" id="dashNextDetail">Voir les engagements</span></a>
-<a href="../chevaux/" id="dashResultLink"><span class="dash-result-copy"><span class="dash-label">Dernière performance</span><strong id="dashResultHorse">À venir</strong><span class="dash-detail" id="dashResultDetail">Voir les performances</span></span><img class="dash-result-silk" id="dashResultSilk" alt="" width="53" height="62" hidden><span class="dash-result-score" id="dashResultRank" aria-label="Classement" hidden>—</span></a>
+<a href="../engagements/"><span class="dash-label" id="dashNextLabel">Prochain rendez-vous</span><span class="dash-next-identity"><strong id="dashNextHorse">À venir</strong><span id="dashNextJockey" class="dash-next-jockey" hidden></span></span><span class="dash-detail" id="dashNextDetail">Voir les engagements</span></a>
+<a href="../chevaux/" id="dashResultLink"><span class="dash-result-copy"><span class="dash-label">Dernière performance</span><strong id="dashResultHorse">À venir</strong><span class="dash-detail" id="dashResultDetail">Voir les performances</span></span><img class="dash-result-silk" id="dashResultSilk" alt="" width="43" height="57" hidden><span class="dash-result-people" aria-label="Jockey ou driver et entraîneur"><span id="dashResultRider" class="dash-result-person" hidden></span><span id="dashResultTrainer" class="dash-result-person" hidden></span></span><span class="dash-result-score" id="dashResultRank" aria-label="Classement" hidden>—</span></a>
 </div>
 <h2 class="home-title">À découvrir</h2>
 <div class="cards">
@@ -207,9 +238,11 @@ window.loadHomeDashboard=async function(){
    if(next){
     get("dashNextLabel").textContent=["partant","declare"].includes(next.e.statut)?"Prochain partant":"Prochain engagement";
     get("dashNextHorse").textContent=known.get(next.slug);
+     const nextJockey=get("dashNextJockey"),nextJockeyName=String(next.e.jockey||next.e.driver||"").trim();
+     nextJockey.textContent=nextJockeyName;nextJockey.hidden=!nextJockeyName;nextJockey.title=nextJockeyName;
     get("dashNextDetail").textContent=[next.e.hippodrome,stamp(next.e.date)].filter(Boolean).join(" · ")+hh(next.e.heure);
    }else{
-    get("dashNextLabel").textContent="Prochain rendez-vous";get("dashNextHorse").textContent="Aucun annoncé";get("dashNextDetail").textContent="Voir les engagements";
+    get("dashNextLabel").textContent="Prochain rendez-vous";get("dashNextHorse").textContent="Aucun annoncé";get("dashNextJockey").hidden=true;get("dashNextJockey").textContent="";get("dashNextDetail").textContent="Voir les engagements";
    }
    for(const [slug,perfs] of Object.entries(editorial.performances||{})){
     if(!known.has(slug)||!Array.isArray(perfs))continue;
@@ -224,6 +257,11 @@ window.loadHomeDashboard=async function(){
     if(silkName){silk.alt="Casaque de "+horse.name;silk.onerror=()=>{silk.hidden=true};silk.src="../assets/"+silkName;silk.hidden=false}
     else{silk.hidden=true;silk.removeAttribute("src")}
     get("dashResultDetail").textContent=[latest.p.hippodrome,stamp(latest.p.date)].filter(Boolean).join(" · ");
+     const rider=get("dashResultRider"),trainer=get("dashResultTrainer");
+     const riderName=String(latest.p.jockey||latest.p.driver||"").trim();
+     const trainerName=String(latest.p.entraineur||horse?.trainer||"").trim();
+     rider.textContent=riderName; rider.title=riderName?"Jockey / driver : "+riderName:"";rider.hidden=!riderName;
+     trainer.textContent=trainerName;trainer.title=trainerName?"Entraîneur : "+trainerName:"";trainer.hidden=!trainerName;
     const rank=get("dashResultRank"),rankValue=String(latest.p.rang||"").trim();
     rank.hidden=!rankValue;
     rank.textContent=rankValue;
@@ -231,7 +269,7 @@ window.loadHomeDashboard=async function(){
     rank.classList.toggle("is-long",rankValue.length>5);
     get("dashResultLink").href="../chevaux/"+encodeURIComponent(latest.slug)+"/";
    }else{
-    get("dashResultHorse").textContent="Aucun résultat";get("dashResultDetail").textContent="Voir les performances";get("dashResultRank").hidden=true;get("dashResultSilk").hidden=true;
+    get("dashResultHorse").textContent="Aucun résultat";get("dashResultDetail").textContent="Voir les performances";get("dashResultRank").hidden=true;get("dashResultSilk").hidden=true;get("dashResultRider").hidden=true;get("dashResultTrainer").hidden=true;
    }
   };
   paint();
