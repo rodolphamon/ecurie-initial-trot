@@ -75,6 +75,113 @@ async function getJSON(url:string) {
   return r.json();
 }
 const iso=(n:number)=>new Date(n).toISOString();
+// Secours temps réel : GitHub Actions peut décaler ses cron de plus de 30 min.
+// Le cron Supabase (chaque minute) recherche indépendamment les arrivées PMU
+// définitives à partir de H+12 min, uniquement pour les chevaux/n°/courses
+// déclarés. Aucune place non classée n'est déduite.
+const PMU_PROGRAM = "https://online.turfinfo.api.pmu.fr/rest/client/1";
+const pmuText=(s:unknown)=>String(s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"")
+  .toUpperCase().replace(/[^A-Z0-9]+/g," ").trim();
+const pmuNumber=(value:unknown)=> {
+  if(typeof value==="number" && Number.isInteger(value) && value>0)return value;
+  if(typeof value==="string" && /^\d{1,3}$/.test(value.trim()))return Number(value.trim());
+  return null;
+};
+async function pmuJSON(url:string) {
+  const response=await fetch(url,{
+    cache:"no-store",signal:AbortSignal.timeout(3500),
+    headers:{"Accept":"application/json","Origin":"https://www.pmu.fr",
+      "User-Agent":"EcurieInitial-PushOfficialResults/1.0 (contact@ecurie-initial.com)"},
+  });
+  if(!response.ok)throw Error("PMU HTTP "+response.status);
+  return response.json();
+}
+async function pmuOfficialAlerts(
+  editorial:Record<string,any>, horseNames:Record<string,string>, now:number,
+):Promise<number> {
+  const targets: {slug:string;event:Event & {numero?:unknown};depart:number;bib:number;reunion:number;course:number;id:string}[]=[];
+  for(const [slug,entries] of Object.entries(editorial.engagements||{})){
+    if(!Array.isArray(entries) || !horseNames[slug])continue;
+    for(const event of entries as (Event & {numero?:unknown})[]){
+      if(!event || !CONFIRMED.has(String(event.statut||"").toLowerCase()))continue;
+      if(!/^\d{4}-\d{2}-\d{2}$/.test(event.date||""))continue;
+      const m=String(event.course||"").match(/^R(\d+)C(\d+)$/i);
+      const bib=pmuNumber(event.numero),departure=parisDeparture(event.date,event.heure);
+      if(!m || !bib || !departure || !event.hippodrome)continue;
+      const depart=Date.parse(departure),age=now-depart;
+      if(age<12*60000 || age>3*3600000)continue;
+      // Les résultats déjà publiés par GitHub sont traités ci-dessous.
+      const already=(editorial.performances?.[slug]||[]).some((p:Record<string,unknown>)=>
+        p.date===event.date&&pmuText(p.hippodrome)===pmuText(event.hippodrome)
+        &&(p.officiel===true||p.statut==="officiel"));
+      if(already)continue;
+      targets.push({slug,event,depart,bib,reunion:Number(m[1]),course:Number(m[2]),
+        id:"results:"+slug+"|"+event.date+"|"+esc(event.hippodrome).toLowerCase()});
+    }
+  }
+  // Les plus récentes d'abord, pour ne pas laisser une course non classée
+  // monopoliser les requêtes. Les autres sont reprises à la minute suivante.
+  targets.sort((a,b)=>b.depart-a.depart);
+  const programmeCache=new Map<string,any>();
+  let added=0;
+  for(const item of targets.slice(0,4)){
+    try{
+      const {data:exists,error:existsError}=await sb.from("ei_push_alerts")
+        .select("id").eq("id",item.id).maybeSingle();
+      if(existsError)throw existsError;
+      if(exists)continue;
+      const day=item.event.date;
+      let payload=programmeCache.get(day);
+      if(!payload){
+        const ymd=day.slice(8,10)+day.slice(5,7)+day.slice(0,4);
+        payload=await pmuJSON(PMU_PROGRAM+"/programme/"+ymd);
+        programmeCache.set(day,payload);
+      }
+      const meetings=payload?.programme?.reunions??payload?.reunions;
+      if(!Array.isArray(meetings))continue;
+      const meeting=meetings.find((m:any)=>
+        pmuNumber(m?.numOfficiel??m?.numReunion??m?.numOrdre)===item.reunion);
+      if(!meeting)continue;
+      const hippodrome=meeting.hippodrome;
+      const officialVenue=typeof hippodrome==="string"?hippodrome:
+        hippodrome?.libelleCourt||hippodrome?.libelleLong||hippodrome?.libelle||hippodrome?.nom;
+      if(pmuText(officialVenue)!==pmuText(item.event.hippodrome))continue;
+      const race=(meeting.courses||[]).find((c:any)=>
+        pmuNumber(c?.numOrdre??c?.numCourse)===item.course);
+      if(!race || race.arriveeDefinitive!==true || !Array.isArray(race.ordreArrivee))continue;
+      let rank=0,offset=0,valid=true;
+      for(const group of race.ordreArrivee){
+        const entries=Array.isArray(group)?group:[group];
+        const numbers=entries.map(pmuNumber);
+        if(!numbers.length||numbers.some(n=>n===null)){valid=false;break}
+        if(numbers.includes(item.bib)){rank=offset+1;break}
+        offset+=numbers.length;
+      }
+      if(!valid||rank<1)continue;
+      const ymd=day.slice(8,10)+day.slice(5,7)+day.slice(0,4);
+      const participants=await pmuJSON(PMU_PROGRAM+"/programme/"+ymd+
+        "/R"+item.reunion+"/C"+item.course+"/participants");
+      if(!Array.isArray(participants?.participants))continue;
+      const horseMatches=participants.participants.filter((p:any)=>
+        pmuNumber(p?.numPmu)===item.bib);
+      if(horseMatches.length!==1 ||
+         pmuText(horseMatches[0].nom)!==pmuText(horseNames[item.slug]))continue;
+      await saveAlert({id:item.id,categorie:"results",cheval_slug:item.slug,payload:{
+        nom:horseNames[item.slug],hippodrome:item.event.hippodrome,
+        date:day,rang:rank===1?"1er":rank+"e",official:true,pilotTest:false,
+        source:"PMU - arrivée définitive",
+      },expires_at:iso(now+36*3600_000)});
+      console.log("[PMU-PUSH] Arrivée officielle vérifiée : "+item.slug+
+        " R"+item.reunion+"C"+item.course+" n°"+item.bib+" "+rank+"e");
+      added++;
+    }catch(error){
+      console.warn("[PMU-PUSH] Vérification différée : "+item.slug+" "+
+        (error instanceof Error?error.name:"erreur de source"));
+    }
+  }
+  return added;
+}
+
 async function run() {
   const now=Date.now(), clock=parisNow(new Date(now)), nextHour=now+3600_000;
   const prelaunch = now < PILOT_LAUNCH_AT;
@@ -145,6 +252,10 @@ async function run() {
       }
     }
   }
+  // Le push ne dépend plus exclusivement des déclenchements GitHub Actions.
+  // Ce contrôle ne modifie pas editorial.json et n'envoie que des classements
+  // dont le PMU a confirmé l'arrivée définitive et l'identité du cheval.
+  counts.alerts += await pmuOfficialAlerts(ed,horseNames,now);
   // Résultats : déclencher uniquement après vérification explicite et dans les 48 h.
   for(const [slug,rows] of Object.entries(ed.performances||{})){
     if(!Array.isArray(rows))continue;
