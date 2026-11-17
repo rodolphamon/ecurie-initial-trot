@@ -26,7 +26,8 @@ def fixture():
             "master-pat": [{
                 "date": "2026-11-17", "heure": "15:40",
                 "hippodrome": "Chantilly", "statut": "partant",
-                "course": "R1C7", "numero": 5
+                "course": "R1C7", "numero": 5,
+                "jockey": "César Belmont"
             }]
         },
         "performances": {}
@@ -88,6 +89,7 @@ def check_case(name, *, definitive=True, arrival=None, venue="CHANTILLY",
                 assert entry["video_url"] == "https://www.equidia.fr/courses/2026-11-17/R1/C7", name
                 assert entry["course_url"] == entry["video_url"], name
                 assert entry["video_source"] == "equidia_course", name
+                assert entry["jockey"] == "César Belmont", name + " : jockey déclaré absent"
                 # Deuxième passage : aucune insertion supplémentaire.
                 assert pmu.apply(data, now, is_dry_run=False) is False, name + " : doublon"
             else:
