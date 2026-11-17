@@ -9,7 +9,7 @@
 #counter{font-size:clamp(39px,7vw,70px);font-weight:900;line-height:1;letter-spacing:-.055em;color:#c95513;font-variant-numeric:tabular-nums}
 .controls{margin-top:24px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.controls label{min-width:0}.controls label:nth-child(3),.controls .trainer-filter,.controls .hippodrome-filter{grid-column:span 2}.controls label:last-child{grid-column:1/-1}
 .controls input,.controls select{width:100%;padding:13px 12px;border:1px solid #d7d7dc;background:white;border-radius:9px;font:inherit;color:#252525;min-width:0;outline-color:var(--orange);font-size:14px}
-.caption-line{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:12px 1px 10px}.result{font-size:13px;color:#595959}.legend{display:flex;flex-wrap:wrap;gap:6px}
+.caption-line{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:12px 1px 10px}.result{font-size:clamp(16px,2.2vw,19px);font-weight:800;line-height:1.3;color:#171717}.legend{display:flex;flex-wrap:wrap;gap:6px}
 .tag{display:inline-flex;align-items:center;gap:4px;padding:5px 8px;background:#f8f8f8;border:1px solid #ebebeb;border-radius:99px;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit;color:inherit;transition:background .16s ease,border-color .16s ease}.legend .tag[aria-pressed="true"]{border-color:var(--orange);background:var(--soft);color:#9c4712;box-shadow:0 0 0 1px var(--orange)}.legend .tag:hover{background:#fff0e3}.legend .tag:focus-visible{outline:2px solid var(--orange);outline-offset:2px}.tag .disc-img{width:36px;height:25px;margin-right:2px}.tag .disc-text{font-size:12px}
 .tablewrap{border:1px solid #e9e9ea;border-radius:12px;overflow-x:auto;background:#fff}
 table{width:100%;border-collapse:collapse;min-width:840px;text-align:left}thead{background:#262626;color:#fff}th{padding:14px 12px;font-size:12px;text-transform:uppercase;letter-spacing:.04em;font-weight:800;white-space:nowrap}td{padding:9px 12px;border-bottom:1px solid var(--line);font-size:13px;line-height:1.3}tbody tr:nth-child(even){background:#fff9f5}tbody tr:hover{background:#fff0e3}tbody tr:last-child td{border-bottom:0}
@@ -503,9 +503,17 @@ function render(){
  }).join("");
  for(const button of $("legend").querySelectorAll("button[data-discipline]"))button.setAttribute("aria-pressed",button.dataset.discipline===state.discipline?"true":"false");
  $("empty").hidden=data.length>0;
- const filtersActive=!!(hippodrome||year||type||horse||pilot||trainer);
+ // Décrire précisément les performances correspondant aux filtres actifs.
+ const filtersActive=!!(hippodrome||year||type||horse||pilot||trainer||state.placing!=="all");
+ const total=data.length;
+ const typeDePlace=state.placing==="win"?(total===1?"victoire":"victoires")
+  :state.placing==="second"?(total===1?"deuxième place":"deuxièmes places")
+  :state.placing==="third"?(total===1?"troisième place":"troisièmes places")
+  :(total===1?"podium":"podiums");
+ const libelleDiscipline={attele:"Attelé",monte:"Monté",galop:"Galop",obstacle:"Obstacle"};
  $("count").hidden=!filtersActive;
- $("count").textContent=filtersActive?data.length+" course"+(data.length>1?"s":"")+" trouvée"+(data.length>1?"s":""):"";
+ $("count").textContent=filtersActive?
+  new Intl.NumberFormat("fr-FR").format(total)+" "+typeDePlace+(year?" en "+year:"")+(type?" · "+(libelleDiscipline[type]||type):""):"";
  $("page").textContent="Page "+state.page+" / "+pages;
  $("prev").disabled=state.page===1;$("next").disabled=state.page===pages;
  postHeight();
