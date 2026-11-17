@@ -1,0 +1,75 @@
+name: Activer le mail d'invitation Écurie Initial
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'supabase/email-templates/invite.html'
+      - '.github/workflows/deployer-mail-invitation.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: courriel-invitation-supabase
+  cancel-in-progress: false
+jobs:
+  activer-modele:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Récupérer le modèle validé
+        uses: actions/checkout@v4
+      - name: Mettre à jour uniquement le mail d'invitation Supabase
+        env:
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          import pathlib
+          import urllib.error
+          import urllib.request
+
+          token = os.environ.get('SUPABASE_ACCESS_TOKEN', '')
+          if not token:
+              raise SystemExit('Secret SUPABASE_ACCESS_TOKEN absent : modèle non activé.')
+          html = pathlib.Path('supabase/email-templates/invite.html').read_text(encoding='utf-8')
+          install = 'https://fiches.ecurie-initial.com/application/'
+          assert '{{ .ConfirmationURL }}' in html, 'Lien personnel de confirmation manquant'
+          assert install in html, 'Lien d’installation manquant'
+          assert '1er décembre 2026' in html, 'Date de préouverture absente'
+          assert "Installer l'application Écurie Initial" in html, 'Bouton d’installation absent'
+          endpoint = 'https://api.supabase.com/v1/projects/yeecwaaizmvrhwobukfa/config/auth'
+          headers = {'Authorization': 'Bearer ' + token, 'Accept': 'application/json'}
+
+          def request(method, payload=None):
+              data = None if payload is None else json.dumps(payload, ensure_ascii=False).encode('utf-8')
+              req = urllib.request.Request(
+                  endpoint, data=data, method=method,
+                  headers={**headers, **({'Content-Type': 'application/json'} if data is not None else {})})
+              try:
+                  with urllib.request.urlopen(req, timeout=45) as resp:
+                      return json.load(resp)
+              except urllib.error.HTTPError as exc:
+                  # Ne jamais afficher une réponse contenant une configuration sensible.
+                  raise SystemExit(f'API Supabase {method} : HTTP {exc.code} ; configuration inchangée ou non vérifiable')
+
+          existing = request('GET')
+          assert isinstance(existing, dict), 'Format de configuration Supabase inattendu'
+          payload = {
+              'mailer_subjects_invite': 'Écurie Initial – Votre invitation à l’espace associés',
+              'mailer_templates_invite_content': html,
+          }
+          if (existing.get('mailer_templates_invite_content') == html
+                  and existing.get('mailer_subjects_invite') == payload['mailer_subjects_invite']):
+              print('[OK] Modèle déjà actif et identique dans Supabase')
+          else:
+              request('PATCH', payload)
+              print('[OK] Mise à jour du seul modèle d’invitation demandée')
+          active = request('GET')
+          if active.get('mailer_templates_invite_content') != html:
+              raise SystemExit('Vérification impossible : le modèle actif ne correspond pas au fichier.')
+          if active.get('mailer_subjects_invite') != payload['mailer_subjects_invite']:
+              raise SystemExit('Vérification impossible : le sujet actif ne correspond pas.')
+          print('[OK] Modèle Supabase relu et vérifié : confirmation, installation, préouverture')
+          print('[OK] Aucune invitation envoyée : envoi individuel réservé à l’administration')
+          PY
