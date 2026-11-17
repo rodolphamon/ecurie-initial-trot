@@ -1,10 +1,7 @@
 name: Activer le mail d'invitation Écurie Initial
+# Activation manuelle : le jeton GitHub actuel n'a pas les droits de
+# configuration Auth de Supabase (HTTP 403). Ne pas échouer sur chaque push.
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'supabase/email-templates/invite.html'
-      - '.github/workflows/deployer-mail-invitation.yml'
   workflow_dispatch:
 permissions:
   contents: read
