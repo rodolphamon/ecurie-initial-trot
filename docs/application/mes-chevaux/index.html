@@ -74,6 +74,14 @@ async function setup(){
     quick.href='../administration/actualites/';
     $('welcome').after(quick);
   }
+  try{
+    const [e,g]=await Promise.all([db.rpc('ei_peut_contribuer',{section:'engagements'}),db.rpc('ei_peut_contribuer',{section:'gains'})]);
+    if(e.data===true||g.data===true){
+      const shortcut=el('a','📝 Gérer engagements et gains','button');
+      shortcut.href='../contribution/';
+      $('welcome').after(shortcut);
+    }
+  }catch(_){}
   const{data:parts,error:partsError}=await db.from('participations_chevaux')
     .select('cheval_slug,cheval_nom').eq('user_id',user.id).order('cheval_nom');
   if(partsError)throw Error('Impossible de charger vos participations.');
@@ -105,7 +113,17 @@ async function setup(){
   const privatePromise=mine.length?privateQuery:Promise.resolve({data:[],error:null});
   const [pubResult,privResult]=await Promise.allSettled([publicPromise,privatePromise]);
   let editorial=null,profiles=null;
-  if(pubResult.status==='fulfilled'){[editorial,profiles]=pubResult.value}
+  if(pubResult.status==='fulfilled'){
+    [editorial,profiles]=pubResult.value;
+    try{
+      const {data:changes,error:overError}=await db.from('ei_contributions_engagements').select('cheval_slug,engagements');
+      if(overError)throw overError;
+      const valid=new Set((profiles.horses||[]).map(h=>h.id));
+      editorial.engagements=editorial.engagements||{};
+      for(const c of changes||[])if(valid.has(c.cheval_slug)&&Array.isArray(c.engagements))
+        editorial.engagements[c.cheval_slug]=c.engagements;
+    }catch(err){console.warn('Engagements publiés indisponibles : données de référence conservées',err)}
+  }
   else $('status').textContent='Les courses et performances sont temporairement indisponibles.';
   const races=[],performances=[];
   for(const p of mine){
