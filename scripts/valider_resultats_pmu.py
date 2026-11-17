@@ -151,14 +151,14 @@ def test_polling_timing():
         horse_file.write_text(json.dumps({"horses": [
             {"id": "master-pat", "name": "MASTER PAT"}
         ]}), encoding="utf-8")
-        with patch.object(pmu, "HORSES", horse_file), \\
-             patch.object(pmu, "DATA", out_file), \\
-             patch.object(pmu, "datetime", SimulatedDatetime), \\
-             patch.object(pmu.time, "monotonic", side_effect=monotonic), \\
-             patch.object(pmu.time, "sleep", side_effect=sleep), \\
-             patch.object(pmu, "fetch_programme", side_effect=programme_at_time), \\
+        with patch.object(pmu, "HORSES", horse_file), \
+             patch.object(pmu, "DATA", out_file), \
+             patch.object(pmu, "datetime", SimulatedDatetime), \
+             patch.object(pmu.time, "monotonic", side_effect=monotonic), \
+             patch.object(pmu.time, "sleep", side_effect=sleep), \
+             patch.object(pmu, "fetch_programme", side_effect=programme_at_time), \
              patch.object(pmu, "fetch_participants",
-                          return_value=[{"numPmu": 5, "nom": "MASTER PAT"}]), \\
+                          return_value=[{"numPmu": 5, "nom": "MASTER PAT"}]), \
              contextlib.redirect_stdout(io.StringIO()):
             assert pmu.poll_results(data, poll_seconds=240, interval_seconds=45)
         official = json.loads(out_file.read_text(encoding="utf-8"))
