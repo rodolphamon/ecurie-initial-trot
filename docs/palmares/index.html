@@ -73,14 +73,72 @@ td:first-child,th:first-child{text-align:center;width:75px}td.date{white-space:n
  .caption-line .legend .tag .disc-img{width:18px;height:18px;flex-basis:18px}
  .caption-line .legend .tag .disc-text{font-size:10px}
 }
-.placing-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:16px;max-width:650px}
-.placing-tabs button{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-width:0;padding:10px 10px;border:1px solid #ddd;border-radius:9px;background:#fff;font:700 13px Arial,Helvetica,sans-serif;cursor:pointer;white-space:nowrap}
-.placing-tabs button[aria-pressed="true"]{background:#fff5ec;color:#9c4712;border-color:#ee7d26;box-shadow:inset 0 0 0 1px #ee7d26}
-.placing-tabs button:focus-visible{outline:2px solid #f47721;outline-offset:2px}
-.placing-stats{margin-top:12px;font-size:13px;font-weight:700;color:#565656}.placing{display:inline-block;background:#fff0df;color:#a34c0e;border-radius:6px;padding:3px 6px;font-size:12px;white-space:nowrap}.top{display:flex;flex-direction:column;align-items:stretch;gap:12px}.medal-counts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;width:100%}.medal-item{display:flex;justify-content:center;align-items:center;gap:8px;min-width:0}.medal-emoji{font-size:clamp(26px,5vw,44px)}.medal-item output{font-size:clamp(26px,5vw,52px);font-weight:900;line-height:1.1;color:#c95513;font-variant-numeric:tabular-nums}.medal-total{text-align:center;font-size:14px;color:#514b46}.medal-total strong{color:#c95513;font-size:18px}@media(max-width:440px){.medal-counts{gap:4px}.medal-item{gap:4px}.medal-emoji{font-size:26px}.medal-item output{font-size:29px}}.medal{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;box-sizing:border-box;font:800 12px/1 Arial,sans-serif;letter-spacing:-.3px;color:#5c3b0a;background:linear-gradient(145deg,#fff1b7 0%,#e8b844 40%,#bd8322 76%,#f6d779 100%);border:1px solid #b88a31;box-shadow:inset 0 1px 1px #fff9,inset 0 -1px 1px #71430055,0 1px 2px #0002;vertical-align:middle;flex-shrink:0}.medal-2{color:#3f4852;background:linear-gradient(145deg,#fff 0%,#d8dfe5 40%,#9ba5ae 76%,#e8edf1 100%);border-color:#a2abb4}.medal-3{color:#61391f;background:linear-gradient(145deg,#f7d5b4 0%,#c98a5d 40%,#95552f 76%,#e8af83 100%);border-color:#a66c46}.medal-group{display:inline-flex;gap:3px;align-items:center}.placing-tabs button{display:inline-flex;align-items:center;justify-content:center;gap:7px}.rank-cell .medal{width:27px;height:27px;font-size:13px}.pal-card-medal .medal{width:26px;height:26px;font-size:13px}.medal-header{width:clamp(32px,5vw,46px);height:clamp(32px,5vw,46px);font-size:clamp(16px,2.5vw,22px);border-width:2px}@media(max-width:440px){.medal-header{width:32px;height:32px;font-size:16px}}@media(max-width:440px){.placing-tabs{gap:7px}.placing-tabs button{padding:10px 5px;font-size:13px}}</style></head><body>
+.placing-stats{margin-top:12px;font-size:13px;font-weight:700;color:#565656}.placing{display:inline-block;background:#fff0df;color:#a34c0e;border-radius:6px;padding:3px 6px;font-size:12px;white-space:nowrap}.medal{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;box-sizing:border-box;font:800 12px/1 Arial,sans-serif;letter-spacing:-.3px;color:#5c3b0a;background:linear-gradient(145deg,#fff1b7 0%,#e8b844 40%,#bd8322 76%,#f6d779 100%);border:1px solid #b88a31;box-shadow:inset 0 1px 1px #fff9,inset 0 -1px 1px #71430055,0 1px 2px #0002;vertical-align:middle;flex-shrink:0}.medal-2{color:#3f4852;background:linear-gradient(145deg,#fff 0%,#d8dfe5 40%,#9ba5ae 76%,#e8edf1 100%);border-color:#a2abb4}.medal-3{color:#61391f;background:linear-gradient(145deg,#f7d5b4 0%,#c98a5d 40%,#95552f 76%,#e8af83 100%);border-color:#a66c46}.medal-group{display:inline-flex;gap:3px;align-items:center}.rank-cell .medal{width:27px;height:27px;font-size:13px}.pal-card-medal .medal{width:26px;height:26px;font-size:13px}.medal-header{width:clamp(32px,5vw,46px);height:clamp(32px,5vw,46px);font-size:clamp(16px,2.5vw,22px);border-width:2px}@media(max-width:440px){.medal-header{width:32px;height:32px;font-size:16px}}
+/* Podium à trois véritables marches : toute la marche est un filtre, sans onglets doublons. */
+.top{display:flex;flex-direction:column;align-items:stretch;gap:3px;padding:10px 14px 9px;background:#fffaf5;border-radius:15px;border:1px solid #ead7c3;border-top:4px solid #f47721}
+.podium{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-items:end;gap:7px;min-width:0;width:100%;height:160px}
+.podium-step{display:flex;flex-direction:column;justify-content:end;align-items:stretch;gap:0;align-self:end;min-width:0;padding:0;border:0;background:none;font:inherit;cursor:pointer;text-align:center;color:#282321;outline-offset:3px;transition:transform .16s ease,filter .16s ease}
+.podium-step:hover{transform:translateY(-2px);filter:brightness(1.03)}
+.podium-step:focus-visible,.podium-total:focus-visible{outline:3px solid #f47721;outline-offset:3px}
+.podium-step .podium-medal{align-self:center;width:30px;height:30px;font-size:16px;border-width:2px;margin-bottom:-4px;position:relative;z-index:2;box-shadow:0 2px 4px #0003,inset 0 1px 1px #fff9}
+.podium-plinth{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-width:0;width:100%;border-radius:7px 7px 3px 3px;box-shadow:inset 0 2px 0 #fff9,inset 0 -5px 0 #0000000b,0 3px 6px #26150718;position:relative}
+.podium-plinth::before{content:"";position:absolute;top:0;left:0;right:0;height:6px;border-radius:7px 7px 0 0;background:#ffffff80;border-bottom:1px solid #00000012;pointer-events:none}
+.podium-silver .podium-plinth{height:76px;background:linear-gradient(140deg,#f7f9fa,#d3d9df 62%,#bbc4cb);border:1px solid #b2bdc8}
+.podium-gold .podium-plinth{height:104px;background:linear-gradient(145deg,#ffe6a2,#f2c867 55%,#dba340);border:1px solid #d4a444}
+.podium-bronze .podium-plinth{height:61px;background:linear-gradient(140deg,#f5d2b6,#d89a72 65%,#b97a55);border:1px solid #bf8056}
+.podium .podium-count,.podium #counter{font-size:clamp(25px,4.7vw,43px);font-weight:900;line-height:1.05;letter-spacing:-.05em;font-variant-numeric:tabular-nums;color:#272322}
+.podium-label{font-size:clamp(10px,1.6vw,13px);font-weight:900;letter-spacing:.08em;line-height:1.1}
+.podium-step[aria-pressed="true"] .podium-plinth{outline:3px solid #f47721;outline-offset:1px;box-shadow:inset 0 2px 0 #fff9,0 0 0 5px #f4772122,0 4px 8px #0002}
+.podium-step[aria-pressed="true"] .podium-medal{transform:translateY(-2px);box-shadow:0 0 0 3px #fff,0 0 0 5px #f47721,0 2px 4px #0002}
+.podium-total{align-self:center;display:flex;align-items:center;justify-content:center;gap:8px;padding:4px 12px;border:1px solid transparent;border-radius:999px;background:transparent;color:#5b524b;font:700 12px/1.3 Arial,Helvetica,sans-serif;cursor:pointer;white-space:nowrap}
+.podium-total strong{font-size:16px;color:#bd5414;font-variant-numeric:tabular-nums}
+.podium-total .podium-total-hint{font-size:15px;color:#a26a46}
+.podium-total[aria-pressed="true"]{background:#fff0e0;border-color:#f3d7ba}
+.podium-total:hover{border-color:#eab58d;background:#fff3e8}
+.controls{margin-top:13px}
+@media(max-width:790px){
+ .top{padding:8px 10px 8px;border-radius:12px}
+ .podium{height:138px;gap:5px}
+ .podium-step .podium-medal{width:27px;height:27px;font-size:14px;margin-bottom:-3px}
+ .podium-silver .podium-plinth{height:65px}
+ .podium-gold .podium-plinth{height:91px}
+ .podium-bronze .podium-plinth{height:53px}
+ .podium .podium-count,.podium #counter{font-size:clamp(23px,6.9vw,33px)}
+ .podium-label{font-size:10px}
+ .podium-total{font-size:11px;padding:3px 9px}
+ .podium-total strong{font-size:14px}
+ .controls{margin-top:12px}
+}
+@media(max-width:370px){
+ .podium{height:131px;gap:4px}
+ .podium-silver .podium-plinth{height:62px}
+ .podium-gold .podium-plinth{height:86px}
+ .podium-bronze .podium-plinth{height:50px}
+ .podium .podium-count,.podium #counter{font-size:24px}
+ .podium-label{font-size:10px}
+}
+</style></head><body>
 <main class="palmares">
-<header class="top"><div class="medal-counts" aria-label="Palmarès des médailles"><div class="medal-item"><span class="medal medal-1 medal-header" aria-hidden="true">1</span><output id="counter" aria-label="Nombre de victoires" aria-live="polite">172</output></div><div class="medal-item"><span class="medal medal-2 medal-header" aria-hidden="true">2</span><output id="silverCounter" aria-label="Nombre de deuxièmes places" aria-live="polite">0</output></div><div class="medal-item"><span class="medal medal-3 medal-header" aria-hidden="true">3</span><output id="bronzeCounter" aria-label="Nombre de troisièmes places" aria-live="polite">0</output></div></div><div class="medal-total">Total des podiums : <strong id="allPodiums">172</strong></div></header>
-<div class="placing-tabs" role="group" aria-label="Filtrer par classement (appuyez de nouveau pour voir tous les podiums)"><button type="button" data-placing="win" aria-pressed="false" aria-label="Victoires"><span class="medal medal-1" aria-hidden="true">1</span> Or</button><button type="button" data-placing="second" aria-pressed="false" aria-label="Deuxièmes places"><span class="medal medal-2" aria-hidden="true">2</span> Argent</button><button type="button" data-placing="third" aria-pressed="false" aria-label="Troisièmes places"><span class="medal medal-3" aria-hidden="true">3</span> Bronze</button></div><section aria-label="Filtrer les performances" class="controls">
+<header class="top" aria-label="Podium interactif Écurie Initial">
+  <div class="podium" role="group" aria-label="Choisir une marche pour afficher les performances correspondantes">
+    <button class="podium-step podium-silver" type="button" data-placing="second" aria-pressed="false" aria-label="Filtrer les deuxièmes places">
+      <span class="podium-medal medal medal-2" aria-hidden="true">2</span>
+      <span class="podium-plinth"><output class="podium-count" id="silverCounter" aria-label="Deuxièmes places" aria-live="polite">0</output><span class="podium-label">ARGENT</span></span>
+    </button>
+    <button class="podium-step podium-gold" type="button" data-placing="win" aria-pressed="false" aria-label="Filtrer les victoires">
+      <span class="podium-medal medal medal-1" aria-hidden="true">1</span>
+      <span class="podium-plinth"><output class="podium-count" id="counter" aria-label="Victoires" aria-live="polite">172</output><span class="podium-label">OR</span></span>
+    </button>
+    <button class="podium-step podium-bronze" type="button" data-placing="third" aria-pressed="false" aria-label="Filtrer les troisièmes places">
+      <span class="podium-medal medal medal-3" aria-hidden="true">3</span>
+      <span class="podium-plinth"><output class="podium-count" id="bronzeCounter" aria-label="Troisièmes places" aria-live="polite">0</output><span class="podium-label">BRONZE</span></span>
+    </button>
+  </div>
+  <button class="podium-total" type="button" data-placing="all" aria-pressed="true" aria-label="Afficher tous les podiums">
+    <span>Tous les podiums</span><strong id="allPodiums" aria-live="polite">172</strong><span class="podium-total-hint" aria-hidden="true">↺</span>
+  </button>
+</header>
+<section aria-label="Filtrer les performances" class="controls">
 <label><select id="year" aria-label="Année"><option value="">Année</option></select></label>
 <label><select id="horse" aria-label="Filtrer par cheval"><option value="">Cheval</option></select></label>
 <label><select id="pilot" aria-label="Filtrer par jockey ou driver"><option value="">Jockey / Driver</option></select></label>
@@ -521,7 +579,7 @@ $("prev").addEventListener("click",()=>{state.page--;render()});$("next").addEve
 function postHeight(){window.parent.postMessage({kind:"ecurie-initial-palmares-height",height:document.documentElement.scrollHeight+12},"*")}
 if("ResizeObserver" in window)new ResizeObserver(postHeight).observe(document.body);
 document.querySelectorAll("[data-placing]").forEach(button=>button.addEventListener("click",()=>{
- state.placing=state.placing===button.dataset.placing?"all":button.dataset.placing;
+ state.placing=button.dataset.placing==="all"||state.placing===button.dataset.placing?"all":button.dataset.placing;
  state.page=1;
  document.querySelectorAll("[data-placing]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.placing===state.placing)));
  render();
