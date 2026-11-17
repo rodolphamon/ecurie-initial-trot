@@ -309,7 +309,7 @@ function replayPreference(value,record,discipline){
   if(host!=="equidia.fr")return null;
   return {url,score:140,isVideo:true};
  }
- if(host==="letrot.com")return {url,score:140,isVideo:true};
+ if(host==="letrot.com")return {url,score:url.includes("/fr/courses/replay-courses/")?180:140,isVideo:true};
  if(host==="equidia.fr")return {url,score:110,isVideo:true};
  return null;
 }
