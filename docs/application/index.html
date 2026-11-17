@@ -246,11 +246,6 @@ body.ei-prelaunch{padding-bottom:0!important}
   font-size:clamp(14px,4.85vw,19px);letter-spacing:-.018em;
  }
 }
-/* Ne pas garder les marges de défilement si l'accueil tient déjà au-dessus de la navigation fixe. */
-@media(max-width:759px){
-  body.ei-home-fits{padding-bottom:0!important}
-  body.ei-home-fits #appContent{padding-bottom:8px}
-}
 </style><link rel="apple-touch-icon" href="icon-ei-192.png"></head><body class="ei-prelaunch"><header><div class="brand"><img src="icon-ei-192.png" alt="Emblème officiel Écurie Initial"><div class="brand-copy"><strong>ÉCURIE <span class="brand-initial"><span class="brand-initial-i">I</span>NITIAL</span></strong></div><p class="brand-slogan"><span class="brand-slogan-line">PARTAGEONS NOTRE PASSION</span><span class="brand-slogan-date">DEPUIS 2011</span></p></div></header><div id="prelaunch" hidden><div class="prelaunch-box"><h1>🐎 Bientôt votre espace Écurie Initial</h1><p><strong>Ouverture officielle le mardi 1er décembre 2026.</strong></p><p>Vous avez reçu une invitation ? Vous pouvez dès maintenant confirmer votre inscription et définir votre mot de passe. L’accès à l’application sera disponible à partir du 1er décembre.</p><p>Jusqu’à cette date, les cinq comptes pilotes et les contributeurs expressément autorisés assurent les derniers essais.</p><a href="connexion/">Confirmer mon invitation ou me connecter</a><p style="font-size:13px;color:#f7e9df;margin:18px 0 0"><strong>Vous pouvez installer l'application dès maintenant :</strong><br>Android : ouvrez cette page dans Chrome puis « Installer l'application ».<br>iPhone : ouvrez cette page dans Safari, puis « Partager » → « Sur l'écran d'accueil ».</p></div><p class="prelaunch-hint">Notre site public reste accessible sur <a href="https://www.ecurie-initial.com/" style="background:none;color:#a54c0b;padding:0;font:inherit;text-decoration:underline">www.ecurie-initial.com</a>.</p></div><main id="appContent" hidden>
 <div class="home-welcome" role="note">La vie de l’Écurie, course après course.</div>
 <div class="tabs"><button class="active" id="publicTab" type="button">Espace public</button><button id="privateTab" type="button">Espace associés 🔒</button></div>
@@ -273,40 +268,10 @@ body.ei-prelaunch{padding-bottom:0!important}
 <section id="privateArea" hidden><div class="private"><h2>🔒 La tribune des associés</h2><p>Un espace convivial pour suivre tous les chevaux, partager photos et nouvelles, commenter les courses et retrouver ses participations personnelles.</p><p><strong>Accès réservé aux associés validés par l'écurie.</strong></p><p class="notice">Connectez-vous pour accéder aux publications et aux commentaires réservés aux associés.</p><p class="notice">Pas encore associé ? <a href="devenir-associe/">Découvrez comment nous rejoindre.</a></p><div class="privateActions"><a class="button" href="connexion/">Se connecter</a><a class="button button-dark" href="mes-chevaux/">🐎 Mes chevaux</a><a class="button button-dark" href="tribune/">Accéder à la Tribune</a><a class="button button-dark" href="notifications/">🔔 Notifications</a></div></div></section>
 </main>
 <script>
-function tab(priv){document.getElementById('publicArea').hidden=priv;document.getElementById('privateArea').hidden=!priv;document.getElementById('publicTab').classList.toggle('active',!priv);document.getElementById('privateTab').classList.toggle('active',priv);window.scheduleHomeFit?.();if(priv)window.scrollTo({top:0,behavior:'smooth'})}
+function tab(priv){document.getElementById('publicArea').hidden=priv;document.getElementById('privateArea').hidden=!priv;document.getElementById('publicTab').classList.toggle('active',!priv);document.getElementById('privateTab').classList.toggle('active',priv);if(priv)window.scrollTo({top:0,behavior:'smooth'})}
 document.getElementById('publicTab').onclick=()=>tab(false);
 document.getElementById('privateTab').onclick=()=>tab(true);
 if(new URLSearchParams(location.search).get('espace')==='associes')tab(true);
-// Le contenu peut tenir sur un écran : dans ce cas, supprimer les deux marges
-// de sécurité (body et main) qui créent un défilement vide. Sur les petits
-// écrans, conserver ces marges afin que la dernière carte reste accessible.
-{
-  const app=document.getElementById('appContent');
-  const home=document.getElementById('publicArea');
-  let queued=false;
-  function fitHome(){
-    const nav=document.getElementById('ei-app-nav');
-    if(!nav||app.hidden||home.hidden||innerWidth>=760){
-      document.body.classList.remove('ei-home-fits');return;
-    }
-    const bottom=home.getBoundingClientRect().bottom+scrollY;
-    const navTop=innerHeight-nav.getBoundingClientRect().height;
-    document.body.classList.toggle('ei-home-fits',bottom+8<=navTop);
-  }
-  window.scheduleHomeFit=()=>{
-    if(queued)return;
-    queued=true;
-    requestAnimationFrame(()=>{queued=false;fitHome()});
-  };
-  if('ResizeObserver' in window)new ResizeObserver(window.scheduleHomeFit).observe(home);
-  new MutationObserver(records=>{
-    if(records.some(record=>Array.from(record.addedNodes).some(node=>node.id==='ei-app-nav')))
-      window.scheduleHomeFit();
-  }).observe(document.body,{childList:true});
-  addEventListener('resize',window.scheduleHomeFit);
-  window.visualViewport?.addEventListener('resize',window.scheduleHomeFit);
-  window.scheduleHomeFit();
-}
 if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
 </script>
 <script type="module">
