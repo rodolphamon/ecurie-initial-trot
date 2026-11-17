@@ -22,6 +22,9 @@
 .card-heading a{font-size:13px}
 #newsSection .news{border:0;border-left:3px solid var(--ei-orange)}
 #private-news img,#private-news video{display:block;max-width:100%;max-height:430px;border-radius:10px;margin:12px 0;background:#171717}
+.news-delete{display:inline-block;margin-top:10px;margin-left:12px;padding:7px 10px;border:1px solid #ddadaa;border-radius:8px;background:#fff2f0;color:#9a2521;font:700 12px Arial,sans-serif;cursor:pointer}
+.news-delete:disabled{opacity:.45;cursor:wait}
+#news-delete-status{min-height:16px;margin:6px 0;color:#1d6643;font-size:13px;font-weight:bold}
 </style><link rel="manifest" href="../manifest.webmanifest"><link rel="apple-touch-icon" href="../icon-ei-192.png"></head>
 <body><header><strong>ÉCURIE <span>INITIAL</span></strong><div style="font-size:12px;color:#ddd">Mon espace personnel</div></header><main>
 <p><a href="../">← Retour à l'application</a></p><h1>🐎 Mes chevaux</h1><p id="loading">Vérification de votre accès…</p>
@@ -37,7 +40,7 @@
   <div id="next-races"></div>
 </section>
 <section class="card" id="newsSection" hidden>
-  <h2 id="nouvelles-privees">✉️ Nouvelles privées</h2><div id="private-news"></div>
+  <h2 id="nouvelles-privees">✉️ Nouvelles privées</h2><p id="news-delete-status" role="status" aria-live="polite"></p><div id="private-news"></div>
 </section>
 <section class="card">
   <h2>🏆 Dernières performances</h2><div id="last-results"></div>
@@ -187,6 +190,31 @@ async function setup(){
         }else box.append(el('p','Média privé indisponible pour le moment.','muted'));
       }
       box.append(el('small',formatDate(n.created_at)));
+      if(member.administrateur){
+        const remove=el('button','🗑 Supprimer cette publication','news-delete');
+        remove.type='button';
+        remove.setAttribute('aria-label','Supprimer la publication '+n.titre+' du cheval '+(bySlug.get(n.cheval_slug)?.cheval_nom||n.cheval_slug));
+        remove.onclick=async()=>{
+          if(!confirm('Supprimer définitivement cette publication concernant '+(bySlug.get(n.cheval_slug)?.cheval_nom||n.cheval_slug)+' ?\nLe texte et la photo/vidéo seront retirés. Les notifications déjà reçues ne peuvent pas être effacées.'))return;
+          remove.disabled=true;
+          $('news-delete-status').textContent='Suppression de la publication…';
+          try{
+            const {data:deleted,error:deleteError}=await db.from('actualites_chevaux_privees')
+              .delete().eq('id',n.id).eq('cheval_slug',n.cheval_slug).select('id,media_path').single();
+            if(deleteError||!deleted)throw(deleteError||new Error('Publication non supprimée.'));
+            box.remove();
+            $('news-delete-status').textContent='Publication « '+n.titre+' » supprimée.';
+            if(deleted.media_path){
+              const {error:mediaError}=await db.storage.from('ei-chevaux-prives').remove([deleted.media_path]);
+              if(mediaError)$('news-delete-status').textContent+=' Le fichier associé n’a pas pu être effacé du stockage : '+mediaError.message;
+            }
+          }catch(err){
+            remove.disabled=false;
+            $('news-delete-status').textContent='Suppression impossible : '+(err?.message||'erreur inconnue');
+          }
+        };
+        box.append(remove);
+      }
       $('private-news').append(box);
       $('newsSection').hidden=false;
     }
