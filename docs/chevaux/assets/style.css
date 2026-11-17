@@ -132,17 +132,18 @@
 .recent-item{
   position:relative;display:flex;justify-content:space-between;align-items:center;gap:10px;
   min-width:0;height:var(--recent-row-height);border-bottom:1px solid #f1ece8;
-  padding:6px 7px;box-sizing:border-box
+  padding:4px 7px;box-sizing:border-box
 }
 .recent-item:last-child{border-bottom:0}
 .recent-content{min-width:0;flex:0 1 calc(50% - 28px);max-width:calc(50% - 28px)}
 .recent-silk{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:block;width:42px;height:50px;object-fit:contain;background:transparent;pointer-events:none}
- .recent-horse{
-  display:block;font-size:16px;line-height:1.25;font-weight:850;text-decoration:none;color:#242424;
-  overflow:hidden;text-overflow:ellipsis;white-space:nowrap
+.recent-horse{
+  display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;
+  font-size:16px;line-height:1.12;font-weight:850;text-decoration:none;color:#242424;
+  overflow:hidden;white-space:normal;overflow-wrap:normal;word-break:normal
 }
 .recent-horse:hover{text-decoration:underline;text-decoration-color:var(--accent);text-underline-offset:3px}
-.recent-meta{font-size:13px;color:#6d6762;margin-top:4px;line-height:1.3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.recent-meta{font-size:12px;color:#6d6762;margin-top:2px;line-height:1.15;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .recent-side{display:flex;flex:0 0 auto;align-items:center;justify-content:flex-end;gap:6px;margin-left:auto}
 .recent-rank{display:inline-flex;align-items:center;justify-content:center;min-height:42px;border-radius:9px;background:#f3f1ef;color:#3c3733;padding:5px 9px;font-size:28px;font-weight:900;line-height:1;text-align:center;white-space:nowrap;font-variant-numeric:tabular-nums}
 .recent-rank.gold,.recent-rank.silver,.recent-rank.bronze{background:#fff0e4;color:#97470e}
@@ -155,8 +156,8 @@
   .recent-item{gap:6px;padding:5px 4px}
   .recent-content{flex-basis:calc(50% - 23px);max-width:calc(50% - 23px)}
   .recent-silk{width:33px;height:40px}
-  .recent-horse{font-size:14px}
-  .recent-meta{font-size:12px}
+  .recent-horse{font-size:14px;line-height:1.12}
+  .recent-meta{font-size:11.5px}
   .recent-side{gap:4px}
   .recent-rank{font-size:24px;padding:5px 7px;min-height:40px}
   .recent-action{font-size:12px;padding:6px 7px}
