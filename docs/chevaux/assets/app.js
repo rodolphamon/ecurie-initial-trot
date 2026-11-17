@@ -15,11 +15,13 @@ try{const q=await fetch(base+'data/qualifications.json',{cache:'no-store'});if(q
 try{
  const {createClient}=await import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm');
  const client=createClient('https://yeecwaaizmvrhwobukfa.supabase.co','sb_publishable_xUy2EJA3u3cKWl8BB4GNPQ_qhV9Pes3');
- const [en,ga]=await Promise.all([
+ const [en,ga,va,re]=await Promise.all([
    client.from('ei_contributions_engagements').select('cheval_slug,engagements'),
-   client.from('ei_contributions_gains').select('cheval_slug,gains')
+   client.from('ei_contributions_gains').select('cheval_slug,gains'),
+   client.from('ei_contributions_valeurs').select('cheval_slug,valeur'),
+   client.from('ei_contributions_records').select('cheval_slug,chrono')
  ]);
- if(en.error||ga.error)throw Error('Source des contributions indisponible');
+ if(en.error||ga.error||va.error||re.error)throw Error('Source des contributions indisponible');
  const valid=new Set((all.horses||[]).map(h=>h.id));
  editor.engagements=editor.engagements||{};
  for(const row of en.data||[])if(valid.has(row.cheval_slug)&&Array.isArray(row.engagements))
@@ -28,6 +30,15 @@ try{
    if(!valid.has(row.cheval_slug)||!Number.isSafeInteger(Number(row.gains)))continue;
    if(gallop.has(row.cheval_slug))gallop.set(row.cheval_slug,{...gallop.get(row.cheval_slug),gains:Number(row.gains)});
    else if(trot.horses?.[row.cheval_slug])trot.horses[row.cheval_slug].gains=Number(row.gains);
+ }
+ for(const row of va.data||[]){
+   const n=Number(row.valeur);
+   if(!valid.has(row.cheval_slug)||!gallop.has(row.cheval_slug)||!Number.isFinite(n))continue;
+   gallop.set(row.cheval_slug,{...gallop.get(row.cheval_slug),value:n});
+ }
+ for(const row of re.data||[]){
+   if(!valid.has(row.cheval_slug)||!trot.horses?.[row.cheval_slug]||!/^\d{1,2}'[0-5]\d"\d$/.test(row.chrono||''))continue;
+   trot.horses[row.cheval_slug].record=row.chrono;
  }
 }catch(error){console.warn('Contributions en direct indisponibles, affichage des données de référence',error)}
 try{let response=await fetch(base+'../palmares/replays.json',{cache:'no-store'});if(response.ok){let data=await response.json();for(const replay of data.replays||[]){let url=absoluteUrl(replay.url);
