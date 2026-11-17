@@ -1,6 +1,6 @@
 {
   "schema": "ecurie-initial-profils-v1",
-  "updated_at": "2026-11-16",
+  "updated_at": "2026-11-17",
   "note": "Pour les performances : au maximum les cinq dernières sorties documentées, dont les sources sont conservées en interne pour contrôle. Les classements exacts n'ont été indiqués que lorsqu'ils étaient disponibles. Les jeunes chevaux inédits n'ont pas de performances inventées. Les engagements existants sont conservés ; les nouveaux engagements au trot du 13/11/2026 sont ajoutés sans reprendre les horaires. Résultats du 13/11/2026 (MONA LISA STARDUST 7e, VICTORIA SECRET non placée) communiqués par l'Écurie Initial.",
   "performances": {
     "memphis-belle": [
@@ -1306,6 +1306,32 @@
         "code_programme": "1215",
         "part": "R (16 %)",
         "source_description": "Liste France Galop communiquée le 16/11/2026 ; horaires et statut partant confirmés séparément lorsque disponibles"
+      }
+    ],
+    "gonafoot": [
+      {
+        "date": "2026-11-25",
+        "hippodrome": "Deauville",
+        "type": "Plat",
+        "statut": "engage",
+        "prix": "Prix du Moulin Tercey",
+        "allocation": 25900,
+        "distance": "1300 m",
+        "code_programme": "1222",
+        "source_description": "Capture des engagements France Galop transmise par le gérant le 17/11/2026 ; horaires et jockeys non connus au stade des engagements"
+      }
+    ],
+    "saturday-night": [
+      {
+        "date": "2026-11-25",
+        "hippodrome": "Deauville",
+        "type": "Plat",
+        "statut": "engage",
+        "prix": "Finale HD CH.",
+        "allocation": 17400,
+        "distance": "1900 m",
+        "code_programme": "1224",
+        "source_description": "Capture des engagements France Galop transmise par le gérant le 17/11/2026 ; horaires et jockeys non connus au stade des engagements"
       }
     ]
   }
