@@ -1,6 +1,6 @@
 // Service Worker de l'application Écurie Initial.
 // Cache minimal ; aucun contenu privé conservé volontairement en cache.
-const CACHE='ei-app-shell-v11';
+const CACHE='ei-app-shell-v12';
 self.addEventListener('install',event=>{
   event.waitUntil(caches.open(CACHE).then(c=>c.addAll(['./','manifest.webmanifest','icon-ei-192.png','notification-ei-badge.png','notification-transparent-192.png'])));
   self.skipWaiting();
