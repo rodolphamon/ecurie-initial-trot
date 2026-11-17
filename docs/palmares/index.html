@@ -20,23 +20,23 @@ td:first-child,th:first-child{text-align:center;width:75px}td.date{white-space:n
 .rank-cell{text-align:center;font-size:25px;white-space:nowrap;width:55px}.pal-card-medal{font-size:27px;line-height:1.1;display:block;text-align:center;margin:3px 0}.pal-card-silk{flex-direction:column;gap:2px}
 /* La table reste dédiée aux ordinateurs; sur téléphone chaque victoire possède une vraie fiche. */
 .cards{display:none}
-.pal-card{display:grid;grid-template-columns:78px minmax(0,1fr);grid-template-rows:auto auto auto;column-gap:10px;row-gap:6px;align-items:start;padding:12px 14px;background:#fff;border:1px solid #e9e7e5;border-left:4px solid var(--orange);border-radius:12px;box-shadow:0 3px 12px rgba(33,24,16,.035);min-width:0}
+.pal-card{display:grid;grid-template-columns:68px minmax(0,1fr) 82px;grid-template-rows:auto auto;column-gap:7px;row-gap:3px;align-items:start;padding:11px 11px;background:#fff;border:1px solid #e9e7e5;border-left:4px solid var(--orange);border-radius:12px;box-shadow:0 3px 12px rgba(33,24,16,.035);min-width:0}
 .pal-card:nth-child(even){background:#fffbf8}
 .pal-card-date{grid-column:1;grid-row:1;align-self:center;justify-self:start;display:block;font-size:12px;font-weight:800;color:#b95819;font-variant-numeric:tabular-nums;white-space:nowrap}
-.pal-card-name{grid-column:2;grid-row:1;align-self:center;min-width:0;font-size:17px;font-weight:900;line-height:1.25;color:#1d1d1d;white-space:nowrap}
-.pal-card-silk{grid-column:1;grid-row:2 / span 2;display:flex;align-items:center;justify-content:center;min-height:0;padding-top:13px}
+.pal-card-name{grid-column:2 / 4;grid-row:1;align-self:center;min-width:0;font-size:17px;font-weight:900;line-height:1.25;color:#1d1d1d;white-space:nowrap}
+.pal-card-silk{grid-column:1;grid-row:2;display:flex;align-items:flex-start;justify-content:center;min-height:0;padding-top:9px}
 .pal-card-silk .robe{height:54px;width:46px;object-fit:contain}
 .pal-card-main{grid-column:2;grid-row:2;min-width:0;display:flex;flex-direction:column;justify-content:flex-start;padding-top:3px}
-.pal-card-actions{grid-column:2;grid-row:3;min-width:0}
+.pal-card-actions{grid-column:3;grid-row:2}
 .pal-card-place{font-size:13px;color:#66616a;margin-top:5px;line-height:1.35;overflow-wrap:anywhere}
 .pal-card-jockey{font-size:13px;color:#37383e;margin-top:6px;line-height:1.35;font-weight:600;white-space:nowrap}
 .pal-card-jockey-label{font-weight:500;color:#7d7d83;margin-right:5px}.pal-card-trainer{font-size:12px;line-height:1.35;color:#5f6065;margin-top:5px;white-space:nowrap}.pal-card-trainer-label{font-weight:500;color:#7d7d83;margin-right:5px}
 .replay-link{display:inline-flex;align-items:center;justify-content:center;gap:5px;padding:7px 10px;border:1px solid #e5ba92;border-radius:999px;background:#fff5ed;color:#9c4712;font-size:12px;font-weight:800;text-decoration:none;line-height:1;white-space:nowrap}
 .replay-link svg{width:21px;height:19px;flex-shrink:0}
 .replay-link:hover,.replay-link:focus-visible{background:#f9d8bf;color:#72310c}
-.pal-card-replay{margin:0}.pal-card-actions{display:flex;flex-direction:row;align-items:center;justify-content:flex-end;gap:8px;flex-shrink:0;align-self:center;margin-top:3px}.pal-card-actions .replay-link{padding:5px 8px;font-size:11px}.video-cell{text-align:center;width:94px}.video-cell .replay-link{padding:6px 9px}
-.pal-card-disc{display:inline-flex;align-items:center;gap:2px;white-space:nowrap;padding:4px 8px;border-radius:20px;background:#fff5ec;border:1px solid #f5e5d7;color:#8f4517;font-size:12px;font-weight:800}
-.pal-card-disc .disc-img{width:25px;height:19px;margin:0;object-fit:contain}
+.pal-card-replay{margin:0}.pal-card-actions{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;flex-shrink:0;align-self:center;margin-top:0;min-width:0;width:100%}.pal-card-actions .replay-link{padding:5px 8px;font-size:11px}.video-cell{text-align:center;width:94px}.video-cell .replay-link{padding:6px 9px}
+.pal-card-disc{display:inline-flex;align-items:center;justify-content:center;gap:2px;white-space:nowrap;padding:4px 3px;border-radius:20px;background:#fff5ec;border:1px solid #f5e5d7;color:#8f4517;font-size:11px;font-weight:800;max-width:100%}
+.pal-card-disc .disc-img{width:20px;height:18px;margin:0;object-fit:contain}
 .pal-card-disc.is-unclassified{background:#f4f4f4;border-color:#ececec;color:#636363}
 @media(max-width:790px){
  body{padding:9px}
@@ -57,16 +57,28 @@ td:first-child,th:first-child{text-align:center;width:75px}td.date{white-space:n
  .fineprint{font-size:11px}
  .nav{gap:10px}
 }
-@media(max-width:370px){
- .pal-card{grid-template-columns:69px minmax(0,1fr);column-gap:7px;row-gap:5px;padding:10px 9px}
- .pal-card-date{font-size:11px}
- .pal-card-silk{padding-top:12px}
- .pal-card-silk .robe{height:49px;width:40px}
+
+@media(min-width:371px) and (max-width:790px){
  .pal-card-name{font-size:16px}
  .pal-card-jockey{font-size:12px}
- .pal-card-trainer{font-size:11px}
- .pal-card-actions{gap:5px}
- .pal-card-disc{font-size:11px;padding:4px 6px}
+ .pal-card-trainer{font-size:11.5px}
+ .pal-card-date{font-size:11.5px}
+ .pal-card-actions .replay-link{padding:5px 6px;font-size:10.5px}
+ .pal-card-actions .replay-link svg{width:18px;height:17px}
+}
+@media(max-width:370px){
+ .pal-card{grid-template-columns:59px minmax(0,1fr) 70px;column-gap:6px;row-gap:3px;padding:10px 8px}
+ .pal-card-date{font-size:10px}
+ .pal-card-silk{padding-top:7px}
+ .pal-card-silk .robe{height:49px;width:40px}
+ .pal-card-name{font-size:15px}
+ .pal-card-jockey{font-size:11px}
+ .pal-card-trainer{font-size:10.5px}
+ .pal-card-actions{gap:4px}
+ .pal-card-disc{font-size:10px;padding:3px 2px}
+ .pal-card-disc .disc-img{width:17px;height:17px}
+ .pal-card-actions .replay-link{padding:4px 5px;font-size:10px}
+ .pal-card-actions .replay-link svg{width:17px;height:16px}
  .top{padding:15px 12px}
  .caption-line .legend{gap:3px}
  .caption-line .legend .tag{gap:2px;padding:6px 2px}
