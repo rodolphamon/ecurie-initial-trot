@@ -75,9 +75,9 @@ async function setup(){
     $('welcome').after(quick);
   }
   try{
-    const [e,g]=await Promise.all([db.rpc('ei_peut_contribuer',{section:'engagements'}),db.rpc('ei_peut_contribuer',{section:'gains'})]);
-    if(e.data===true||g.data===true){
-      const shortcut=el('a','📝 Gérer engagements et gains','button');
+    const permissions=await Promise.all(['engagements','gains','valeurs','records'].map(section=>db.rpc('ei_peut_contribuer',{section})));
+    if(permissions.some(p=>p.data===true)){
+      const shortcut=el('a','📝 Gérer engagements, gains, valeurs et records','button');
       shortcut.href='../contribution/';
       $('welcome').after(shortcut);
     }
