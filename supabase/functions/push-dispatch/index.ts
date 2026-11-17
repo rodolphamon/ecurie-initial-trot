@@ -222,7 +222,7 @@ async function run() {
           body:resumePartants(chosen),
           url:APP+"/engagements/"};
       }else if(alert.categorie==="confirmed"){
-        message={title:"✅ Partant confirmé · "+esc(p.nom),
+        message={title:"🐎 Prochain partant",
           body:annonceCourse(p.nom,p.hippodrome,p.heure,jourCourse(p.date,clock.date)),
           url:APP+"/chevaux/"+alert.cheval_slug+"/"};
       }else if(alert.categorie==="withdrawn"){
