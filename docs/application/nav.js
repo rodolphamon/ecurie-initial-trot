@@ -21,6 +21,29 @@
   const onPrivate = currentPath.startsWith(applicationBase.pathname) &&
     (currentPath !== applicationBase.pathname || new URLSearchParams(location.search).get("espace") === "associes") &&
     !isContact && !currentPath.startsWith(notificationsBase.pathname);
+
+  const installed = !!(window.matchMedia?.("(display-mode: standalone)")?.matches || navigator.standalone === true);
+  const beforeOpening = Date.now() < Date.parse("2026-11-30T23:00:00Z");
+  const isAppHome = currentPath === applicationBase.pathname || currentPath === applicationBase.pathname + "index.html";
+
+  // La fermeture s'applique à la PWA installée, pas aux pages du site public.
+  async function canAccessInstalledApp() {
+    try {
+      const { createClient } = await import("https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm");
+      const db = createClient(
+        "https://yeecwaaizmvrhwobukfa.supabase.co",
+        "sb_publishable_xUy2EJA3u3cKWl8BB4GNPQ_qhV9Pes3"
+      );
+      const { data: { user }, error: authError } = await db.auth.getUser();
+      if (authError || !user) return false;
+      const { data: state, error } = await db.rpc("ei_etat_lancement");
+      return !error && state?.autorise === true;
+    } catch (_) {
+      return false;
+    }
+  }
+
+  function mountNavigation() {
   const tabs = [
     { label: "🐎 Chevaux", href: chevauxBase.href, active: currentPath.startsWith(chevauxBase.pathname) },
     { label: "📅 Courses", href: coursesBase.href, active: currentPath.startsWith(coursesBase.pathname) },
@@ -65,5 +88,29 @@
     if (tab.active) link.setAttribute("aria-current", "page");
     nav.appendChild(link);
   }
+
   document.body.appendChild(nav);
+  }
+
+  if (installed && beforeOpening) {
+    const gateCss = document.createElement("style");
+    gateCss.textContent = "html.ei-checking-prelaunch body{visibility:hidden!important}";
+    document.head.appendChild(gateCss);
+    document.documentElement.classList.add("ei-checking-prelaunch");
+    const reject = () => {
+      if (!isAppHome) {
+        window.location.replace(applicationBase.href);
+      } else {
+        document.body.classList.add("ei-prelaunch");
+        document.documentElement.classList.remove("ei-checking-prelaunch");
+      }
+    };
+    canAccessInstalledApp().then(allowed => {
+      if (!allowed) return reject();
+      document.documentElement.classList.remove("ei-checking-prelaunch");
+      mountNavigation();
+    }).catch(reject);
+    return;
+  }
+  mountNavigation();
 })();
