@@ -1,6 +1,6 @@
 {
-  "version": 99,
-  "note": "Liens de courses historiques (LeTROT, Equidia, ZEturf, Dailymotion). Les pages ZEturf indiquant « Replay » ont été recoupées par cheval/date/R/C ; accès et lecture effective des lecteurs vidéo non garantis. Certains anciens liens Equidia sont reconstruits et restent à vérifier. Les vidéos de qualifications sont dans docs/chevaux/data/qualifications.json. Priorité LeTROT appliquée à 35 liens officiels déjà référencés le 18/11/2026 ; anciennes URL conservées sous lien_url_avant_priorite_letrot. La présence d'une page officielle ne prouve pas que la vidéo se lit effectivement.",
+  "version": 100,
+  "note": "Liens de courses historiques (LeTROT, Equidia, ZEturf, Dailymotion). Les pages ZEturf indiquant « Replay » ont été recoupées par cheval/date/R/C ; accès et lecture effective des lecteurs vidéo non garantis. Certains anciens liens Equidia sont reconstruits et restent à vérifier. Les vidéos de qualifications sont dans docs/chevaux/data/qualifications.json. Priorité LeTROT appliquée à 35 liens officiels déjà référencés le 18/11/2026 ; anciennes URL conservées sous lien_url_avant_priorite_letrot. La présence d'une page officielle ne prouve pas que la vidéo se lit effectivement. Les 33 URL restantes hors LeTROT/Equidia ont été sorties du champ public « url » et conservées à part dans « lien_historique_non_officiel » : aucune vidéo d'archive n'a été supprimée.",
   "replays": [
     {
       "date": "2026-11-16",
@@ -44,7 +44,7 @@
       "date": "2026-11-11",
       "cheval": "MEMPHIS BELLE",
       "hippodrome": "GRAIGNES",
-      "url": "https://zeturf.fr/fr/course-du-jour/2026-11-11/R12C1-graignes-prix-pierre-massieu",
+      "url": "",
       "justificatif": "https://zeturf.fr/fr/course-du-jour/2026-11-11/R12C1-graignes-prix-pierre-massieu",
       "controle": "Correction : Prix Pierre Massieu R12C1 et MEMPHIS BELLE 5e, source avec Replay. Correspondance de la course recoupée sur la page ZEturf ; page marquée « Replay », lecture effective de la vidéo non testée.",
       "verification_course_2026_11_16": {
@@ -58,13 +58,14 @@
         "source": "https://zeturf.fr/fr/course-du-jour/2026-11-11/R12C1-graignes-prix-pierre-massieu",
         "course": "R12C1",
         "lecture_video": "non_testee"
-      }
+      },
+      "lien_historique_non_officiel": "https://zeturf.fr/fr/course-du-jour/2026-11-11/R12C1-graignes-prix-pierre-massieu"
     },
     {
       "date": "2026-11-07",
       "cheval": "ISOLEE DU BOUILLON",
       "hippodrome": "LAVAL",
-      "url": "https://www.zeturf.fr/fr/course-du-jour/2026-11-07/R5C3-laval-prix-cobaty-53?prefill=8",
+      "url": "",
       "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2026-11-07/R5C3-laval-prix-cobaty-53?prefill=8",
       "controle": "Prix Cobaty 53 R5C3, ISOLÉE DU BOUILLON 6e, Replay indiqué. Correspondance de la course recoupée sur la page ZEturf ; page marquée « Replay », lecture effective de la vidéo non testée.",
       "lien_equidia_precedent": "https://www.equidia.fr/courses/2026-11-07/R5/C3",
@@ -73,7 +74,8 @@
         "source": "https://www.zeturf.fr/fr/course-du-jour/2026-11-07/R5C3-laval-prix-cobaty-53?prefill=8",
         "course": "R5C3",
         "lecture_video": "non_testee"
-      }
+      },
+      "lien_historique_non_officiel": "https://www.zeturf.fr/fr/course-du-jour/2026-11-07/R5C3-laval-prix-cobaty-53?prefill=8"
     },
     {
       "date": "2026-11-05",
@@ -95,7 +97,7 @@
       "date": "2026-11-01",
       "cheval": "MEMPHIS BELLE",
       "hippodrome": "LISIEUX",
-      "url": "https://zeturf.fr/fr/course-du-jour/2026-11-01/R13C2-lisieux-prix-d-orbec",
+      "url": "",
       "justificatif": "https://zeturf.fr/fr/course-du-jour/2026-11-01/R13C2-lisieux-prix-d-orbec",
       "preuve_lien_equidia": "https://turfin.fr/course/2026-11-01/r16c2-lisieux-prix-d-orbec",
       "controle": "Correction : Prix d'Orbec R13C2 et MEMPHIS BELLE 3e, source avec Replay. Correspondance de la course recoupée sur la page ZEturf ; page marquée « Replay », lecture effective de la vidéo non testée.",
@@ -105,7 +107,8 @@
         "source": "https://zeturf.fr/fr/course-du-jour/2026-11-01/R13C2-lisieux-prix-d-orbec",
         "course": "R13C2",
         "lecture_video": "non_testee"
-      }
+      },
+      "lien_historique_non_officiel": "https://zeturf.fr/fr/course-du-jour/2026-11-01/R13C2-lisieux-prix-d-orbec"
     },
     {
       "date": "2026-10-31",
@@ -119,7 +122,7 @@
       "date": "2026-10-30",
       "cheval": "LUCKY DES GAUDINES",
       "hippodrome": "TOULOUSE",
-      "url": "https://www.zeturf.fr/fr/course-du-jour/2026-10-30/R5C5-toulouse-prix-victor-bermes?prefill=15",
+      "url": "",
       "preuve_identification_course": "https://turfin.fr/course/2026-10-30/r5c5-la-cepiere-prix-victor-bermes",
       "controle": "Prix Victor Bermes R5C5, LUCKY DES GAUDINES 2e, Replay indiqué. Correspondance de la course recoupée sur la page ZEturf ; page marquée « Replay », lecture effective de la vidéo non testée.",
       "lien_equidia_precedent": "https://www.equidia.fr/courses/2026-10-30/R5/C5",
@@ -129,7 +132,8 @@
         "source": "https://www.zeturf.fr/fr/course-du-jour/2026-10-30/R5C5-toulouse-prix-victor-bermes?prefill=15",
         "course": "R5C5",
         "lecture_video": "non_testee"
-      }
+      },
+      "lien_historique_non_officiel": "https://www.zeturf.fr/fr/course-du-jour/2026-10-30/R5C5-toulouse-prix-victor-bermes?prefill=15"
     },
     {
       "date": "2026-10-29",
@@ -191,7 +195,7 @@
       "date": "2026-10-22",
       "cheval": "GONAFOOT",
       "hippodrome": "LES SABLES-D'OLONNE",
-      "url": "https://www.zeturf.fr/fr/course-du-jour/2026-10-22/R2C1-les-sables-d-olonne-prix-vision-d-etat",
+      "url": "",
       "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2026-10-22/R2C1-les-sables-d-olonne-prix-vision-d-etat",
       "controle": "Prix Vision d'État R2C1, GONAFOOT 3e, Replay indiqué. Correspondance de la course recoupée sur la page ZEturf ; page marquée « Replay », lecture effective de la vidéo non testée.",
       "lien_equidia_precedent": "https://www.equidia.fr/courses/2026-10-22/R2/C1",
@@ -200,7 +204,8 @@
         "source": "https://www.zeturf.fr/fr/course-du-jour/2026-10-22/R2C1-les-sables-d-olonne-prix-vision-d-etat",
         "course": "R2C1",
         "lecture_video": "non_testee"
-      }
+      },
+      "lien_historique_non_officiel": "https://www.zeturf.fr/fr/course-du-jour/2026-10-22/R2C1-les-sables-d-olonne-prix-vision-d-etat"
     },
     {
       "date": "2026-10-21",
@@ -235,7 +240,7 @@
       "date": "2026-10-17",
       "cheval": "NOSTALGIE DAIRPET",
       "hippodrome": "ENGHIEN",
-      "url": "https://www.zeturf.fr/fr/course-du-jour/2026-10-17/R5C7-enghien-soisy-prix-du-maine?prefill=8",
+      "url": "",
       "preuve_identification_course": "https://turfin.fr/course/2026-10-17/r5c7-enghien-prix-du-maine",
       "controle": "Prix du Maine R5C7, NOSTALGIE DAIRPET 2e, page Replay indiquée (accès non confirmé). Correspondance de la course recoupée sur la page ZEturf ; page marquée « Replay », lecture effective de la vidéo non testée.",
       "lien_equidia_precedent": "https://www.equidia.fr/courses/2026-10-17/R5/C7",
@@ -245,7 +250,8 @@
         "source": "https://www.zeturf.fr/fr/course-du-jour/2026-10-17/R5C7-enghien-soisy-prix-du-maine?prefill=8",
         "course": "R5C7",
         "lecture_video": "non_testee"
-      }
+      },
+      "lien_historique_non_officiel": "https://www.zeturf.fr/fr/course-du-jour/2026-10-17/R5C7-enghien-soisy-prix-du-maine?prefill=8"
     },
     {
       "date": "2026-10-15",
@@ -389,7 +395,7 @@
       "date": "2026-09-22",
       "cheval": "MYRTILLE MARBOULA",
       "hippodrome": "VINCENNES",
-      "url": "https://zeturf.fr/fr/course-du-jour/2026-09-22/R3C6-vincennes-prix-myrrha",
+      "url": "",
       "justificatif": "https://zeturf.fr/fr/course-du-jour/2026-09-22/R3C6-vincennes-prix-myrrha",
       "controle": "Prix Myrrha R3C6, MYRTILLE MARBOULA 1re, Replay indiqué. Correspondance de la course recoupée sur la page ZEturf ; page marquée « Replay », lecture effective de la vidéo non testée.",
       "lien_equidia_precedent": "https://www.equidia.fr/courses/2026-09-22/R3/C6",
@@ -398,7 +404,8 @@
         "source": "https://zeturf.fr/fr/course-du-jour/2026-09-22/R3C6-vincennes-prix-myrrha",
         "course": "R3C6",
         "lecture_video": "non_testee"
-      }
+      },
+      "lien_historique_non_officiel": "https://zeturf.fr/fr/course-du-jour/2026-09-22/R3C6-vincennes-prix-myrrha"
     },
     {
       "date": "2026-09-21",
@@ -1019,7 +1026,7 @@
       "date": "2026-06-02",
       "cheval": "MOONDANCE OKINA",
       "hippodrome": "VINCENNES",
-      "url": "https://www.zeturf.fr/fr/course-du-jour/2026-06-02/R5C4-vincennes-prix-prokne",
+      "url": "",
       "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2026-06-02/R5C4-vincennes-prix-prokne",
       "controle": "Prix Prokne R5C4, MOONDANCE OKINA 4e, Replay indiqué. Correspondance de la course recoupée sur la page ZEturf ; page marquée « Replay », lecture effective de la vidéo non testée.",
       "lien_equidia_precedent": "https://www.equidia.fr/courses/2026-06-02/R5/C4",
@@ -1028,7 +1035,8 @@
         "source": "https://www.zeturf.fr/fr/course-du-jour/2026-06-02/R5C4-vincennes-prix-prokne",
         "course": "R5C4",
         "lecture_video": "non_testee"
-      }
+      },
+      "lien_historique_non_officiel": "https://www.zeturf.fr/fr/course-du-jour/2026-06-02/R5C4-vincennes-prix-prokne"
     },
     {
       "date": "2026-05-29",
@@ -2126,10 +2134,11 @@
       "date": "2024-06-16",
       "cheval": "JAMAIS SANS ELLE",
       "hippodrome": "RAMBOUILLET",
-      "url": "https://www.zeturf.fr/fr/course-du-jour/2024-06-16/R7C3-rambouillet-prix-de-bonnelles-groupe-a",
+      "url": "",
       "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2024-06-16/R7C3-rambouillet-prix-de-bonnelles-groupe-a",
       "preuve_arrivee": "https://www.zeturf.fr/fr/course-du-jour/2024-06-16/R7C3-rambouillet-prix-de-bonnelles-groupe-a",
-      "controle": "Prix de Bonnelles (Gr A), Rambouillet R7C3 le 16/06/2024 ; JAMAIS SANS ELLE 2e n°7 avec A. Lamy ; page ZEturf identifiée comportant section Replay, lecture vidéo non testée."
+      "controle": "Prix de Bonnelles (Gr A), Rambouillet R7C3 le 16/06/2024 ; JAMAIS SANS ELLE 2e n°7 avec A. Lamy ; page ZEturf identifiée comportant section Replay, lecture vidéo non testée.",
+      "lien_historique_non_officiel": "https://www.zeturf.fr/fr/course-du-jour/2024-06-16/R7C3-rambouillet-prix-de-bonnelles-groupe-a"
     },
     {
       "date": "2024-06-15",
@@ -2494,10 +2503,11 @@
       "date": "2023-03-26",
       "cheval": "HOMAYA DU BOCAGE",
       "hippodrome": "CHARTRES",
-      "url": "https://www.zeturf.fr/fr/course-du-jour/2023-03-26/R11C8-chartres-prix-de-l-office-de-tourisme-chartres-me",
+      "url": "",
       "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2023-03-26/R11C8-chartres-prix-de-l-office-de-tourisme-chartres-me",
       "preuve_arrivee": "https://www.zone-turf.fr/cheval/homaya-du-bocage-788862/",
-      "controle": "R11C8 Prix de l'Office de Tourisme Chartres Me, 26/03/2023, n°8 2e, A. Guillemin ; rubrique Replay présente sur ZEturf ; lecture effective du replay non testée."
+      "controle": "R11C8 Prix de l'Office de Tourisme Chartres Me, 26/03/2023, n°8 2e, A. Guillemin ; rubrique Replay présente sur ZEturf ; lecture effective du replay non testée.",
+      "lien_historique_non_officiel": "https://www.zeturf.fr/fr/course-du-jour/2023-03-26/R11C8-chartres-prix-de-l-office-de-tourisme-chartres-me"
     },
     {
       "date": "2023-03-23",
@@ -2660,9 +2670,10 @@
       "date": "2022-10-09",
       "cheval": "JETHAN DE MONGOCHY",
       "hippodrome": "REIMS",
-      "url": "https://www.zeturf.fr/fr/course-du-jour/2022-10-09/R10C4-reims-prix-de-betheny-groupe-b",
+      "url": "",
       "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2022-10-09/R10C4-reims-prix-de-betheny-groupe-b",
-      "controle": "Gagnant n°9 Prix de Betheny (Groupe B) R10C4, Reims 09/10/2022 avec L. Koubiche ; fiche ZEturf exacte comporte section Replay, lecture non testée."
+      "controle": "Gagnant n°9 Prix de Betheny (Groupe B) R10C4, Reims 09/10/2022 avec L. Koubiche ; fiche ZEturf exacte comporte section Replay, lecture non testée.",
+      "lien_historique_non_officiel": "https://www.zeturf.fr/fr/course-du-jour/2022-10-09/R10C4-reims-prix-de-betheny-groupe-b"
     },
     {
       "date": "2022-10-07",
@@ -2704,10 +2715,11 @@
       "date": "2022-08-28",
       "cheval": "HANANE MONTAVAL",
       "hippodrome": "ROYAN-ATLANTIQUE",
-      "url": "https://www.zeturf.fr/fr/course-du-jour/2022-08-28/R9C3-royan-la-palmyre-prix-de-la-ville-de-saint-augustin",
+      "url": "",
       "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2022-08-28/R9C3-royan-la-palmyre-prix-de-la-ville-de-saint-augustin",
       "preuve_arrivee": "https://www.geny.com/course/1342908/arrivee-rapports",
-      "controle": "R9C3 Prix de la Ville de Saint-Augustin, Royan La Palmyre 28/08/2022 : HANANE MONTAVAL n°10 2e avec A. Mériel, arrivée et rubrique Replay confirmées dans la page ZEturf consultée ; lecture effective du flux vidéo non testée."
+      "controle": "R9C3 Prix de la Ville de Saint-Augustin, Royan La Palmyre 28/08/2022 : HANANE MONTAVAL n°10 2e avec A. Mériel, arrivée et rubrique Replay confirmées dans la page ZEturf consultée ; lecture effective du flux vidéo non testée.",
+      "lien_historique_non_officiel": "https://www.zeturf.fr/fr/course-du-jour/2022-08-28/R9C3-royan-la-palmyre-prix-de-la-ville-de-saint-augustin"
     },
     {
       "date": "2022-08-23",
@@ -2721,10 +2733,11 @@
       "date": "2022-08-17",
       "cheval": "JETHAN DE MONGOCHY",
       "hippodrome": "ROYAN-ATLANTIQUE",
-      "url": "https://www.zeturf.fr/fr/course-du-jour/2022-08-17/R8C1-royan-la-palmyre-prix-ar-pub",
+      "url": "",
       "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2022-08-17/R8C1-royan-la-palmyre-prix-ar-pub",
       "preuve_arrivee": "https://www.zone-turf.fr/cheval/jethan-de-mongochy-1749902/",
-      "controle": "17/08/2022 Royan R8C1 Prix Ar Pub, JETHAN DE MONGOCHY 3e n°11 avec Charley Heslouin ; course et arrivée confirmées, page ZEturf avec rubrique Replay ; flux vidéo non testé."
+      "controle": "17/08/2022 Royan R8C1 Prix Ar Pub, JETHAN DE MONGOCHY 3e n°11 avec Charley Heslouin ; course et arrivée confirmées, page ZEturf avec rubrique Replay ; flux vidéo non testé.",
+      "lien_historique_non_officiel": "https://www.zeturf.fr/fr/course-du-jour/2022-08-17/R8C1-royan-la-palmyre-prix-ar-pub"
     },
     {
       "date": "2022-08-16",
@@ -2826,10 +2839,11 @@
       "date": "2022-04-10",
       "cheval": "HERMES PLANCHETTE",
       "hippodrome": "RAMBOUILLET",
-      "url": "https://www.zeturf.fr/fr/course-du-jour/2022-04-10/R10C4-rambouillet-prix-office-de-tourisme-rambouillet-t",
+      "url": "",
       "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2022-04-10/R10C4-rambouillet-prix-office-de-tourisme-rambouillet-t",
       "preuve_arrivee": "https://www.zeturf.fr/fr/course-du-jour/2022-04-10/R10C4-rambouillet-prix-office-de-tourisme-rambouillet-t",
-      "controle": "2e du Prix Office de Tourisme Rambouillet T., Rambouillet R10C4 le 10/04/2022, n°12 et A. Ernault confirmés sur l'arrivée ; page ZEturf comporte une rubrique Replay, vidéo non visionnée."
+      "controle": "2e du Prix Office de Tourisme Rambouillet T., Rambouillet R10C4 le 10/04/2022, n°12 et A. Ernault confirmés sur l'arrivée ; page ZEturf comporte une rubrique Replay, vidéo non visionnée.",
+      "lien_historique_non_officiel": "https://www.zeturf.fr/fr/course-du-jour/2022-04-10/R10C4-rambouillet-prix-office-de-tourisme-rambouillet-t"
     },
     {
       "date": "2022-03-22",
@@ -2960,9 +2974,10 @@
       "date": "2021-12-04",
       "cheval": "HERMES DU FOSSE",
       "hippodrome": "REIMS",
-      "url": "https://www.zeturf.fr/fr/course-du-jour/2021-12-04/R8C7-reims-grand-prix-du-champagne-michel-go-groupe-b",
+      "url": "",
       "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2021-12-04/R8C7-reims-grand-prix-du-champagne-michel-go-groupe-b",
-      "controle": "Gagnant n°8 Grand Prix du Champagne Michel Go (Groupe B) R8C7 Reims 04/12/2021 avec B. Marie ; fiche ZEturf exacte comporte Replay, lecture non testée."
+      "controle": "Gagnant n°8 Grand Prix du Champagne Michel Go (Groupe B) R8C7 Reims 04/12/2021 avec B. Marie ; fiche ZEturf exacte comporte Replay, lecture non testée.",
+      "lien_historique_non_officiel": "https://www.zeturf.fr/fr/course-du-jour/2021-12-04/R8C7-reims-grand-prix-du-champagne-michel-go-groupe-b"
     },
     {
       "date": "2021-11-26",
@@ -3193,10 +3208,11 @@
       "date": "2021-04-11",
       "cheval": "GINKO",
       "hippodrome": "RAMBOUILLET",
-      "url": "https://www.zeturf.fr/fr/course-du-jour/2021-04-11/R10C4-rambouillet-prix-rambouillet-territoires-groupe-a",
+      "url": "",
       "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2021-04-11/R10C4-rambouillet-prix-rambouillet-territoires-groupe-a",
       "preuve_arrivee": "https://www.zeturf.fr/fr/course-du-jour/2021-04-11/R10C4-rambouillet-prix-rambouillet-territoires-groupe-a",
-      "controle": "3e, n°5 du Prix Rambouillet Territoires (Gr A), R10C4 le 11/04/2021 avec Q. Daougabel ; page ZEturf possède la section Replay ; lecture vidéo non testée."
+      "controle": "3e, n°5 du Prix Rambouillet Territoires (Gr A), R10C4 le 11/04/2021 avec Q. Daougabel ; page ZEturf possède la section Replay ; lecture vidéo non testée.",
+      "lien_historique_non_officiel": "https://www.zeturf.fr/fr/course-du-jour/2021-04-11/R10C4-rambouillet-prix-rambouillet-territoires-groupe-a"
     },
     {
       "date": "2021-04-05",
@@ -3456,10 +3472,11 @@
       "date": "2017-06-17",
       "cheval": "ELFE ATOUT",
       "hippodrome": "LISIEUX",
-      "url": "https://www.zeturf.fr/fr/course-du-jour/2017-06-17/R8C1-lisieux-prix-abc-ambulances",
+      "url": "",
       "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2017-06-17/R8C1-lisieux-prix-abc-ambulances",
       "preuve_arrivee": "https://www.zone-turf.fr/cheval/esprit-frappeur-584734/archives-3.html",
-      "controle": "3e Prix ABC Ambulances du 17/06/2017, Lisieux, confirmée avec réunion ZEturf R8C1. La page ZEturf comporte une section Replay ; sa lecture effective non testée. Autre fournisseur classe la réunion R9C1 : lien Equidia non extrapolé par prudence."
+      "controle": "3e Prix ABC Ambulances du 17/06/2017, Lisieux, confirmée avec réunion ZEturf R8C1. La page ZEturf comporte une section Replay ; sa lecture effective non testée. Autre fournisseur classe la réunion R9C1 : lien Equidia non extrapolé par prudence.",
+      "lien_historique_non_officiel": "https://www.zeturf.fr/fr/course-du-jour/2017-06-17/R8C1-lisieux-prix-abc-ambulances"
     },
     {
       "date": "2017-05-23",
@@ -3665,21 +3682,23 @@
       "date": "2016-01-11",
       "cheval": "DJANGO DE MONGOCHY",
       "hippodrome": "CHATEAUBRIANT",
-      "url": "https://www.dailymotion.com/video/x3teqjp",
+      "url": "",
       "preuve_identification_course": "https://www.gbet.fr/courses/chateaubriant/2016-01-11/r7/c1/prix-goetmals-wood/",
       "controle": "Description Dailymotion confirme première victoire à Châteaubriant le 11/01/2016 ; le titre « 21022016 » est trompeur, utiliser la date citée dans la description. Vidéo accessible, lecture intégrale non testée.",
       "lien_fiche_course_precedent": "https://www.equidia.fr/courses/2016-01-11/R7/C1",
       "preuve_video": "https://www.dailymotion.com/video/x3teqjp",
       "source_video": "https://www.dailymotion.com/user/Ecurie-Initial",
-      "nature_lien": "video_course_dailymotion"
+      "nature_lien": "video_course_dailymotion",
+      "lien_historique_non_officiel": "https://www.dailymotion.com/video/x3teqjp"
     },
     {
       "date": "2015-12-20",
       "cheval": "TYCOZ DE LADY",
       "hippodrome": "MESLAY-DU-MAINE",
-      "url": "https://www.zeturf.sn/en/course-du-jour/2015-12-20/R2C6-meslay-du-maine-prix-des-ambulances-saint-denis-d-anjou",
+      "url": "",
       "preuve_identification_course": "https://www.zeturf.sn/en/course-du-jour/2015-12-20/R2C6-meslay-du-maine-prix-des-ambulances-saint-denis-d-anjou",
-      "controle": "1er n°7 du Prix des Ambulances Saint-Denis-d'Anjou, Meslay-du-Maine R2C6 le 20/12/2015, jockey H. Guerot, au trot monté ; fiche ZEturf sur domaine sn présente Replay. Lecture effective vidéo non testée."
+      "controle": "1er n°7 du Prix des Ambulances Saint-Denis-d'Anjou, Meslay-du-Maine R2C6 le 20/12/2015, jockey H. Guerot, au trot monté ; fiche ZEturf sur domaine sn présente Replay. Lecture effective vidéo non testée.",
+      "lien_historique_non_officiel": "https://www.zeturf.sn/en/course-du-jour/2015-12-20/R2C6-meslay-du-maine-prix-des-ambulances-saint-denis-d-anjou"
     },
     {
       "date": "2015-12-06",
@@ -3709,43 +3728,47 @@
       "date": "2015-06-21",
       "cheval": "BEAUTE D'ONDEE",
       "hippodrome": "QUESTEMBERT",
-      "url": "https://www.dailymotion.com/video/x2v4ibd",
+      "url": "",
       "source_video": "https://www.dailymotion.com/user/Ecurie-Initial",
       "preuve_video": "https://www.dailymotion.com/video/x2v4ibd",
       "nature_lien": "video_course_dailymotion",
-      "controle": "Vidéo publiée sur la chaîne historique Écurie-Initial ; titre, date et hippodrome correspondent à la ligne du palmarès ; lecture intégrale non vérifiée. 3e place Questembert 21/06/2015"
+      "controle": "Vidéo publiée sur la chaîne historique Écurie-Initial ; titre, date et hippodrome correspondent à la ligne du palmarès ; lecture intégrale non vérifiée. 3e place Questembert 21/06/2015",
+      "lien_historique_non_officiel": "https://www.dailymotion.com/video/x2v4ibd"
     },
     {
       "date": "2015-06-07",
       "cheval": "CALIE DE POMMERAYE",
       "hippodrome": "GOURNAY-EN-BRAY",
-      "url": "https://www.dailymotion.com/video/x2uf4xc",
+      "url": "",
       "source_video": "https://www.dailymotion.com/user/Ecurie-Initial",
       "preuve_video": "https://www.dailymotion.com/video/x2uf4xc",
       "nature_lien": "video_course_dailymotion",
-      "controle": "Vidéo publiée sur la chaîne historique Écurie-Initial ; titre, date et hippodrome correspondent à la ligne du palmarès ; lecture intégrale non vérifiée. Victoire Calie de Pommeraye Gournay-en-Bray 07/06/2015"
+      "controle": "Vidéo publiée sur la chaîne historique Écurie-Initial ; titre, date et hippodrome correspondent à la ligne du palmarès ; lecture intégrale non vérifiée. Victoire Calie de Pommeraye Gournay-en-Bray 07/06/2015",
+      "lien_historique_non_officiel": "https://www.dailymotion.com/video/x2uf4xc"
     },
     {
       "date": "2015-04-05",
       "cheval": "ACTRICE DE CERISY",
       "hippodrome": "BEAUMONT DE LOMAGNE",
-      "url": "https://www.dailymotion.com/video/x2v4jft",
+      "url": "",
       "source_video": "https://www.dailymotion.com/user/Ecurie-Initial",
       "preuve_video": "https://www.dailymotion.com/video/x2v4jft",
       "nature_lien": "video_course_dailymotion",
-      "controle": "Vidéo publiée sur la chaîne historique Écurie-Initial ; titre, date et hippodrome correspondent à la ligne du palmarès ; lecture intégrale non vérifiée. Victoire Actrice de Cerisy Beaumont de Lomagne 05/04/2015"
+      "controle": "Vidéo publiée sur la chaîne historique Écurie-Initial ; titre, date et hippodrome correspondent à la ligne du palmarès ; lecture intégrale non vérifiée. Victoire Actrice de Cerisy Beaumont de Lomagne 05/04/2015",
+      "lien_historique_non_officiel": "https://www.dailymotion.com/video/x2v4jft"
     },
     {
       "date": "2014-11-02",
       "cheval": "BEAUTE D'ONDEE",
       "hippodrome": "MAUQUENCHY",
-      "url": "https://www.dailymotion.com/video/x2ervp1",
+      "url": "",
       "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2014-11-02/R9C5-mauquenchy-prix-isidore-partouche-groupe-a",
       "controle": "Vidéo de la chaîne historique Écurie-Initial, titre et date correspondant au résultat, player Dailymotion accessible ; lecture intégrale non vérifiée. 2e place Mauquenchy 02/11/2014",
       "lien_fiche_course_precedent": "https://www.equidia.fr/courses/2014-11-02/R9/C5",
       "source_video": "https://www.dailymotion.com/user/Ecurie-Initial",
       "preuve_video": "https://www.dailymotion.com/video/x2ervp1",
-      "nature_lien": "video_course_dailymotion"
+      "nature_lien": "video_course_dailymotion",
+      "lien_historique_non_officiel": "https://www.dailymotion.com/video/x2ervp1"
     },
     {
       "date": "2014-09-19",
@@ -3759,21 +3782,23 @@
       "date": "2014-07-15",
       "cheval": "UKAPI DE GODISSON",
       "hippodrome": "BIARRITZ",
-      "url": "https://www.dailymotion.com/video/x2erxld",
+      "url": "",
       "source_video": "https://www.dailymotion.com/user/Ecurie-Initial",
       "preuve_video": "https://www.dailymotion.com/video/x2erxld",
       "nature_lien": "video_course_dailymotion",
-      "controle": "Vidéo publiée sur la chaîne historique Écurie-Initial ; titre, date et hippodrome correspondent à la ligne du palmarès ; lecture intégrale non vérifiée. Victoire Ukapi de Godisson à Biarritz 15/07/2014"
+      "controle": "Vidéo publiée sur la chaîne historique Écurie-Initial ; titre, date et hippodrome correspondent à la ligne du palmarès ; lecture intégrale non vérifiée. Victoire Ukapi de Godisson à Biarritz 15/07/2014",
+      "lien_historique_non_officiel": "https://www.dailymotion.com/video/x2erxld"
     },
     {
       "date": "2014-06-15",
       "cheval": "UKAPI DE GODISSON",
       "hippodrome": "LUXE",
-      "url": "https://www.dailymotion.com/video/x2erwj3",
+      "url": "",
       "source_video": "https://www.dailymotion.com/user/Ecurie-Initial",
       "preuve_video": "https://www.dailymotion.com/video/x2erwj3",
       "nature_lien": "video_course_dailymotion",
-      "controle": "Vidéo publiée sur la chaîne historique Écurie-Initial ; titre, date et hippodrome correspondent à la ligne du palmarès ; lecture intégrale non vérifiée. Victoire Ukapi de Godisson à Luxé 15/06/2014"
+      "controle": "Vidéo publiée sur la chaîne historique Écurie-Initial ; titre, date et hippodrome correspondent à la ligne du palmarès ; lecture intégrale non vérifiée. Victoire Ukapi de Godisson à Luxé 15/06/2014",
+      "lien_historique_non_officiel": "https://www.dailymotion.com/video/x2erwj3"
     },
     {
       "date": "2014-04-16",
@@ -3787,9 +3812,10 @@
       "date": "2014-01-29",
       "cheval": "ADAMS",
       "hippodrome": "BORDEAUX",
-      "url": "https://www.zeturf.fr/fr/course-du-jour/2014-01-29/R2C3-bordeaux-le-bouscat-prix-ourasi",
+      "url": "",
       "preuve_identification_course": "https://www.zeturf.fr/fr/course-du-jour/2014-01-29/R2C3-bordeaux-le-bouscat-prix-ourasi",
-      "controle": "1er n°4 du Prix Ourasi, Bordeaux-Le Bouscat, R2C3 le 29/01/2014, driver Eric Raffin ; fiche ZEturf exacte et rubrique Replay publiquement présentes. Lecture de la vidéo non testée."
+      "controle": "1er n°4 du Prix Ourasi, Bordeaux-Le Bouscat, R2C3 le 29/01/2014, driver Eric Raffin ; fiche ZEturf exacte et rubrique Replay publiquement présentes. Lecture de la vidéo non testée.",
+      "lien_historique_non_officiel": "https://www.zeturf.fr/fr/course-du-jour/2014-01-29/R2C3-bordeaux-le-bouscat-prix-ourasi"
     },
     {
       "date": "2013-12-30",
@@ -3820,73 +3846,80 @@
       "date": "2013-10-18",
       "cheval": "ADAMS",
       "hippodrome": "AMIENS",
-      "url": "https://www.dailymotion.com/video/x190tvu",
+      "url": "",
       "source_video": "https://www.dailymotion.com/user/Ecurie-Initial",
       "preuve_video": "https://www.dailymotion.com/video/x190tvu",
       "nature_lien": "video_course_dailymotion",
-      "controle": "Vidéo publiée sur la chaîne historique Écurie-Initial ; titre, date et hippodrome correspondent à la ligne du palmarès ; lecture intégrale non vérifiée. Victoire Adams Amiens 18/10/2013"
+      "controle": "Vidéo publiée sur la chaîne historique Écurie-Initial ; titre, date et hippodrome correspondent à la ligne du palmarès ; lecture intégrale non vérifiée. Victoire Adams Amiens 18/10/2013",
+      "lien_historique_non_officiel": "https://www.dailymotion.com/video/x190tvu"
     },
     {
       "date": "2013-09-08",
       "cheval": "RHEA SILVIA",
       "hippodrome": "COMPIEGNE",
-      "url": "https://www.dailymotion.com/video/x156ld4",
+      "url": "",
       "source_video": "https://www.dailymotion.com/user/Ecurie-Initial",
       "preuve_video": "https://www.dailymotion.com/video/x156ld4",
       "nature_lien": "video_course_dailymotion",
-      "controle": "Vidéo publiée sur la chaîne historique Écurie-Initial ; titre, date et hippodrome correspondent à la ligne du palmarès ; lecture intégrale non vérifiée. Victoire Rhéa Silvia Compiègne 08/09/2013"
+      "controle": "Vidéo publiée sur la chaîne historique Écurie-Initial ; titre, date et hippodrome correspondent à la ligne du palmarès ; lecture intégrale non vérifiée. Victoire Rhéa Silvia Compiègne 08/09/2013",
+      "lien_historique_non_officiel": "https://www.dailymotion.com/video/x156ld4"
     },
     {
       "date": "2013-08-15",
       "cheval": "RHEA SILVIA",
       "hippodrome": "CARENTAN",
-      "url": "https://www.dailymotion.com/video/x13dp6v",
+      "url": "",
       "source_video": "https://www.dailymotion.com/user/Ecurie-Initial",
       "preuve_video": "https://www.dailymotion.com/video/x13dp6v",
       "nature_lien": "video_course_dailymotion",
-      "controle": "Vidéo publiée sur la chaîne historique Écurie-Initial ; titre, date et hippodrome correspondent à la ligne du palmarès ; lecture intégrale non vérifiée. Victoire Rhéa Silvia Carentan 15/08/2013 au monté"
+      "controle": "Vidéo publiée sur la chaîne historique Écurie-Initial ; titre, date et hippodrome correspondent à la ligne du palmarès ; lecture intégrale non vérifiée. Victoire Rhéa Silvia Carentan 15/08/2013 au monté",
+      "lien_historique_non_officiel": "https://www.dailymotion.com/video/x13dp6v"
     },
     {
       "date": "2013-07-27",
       "cheval": "RHEA SILVIA",
       "hippodrome": "COMPIEGNE",
-      "url": "https://www.dailymotion.com/video/x12t9p0",
+      "url": "",
       "source_video": "https://www.dailymotion.com/user/Ecurie-Initial",
       "preuve_video": "https://www.dailymotion.com/video/x12t9p0",
       "nature_lien": "video_course_dailymotion",
-      "controle": "Vidéo publiée sur la chaîne historique Écurie-Initial ; titre, date et hippodrome correspondent à la ligne du palmarès ; lecture intégrale non vérifiée. Vidéo de la journée doublé Compiègne 27/07/2013, Rhéa Silvia gagnante"
+      "controle": "Vidéo publiée sur la chaîne historique Écurie-Initial ; titre, date et hippodrome correspondent à la ligne du palmarès ; lecture intégrale non vérifiée. Vidéo de la journée doublé Compiègne 27/07/2013, Rhéa Silvia gagnante",
+      "lien_historique_non_officiel": "https://www.dailymotion.com/video/x12t9p0"
     },
     {
       "date": "2013-07-27",
       "cheval": "RHUM BARBES",
       "hippodrome": "COMPIEGNE",
-      "url": "https://www.dailymotion.com/video/x12t9p0",
+      "url": "",
       "justificatif": "https://www.zeturf.fr/fr/course-du-jour/2013-07-27/R7C5-compiegne-prix-de-vaudrampont",
       "controle": "Vidéo de la chaîne historique Écurie-Initial, titre et date correspondant au résultat, player Dailymotion accessible ; lecture intégrale non vérifiée. Vidéo de la journée doublé Compiègne 27/07/2013, Rhum Barbes deuxième",
       "lien_fiche_course_precedent": "https://www.equidia.fr/courses/2013-07-27/R7/C5",
       "source_video": "https://www.dailymotion.com/user/Ecurie-Initial",
       "preuve_video": "https://www.dailymotion.com/video/x12t9p0",
-      "nature_lien": "video_course_dailymotion"
+      "nature_lien": "video_course_dailymotion",
+      "lien_historique_non_officiel": "https://www.dailymotion.com/video/x12t9p0"
     },
     {
       "date": "2013-06-23",
       "cheval": "RHUM BARBES",
       "hippodrome": "LES ANDELYS",
-      "url": "https://www.dailymotion.com/video/x190vj6",
+      "url": "",
       "source_video": "https://www.dailymotion.com/user/Ecurie-Initial",
       "preuve_video": "https://www.dailymotion.com/video/x190vj6",
       "nature_lien": "video_course_dailymotion",
-      "controle": "Vidéo publiée sur la chaîne historique Écurie-Initial ; titre, date et hippodrome correspondent à la ligne du palmarès ; lecture intégrale non vérifiée. Victoire Rhum Barbes aux Andelys 23/06/2013"
+      "controle": "Vidéo publiée sur la chaîne historique Écurie-Initial ; titre, date et hippodrome correspondent à la ligne du palmarès ; lecture intégrale non vérifiée. Victoire Rhum Barbes aux Andelys 23/06/2013",
+      "lien_historique_non_officiel": "https://www.dailymotion.com/video/x190vj6"
     },
     {
       "date": "2013-05-19",
       "cheval": "RHUM BARBES",
       "hippodrome": "LE NEUBOURG",
-      "url": "https://www.dailymotion.com/video/x190v4m",
+      "url": "",
       "source_video": "https://www.dailymotion.com/user/Ecurie-Initial",
       "preuve_video": "https://www.dailymotion.com/video/x190v4m",
       "nature_lien": "video_course_dailymotion",
-      "controle": "Vidéo publiée sur la chaîne historique Écurie-Initial ; titre, date et hippodrome correspondent à la ligne du palmarès ; lecture intégrale non vérifiée. Victoire Rhum Barbes au Neubourg 19/05/2013"
+      "controle": "Vidéo publiée sur la chaîne historique Écurie-Initial ; titre, date et hippodrome correspondent à la ligne du palmarès ; lecture intégrale non vérifiée. Victoire Rhum Barbes au Neubourg 19/05/2013",
+      "lien_historique_non_officiel": "https://www.dailymotion.com/video/x190v4m"
     },
     {
       "date": "2013-03-19",
