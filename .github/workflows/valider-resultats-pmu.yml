@@ -1,0 +1,38 @@
+name: Validation indépendante des résultats définitifs PMU
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/valider_resultats_pmu.py"
+      - "scripts/monitor_pmu_results.py"
+      - ".github/workflows/valider-resultats-pmu.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  logique_sans_ecriture:
+    name: Tests de classement sans écriture
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Refuser provisoires, erreurs d'identité et doublons
+        run: python scripts/valider_resultats_pmu.py
+
+  verification_source_reelle:
+    name: Source PMU réelle du 16 novembre
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Vérifier ZARTOP et ON LOCKDOWN sans aucune publication
+        run: python scripts/valider_resultats_pmu.py --live
