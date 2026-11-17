@@ -85,6 +85,16 @@ async function run() {
   else if(src&&typeof src==="object")for(const [slug,h] of Object.entries(src)){
     if(h&&typeof h==="object")horseNames[slug]=(h as any).name||(h as any).nom||slug;
   }
+  // Les publications directes des contributeurs priment sur le relevé GitHub.
+  // Un remplacement par [] retire les engagements de ce cheval du flux Push.
+  const {data:overrides,error:overridesError}=await sb
+    .from("ei_contributions_engagements").select("cheval_slug,engagements");
+  if(overridesError)throw overridesError;
+  ed.engagements=ed.engagements||{};
+  for(const row of overrides||[]){
+    if(Object.prototype.hasOwnProperty.call(horseNames,row.cheval_slug)&&Array.isArray(row.engagements))
+      ed.engagements[row.cheval_slug]=row.engagements;
+  }
   const counts={races:0,alerts:0,attempts:0,sent:0};
   const {count, error:countError}=await sb.from("ei_push_races").select("*",{head:true,count:"exact"});
   if(countError)throw countError;
