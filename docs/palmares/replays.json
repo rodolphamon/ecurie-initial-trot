@@ -3,6 +3,18 @@
   "note": "Liens de courses historiques (LeTROT, Equidia, ZEturf, Dailymotion). Les pages ZEturf indiquant « Replay » ont été recoupées par cheval/date/R/C ; accès et lecture effective des lecteurs vidéo non garantis. Certains anciens liens Equidia sont reconstruits et restent à vérifier. Les vidéos de qualifications sont dans docs/chevaux/data/qualifications.json.",
   "replays": [
     {
+      "date": "2026-11-16",
+      "cheval": "ZARTOP",
+      "hippodrome": "LE MANS",
+      "url": "https://www.equidia.fr/courses/2026-11-16/R3/C6",
+      "controle": "Prix de Saint-Georges-du-Bois, R3C6, Le Mans : correspondance issue des fiches de l'Écurie Initial ; disponibilité de la vidéo à tester par le gérant.",
+      "verification_replay_2026_11_17": {
+        "statut": "page_officielle_referencee",
+        "source": "docs/chevaux/data/editorial.json",
+        "lecture_video": "non_testee"
+      }
+    },
+    {
       "date": "2026-11-13",
       "cheval": "MONA LISA STARDUST",
       "hippodrome": "TOULOUSE",
