@@ -1,11 +1,12 @@
 {
   "mise_a_jour": "2026-11-18",
-  "description": "Liste de travail des courses du palmarès sans lien officiel LeTROT/Equidia référencé. Une URL de page course ne prouve pas la disponibilité du replay. Ne pas créer de lien non vérifié. Les courses sous casaques extérieures restent affichées mais exclues des compteurs selon les règles existantes.",
+  "description": "Liste de travail des courses du palmarès sans lien officiel LeTROT/Equidia référencé. Une URL de page course ne prouve pas la disponibilité du replay. Ne pas créer de lien non vérifié. Les courses sous casaques extérieures restent affichées mais exclues des compteurs selon les règles existantes. Recherches ciblées documentées le 18/11/2026 : cinq courses récentes identifiées indépendamment ; aucun faux lien de replay ajouté.",
   "regle": "Trot : LeTROT puis Equidia ; galop : Equidia. Aucun lien externe d'une autre plateforme dans les boutons publics.",
   "bilan": {
     "performances": 535,
     "liens_officiels_references": 340,
-    "liens_officiels_a_retrouver": 195
+    "liens_officiels_a_retrouver": 195,
+    "courses_recentement_recoupees_sans_video_officielle": 5
   },
   "a_retrouver_par_annee": {
     "2008": 6,
@@ -35,7 +36,13 @@
       "hippodrome": "CASTELSARRASIN",
       "discipline": "attele",
       "classement": 2,
-      "priorite": "recente"
+      "priorite": "recente",
+      "controle_2026_11_18": {
+        "identification_course": "Prix Leclerc Castelsarrasin — C8, réunion à enjeux locaux (PHH selon nomenclature Zone-Turf)",
+        "preuve_course": "https://www.zone-turf.fr/rapports/phh-c8-prix-leclerc-castelsarrasin-1168981.html",
+        "video": "aucun_replay_letrot_equidia_identifie",
+        "verification": "Cheval 2e, jockey Florian Julien ; page officielle vidéo introuvable à ce stade"
+      }
     },
     {
       "date": "2026-10-25",
@@ -43,7 +50,13 @@
       "hippodrome": "MONTAUBAN",
       "discipline": "attele",
       "classement": 2,
-      "priorite": "recente"
+      "priorite": "recente",
+      "controle_2026_11_18": {
+        "identification_course": "Prix de Toulouse — Montauban, réunion signalée PMH dans les archives de résultats",
+        "preuve_course": "https://www.geny.com/course/1693655-2026-10-25-montauban-prix-de-toulouse/arrivee-rapports?orga=PMH",
+        "video": "aucun_replay_letrot_equidia_identifie",
+        "verification": "Cheval 2e, Mathieu Daougabel ; pas de page vidéo officielle vérifiée"
+      }
     },
     {
       "date": "2026-09-27",
@@ -51,7 +64,13 @@
       "hippodrome": "VILLENEUVE-SUR-LOT",
       "discipline": "attele",
       "classement": 2,
-      "priorite": "recente"
+      "priorite": "recente",
+      "controle_2026_11_18": {
+        "identification_course": "Prix de Villereal — Villeneuve-sur-Lot, réunion PMH",
+        "preuve_course": "https://www.geny.com/course/1686828-2026-09-27-villeneuve-sur-lot-prix-de-villereal/arrivee-rapports?orga=PMH",
+        "video": "aucun_replay_letrot_equidia_identifie",
+        "verification": "Course retrouvée ; aucun lien officiel vidéo identifié"
+      }
     },
     {
       "date": "2026-09-20",
@@ -59,7 +78,13 @@
       "hippodrome": "SABLE-SUR-SARTHE",
       "discipline": "galop",
       "classement": 3,
-      "priorite": "recente"
+      "priorite": "recente",
+      "controle_2026_11_18": {
+        "identification_course": "Prix Crédit Mutuel — Sablé-sur-Sarthe, réunion PMH (galop)",
+        "preuve_course": "https://www.geny.com/course/1685399-2026-09-20-sable-sur-sarthe-prix-credit-mutuel/arrivee-rapports?orga=PMH",
+        "video": "aucun_replay_letrot_equidia_identifie",
+        "verification": "Course retrouvée, replay Equidia non confirmé"
+      }
     },
     {
       "date": "2026-08-15",
@@ -139,7 +164,14 @@
       "hippodrome": "CHALLANS",
       "discipline": "attele",
       "classement": 1,
-      "priorite": "recente"
+      "priorite": "recente",
+      "controle_2026_11_18": {
+        "identification_course": "Prix He And Me — Challans, PMH C6, victoire",
+        "preuve_course": "https://www.geny.com/en/course/1635802-2026-03-01-challans-prix-he-and-me/arrivee-rapports",
+        "programme_officiel": "https://pro.letrot.com/siteinstit/A4/20260301_CHALLANS_TROT_COULEUR.pdf",
+        "video": "aucun_replay_letrot_equidia_identifie",
+        "verification": "Course C6 vérifiée ; replay non confirmé ; le programme officiel LeTROT n'est pas une vidéo"
+      }
     },
     {
       "date": "2026-02-23",
