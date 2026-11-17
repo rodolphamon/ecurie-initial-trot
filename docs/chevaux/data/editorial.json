@@ -131,7 +131,10 @@
         "source_description": "Résultat communiqué par le gérant de l'Écurie Initial le 16/11/2026 ; classement officiel externe non encore recoupé.",
         "source_url": "https://hippigold.fr/courses/2026-11-16/r3c6/",
         "valide_ecurie": true,
-        "notif_testeurs": true
+        "notif_testeurs": true,
+        "video_url": "https://www.equidia.fr/courses/2026-11-16/R3/C6",
+        "course_url": "https://www.equidia.fr/courses/2026-11-16/R3/C6",
+        "video_source": "equidia_course"
       },
       {
         "date": "2026-10-20",
@@ -862,7 +865,10 @@
         "prix": "Prix du Mesnil",
         "source_description": "Résultat communiqué par le gérant de l'Écurie Initial le 16/11/2026 ; classement officiel externe non encore recoupé.",
         "source_url": "https://hippigold.fr/courses/2026-11-16/r3c8/",
-        "valide_ecurie": true
+        "valide_ecurie": true,
+        "video_url": "https://www.equidia.fr/courses/2026-11-16/R3/C8",
+        "course_url": "https://www.equidia.fr/courses/2026-11-16/R3/C8",
+        "video_source": "equidia_course"
       },
       {
         "date": "2026-10-28",
