@@ -338,8 +338,8 @@ async function loadReplays(){
   for(const [slug,list] of Object.entries(performances)){
     if(!Array.isArray(list))continue;
     for(const course of list){
-      if(!course||!course.date||!course.hippodrome||!course.video_url)continue;
-      ficheLinks.push({date:course.date,cheval:slug.replace(/-/g," "),hippodrome:course.hippodrome,url:course.video_url});
+      if(!course||!course.date||!course.hippodrome||(!course.video_url&&!course.course_url))continue;
+      ficheLinks.push({date:course.date,cheval:slug.replace(/-/g," "),hippodrome:course.hippodrome,url:course.video_url||"",course_url:course.course_url||""});
     }
   }
   const candidates=[...archiveLinks,...ficheLinks];
@@ -356,6 +356,11 @@ async function loadReplays(){
     const exact=matching.filter(r=>normalizeReplayKey(r.hippodrome)===normalizeReplayKey(video.hippodrome));
     const row=exact.length===1?exact[0]:(matching.length===1?matching[0]:null);
     if(!row)continue;
+    // Quand une vidéo n'est pas référencée, réutiliser en secours la page
+    // d'arrivée de cette course déjà vérifiée dans le suivi des chevaux.
+    const courseUrl=[video.course_url,video.justificatif,video.preuve_identification_course]
+      .map(resultatUrl).find(Boolean);
+    if(courseUrl&&!resultatUrl(row.source))row.source=courseUrl;
     // Privilégier les pages LeTROT avec replay, puis les vidéos attestées ;
     // une fiche Equidia non testée reste affichée comme Résultat.
     const options=[video.lien_letrot_precedent,video.lien_replay_original,video.url]
