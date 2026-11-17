@@ -45,8 +45,8 @@
 
   function mountNavigation() {
   const tabs = [
-    { label: "🐎 Chevaux", href: chevauxBase.href, active: currentPath.startsWith(chevauxBase.pathname) },
-    { label: "📅 Courses", href: coursesBase.href, active: currentPath.startsWith(coursesBase.pathname) },
+    { label: "🏁 Résultats", href: chevauxBase.href, active: currentPath.startsWith(chevauxBase.pathname) },
+    { label: "📅 Partants", href: coursesBase.href, active: currentPath.startsWith(coursesBase.pathname) },
     { label: "🏆 Podiums", href: podiumsBase.href, active: currentPath.startsWith(podiumsBase.pathname) },
     { label: "🔒 Associés", href: associesBase.href, active: onPrivate },
     { label: "✉️ Contact", href: contactBase.href, active: isContact }
