@@ -367,8 +367,8 @@ async function loadReplays(){
     // Liens officiels uniquement, correspondant au cheval et à la date.
     const options=[
       video.lien_letrot_precedent,video.lien_replay_original,
-      video.lien_equidia_precedent,video.url,
-      video.course_url,video.video_url,video.source_url
+      video.lien_equidia_precedent,video.lien_fiche_course_precedent,
+      video.url,video.course_url,video.video_url,video.source_url
     ].map(value=>replayPreference(value,video,row.discipline)).filter(Boolean)
      .sort((a,b)=>b.score-a.score);
     const courseUrl=[video.course_url,video.source_url]
