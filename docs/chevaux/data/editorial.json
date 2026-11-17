@@ -1161,7 +1161,9 @@
         "part": "A (30 %)",
         "jockey": "Léo ROUSSEL",
         "entraineur": "Gilles PANNIER",
-        "quinte_plus": true
+        "quinte_plus": true,
+        "course": "R1C6",
+        "numero": 13
       }
     ],
     "moondance-okina": [
