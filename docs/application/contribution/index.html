@@ -17,7 +17,7 @@ label{display:block;font-weight:bold;font-size:13px;margin-bottom:6px}input,sele
 <section id="work" hidden>
 <div class="card"><label for="horse">Cheval concerné</label><select id="horse"><option value="">Sélectionner un cheval…</option></select><p id="horsehint" class="muted"></p></div>
 <div class="tabs"><button type="button" id="tabEng" class="on">📅 Engagements</button><button type="button" id="tabGain">💶 Gains de carrière</button><button type="button" id="tabValue" hidden>📊 Valeur handicap (galop)</button><button type="button" id="tabRecord" hidden>⏱️ Record absolu (trot)</button></div>
-<div id="engSection" class="card"><h2>Engagements du cheval</h2><p class="muted">Ajouter un engagement, le modifier ou l’enlever. En cas d’heure ou de jockey inconnu, laisser le champ vide. Le calendrier n’affiche que les prochaines courses.</p><div id="events"></div><div class="flex"><button type="button" class="outline" id="add">+ Ajouter un engagement</button><button type="button" id="saveEng">Publier les engagements</button></div></div>
+<div id="engSection" class="card"><h2>Engagements du cheval</h2><p class="muted">Ajouter un engagement, le modifier ou l’enlever. Précisez le type de course (handicap, réclamer…) et la surface (PSF, gazon, herbe ou sable) si connus. En cas d’heure ou de jockey inconnu, laissez le champ vide. Le calendrier n’affiche que les prochaines courses.</p><div id="events"></div><div class="flex"><button type="button" class="outline" id="add">+ Ajouter un engagement</button><button type="button" id="saveEng">Publier les engagements</button></div></div>
 <div id="gainSection" class="card" hidden><h2>Gains du cheval</h2><p id="currentGain" class="muted"></p><form id="gainForm"><label for="gain">Gains totaux de carrière (€)</label><input id="gain" type="number" min="0" max="1000000000" step="1" required><label for="source">Lien de vérification (facultatif)</label><input id="source" type="url" placeholder="https://..." pattern="https://.*"><p class="muted">Ne pas confondre les gains totaux du cheval avec les gains de l’année ou les allocations d’une course.</p><button type="submit">Publier les gains</button></form></div>
 <div id="valueSection" class="card" hidden>
 <h2>Valeurs handicap — galop et obstacle</h2>
@@ -48,8 +48,15 @@ const db=createClient('https://yeecwaaizmvrhwobukfa.supabase.co','sb_publishable
 const $=s=>document.getElementById(s);
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let profiles=[],editor={},trot={},galop={},liveEng={},liveGains={},liveValues={},liveRecords={},canEng=false,canGain=false,canValue=false,canRecord=false,active='eng',events=[],horseId='';
-const fields=[['date','Date','date'],['hippodrome','Hippodrome','text'],['statut','Statut','select'],['heure','Heure de départ','time'],['prix','Prix de la course','text'],['course','Course (ex. R1C5)','text'],['type','Discipline / type','text'],['distance','Distance','text'],['numero','N° du cheval','text'],['driver','Driver (trot)','text'],['jockey','Jockey (galop)','text'],['source_description','Source / justification','text']];
+const fields=[['date','Date','date'],['hippodrome','Hippodrome','text'],['statut','Statut','select'],['heure','Heure de départ','time'],['prix','Prix de la course','text'],['course','Course (ex. R1C5)','text'],['type','Discipline (plat, obstacle, attelé, monté)','text'],['type_course','Type de course','courseTypeSelect'],['surface','Surface','surfaceSelect'],['distance','Distance','text'],['numero','N° du cheval','text'],['driver','Driver (trot)','text'],['jockey','Jockey (galop)','text'],['source_description','Source / justification','text']];
 const statuses=[['engage','Engagé'],['declare','Déclaré partant'],['partant','Partant confirmé'],['non-partant','Non-partant'],['forfait','Forfait'],['elimine','Éliminé'],['qualification','Qualification']];
+const courseTypes=[['','— Non renseigné —'],['Handicap','Handicap'],['Réclamer','Réclamer / À réclamer'],
+['Maiden','Maiden'],['Inédits','Inédits'],['Course à conditions','Course à conditions'],
+['Classe 1','Classe 1'],['Classe 2','Classe 2'],['Classe 3','Classe 3'],['Classe 4','Classe 4'],
+['Listed','Listed'],['Groupe 1','Groupe 1'],['Groupe 2','Groupe 2'],['Groupe 3','Groupe 3'],
+['Course de série','Course de série (trot)'],['Course européenne','Course européenne (trot)'],
+['Course amateurs','Course amateurs'],['Qualification','Qualification'],['Autre','Autre']];
+const surfaces=[['','— Non renseignée —'],['PSF','PSF'],['Gazon','Gazon'],['Herbe','Herbe'],['Sable','Sable']];
 function msg(t,bad=false){$('msg').textContent=t;$('msg').className=bad?'bad':'good'}
 async function getJson(path){const r=await fetch(path+'?v='+Date.now(),{cache:'no-store'});if(!r.ok)throw Error('Données indisponibles : '+path);return r.json()}
 function choice(){const p=profiles.find(x=>x.id===horseId);return p||null}
@@ -63,8 +70,15 @@ function renderEvents(){
       const wrap=document.createElement('div');if(['source_description','prix'].includes(key))wrap.className='span2';
       const lab=document.createElement('label');lab.textContent=label;
       let input;
-      if(type==='select'){input=document.createElement('select');for(const [v,t] of statuses){const o=document.createElement('option');o.value=v;o.textContent=t;input.append(o)}}
-      else{input=document.createElement('input');input.type=type;input.maxLength=key==='source_description'?300:120}
+      if(type==='select'||type==='courseTypeSelect'||type==='surfaceSelect'){
+        input=document.createElement('select');
+        const choices=type==='select'?statuses:type==='courseTypeSelect'?courseTypes:surfaces;
+        for(const [v,t] of choices){const o=document.createElement('option');o.value=v;o.textContent=t;input.append(o)}
+        if(event[key]&&!choices.some(([v])=>v===event[key])){
+          const legacy=document.createElement('option');legacy.value=event[key];
+          legacy.textContent=event[key]+' (valeur existante)';input.append(legacy)
+        }
+      }else{input=document.createElement('input');input.type=type;input.maxLength=key==='source_description'?300:120}
       input.dataset.field=key;input.value=event[key]??(key==='statut'?'engage':'');
       input.oninput=()=>{events[index][key]=input.value};input.onchange=()=>{events[index][key]=input.value};
       lab.htmlFor='ev'+index+key;input.id='ev'+index+key;
