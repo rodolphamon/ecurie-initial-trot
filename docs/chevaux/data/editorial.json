@@ -832,7 +832,9 @@
         "numero": 5,
         "video_url": "https://www.equidia.fr/courses/2026-11-17/R1/C7",
         "course_url": "https://www.equidia.fr/courses/2026-11-17/R1/C7",
-        "video_source": "equidia_course"
+        "video_source": "equidia_course",
+        "jockey": "César Belmont",
+        "jockey_source_url": "https://chutt.fr/index.php/arrivees-et-rapports/?course=7&date=17_11_2026&reunion=1"
       },
       {
         "date": "2026-10-21",
