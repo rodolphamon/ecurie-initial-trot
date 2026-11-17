@@ -287,6 +287,14 @@ def apply(data, current, is_dry_run=False, probe=False, finalized=None):
                 "course_url": equidia_url,
                 "video_source": "equidia_course",
             }
+            # Le jockey/driver est déjà renseigné lors de la déclaration
+            # du partant. Conserver son nom sur la performance officielle
+            # dont date + réunion/course + numéro + identité ont été contrôlés.
+            # Pas de nom inventé si la déclaration ne l'indique pas.
+            for rider_field in ("jockey", "driver"):
+                rider_name = evt.get(rider_field)
+                if isinstance(rider_name, str) and rider_name.strip():
+                    perf[rider_field] = rider_name.strip()
             updates.append((slug, perf))
             print(f"[PMU] CONFIRMÉ : {slug}, {evt['course']}, n°{bib}, {val}")
         except (ValueError, TypeError, KeyError) as exc:
