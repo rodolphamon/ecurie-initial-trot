@@ -256,6 +256,9 @@ Deno.serve(async (request) => {
             url: "https://fiches.ecurie-initial.com/application/notifications/",
           },
           vapid,
+          // Un test utilisateur doit être prioritaire comme les rappels imminents.
+          // TTL court pour ne pas recevoir un ancien test hors contexte.
+          { urgency: "high", ttl: 300 },
         );
         if (!delivered)
           return respond({ error: "L'abonnement du téléphone a expiré. Désactivez et réactivez les notifications." }, 410, origin);
