@@ -1,5 +1,22 @@
 <!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Administration · Écurie Initial</title><style>*{box-sizing:border-box}body{font:15px Arial,sans-serif;background:#f6f4f1;color:#242424;margin:0}header{background:#171717;color:#fff;padding:20px}header strong{font-size:22px}header span{color:#f47721}main{max-width:860px;margin:28px auto;padding:0 16px}.panel{background:#fff;border:1px solid #e7e0d9;border-radius:14px;padding:22px;margin-bottom:15px}h1{margin-top:0}p{line-height:1.5}a{color:#a94c08}button{background:#f47721;border:0;border-radius:8px;padding:11px 16px;font-weight:bold;cursor:pointer}button:disabled{opacity:.5;cursor:not-allowed}input{width:100%;padding:11px;border:1px solid #ccc;border-radius:8px;margin:6px 0 12px}label{font-weight:bold}.invite-horses{margin:14px 0;padding:14px;border:1px solid #e8e2dd;border-radius:10px}.invite-horses legend{font-weight:bold}.invite-roster{display:grid;grid-template-columns:repeat(auto-fit,minmax(185px,1fr));gap:6px;max-height:230px;overflow:auto;padding:4px}.invite-roster label{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:normal;padding:6px;border-radius:6px;background:#faf8f6}.invite-roster label[hidden]{display:none}.invite-roster input{width:auto;margin:0;flex-shrink:0}.invite-roster-state{font-size:12px;color:#666}#actionStatus{margin-top:12px}table{border-collapse:collapse;width:100%}th,td{text-align:left;border-bottom:1px solid #eee;padding:12px 8px}th{font-size:13px}small,.muted{color:#666}#error{color:#a00}#content[hidden],#denied[hidden]{display:none}nav{margin-bottom:16px}.horse-item{display:flex;justify-content:space-between;align-items:center;gap:12px;border-bottom:1px solid #eee;padding:10px 0}.horse-item:last-child{border:0}.horse-item button,.secondary{background:#eee;color:#222}.inline-actions{display:flex;flex-wrap:wrap;gap:7px}.inline-actions button{font-size:12px;padding:8px 10px}.small-select{width:100%;padding:11px;border:1px solid #ccc;border-radius:8px;margin:8px 0 12px}#horsePanel[hidden],#emailPanel[hidden]{display:none}.status{min-height:22px;margin:8px 0;color:#505050}.warning{background:#fff7eb;border-left:3px solid #f47721;padding:10px 13px}@media(max-width:650px){.panel{padding:16px}th,td{padding:9px 5px}main{padding:0 10px}}
-</style><link rel="manifest" href="../manifest.webmanifest"><link rel="apple-touch-icon" href="../icon-ei-192.png"></head><body><header><strong>ÉCURIE <span>INITIAL</span></strong><div>Administration des associés</div></header><main><nav><a href="../connexion/">← Mon espace associé</a></nav><div class="panel"><h1>Gestion des associés</h1><p id="loading">Vérification des droits d'administrateur…</p><p id="error" role="alert"></p><div id="denied" hidden><p>Cette rubrique est réservée à l'administrateur de l'Écurie Initial. Connectez-vous avec votre compte autorisé.</p><a href="../connexion/">Se connecter</a></div><div id="content" hidden><p>Voici les comptes enregistrés dans l'espace privé. Seuls les associés actifs peuvent consulter les publications.</p><div style="overflow-x:auto"><table><thead><tr><th>Associé</th><th>Statut</th><th>Rôle</th><th>Accès</th><th>Gestion</th></tr></thead><tbody id="members"></tbody></table></div><p class="muted" id="count"></p></div></div><div class="panel" id="horsePanel" hidden>
+
+#registryPanel .registry-list{max-height:440px;overflow:auto;border:1px solid #ece5dc;border-radius:9px}
+#registryPanel .registry-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(65px,95px) minmax(100px,auto);gap:9px;align-items:center;padding:10px;border-bottom:1px solid #f0ebe5}
+#registryPanel .registry-row:last-child{border-bottom:0}
+#registryPanel .registry-row button{font-size:12px;padding:8px 11px}
+#registryPanel .registry-row small{display:block;font-size:12px;margin-top:4px}
+#registryPanel .registry-row .registry-name{font-weight:bold;overflow-wrap:anywhere}
+#registryPanel .registry-row .registry-count{font-size:12px;color:#666}
+@media(max-width:650px){#registryPanel .registry-row{grid-template-columns:minmax(0,1fr) auto;gap:7px}}
+</style><link rel="manifest" href="../manifest.webmanifest"><link rel="apple-touch-icon" href="../icon-ei-192.png"></head><body><header><strong>ÉCURIE <span>INITIAL</span></strong><div>Administration des associés</div></header><main><nav><a href="../connexion/">← Mon espace associé</a></nav><div class="panel"><h1>Gestion des associés</h1><p id="loading">Vérification des droits d'administrateur…</p><p id="error" role="alert"></p><div id="denied" hidden><p>Cette rubrique est réservée à l'administrateur de l'Écurie Initial. Connectez-vous avec votre compte autorisé.</p><a href="../connexion/">Se connecter</a></div><div id="content" hidden><p>Voici les comptes enregistrés dans l'espace privé. Seuls les associés actifs peuvent consulter les publications.</p><div style="overflow-x:auto"><table><thead><tr><th>Associé</th><th>Statut</th><th>Rôle</th><th>Accès</th><th>Gestion</th></tr></thead><tbody id="members"></tbody></table></div><p class="muted" id="count"></p></div></div><div class="panel" id="registryPanel" hidden>
+<h2>📒 Répertoire des associés</h2>
+<p>Retrouvez ici les personnes de votre liste initiale, même si elles n'ont pas encore créé leur compte. Aucun e-mail n'est envoyé depuis cette liste.</p>
+<label for="registrySearch">Rechercher un associé déjà répertorié</label>
+<input type="search" id="registrySearch" placeholder="Nom ou prénom de l’associé…">
+<p class="muted" id="registryCount" role="status">Chargement du répertoire…</p>
+<div id="registryList" class="registry-list"></div>
+<p class="muted">Cliquez sur « Préparer l'invitation » pour retrouver automatiquement ses chevaux dans le formulaire ci-dessous. Vous n'aurez plus qu'à saisir son e-mail et vérifier les chevaux avant l'envoi. Les personnes ayant déjà un compte utilisent « Lien d'accès » dans le tableau ci-dessus.</p>
+</div><div class="panel" id="horsePanel" hidden>
 <h2>🐎 Chevaux de <span id="horseMemberName"></span></h2>
 <p class="warning">Ne rattacher que les chevaux dont cette personne est réellement copropriétaire. Exclure les locataires et respecter les groupes de propriété propres à chaque cheval. Les chevaux déjà rattachés sont conservés.</p>
 <p id="horseStatus" class="status" role="status" aria-live="polite"></p>
@@ -11,12 +28,13 @@
 <p class="muted">Le compte et ses participations seront conservés. Cette correction n'envoie pas de nouvelle invitation.</p>
 <form id="emailForm"><label for="newEmail">Nouvelle adresse e-mail</label><input id="newEmail" type="email" required autocomplete="off" maxlength="254"><button type="submit">Enregistrer la nouvelle adresse</button></form>
 <p id="emailStatus" role="status" aria-live="polite"></p>
-</div><div class="panel" id="privateNewsPanel" hidden><h2>🐎 Informations privées par cheval</h2><p>Publiez un message, une photo ou une vidéo pour les seuls associés propriétaires du cheval. Vous pouvez demander une notification ciblée.</p><p><a href="actualites/" style="display:inline-block;background:#f47721;color:#171717;font-weight:bold;text-decoration:none;border-radius:9px;padding:13px 15px">✍️ Publier une information</a></p></div><div class="panel" id="actions" hidden><h2>Invitations et gestion des accès</h2><p class="warning"><strong>Préouverture jusqu’au 1er décembre 2026.</strong> Les associés invités peuvent créer leur mot de passe maintenant, mais ne pourront pas utiliser leur espace avant cette date. Seuls Adrien Delgery, Nicolas Barré, Éric Schott et l’administrateur y accèdent pour les tests.</p><p>Les invitations sont individuelles et nécessitent la protection de préouverture côté Supabase.</p><form id="inviteForm"><label for="nom">Nom affiché</label><input id="nom" maxlength="100" required placeholder="Prénom NOM"><label for="email">Adresse e-mail</label><input id="email" type="email" required placeholder="associe@exemple.fr"><fieldset class="invite-horses"><legend>🐎 Chevaux de cet associé</legend><p class="muted">Cochez ses chevaux pour les rattacher dès la création du compte. Vous pourrez modifier cette liste ensuite.</p><input type="search" id="inviteHorseFilter" placeholder="Rechercher un cheval…" aria-label="Rechercher un cheval à attribuer"><div id="inviteHorseChoices" class="invite-roster"></div><p id="inviteHorseCount" class="invite-roster-state" role="status">Chargement des chevaux…</p></fieldset><button type="submit">Créer le compte et envoyer l'invitation</button></form><p id="actionStatus" role="status"></p><p class="muted">Les invitations sont individuelles. Aucun mot de passe ne doit être communiqué.</p><p class="muted">Pour corriger une adresse existante ou rattacher un cheval, choisissez le compte dans le tableau « Gestion des associés ».</p></div></main><script type="module">
+</div><div class="panel" id="privateNewsPanel" hidden><h2>🐎 Informations privées par cheval</h2><p>Publiez un message, une photo ou une vidéo pour les seuls associés propriétaires du cheval. Vous pouvez demander une notification ciblée.</p><p><a href="actualites/" style="display:inline-block;background:#f47721;color:#171717;font-weight:bold;text-decoration:none;border-radius:9px;padding:13px 15px">✍️ Publier une information</a></p></div><div class="panel" id="actions" hidden><h2>Invitations et gestion des accès</h2><p class="warning"><strong>Préouverture jusqu’au 1er décembre 2026.</strong> Les associés invités peuvent créer leur mot de passe maintenant, mais ne pourront pas utiliser leur espace avant cette date. Seuls Adrien Delgery, Nicolas Barré, Éric Schott et l’administrateur y accèdent pour les tests.</p><p>Les invitations sont individuelles et nécessitent la protection de préouverture côté Supabase.</p><form id="inviteForm"><p id="prefillNotice" class="muted">Pour une personne déjà connue, utilisez « Préparer l’invitation » dans le répertoire ci-dessus : ses chevaux seront cochés automatiquement.</p><label for="nom">Nom affiché</label><input id="nom" maxlength="100" required placeholder="Prénom NOM"><label for="email">Adresse e-mail</label><input id="email" type="email" required placeholder="associe@exemple.fr"><fieldset class="invite-horses"><legend>🐎 Chevaux de cet associé</legend><p class="muted">Cochez ses chevaux pour les rattacher dès la création du compte. Vous pourrez modifier cette liste ensuite.</p><input type="search" id="inviteHorseFilter" placeholder="Rechercher un cheval…" aria-label="Rechercher un cheval à attribuer"><div id="inviteHorseChoices" class="invite-roster"></div><p id="inviteHorseCount" class="invite-roster-state" role="status">Chargement des chevaux…</p></fieldset><button type="submit">Créer le compte et envoyer l'invitation</button></form><p id="actionStatus" role="status"></p><p class="muted">Les invitations sont individuelles. Aucun mot de passe ne doit être communiqué.</p><p class="muted">Pour corriger une adresse existante ou rattacher un cheval, choisissez le compte dans le tableau « Gestion des associés ».</p></div></main><script type="module">
 import {createClient} from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
 const db=createClient('https://yeecwaaizmvrhwobukfa.supabase.co','sb_publishable_xUy2EJA3u3cKWl8BB4GNPQ_qhV9Pes3');
 const $=id=>document.getElementById(id);
-let selectedMember=null,emailMember=null,roster=[],rosterLoaded=false;
+let selectedMember=null,emailMember=null,roster=[],rosterLoaded=false,registeredNames=new Set(),registryOwners=[];
 const sortFr=(a,b)=>a.localeCompare(b,'fr',{sensitivity:'base'});
+const normName=s=>(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();
 function status(id,value){$(id).textContent=value}
 function make(tag,content){const node=document.createElement(tag);if(content!==undefined)node.textContent=content;return node}
 async function action(body){
@@ -62,6 +80,66 @@ $('inviteHorseFilter').addEventListener('input',()=>{
   label.hidden=!!needle&&!norm.includes(needle);
  }
 });
+function prepareExistingOwner(owner){
+ if(registeredNames.has(normName(owner.nom))){
+  status('registryCount','Cet associé possède déjà un compte. Utilisez « Lien d’accès » dans le tableau Gestion des associés.');
+  return;
+ }
+ if(!rosterLoaded){status('registryCount','Les chevaux ne sont pas disponibles : rechargez la page avant de préparer l’invitation.');return}
+ const known=new Set((owner.horses||[]).map(h=>h.cheval_slug));
+ const active=new Set(roster.map(h=>h.id));
+ $('nom').value=owner.nom;
+ $('email').value='';
+ $('inviteHorseFilter').value='';
+ for(const label of $('inviteHorseChoices').querySelectorAll('label')){
+  label.hidden=false;
+  const input=label.querySelector('input');
+  if(input)input.checked=known.has(input.value);
+ }
+ updateInviteSummary();
+ const notListed=[...known].filter(slug=>!active.has(slug));
+ status('prefillNotice',owner.nom+' : '+[...known].filter(slug=>active.has(slug)).length+
+  ' cheval(aux) précoché(s) sur '+owner.horses.length+' rattachement(s) du répertoire.'+
+  (notListed.length?' Attention : '+notListed.length+' cheval(aux) ne sont plus dans l’effectif affiché.':'')+
+  ' Vérifiez puis indiquez son e-mail pour envoyer l’invitation.');
+ $('actions').scrollIntoView({behavior:'smooth',block:'start'});
+ $('email').focus({preventScroll:true});
+}
+function renderRegistry(){
+ const box=$('registryList');box.replaceChildren();
+ const needle=normName($('registrySearch').value);
+ const filtered=registryOwners.filter(o=>normName(o.nom).includes(needle));
+ const existing=registryOwners.filter(o=>registeredNames.has(normName(o.nom))).length;
+ status('registryCount',registryOwners.length+' fiches du registre, dont '+existing+
+  ' avec un compte existant · '+filtered.length+' affichée(s).');
+ if(!filtered.length){box.append(make('p','Aucun associé trouvé.'));return;}
+ for(const owner of filtered){
+  const already=registeredNames.has(normName(owner.nom));
+  const line=make('div');line.className='registry-row';
+  const info=make('div');info.className='registry-name';
+  info.append(make('span',owner.nom));
+  const note=make('small',already?'Compte déjà créé · utiliser « Lien d’accès »':'Pas encore de compte dans l’application');
+  info.append(note);
+  const count=make('span',owner.horses.length+' cheval(aux)');count.className='registry-count';
+  const actionBox=make('div');
+  if(already)actionBox.append(make('small','Compte existant'));
+  else{
+   const b=make('button','Préparer l’invitation');b.type='button';
+   b.onclick=()=>prepareExistingOwner(owner);
+   actionBox.append(b);
+  }
+  line.append(info,count,actionBox);box.append(line);
+ }
+}
+$('registrySearch').addEventListener('input',renderRegistry);
+async function loadRegistry(){
+ $('registryPanel').hidden=false;
+ try{
+  const data=await action({action:'list_registry'});
+  registryOwners=Array.isArray(data.owners)?data.owners:[];
+  renderRegistry();
+ }catch(e){status('registryCount','Impossible de charger le répertoire : '+e.message);}
+}
 async function renderHorses(member){
  if(selectedMember?.user_id!==member.user_id)return;
  status('horseStatus','Chargement des participations…');
@@ -142,6 +220,7 @@ async function init(){
   if(roleError||!me?.actif||!me.administrateur){$('denied').hidden=false;return}
   const {data:members,error}=await db.from('associes').select('user_id,nom_affiche,actif,administrateur').order('nom_affiche');
   if(error)throw error;
+  registeredNames=new Set(members.map(m=>normName(m.nom_affiche)));
   for(const m of members){
    const tr=make('tr');
    for(const value of [m.nom_affiche,m.actif?'Actif':'Suspendu',m.administrateur?'Administrateur':'Associé']){
@@ -184,6 +263,7 @@ async function init(){
   $('content').hidden=false;$('actions').hidden=false;$('privateNewsPanel').hidden=false;
   await loadRoster();
   renderInviteRoster();
+  await loadRegistry();
  }catch(e){status('error','Impossible de charger les comptes pour le moment.')}
  finally{$('loading').hidden=true}
 }
@@ -194,6 +274,7 @@ $('inviteForm').onsubmit=async e=>{
  const horses=picked.map(input=>roster.find(h=>h.id===input.value)).filter(Boolean)
   .map(h=>({cheval_slug:h.id,cheval_nom:h.name}));
  const nom=$('nom').value.trim(),email=$('email').value.trim().toLowerCase();
+ if(registeredNames.has(normName(nom))){status('actionStatus','Cet associé possède déjà un compte. Utilisez « Lien d’accès » dans Gestion des associés.');return;}
  const warning=(horses.length?horses.length+' cheval(aux) associé(s) à son compte.':'Aucun cheval rattaché pour le moment.')+'\nMot de passe activable maintenant, mais accès à l’espace réservé jusqu’au 1er décembre 2026.';
  if(!confirm('Inviter '+nom+' à l’adresse '+email+' ?\n'+warning))return;
  const b=e.target.querySelector('button');b.disabled=true;
@@ -201,7 +282,8 @@ $('inviteForm').onsubmit=async e=>{
  try {
   const response=await action({action:'invite',nom,email,horses});
   status('actionStatus',response.message||'Invitation demandée. Vérifiez la réception de l’e-mail.');
-  e.target.reset();updateInviteSummary();
+  registeredNames.add(normName(nom));renderRegistry();
+  e.target.reset();status('prefillNotice','Compte créé. Sélectionnez une autre personne dans le répertoire si nécessaire.');updateInviteSummary();
  }catch(err){status('actionStatus',err.message)}finally{b.disabled=false}
 };
 await init();

@@ -27,6 +27,36 @@ serve(async (req) => {
     const { data: me, error: roleError } = await admin.from("associes").select("actif,administrateur").eq("user_id", user.id).single();
     if (roleError || !me?.actif || !me.administrateur) return reply(403, { error: "Accès administrateur requis." });
     const body = await req.json();
+
+    // Répertoire interne de référence : fiches préexistantes, sans création de compte ni e-mail.
+    // Accessible uniquement après vérification du JWT et du rôle administrateur ci-dessus.
+    if (body.action === "list_registry") {
+      const { data: links, error } = await admin.from("affectations_proprietaires")
+        .select("nom_associe,cheval_slug,cheval_nom").order("nom_associe").limit(1000);
+      if (error) return reply(500, { error: "Impossible de charger le registre des associés." });
+      const normalize = (value: string) => value.normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "").toUpperCase().replace(/[^A-Z0-9]+/g, " ").trim();
+      const owners = new Map<string, { nom: string; horses: Array<{ cheval_slug: string; cheval_nom: string }> }>();
+      for (const entry of links || []) {
+        const raw = String(entry.nom_associe || "").trim();
+        const original = normalize(raw);
+        if (!raw || original === "ECURIE INITIAL") continue; // La société n'est pas un invité.
+        // Correspondances confirmées par le gérant : éviter plusieurs invitations pour la même personne.
+        const nom = original.includes("FRANXICANA") ? "Gilles MONINOT"
+          : original.includes("DEFRANCE") ? "Nicolas DEFRANCE" : raw;
+        const key = normalize(nom);
+        const slug = String(entry.cheval_slug || "").trim();
+        const horseName = String(entry.cheval_nom || "").trim();
+        if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug) || !horseName) continue;
+        let row = owners.get(key);
+        if (!row) { row = { nom, horses: [] }; owners.set(key, row); }
+        if (!row.horses.some(h => h.cheval_slug === slug)) {
+          row.horses.push({ cheval_slug: slug, cheval_nom: horseName });
+        }
+      }
+      const result = [...owners.values()].sort((a, b) => a.nom.localeCompare(b.nom, "fr", { sensitivity: "base" }));
+      return reply(200, { ok: true, owners: result });
+    }
     if (body.action === "invite") {
       // Aucune invitation avant la mise en place des règles RLS de préouverture.
       const { data: launchReady, error: launchError } = await admin.rpc("ei_lancement_pret");
