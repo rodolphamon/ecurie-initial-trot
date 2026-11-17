@@ -1103,12 +1103,13 @@
         "jockey": "Olivier d'Andigné",
         "entraineur": "Gilles Pannier",
         "corde": 6,
-        "course": "C3",
+        "course": "R4C7",
         "decharge": "20 %",
         "source_description": "Liste France Galop communiquée le 16/11/2026 ; horaires et statut partant confirmés séparément lorsque disponibles",
         "source_url": "https://pro.france-galop.com/EspacePro/Course/CourseDetailsPage?anneeCourse=2026&specialite=P&numProgramme=6508",
         "code_programme": "6508",
-        "part": "A (20 %)"
+        "part": "A (20 %)",
+        "numero": 4
       }
     ],
     "giorgiana": [
