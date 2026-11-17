@@ -1,6 +1,6 @@
 // Service Worker de l'application Écurie Initial.
 // Cache minimal ; aucun contenu privé conservé volontairement en cache.
-const CACHE='ei-app-shell-v12';
+const CACHE='ei-app-shell-v13';
 self.addEventListener('install',event=>{
   event.waitUntil(caches.open(CACHE).then(c=>c.addAll(['./','manifest.webmanifest','icon-ei-192.png','notification-ei-badge.png','notification-transparent-192.png'])));
   self.skipWaiting();
@@ -21,7 +21,7 @@ self.addEventListener('fetch',event=>{
   event.respondWith(fetch(event.request).catch(()=>caches.match(event.request)));
 });
 // Diagnostic limité à ce navigateur : horodatage et résultat d'affichage seulement.
-function recordPushStatus(status,error){
+function recordPushStatus(status,error,details){
   return new Promise(resolve=>{
     try{
       const open=indexedDB.open('ei-push-debug-v1',1);
@@ -32,11 +32,12 @@ function recordPushStatus(status,error){
       open.onsuccess=()=>{
         const db=open.result;
         const tx=db.transaction('events','readwrite');
-        const entry={at:new Date().toISOString(),status,error:error||null};
+        const entry={at:new Date().toISOString(),status,error:error||null,...(details||{})};
         const store=tx.objectStore('events');
         store.put(entry,'last');
         if(status==='received')store.put(entry,'last_received');
         if(status==='shown'||status==='error')store.put(entry,'last_display');
+        if(status==='click-opened'||status==='click-failed')store.put(entry,'last_click');
         tx.oncomplete=()=>{db.close();resolve()};
         tx.onerror=()=>{db.close();resolve()};
         tx.onabort=()=>{db.close();resolve()};
@@ -73,15 +74,56 @@ self.addEventListener('push',event=>{
 self.addEventListener('notificationclick',event=>{
   event.notification.close();
   event.waitUntil((async()=>{
-    let url='/application/';
-    try{const target=new URL(event.notification.data?.url||url,self.location.origin);if(target.origin===self.location.origin)url=target.href}catch{}
-    const windows=await self.clients.matchAll({type:'window',includeUncontrolled:true});
-    for(const client of windows){
-      if(new URL(client.url).origin===self.location.origin){
-        if('navigate' in client)await client.navigate(url);
-        return client.focus();
-      }
+    // Conserver le chemin, le ?info=... et l'ancre #nouvelles-privees.
+    // Refuser les domaines extérieurs, pour qu'une notification ne puisse
+    // jamais rediriger vers un site arbitraire.
+    const fallback=new URL('/application/',self.location.origin);
+    let target=fallback;
+    try{
+      const candidate=new URL(event.notification.data?.url||fallback.href,self.location.origin);
+      if(candidate.origin===self.location.origin&&/^https?:$/.test(candidate.protocol))target=candidate;
+    }catch(_){}
+    const route=target.pathname+target.search+target.hash;
+    let lastError='Aucune fenêtre disponible';
+    let windows=[];
+    try{windows=await self.clients.matchAll({type:'window',includeUncontrolled:true});}
+    catch(error){lastError=String(error?.message||error);}
+    const sameOrigin=windows.filter(client=>{
+      try{return new URL(client.url).origin===self.location.origin}catch(_){return false}
+    });
+    // Préférer une fenêtre de l'application, pas un onglet quelconque du site.
+    const candidates=[
+      ...sameOrigin.filter(client=>client.url.startsWith(self.location.origin+'/application/')),
+      ...sameOrigin.filter(client=>!client.url.startsWith(self.location.origin+'/application/'))
+    ];
+    for(const client of candidates){
+      try{
+        if(client.url===target.href){
+          await client.focus();
+          await recordPushStatus('click-opened',null,{route,method:'focus'});
+          return;
+        }
+        if(typeof client.navigate==='function'){
+          const navigated=await client.navigate(target.href);
+          if(navigated){
+            await navigated.focus();
+            await recordPushStatus('click-opened',null,{route,method:'navigate'});
+            return;
+          }
+          lastError='Navigation refusée par le navigateur';
+        }
+      }catch(error){lastError=String(error?.message||error)}
     }
-    return self.clients.openWindow(url);
+    // Repli indispensable sur iOS et si navigate() échoue dans une PWA.
+    try{
+      const opened=await self.clients.openWindow(target.href);
+      if(opened){
+        await opened.focus();
+        await recordPushStatus('click-opened',null,{route,method:'openWindow'});
+        return;
+      }
+      lastError='Ouverture refusée par le téléphone';
+    }catch(error){lastError=String(error?.message||error)}
+    await recordPushStatus('click-failed',lastError,{route,method:'none'});
   })());
 });
