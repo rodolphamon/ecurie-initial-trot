@@ -135,10 +135,9 @@ function horse(s){
   const perf=(s.editor.performances[id]||[]).slice().sort((a,b)=>b.date.localeCompare(a.date));
   const eng=(s.editor.engagements[id]||[]).filter(x=>x.date+'T'+(x.heure||'23:59')>=currentParis()).sort((a,b)=>(a.date+(a.heure||'23:59')).localeCompare(b.date+(b.heure||'23:59')));
   const tr=perf.length
-    ?'<div class="table-wrap"><table class="perf-table"><thead><tr><th>Date</th><th>Hippodrome</th><th>Classement</th><th>Driver / Jockey</th><th>Replay / course</th></tr></thead><tbody>'+perf.map(x=>{
+    ?'<div class="table-wrap"><table class="perf-table"><thead><tr><th>Date</th><th>Hippodrome</th><th>Classement</th><th>Driver / Jockey</th><th>Replay</th></tr></thead><tbody>'+perf.map(x=>{
       const replay=s.replayIndex[x.date+'|'+normalizeSearch(p.name)];
       const course=absoluteUrl(x.course_url);
-      const courseType=String(x.rang||'').toLowerCase().startsWith('qualif')?'Qualification':'Résultat';
       const direct=absoluteUrl(x.video_url);
       const isNonPartant=/non.partant|^np\b/i.test(String(x.rang||''));
       // La fiche Equidia du résultat automatique est disponible comme destination
@@ -148,7 +147,13 @@ function horse(s){
         && /^https:\/\/www\.equidia\.fr\/courses\/\d{4}-\d{2}-\d{2}\/R\d+\/C\d+\/?$/i.test(direct)
         ?{url:direct,kind:'equidia_auto'}:null;
       const link=isNonPartant?null:(autoEquidia||replay||(direct?{url:direct,kind:/dailymotion\.com|youtube\.com/i.test(direct)?'video':'course'}:null));
-      const video=link?'<a class="'+(link.kind==='video'||link.kind==='letrot'||link.kind==='equidia_auto'?'ei-video-link':'ei-course-link')+'" href="'+esc(link.url)+'" target="_blank" rel="noopener noreferrer" aria-label="'+esc(link.kind==='equidia_auto'?'Page Equidia de la course, vidéo dès sa publication':link.kind==='video'?'Vidéo':link.kind==='letrot'?'Replay sur LeTROT':link.kind==='letrot_result'?'Fiche de course LeTROT':link.kind==='equidia'?'Fiche de course Equidia':link.kind==='replay_page'?'Page de course avec rubrique Replay':'Fiche de course')+' de '+esc(p.name)+' du '+esc(dateFR(x.date))+'">'+(link.kind==='equidia_auto'?'▶ Vidéo':link.kind==='video'?'▶ Vidéo':link.kind==='letrot'?'▶ LeTROT':link.kind==='letrot_result'?'↗ LeTROT':link.kind==='equidia'?'↗ Equidia':link.kind==='replay_page'?'↗ Page replay':'↗ Course')+'</a>':course&&!isNonPartant?'<a class="ei-course-link" href="'+esc(course)+'" target="_blank" rel="noopener noreferrer" aria-label="'+courseType+' de '+esc(p.name)+' du '+esc(dateFR(x.date))+'">↗ '+courseType+'</a>':'<span class="ei-no-video" aria-label="Aucun replay disponible">—</span>';
+      // Libellé et style identiques pour toutes les courses (vidéo directe ou page
+      // où le replay sera publié ultérieurement), sans changer la destination.
+      const video=link
+        ?'<a class="ei-video-link" href="'+esc(link.url)+'" target="_blank" rel="noopener noreferrer" aria-label="'+esc('Replay de '+p.name+' du '+dateFR(x.date)+' — ouvre la page de course, vidéo selon disponibilité')+'">▶ Replay</a>'
+        :course&&!isNonPartant
+          ?'<a class="ei-video-link" href="'+esc(course)+'" target="_blank" rel="noopener noreferrer" aria-label="'+esc('Replay de '+p.name+' du '+dateFR(x.date)+' — page de course')+'">▶ Replay</a>'
+          :'<span class="ei-no-video" aria-label="Aucun lien de course disponible">—</span>';
       return '<tr><td>'+esc(dateFR(x.date))+'</td><td>'+esc(x.hippodrome)+'</td><td><span class="rank">'+esc(x.rang||'—')+'</span></td><td>'+esc(x.driver||x.jockey||'—')+'</td><td>'+video+'</td></tr>';
     }).join('')+'</tbody></table></div>'
     :'<div class="empty">Aucune performance détaillée renseignée pour le moment.</div>';
@@ -188,7 +193,7 @@ function horse(s){
         +'<div class="paper">'+tr+'</div>'
       +'</section>'
       +(s.editor.qualifications&&s.editor.qualifications[id]&&absoluteUrl(s.editor.qualifications[id].url)
-        ?'<section class="section"><h2 class="section-title">Qualification</h2><div class="paper ei-qualification"><span class="ei-qualification-label">'+esc(s.editor.qualifications[id].hippodrome)+' · '+esc(dateFR(s.editor.qualifications[id].date))+' · lot n°'+esc(s.editor.qualifications[id].lot)+(s.editor.qualifications[id].chrono?' · '+esc(s.editor.qualifications[id].chrono):'')+'</span><a class="ei-video-link" href="'+esc(absoluteUrl(s.editor.qualifications[id].url))+'" target="_blank" rel="noopener noreferrer" aria-label="Voir la qualification de '+esc(p.name)+'">▶ Voir le replay de qualification</a></div></section>'
+        ?'<section class="section"><h2 class="section-title">Qualification</h2><div class="paper ei-qualification"><span class="ei-qualification-label">'+esc(s.editor.qualifications[id].hippodrome)+' · '+esc(dateFR(s.editor.qualifications[id].date))+' · lot n°'+esc(s.editor.qualifications[id].lot)+(s.editor.qualifications[id].chrono?' · '+esc(s.editor.qualifications[id].chrono):'')+'</span><a class="ei-video-link" href="'+esc(absoluteUrl(s.editor.qualifications[id].url))+'" target="_blank" rel="noopener noreferrer" aria-label="Voir la qualification de '+esc(p.name)+'">▶ Replay</a></div></section>'
         :'')
       +'<section class="section">'
         +'<h2 class="section-title">'+(eng.length===1?'Prochain engagement':'Prochains engagements')+'</h2>'
