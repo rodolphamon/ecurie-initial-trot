@@ -78,11 +78,14 @@ body.ei-prelaunch{padding-bottom:0!important}
 .home-dashboard strong{font-size:clamp(16px,3vw,21px);font-weight:900;line-height:1.1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .home-dashboard .dash-number{font-size:34px;font-variant-numeric:tabular-nums}
 .home-dashboard .dash-detail{font-size:12px;color:#6a6159;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-#publicArea .cards{gap:8px}
-#publicArea .cards a.card{padding:9px 11px;min-height:66px}
-#publicArea .cards a.card strong{font-size:14px;line-height:1.22}
-#publicArea .cards a.card small{font-size:11px;line-height:1.2;margin-top:3px}
-@media(max-width:600px){#publicArea .home-title{font-size:18px;margin:11px 0 7px}#publicArea .cards a.card{padding:9px 10px;min-height:61px}#publicArea .cards a.card strong{font-size:13.5px}#publicArea .cards a.card small{font-size:10.5px}.home-dashboard a{min-height:86px;padding:10px 11px}.home-dashboard a:last-child{min-height:68px}.home-dashboard .dash-detail{font-size:11px}.home-dashboard strong{font-size:16px}}
+#publicArea .cards{gap:12px;align-items:stretch}
+#publicArea .cards a.card{display:flex;flex-direction:column;justify-content:center;padding:15px 14px;min-height:100px}
+#publicArea .cards a.card strong{font-size:15px;line-height:1.22}
+#publicArea .cards a.card small{display:block;color:#6c6560;font-size:12px;line-height:1.35;margin-top:7px}
+#publicArea .cards a.card .upcoming-lines{display:flex;flex-direction:column;gap:6px;margin-top:6px}
+#publicArea .cards a.card .upcoming-line{display:block;min-width:0;font-size:11px;line-height:1.3;color:#635b55}
+#publicArea .cards a.card .upcoming-line b{color:#25201e;font-weight:800;overflow-wrap:anywhere}
+@media(max-width:600px){#publicArea .home-title{font-size:18px;margin:13px 0 8px}#publicArea .cards{gap:11px}#publicArea .cards a.card{padding:12px 11px;min-height:clamp(89px,11.8dvh,105px)}#publicArea .cards a.card strong{font-size:14px}#publicArea .cards a.card small{font-size:11.5px;line-height:1.35;margin-top:6px}#publicArea .cards a.card .upcoming-line{font-size:10.8px}.home-dashboard a{min-height:86px;padding:10px 11px}.home-dashboard a:last-child{min-height:68px}.home-dashboard .dash-detail{font-size:11px}.home-dashboard strong{font-size:16px}}
 @media(max-width:355px){.home-dashboard{grid-template-columns:1fr 1fr}.home-dashboard a{padding:9px}.home-dashboard .dash-label{font-size:9px}}
 
 </style><link rel="apple-touch-icon" href="icon-ei-192.png"></head><body class="ei-prelaunch"><header><div class="brand"><img src="icon-ei-192.png" alt="Emblème officiel Écurie Initial"><div class="brand-copy"><strong>ÉCURIE <span class="brand-initial"><span class="brand-initial-i">I</span>NITIAL</span></strong></div><p class="brand-slogan"><span class="brand-slogan-line">PARTAGEONS NOTRE PASSION</span><span class="brand-slogan-date">DEPUIS 2011</span></p></div></header><div id="prelaunch" hidden><div class="prelaunch-box"><h1>🐎 Bientôt votre espace Écurie Initial</h1><p><strong>Ouverture officielle le mardi 1er décembre 2026.</strong></p><p>Vous avez reçu une invitation ? Vous pouvez dès maintenant confirmer votre inscription et définir votre mot de passe. L’accès à l’application sera disponible à partir du 1er décembre.</p><p>Jusqu’à cette date, les cinq comptes pilotes et les contributeurs expressément autorisés assurent les derniers essais.</p><a href="connexion/">Confirmer mon invitation ou me connecter</a><p style="font-size:13px;color:#f7e9df;margin:18px 0 0"><strong>Vous pouvez installer l'application dès maintenant :</strong><br>Android : ouvrez cette page dans Chrome puis « Installer l'application ».<br>iPhone : ouvrez cette page dans Safari, puis « Partager » → « Sur l'écran d'accueil ».</p></div><p class="prelaunch-hint">Notre site public reste accessible sur <a href="https://www.ecurie-initial.com/" style="background:none;color:#a54c0b;padding:0;font:inherit;text-decoration:underline">www.ecurie-initial.com</a>.</p></div><main id="appContent" hidden>
@@ -96,12 +99,12 @@ body.ei-prelaunch{padding-bottom:0!important}
 </div>
 <h2 class="home-title">À découvrir</h2>
 <div class="cards">
-<a class="card" href="../chevaux/"><strong>🐎 Effectif et résultats</strong><small>Fiches des chevaux</small></a>
-<a class="card" href="../engagements/"><strong>📅 Prochains partants</strong><small>Calendrier des courses</small></a>
-<a class="card" href="../palmares/"><strong>🏆 Victoires & podiums</strong><small>Palmarès de l'écurie</small></a>
-<a class="card" href="notifications/"><strong>🔔 Notifications</strong><small>Alertes de courses</small></a>
-<a class="card" href="devenir-associe/"><strong>🧡 Devenir associé</strong><small>Rejoindre l'écurie</small></a>
-<a class="card" href="contact/"><strong>✉️ Nous contacter</strong><small>Écrire à l'écurie</small></a>
+<a class="card" href="../chevaux/"><strong>🐎 Effectif et résultats</strong><small>Découvrez nos chevaux, leurs fiches et leurs performances.</small></a>
+<a class="card" href="../engagements/"><strong>📅 Prochains partants</strong><span class="upcoming-lines"><span class="upcoming-line">Prochain partant : <b id="homeNextPartant">À venir</b></span><span class="upcoming-line">Prochain engagement : <b id="homeNextEngage">À venir</b></span></span></a>
+<a class="card" href="../palmares/"><strong>🏆 Victoires & podiums</strong><small>Revivez nos victoires et nos plus belles places d’honneur.</small></a>
+<a class="card" href="notifications/"><strong>🔔 Notifications</strong><small>Restez informés des partants et des résultats.</small></a>
+<a class="card" href="devenir-associe/"><strong>🧡 Devenir associé</strong><small>Vivez les émotions des courses à nos côtés.</small></a>
+<a class="card" href="contact/"><strong>✉️ Nous contacter</strong><small>Une question, une idée ? Parlons-en ensemble.</small></a>
 </div></div>
 <section id="privateArea" hidden><div class="private"><h2>🔒 La tribune des associés</h2><p>Un espace convivial pour suivre tous les chevaux, partager photos et nouvelles, commenter les courses et retrouver ses participations personnelles.</p><p><strong>Accès réservé aux associés validés par l'écurie.</strong></p><p class="notice">Connectez-vous pour accéder aux publications et aux commentaires réservés aux associés.</p><p class="notice">Pas encore associé ? <a href="devenir-associe/">Découvrez comment nous rejoindre.</a></p><div class="privateActions"><a class="button" href="connexion/">Se connecter</a><a class="button button-dark" href="mes-chevaux/">🐎 Mes chevaux</a><a class="button button-dark" href="tribune/">Accéder à la Tribune</a><a class="button button-dark" href="notifications/">🔔 Notifications</a></div></div></section>
 </main>
@@ -160,6 +163,12 @@ window.loadHomeDashboard=async function(){
     }
    }
    upcoming.sort((a,b)=>a.moment.localeCompare(b.moment));
+   // Distinguer la prochaine course confirmée du premier engagement encore ouvert.
+   const nextConfirmed=upcoming.find(x=>["partant","declare"].includes(x.e.statut));
+   const nextEntered=upcoming.find(x=>x.e.statut==="engage");
+   const succinct=x=>x?known.get(x.slug)+" · "+stamp(x.e.date):"Aucun annoncé";
+   get("homeNextPartant").textContent=succinct(nextConfirmed);
+   get("homeNextEngage").textContent=succinct(nextEntered);
    const next=upcoming[0];
    if(next){
     get("dashNextLabel").textContent=["partant","declare"].includes(next.e.statut)?"Prochain partant":"Prochain engagement";
