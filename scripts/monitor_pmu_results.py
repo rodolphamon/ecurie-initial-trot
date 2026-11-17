@@ -157,6 +157,21 @@ def verify_identity(day, code, bib, expected_name):
     return True, None
 
 
+def equidia_course_url(day, code):
+    """Page de résultat Equidia (le replay peut ne pas être encore publié).
+
+    URL fondée exclusivement sur la date et le code PMU RnCm vérifiés.
+    Ne prétend pas que la vidéo est déjà disponible.
+    """
+    if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", str(day or "")):
+        raise ValueError("Date de course invalide pour Equidia")
+    match = re.fullmatch(r"R(\d+)C(\d+)", str(code or ""), re.I)
+    if not match:
+        raise ValueError("Réunion/course PMU invalide pour Equidia")
+    reunion, course = map(int, match.groups())
+    return f"https://www.equidia.fr/courses/{day}/R{reunion}/C{course}"
+
+
 def local_time(day, hour):
     if not isinstance(hour, str) or not re.fullmatch(r"\d{2}:\d{2}", hour):
         return None
@@ -259,12 +274,18 @@ def apply(data, current, is_dry_run=False, probe=False, finalized=None):
                 print(f"[PMU] {slug} : {error}")
                 continue
             val = ("1er" if rank == 1 else f"{rank}e")
+            # Lien créé au même instant que la performance officielle ;
+            # le replay Equidia peut apparaître sur cette page plus tard.
+            equidia_url = equidia_course_url(day, evt["course"])
             perf = {
                 "date": day, "hippodrome": evt["hippodrome"],
                 "rang": val, "officiel": True, "statut": "officiel",
                 "source_description": f"PMU : arrivée définitive {evt['course']}, cheval n°{bib}",
                 "source_url": "https://www.pmu.fr/turf/",
                 "source_api": url, "course": evt["course"], "numero": bib,
+                "video_url": equidia_url,
+                "course_url": equidia_url,
+                "video_source": "equidia_course",
             }
             updates.append((slug, perf))
             print(f"[PMU] CONFIRMÉ : {slug}, {evt['course']}, n°{bib}, {val}")
