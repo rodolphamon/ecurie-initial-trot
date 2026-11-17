@@ -162,7 +162,7 @@ function latestResults(s){
       +'<div class="recent-content"><a class="recent-horse" href="'+encodeURIComponent(p.id)+'/">'+esc(p.name)+'</a>'
       +'<div class="recent-meta"><time datetime="'+esc(result.date)+'">'+esc(dateFR(result.date))+'</time> · '+esc(result.hippodrome||'Hippodrome non renseigné')+' · '+(p.casaque==='galop'?'Galop':'Trot')+'</div></div>'
       +'<img class="recent-silk" src="'+esc(silk(p))+'" alt="Casaque de '+esc(p.name)+'" width="42" height="50" loading="lazy" decoding="async">'
-      +'<div class="recent-side"><span class="recent-rank'+medal+'">'+esc(rank)+'</span>'+link+'</div>'
+      +'<div class="recent-side"><span class="recent-rank'+medal+(rank.length>4?' recent-rank-long':'')+'">'+esc(rank)+'</span>'+link+'</div>'
       +'</li>';
   }).join('');
   return '<section class="recent-results" aria-labelledby="recent-results-title">'
