@@ -32,7 +32,7 @@
 import {createClient} from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
 const db=createClient('https://yeecwaaizmvrhwobukfa.supabase.co','sb_publishable_xUy2EJA3u3cKWl8BB4GNPQ_qhV9Pes3');
 const $=id=>document.getElementById(id);
-let selectedMember=null,emailMember=null,roster=[],rosterLoaded=false,registeredNames=new Set(),registryOwners=[];
+let selectedMember=null,emailMember=null,roster=[],rosterLoaded=false,registeredNames=new Set(),registryOwners=[],registryLoadError='';
 const sortFr=(a,b)=>a.localeCompare(b,'fr',{sensitivity:'base'});
 const normName=s=>(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();
 function status(id,value){$(id).textContent=value}
@@ -107,6 +107,11 @@ function prepareExistingOwner(owner){
 }
 function renderRegistry(){
  const box=$('registryList');box.replaceChildren();
+ if(registryLoadError){
+  status('registryCount','⚠️ Répertoire indisponible : '+registryLoadError);
+  box.append(make('p','Le répertoire ne peut pas être chargé. Aucun compte n’a été modifié. Actualisez la page pour réessayer.'));
+  return;
+ }
  const needle=normName($('registrySearch').value);
  const filtered=registryOwners.filter(o=>normName(o.nom).includes(needle));
  const existing=registryOwners.filter(o=>registeredNames.has(normName(o.nom))).length;
@@ -134,11 +139,17 @@ function renderRegistry(){
 $('registrySearch').addEventListener('input',renderRegistry);
 async function loadRegistry(){
  $('registryPanel').hidden=false;
+ registryLoadError='';
+ status('registryCount','Chargement du répertoire…');
  try{
   const data=await action({action:'list_registry'});
-  registryOwners=Array.isArray(data.owners)?data.owners:[];
-  renderRegistry();
- }catch(e){status('registryCount','Impossible de charger le répertoire : '+e.message);}
+  if(!Array.isArray(data.owners))throw Error('Réponse invalide du serveur');
+  registryOwners=data.owners;
+ }catch(e){
+  registryOwners=[];
+  registryLoadError=e.message||'Erreur inconnue du serveur';
+ }
+ renderRegistry();
 }
 async function renderHorses(member){
  if(selectedMember?.user_id!==member.user_id)return;
