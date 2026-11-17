@@ -1097,46 +1097,53 @@
     "giorgiana": [
       {
         "date": "2026-11-19",
-        "heure": "",
+        "heure": "14:30",
         "hippodrome": "Saint-Cloud",
         "type": "Plat",
         "prix": "Prix du Tunnel de Saint-Cloud",
         "allocation": 22100,
         "distance": "1200 m",
-        "statut": "engage",
-        "source_description": "Liste France Galop communiquée le 16/11/2026 ; horaires et statut partant confirmés séparément lorsque disponibles",
+        "statut": "partant",
+        "source_description": "Déclarations France Galop transmises par le gérant le 17/11/2026 ; horaire confirmé par le gérant. ",
         "code_programme": "1193",
-        "part": "A (25 %)"
+        "part": "A (25 %)",
+        "jockey": "Léo ROUSSEL",
+        "entraineur": "Gilles PANNIER"
       }
     ],
     "le-roi-leon": [
       {
         "date": "2026-11-19",
-        "heure": "",
+        "heure": "13:10",
         "hippodrome": "Saint-Cloud",
         "type": "Plat",
-        "prix": "Prix de Windsor",
-        "allocation": 50900,
+        "prix": "Prix Del Monte",
+        "allocation": 25900,
         "distance": "2000 m",
-        "statut": "engage",
-        "source_description": "Liste France Galop communiquée le 16/11/2026 ; horaires et statut partant confirmés séparément lorsque disponibles",
-        "code_programme": "1190",
-        "part": "R (16 %)"
+        "statut": "partant",
+        "source_description": "Déclarations France Galop transmises par le gérant le 17/11/2026 ; horaire confirmé par le gérant. ",
+        "code_programme": "11197",
+        "part": "R (16 %)",
+        "jockey": "Léo ROUSSEL",
+        "entraineur": "Gilles PANNIER"
       }
     ],
     "douriann": [
       {
         "date": "2026-11-19",
-        "heure": "",
+        "heure": "13:55",
         "hippodrome": "Saint-Cloud",
         "type": "Plat",
         "prix": "Prix de Windsor",
         "allocation": 50900,
         "distance": "2000 m",
-        "statut": "engage",
-        "source_description": "Liste France Galop communiquée le 16/11/2026 ; horaires et statut partant confirmés séparément lorsque disponibles",
+        "statut": "partant",
+        "source_description": "Déclarations France Galop transmises par le gérant le 17/11/2026 ; horaire confirmé par le gérant. Quinté+ confirmé par le gérant.",
         "code_programme": "1190",
-        "part": "A (30 %)"
+        "part": "A (30 %)",
+        "jockey": "Léo ROUSSEL",
+        "entraineur": "Gilles PANNIER",
+        "quinte_plus": true
       }
     ],
     "moondance-okina": [
