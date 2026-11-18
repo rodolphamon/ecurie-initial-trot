@@ -40,7 +40,33 @@
 .tool-button.primary{background:#f47721;color:#171717}
 .tool-button.secondary{background:#f4efe9;color:#28221e;border:1px solid #e5d8cb}
 @media(max-width:650px){.admin-tool-grid{grid-template-columns:1fr;gap:10px}.admin-tool{padding:15px!important}.admin-tool-title h2{font-size:17px}}
-</style><link rel="manifest" href="../manifest.webmanifest"><link rel="apple-touch-icon" href="../icon-ei-192.png"></head><body><header><strong>ÉCURIE <span>INITIAL</span></strong><div>Administration des associés</div></header><main><nav><a href="../connexion/">← Mon espace associé</a></nav><div class="panel"><h1>Gestion des associés</h1><p id="loading">Vérification des droits d'administrateur…</p><p id="error" role="alert"></p><div id="denied" hidden><p>Cette rubrique est réservée à l'administrateur de l'Écurie Initial. Connectez-vous avec votre compte autorisé.</p><a href="../connexion/">Se connecter</a></div><div id="content" hidden><p>Voici les comptes enregistrés dans l'espace privé. Seuls les associés actifs peuvent consulter les publications.</p><div class="members-table-wrap"><table><thead><tr><th>Associé</th><th>Statut</th><th>Rôle</th><th>Accès</th><th>Gestion</th></tr></thead><tbody id="members"></tbody></table></div><p class="muted" id="count"></p></div></div><div class="panel" id="registryPanel" hidden>
+
+/* Tableau de bord : navigation compacte, réservée aux administrateurs validés. */
+#adminDashboard[hidden]{display:none!important}
+.admin-hub{padding:20px!important;border-top:5px solid #f47721}
+.admin-hub h1{margin:0 0 7px;font-size:26px}
+.admin-hub-intro{margin:0 0 15px;font-size:14px;color:#665f59}
+.admin-hub-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,175px),1fr));gap:10px}
+.admin-hub-link{display:flex;flex-direction:column;gap:6px;min-width:0;min-height:85px;padding:14px 12px;background:#faf7f3;color:#24201e!important;border:1px solid #e7ded5;border-radius:11px;text-decoration:none;transition:border-color .15s,background .15s}
+.admin-hub-link:hover,.admin-hub-link:focus-visible{border-color:#f47721;background:#fff1e5;outline:2px solid #f47721;outline-offset:1px}
+.admin-hub-link strong{font-size:15px;line-height:1.2}
+.admin-hub-link small{font-size:12px;color:#70645b;line-height:1.25}
+@media(max-width:480px){.admin-hub-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.admin-hub-link{padding:12px 10px;min-height:90px}.admin-hub h1{font-size:23px}.admin-hub-link strong{font-size:13px}}
+</style><link rel="manifest" href="../manifest.webmanifest"><link rel="apple-touch-icon" href="../icon-ei-192.png"></head><body><header><strong>ÉCURIE <span>INITIAL</span></strong><div>Gestion de l'Écurie Initial</div></header><main><nav><a href="../connexion/">← Mon espace associé</a></nav>
+<section class="panel admin-hub" id="adminDashboard" aria-label="Tableau de bord d'administration" hidden>
+ <h1>🛠️ Administration</h1>
+ <p class="admin-hub-intro">Tous vos accès de gestion au même endroit.</p>
+ <div class="admin-hub-grid">
+  <a class="admin-hub-link" href="#associesPanel"><strong>👥 Associés</strong><small>Comptes et accès</small></a>
+  <a class="admin-hub-link" href="#registryPanel"><strong>📒 Répertoire</strong><small>Associés et chevaux</small></a>
+  <a class="admin-hub-link" href="#actions"><strong>✉️ Invitations</strong><small>Inviter et attribuer les chevaux</small></a>
+  <a class="admin-hub-link" href="../contribution/"><strong>🐎 Gestion sportive</strong><small>Engagements, gains, valeurs, records</small></a>
+  <a class="admin-hub-link" href="tribune/"><strong>🛡️ Tribune</strong><small>Modérer les publications</small></a>
+  <a class="admin-hub-link" href="actualites/"><strong>📣 Messages</strong><small>Communications aux associés</small></a>
+  <a class="admin-hub-link" href="contributeurs/"><strong>📝 Contributeurs</strong><small>Accès aux modifications sportives</small></a>
+  <a class="admin-hub-link" href="../diagnostic-notifications/"><strong>🔔 Notifications</strong><small>Vérifier les alertes sur votre appareil</small></a>
+ </div>
+</section><div class="panel" id="associesPanel"><h1>Gestion des associés</h1><p id="loading">Vérification des droits d'administrateur…</p><p id="error" role="alert"></p><div id="denied" hidden><p>Cette rubrique est réservée à l'administrateur de l'Écurie Initial. Connectez-vous avec votre compte autorisé.</p><a href="../connexion/">Se connecter</a></div><div id="content" hidden><p>Voici les comptes enregistrés dans l'espace privé. Seuls les associés actifs peuvent consulter les publications.</p><div class="members-table-wrap"><table><thead><tr><th>Associé</th><th>Statut</th><th>Rôle</th><th>Accès</th><th>Gestion</th></tr></thead><tbody id="members"></tbody></table></div><p class="muted" id="count"></p></div></div><div class="panel" id="registryPanel" hidden>
 <h2>📒 Répertoire des associés</h2>
 <p>Retrouvez ici les personnes de votre liste initiale, même si elles n'ont pas encore créé leur compte. Aucun e-mail n'est envoyé depuis cette liste.</p>
 <label for="registrySearch">Rechercher un associé déjà répertorié</label>
@@ -326,7 +352,7 @@ async function init(){
    $('members').append(tr);
   }
   $('count').textContent=members.length+' compte(s) enregistré(s)';
-  $('content').hidden=false;$('actions').hidden=false;$('privateNewsPanel').hidden=false;$('contributorPanel').hidden=false;$('tribunePanel').hidden=false;
+  $('adminDashboard').hidden=false;$('content').hidden=false;$('actions').hidden=false;$('privateNewsPanel').hidden=false;$('contributorPanel').hidden=false;$('tribunePanel').hidden=false;
   await loadRoster();
   renderInviteRoster();
   await loadRegistry();
