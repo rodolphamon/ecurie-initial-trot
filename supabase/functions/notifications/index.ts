@@ -317,6 +317,11 @@ Deno.serve(async (request) => {
       return respond({ error: "Informations Push invalides." }, 400, origin);
     const user = await memberId(request);
     const member = !!user;
+    const {data:account,error:accountError}=user
+      ?await db.from("associes").select("type_compte").eq("user_id",user).maybeSingle()
+      :{data:null,error:null};
+    if(accountError)throw accountError;
+    const isAssociate=member && account?.type_compte!=="exterieur";
     // Un invité connecté en préinscription ne peut pas contourner
     // la date d'ouverture en créant un abonnement de visiteur.
     if (!member) {
@@ -335,16 +340,16 @@ Deno.serve(async (request) => {
       auth_secret: sub.keys.auth,
       token_hash: tokenHash,
       user_id: user,
-      audience: member ? "associate" : "visitor",
-      scope: member && p.scope === "mine" ? "mine" : "all",
-      confirmed: member && p.confirmed !== false,
+      audience: isAssociate ? "associate" : "visitor",
+      scope: isAssociate && p.scope === "mine" ? "mine" : "all",
+      confirmed: isAssociate && p.confirmed !== false,
       daily: p.daily !== false,
-      before15: member && p.before15 !== false,
+      before15: isAssociate && p.before15 !== false,
       results: p.results !== false,
-      withdrawn: member && p.withdrawn !== false,
+      withdrawn: isAssociate && p.withdrawn !== false,
       // Une actualité privée reste strictement limitée aux propriétaires.
-      private_news: member && p.private_news === true,
-      general_news: member && p.general_news !== false,
+      private_news: isAssociate && p.private_news === true,
+      general_news: isAssociate && p.general_news !== false,
       updated_at: new Date().toISOString(),
       last_error: null,
     };
@@ -362,7 +367,7 @@ Deno.serve(async (request) => {
       if (error.code === "23505") return respond({ error: "L'appareil est déjà inscrit ; rechargez cette page." }, 409, origin);
       throw error;
     }
-    if (member && user) {
+    if (isAssociate && user) {
       // Choix du périmètre lié au compte, et non à un navigateur ou un téléphone.
       // Ne touche à aucune autre préférence des appareils.
       const { error: accountError } = await db.from("associes")
