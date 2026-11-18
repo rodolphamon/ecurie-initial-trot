@@ -154,6 +154,46 @@ body[data-admin-view="actions"] #actions:not([hidden]){display:block!important}
  .access-summary strong{font-size:18px}
  .access-summary span{font-size:10px}
 }
+/* Gestion des membres : lignes pliables sur mobile (v2). */
+.member-toggle{display:none}
+@media(max-width:650px){
+ main{margin:10px auto;padding:0 8px}
+ main>nav{display:inline-block;margin:0 12px 9px 0;font-size:12px;line-height:1.3}
+ main>nav a{font-size:12px}
+ #associesPanel{padding:10px;border-radius:11px}
+ #associesPanel h1{font-size:18px;line-height:1.2;margin:0 0 9px}
+ #associesPanel #content>p:first-child{display:none}
+ .access-summary{gap:5px;margin:7px 0 9px}
+ .access-summary div{padding:5px 2px;border-radius:8px}
+ .access-summary strong{font-size:17px;line-height:1.12}
+ .access-summary span{font-size:10px;line-height:1.2;margin-top:2px}
+ #members tr{
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:0 8px;padding:9px 0;
+  align-items:start;
+ }
+ #members td:nth-child(1){grid-row:1;grid-column:1;font-size:14px;line-height:1.2;overflow-wrap:anywhere}
+ #members .registration-mobile{display:block;margin-top:4px;font-size:11px;font-weight:400;line-height:1.25;color:#625952}
+ #members td:nth-child(2){
+  grid-row:1;grid-column:2;
+  display:flex;flex-direction:column;align-items:flex-end;
+  text-align:right;gap:5px;font-size:11px;white-space:nowrap
+ }
+ #members .member-toggle{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-width:93px;min-height:33px;margin:0;padding:5px 8px;
+  background:#f7f2ec;color:#71461f;border:1px solid #e6d7c8;
+  border-radius:8px;font-size:11px;line-height:1.15;font-weight:700;
+ }
+ #members .member-toggle:focus-visible{outline:2px solid #f47721;outline-offset:2px}
+ #members td:nth-child(4){display:none}
+ #members tr:not(.member-open) td:nth-child(3),
+ #members tr:not(.member-open) td:nth-child(5){display:none}
+ #members tr.member-open td:nth-child(3){grid-row:2;margin-top:9px}
+ #members tr.member-open td:nth-child(5){grid-row:3;margin-top:7px}
+ #members tr.member-open .member-action-grid{gap:5px}
+ #members tr.member-open .member-action-grid button{min-height:37px}
+}
 </style><link rel="manifest" href="../manifest.webmanifest"><link rel="apple-touch-icon" href="../icon-ei-192.png"></head><body><header><strong>ÉCURIE <span>INITIAL</span></strong><div>Gestion de l'Écurie Initial</div></header><main><nav><a href="../connexion/">← Mon espace associé</a></nav>
 <nav id="adminDetailNav" hidden><a href="#adminDashboard">← Administration</a></nav>
 <section class="panel admin-hub" id="adminDashboard" aria-label="Tableau de bord d'administration" hidden>
@@ -471,7 +511,7 @@ async function init(){
   if(error)throw error;
   registeredNames=new Set(members.map(m=>normName(m.nom_affiche)));
   for(const m of members){
-   const tr=make('tr');
+   const tr=make('tr');tr.classList.add('member-row');
    for(const value of [m.nom_affiche,m.actif?'Actif':'Suspendu']){
     const td=make('td',value);tr.append(td);
    }
@@ -506,10 +546,35 @@ async function init(){
      dateLine('Dernière ouverture',registration.derniere_ouverture);
    }
    tr.append(registrationCell);
-   const mobileRegistration=make('small',inscriptionLabels[state]+' · '+(openings>0?openings+' ouverture'+(openings>1?'s':''):'aucune ouverture suivie'));
+   const roleLabel=m.administrateur?'Administrateur':m.type_compte==='observateur'?'Communication · lecture seule':m.type_compte==='exterieur'?'Membre extérieur':'Associé';
+   const mobileRegistration=make('small',roleLabel+' · '+(state==='connecte'||state==='email_confirme'?'✓ Inscrit':state==='invitation_en_attente'?'⏳ Invitation en attente':'Inscription à vérifier')+' · '+(!registration?'📱 Stat. indisponibles':openings>0?'📱 '+openings+' ouverture'+(openings>1?'s':''):'📱 0 ouverture'));
    mobileRegistration.className='registration-mobile registration-'+state;
    tr.firstElementChild.append(mobileRegistration);
-   const roleCell=make('td',m.administrateur?'Administrateur':m.type_compte==='observateur'?'Communication · lecture seule':m.type_compte==='exterieur'?'Membre extérieur':'Associé');tr.append(roleCell);
+   const roleCell=make('td',roleLabel);tr.append(roleCell);
+   const memberToggle=make('button','Détails ▾');
+   memberToggle.type='button';memberToggle.className='member-toggle';
+   memberToggle.setAttribute('aria-expanded','false');
+   memberToggle.setAttribute('aria-label','Afficher les détails et actions de '+m.nom_affiche);
+   memberToggle.onclick=()=>{
+     const wasOpen=tr.classList.contains('member-open');
+     const previous=$('members').querySelector('tr.member-open');
+     if(previous){
+       previous.classList.remove('member-open');
+       const previousToggle=previous.querySelector('.member-toggle');
+       if(previousToggle){
+         previousToggle.textContent='Détails ▾';
+         previousToggle.setAttribute('aria-expanded','false');
+         previousToggle.setAttribute('aria-label','Afficher les détails et actions de '+previous.firstElementChild.firstChild.textContent);
+       }
+     }
+     if(!wasOpen){
+       tr.classList.add('member-open');
+       memberToggle.textContent='Réduire ▴';
+       memberToggle.setAttribute('aria-expanded','true');
+       memberToggle.setAttribute('aria-label','Masquer les détails et actions de '+m.nom_affiche);
+     }
+   };
+   tr.children[1].append(memberToggle);
    const manage=make('td'),buttons=make('div');buttons.className='inline-actions member-action-grid';
    let suspendBtn=null;
    if(!m.administrateur){
