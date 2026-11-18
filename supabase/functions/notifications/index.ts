@@ -351,7 +351,18 @@ Deno.serve(async (request) => {
       if (error.code === "23505") return respond({ error: "L'appareil est déjà inscrit ; rechargez cette page." }, 409, origin);
       throw error;
     }
-    return respond({ ok: true, audience: values.audience }, 200, origin);
+    if (member && user) {
+      // Choix du périmètre lié au compte, et non à un navigateur ou un téléphone.
+      // Ne touche à aucune autre préférence des appareils.
+      const { error: accountError } = await db.from("associes")
+        .update({ notification_scope: values.scope }).eq("user_id", user);
+      if (accountError) throw accountError;
+      const { error: syncError } = await db.from("ei_push_subscriptions")
+        .update({ scope: values.scope })
+        .eq("user_id", user).eq("audience", "associate");
+      if (syncError) throw syncError;
+    }
+    return respond({ ok: true, audience: values.audience, scope: values.scope }, 200, origin);
   } catch (e) {
     console.error("Push inscription error", e instanceof Error ? e.message : e);
     return respond({ error: "Enregistrement indisponible." }, 500, origin);
