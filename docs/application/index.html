@@ -485,6 +485,92 @@ body.ei-prelaunch{padding-bottom:0!important}
 @media(max-width:600px){
  #privateArea .assoc-admin-shortcut{font-size:13px;min-height:47px;padding:10px 12px}
 }
+
+/* Espace associés : présentation alignée sur les cartes de l'application. */
+body.ei-assoc-view #appContent .home-welcome{display:none!important}
+body.ei-assoc-view #appContent{padding-top:10px}
+#privateArea .assoc-panel{
+ padding:17px 16px 18px;background:#fff;border:1px solid #e8dfd8;
+ border-left:5px solid var(--o);border-radius:16px;box-shadow:0 2px 8px #00000008
+}
+#privateArea .assoc-heading{display:block;margin:0 0 14px}
+#privateArea .assoc-heading-top{
+ display:flex;align-items:flex-start;justify-content:space-between;
+ flex-wrap:nowrap;gap:10px;margin:0 0 7px
+}
+#privateArea .assoc-heading-copy{min-width:0;align-self:center;flex:1}
+#privateArea .assoc-heading h2{
+ font-size:clamp(19px,3.3vw,25px);line-height:1.15;
+ letter-spacing:-.35px;margin:0;white-space:nowrap
+}
+#privateArea .assoc-subtitle{
+ font-size:12.5px;color:#675f59;line-height:1.35;margin:0
+}
+#privateArea .assoc-heading-top .assoc-access,
+#privateArea .assoc-heading-top .assoc-access.is-connected{
+ display:flex;flex-direction:column;align-items:stretch;gap:5px;flex:0 0 auto;
+ padding:0;margin:0;background:transparent;border:0;
+}
+#privateArea .assoc-heading-top .assoc-login,
+#privateArea .assoc-heading-top .assoc-login.is-connected{
+ display:flex;align-items:center;justify-content:center;
+ height:34px;min-height:34px;padding:5px 11px;
+ font-size:11px;border-radius:8px;line-height:1.2;white-space:nowrap
+}
+#privateArea .assoc-heading-top .assoc-logout{
+ display:block;width:100%;height:28px;min-height:28px;
+ padding:4px 7px;background:#fff;color:#95501f;border:1px solid #e3d7cc;
+ border-radius:7px;text-align:center;font:700 10px Arial,sans-serif
+}
+#privateArea .assoc-links{display:grid;grid-template-columns:1fr;gap:9px;margin:0 0 9px}
+#privateArea .assoc-link,
+#privateArea .assoc-link-main,
+#privateArea .assoc-link-admin,
+#privateArea .assoc-link-join{
+ display:flex;align-items:center;gap:12px;min-height:69px;margin:0;
+ padding:11px 13px;background:#fff;color:#26221f;
+ border:1px solid #e7dfd8;border-left:4px solid var(--o);
+ border-radius:12px;box-shadow:0 1px 5px #00000006;
+ text-decoration:none;grid-column:auto;
+}
+#privateArea .assoc-link:hover,
+#privateArea .assoc-link:active{background:#fff8f2;border-color:#e8a779}
+#privateArea .assoc-link-emoji{
+ flex:0 0 30px;width:30px;font-size:23px;line-height:1.1;text-align:center
+}
+#privateArea .assoc-link-text{
+ display:flex;flex-direction:column;justify-content:center;align-items:flex-start;
+ flex:1;min-width:0;gap:3px;white-space:normal
+}
+#privateArea .assoc-link-text strong{
+ display:block;font-size:16px;line-height:1.18;font-weight:850;
+ white-space:normal;overflow-wrap:normal
+}
+#privateArea .assoc-link-text small{
+ display:block;font-size:12px;line-height:1.25;color:#756d65;
+ white-space:normal;overflow:visible;text-overflow:clip
+}
+#privateArea .assoc-link-arrow{margin-left:auto;color:#a66c47;font-size:21px}
+#privateArea .assoc-link-admin[hidden]{display:none!important}
+#privateArea .assoc-link-admin{background:#fff8f2}
+#privateArea .assoc-link-admin .assoc-link-arrow{color:#ad5c21}
+#privateArea .assoc-link-join{min-height:69px}
+#privateArea .assoc-link-join .assoc-link-text strong{font-size:15px}
+@media(min-width:760px){
+ #privateArea .assoc-links{grid-template-columns:repeat(2,minmax(0,1fr))}
+ #privateArea .assoc-heading{margin-bottom:16px}
+ #privateArea .assoc-link,#privateArea .assoc-link-join{min-height:82px}
+ #privateArea .assoc-link-text strong{font-size:17px}
+}
+@media(max-width:380px){
+ #privateArea .assoc-panel{padding:14px 11px 16px}
+ #privateArea .assoc-heading h2{font-size:19px}
+ #privateArea .assoc-heading-top{gap:6px}
+ #privateArea .assoc-heading-top .assoc-login{padding:5px 7px;font-size:10px}
+ #privateArea .assoc-link-text strong{font-size:15px}
+ #privateArea .assoc-link-text small{font-size:11.5px}
+}
+
 </style><link rel="apple-touch-icon" href="icon-ei-192.png"></head><body class="ei-prelaunch"><header><div class="brand"><img src="icon-ei-192.png" alt="Emblème officiel Écurie Initial"><div class="brand-copy"><strong>ÉCURIE <span class="brand-initial"><span class="brand-initial-i">I</span>NITIAL</span></strong></div><p class="brand-slogan"><span class="brand-slogan-line">PARTAGEONS NOTRE PASSION</span><span class="brand-slogan-date">DEPUIS 2011</span></p></div></header><div id="prelaunch" hidden><div class="prelaunch-box"><h1>🐎 Bientôt votre espace Écurie Initial</h1><p><strong>Ouverture officielle le mardi 1er décembre 2026.</strong></p><p>Vous pouvez installer l’application dès aujourd’hui. Les invités peuvent confirmer leur compte et les visiteurs extérieurs peuvent demander leur inscription sans invitation. L’accès privé reste soumis à validation, avec ouverture générale le 1er décembre.</p><p>Jusqu’à cette date, les cinq comptes pilotes et les contributeurs expressément autorisés assurent les derniers essais.</p><a href="connexion/">Me connecter</a> <a href="inscription/" style="margin-left:8px">Créer mon compte</a><p style="font-size:13px;color:#f7e9df;margin:18px 0 0"><strong>Vous pouvez installer l'application dès maintenant :</strong><br>Android : ouvrez cette page dans Chrome puis « Installer l'application ».<br>iPhone : ouvrez cette page dans Safari, puis « Partager » → « Sur l'écran d'accueil ».</p></div><p class="prelaunch-hint">Notre site public reste accessible sur <a href="https://www.ecurie-initial.com/" style="background:none;color:#a54c0b;padding:0;font:inherit;text-decoration:underline">www.ecurie-initial.com</a>.</p></div><main id="appContent" hidden>
 <div class="home-welcome" role="note">La vie de l’Écurie, course après course.</div>
 <div id="publicArea">
@@ -509,20 +595,19 @@ body.ei-prelaunch{padding-bottom:0!important}
  <div class="private assoc-panel">
   <div class="assoc-heading">
    <div class="assoc-heading-top">
-    <span class="assoc-eyebrow">ÉCURIE INITIAL · ESPACE PRIVÉ</span>
+    <div class="assoc-heading-copy">
+     <h2>🔒 Espace associés</h2>
+    </div>
     <div class="assoc-access" id="assocAccess">
      <span id="assocAccessState" class="assoc-access-state">Connectez-vous pour accéder à votre espace.</span>
      <a class="button assoc-login" id="assocLogin" href="connexion/">Se connecter <span aria-hidden="true">→</span></a>
      <button type="button" id="assocLogout" class="assoc-logout" hidden>Se déconnecter</button>
     </div>
    </div>
-   <div class="assoc-heading-copy">
-    <h2>🔒 Espace associés</h2>
-    <p>Vos chevaux, nos échanges et toutes les nouvelles de l'Écurie au même endroit.</p>
-   </div>
+   <p class="assoc-subtitle">Vos chevaux, vos échanges, vos notifications.</p>
   </div>
-  <a class="assoc-admin-shortcut" id="assocAdminShortcut" href="administration/" hidden><span>🛠️ Administration de l'Écurie</span><span aria-hidden="true">→</span></a>
   <nav class="assoc-links" aria-label="Rubriques des associés">
+   <a class="assoc-link assoc-link-admin" id="assocAdminShortcut" href="administration/" hidden><span class="assoc-link-emoji" aria-hidden="true">🛠️</span><span class="assoc-link-text"><strong>Administration de l'Écurie</strong><small>Gestion de l'Écurie Initial</small></span><span class="assoc-link-arrow" aria-hidden="true">›</span></a>
    <a class="assoc-link assoc-link-main" href="tribune/"><span class="assoc-link-emoji" aria-hidden="true">💬</span><span class="assoc-link-text"><strong>Tribune des supporters</strong><small>Échanges entre membres et passionnés</small></span><span class="assoc-link-arrow" aria-hidden="true">›</span></a>
    <a class="assoc-link" href="mes-chevaux/"><span class="assoc-link-emoji" aria-hidden="true">🐎</span><span class="assoc-link-text"><strong>Mes chevaux</strong><small>Suivi de vos participations</small></span><span class="assoc-link-arrow" aria-hidden="true">›</span></a>
    <a class="assoc-link" href="notifications/"><span class="assoc-link-emoji" aria-hidden="true">🔔</span><span class="assoc-link-text"><strong>Notifications</strong><small>Vos alertes et actualités</small></span><span class="assoc-link-arrow" aria-hidden="true">›</span></a>
@@ -532,7 +617,7 @@ body.ei-prelaunch{padding-bottom:0!important}
 </section>
 </main>
 <script>
-function tab(priv){document.getElementById('publicArea').hidden=priv;document.getElementById('privateArea').hidden=!priv;if(priv)window.scrollTo({top:0,behavior:'smooth'})}
+function tab(priv){document.getElementById('publicArea').hidden=priv;document.getElementById('privateArea').hidden=!priv;document.body.classList.toggle('ei-assoc-view',priv);if(priv)window.scrollTo({top:0,behavior:'smooth'})}
 if(new URLSearchParams(location.search).get('espace')==='associes')tab(true);
 if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
 </script>
