@@ -15,7 +15,7 @@ body.ei-unified-header-active[data-page] #app > header.top{display:none!importan
 #ei-unified-header .ei-uh-logo{display:block!important;flex:none;width:clamp(52px,6.4vw,88px)!important;height:clamp(52px,6.4vw,88px)!important;max-width:none!important;object-fit:contain!important;background:#fff!important;border:1px solid #f5e5d7!important;border-radius:16px!important;padding:3px!important}
 #ei-unified-header .ei-uh-wordmark{display:block;color:#171717!important;font-weight:900!important;font-size:clamp(21px,2.65vw,40px)!important;line-height:1.1!important;letter-spacing:-.035em!important;white-space:nowrap!important;border-bottom:3px solid #f47721!important;padding:9px 0 11px!important}
 #ei-unified-header .ei-uh-i{display:inline-block;position:relative;color:#f47721!important;font:inherit!important;font-size:1em!important;line-height:inherit!important;vertical-align:baseline!important}
-#ei-unified-header .ei-uh-star{position:absolute;left:50%;top:auto!important;bottom:calc(100% + .08em);transform:translateX(-50%);display:block;line-height:1;font-size:.55em;color:#f47721;-webkit-text-stroke:.8px #171717;paint-order:stroke fill;text-shadow:0 0 .3px #171717;pointer-events:none}
+#ei-unified-header .ei-uh-star{position:absolute;left:50%;top:auto!important;bottom:calc(100% - .11em);transform:translateX(-50%);display:block;line-height:1;font-size:.46em;color:#f47721;-webkit-text-stroke:.8px #171717;paint-order:stroke fill;text-shadow:0 0 .3px #171717;pointer-events:none}
 #ei-unified-header .ei-uh-motto{display:block;margin:0!important;flex:0 1 auto;min-width:0;color:#171717!important;text-align:center!important;font-size:clamp(13px,1.6vw,25px)!important;font-weight:850!important;letter-spacing:0!important;line-height:1.25!important}
 #ei-unified-header .ei-uh-motto-line{display:block;color:#171717!important}
 #ei-unified-header .ei-uh-date{display:block;color:#f47721!important;font-size:1.13em!important;margin-top:6px!important;font-weight:900!important;white-space:nowrap!important}
@@ -25,7 +25,7 @@ body.ei-unified-header-active[data-page] #app > header.top{display:none!importan
 #ei-unified-header .ei-uh-brand{gap:7px}
 #ei-unified-header .ei-uh-logo{width:43px!important;height:43px!important;border-radius:10px!important;padding:2px!important}
 #ei-unified-header .ei-uh-wordmark{font-size:clamp(15px,4.5vw,19px)!important;padding:8px 0 6px!important;border-bottom-width:2px!important;letter-spacing:-.045em!important}
-#ei-unified-header .ei-uh-star{font-size:.52em}
+#ei-unified-header .ei-uh-star{font-size:.42em}
 #ei-unified-header .ei-uh-motto{font-size:clamp(9px,2.65vw,12px)!important;line-height:1.2!important;flex:1 1 90px;max-width:46%}
 #ei-unified-header .ei-uh-date{margin-top:3px!important}
 }
