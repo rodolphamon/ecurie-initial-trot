@@ -331,14 +331,14 @@ function horse(s){
         +'<div class="hero-info">'
           +'<div class="hero-title-row">'
             +'<h1>'+esc(p.name)
-
+            +(age!==null?'<span class="hero-age" title="'+esc('Né en '+p.birth_year+' · âge hippique au 1er janvier')+'">'+esc(ageLabel)+'</span>':'')
             +'</h1>'
             +'<img class="hero-title-silk" src="'+esc(silk(p))+'" alt="Casaque de '+esc(p.name)+'" loading="lazy" decoding="async">'
           +'</div>'
           +'<div class="hero-meta">'
             +'<span class="orange-line hero-title-rule" aria-hidden="true"></span>'
             +'<span class="hero-trainer" title="'+esc('Entraîneur : '+(p.trainer||'—'))+'"><span aria-hidden="true">🎩</span> <span class="hero-trainer-name">'+esc(p.trainer||'—')+'</span></span>'
-            +(age!==null?'<span class="hero-age" title="'+esc('Né en '+p.birth_year+' · âge hippique au 1er janvier')+'">'+esc(ageLabel)+'</span>':'')
+
             +(isRest?'<span class="tag rest">Au repos</span>':'')
           +'</div>'
         +'</div>'
