@@ -1,4 +1,27 @@
-<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Administration · Écurie Initial</title><style>*{box-sizing:border-box}body{font:15px Arial,sans-serif;background:#f6f4f1;color:#242424;margin:0}header{background:#171717;color:#fff;padding:20px}header strong{font-size:22px}header span{color:#f47721}main{max-width:860px;margin:28px auto;padding:0 16px}.panel{background:#fff;border:1px solid #e7e0d9;border-radius:14px;padding:22px;margin-bottom:15px}h1{margin-top:0}p{line-height:1.5}a{color:#a94c08}button{background:#f47721;border:0;border-radius:8px;padding:11px 16px;font-weight:bold;cursor:pointer}button:disabled{opacity:.5;cursor:not-allowed}input{width:100%;padding:11px;border:1px solid #ccc;border-radius:8px;margin:6px 0 12px}label{font-weight:bold}.invite-horses{margin:14px 0;padding:14px;border:1px solid #e8e2dd;border-radius:10px}.invite-horses legend{font-weight:bold}.invite-roster{display:grid;grid-template-columns:repeat(auto-fit,minmax(185px,1fr));gap:6px;max-height:230px;overflow:auto;padding:4px}.invite-roster label{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:normal;padding:6px;border-radius:6px;background:#faf8f6}.invite-roster label[hidden]{display:none}.invite-roster input{width:auto;margin:0;flex-shrink:0}.invite-roster-state{font-size:12px;color:#666}#actionStatus{margin-top:12px}table{border-collapse:collapse;width:100%}th,td{text-align:left;border-bottom:1px solid #eee;padding:12px 8px}th{font-size:13px}small,.muted{color:#666}#error{color:#a00}#content[hidden],#denied[hidden]{display:none}nav{margin-bottom:16px}.horse-item{display:flex;justify-content:space-between;align-items:center;gap:12px;border-bottom:1px solid #eee;padding:10px 0}.horse-item:last-child{border:0}.horse-item button,.secondary{background:#eee;color:#222}.inline-actions{display:flex;flex-wrap:wrap;gap:7px}.inline-actions button{font-size:12px;padding:8px 10px}.small-select{width:100%;padding:11px;border:1px solid #ccc;border-radius:8px;margin:8px 0 12px}#horsePanel[hidden],#emailPanel[hidden]{display:none}.status{min-height:22px;margin:8px 0;color:#505050}.warning{background:#fff7eb;border-left:3px solid #f47721;padding:10px 13px}@media(max-width:650px){.panel{padding:16px}th,td{padding:9px 5px}main{padding:0 10px}}
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Administration · Écurie Initial</title><style>*{box-sizing:border-box}body{font:15px Arial,sans-serif;background:#f6f4f1;color:#242424;margin:0}header{background:#171717;color:#fff;padding:20px}header strong{font-size:22px}header span{color:#f47721}main{max-width:860px;margin:28px auto;padding:0 16px}.panel{background:#fff;border:1px solid #e7e0d9;border-radius:14px;padding:22px;margin-bottom:15px}h1{margin-top:0}p{line-height:1.5}a{color:#a94c08}button{background:#f47721;border:0;border-radius:8px;padding:11px 16px;font-weight:bold;cursor:pointer}button:disabled{opacity:.5;cursor:not-allowed}input{width:100%;padding:11px;border:1px solid #ccc;border-radius:8px;margin:6px 0 12px}label{font-weight:bold}.invite-horses{margin:14px 0;padding:14px;border:1px solid #e8e2dd;border-radius:10px}.invite-horses legend{font-weight:bold}.invite-roster{display:grid;grid-template-columns:repeat(auto-fit,minmax(185px,1fr));gap:6px;max-height:230px;overflow:auto;padding:4px}.invite-roster label{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:normal;padding:6px;border-radius:6px;background:#faf8f6}.invite-roster label[hidden]{display:none}.invite-roster input{width:auto;margin:0;flex-shrink:0}.invite-roster-state{font-size:12px;color:#666}#actionStatus{margin-top:12px}table{border-collapse:collapse;width:100%}th,td{text-align:left;border-bottom:1px solid #eee;padding:12px 8px}th{font-size:13px}small,.muted{color:#666}#error{color:#a00}#content[hidden],#denied[hidden]{display:none}nav{margin-bottom:16px}.horse-item{display:flex;justify-content:space-between;align-items:center;gap:12px;border-bottom:1px solid #eee;padding:10px 0}.horse-item:last-child{border:0}.horse-item button,.secondary{background:#eee;color:#222}.inline-actions{display:flex;flex-wrap:wrap;gap:7px}.inline-actions button{font-size:12px;padding:8px 10px}
+/* Gestion des associés sur ordinateur : boutons en deux lignes stables. */
+@media(min-width:651px){
+ #members td:nth-child(5){min-width:235px}
+ #members td:nth-child(5) .inline-actions{
+   display:grid;
+   grid-template-columns:repeat(2,minmax(0,1fr));
+   gap:6px;
+   width:100%;
+ }
+ #members td:nth-child(5) .inline-actions button{
+   width:100%;
+   min-width:0;
+   min-height:34px;
+   padding:7px 6px;
+   font-size:12px;
+   line-height:1.2;
+   white-space:nowrap;
+ }
+ #members td:nth-child(5) .inline-actions button:nth-child(3){
+   grid-column:1/-1;
+ }
+}
+.small-select{width:100%;padding:11px;border:1px solid #ccc;border-radius:8px;margin:8px 0 12px}#horsePanel[hidden],#emailPanel[hidden]{display:none}.status{min-height:22px;margin:8px 0;color:#505050}.warning{background:#fff7eb;border-left:3px solid #f47721;padding:10px 13px}@media(max-width:650px){.panel{padding:16px}th,td{padding:9px 5px}main{padding:0 10px}}
 
 #registryPanel .registry-list{max-height:440px;overflow:auto;border:1px solid #ece5dc;border-radius:9px}
 #registryPanel .registry-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(65px,95px) minmax(100px,auto);gap:9px;align-items:center;padding:10px;border-bottom:1px solid #f0ebe5}
