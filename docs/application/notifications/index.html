@@ -33,6 +33,7 @@ button{cursor:pointer;background:var(--orange);border:0;border-radius:9px;font-w
 <div class="row"><input type="checkbox" id="before15" checked><label for="before15"><strong>15 minutes avant le départ</strong></label></div>
 <div class="row"><input type="checkbox" id="resultMember" checked><label for="resultMember"><strong>Résultat officiel</strong></label></div>
 <div class="row"><input type="checkbox" id="withdrawn" checked><label for="withdrawn"><strong>Non-partant</strong></label></div>
+<div class="row"><input type="checkbox" id="generalNews" checked><label for="generalNews"><strong>📣 Messages généraux de l’écurie</strong><div class="muted">Annonces destinées à tous les associés. Le texte complet reste dans votre espace privé.</div></label></div>
 <div class="row"><input type="checkbox" id="privateNews" checked><label for="privateNews"><strong>Nouvelles privées de mes chevaux</strong><div class="muted">Informations, photos et vidéos réservées aux propriétaires. Uniquement les chevaux dont je possède des parts.</div></label></div>
 </div>
 </section>
@@ -71,8 +72,8 @@ function chooseScope(scope){
 }
 function prefs(){return isMember?{
   scope:document.querySelector('input[name="scope"]:checked').value,
-  confirmed:checked('confirmed'),daily:checked('reminder10'),before15:checked('before15'),results:checked('resultMember'),withdrawn:checked('withdrawn'),private_news:checked('privateNews')
-}:{scope:'all',confirmed:false,daily:checked('daily'),before15:false,results:checked('results'),withdrawn:false,private_news:false}}
+  confirmed:checked('confirmed'),daily:checked('reminder10'),before15:checked('before15'),results:checked('resultMember'),withdrawn:checked('withdrawn'),private_news:checked('privateNews'),general_news:checked('generalNews')
+}:{scope:'all',confirmed:false,daily:checked('daily'),before15:false,results:checked('results'),withdrawn:false,private_news:false,general_news:false}}
 function base64ToBytes(str){const padding='='.repeat((4-str.length%4)%4);const raw=atob((str+padding).replace(/-/g,'+').replace(/_/g,'/'));return Uint8Array.from(raw,c=>c.charCodeAt(0))}
 function deviceToken(){let t=localStorage.getItem(tokenKey);if(!t){t=Array.from(crypto.getRandomValues(new Uint8Array(32)),x=>x.toString(16).padStart(2,'0')).join('');localStorage.setItem(tokenKey,t)}return t}
 async function callServer(body){
@@ -142,7 +143,7 @@ async function init(){
       if(state.active && p){
         if(isMember)$('testRemote').disabled=false;
         if(isMember){
-          for(const [field,id] of Object.entries({confirmed:'confirmed',daily:'reminder10',before15:'before15',results:'resultMember',withdrawn:'withdrawn',private_news:'privateNews'}))
+          for(const [field,id] of Object.entries({confirmed:'confirmed',daily:'reminder10',before15:'before15',results:'resultMember',withdrawn:'withdrawn',private_news:'privateNews',general_news:'generalNews'}))
             $(id).checked=!!p[field];
           // Le compte prime sur les anciennes préférences propres à cet appareil.
           chooseScope(accountScope||p.scope);
