@@ -460,8 +460,16 @@ async function run() {
         }
       }else throw pilotError;
     }
+    // Aligner les destinataires Push sur les droits d'accès anticipé réels.
+    const earlyContributors=new Set<string>();
+    if(!launchOpen){
+      const {data:contributors,error:contributorError}=await sb.from("ei_contributeurs")
+        .select("user_id").eq("actif",true).eq("acces_avant_ouverture",true).in("user_id",userIds);
+      if(contributorError)throw contributorError;
+      for(const c of contributors||[])earlyContributors.add(c.user_id);
+    }
     for(const m of members||[]){
-      if(launchOpen||pilots.has(m.user_id))active.add(m.user_id);
+      if(launchOpen||pilots.has(m.user_id)||earlyContributors.has(m.user_id))active.add(m.user_id);
       if(m.administrateur===true)admins.add(m.user_id);
     }
     const {data:parts,error:partsErr}=await sb.from("participations_chevaux").select("user_id,cheval_slug").in("user_id",userIds).limit(10000);
