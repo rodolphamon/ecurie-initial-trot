@@ -311,9 +311,10 @@ function horse(s){
   const te=eng.length
     ?'<div class="table-wrap"><table class="perf-table"><thead><tr><th>Date</th><th>Hippodrome</th>'+(hasDeclared?'<th>Heure</th>':'')+'<th>Épreuve</th>'+(hasDeclared?'<th>Jockey / Driver</th>':'')+'</tr></thead><tbody>'+eng.map(x=>{
       const declared=x.statut==='declare'||x.statut==='partant';
+       const cancelled=x.reunion_annulee||(id==='andresy'&&x.date==='2026-11-18'&&/amiens/i.test(x.hippodrome||''));
       return '<tr><td>'+esc(dateFR(x.date))+'</td><td>'+esc(x.hippodrome)+'</td>'
         +(hasDeclared?'<td><span class="rank">'+esc(declared?(x.heure||'—'):'—')+'</span></td>':'')
-        +'<td>'+esc([x.course,x.prix||x.type,x.type_course,x.surface].filter(Boolean).join(' · ')||'Course')+'</td>'
+        +'<td>'+(cancelled?'<strong style="color:#b42318">RÉUNION ANNULÉE</strong> · ':'')+esc([x.course,x.prix||x.type,x.type_course,x.surface].filter(Boolean).join(' · ')||'Course')+'</td>'
         +(hasDeclared?'<td>'+esc(declared?(x.driver||x.jockey||'—'):'—')+'</td>':'')+'</tr>';
     }).join('')+'</tbody></table></div>'
     :'<div class="empty">Aucun prochain engagement renseigné.</div>';
