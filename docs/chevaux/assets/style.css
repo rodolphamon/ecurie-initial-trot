@@ -256,3 +256,7 @@
   .info-grid .info-item span{font-size:10px;letter-spacing:.1px}
   .info-grid .info-item strong{font-size:14px}
 }
+
+/* Titre de la section effectif, distinct du bloc des derniers résultats. */
+.catalog-horses-title{font-size:20px;font-weight:900;line-height:1.25;margin:15px 2px 10px;color:#242424;letter-spacing:-.25px}
+@media(max-width:590px){.catalog-horses-title{font-size:18px;margin:13px 1px 9px}}
