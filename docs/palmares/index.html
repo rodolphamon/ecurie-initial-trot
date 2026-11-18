@@ -141,6 +141,36 @@ td:first-child,th:first-child{text-align:center;width:75px}td.date{white-space:n
  .podium .podium-count,.podium #counter{font-size:clamp(33px,10vw,38px)}
  .podium-label{font-size:10px}
 }
+
+/* Fiches : classement en capsule alignée avec Discipline et Vidéo.
+   Les médailles du podium principal conservent leur forme ronde. */
+.pal-card-actions .pal-card-disc,
+.pal-card-actions .pal-card-medal,
+.pal-card-actions .replay-link{
+ width:100%;
+ min-height:30px;
+ box-sizing:border-box;
+}
+.pal-card-actions .pal-card-medal{
+ display:inline-flex;
+ align-items:center;
+ justify-content:center;
+ height:30px;
+ margin:0;
+ padding:3px 9px;
+ border-radius:999px;
+ font:900 14px/1 Arial,Helvetica,sans-serif;
+ letter-spacing:0;
+ text-align:center;
+ box-shadow:inset 0 1px 1px #fff9,0 1px 2px #0002;
+}
+@media(max-width:790px){
+ /* Filtres mobiles : plus compacts, sans modifier les fonctionnalités. */
+ .controls{gap:7px;margin-top:11px}
+ .controls input,.controls select{min-height:41px;padding:9px 8px}
+ .caption-line{margin:10px 1px 9px;gap:7px}
+ .caption-line .legend .tag{min-height:39px;padding:5px 3px}
+}
 </style></head><body>
 <main class="palmares">
 <header class="top" aria-label="Podium interactif Écurie Initial">
@@ -512,7 +542,7 @@ function render(){
   const label=(r.discipline==="galop"||r.discipline==="obstacle"||r.discipline==="monte")?"Jockey":r.discipline==="attele"?"Driver":"Jockey / Driver";
   const jockey=r.jockey?'<div class="pal-card-jockey"><span class="pal-card-jockey-label">'+label+' :</span>'+esc(jockeyUnifie(r.jockey))+'</div>':"";
   const trainer='<div class="pal-card-trainer"><span class="pal-card-trainer-label">Entraîneur :</span>'+esc(entraineurUnifie(r.entraineur)||"—")+'</div>';
-  return '<article class="pal-card"><time class="pal-card-date" datetime="'+esc(r.date)+'">'+esc(dateFR(r.date))+'</time><div class="pal-card-name">'+esc(r.cheval)+'</div><div class="pal-card-silk">'+jersey(casaquePourCourse(r))+'</div><div class="pal-card-main"><div class="pal-card-place">'+esc(hippodromeUnifie(r.hippodrome))+'</div>'+jockey+trainer+'</div><div class="pal-card-actions"><span class="pal-card-disc'+(r.discipline==="trot"?' is-unclassified':'')+'">'+disc(r.discipline)+'</span><span class="pal-card-medal" aria-label="Classement : '+(r.classement||1)+'">'+medaille(r)+'</span>'+replayButton(r,true)+'</div></article>';
+  return '<article class="pal-card"><time class="pal-card-date" datetime="'+esc(r.date)+'">'+esc(dateFR(r.date))+'</time><div class="pal-card-name">'+esc(r.cheval)+'</div><div class="pal-card-silk">'+jersey(casaquePourCourse(r))+'</div><div class="pal-card-main"><div class="pal-card-place">'+esc(hippodromeUnifie(r.hippodrome))+'</div>'+jockey+trainer+'</div><div class="pal-card-actions"><span class="pal-card-disc'+(r.discipline==="trot"?' is-unclassified':'')+'">'+disc(r.discipline)+'</span><span class="pal-card-medal medal medal-'+(r.classement||1)+'" aria-label="Classement : '+(r.classement||1)+'">'+({1:'1er',2:'2e',3:'3e'}[r.classement||1]||esc(String(r.classement||1)))+'</span>'+replayButton(r,true)+'</div></article>';
  }).join("");
  for(const button of $("legend").querySelectorAll("button[data-discipline]"))button.setAttribute("aria-pressed",button.dataset.discipline===state.discipline?"true":"false");
  $("empty").hidden=data.length>0;
