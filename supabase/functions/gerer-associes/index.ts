@@ -66,6 +66,8 @@ serve(async (req) => {
       const email = String(body.email || "").trim().toLowerCase();
       const nom = String(body.nom || "").trim();
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || nom.length < 2 || nom.length > 100) return reply(400, { error: "Nom ou e-mail invalide." });
+      const accountType = String(body.type_compte || "associe");
+      if (!["associe", "exterieur"].includes(accountType)) return reply(400, { error: "Type de compte invalide." });
       // Les chevaux sélectionnés sont attachés au compte créé ; ils ne vont jamais dans le dépôt public.
       const requested = body.horses ?? [];
       if (!Array.isArray(requested) || requested.length > 40) return reply(400, { error: "Sélection de chevaux invalide." });
@@ -81,9 +83,10 @@ serve(async (req) => {
         seen.add(slug);
         horses.push({ cheval_slug: slug, cheval_nom: name });
       }
+      if (accountType === "exterieur" && horses.length) return reply(400, { error: "Un membre extérieur ne peut pas recevoir de participations aux chevaux." });
       const { data, error } = await admin.auth.admin.inviteUserByEmail(email, { redirectTo: "https://fiches.ecurie-initial.com/application/connexion/" });
       if (error || !data.user) return reply(400, { error: error?.message || "Invitation impossible." });
-      const { error: saveError } = await admin.from("associes").insert({ user_id: data.user.id, nom_affiche: nom, actif: true, administrateur: false });
+      const { error: saveError } = await admin.from("associes").insert({ user_id: data.user.id, nom_affiche: nom, actif: true, administrateur: false, type_compte: accountType });
       if (saveError) return reply(500, { error: "L'invitation a été envoyée, mais l'accès n'a pas pu être activé. Vérifiez ce compte dans Supabase ; ne réinvitez pas automatiquement." });
       if (horses.length) {
         const rows = horses.map((h) => ({ ...h, user_id: data.user.id }));
@@ -92,7 +95,38 @@ serve(async (req) => {
           return reply(500, { error: "L'invitation et le compte sont créés, mais les chevaux n'ont pas pu être rattachés. Utilisez le bouton « Chevaux » pour terminer, sans nouvelle invitation." });
         }
       }
-      return reply(200, { ok: true, message: "Invitation envoyée. L'associé peut créer son mot de passe dès maintenant ; son espace ouvrira le 1er décembre 2026. " + horses.length + " cheval(aux) rattaché(s).", chevaux_rattaches: horses.length });
+      return reply(200, { ok: true, message: "Invitation envoyée au " + (accountType === "exterieur" ? "membre extérieur" : "compte associé") + ". Mot de passe activable maintenant ; ouverture le 1er décembre 2026. " + horses.length + " cheval(aux) rattaché(s).", chevaux_rattaches: horses.length });
+    }
+    if (body.action === "set_member_type") {
+      const id = String(body.user_id || "");
+      const accountType = String(body.type_compte || "");
+      if (!/^[0-9a-f-]{36}$/i.test(id) || !["associe","exterieur"].includes(accountType))
+        return reply(400, { error: "Type de compte invalide." });
+      const {data:target,error:targetError}=await admin.from("associes")
+        .select("administrateur").eq("user_id",id).maybeSingle();
+      if(targetError || !target || target.administrateur)
+        return reply(403,{error:"Le statut de ce compte ne peut pas être modifié."});
+      if(accountType==="exterieur"){
+        const {count,error:partsError}=await admin.from("participations_chevaux")
+          .select("id",{count:"exact",head:true}).eq("user_id",id);
+        if(partsError)return reply(500,{error:"Impossible de vérifier les participations."});
+        if((count||0)>0)return reply(409,{error:"Ce compte possède des chevaux : retirez d'abord ses rattachements, après vérification."});
+      }
+      const {error}=await admin.from("associes").update({type_compte:accountType}).eq("user_id",id);
+      if(error)return reply(500,{error:"Modification du type de compte impossible."});
+      // Aucun nouvel envoi privé ne doit viser un ancien appareil enregistré.
+      if(accountType==="exterieur"){
+        const {error:pushError}=await admin.from("ei_push_subscriptions").update({
+          audience:"visitor",scope:"all",confirmed:false,before15:false,
+          withdrawn:false,private_news:false,general_news:false
+        }).eq("user_id",id);
+        if(pushError)return reply(500,{error:"Statut modifié, mais abonnements à vérifier : "+pushError.code});
+      }else{
+        const {error:pushError}=await admin.from("ei_push_subscriptions")
+          .update({audience:"associate",private_news:false,general_news:false}).eq("user_id",id);
+        if(pushError)return reply(500,{error:"Statut modifié, mais abonnements à vérifier : "+pushError.code});
+      }
+      return reply(200,{ok:true,message:"Statut du compte mis à jour."});
     }
     if (body.action === "set_active") {
       const id = String(body.user_id || "");
@@ -112,7 +146,7 @@ serve(async (req) => {
         return reply(400, { error: "Identifiant de compte invalide." });
       }
       const { data: member, error: memberError } = await admin.from("associes")
-        .select("user_id,nom_affiche,actif").eq("user_id", id).maybeSingle();
+        .select("user_id,nom_affiche,actif,type_compte").eq("user_id", id).maybeSingle();
       if (memberError || !member) return reply(404, { error: "Compte associé introuvable." });
       if (body.action === "send_access_email") {
         if (!member.actif) return reply(403, { error: "Réactivez d'abord le compte de cet associé." });
@@ -150,6 +184,7 @@ serve(async (req) => {
         return reply(400, { error: "Identifiant de cheval invalide." });
       }
       if (body.action === "add_member_horse") {
+        if(member.type_compte==="exterieur")return reply(403,{error:"Un membre extérieur ne peut pas recevoir de cheval. Changez d’abord son statut."});
         const name = String(body.cheval_nom || "").trim();
         if (!name || name.length > 120) return reply(400, { error: "Nom de cheval invalide." });
         const { error } = await admin.from("participations_chevaux")
