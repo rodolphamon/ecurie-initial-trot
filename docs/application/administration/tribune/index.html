@@ -7,7 +7,7 @@ button{border:0;border-radius:9px;background:#f47721;color:#171717;cursor:pointe
 .post p,.comment p{white-space:pre-wrap;overflow-wrap:anywhere;margin:6px 0}small,.muted{color:#666;font-size:12px}small{display:block;margin-top:3px}#status{font-weight:bold;white-space:pre-wrap}[hidden]{display:none!important}
 @media(max-width:550px){main{padding:12px}.card{padding:13px}button{padding:9px;font-size:12px}.comment{margin-left:0}}
 </style></head><body><header><strong>ÉCURIE <span>INITIAL</span></strong><div>Administration · Tribune</div></header><main>
-<p><a href="../">← Administration</a></p><section class="card"><h1>🛡️ Modération de la Tribune</h1><p class="muted">Gérez les publications et les commentaires des associés. Supprimer une publication supprime également ses commentaires.</p><p id="loading">Vérification de votre accès…</p><p id="denied" hidden>🔒 Accès réservé à l’administrateur.</p><p id="status" role="status"></p></section>
+<p><a href="../">← Administration</a></p><section class="card"><h1>🛡️ Modération de la Tribune des supporters</h1><p class="muted">Gérez les publications et les commentaires des membres et supporters. Supprimer une publication supprime également ses commentaires.</p><p id="loading">Vérification de votre accès…</p><p id="denied" hidden>🔒 Accès réservé à l’administrateur.</p><p id="status" role="status"></p></section>
 <section id="workspace" class="card" hidden><button id="refresh" class="secondary">↻ Actualiser</button><div id="posts"></div><button id="more" class="secondary" hidden>Afficher la suite</button></section>
 </main>
 <script type="module">
@@ -15,7 +15,7 @@ import {createClient} from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2
 const db=createClient('https://yeecwaaizmvrhwobukfa.supabase.co','sb_publishable_xUy2EJA3u3cKWl8BB4GNPQ_qhV9Pes3');
 const $=id=>document.getElementById(id), el=(tag,txt,cl)=>{const n=document.createElement(tag);if(txt!==undefined)n.textContent=txt;if(cl)n.className=cl;return n};
 let names=new Map(),offset=0;
-const name=id=>names.get(id)||'Associé';
+const name=id=>names.get(id)||'Membre';
 const date=d=>new Date(d).toLocaleString('fr-FR',{dateStyle:'medium',timeStyle:'short'});
 function msg(s){$('status').textContent=s}
 function postCard(p){
