@@ -290,7 +290,6 @@ function horse(s){
           +'<h1>'+esc(p.name)+'</h1>'
           +'<div class="orange-line"></div>'
           +'<div class="hero-meta">'
-            +(!/^trot\b/i.test(String(p.discipline||'').trim())?'<span class="tag">'+esc(p.discipline)+'</span>':'')
             +'<span class="hero-trainer" title="'+esc('Entraîneur : '+(p.trainer||'—'))+'"><span aria-hidden="true">🎩</span> <span class="hero-trainer-name">'+esc(p.trainer||'—')+'</span></span>'
             +(isRest?'<span class="tag rest">Au repos</span>':'')
             +'<img class="hero-meta-silk" src="'+esc(silk(p))+'" alt="Casaque de l’Écurie Initial" loading="lazy" decoding="async">'
