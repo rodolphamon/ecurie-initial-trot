@@ -13,10 +13,47 @@ a{color:#a74b0a}.card{background:#fff;border:1px solid var(--border);border-radi
 button{cursor:pointer;background:var(--orange);border:0;border-radius:9px;font-weight:700;padding:13px 17px;color:var(--black);font-size:15px}button:disabled{opacity:.5;cursor:not-allowed}
 .secondary{background:#ededed}#status{min-height:24px;white-space:pre-wrap}#status.error{color:#a11}#status.ok{color:#12633c}
 [hidden]{display:none!important}
+
+/* Présentation compacte, cohérente avec les rubriques de l'application. */
+main{max-width:770px;padding:13px 14px 105px}
+.page-heading{margin:0 0 13px}
+.page-heading h1{font-size:clamp(21px,4.7vw,25px);line-height:1.2;margin:0 0 5px;font-weight:900;letter-spacing:-.35px}
+.page-heading p{font-size:13px;line-height:1.4;margin:0;color:#625b55}
+#notificationOptions .card,#prelaunchHold.card{
+ margin:0 0 11px;padding:15px 16px;background:#fff;
+ border:1px solid #e7ded6;border-left:4px solid var(--orange);
+ border-radius:14px;box-shadow:0 2px 7px #00000006;
+}
+#notificationOptions h2,#prelaunchHold h2{font-size:17px;line-height:1.25;margin:0 0 10px;font-weight:850}
+#notificationOptions #profile{margin:0 0 9px}
+#scopeBox{margin-top:0}
+#scopeBox h2{font-size:14px;margin:2px 0 6px}
+#scopeBox .radio{display:flex;align-items:center;gap:9px;padding:6px 0;margin:0;font-size:14px;line-height:1.35}
+#scopeBox .radio input{flex:0 0 auto;width:17px;height:17px;margin:0}
+#notificationOptions .row{gap:10px;align-items:flex-start;padding:10px 0}
+#notificationOptions .row label{font-size:14px;line-height:1.32;min-width:0}
+#notificationOptions .row label strong{font-size:14px}
+#notificationOptions .row .muted{font-size:12px;line-height:1.35;margin-top:3px;color:#746e67}
+#notificationOptions .row input[type="checkbox"]{flex:0 0 auto;width:19px;height:19px;margin-top:0}
+#notificationOptions .card>p{margin:7px 0 11px;line-height:1.45}
+#notificationOptions .card button{font-size:13px;min-height:40px;padding:10px 12px;margin:2px 4px 5px 0}
+#notificationOptions #status{min-height:0;font-size:13px;margin:7px 0}
+#notificationOptions #status:empty{display:none}
+#notificationOptions .card .muted{font-size:12px;line-height:1.4}
+@media(max-width:500px){
+ main{padding:12px 12px 102px}
+ .page-heading{margin-bottom:12px}
+ .page-heading h1{font-size:22px}
+ #notificationOptions .card,#prelaunchHold.card{padding:13px 14px;margin-bottom:10px}
+ #notificationOptions h2{font-size:16px;margin-bottom:8px}
+ #scopeBox .radio{font-size:13px}
+ #notificationOptions .row{padding:9px 0}
+ #notificationOptions .row label strong{font-size:13px}
+ #notificationOptions .row .muted{font-size:11.5px}
+}
 </style></head><body>
 <header><strong>ÉCURIE <span>INITIAL</span></strong><div>🔔 Notifications de l'écurie</div></header>
-<main><p><a href="../">← Retour à l'application</a></p>
-<h1>Restez au cœur des courses</h1><p>Choisissez les alertes que vous souhaitez recevoir sur votre téléphone. Aucune notification ne sera activée sans votre accord.</p>
+<main><div class="page-heading"><h1>🔔 Mes notifications</h1><p>Choisissez les alertes à recevoir sur votre téléphone. Elles ne seront activées qu'avec votre accord.</p></div>
 <div id="notificationOptions" hidden><section class="card"><h2 id="profile">Visiteurs et passionnés</h2><p class="muted" id="profileText">Sans compte, suivez les partants du jour et les résultats officiels de tous les chevaux de l'écurie.</p>
 <div id="scopeBox" hidden><h2>Quels chevaux suivre ?</h2>
 <label class="radio"><input type="radio" name="scope" value="mine" checked> Uniquement mes chevaux</label>
