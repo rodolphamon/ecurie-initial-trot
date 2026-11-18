@@ -10,22 +10,26 @@ h1{font-size:25px;margin:7px 0}h2{font-size:21px;margin:3px 0 12px}
 button{background:#f47721;border:0;padding:12px 18px;border-radius:8px;font:inherit;font-weight:bold;cursor:pointer}
 button:disabled{opacity:.5}a{color:#a94b0d}.muted{color:#635d58}[hidden]{display:none!important}
 .warning{background:#fff5eb;padding:13px;border-left:4px solid #f47721}
-.status{min-height:20px}.rights{margin:8px 0 15px}.role{font-weight:bold}
-.team-person{margin:15px 0;padding:20px}.team-person p{margin:10px 0;overflow-wrap:anywhere}
-.team-person button{margin-top:7px}
-.person-card h2{font-size:21px;margin:3px 0 14px}
-.person-card p{margin:10px 0}
-.person-card button{margin-top:8px}
-@media(max-width:480px){.card,.team-person{padding:17px}button{max-width:100%}}
+.status:empty{display:none}.rights{margin:8px 0 15px}.role{font-weight:400}
+.team-intro p{margin:8px 0 0}
+#contributorCards>h2,#contributorCards>section>h2{font-size:20px;margin:25px 0 10px}
+.person-card{padding:20px;margin:12px 0;border-top:4px solid #f47721}
+.person-card h2{font-size:21px;line-height:1.25;margin:0 0 15px}
+.person-facts{display:grid;gap:9px}
+.person-facts p{margin:0;line-height:1.45;overflow-wrap:anywhere}
+.person-facts strong{font-size:15px;font-weight:700}
+.person-card .person-action{margin:18px 0 0}
+.person-card button{width:100%;min-height:46px;margin:0}
+.person-card .status:not(:empty){margin:10px 0 0}
+@media(max-width:480px){.card{padding:17px}.person-card{padding:17px}button{max-width:100%}}
 </style>
 </head><body>
 <header><strong>ÉCURIE <span>INITIAL</span></strong><div>Équipe de l'Écurie</div></header>
 <main>
 <nav><a href="../">← Administration</a></nav>
-<div class="card">
+<div class="card team-intro">
 <h1>🤝 Team Initial</h1>
-<p>Retrouvez ici les membres de l'équipe de l'Écurie Initial, avec leurs droits propres : <strong>communication en lecture seule</strong> ou <strong>contribution sportive</strong>.</p>
-<p class="muted">Les autorisations sportives et la gestion des fiches sont indépendantes. Les statuts ci-dessous sont vérifiés sur les comptes réels de l’application.</p>
+<p>Les membres de l'équipe et leurs autorisations dans l'application.</p>
 <p id="loading">Vérification de votre accès administrateur…</p>
 <p id="denied" hidden class="warning">Réservé au gérant administrateur. <a href="../../connexion/">Se connecter</a></p>
 <p id="accessStatus" role="status"></p>
@@ -42,8 +46,12 @@ button:disabled{opacity:.5}a{color:#a94b0d}.muted{color:#635d58}[hidden]{display
 <p id="arnaudLoading" class="muted">Recherche de son compte…</p>
 <div id="arnaudMissing" hidden class="warning">Compte actif non identifié. <a href="../">Vérifier les invitations et les accès</a>.</div>
 <div id="arnaudReady" hidden>
-<p><strong>Gestion sportive :</strong> <span class="role" id="arnaudRole"></span></p><p><strong>🐎 Fiches des chevaux :</strong> <span class="role" id="arnaudFiches">Vérification…</span></p>
-<p><button type="button" id="arnaudToggle"></button></p>
+<div class="person-facts">
+<p><strong>Fonction :</strong> Gestion sportive</p>
+<p><strong>Autorisations :</strong> <span class="role" id="arnaudRole"></span></p>
+<p><strong>🐎 Fiches des chevaux :</strong> <span class="role" id="arnaudFiches">Vérification…</span></p>
+</div>
+<p class="person-action"><button type="button" id="arnaudToggle"></button></p>
 </div>
 <p id="arnaudStatus" class="status" role="status" aria-live="polite"></p>
 </section>
@@ -52,8 +60,12 @@ button:disabled{opacity:.5}a{color:#a94b0d}.muted{color:#635d58}[hidden]{display
 <p id="nicolasLoading" class="muted">Recherche de son compte…</p>
 <div id="nicolasMissing" hidden class="warning">Compte actif non identifié. <a href="../">Vérifier les invitations et les accès</a>.</div>
 <div id="nicolasReady" hidden>
-<p><strong>Gestion sportive :</strong> <span class="role" id="nicolasRole"></span></p><p><strong>🐎 Fiches des chevaux :</strong> <span class="role" id="nicolasFiches">Vérification…</span></p>
-<p><button type="button" id="nicolasToggle"></button></p>
+<div class="person-facts">
+<p><strong>Fonction :</strong> Gestion sportive</p>
+<p><strong>Autorisations :</strong> <span class="role" id="nicolasRole"></span></p>
+<p><strong>🐎 Fiches des chevaux :</strong> <span class="role" id="nicolasFiches">Vérification…</span></p>
+</div>
+<p class="person-action"><button type="button" id="nicolasToggle"></button></p>
 </div>
 <p id="nicolasStatus" class="status" role="status" aria-live="polite"></p>
 </section>
@@ -159,7 +171,10 @@ async function loadTeamInitial(){
   for(const member of membres){
    const box=teamElt('div');box.className='team-person card person-card';
    box.append(teamElt('h2',member.nom_affiche));
-   box.append(teamElt('p','Fonction : communication et réseaux sociaux · accès en lecture seule, sans modification ni publication.'));
+   const facts=teamElt('div');facts.className='person-facts';
+   const functionLine=teamElt('p');functionLine.append(teamElt('strong','Fonction : '),document.createTextNode('Communication et réseaux sociaux'));
+   const accessLine=teamElt('p');accessLine.append(teamElt('strong','Autorisations : '),document.createTextNode('Consultation uniquement, sans modification ni publication'));
+   facts.append(functionLine,accessLine);box.append(facts);
    if(member.type_compte && member.type_compte!=='observateur'){
     const warning=teamElt('p',"Attention : ce compte possède un autre rôle. Vérifiez les droits avant toute action.");
     warning.className='warning';box.append(warning);
@@ -175,7 +190,7 @@ async function loadTeamInitial(){
       await loadTeamInitial();
      }catch(error){$('teamStatus').textContent=error.message||"Envoi impossible.";button.disabled=false}
     });
-    box.append(button);
+    const buttonWrap=teamElt('p');buttonWrap.className='person-action';buttonWrap.append(button);box.append(buttonWrap);
    }else{
     box.append(teamElt('p',"Le lien a déjà été envoyé. Vérifiez la boîte de réception et les courriers indésirables."));
    }
