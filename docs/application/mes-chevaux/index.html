@@ -35,7 +35,7 @@
 </style><link rel="manifest" href="../manifest.webmanifest"><link rel="apple-touch-icon" href="../icon-ei-192.png"></head>
 <body><header><strong>ÉCURIE <span>INITIAL</span></strong><div style="font-size:12px;color:#ddd">Mon espace personnel</div></header><main>
 <p><a href="../">← Retour à l'application</a></p><h1>🐎 Mes chevaux</h1><p id="loading">Vérification de votre accès…</p>
-<section class="card" id="locked" hidden><h2>🔒 Espace réservé</h2><p>Connectez-vous avec votre compte associé validé.</p><a class="button" href="../connexion/">Se connecter</a></section>
+<section class="card" id="locked" hidden><h2>🔒 Espace réservé</h2><p>Les fiches privées sont accessibles uniquement aux associés propriétaires autorisés.</p><a class="button" href="../connexion/">Se connecter</a></section>
 <div id="private" hidden>
 <p id="welcome" class="muted"></p>
 <nav id="quick-actions" class="quick-actions" aria-label="Raccourcis de gestion" hidden></nav>
@@ -77,8 +77,8 @@ async function setup(){
   const{data:{user},error}=await db.auth.getUser();
   if(error||!user){$('locked').hidden=false;return}
   const{data:member,error:memberError}=await db.from('associes')
-    .select('nom_affiche,actif,administrateur').eq('user_id',user.id).maybeSingle();
-  if(memberError||!member?.actif){$('locked').hidden=false;return}
+    .select('nom_affiche,actif,administrateur,type_compte').eq('user_id',user.id).maybeSingle();
+  if(memberError||!member?.actif||member.type_compte==='exterieur'){$('locked').hidden=false;return}
   $('welcome').textContent='Bienvenue '+member.nom_affiche+' !';
   if(member.administrateur){
     const quick=el('a','✍️ Publier une information privée','button');
