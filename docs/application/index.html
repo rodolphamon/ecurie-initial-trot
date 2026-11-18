@@ -451,6 +451,40 @@ body.ei-prelaunch{padding-bottom:0!important}
   outline:3px solid var(--o);outline-offset:2px;
 }
 
+
+/* Espace associés : actions de compte sans écran intermédiaire. */
+#privateArea .assoc-heading-top .assoc-access,
+#privateArea .assoc-heading-top .assoc-access.is-connected{
+ display:flex;flex-direction:column;align-items:stretch;gap:5px;
+}
+#privateArea .assoc-heading-top .assoc-login.is-connected{
+ cursor:default;user-select:none;
+}
+#privateArea .assoc-heading-top .assoc-logout{
+ display:block;background:transparent;color:#a34b17;
+ border:1px solid #ecd2bb;border-radius:8px;cursor:pointer;
+ min-height:29px;padding:5px 7px;font:700 10px/1.1 Arial,sans-serif;
+ text-align:center;
+}
+#privateArea .assoc-heading-top .assoc-logout:hover,
+#privateArea .assoc-heading-top .assoc-logout:focus-visible{
+ background:#fff2e8;outline:2px solid #f47721;outline-offset:2px;
+}
+#privateArea .assoc-admin-shortcut{
+ display:flex;align-items:center;justify-content:space-between;gap:10px;
+ margin:0 0 12px;background:#171717;color:#fff;text-decoration:none;
+ border-left:5px solid #f47721;border-radius:10px;min-height:51px;
+ padding:12px 14px;font:800 14px/1.25 Arial,sans-serif;
+}
+#privateArea .assoc-admin-shortcut:hover,
+#privateArea .assoc-admin-shortcut:focus-visible{
+ background:#292622;outline:2px solid #f47721;outline-offset:2px;
+}
+#privateArea .assoc-admin-shortcut[hidden],
+#privateArea .assoc-logout[hidden]{display:none!important}
+@media(max-width:600px){
+ #privateArea .assoc-admin-shortcut{font-size:13px;min-height:47px;padding:10px 12px}
+}
 </style><link rel="apple-touch-icon" href="icon-ei-192.png"></head><body class="ei-prelaunch"><header><div class="brand"><img src="icon-ei-192.png" alt="Emblème officiel Écurie Initial"><div class="brand-copy"><strong>ÉCURIE <span class="brand-initial"><span class="brand-initial-i">I</span>NITIAL</span></strong></div><p class="brand-slogan"><span class="brand-slogan-line">PARTAGEONS NOTRE PASSION</span><span class="brand-slogan-date">DEPUIS 2011</span></p></div></header><div id="prelaunch" hidden><div class="prelaunch-box"><h1>🐎 Bientôt votre espace Écurie Initial</h1><p><strong>Ouverture officielle le mardi 1er décembre 2026.</strong></p><p>Vous pouvez installer l’application dès aujourd’hui. Les invités peuvent confirmer leur compte et les visiteurs extérieurs peuvent demander leur inscription sans invitation. L’accès privé reste soumis à validation, avec ouverture générale le 1er décembre.</p><p>Jusqu’à cette date, les cinq comptes pilotes et les contributeurs expressément autorisés assurent les derniers essais.</p><a href="connexion/">Me connecter</a> <a href="inscription/" style="margin-left:8px">Créer mon compte</a><p style="font-size:13px;color:#f7e9df;margin:18px 0 0"><strong>Vous pouvez installer l'application dès maintenant :</strong><br>Android : ouvrez cette page dans Chrome puis « Installer l'application ».<br>iPhone : ouvrez cette page dans Safari, puis « Partager » → « Sur l'écran d'accueil ».</p></div><p class="prelaunch-hint">Notre site public reste accessible sur <a href="https://www.ecurie-initial.com/" style="background:none;color:#a54c0b;padding:0;font:inherit;text-decoration:underline">www.ecurie-initial.com</a>.</p></div><main id="appContent" hidden>
 <div class="home-welcome" role="note">La vie de l’Écurie, course après course.</div>
 <div id="publicArea">
@@ -479,6 +513,7 @@ body.ei-prelaunch{padding-bottom:0!important}
     <div class="assoc-access" id="assocAccess">
      <span id="assocAccessState" class="assoc-access-state">Connectez-vous pour accéder à votre espace.</span>
      <a class="button assoc-login" id="assocLogin" href="connexion/">Se connecter <span aria-hidden="true">→</span></a>
+     <button type="button" id="assocLogout" class="assoc-logout" hidden>Se déconnecter</button>
     </div>
    </div>
    <div class="assoc-heading-copy">
@@ -486,6 +521,7 @@ body.ei-prelaunch{padding-bottom:0!important}
     <p>Vos chevaux, nos échanges et toutes les nouvelles de l'Écurie au même endroit.</p>
    </div>
   </div>
+  <a class="assoc-admin-shortcut" id="assocAdminShortcut" href="administration/" hidden><span>🛠️ Administration de l'Écurie</span><span aria-hidden="true">→</span></a>
   <nav class="assoc-links" aria-label="Rubriques des associés">
    <a class="assoc-link assoc-link-main" href="tribune/"><span class="assoc-link-emoji" aria-hidden="true">💬</span><span class="assoc-link-text"><strong>Tribune des supporters</strong><small>Échanges entre membres et passionnés</small></span><span class="assoc-link-arrow" aria-hidden="true">›</span></a>
    <a class="assoc-link" href="mes-chevaux/"><span class="assoc-link-emoji" aria-hidden="true">🐎</span><span class="assoc-link-text"><strong>Mes chevaux</strong><small>Suivi de vos participations</small></span><span class="assoc-link-arrow" aria-hidden="true">›</span></a>
@@ -511,27 +547,55 @@ async function refreshAssocAccess(){
  const panel=document.getElementById('assocAccess');
  const note=document.getElementById('assocAccessState');
  const action=document.getElementById('assocLogin');
- if(!panel||!note||!action)return;
+ const logout=document.getElementById('assocLogout');
+ const adminLink=document.getElementById('assocAdminShortcut');
+ if(!panel||!note||!action||!logout||!adminLink)return;
  panel.classList.remove('is-connected');
  action.classList.remove('is-connected');
+ logout.hidden=true;
+ adminLink.hidden=true;
  note.textContent='Connectez-vous pour accéder à votre espace.';
  action.innerHTML='Se connecter <span aria-hidden="true">→</span>';
+ action.href='connexion/';
+ action.removeAttribute('role');
  action.removeAttribute('aria-label');
  try{
   const {data:{user},error}=await assocAuth.auth.getUser();
   if(error||!user)return;
+  logout.hidden=false;
   const {data:member,error:memberError}=await assocAuth.from('associes')
-    .select('actif,type_compte').eq('user_id',user.id).maybeSingle();
+    .select('actif,type_compte,administrateur').eq('user_id',user.id).maybeSingle();
   if(memberError||!member?.actif)return;
   note.textContent=member.type_compte==='exterieur'?'Votre compte membre est actif.'
     :member.type_compte==='observateur'?'Votre accès Team Initial est actif.'
     :'Votre accès associé est actif.';
   action.textContent='✓ CONNECTÉ';
-  action.setAttribute('aria-label','Connecté — accéder à mon compte');
+  action.removeAttribute('href');
+  action.setAttribute('role','status');
+  action.setAttribute('aria-label','Compte connecté');
   action.classList.add('is-connected');
   panel.classList.add('is-connected');
+  adminLink.hidden=member.administrateur!==true;
  }catch(error){console.info('État de connexion indisponible',error?.message||error)}
 }
+document.getElementById('assocLogout')?.addEventListener('click',async()=>{
+ const button=document.getElementById('assocLogout');
+ if(button.disabled)return;
+ button.disabled=true;
+ button.textContent='Déconnexion…';
+ try{
+  const {error}=await assocAuth.auth.signOut();
+  if(error)throw error;
+  // Recalculer les autorisations de préouverture après la déconnexion.
+  location.reload();
+ }catch(error){
+  button.disabled=false;
+  button.textContent='Se déconnecter';
+  const note=document.getElementById('assocAccessState');
+  if(note)note.textContent='Déconnexion momentanément indisponible. Réessayez.';
+  alert('La déconnexion a échoué. Réessayez.');
+ }
+});
 window.addEventListener('pageshow',()=>{if(!app.hidden)refreshAssocAccess()});
 
 async function allowApp(){
