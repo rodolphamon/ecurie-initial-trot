@@ -134,7 +134,8 @@ if(!visible.length){calendar.innerHTML='<div class="empty">Aucun événement à 
 const byDate=new Map();
 for(const x of visible){if(!byDate.has(x.e.date))byDate.set(x.e.date,[]);byDate.get(x.e.date).push(x);}
 calendar.innerHTML=Array.from(byDate,([date,ev])=>'<section><div class="day"><h2>'+esc(day(date))+'</h2></div><div class="events">'+ev.map(({horse,id,e})=>{
-const label=labels[e.statut]||labels.engage;
+const cancelled=e.reunion_annulee||(id==='andresy'&&e.date==='2026-11-18'&&/amiens/i.test(e.hippodrome||''));
+ const label=cancelled?'RÉUNION ANNULÉE':(labels[e.statut]||labels.engage);
 const time=/^\d{2}:\d{2}$/.test(e.heure||"")?e.heure.replace(":"," h "):null;
 const detail=[e.course,e.prix||e.type,e.type_course,e.surface,e.distance].filter(Boolean).join(" · ");
 const person=e.driver||e.jockey||"";
@@ -147,7 +148,7 @@ return '<article class="event'+(isPartant(e)?' is-partant':'')+' is-status-'+esc
 +'<div class="when"><span class="silk-icon" role="img" aria-label="Casaque de '+esc(horse.name)+'" style="background-image:url(\'../assets/'+silkFile+'\')"></span></div>'
 +'<div class="horse"><div class="horse-heading"><strong><a target="_blank" rel="noopener noreferrer" href="'+BASE+encodeURIComponent(id)+'/">'+esc(horse.name)+'</a></strong>'+(isPartant(e)&&time?'<span class="start-time">'+esc(time)+'</span>':'')+'<span class="pill '+esc(e.statut||"engage")+'" title="'+esc(label)+'" aria-label="'+esc(label)+'"><span class="pill-full">'+esc(label)+'</span><span class="pill-compact" aria-hidden="true">'+esc(shortLabels[e.statut]||label)+'</span></span></div>'
 +'<div class="horse-meta"><span class="place" title="'+esc((e.hippodrome||"Hippodrome à confirmer")+' · '+(horse.discipline||"")+(e.numero?' · N° '+e.numero:'')+(corde?' · Corde : '+corde:''))+'"><span class="place-location">'+esc(e.hippodrome||"Hippodrome à confirmer")+' · '+esc(horse.discipline||"")+'</span>'+(e.numero?'<span class="place-number">· N° '+esc(e.numero)+'</span>':'')+(corde?'<span class="place-corde">· Corde : '+esc(corde)+'</span>':'')+'</span>'+(person?'<span class="person">'+esc(person)+'</span>':'')+'</div>'
-+'<div class="race-row"><div class="race" title="'+esc(detail)+'">'+esc(detail)+'</div></div></div></article>'}).join("")+'</div></section>').join("");
++'<div class="race-row"><div class="race" title="'+esc(detail)+'">'+(cancelled?'<strong style="color:#b42318">RÉUNION ANNULÉE · </strong>':'')+esc(detail)+'</div></div></div></article>'}).join("")+'</div></section>').join("");
 resize();
 }
 function resize(){try{window.parent.postMessage({kind:"ecurie-initial-engagements-height",height:document.documentElement.scrollHeight}, "*")}catch(_){}}
