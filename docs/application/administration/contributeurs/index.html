@@ -10,7 +10,13 @@ h1{font-size:25px;margin:7px 0}h2{font-size:21px;margin:3px 0 12px}
 button{background:#f47721;border:0;padding:12px 18px;border-radius:8px;font:inherit;font-weight:bold;cursor:pointer}
 button:disabled{opacity:.5}a{color:#a94b0d}.muted{color:#635d58}[hidden]{display:none!important}
 .warning{background:#fff5eb;padding:13px;border-left:4px solid #f47721}
-.status{min-height:20px}.rights{margin:8px 0 15px}.role{font-weight:bold}.team-person{padding:13px 0;border-bottom:1px solid #eae4df}.team-person:last-child{border-bottom:0}.team-person p{margin:7px 0;overflow-wrap:anywhere}.team-person button{margin-top:6px}.team-person strong{font-size:17px}
+.status{min-height:20px}.rights{margin:8px 0 15px}.role{font-weight:bold}
+.team-person{margin:15px 0;padding:20px}.team-person p{margin:10px 0;overflow-wrap:anywhere}
+.team-person button{margin-top:7px}
+.person-card h2{font-size:21px;margin:3px 0 14px}
+.person-card p{margin:10px 0}
+.person-card button{margin-top:8px}
+@media(max-width:480px){.card,.team-person{padding:17px}button{max-width:100%}}
 </style>
 </head><body>
 <header><strong>ÉCURIE <span>INITIAL</span></strong><div>Équipe de l'Écurie</div></header>
@@ -25,38 +31,32 @@ button:disabled{opacity:.5}a{color:#a94b0d}.muted{color:#635d58}[hidden]{display
 <p id="accessStatus" role="status"></p>
 </div>
 <div id="contributorCards" hidden>
-<section class="card" aria-labelledby="communicationTitle">
+<section aria-labelledby="communicationTitle">
  <h2 id="communicationTitle">📱 Communication et réseaux sociaux</h2>
  <div id="teamMembers"><p class="muted">Chargement des accès de l'équipe…</p></div>
  <p id="teamStatus" class="status" role="status" aria-live="polite"></p>
 </section>
 <h2>🐎 Contributions sportives</h2>
-<section class="card" aria-labelledby="arnaudTitle">
+<section class="card person-card" aria-labelledby="arnaudTitle">
 <h2 id="arnaudTitle">Arnaud PUSKAS</h2>
 <p id="arnaudLoading" class="muted">Recherche de son compte…</p>
 <div id="arnaudMissing" hidden class="warning">Compte actif non identifié. <a href="../">Vérifier les invitations et les accès</a>.</div>
 <div id="arnaudReady" hidden>
-<p><strong>Compte :</strong> <span id="arnaudPerson"></span></p>
 <p><strong>Gestion sportive :</strong> <span class="role" id="arnaudRole"></span></p><p><strong>🐎 Fiches des chevaux :</strong> <span class="role" id="arnaudFiches">Vérification…</span></p>
 <p><button type="button" id="arnaudToggle"></button></p>
 </div>
 <p id="arnaudStatus" class="status" role="status" aria-live="polite"></p>
 </section>
-<section class="card" aria-labelledby="nicolasTitle">
+<section class="card person-card" aria-labelledby="nicolasTitle">
 <h2 id="nicolasTitle">Nicolas BARRÉ</h2>
 <p id="nicolasLoading" class="muted">Recherche de son compte…</p>
 <div id="nicolasMissing" hidden class="warning">Compte actif non identifié. <a href="../">Vérifier les invitations et les accès</a>.</div>
 <div id="nicolasReady" hidden>
-<p><strong>Compte :</strong> <span id="nicolasPerson"></span></p>
 <p><strong>Gestion sportive :</strong> <span class="role" id="nicolasRole"></span></p><p><strong>🐎 Fiches des chevaux :</strong> <span class="role" id="nicolasFiches">Vérification…</span></p>
 <p><button type="button" id="nicolasToggle"></button></p>
 </div>
 <p id="nicolasStatus" class="status" role="status" aria-live="polite"></p>
 </section>
-<div class="card">
-<h2>Accès à la gestion sportive</h2>
-<p>Les contributeurs autorisés peuvent ouvrir <a href="../../contribution/">Gestion sportive des chevaux</a> depuis leur espace personnel. Le droit distinct « Fiches des chevaux » donne accès à <a href="../effectif/">Ajouter un cheval / gérer les fiches</a>, sans donner accès à la gestion des associés ou aux ventes réservées aux administrateurs.</p>
-</div>
 </div>
 </main>
 <script type="module">
@@ -114,7 +114,6 @@ async function loadContributor(target){
   const matches=(members||[]).filter(a=>a.actif&&norm(a.nom_affiche)===target.normalized);
   if(matches.length!==1){$(key+'Missing').hidden=false;return}
   target.candidate=matches[0];
-  $(key+'Person').textContent=target.candidate.nom_affiche;
   await refresh(target);
   $(key+'Toggle').addEventListener('click',()=>toggle(target));
  }catch(e){
@@ -158,18 +157,9 @@ async function loadTeamInitial(){
   const {membres=[]}=await teamAction({action:'list_team_initial'});
   if(!membres.length){container.append(teamElt('p',"Aucun accès communication préparé."));return;}
   for(const member of membres){
-   const box=teamElt('div');box.className='team-person';
-   box.append(teamElt('strong',member.nom_affiche));
-   box.append(teamElt('p',member.email));
+   const box=teamElt('div');box.className='team-person card person-card';
+   box.append(teamElt('h2',member.nom_affiche));
    box.append(teamElt('p','Fonction : communication et réseaux sociaux · accès en lecture seule, sans modification ni publication.'));
-   const states={
-    pret_a_inviter:"Compte non créé — invitation à envoyer",
-    en_attente:"Invitation envoyée — confirmation de l'e-mail en attente",
-    confirme:"Compte confirmé — accès autorisé",
-    connecte:"Compte actif — connexion déjà effectuée"
-   };
-   const info=teamElt('p',states[member.etat]||'Statut non vérifiable');
-   info.className='muted';box.append(info);
    if(member.type_compte && member.type_compte!=='observateur'){
     const warning=teamElt('p',"Attention : ce compte possède un autre rôle. Vérifiez les droits avant toute action.");
     warning.className='warning';box.append(warning);
