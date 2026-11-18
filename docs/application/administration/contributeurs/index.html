@@ -19,7 +19,7 @@ button:disabled{opacity:.5}a{color:#a94b0d}.muted{color:#635d58}[hidden]{display
 <div class="card">
 <h1>📝 Contributeurs</h1>
 <p>Arnaud PUSKAS et Nicolas BARRÉ peuvent mettre à jour les <strong>engagements</strong>, les <strong>gains de carrière</strong>, les <strong>valeurs handicap (galop)</strong> et les <strong>records chronométriques (trot)</strong>. Publication directe, sans fonctions d’administration ni accès à la gestion des associés.</p>
-<p class="muted">Chaque autorisation est individuelle. Les statuts ci-dessous proviennent des comptes réels de l'application.</p>
+<p class="muted">Les autorisations sportives et la gestion des fiches sont indépendantes. Les statuts ci-dessous sont vérifiés sur les comptes réels de l’application.</p>
 <p id="loading">Vérification de votre accès administrateur…</p>
 <p id="denied" hidden class="warning">Réservé au gérant administrateur. <a href="../../connexion/">Se connecter</a></p>
 <p id="accessStatus" role="status"></p>
@@ -31,7 +31,7 @@ button:disabled{opacity:.5}a{color:#a94b0d}.muted{color:#635d58}[hidden]{display
 <div id="arnaudMissing" hidden class="warning">Compte actif non identifié. <a href="../">Vérifier les invitations et les accès</a>.</div>
 <div id="arnaudReady" hidden>
 <p><strong>Compte :</strong> <span id="arnaudPerson"></span></p>
-<p><strong>Rôle :</strong> <span class="role" id="arnaudRole"></span></p>
+<p><strong>Gestion sportive :</strong> <span class="role" id="arnaudRole"></span></p><p><strong>🐎 Fiches des chevaux :</strong> <span class="role" id="arnaudFiches">Vérification…</span></p>
 <p><button type="button" id="arnaudToggle"></button></p>
 </div>
 <p id="arnaudStatus" class="status" role="status" aria-live="polite"></p>
@@ -42,14 +42,14 @@ button:disabled{opacity:.5}a{color:#a94b0d}.muted{color:#635d58}[hidden]{display
 <div id="nicolasMissing" hidden class="warning">Compte actif non identifié. <a href="../">Vérifier les invitations et les accès</a>.</div>
 <div id="nicolasReady" hidden>
 <p><strong>Compte :</strong> <span id="nicolasPerson"></span></p>
-<p><strong>Rôle :</strong> <span class="role" id="nicolasRole"></span></p>
+<p><strong>Gestion sportive :</strong> <span class="role" id="nicolasRole"></span></p><p><strong>🐎 Fiches des chevaux :</strong> <span class="role" id="nicolasFiches">Vérification…</span></p>
 <p><button type="button" id="nicolasToggle"></button></p>
 </div>
 <p id="nicolasStatus" class="status" role="status" aria-live="polite"></p>
 </section>
 <div class="card">
 <h2>Accès à la gestion sportive</h2>
-<p>Les contributeurs autorisés peuvent ouvrir <a href="../../contribution/">Gestion sportive des chevaux</a> depuis leur espace personnel. Leur accès anticipé peut être activé sans ouvrir l'application aux autres associés avant le 1er décembre 2026.</p>
+<p>Les contributeurs autorisés peuvent ouvrir <a href="../../contribution/">Gestion sportive des chevaux</a> depuis leur espace personnel. Le droit distinct « Fiches des chevaux » donne accès à <a href="../effectif/">Ajouter un cheval / gérer les fiches</a>, sans donner accès à la gestion des associés ou aux ventes réservées aux administrateurs.</p>
 </div>
 </div>
 </main>
@@ -68,6 +68,8 @@ async function refresh(target){
    .eq('user_id',target.candidate.user_id).maybeSingle();
  if(error)throw error;
  target.role=data;
+ const rights=await db.from('ei_droits_photos_chevaux').select('user_id').eq('user_id',target.candidate.user_id).maybeSingle();
+ $(target.key+'Fiches').textContent=rights.error?'Vérification indisponible':rights.data?'Autorisé — ajout de chevaux, modification des fiches, entraîneurs, origines et photos':'Non autorisé';
  const complete=data?.actif&&data.engagements&&data.gains&&data.valeurs&&data.records;
  $(target.key+'Role').textContent=complete
    ?'Actif — engagements, gains, valeurs et records'+(data.acces_avant_ouverture?' (accès anticipé)':'')
