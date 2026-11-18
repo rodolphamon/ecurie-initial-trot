@@ -199,13 +199,20 @@ body[data-admin-view="actions"] #actions:not([hidden]){display:block!important}
 #archivedToggle{display:flex;align-items:center;gap:9px;margin:10px 0;font-size:13px;color:#625952}
 #archivedToggle[hidden]{display:none!important}
 #archivedToggle input{width:17px;height:17px;margin:0;flex:none;accent-color:#f47721}
+
+/* Filtres de type de compte : tous, associés, extérieurs et équipe. */
+.member-type-filter{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin:10px 0}
+.member-type-filter button{min-width:0;background:#f6f1ec;border:1px solid #e7dfd6;color:#322d29;border-radius:8px;padding:10px 5px;font-size:12px;line-height:1.2;font-weight:700;white-space:normal}
+.member-type-filter button[aria-pressed="true"]{background:#f47721;border-color:#f47721;color:#191919}
+.member-type-filter button:focus-visible{outline:2px solid #9d470c;outline-offset:2px}
+@media(max-width:650px){.member-type-filter{gap:4px;margin:7px 0}.member-type-filter button{font-size:11px;padding:8px 3px;min-height:36px}}
 </style><link rel="manifest" href="../manifest.webmanifest"><link rel="apple-touch-icon" href="../icon-ei-192.png"></head><body><header><strong>ÉCURIE <span>INITIAL</span></strong><div>Gestion de l'Écurie Initial</div></header><main><nav><a href="../connexion/">← Mon espace associé</a></nav>
 <nav id="adminDetailNav" hidden><a href="#adminDashboard">← Administration</a></nav>
 <section class="panel admin-hub" id="adminDashboard" aria-label="Tableau de bord d'administration" hidden>
  <h1>🛠️ Administration</h1>
  <p class="admin-hub-intro">Tous vos accès de gestion au même endroit.</p>
  <div class="admin-hub-grid">
-  <a class="admin-hub-link" href="#associesPanel"><strong>👥 Associés</strong><small>Comptes et accès</small></a>
+  <a class="admin-hub-link" href="#associesPanel"><strong>👥 Membres et accès</strong><small>Associés et membres extérieurs</small></a>
   <a class="admin-hub-link" href="#registryPanel"><strong>📒 Répertoire</strong><small>Associés et chevaux</small></a>
   <a class="admin-hub-link" href="#actions"><strong>✉️ Invitations</strong><small>Inviter et attribuer les chevaux</small></a>
   <a class="admin-hub-link" href="../contribution/"><strong>🐎 Gestion sportive</strong><small>Engagements, gains, valeurs, records</small></a>
@@ -215,12 +222,12 @@ body[data-admin-view="actions"] #actions:not([hidden]){display:block!important}
   <a class="admin-hub-link" href="contributeurs/"><strong>🤝 Team Initial</strong><small>Communication et contributeurs sportifs</small></a>
   <a class="admin-hub-link" href="../diagnostic-notifications/"><strong>🔔 Notifications</strong><small>Vérifier les alertes sur votre appareil</small></a>
  </div>
-</section><div class="panel" id="associesPanel"><h1>Gestion des membres et associés</h1><p id="loading">Vérification des droits d'administrateur…</p><p id="error" role="alert"></p><div id="denied" hidden><p>Cette rubrique est réservée à l'administrateur de l'Écurie Initial. Connectez-vous avec votre compte autorisé.</p><a href="../connexion/">Se connecter</a></div><div id="content" hidden><p>Suivez les comptes, les dates d’inscription, les connexions et les ouvertures de l’application.</p>
+</section><div class="panel" id="associesPanel"><h1>Gestion des membres</h1><p id="loading">Vérification des droits d'administrateur…</p><p id="error" role="alert"></p><div id="denied" hidden><p>Cette rubrique est réservée à l'administrateur de l'Écurie Initial. Connectez-vous avec votre compte autorisé.</p><a href="../connexion/">Se connecter</a></div><div id="content" hidden><p>Suivez les comptes, les dates d’inscription, les connexions et les ouvertures de l’application.</p>
 <div class="access-summary" id="accessSummary" hidden aria-label="Statistiques des accès">
 <div><strong id="summaryAccounts">—</strong><span>Comptes inscrits</span></div>
 <div><strong id="summaryConnected">—</strong><span>Déjà connectés</span></div>
 <div><strong id="summaryOpenings">—</strong><span>Ouvertures suivies</span></div>
-</div><p id="registrationTrackingError" class="warning" role="alert" hidden>Le suivi des inscriptions et des ouvertures est momentanément indisponible. Les données historiques ne sont pas effacées ; les statistiques ne peuvent pas être affichées pour le moment.</p><label id="archivedToggle" hidden><input type="checkbox" id="showArchivedAccounts"><span id="archivedToggleLabel">Afficher les anciennes invitations</span></label><div class="members-table-wrap"><table><thead><tr><th>Associé</th><th>Statut</th><th>Suivi des accès</th><th>Rôle</th><th>Gestion du compte</th></tr></thead><tbody id="members"></tbody></table></div><p class="muted" id="count"></p></div></div><div class="panel" id="registryPanel" hidden>
+</div><div id="memberTypeFilter" class="member-type-filter" role="group" aria-label="Filtrer les comptes par type" data-active="tous"><button type="button" data-member-type="tous" aria-pressed="true">Tous</button><button type="button" data-member-type="associe" aria-pressed="false">Associés</button><button type="button" data-member-type="exterieur" aria-pressed="false">Extérieurs</button><button type="button" data-member-type="observateur" aria-pressed="false">Équipe</button></div><p id="registrationTrackingError" class="warning" role="alert" hidden>Le suivi des inscriptions et des ouvertures est momentanément indisponible. Les données historiques ne sont pas effacées ; les statistiques ne peuvent pas être affichées pour le moment.</p><label id="archivedToggle" hidden><input type="checkbox" id="showArchivedAccounts"><span id="archivedToggleLabel">Afficher les anciennes invitations</span></label><div class="members-table-wrap"><table><thead><tr><th>Membre</th><th>Statut</th><th>Suivi des accès</th><th>Rôle</th><th>Gestion du compte</th></tr></thead><tbody id="members"></tbody></table></div><p class="muted" id="count"></p></div></div><div class="panel" id="registryPanel" hidden>
 <h2>📒 Répertoire des associés</h2>
 <p>Retrouvez ici les personnes de votre liste initiale, même si elles n'ont pas encore créé leur compte. Aucun e-mail n'est envoyé depuis cette liste.</p>
 <label for="registrySearch">Rechercher un associé déjà répertorié</label>
@@ -518,6 +525,7 @@ async function init(){
   let archivedCount=0;
   for(const m of members){
    const tr=make('tr');tr.classList.add('member-row');
+   tr.dataset.memberType=['associe','exterieur','observateur'].includes(m.type_compte)?m.type_compte:'associe';
    if(!m.actif && /\(ancienne invitation\)/i.test(m.nom_affiche)){
     tr.dataset.archived='true';
     tr.hidden=true;
@@ -630,15 +638,33 @@ async function init(){
    buttons.prepend(horsesBtn);buttons.append(emailBtn,accessBtn);if(suspendBtn)buttons.append(suspendBtn);manage.append(buttons);tr.append(manage);
    $('members').append(tr);
   }
-  $('count').textContent=(members.length-archivedCount)+' compte(s) affiché(s)'+(archivedCount?' · '+archivedCount+' ancienne(s) invitation(s) archivée(s)':'');
+  // Filtrage d'affichage uniquement : aucun compte ni droit n'est modifié.
+  const filterBar=$('memberTypeFilter');
+  const updateMemberList=()=>{
+   const selected=filterBar.dataset.active||'tous';
+   const includeArchived=$('showArchivedAccounts').checked;
+   let visible=0;
+   for(const row of $('members').querySelectorAll('tr.member-row')){
+    const matchingType=selected==='tous'||row.dataset.memberType===selected;
+    const matchingArchive=row.dataset.archived!=='true'||includeArchived;
+    row.hidden=!(matchingType&&matchingArchive);
+    if(!row.hidden)visible++;
+   }
+   $('count').textContent=visible+' compte(s) affiché(s)'+(!includeArchived&&archivedCount?' · '+archivedCount+' ancienne(s) invitation(s) masquée(s)':'');
+  };
+  for(const btn of filterBar.querySelectorAll('button[data-member-type]')){
+   btn.addEventListener('click',()=>{
+    filterBar.dataset.active=btn.dataset.memberType;
+    for(const other of filterBar.querySelectorAll('button[data-member-type]'))other.setAttribute('aria-pressed',String(other===btn));
+    updateMemberList();
+   });
+  }
   if(archivedCount){
    $('archivedToggle').hidden=false;
    $('archivedToggleLabel').textContent='Afficher les '+archivedCount+' ancienne(s) invitation(s) archivée(s)';
-   $('showArchivedAccounts').addEventListener('change',e=>{
-    for(const row of $('members').querySelectorAll('tr[data-archived]'))row.hidden=!e.target.checked;
-    $('count').textContent=(members.length-(e.target.checked?0:archivedCount))+' compte(s) affiché(s)';
-   });
   }
+  $('showArchivedAccounts').addEventListener('change',updateMemberList);
+  updateMemberList();
   if(Object.keys(registrationStatuses).length){
    $('summaryAccounts').textContent=String(members.length);
    $('summaryConnected').textContent=String(members.filter(m=>Boolean(registrationStatuses[m.user_id]?.derniere_connexion)).length);
