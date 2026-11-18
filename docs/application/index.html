@@ -21,10 +21,10 @@ header{background:#fff;color:#191919;border-bottom:4px solid var(--o);padding:13
 .brand-copy strong .brand-initial-i{
   position:relative;display:inline-block;vertical-align:baseline;
   font-weight:900;font-style:normal;text-transform:none;font-size:1em;
-  color:var(--o);line-height:1;
+  color:var(--o);line-height:inherit;
 }
 .brand-copy strong .brand-initial-i::before{
-  content:"★";position:absolute;left:50%;top:-1.04em;
+  content:"★";position:absolute;left:50%;top:auto;bottom:calc(100% + .08em);
   transform:translateX(-50%);font-size:.51em;line-height:1;
   color:var(--o);-webkit-text-stroke:.65px #171717;
   paint-order:stroke fill;text-shadow:0 0 .35px #171717;
@@ -486,4 +486,4 @@ window.loadHomeDashboard=async function(){
  }catch(e){console.warn("Accueil : données dynamiques momentanément indisponibles",e)}
 };
 </script>
-<script defer src="nav.js?v=20261117tabsresultatspartants1"></script></body></html>
+<script defer src="nav.js?v=20261118etoile-detachee2"></script></body></html>
