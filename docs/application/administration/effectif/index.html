@@ -21,7 +21,7 @@ button:disabled{opacity:.5;cursor:not-allowed}.secondary{background:#ece9e6}
 <h1>🐎 Gestion de l'effectif</h1>
 <p class="muted">Ajoutez un cheval après un achat, changez son entraîneur ou indiquez une vente. Une vente le retire de l'effectif actif, mais conserve sa fiche et ses résultats historiques.</p>
 <div id="loading" class="card">Vérification de vos droits…</div>
-<div id="denied" class="card bad" hidden>Cette rubrique est réservée aux administrateurs actifs. <a href="../../connexion/">Se connecter</a></div>
+<div id="denied" class="card bad" hidden>Cette rubrique est réservée aux personnes autorisées à gérer les chevaux. <a href="../../connexion/">Se connecter</a></div>
 <div id="work" hidden>
 <div class="card"><label for="selected">Cheval concerné</label><select id="selected"><option value="">➕ Ajouter un nouveau cheval</option></select><p id="current" class="muted"></p></div>
 <form id="form" class="card">
@@ -32,8 +32,16 @@ button:disabled{opacity:.5;cursor:not-allowed}.secondary{background:#ece9e6}
 <div><label for="trainer">Entraîneur</label><input id="trainer" required maxlength="120" placeholder="Prénom NOM"></div>
 <div><label for="casaque">Casaque</label><select id="casaque"><option value="blanche">Trot blanche</option><option value="orange">Trot orange</option><option value="galop">Galop orange et noir</option></select></div>
 </div>
+<h2 style="margin-top:22px">Origines et identité du cheval</h2>
+<div class="row">
+<div><label for="birthYear">Année de naissance (facultatif)</label><input id="birthYear" type="number" min="1990" max="2100" placeholder="2023"></div>
+<div><label for="father">Père (facultatif)</label><input id="father" maxlength="120" placeholder="Nom de l'étalon"></div>
+<div><label for="mother">Mère (facultatif)</label><input id="mother" maxlength="120" placeholder="Nom de la mère"></div>
+<div><label for="maternalGrandsire">Père de mère (facultatif)</label><input id="maternalGrandsire" maxlength="120" placeholder="Nom du père de mère"></div>
+</div>
 <label for="official">Lien vers la fiche officielle (facultatif)</label><input id="official" type="url" placeholder="https://…">
-<p class="muted" id="urlHint">La nouvelle fiche sera accessible immédiatement avec une photo de remplacement (casaque), en attendant la photo officielle.</p>
+<p class="muted" id="urlHint">La fiche sera accessible immédiatement. Vous pourrez ensuite renseigner les gains, la valeur handicap ou le record, et les engagements dans la gestion sportive.</p>
+<a id="sportLink" href="../../contribution/" hidden>✏️ Compléter la fiche sportive (gains, valeur/record, engagements)</a>
 <div class="actions"><button id="save" type="submit">➕ Ajouter ce cheval</button></div>
 </form>
 <section class="card" id="photoSection">
@@ -113,7 +121,7 @@ function selectedProfile(){
  const id=$('selected').value;
  const p=original(id),c=changes.get(id);
  if(!id)return null;
- if(c)return {id,name:c.nom,trainer:c.entraineur,discipline:c.discipline,casaque:c.casaque,horseLink:c.lien_officiel,active:c.actif,newHorse:c.nouveau,dateSortie:c.date_sortie};
+ if(c)return {id,name:c.nom,trainer:c.entraineur,discipline:c.discipline,casaque:c.casaque,horseLink:c.lien_officiel,active:c.actif,newHorse:c.nouveau,dateSortie:c.date_sortie,birthYear:c.annee_naissance??p?.birth_year??null,origines:{pere:c.pere??p?.origines?.pere??'',mere:c.mere??p?.origines?.mere??'',pere_de_mere:c.pere_de_mere??p?.origines?.pere_de_mere??''}};
  if(p)return {...p,active:true,newHorse:false};
  return null;
 }
@@ -126,6 +134,12 @@ function render(){
  $('discipline').value=p?.discipline||'Trot';
  $('casaque').value=p?.casaque||'blanche';
  $('official').value=p?.horseLink||'';
+ $('birthYear').value=p?.birthYear??p?.birth_year??'';
+ $('father').value=p?.origines?.pere||'';
+ $('mother').value=p?.origines?.mere||'';
+ $('maternalGrandsire').value=p?.origines?.pere_de_mere||'';
+ $('sportLink').hidden=!editing;
+ $('sportLink').href='../../contribution/?cheval='+encodeURIComponent(p?.id||'');
  $('save').textContent=editing?'Enregistrer les modifications':'➕ Ajouter ce cheval';
  $('movement').hidden=!editing||!isAdmin;
  $('sell').hidden=!editing||!p.active;
@@ -164,7 +178,18 @@ $('form').onsubmit=async e=>{
  if(!id||!name||!trainer)return msg('Complétez les champs obligatoires.',true);
  if((discipline==='Trot')===(casaque==='galop'))return msg('La casaque et la discipline ne correspondent pas.',true);
  if(!p&&(originals.some(x=>x.id===id||x.name.toLowerCase()===name.toLowerCase())||changes.has(id)))return msg('Ce cheval existe déjà. Sélectionnez sa fiche dans la liste.',true);
- const data={cheval_slug:id,nom:name,discipline,casaque,entraineur:trainer,lien_officiel:$('official').value.trim()||null,nouveau:p?.newHorse??(!original(id)),actif:p?.active??true,date_sortie:p?.dateSortie||null,modifie_le:new Date().toISOString()};
+ const year=$('birthYear').value.trim();
+ if(year&&(!/^\d{4}$/.test(year)||Number(year)<1990||Number(year)>2100))return msg('Année de naissance incorrecte.',true);
+ const data={
+  cheval_slug:id,nom:name,discipline,casaque,entraineur:trainer,
+  lien_officiel:$('official').value.trim()||null,
+  annee_naissance:year?Number(year):null,
+  pere:$('father').value.trim()||null,
+  mere:$('mother').value.trim()||null,
+  pere_de_mere:$('maternalGrandsire').value.trim()||null,
+  nouveau:p?.newHorse??(!original(id)),actif:p?.active??true,date_sortie:p?.dateSortie||null,
+  modifie_le:new Date().toISOString()
+ };
  const button=$('save');button.disabled=true;
  try{
   const {data:row,error}=await db.from('ei_effectif_gestion').upsert(data,{onConflict:'cheval_slug'}).select('*').single();
@@ -179,7 +204,12 @@ async function movement(active){
  if(active===false&&!confirm('Confirmer la vente / sortie de '+p.name+' ? Sa fiche et ses performances seront conservées.'))return;
  const date=active?null:$('movementDate').value;
  if(!active&&!date)return msg('Indiquez la date de sortie.',true);
- const row={cheval_slug:p.id,nom:p.name,discipline:p.discipline,casaque:p.casaque,entraineur:p.trainer,lien_officiel:p.horseLink||null,nouveau:p.newHorse||false,actif:active,date_sortie:date,modifie_le:new Date().toISOString()};
+ const old=changes.get(p.id);
+ const row={cheval_slug:p.id,nom:p.name,discipline:p.discipline,casaque:p.casaque,entraineur:p.trainer,lien_officiel:p.horseLink||null,nouveau:p.newHorse||false,actif:active,date_sortie:date,modifie_le:new Date().toISOString(),
+ annee_naissance:old?.annee_naissance??original(p.id)?.birth_year??null,
+ pere:old?.pere??original(p.id)?.origines?.pere??null,
+ mere:old?.mere??original(p.id)?.origines?.mere??null,
+ pere_de_mere:old?.pere_de_mere??original(p.id)?.origines?.pere_de_mere??null};
  $('sell').disabled=true;$('reactivate').disabled=true;
  try{
   const {data,error}=await db.from('ei_effectif_gestion').upsert(row,{onConflict:'cheval_slug'}).select('*').single();
@@ -198,12 +228,11 @@ async function init(){
   isAdmin=member.administrateur===true;
   const {data:rights,error:rightsError}=await db.from('ei_droits_photos_chevaux').select('user_id').eq('user_id',user.id).maybeSingle();
   if(rightsError)throw rightsError;
-  if(!isAdmin&&!rights)throw Error('Accès à la gestion des photos requis');
+  if(!isAdmin&&!rights)throw Error('Accès à la gestion des chevaux requis');
   if(!isAdmin){
-   $('form').hidden=true;
    $('movement').hidden=true;
-   document.querySelector('h1').textContent='📷 Photos des chevaux';
-   document.querySelector('main>p.muted').textContent='Ajoutez ou remplacez les photos des chevaux. La gestion des achats, ventes et entraîneurs reste réservée aux administrateurs.';
+   document.querySelector('h1').textContent='🐎 Gestion des fiches chevaux';
+   document.querySelector('main>p.muted').textContent='Ajoutez un cheval, complétez ses origines, modifiez son entraîneur ou sa photo. La gestion des ventes et réintégrations reste réservée aux administrateurs.';
   }
   const [horses,overrides,photosResult]=await Promise.all([
    fetch('../../../chevaux/data/chevaux.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Catalogue inaccessible');return r.json()}),
