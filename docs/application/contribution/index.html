@@ -68,7 +68,7 @@ const courseTypes=[
  ['Cavalières et Gentlemen','Cavalières et Gentlemen'],
  ['Qualification','Qualification'],['Autre','Autre']
 ];
-const disciplines=[['','— Non renseignée —'],['Plat','Plat'],['Obstacle','Obstacle'],['Trot attelé','Trot attelé'],['Trot monté','Trot monté']];
+const disciplines=[['','— Non renseignée —'],['Plat','Plat'],['Obstacle','Obstacle'],['Steeple','Steeple'],['Cross','Cross'],['Attelé','Attelé'],['Monté','Monté']];
 const surfaces=[['','— Non renseignée —'],['PSF','PSF'],['Gazon','Gazon'],['Herbe','Herbe'],['Sable','Sable']];
 function msg(t,bad=false){$('msg').textContent=t;$('msg').className=bad?'bad':'good'}
 async function getJson(path){const r=await fetch(path+'?v='+Date.now(),{cache:'no-store'});if(!r.ok)throw Error('Données indisponibles : '+path);return r.json()}
@@ -87,6 +87,7 @@ function renderEvents(){
         input=document.createElement('select');
         const choices=type==='select'?statuses:type==='courseTypeSelect'?courseTypes:type==='disciplineSelect'?disciplines:surfaces;
         for(const [v,t] of choices){const o=document.createElement('option');o.value=v;o.textContent=t;input.append(o)}
+        if(type==='disciplineSelect'&&event[key]){const legacy=String(event[key]).trim().toLocaleLowerCase('fr');if(legacy==='trot attelé')event[key]='Attelé';else if(legacy==='trot monté')event[key]='Monté';}
         if(event[key]&&!choices.some(([v])=>v===event[key])){
           const legacy=document.createElement('option');legacy.value=event[key];
           legacy.textContent=event[key]+' (valeur existante)';input.append(legacy)
