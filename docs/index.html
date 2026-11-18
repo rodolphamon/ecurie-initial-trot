@@ -66,4 +66,19 @@ Promise.all([
  display(v.horses,Object.fromEntries((p.horses||[]).map(h=>[h.id,h])));
 })
 .catch(()=>display(null,null));
+</script>
+<script>
+(function(){
+ const notify=()=>{
+  if(window.parent===window)return;
+  const page=document.querySelector('.page')||document.body;
+  const height=Math.ceil(page.getBoundingClientRect().bottom+18);
+  if(!Number.isFinite(height)||height<150)return;
+  window.parent.postMessage({type:'ei-effectif-resize',discipline:'trot',height},'https://www.ecurie-initial.com');
+ };
+ window.addEventListener('load',notify);
+ if('ResizeObserver' in window)new ResizeObserver(notify).observe(document.querySelector('.page')||document.body);
+ window.addEventListener('resize',notify);
+ requestAnimationFrame(notify);
+})();
 </script></body></html>
