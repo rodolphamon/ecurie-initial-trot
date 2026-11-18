@@ -386,6 +386,23 @@ body.ei-prelaunch{padding-bottom:0!important}
  .assoc-link{padding:13px 11px}
 }
 
+
+/* Espace associés : quatre cartes unifiées, dont Tribune et Rejoindre l'Écurie. */
+#privateArea .assoc-link-main{
+  background:#fff;color:#25211e;border:1px solid #e8dfd7;
+  border-left:4px solid var(--o);
+}
+#privateArea .assoc-link-main:hover,
+#privateArea .assoc-link-main:active{background:#fff7f1;color:#25211e;border-color:#e8a779}
+#privateArea .assoc-link-main .assoc-link-text small{color:#69615c}
+#privateArea .assoc-link-main .assoc-link-arrow{color:#a56a43}
+#privateArea .assoc-links{margin-bottom:12px}
+#privateArea .assoc-link-join{width:100%;min-height:96px;margin:0}
+@media(max-width:600px){
+  #privateArea .assoc-link-join{min-height:83px}
+  #privateArea .assoc-links{margin-bottom:10px}
+}
+
 </style><link rel="apple-touch-icon" href="icon-ei-192.png"></head><body class="ei-prelaunch"><header><div class="brand"><img src="icon-ei-192.png" alt="Emblème officiel Écurie Initial"><div class="brand-copy"><strong>ÉCURIE <span class="brand-initial"><span class="brand-initial-i">I</span>NITIAL</span></strong></div><p class="brand-slogan"><span class="brand-slogan-line">PARTAGEONS NOTRE PASSION</span><span class="brand-slogan-date">DEPUIS 2011</span></p></div></header><div id="prelaunch" hidden><div class="prelaunch-box"><h1>🐎 Bientôt votre espace Écurie Initial</h1><p><strong>Ouverture officielle le mardi 1er décembre 2026.</strong></p><p>Vous pouvez installer l’application dès aujourd’hui. Les invités peuvent confirmer leur compte et les visiteurs extérieurs peuvent demander leur inscription sans invitation. L’accès privé reste soumis à validation, avec ouverture générale le 1er décembre.</p><p>Jusqu’à cette date, les cinq comptes pilotes et les contributeurs expressément autorisés assurent les derniers essais.</p><a href="connexion/">Me connecter</a> <a href="inscription/" style="margin-left:8px">Créer mon compte</a><p style="font-size:13px;color:#f7e9df;margin:18px 0 0"><strong>Vous pouvez installer l'application dès maintenant :</strong><br>Android : ouvrez cette page dans Chrome puis « Installer l'application ».<br>iPhone : ouvrez cette page dans Safari, puis « Partager » → « Sur l'écran d'accueil ».</p></div><p class="prelaunch-hint">Notre site public reste accessible sur <a href="https://www.ecurie-initial.com/" style="background:none;color:#a54c0b;padding:0;font:inherit;text-decoration:underline">www.ecurie-initial.com</a>.</p></div><main id="appContent" hidden>
 <div class="home-welcome" role="note">La vie de l’Écurie, course après course.</div>
 <div id="publicArea">
@@ -424,7 +441,7 @@ body.ei-prelaunch{padding-bottom:0!important}
    <a class="assoc-link" href="mes-chevaux/"><span class="assoc-link-emoji" aria-hidden="true">🐎</span><span class="assoc-link-text"><strong>Mes chevaux</strong><small>Suivi de vos participations</small></span><span class="assoc-link-arrow" aria-hidden="true">›</span></a>
    <a class="assoc-link" href="notifications/"><span class="assoc-link-emoji" aria-hidden="true">🔔</span><span class="assoc-link-text"><strong>Notifications</strong><small>Vos alertes et actualités</small></span><span class="assoc-link-arrow" aria-hidden="true">›</span></a>
   </nav>
-  <p class="assoc-join">Pas encore associé ? <a href="devenir-associe/">Rejoindre l'Écurie →</a></p>
+  <a class="assoc-link assoc-link-join" href="devenir-associe/"><span class="assoc-link-emoji" aria-hidden="true">🧡</span><span class="assoc-link-text"><strong>Rejoindre l'Écurie</strong><small>Découvrez la propriété en parts et vivez les courses à nos côtés.</small></span><span class="assoc-link-arrow" aria-hidden="true">›</span></a>
  </div>
 </section>
 </main>
