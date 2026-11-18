@@ -7,6 +7,8 @@ const dateFR=s=>{if(!/^\d{4}-\d{2}-\d{2}$/.test(s||''))return s||'';let [y,m,d]=
 const money=n=>Number.isFinite(n)?formatEuro.format(n)+' €':'—';
 const formatValue=n=>Number.isFinite(n)?String(n).replace('.',','):'—';
 const currentParis=()=>new Intl.DateTimeFormat('sv-SE',{timeZone:'Europe/Paris',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).format(new Date()).replace(' ','T');
+// En courses françaises, l'âge hippique avance le 1er janvier, sans attendre la date anniversaire.
+const horseAge=p=>{const born=Number(p.birth_year),now=Number(currentParis().slice(0,4));return Number.isInteger(born)&&born>=1990&&born<=now?now-born:null};
 const silkName=p=>p.casaque==='galop'?'casaque-galop.svg':p.casaque==='orange'?'casaque-orange.svg':'casaque-blanche.svg';
 const silk=p=>base+'../assets/'+silkName(p);
 function photoMarkup(p,style){let img=p.photoUrl||base+'photos/'+p.id+'.jpg?v='+encodeURIComponent(p.photoVersion||'1');return '<div class="'+(style==='hero'?'hero-photo':'horse-card-photo')+'">'+(style==='card'?'<span class="kind">'+esc(p.discipline)+'</span>':'')+'<img class="photo" src="'+img+'" alt="Photo de '+esc(p.name)+'" loading="lazy" onerror="this.hidden=true;this.nextElementSibling.hidden=false;this.parentNode.classList.add(\'no-photo\')" /><img class="silk" hidden src="'+silk(p)+'" alt="Casaque de l’Écurie Initial"/>'+(style==='hero'?'<span class="placeholder-tag" hidden>Photographie à venir</span>':'')+'</div>'}
@@ -277,6 +279,7 @@ function horse(s){
   const isGalop=p.casaque==='galop';
   const d=currentData(p,s);
   const isRest=p.status==='au repos';
+  const age=horseAge(p),ageLabel=age===null?'':age+' '+(age===1?'an':'ans');
   if(p.active===false)document.title=p.name+' · Ancien cheval de l’Écurie Initial';
   const value=metric(p,d);
   const valueLabel=isGalop?(/obstacle/i.test(p.discipline||'')?'Valeurs handicap plat / obstacle':'Valeur handicap'):'Record';
@@ -332,6 +335,7 @@ function horse(s){
           +'<div class="hero-meta">'
             +'<span class="orange-line hero-title-rule" aria-hidden="true"></span>'
             +'<span class="hero-trainer" title="'+esc('Entraîneur : '+(p.trainer||'—'))+'"><span aria-hidden="true">🎩</span> <span class="hero-trainer-name">'+esc(p.trainer||'—')+'</span></span>'
+            +(age!==null?'<span class="hero-age" title="'+esc('Né en '+p.birth_year+' · âge hippique au 1er janvier')+'">'+esc(ageLabel)+'</span>':'')
             +(isRest?'<span class="tag rest">Au repos</span>':'')
           +'</div>'
         +'</div>'
