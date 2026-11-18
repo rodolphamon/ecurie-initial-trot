@@ -92,7 +92,7 @@ async function setup(){
   try{
     const {data:photoRights,error:photoError}=await db.from('ei_droits_photos_chevaux').select('user_id').eq('user_id',user.id).maybeSingle();
     if(!photoError&&(member.administrateur||photoRights)){
-      const photoLink=el('a','📷 Gérer les photos des chevaux','button');
+      const photoLink=el('a','🐎 Ajouter un cheval / gérer les fiches','button');
       photoLink.href='../administration/effectif/';
       $('welcome').after(photoLink);
     }
