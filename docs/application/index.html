@@ -339,6 +339,53 @@ body.ei-prelaunch{padding-bottom:0!important}
  .assoc-link-text small{font-size:10px}
 }
 
+
+/* Espace associés : composants harmonisés, libellés complets et cartes mobiles généreuses. */
+#privateArea .assoc-panel{border:1px solid #e8dfd8;border-left:5px solid var(--o);border-radius:16px;padding:22px;background:#fff;box-shadow:0 2px 8px #00000008}
+.assoc-heading{margin-bottom:17px}
+.assoc-eyebrow{font-size:11px;margin-bottom:8px}
+#privateArea .assoc-heading h2{font-size:clamp(22px,3vw,27px);margin-bottom:8px}
+.assoc-heading p{font-size:14px;line-height:1.45}
+.assoc-access{border-radius:12px;padding:12px 14px;margin-bottom:14px}
+.assoc-access>span{font-size:13px;line-height:1.35}
+.assoc-access .assoc-login{font-size:14px;padding:12px 15px}
+.assoc-access.is-connected{background:#f7f5f2;border-color:#e5ded8}
+.assoc-access.is-connected>span{color:#3c3935}
+.assoc-access .assoc-login.is-connected{background:#171717;color:#fff}
+.assoc-links{gap:12px}
+.assoc-link{padding:16px;gap:14px;min-height:96px;border-left:4px solid var(--o);border-radius:13px;box-shadow:0 2px 7px #00000006}
+.assoc-link-main{min-height:87px;border-color:#171717}
+.assoc-link-emoji{flex:0 0 26px;font-size:24px;text-align:center}
+.assoc-link-text{flex-direction:column;align-items:flex-start;justify-content:center;gap:5px;white-space:normal}
+.assoc-link-text strong{display:block;font-size:18px;white-space:normal;overflow-wrap:break-word}
+.assoc-link-text small{display:block;width:100%;white-space:normal;overflow:visible;text-overflow:clip;font-size:13px;line-height:1.35;margin:0}
+.assoc-link-arrow{font-size:23px}
+.assoc-join{font-size:13px;margin-top:17px}
+@media(max-width:600px){
+ #privateArea .assoc-panel{padding:17px 15px;border-radius:14px}
+ .assoc-heading{margin-bottom:15px}
+ .assoc-eyebrow{font-size:10px;margin-bottom:7px}
+ #privateArea .assoc-heading h2{font-size:23px;margin-bottom:7px}
+ .assoc-heading p{font-size:13.5px;line-height:1.45}
+ .assoc-access{gap:10px;padding:11px 12px;margin-bottom:13px}
+ .assoc-access>span{font-size:12px}
+ .assoc-access .assoc-login{font-size:13px;padding:11px 13px}
+ .assoc-links{grid-template-columns:1fr;gap:10px}
+ .assoc-link{min-height:83px;padding:15px 14px;gap:12px}
+ .assoc-link-main{min-height:85px}
+ .assoc-link-emoji{font-size:23px}
+ .assoc-link-text{gap:5px}
+ .assoc-link-text strong{font-size:17px}
+ .assoc-link-text small{font-size:13px}
+ .assoc-link-arrow{font-size:22px}
+ .assoc-join{font-size:12px;margin-top:14px}
+}
+@media(max-width:355px){
+ .assoc-access{flex-wrap:wrap}
+ .assoc-access .assoc-login{margin-left:auto}
+ .assoc-link{padding:13px 11px}
+}
+
 </style><link rel="apple-touch-icon" href="icon-ei-192.png"></head><body class="ei-prelaunch"><header><div class="brand"><img src="icon-ei-192.png" alt="Emblème officiel Écurie Initial"><div class="brand-copy"><strong>ÉCURIE <span class="brand-initial"><span class="brand-initial-i">I</span>NITIAL</span></strong></div><p class="brand-slogan"><span class="brand-slogan-line">PARTAGEONS NOTRE PASSION</span><span class="brand-slogan-date">DEPUIS 2011</span></p></div></header><div id="prelaunch" hidden><div class="prelaunch-box"><h1>🐎 Bientôt votre espace Écurie Initial</h1><p><strong>Ouverture officielle le mardi 1er décembre 2026.</strong></p><p>Vous pouvez installer l’application dès aujourd’hui. Les invités peuvent confirmer leur compte et les visiteurs extérieurs peuvent demander leur inscription sans invitation. L’accès privé reste soumis à validation, avec ouverture générale le 1er décembre.</p><p>Jusqu’à cette date, les cinq comptes pilotes et les contributeurs expressément autorisés assurent les derniers essais.</p><a href="connexion/">Me connecter</a> <a href="inscription/" style="margin-left:8px">Créer mon compte</a><p style="font-size:13px;color:#f7e9df;margin:18px 0 0"><strong>Vous pouvez installer l'application dès maintenant :</strong><br>Android : ouvrez cette page dans Chrome puis « Installer l'application ».<br>iPhone : ouvrez cette page dans Safari, puis « Partager » → « Sur l'écran d'accueil ».</p></div><p class="prelaunch-hint">Notre site public reste accessible sur <a href="https://www.ecurie-initial.com/" style="background:none;color:#a54c0b;padding:0;font:inherit;text-decoration:underline">www.ecurie-initial.com</a>.</p></div><main id="appContent" hidden>
 <div class="home-welcome" role="note">La vie de l’Écurie, course après course.</div>
 <div id="publicArea">
@@ -368,9 +415,9 @@ body.ei-prelaunch{padding-bottom:0!important}
     <p>Vos chevaux, nos échanges et toutes les nouvelles de l'Écurie au même endroit.</p>
    </div>
   </div>
-  <div class="assoc-access">
-   <span>Accès réservé aux associés validés</span>
-   <a class="button assoc-login" href="connexion/">Se connecter <span aria-hidden="true">→</span></a>
+  <div class="assoc-access" id="assocAccess">
+   <span id="assocAccessState">Connectez-vous pour accéder à votre espace.</span>
+   <a class="button assoc-login" id="assocLogin" href="connexion/">Se connecter <span aria-hidden="true">→</span></a>
   </div>
   <nav class="assoc-links" aria-label="Rubriques des associés">
    <a class="assoc-link assoc-link-main" href="tribune/"><span class="assoc-link-emoji" aria-hidden="true">💬</span><span class="assoc-link-text"><strong>Tribune des supporters</strong><small>Échanges entre membres et passionnés</small></span><span class="assoc-link-arrow" aria-hidden="true">›</span></a>
@@ -391,6 +438,35 @@ import {createClient} from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2
 const app=document.getElementById('appContent'),waiting=document.getElementById('prelaunch');
 const OPEN=Date.parse('2026-11-30T23:00:00Z');
 const norm=s=>(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim().replace(/\s+/g,' ').toLowerCase();
+/* Connexion réelle : ne pas afficher « Connecté » avant la vérification du compte. */
+const assocAuth=createClient('https://yeecwaaizmvrhwobukfa.supabase.co','sb_publishable_xUy2EJA3u3cKWl8BB4GNPQ_qhV9Pes3');
+async function refreshAssocAccess(){
+ const panel=document.getElementById('assocAccess');
+ const note=document.getElementById('assocAccessState');
+ const action=document.getElementById('assocLogin');
+ if(!panel||!note||!action)return;
+ panel.classList.remove('is-connected');
+ action.classList.remove('is-connected');
+ note.textContent='Connectez-vous pour accéder à votre espace.';
+ action.innerHTML='Se connecter <span aria-hidden="true">→</span>';
+ action.removeAttribute('aria-label');
+ try{
+  const {data:{user},error}=await assocAuth.auth.getUser();
+  if(error||!user)return;
+  const {data:member,error:memberError}=await assocAuth.from('associes')
+    .select('actif,type_compte').eq('user_id',user.id).maybeSingle();
+  if(memberError||!member?.actif)return;
+  note.textContent=member.type_compte==='exterieur'?'Votre compte membre est actif.'
+    :member.type_compte==='observateur'?'Votre accès Team Initial est actif.'
+    :'Votre accès associé est actif.';
+  action.textContent='✓ Connecté';
+  action.setAttribute('aria-label','Connecté — accéder à mon compte');
+  action.classList.add('is-connected');
+  panel.classList.add('is-connected');
+ }catch(error){console.info('État de connexion indisponible',error?.message||error)}
+}
+window.addEventListener('pageshow',()=>{if(!app.hidden)refreshAssocAccess()});
+
 async function allowApp(){
  if(Date.now()>=OPEN)return true;
  try{
@@ -423,7 +499,7 @@ document.addEventListener('visibilitychange',()=>{if(!document.hidden)recordAppO
 allowApp().then(open=>{
  appAuthorized=open;
  app.hidden=!open;waiting.hidden=open;document.body.classList.toggle('ei-prelaunch',!open);
- if(open){window.loadHomeDashboard?.();recordAppOpening()}
+ if(open){window.loadHomeDashboard?.();recordAppOpening();refreshAssocAccess()}
 })
 .catch(()=>{app.hidden=true;waiting.hidden=false;document.body.classList.add('ei-prelaunch')});
 </script>
