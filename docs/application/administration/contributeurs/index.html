@@ -48,8 +48,8 @@ button:disabled{opacity:.5}a{color:#a94b0d}.muted{color:#635d58}[hidden]{display
 <div id="arnaudReady" hidden>
 <div class="person-facts">
 <p><strong>Fonction :</strong> Gestion sportive</p>
-<p><strong>Autorisations :</strong> <span class="role" id="arnaudRole"></span></p>
-<p><strong>🐎 Fiches des chevaux :</strong> <span class="role" id="arnaudFiches">Vérification…</span></p>
+<p><span class="role" id="arnaudRole"></span></p>
+<p id="arnaudFichesLine" hidden>🐎 <span class="role" id="arnaudFiches">Vérification…</span></p>
 </div>
 <p class="person-action"><button type="button" id="arnaudToggle"></button></p>
 </div>
@@ -62,8 +62,8 @@ button:disabled{opacity:.5}a{color:#a94b0d}.muted{color:#635d58}[hidden]{display
 <div id="nicolasReady" hidden>
 <div class="person-facts">
 <p><strong>Fonction :</strong> Gestion sportive</p>
-<p><strong>Autorisations :</strong> <span class="role" id="nicolasRole"></span></p>
-<p><strong>🐎 Fiches des chevaux :</strong> <span class="role" id="nicolasFiches">Vérification…</span></p>
+<p><span class="role" id="nicolasRole"></span></p>
+<p id="nicolasFichesLine" hidden>🐎 <span class="role" id="nicolasFiches">Vérification…</span></p>
 </div>
 <p class="person-action"><button type="button" id="nicolasToggle"></button></p>
 </div>
@@ -87,11 +87,13 @@ async function refresh(target){
  if(error)throw error;
  target.role=data;
  const rights=await db.from('ei_droits_photos_chevaux').select('user_id').eq('user_id',target.candidate.user_id).maybeSingle();
- $(target.key+'Fiches').textContent=rights.error?'Vérification indisponible':rights.data?'Autorisé — ajout de chevaux, modification des fiches, entraîneurs, origines et photos':'Non autorisé';
+ const fichesLine=$(target.key+'FichesLine');
+ fichesLine.hidden=!rights.error&&!rights.data;
+ $(target.key+'Fiches').textContent=rights.error?'Vérification des fiches indisponible':'Ajout de chevaux, modification des fiches, entraîneurs, origines et photos';
  const complete=data?.actif&&data.engagements&&data.gains&&data.valeurs&&data.records;
  $(target.key+'Role').textContent=complete
-   ?'Actif — engagements, gains, valeurs et records'+(data.acces_avant_ouverture?' (accès anticipé)':'')
-   :data?.actif?'Actif — autorisations incomplètes':'Non activé';
+   ?'Engagements, gains, valeurs et records'
+   :data?.actif?'Autorisations sportives incomplètes':'Contributeur désactivé';
  $(target.key+'Toggle').textContent=data?.actif?'Désactiver le rôle Contributeur':'Activer le rôle Contributeur';
  $(target.key+'Ready').hidden=false;
 }
