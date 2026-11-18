@@ -75,6 +75,7 @@
       padding: 5px 5px calc(5px + env(safe-area-inset-bottom, 0px));
       background: #171717; box-shadow: 0 -3px 15px rgba(0,0,0,.18);
       width: 100%; max-width: none; box-sizing: border-box;
+      margin: 0 !important; /* Annule les marges génériques « nav » des pages, notamment en administration. */
     }
     #ei-app-nav a {
       display: flex; flex: 1 1 25%; min-width: 0; min-height: 48px;
