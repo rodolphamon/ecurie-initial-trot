@@ -194,6 +194,11 @@ body[data-admin-view="actions"] #actions:not([hidden]){display:block!important}
  #members tr.member-open .member-action-grid{gap:5px}
  #members tr.member-open .member-action-grid button{min-height:37px}
 }
+/* Invitations archivées accessibles sur demande, hors de la liste courante. */
+#members tr[hidden]{display:none!important}
+#archivedToggle{display:flex;align-items:center;gap:9px;margin:10px 0;font-size:13px;color:#625952}
+#archivedToggle[hidden]{display:none!important}
+#archivedToggle input{width:17px;height:17px;margin:0;flex:none;accent-color:#f47721}
 </style><link rel="manifest" href="../manifest.webmanifest"><link rel="apple-touch-icon" href="../icon-ei-192.png"></head><body><header><strong>ÉCURIE <span>INITIAL</span></strong><div>Gestion de l'Écurie Initial</div></header><main><nav><a href="../connexion/">← Mon espace associé</a></nav>
 <nav id="adminDetailNav" hidden><a href="#adminDashboard">← Administration</a></nav>
 <section class="panel admin-hub" id="adminDashboard" aria-label="Tableau de bord d'administration" hidden>
@@ -215,7 +220,7 @@ body[data-admin-view="actions"] #actions:not([hidden]){display:block!important}
 <div><strong id="summaryAccounts">—</strong><span>Comptes inscrits</span></div>
 <div><strong id="summaryConnected">—</strong><span>Déjà connectés</span></div>
 <div><strong id="summaryOpenings">—</strong><span>Ouvertures suivies</span></div>
-</div><p id="registrationTrackingError" class="warning" role="alert" hidden>Le suivi des inscriptions et des ouvertures est momentanément indisponible. Les données historiques ne sont pas effacées ; les statistiques ne peuvent pas être affichées pour le moment.</p><div class="members-table-wrap"><table><thead><tr><th>Associé</th><th>Statut</th><th>Suivi des accès</th><th>Rôle</th><th>Gestion du compte</th></tr></thead><tbody id="members"></tbody></table></div><p class="muted" id="count"></p></div></div><div class="panel" id="registryPanel" hidden>
+</div><p id="registrationTrackingError" class="warning" role="alert" hidden>Le suivi des inscriptions et des ouvertures est momentanément indisponible. Les données historiques ne sont pas effacées ; les statistiques ne peuvent pas être affichées pour le moment.</p><label id="archivedToggle" hidden><input type="checkbox" id="showArchivedAccounts"><span id="archivedToggleLabel">Afficher les anciennes invitations</span></label><div class="members-table-wrap"><table><thead><tr><th>Associé</th><th>Statut</th><th>Suivi des accès</th><th>Rôle</th><th>Gestion du compte</th></tr></thead><tbody id="members"></tbody></table></div><p class="muted" id="count"></p></div></div><div class="panel" id="registryPanel" hidden>
 <h2>📒 Répertoire des associés</h2>
 <p>Retrouvez ici les personnes de votre liste initiale, même si elles n'ont pas encore créé leur compte. Aucun e-mail n'est envoyé depuis cette liste.</p>
 <label for="registrySearch">Rechercher un associé déjà répertorié</label>
@@ -509,9 +514,15 @@ async function init(){
   }catch(err){registrationStatuses={};$('registrationTrackingError').hidden=false;console.warn('Suivi des inscriptions indisponible',err.message)}
 
   if(error)throw error;
-  registeredNames=new Set(members.map(m=>normName(m.nom_affiche)));
+  registeredNames=new Set(members.filter(m=>!/\(ancienne invitation\)/i.test(m.nom_affiche)).map(m=>normName(m.nom_affiche)));
+  let archivedCount=0;
   for(const m of members){
    const tr=make('tr');tr.classList.add('member-row');
+   if(!m.actif && /\(ancienne invitation\)/i.test(m.nom_affiche)){
+    tr.dataset.archived='true';
+    tr.hidden=true;
+    archivedCount++;
+   }
    for(const value of [m.nom_affiche,m.actif?'Actif':'Suspendu']){
     const td=make('td',value);tr.append(td);
    }
@@ -619,7 +630,15 @@ async function init(){
    buttons.prepend(horsesBtn);buttons.append(emailBtn,accessBtn);if(suspendBtn)buttons.append(suspendBtn);manage.append(buttons);tr.append(manage);
    $('members').append(tr);
   }
-  $('count').textContent=members.length+' compte(s) enregistré(s)';
+  $('count').textContent=(members.length-archivedCount)+' compte(s) affiché(s)'+(archivedCount?' · '+archivedCount+' ancienne(s) invitation(s) archivée(s)':'');
+  if(archivedCount){
+   $('archivedToggle').hidden=false;
+   $('archivedToggleLabel').textContent='Afficher les '+archivedCount+' ancienne(s) invitation(s) archivée(s)';
+   $('showArchivedAccounts').addEventListener('change',e=>{
+    for(const row of $('members').querySelectorAll('tr[data-archived]'))row.hidden=!e.target.checked;
+    $('count').textContent=(members.length-(e.target.checked?0:archivedCount))+' compte(s) affiché(s)';
+   });
+  }
   if(Object.keys(registrationStatuses).length){
    $('summaryAccounts').textContent=String(members.length);
    $('summaryConnected').textContent=String(members.filter(m=>Boolean(registrationStatuses[m.user_id]?.derniere_connexion)).length);
