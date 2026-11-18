@@ -321,7 +321,7 @@ function replayButton(result,mobile){
  };
  const movie=officialForThisRace(result.video);
  const url=movie||officialForThisRace(result.source_officielle)||officialForThisRace(result.source);
- if(!url)return '<span class="replay-unavailable" title="Aucun lien LeTROT ou Equidia disponible pour cette course">À retrouver</span>';
+ if(!url)return ''; // L'absence de lien reste interne, rien à afficher aux visiteurs.
  // Vidéo prioritaire ; sinon lien Résultat lorsque la vidéo n'est pas connue.
  const isReplay=!!movie&&result.videoSource==="video";
  const label=isReplay?"Vidéo":"Résultat";
