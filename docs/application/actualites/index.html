@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#171717"><title>Messages de l'Écurie · Écurie Initial</title>
+<link rel="manifest" href="../manifest.webmanifest"><link rel="icon" href="../icon-ei-192.png">
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f6f4f1;color:#25211e;font:15px/1.5 Arial,Helvetica,sans-serif}
+header{background:#171717;color:#fff;padding:18px 16px}header strong{font-size:22px;letter-spacing:.4px}header span{color:#f47721}
+main{max-width:780px;margin:auto;padding:18px 14px 110px}
+a{color:#af5012}h1{font-size:clamp(25px,5vw,32px);line-height:1.2;margin:14px 0 8px}
+.lead{color:#625b56;max-width:640px;margin:0 0 22px}
+.annonce{background:#fff;border:1px solid #e9e1da;border-left:5px solid #f47721;border-radius:13px;margin:13px 0;padding:18px;box-shadow:0 2px 8px #00000007;scroll-margin-top:20px}
+.annonce.is-target{border-color:#f47721;box-shadow:0 0 0 2px #f4772152}
+.annonce .date{font-size:12px;font-weight:700;color:#9c5a2e;text-transform:uppercase;letter-spacing:.3px}
+.annonce h2{font-size:20px;line-height:1.25;margin:7px 0 9px}
+.annonce p{margin:0;white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.65}
+.official{font-weight:800;color:#ba5b12;font-size:12px}
+.muted{color:#666;font-size:13px}
+button{background:#f47721;border:0;border-radius:10px;padding:12px 18px;font-weight:800;cursor:pointer}
+button[hidden]{display:none}
+#status{color:#666}
+</style></head><body>
+<header><strong>ÉCURIE <span>INITIAL</span></strong><div style="font-size:12px;color:#ddd">Les annonces officielles · accessibles à tous</div></header>
+<main>
+<p><a href="../">← Accueil de l'application</a></p>
+<h1>📣 Messages de l'Écurie</h1>
+<p class="lead">Les informations et annonces publiques de l'Écurie Initial, à retrouver même sans être propriétaire d'un cheval. Tous les passionnés sont les bienvenus.</p>
+<p id="status" role="status">Chargement des annonces…</p>
+<div id="feed" aria-live="polite"></div>
+<button id="more" type="button" hidden>Afficher les annonces précédentes</button>
+<p class="muted">🔔 Pour recevoir les prochains messages sur votre téléphone, activez les « Annonces publiques de l'Écurie » dans <a href="../notifications/">Notifications</a>.</p>
+</main>
+<script type="module">
+import {createClient} from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+const db=createClient('https://yeecwaaizmvrhwobukfa.supabase.co','sb_publishable_xUy2EJA3u3cKWl8BB4GNPQ_qhV9Pes3');
+const feed=document.getElementById('feed'),status=document.getElementById('status'),more=document.getElementById('more');
+const date=s=>new Date(s).toLocaleString('fr-FR',{dateStyle:'long',timeStyle:'short'});
+const focusId=Number(new URLSearchParams(location.search).get('id'))||0;
+const pageSize=15;let offset=0,shownIds=new Set();
+function render(p){
+ if(shownIds.has(p.id))return;shownIds.add(p.id);
+ const card=document.createElement('article');card.className='annonce';card.id='annonce-'+p.id;
+ if(p.id===focusId)card.classList.add('is-target');
+ const official=document.createElement('div');official.className='official';official.textContent='📣 COMMUNIQUÉ DE L’ÉCURIE';
+ const published=document.createElement('div');published.className='date';published.textContent=date(p.created_at);
+ const title=document.createElement('h2');title.textContent=p.titre;
+ const text=document.createElement('p');text.textContent=p.contenu;
+ card.append(official,published,title,text);
+ feed.append(card);
+ if(p.id===focusId)requestAnimationFrame(()=>card.scrollIntoView({behavior:'smooth',block:'start'}));
+}
+async function load(){
+ more.disabled=true;status.textContent='Chargement…';
+ try{
+  if(focusId&&!shownIds.size){
+   const {data:specific,error:e}=await db.from('actualites_generales_publiques')
+      .select('id,titre,contenu,created_at').eq('id',focusId).maybeSingle();
+   if(!e&&specific)render(specific);
+  }
+  const {data,error}=await db.from('actualites_generales_publiques')
+    .select('id,titre,contenu,created_at').order('created_at',{ascending:false}).range(offset,offset+pageSize-1);
+  if(error)throw error;
+  for(const item of data||[])render(item);
+  offset+=(data||[]).length;
+  more.hidden=(data||[]).length<pageSize;
+  status.textContent=shownIds.size?'':'Aucune annonce publiée pour le moment.';
+ }catch(e){status.textContent='Les annonces sont momentanément indisponibles. Réessayez.'}
+ finally{more.disabled=false}
+}
+more.onclick=load;load();
+</script>
+<script defer src="../nav.js?v=20261118supportersnews1"></script>
+</body></html>
