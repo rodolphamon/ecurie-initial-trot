@@ -29,6 +29,13 @@
   const installed = !!(window.matchMedia?.("(display-mode: standalone)")?.matches || navigator.standalone === true);
   const beforeOpening = Date.now() < Date.parse("2026-11-30T23:00:00Z");
   const isAppHome = currentPath === applicationBase.pathname || currentPath === applicationBase.pathname + "index.html";
+  const connexionPath = new URL("connexion/", applicationBase).pathname;
+  const isConnexion = currentPath === connexionPath || currentPath === connexionPath + "index.html";
+
+  // Avant le lancement, chacun doit pouvoir ouvrir la connexion pour accepter
+  // son invitation et définir son mot de passe, même depuis la PWA installée.
+  // Les autres rubriques restent soumises au contrôle de préouverture.
+  if (installed && beforeOpening && isConnexion) return;
 
   // La fermeture s'applique à la PWA installée, pas aux pages du site public.
   async function canAccessInstalledApp() {
