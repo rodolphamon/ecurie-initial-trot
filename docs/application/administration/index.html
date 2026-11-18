@@ -1,26 +1,13 @@
 <!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Administration · Écurie Initial</title><style>*{box-sizing:border-box}body{font:15px Arial,sans-serif;background:#f6f4f1;color:#242424;margin:0}header{background:#171717;color:#fff;padding:20px}header strong{font-size:22px}header span{color:#f47721}main{max-width:860px;margin:28px auto;padding:0 16px}.panel{background:#fff;border:1px solid #e7e0d9;border-radius:14px;padding:22px;margin-bottom:15px}h1{margin-top:0}p{line-height:1.5}a{color:#a94c08}button{background:#f47721;border:0;border-radius:8px;padding:11px 16px;font-weight:bold;cursor:pointer}button:disabled{opacity:.5;cursor:not-allowed}input{width:100%;padding:11px;border:1px solid #ccc;border-radius:8px;margin:6px 0 12px}label{font-weight:bold}.invite-horses{margin:14px 0;padding:14px;border:1px solid #e8e2dd;border-radius:10px}.invite-horses legend{font-weight:bold}.invite-roster{display:grid;grid-template-columns:repeat(auto-fit,minmax(185px,1fr));gap:6px;max-height:230px;overflow:auto;padding:4px}.invite-roster label{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:normal;padding:6px;border-radius:6px;background:#faf8f6}.invite-roster label[hidden]{display:none}.invite-roster input{width:auto;margin:0;flex-shrink:0}.invite-roster-state{font-size:12px;color:#666}#actionStatus{margin-top:12px}table{border-collapse:collapse;width:100%}th,td{text-align:left;border-bottom:1px solid #eee;padding:12px 8px}th{font-size:13px}small,.muted{color:#666}#error{color:#a00}#content[hidden],#denied[hidden]{display:none}nav{margin-bottom:16px}.horse-item{display:flex;justify-content:space-between;align-items:center;gap:12px;border-bottom:1px solid #eee;padding:10px 0}.horse-item:last-child{border:0}.horse-item button,.secondary{background:#eee;color:#222}.inline-actions{display:flex;flex-wrap:wrap;gap:7px}.inline-actions button{font-size:12px;padding:8px 10px}
-/* Gestion des associés sur ordinateur : boutons en deux lignes stables. */
-@media(min-width:651px){
- #members td:nth-child(6){min-width:235px}
- #members td:nth-child(6) .inline-actions{
-   display:grid;
-   grid-template-columns:repeat(2,minmax(0,1fr));
-   gap:6px;
-   width:100%;
- }
- #members td:nth-child(6) .inline-actions button{
-   width:100%;
-   min-width:0;
-   min-height:34px;
-   padding:7px 6px;
-   font-size:12px;
-   line-height:1.2;
-   white-space:nowrap;
- }
- #members td:nth-child(6) .inline-actions button:nth-child(3){
-   grid-column:1/-1;
- }
-}
+/* Commandes regroupées : grille régulière, suspension isolée */
+#members td:nth-child(5){width:270px;min-width:235px;vertical-align:middle}
+#members .member-action-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;width:100%}
+#members .member-action-grid button{display:flex;align-items:center;justify-content:center;min-width:0;width:100%;min-height:37px;margin:0;padding:8px 7px;border:1px solid #e9e0d7;border-radius:8px;font-size:12px;line-height:1.2;white-space:nowrap;background:#f5f1ed;color:#28231f}
+#members .member-action-grid button:first-child{background:#f47721;border-color:#f47721;color:#171717}
+#members .member-action-grid button:disabled{opacity:.42}
+#members .member-action-grid .member-action-danger{grid-column:1/-1;background:#fff3f0;border-color:#ebc4bc;color:#a33426}
+#members .member-action-grid .member-action-reactivate{grid-column:1/-1;background:#eaf8ef;border-color:#b7ddc4;color:#185b32}
+#members .member-action-grid button:focus-visible{outline:2px solid #f47721;outline-offset:2px}
 .small-select{width:100%;padding:11px;border:1px solid #ccc;border-radius:8px;margin:8px 0 12px}#horsePanel[hidden],#emailPanel[hidden]{display:none}.status{min-height:22px;margin:8px 0;color:#505050}.warning{background:#fff7eb;border-left:3px solid #f47721;padding:10px 13px}@media(max-width:650px){.panel{padding:16px}th,td{padding:9px 5px}main{padding:0 10px}}
 
 #registryPanel .registry-list{max-height:440px;overflow:auto;border:1px solid #ece5dc;border-radius:9px}
@@ -43,27 +30,24 @@
 .registration-inconnu{color:#777}
 #members td:nth-child(3) small{display:block;margin-top:4px;font-size:11px;line-height:1.25;color:#666}
 @media(min-width:900px){main{max-width:1080px}}
-/* Administration mobile : chaque associé tient sur deux rangées, sans défilement horizontal. */
+/* Mobile : actions lisibles sur une grille de deux colonnes. */
 .members-table-wrap{width:100%}
 @media(max-width:650px){
  .members-table-wrap{overflow-x:visible}
  .members-table-wrap table,.members-table-wrap tbody{display:block;width:100%}
  .members-table-wrap thead{display:none}
- #members tr{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:6px;row-gap:9px;align-items:center;padding:12px 0;border-bottom:1px solid #e9e5e1}
+ #members tr{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px;padding:13px 0;border-bottom:1px solid #e9e5e1}
  #members tr:last-child{border-bottom:0}
- #members td{display:block;min-width:0;padding:0;border:0;font-size:12px;line-height:1.25}
- #members td:nth-child(1){grid-column:1/span 2;grid-row:1;font-size:13px;font-weight:700;overflow-wrap:break-word}
- #members td:nth-child(2){grid-column:3;grid-row:1;text-align:center}
+ #members td{display:block;min-width:0!important;width:auto!important;padding:0;border:0;font-size:12px;line-height:1.25}
+ #members td:nth-child(1){grid-column:1;grid-row:1;font-size:13px;font-weight:750;overflow-wrap:anywhere}
+ #members td:nth-child(2){grid-column:2;grid-row:1;text-align:right}
  #members td:nth-child(3){display:none}
- #members td:nth-child(4){grid-column:4;grid-row:1;text-align:right;overflow-wrap:anywhere}
- #members td:nth-child(5){grid-column:1;grid-row:2}
- #members td:nth-child(6){grid-column:2/span 3;grid-row:2}
- #members td:nth-child(5)>button,#members td:nth-child(6) button{display:flex;align-items:center;justify-content:center;text-align:center;width:100%;min-width:0;min-height:42px;padding:5px 2px;font-size:10px;line-height:1.15;border-radius:7px;overflow-wrap:anywhere}
- #members td:nth-child(6) .inline-actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
- #members td:nth-child(5):not(:has(button)){text-align:center}
+ #members td:nth-child(4){grid-column:1/-1;grid-row:2;text-align:left;font-size:11px;color:#655b54}
+ #members td:nth-child(5){grid-column:1/-1;grid-row:3}
+ #members .member-action-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+ #members .member-action-grid button{min-height:41px;font-size:12px;padding:9px 5px}
  #members .registration-mobile{display:block;font-size:10px;margin-top:4px;line-height:1.2}
 }
-
 /* Outils de l'administration : une présentation compacte et cohérente sur mobile. */
 .admin-tool-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,225px),1fr));gap:12px;margin:0 0 15px}
 .admin-tool{margin:0;display:flex;flex-direction:column;min-width:0;gap:5px;padding:18px!important;border-top:4px solid #f47721}
@@ -106,7 +90,7 @@
   <a class="admin-hub-link" href="contributeurs/"><strong>📝 Contributeurs</strong><small>Accès aux modifications sportives</small></a>
   <a class="admin-hub-link" href="../diagnostic-notifications/"><strong>🔔 Notifications</strong><small>Vérifier les alertes sur votre appareil</small></a>
  </div>
-</section><div class="panel" id="associesPanel"><h1>Gestion des membres et associés</h1><p id="loading">Vérification des droits d'administrateur…</p><p id="error" role="alert"></p><div id="denied" hidden><p>Cette rubrique est réservée à l'administrateur de l'Écurie Initial. Connectez-vous avec votre compte autorisé.</p><a href="../connexion/">Se connecter</a></div><div id="content" hidden><p>Voici les comptes enregistrés dans l'espace privé. La Tribune est ouverte aux membres inscrits et aux associés actifs. Les fiches privées restent réservées aux associés.</p><p id="registrationTrackingError" class="warning" role="alert" hidden>Le suivi des inscriptions et des ouvertures est momentanément indisponible. Les données historiques ne sont pas effacées ; les statistiques ne peuvent pas être affichées pour le moment.</p><div class="members-table-wrap"><table><thead><tr><th>Associé</th><th>Statut</th><th>Inscription</th><th>Rôle</th><th>Accès</th><th>Gestion</th></tr></thead><tbody id="members"></tbody></table></div><p class="muted" id="count"></p></div></div><div class="panel" id="registryPanel" hidden>
+</section><div class="panel" id="associesPanel"><h1>Gestion des membres et associés</h1><p id="loading">Vérification des droits d'administrateur…</p><p id="error" role="alert"></p><div id="denied" hidden><p>Cette rubrique est réservée à l'administrateur de l'Écurie Initial. Connectez-vous avec votre compte autorisé.</p><a href="../connexion/">Se connecter</a></div><div id="content" hidden><p>Voici les comptes enregistrés dans l'espace privé. La Tribune est ouverte aux membres inscrits et aux associés actifs. Les fiches privées restent réservées aux associés.</p><p id="registrationTrackingError" class="warning" role="alert" hidden>Le suivi des inscriptions et des ouvertures est momentanément indisponible. Les données historiques ne sont pas effacées ; les statistiques ne peuvent pas être affichées pour le moment.</p><div class="members-table-wrap"><table><thead><tr><th>Associé</th><th>Statut</th><th>Inscription</th><th>Rôle</th><th>Gestion du compte</th></tr></thead><tbody id="members"></tbody></table></div><p class="muted" id="count"></p></div></div><div class="panel" id="registryPanel" hidden>
 <h2>📒 Répertoire des associés</h2>
 <p>Retrouvez ici les personnes de votre liste initiale, même si elles n'ont pas encore créé leur compte. Aucun e-mail n'est envoyé depuis cette liste.</p>
 <label for="registrySearch">Rechercher un associé déjà répertorié</label>
@@ -422,19 +406,19 @@ async function init(){
    mobileRegistration.className='registration-mobile registration-'+state;
    tr.firstElementChild.append(mobileRegistration);
    const roleCell=make('td',m.administrateur?'Administrateur':m.type_compte==='exterieur'?'Membre extérieur':'Associé');tr.append(roleCell);
-   const access=make('td');
+   const manage=make('td'),buttons=make('div');buttons.className='inline-actions member-action-grid';
+   let suspendBtn=null;
    if(!m.administrateur){
-    const b=make('button',m.actif?'Suspendre':'Réactiver');b.type='button';
-    b.onclick=async()=>{
+    suspendBtn=make('button',m.actif?'Suspendre':'Réactiver');
+    suspendBtn.type='button';
+    suspendBtn.className=m.actif?'member-action-danger':'member-action-reactivate';
+    suspendBtn.onclick=async()=>{
      if(!confirm((m.actif?'Suspendre':'Réactiver')+' le compte de '+m.nom_affiche+' ?'))return;
-     b.disabled=true;
+     suspendBtn.disabled=true;
      try{await action({action:'set_active',user_id:m.user_id,actif:!m.actif});location.reload()}
-     catch(e){status('actionStatus',e.message);b.disabled=false}
+     catch(e){status('actionStatus',e.message);suspendBtn.disabled=false}
     };
-    access.append(b);
-   }else access.textContent='—';
-   tr.append(access);
-   const manage=make('td'),buttons=make('div');buttons.className='inline-actions';
+   }
    const horsesBtn=make('button','🐎 Chevaux');horsesBtn.type='button';horsesBtn.disabled=m.type_compte==='exterieur';
    horsesBtn.onclick=()=>selectHorses(m);
    const emailBtn=make('button','✉️ E-mail');emailBtn.type='button';emailBtn.className='secondary';
@@ -463,7 +447,7 @@ async function init(){
     };
     buttons.append(typeBtn);
    }
-   buttons.prepend(horsesBtn);buttons.append(emailBtn,accessBtn);manage.append(buttons);tr.append(manage);
+   buttons.prepend(horsesBtn);buttons.append(emailBtn,accessBtn);if(suspendBtn)buttons.append(suspendBtn);manage.append(buttons);tr.append(manage);
    $('members').append(tr);
   }
   $('count').textContent=members.length+' compte(s) enregistré(s)';
