@@ -89,6 +89,14 @@ async function setup(){
       $('welcome').after(shortcut);
     }
   }catch(_){}
+  try{
+    const {data:photoRights,error:photoError}=await db.from('ei_droits_photos_chevaux').select('user_id').eq('user_id',user.id).maybeSingle();
+    if(!photoError&&(member.administrateur||photoRights)){
+      const photoLink=el('a','📷 Gérer les photos des chevaux','button');
+      photoLink.href='../administration/effectif/';
+      $('welcome').after(photoLink);
+    }
+  }catch(_){}
   const{data:parts,error:partsError}=await db.from('participations_chevaux')
     .select('cheval_slug,cheval_nom').eq('user_id',user.id).order('cheval_nom');
   if(partsError)throw Error('Impossible de charger vos participations.');
