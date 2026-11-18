@@ -496,7 +496,7 @@ async function run() {
       const adminWarning=alert.categorie==="preflight_warning";
       if(adminWarning){
         if(!member || !admins.has(sub.user_id) || sub.results!==true)continue;
-      }else if(alert.categorie==="general_news" ? sub.private_news!==true : !sub[alert.categorie])continue;
+      }else if(alert.categorie==="general_news" ? sub.general_news!==true : !sub[alert.categorie])continue;
       const owned=member ? holdings.get(sub.user_id)||new Set<string>() : new Set<string>();
       if(adminWarning){
         // Une alerte technique d'administration ne dépend pas de la
