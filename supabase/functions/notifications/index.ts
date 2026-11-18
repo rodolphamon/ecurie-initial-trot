@@ -89,7 +89,15 @@ async function allowedMember(id: string): Promise<boolean> {
   if (launchOpen()) return true;
   const { data: pilot, error: pilotError } = await db.from("ei_lancement_pilotes")
     .select("user_id").eq("user_id", id).maybeSingle();
-  if (!pilotError) return !!pilot;
+  if (!pilotError) {
+    if (pilot) return true;
+    // Les contributeurs actifs ayant un accès anticipé à l'application
+    // peuvent aussi choisir leurs notifications avant le 1er décembre.
+    const { data: contributor, error: contributorError } = await db.from("ei_contributeurs")
+      .select("actif,acces_avant_ouverture").eq("user_id", id).maybeSingle();
+    if (contributorError) return false;
+    return contributor?.actif === true && contributor?.acces_avant_ouverture === true;
+  }
   // Transition avant installation SQL : ne laisser que les quatre testeurs déjà connus.
   if (pilotError.code !== "42P01" && pilotError.code !== "PGRST205") return false;
   return a.administrateur === true ||
