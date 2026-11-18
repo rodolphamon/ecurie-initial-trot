@@ -9,7 +9,11 @@ h1{font-size:26px;margin:0 0 5px}h2{font-size:19px;margin:0 0 13px}.muted{color:
 label{display:block;font-weight:700;margin:12px 0 5px}input,select{font:inherit;width:100%;padding:11px;border:1px solid #c9bdb4;border-radius:8px;background:#fff}
 button{font:inherit;font-weight:bold;cursor:pointer;background:#f47721;color:#171717;border:0;padding:11px 17px;border-radius:8px}
 button:disabled{opacity:.5;cursor:not-allowed}.secondary{background:#ece9e6}
-.row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:18px}
+.row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.photo-tools{display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin:14px 0}
+.photo-tools img{width:140px;height:112px;object-fit:cover;border-radius:10px;border:1px solid #ded5ca}
+.photo-tools p{flex:1;min-width:210px}
+.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:18px}
 .bad{color:#ad2626}.good{color:#227449}#msg{min-height:22px;margin:12px 0;font-weight:650}
 [hidden]{display:none!important}@media(max-width:580px){.row{grid-template-columns:1fr}.card{padding:15px}h1{font-size:23px}}
 </style></head><body><header><strong>ÉCURIE <span>INITIAL</span></strong><div>Administration de l'effectif</div></header>
@@ -32,6 +36,14 @@ button:disabled{opacity:.5;cursor:not-allowed}.secondary{background:#ece9e6}
 <p class="muted" id="urlHint">La nouvelle fiche sera accessible immédiatement avec une photo de remplacement (casaque), en attendant la photo officielle.</p>
 <div class="actions"><button id="save" type="submit">➕ Ajouter ce cheval</button></div>
 </form>
+<section class="card" id="photoSection">
+<h2>📷 Photo du cheval</h2>
+<p class="muted">Ajoutez ou remplacez la photo du cheval. Pour un nouvel achat, enregistrez d'abord sa fiche. Les photos précédentes du site restent intactes.</p>
+<label for="photoInput">Choisir une photo (JPG, PNG ou WebP, 6 Mo maximum)</label>
+<input type="file" id="photoInput" accept="image/jpeg,image/png,image/webp,.jpg,.jpeg,.png,.webp">
+<div class="photo-tools"><img id="photoPreview" alt="Aperçu de la photo" hidden><p id="photoExplanation" class="muted">Sélectionnez un cheval.</p></div>
+<button id="photoPublish" type="button">Publier la photo</button>
+</section>
 <div class="card" id="movement" hidden>
 <h2>Entrée / sortie de l'effectif</h2>
 <p id="movementText" class="muted"></p>
@@ -45,7 +57,55 @@ button:disabled{opacity:.5;cursor:not-allowed}.secondary{background:#ece9e6}
 import {createClient} from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
 const db=createClient('https://yeecwaaizmvrhwobukfa.supabase.co','sb_publishable_xUy2EJA3u3cKWl8BB4GNPQ_qhV9Pes3');
 const $=id=>document.getElementById(id);
-let originals=[],changes=new Map();
+let originals=[],changes=new Map(),photos=new Map(),isAdmin=false,previewBlob=null;
+const PHOTO_BASE='https://yeecwaaizmvrhwobukfa.supabase.co/storage/v1/object/public/ei-photos-chevaux/';
+function photoSource(p){
+ if(!p)return '';
+ const current=photos.get(p.id);
+ if(current)return current;
+ if(!p.newHorse)return '../../../chevaux/photos/'+encodeURIComponent(p.id)+'.jpg?v='+encodeURIComponent(p.photoVersion||'1');
+ return '';
+}
+function showPreview(src){
+ const img=$('photoPreview');
+ if(src){img.src=src;img.hidden=false}else{img.hidden=true;img.removeAttribute('src')}
+}
+$('photoPreview').onerror=()=>{$('photoPreview').hidden=true};
+$('photoInput').onchange=()=>{
+ if(previewBlob){URL.revokeObjectURL(previewBlob);previewBlob=null}
+ const file=$('photoInput').files?.[0];
+ if(file){
+  if(!['image/jpeg','image/png','image/webp'].includes(file.type)||file.size>6291456||file.size===0){
+   $('photoInput').value='';msg('Photo non acceptée : JPG, PNG ou WebP, maximum 6 Mo.',true);return;
+  }
+  previewBlob=URL.createObjectURL(file);
+  showPreview(previewBlob);
+  $('photoExplanation').textContent='Photo sélectionnée : '+file.name+'. Cliquez sur Publier pour la mettre en ligne.';
+ }else{showPreview(photoSource(selectedProfile()))}
+};
+$('photoPublish').onclick=async()=>{
+ const p=selectedProfile(),file=$('photoInput').files?.[0];
+ if(!p)return msg("Sélectionnez un cheval déjà enregistré.",true);
+ if(!file)return msg('Choisissez une photo à publier.',true);
+ if(!['image/jpeg','image/png','image/webp'].includes(file.type)||file.size>6291456||file.size===0)return msg('Photo invalide (JPG, PNG ou WebP, 6 Mo maximum).',true);
+ const btn=$('photoPublish');btn.disabled=true;
+ try{
+  const ext={'image/jpeg':'jpg','image/png':'png','image/webp':'webp'}[file.type];
+  const key=p.id+'/'+crypto.randomUUID()+'.'+ext;
+  const {error:uploadError}=await db.storage.from('ei-photos-chevaux').upload(key,file,{contentType:file.type,cacheControl:'3600',upsert:false});
+  if(uploadError)throw uploadError;
+  const url=PHOTO_BASE+key;
+  const {data,error}=await db.from('ei_photos_chevaux').upsert({cheval_slug:p.id,photo_url:url,modifie_le:new Date().toISOString()},{onConflict:'cheval_slug'}).select('cheval_slug,photo_url').single();
+  if(error)throw error;
+  photos.set(p.id,data.photo_url);
+  $('photoInput').value='';
+  showPreview(data.photo_url);
+  $('photoExplanation').textContent='Photo publiée. Elle remplace désormais la photo sur la fiche et le catalogue.';
+  msg('Photo publiée pour '+p.name+'.');
+ }catch(error){msg('Publication impossible : '+(error.message||error),true)}
+ finally{btn.disabled=false}
+};
+
 const slugify=text=>String(text||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
 const msg=(value,bad=false)=>{$('msg').textContent=value;$('msg').className=bad?'bad':'good'};
 function original(slug){return originals.find(p=>p.id===slug)}
@@ -67,13 +127,18 @@ function render(){
  $('casaque').value=p?.casaque||'blanche';
  $('official').value=p?.horseLink||'';
  $('save').textContent=editing?'Enregistrer les modifications':'➕ Ajouter ce cheval';
- $('movement').hidden=!editing;
+ $('movement').hidden=!editing||!isAdmin;
  $('sell').hidden=!editing||!p.active;
  $('reactivate').hidden=!editing||p.active;
  $('movementDate').value=p?.dateSortie||new Date().toISOString().slice(0,10);
  $('movementText').textContent=editing?(p.active?'Ce cheval figure dans l’effectif actif.':'Ce cheval est sorti de l’effectif actif ; son historique est conservé.'):'';
  $('current').textContent=p?(p.active?'🟢 Effectif actif':'⚪ Sorti de l’effectif')+' · '+p.discipline+' · '+p.trainer:'Créer une nouvelle fiche après un achat.';
  $('urlHint').hidden=false;
+ if(previewBlob){URL.revokeObjectURL(previewBlob);previewBlob=null}
+ $('photoInput').value='';
+ $('photoPublish').disabled=!editing;
+ showPreview(photoSource(p));
+ $('photoExplanation').textContent=editing?'Vous pouvez remplacer la photo de '+p.name+'.':'Enregistrez d’abord le cheval pour lui attribuer une photo.';
  msg('');
 }
 function fillOptions(choice=''){
@@ -129,12 +194,25 @@ async function init(){
   const {data:{user},error}=await db.auth.getUser();
   if(error||!user)throw Error('Connexion requise');
   const {data:member,error:permissionError}=await db.from('associes').select('actif,administrateur').eq('user_id',user.id).single();
-  if(permissionError||!member?.actif||!member?.administrateur)throw Error('Accès administrateur requis');
-  const [horses,overrides]=await Promise.all([
+  if(permissionError||!member?.actif)throw Error('Compte actif requis');
+  isAdmin=member.administrateur===true;
+  const {data:rights,error:rightsError}=await db.from('ei_droits_photos_chevaux').select('user_id').eq('user_id',user.id).maybeSingle();
+  if(rightsError)throw rightsError;
+  if(!isAdmin&&!rights)throw Error('Accès à la gestion des photos requis');
+  if(!isAdmin){
+   $('form').hidden=true;
+   $('movement').hidden=true;
+   document.querySelector('h1').textContent='📷 Photos des chevaux';
+   document.querySelector('main>p.muted').textContent='Ajoutez ou remplacez les photos des chevaux. La gestion des achats, ventes et entraîneurs reste réservée aux administrateurs.';
+  }
+  const [horses,overrides,photosResult]=await Promise.all([
    fetch('../../../chevaux/data/chevaux.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Catalogue inaccessible');return r.json()}),
-   db.from('ei_effectif_gestion').select('*')
+   db.from('ei_effectif_gestion').select('*'),
+   db.from('ei_photos_chevaux').select('cheval_slug,photo_url')
   ]);
   if(overrides.error)throw overrides.error;
+  if(photosResult.error)throw photosResult.error;
+  photos=new Map((photosResult.data||[]).map(x=>[x.cheval_slug,x.photo_url]));
   originals=horses.horses||[];changes=new Map((overrides.data||[]).map(x=>[x.cheval_slug,x]));fillOptions();
   $('work').hidden=false;
   const requested=new URLSearchParams(location.search).get('cheval');
