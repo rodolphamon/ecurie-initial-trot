@@ -330,7 +330,9 @@ function horse(s){
         +photoMarkup(p,'hero')
         +'<div class="hero-info">'
           +'<div class="hero-title-row">'
-            +'<h1>'+esc(p.name)+'</h1>'
+            +'<h1>'+esc(p.name)
+
+            +'</h1>'
             +'<img class="hero-title-silk" src="'+esc(silk(p))+'" alt="Casaque de '+esc(p.name)+'" loading="lazy" decoding="async">'
           +'</div>'
           +'<div class="hero-meta">'
