@@ -30,7 +30,7 @@ try{
  if(en.error||ga.error||va.error||re.error||st.error)throw Error('Source des contributions indisponible');
  const valid=new Set((all.horses||[]).map(h=>h.id));
  const restStatuses=Object.fromEntries((st.data||[]).filter(row=>valid.has(row.cheval_slug)).map(row=>[row.cheval_slug,row.au_repos]));
- for(const p of all.horses||[])if(Object.hasOwn(restStatuses,p.id))p.status=restStatuses[p.id]?'au repos':'';
+ for(const p of all.horses||[])if(Object.hasOwn(restStatuses,p.id)){p.status=restStatuses[p.id]?'au repos':'';if(gallop.has(p.id))gallop.set(p.id,{...gallop.get(p.id),status:p.status});}
  editor.engagements=editor.engagements||{};
  for(const row of en.data||[])if(valid.has(row.cheval_slug)&&Array.isArray(row.engagements))
    editor.engagements[row.cheval_slug]=row.engagements;
