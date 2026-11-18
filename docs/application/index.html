@@ -464,11 +464,11 @@ window.loadHomeDashboard=async function(){
    upcoming.sort((a,b)=>a.moment.localeCompare(b.moment));
    const next=upcoming[0];
    if(next){
-    get("dashNextLabel").textContent=["partant","declare"].includes(next.e.statut)?"Prochain partant":"Prochain engagement";
+    get("dashNextLabel").textContent=next.e.reunion_annulee||(next.slug==="andresy"&&next.e.date==="2026-11-18"&&/amiens/i.test(next.e.hippodrome||""))?"RÉUNION ANNULÉE":(["partant","declare"].includes(next.e.statut)?"Prochain partant":"Prochain engagement");
     get("dashNextHorse").textContent=known.get(next.slug);
      const nextJockey=get("dashNextJockey"),nextJockeyName=String(next.e.jockey||next.e.driver||"").trim().replace(/^./,c=>c.toLocaleUpperCase("fr"));
      nextJockey.querySelector(".dash-next-jockey-name").textContent=nextJockeyName;nextJockey.hidden=!nextJockeyName;nextJockey.title=nextJockeyName;
-    get("dashNextDetail").textContent=[next.e.hippodrome,stamp(next.e.date)].filter(Boolean).join(" · ")+hh(next.e.heure);
+    get("dashNextDetail").textContent=[next.e.hippodrome,stamp(next.e.date)].filter(Boolean).join(" · ")+hh(next.e.heure)+(next.e.reunion_annulee||(next.slug==="andresy"&&next.e.date==="2026-11-18"&&/amiens/i.test(next.e.hippodrome||""))?" · RÉUNION ANNULÉE":"");
     const nextSilk=get("dashNextSilk"),nextHorse=horses.find(h=>h.id===next.slug);
     const nextSilkName=nextHorse?.casaque==="galop"?"casaque-galop.svg":nextHorse?.casaque==="orange"?"casaque-orange.svg":nextHorse?.casaque==="blanche"?"casaque-blanche.svg":"";
     if(nextSilkName){
