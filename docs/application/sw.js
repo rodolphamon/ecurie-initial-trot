@@ -1,6 +1,6 @@
 // Service Worker de l'application Écurie Initial.
 // Cache minimal ; aucun contenu privé conservé volontairement en cache.
-const CACHE='ei-app-shell-v13';
+const CACHE='ei-app-shell-v14';
 self.addEventListener('install',event=>{
   event.waitUntil(caches.open(CACHE).then(c=>c.addAll(['./','manifest.webmanifest','icon-ei-192.png','notification-ei-badge.png','notification-transparent-192.png'])));
   self.skipWaiting();
@@ -45,6 +45,19 @@ function recordPushStatus(status,error,details){
     }catch(_){resolve()}
   });
 }
+// Accusés de réception facultatifs : un serveur indisponible ne doit jamais
+// empêcher l'affichage d'une notification.
+async function reportPushReceipt(id,status,at,error){
+ if(typeof id!=='string'||!/^[0-9a-f-]{36}$/i.test(id))return;
+ try{
+  await fetch('https://yeecwaaizmvrhwobukfa.supabase.co/functions/v1/push-receipt',{
+   method:'POST',
+   headers:{'Content-Type':'application/json'},
+   body:JSON.stringify({id,status,at,error:error||null}),
+   cache:'no-store'
+  });
+ }catch(_){/* Échec télémétrie sans impact utilisateur. */}
+}
 self.addEventListener('push',event=>{
   event.waitUntil((async()=>{
     let payload={};
@@ -56,6 +69,9 @@ self.addEventListener('push',event=>{
       const target=new URL(payload.url||url,self.location.origin);
       if(target.origin===self.location.origin)url=target.href;
     }catch{}
+    const receiptId=typeof payload.receipt_id==='string'?payload.receipt_id:null;
+    const receivedAt=new Date().toISOString();
+    const reportReceived=reportPushReceipt(receiptId,'received',receivedAt);
     await recordPushStatus('received',null);
     try{
       await self.registration.showNotification(title,{
@@ -65,9 +81,13 @@ self.addEventListener('push',event=>{
         tag:typeof payload.tag==='string'?payload.tag:undefined,
         data:{url},renotify:false
       });
-      await recordPushStatus('shown',null);
+      const shownAt=new Date().toISOString();
+      await Promise.allSettled([recordPushStatus('shown',null),
+        reportReceived,reportPushReceipt(receiptId,'shown',shownAt)]);
     }catch(e){
-      await recordPushStatus('error',e instanceof Error?e.name:'erreur d’affichage');
+      const reason=e instanceof Error?e.name:'erreur d’affichage';
+      await Promise.allSettled([recordPushStatus('error',reason),
+        reportReceived,reportPushReceipt(receiptId,'error',new Date().toISOString(),reason)]);
     }
   })());
 });
