@@ -223,6 +223,7 @@ function catalog(s){
     '<main class="shell">'+
       '<div class="breadcrumb"><a href="https://www.ecurie-initial.com/">Accueil</a> / Nos chevaux</div>'+
       latestResults(s)+
+      '<h2 id="catalog-horses-title" class="catalog-horses-title">🐎 Nos chevaux</h2>'+
       '<div class="filter-strip" role="group" aria-label="Filtrer les chevaux">'+
         '<select id="filter-horse" aria-label="Choisir un cheval">'+horseOptions+'</select>'+
         '<select id="filter-trainer" aria-label="Choisir un entraîneur">'+trainerOptions+'</select>'+
@@ -366,7 +367,7 @@ function horse(s){
 
 /* Barre commune, conservée dans le catalogue et les fiches de tous les chevaux. */
 const eiNavScript=document.createElement('script');
-eiNavScript.src=base+'../application/nav.js?v=20261117tabsresultatspartants1';
+eiNavScript.src=base+'../application/nav.js?v=20261118resultatschevaux1';
 document.body.appendChild(eiNavScript);
 
 load().then(s=>{if(document.body.dataset.page==='fiche')horse(s);else catalog(s)}).catch(err=>{console.error(err);$('#app').innerHTML=header()+'<main class="shell"><div class="error"><h1>Informations temporairement indisponibles</h1><p>Le catalogue n’a pas pu être chargé. Réessayez en actualisant la page.</p><p><a href="https://www.ecurie-initial.com/">Retour au site officiel</a></p></div></main>'+footer()});
