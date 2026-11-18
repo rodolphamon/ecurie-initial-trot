@@ -30,16 +30,14 @@ button:disabled{opacity:.5;cursor:not-allowed}
 <main>
 <p><a href="../">← Administration</a></p>
 <h1>📣 Informer la communauté</h1>
-<p class="muted">Publiez une annonce pour tous les supporters, un message privé aux associés ou une information réservée aux propriétaires d’un cheval.</p>
+<p class="muted">Publiez une annonce publique à tous les supporters ou un message privé à l’ensemble des associés.</p>
 <p id="loading" role="status">Vérification de vos droits…</p>
 <section class="card" id="denied" hidden><h2>🔒 Accès réservé</h2><p>Connectez-vous avec un compte administrateur actif.</p><a href="../../connexion/">Se connecter</a></section>
 <section class="card" id="publisher" hidden>
   <h2>Nouvelle publication</h2>
   <form id="form">
     <label for="audience">Destinataires</label>
-    <select id="audience"><option value="horse">🐎 Associés d’un cheval (privé)</option><option value="general">🔒 Tous les associés (privé)</option><option value="public">📢 Toute la communauté (public)</option></select>
-    <div id="horseSelectBox"><label for="horse">Cheval concerné</label>
-    <select id="horse" required><option value="">Choisir le cheval…</option></select></div>
+    <select id="audience"><option value="public">📢 Message à tout le monde (public)</option><option value="general">🔒 Message aux associés (privé)</option></select>
     <label for="title">Titre (facultatif)</label>
     <input id="title" type="text" maxlength="160" placeholder="Ex. Des nouvelles de l'entraînement">
     <label for="body">Votre information</label>
@@ -48,13 +46,13 @@ button:disabled{opacity:.5;cursor:not-allowed}
     <input id="media" type="file" accept="image/jpeg,image/png,image/webp,video/mp4,video/webm,video/quicktime">
     <div class="muted">Formats : JPG, PNG, WEBP, MP4, WEBM ou MOV. Photo 12 Mo maximum, vidéo 45 Mo maximum. Un fichier par publication.</div>
     <div id="preview"></div></div>
-    <p class="checkline"><input type="checkbox" id="notify" checked><label for="notify">🔔 <strong id="notifyTitle">Prévenir les associés du cheval</strong><span id="notifyHelp" class="muted" style="display:block">Uniquement les propriétaires ayant activé les notifications privées.</span></label></p>
+    <p class="checkline"><input type="checkbox" id="notify" checked><label for="notify">🔔 <strong id="notifyTitle">Prévenir toute la communauté</strong><span id="notifyHelp" class="muted" style="display:block">Appareils inscrits aux annonces publiques de l’Écurie.</span></label></p>
     <button type="submit" id="send">📣 Publier le message</button>
     <p class="status" id="status" role="status" aria-live="polite"></p>
   </form>
 </section>
 <section class="card"><h2>Confidentialité</h2>
-<p class="muted">Les messages aux associés et aux propriétaires restent privés. Les annonces « Toute la communauté » sont publiques : texte et titre visibles par tous, même sans connexion.</p>
+<p class="muted">Les messages aux associés restent privés. Les annonces « Toute la communauté » sont publiques : texte et titre visibles par tous, même sans connexion.</p>
 <p class="muted">Une notification n’est envoyée qu’aux appareils ayant activé les alertes correspondantes. Les alertes privées restent limitées aux associés autorisés.</p>
 </section></main>
 <script type="module">
@@ -66,16 +64,13 @@ let objectURL=null;
 function status(msg,error=false){$('status').textContent=msg;$('status').className='status '+(error?'bad':'good')}
 function clearPreview(){if(objectURL){URL.revokeObjectURL(objectURL);objectURL=null}$('preview').replaceChildren()}
 function chooseAudience(){
- const target=$('audience').value,horse=target==='horse',everybody=target==='public';
- $('horseSelectBox').hidden=!horse;
- $('horse').required=horse;
+ const everybody=$('audience').value==='public';
  $('mediaBox').hidden=everybody;
  if(everybody){$('media').value='';clearPreview()}
- $('notifyTitle').textContent=everybody?'Prévenir toute la communauté':horse?'Prévenir les associés du cheval':'Prévenir tous les associés';
+ $('notifyTitle').textContent=everybody?'Prévenir toute la communauté':'Prévenir tous les associés';
  $('notifyHelp').textContent=everybody
-  ?'Notification publique aux appareils inscrits aux annonces de l’Écurie, y compris membres extérieurs. Le texte est visible sans connexion.'
-  :horse?'Uniquement les propriétaires du cheval ayant activé les notifications privées.'
-  :'Chaque associé actif verra le message dans son espace privé, et ceux ayant activé les alertes seront prévenus.';
+  ?'Notification publique aux appareils inscrits aux annonces de l’Écurie, y compris les membres extérieurs. Le texte est visible sans connexion.'
+  :'Chaque associé actif verra le message dans son espace privé. Les appareils ayant activé les alertes privées seront prévenus.';
 }
 $('audience').addEventListener('change',chooseAudience);
 chooseAudience();
@@ -99,16 +94,6 @@ async function setup(){
    const{data:me,error:roleError}=await db.from('associes').select('administrateur,actif')
       .eq('user_id',user.id).maybeSingle();
    if(roleError||!me?.actif||!me.administrateur){$('denied').hidden=false;return}
-   const res=await fetch('../../../chevaux/data/chevaux.json?v='+Date.now(),{cache:'no-store'});
-   if(!res.ok)throw Error('Impossible de charger la liste des chevaux.');
-   const json=await res.json();
-   const horses=(json.horses||[]).filter(h=>/^[a-z0-9]+(-[a-z0-9]+)*$/.test(h.id||''))
-     .sort((a,b)=>a.name.localeCompare(b.name,'fr'));
-   for(const h of horses){
-     const o=document.createElement('option');o.value=h.id;o.textContent=h.name;$('horse').append(o);
-   }
-   const query=new URLSearchParams(location.search).get('cheval');
-   if(query&&horses.some(h=>h.id===query))$('horse').value=query;
    if(new URLSearchParams(location.search).get('public')==='1')$('audience').value='public';
    else if(new URLSearchParams(location.search).get('general')==='1')$('audience').value='general';
    chooseAudience();
@@ -120,8 +105,8 @@ $('form').addEventListener('submit',async e=>{
  e.preventDefault();
  const btn=$('send');btn.disabled=true;status('Publication en cours…');
  let uploaded=null;
- const target=$('audience').value,everyone=target==='public',general=target==='general';
- const bucket=general?'ei-generales-privees':'ei-chevaux-prives';
+ const everyone=$('audience').value==='public';
+ const bucket='ei-generales-privees';
  try{
    const slug=$('horse').value;
    if(target==='horse'&&!/^[a-z0-9]+(-[a-z0-9]+)*$/.test(slug))throw Error('Sélectionnez un cheval.');
@@ -134,7 +119,7 @@ $('form').addEventListener('submit',async e=>{
    const title=$('title').value.trim()||(type?.kind==='image'?'Nouvelle photo':type?.kind==='video'?'Nouvelle vidéo':'Informations de l’écurie');
    if(title.length>160)throw Error('Titre trop long.');
    if(file){
-     uploaded=(general?'general':slug)+'/'+crypto.randomUUID()+'.'+type.ext;
+     uploaded='general/'+crypto.randomUUID()+'.'+type.ext;
      const {error:uploadError}=await db.storage.from(bucket)
        .upload(uploaded,file,{contentType:file.type,cacheControl:'3600',upsert:false});
      if(uploadError)throw uploadError;
@@ -145,11 +130,10 @@ $('form').addEventListener('submit',async e=>{
        .insert({titre:title,contenu:body,notifier_tous:$('notify').checked}));
    }else{
      const item={titre:title,contenu:body,media_path:uploaded,media_type:type?.kind||null,notifier_associes:$('notify').checked};
-     if(!general)item.cheval_slug=slug;
-     ({error:insertError}=await db.from(general?'actualites_generales_privees':'actualites_chevaux_privees').insert(item));
+      ({error:insertError}=await db.from('actualites_generales_privees').insert(item));
    }
    if(insertError)throw insertError;
-   status((everyone?'Annonce publique publiée pour toute la communauté.':general?'Message privé publié pour tous les associés.':'Information privée publiée pour les propriétaires du cheval.')+
+   status((everyone?'Annonce publique publiée pour toute la communauté.':'Message privé publié pour tous les associés.')+
      ($('notify').checked?(everyone?' Notification demandée à tous les appareils inscrits aux annonces publiques.':' Notification demandée aux appareils inscrits aux alertes privées.'):' Aucune notification demandée.'));
    $('title').value='';$('body').value='';$('media').value='';$('notify').checked=true;clearPreview();
    uploaded=null;
