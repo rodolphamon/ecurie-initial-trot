@@ -37,7 +37,8 @@ button:disabled{opacity:.5;cursor:not-allowed}
   <h2>Nouvelle publication</h2>
   <form id="form">
     <label for="audience">Destinataires</label>
-    <select id="audience"><option value="public">📢 Message à tout le monde (public)</option><option value="general">🔒 Message aux associés (privé)</option></select>
+    <select id="audience"><option value="public">📢 Message à tout le monde (public)</option><option value="general">🔒 Message aux associés (privé)</option><option value="horse">🐎 Par cheval (privé)</option></select>
+<div id="horseSelectBox" hidden><label for="horse">Cheval concerné</label><select id="horse"><option value="">Choisir le cheval…</option></select></div>
     <label for="title">Titre (facultatif)</label>
     <input id="title" type="text" maxlength="160" placeholder="Ex. Des nouvelles de l'entraînement">
     <label for="body">Votre information</label>
@@ -64,12 +65,15 @@ let objectURL=null;
 function status(msg,error=false){$('status').textContent=msg;$('status').className='status '+(error?'bad':'good')}
 function clearPreview(){if(objectURL){URL.revokeObjectURL(objectURL);objectURL=null}$('preview').replaceChildren()}
 function chooseAudience(){
- const everybody=$('audience').value==='public';
+ const target=$('audience').value,everybody=target==='public',horse=target==='horse';
+ $('horseSelectBox').hidden=!horse;
+ $('horse').required=horse;
  $('mediaBox').hidden=everybody;
  if(everybody){$('media').value='';clearPreview()}
- $('notifyTitle').textContent=everybody?'Prévenir toute la communauté':'Prévenir tous les associés';
+ $('notifyTitle').textContent=everybody?'Prévenir toute la communauté':horse?'Prévenir les propriétaires du cheval':'Prévenir tous les associés';
  $('notifyHelp').textContent=everybody
   ?'Notification publique aux appareils inscrits aux annonces de l’Écurie, y compris les membres extérieurs. Le texte est visible sans connexion.'
+  :horse?'Information réservée aux propriétaires du cheval, avec notification sur leurs appareils inscrits.'
   :'Chaque associé actif verra le message dans son espace privé. Les appareils ayant activé les alertes privées seront prévenus.';
 }
 $('audience').addEventListener('change',chooseAudience);
@@ -94,7 +98,15 @@ async function setup(){
    const{data:me,error:roleError}=await db.from('associes').select('administrateur,actif')
       .eq('user_id',user.id).maybeSingle();
    if(roleError||!me?.actif||!me.administrateur){$('denied').hidden=false;return}
-   if(new URLSearchParams(location.search).get('public')==='1')$('audience').value='public';
+   const response=await fetch('../../../chevaux/data/chevaux.json?v='+Date.now(),{cache:'no-store'});
+   if(response.ok){
+    const json=await response.json();
+    const horses=(json.horses||[]).filter(h=>/^[a-z0-9]+(-[a-z0-9]+)*$/.test(h.id||'')).sort((a,b)=>a.name.localeCompare(b.name,'fr'));
+    for(const h of horses){const opt=document.createElement('option');opt.value=h.id;opt.textContent=h.name;$('horse').append(opt)}
+   }
+   const params=new URLSearchParams(location.search);
+   if(params.get('cheval')){$('audience').value='horse';$('horse').value=params.get('cheval');}
+   else if(params.get('public')==='1')$('audience').value='public';
    else if(new URLSearchParams(location.search).get('general')==='1')$('audience').value='general';
    chooseAudience();
    $('publisher').hidden=false;
@@ -105,9 +117,11 @@ $('form').addEventListener('submit',async e=>{
  e.preventDefault();
  const btn=$('send');btn.disabled=true;status('Publication en cours…');
  let uploaded=null;
- const everyone=$('audience').value==='public';
- const bucket='ei-generales-privees';
+ const target=$('audience').value,everyone=target==='public',horse=target==='horse';
+ const slug=$('horse').value;
+ const bucket=horse?'ei-chevaux-prives':'ei-generales-privees';
  try{
+   if(horse&&!/^[a-z0-9]+(-[a-z0-9]+)*$/.test(slug))throw Error('Sélectionnez un cheval.');
    const body=$('body').value.trim();
    const file=$('media').files?.[0]||null;
    if(!body&&(!file||everyone))throw Error('Rédigez une information.');
@@ -117,7 +131,7 @@ $('form').addEventListener('submit',async e=>{
    const title=$('title').value.trim()||(type?.kind==='image'?'Nouvelle photo':type?.kind==='video'?'Nouvelle vidéo':'Informations de l’écurie');
    if(title.length>160)throw Error('Titre trop long.');
    if(file){
-     uploaded='general/'+crypto.randomUUID()+'.'+type.ext;
+     uploaded=(horse?slug:'general')+'/'+crypto.randomUUID()+'.'+type.ext;
      const {error:uploadError}=await db.storage.from(bucket)
        .upload(uploaded,file,{contentType:file.type,cacheControl:'3600',upsert:false});
      if(uploadError)throw uploadError;
@@ -128,10 +142,11 @@ $('form').addEventListener('submit',async e=>{
        .insert({titre:title,contenu:body,notifier_tous:$('notify').checked}));
    }else{
      const item={titre:title,contenu:body,media_path:uploaded,media_type:type?.kind||null,notifier_associes:$('notify').checked};
-      ({error:insertError}=await db.from('actualites_generales_privees').insert(item));
+     if(horse)item.cheval_slug=slug;
+     ({error:insertError}=await db.from(horse?'actualites_chevaux_privees':'actualites_generales_privees').insert(item));
    }
    if(insertError)throw insertError;
-   status((everyone?'Annonce publique publiée pour toute la communauté.':'Message privé publié pour tous les associés.')+
+   status((everyone?'Annonce publique publiée pour toute la communauté.':horse?'Information privée publiée pour les propriétaires du cheval.':'Message privé publié pour tous les associés.')+
      ($('notify').checked?(everyone?' Notification demandée à tous les appareils inscrits aux annonces publiques.':' Notification demandée aux appareils inscrits aux alertes privées.'):' Aucune notification demandée.'));
    $('title').value='';$('body').value='';$('media').value='';$('notify').checked=true;clearPreview();
    uploaded=null;
