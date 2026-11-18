@@ -64,7 +64,14 @@ try{
    };
    const current={...old,...update};
    known.set(row.cheval_slug,current);
-   if(gallop.has(row.cheval_slug))gallop.set(row.cheval_slug,{...gallop.get(row.cheval_slug),trainer:row.entraineur,discipline:row.discipline});
+   valid.add(row.cheval_slug);
+   if(row.casaque==='galop'){
+     const previous=gallop.get(row.cheval_slug)||{};
+     gallop.set(row.cheval_slug,{...previous,trainer:row.entraineur,discipline:row.discipline});
+   }else if(!trot.horses?.[row.cheval_slug]){
+     trot.horses=trot.horses||{};
+     trot.horses[row.cheval_slug]={};
+   }
    if(!row.actif)editor.engagements[row.cheval_slug]=[];
  }
  all.horses=[...known.values()];
