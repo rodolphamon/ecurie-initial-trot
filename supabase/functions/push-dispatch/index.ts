@@ -496,11 +496,14 @@ async function run() {
       const adminWarning=alert.categorie==="preflight_warning";
       if(adminWarning){
         if(!member || !admins.has(sub.user_id) || sub.results!==true)continue;
-      }else if(!sub[alert.categorie])continue;
+      }else if(alert.categorie==="general_news" ? sub.private_news!==true : !sub[alert.categorie])continue;
       const owned=member ? holdings.get(sub.user_id)||new Set<string>() : new Set<string>();
       if(adminWarning){
         // Une alerte technique d'administration ne dépend pas de la
         // propriété du cheval ni du filtre « mes chevaux ».
+      }else if(alert.categorie==="general_news"){
+        // Message privé destiné à tous les associés actifs, sans filtre cheval.
+        if(!member)continue;
       }else if(alert.categorie==="private_news"){
         // Priorité absolue à la copropriété : aucune exception liée au choix "tous".
         // Ni visiteurs, ni associés d'un autre cheval ne doivent recevoir l'alerte.
@@ -539,6 +542,12 @@ async function run() {
         message={title:"⏰ Départ imminent · "+esc(p.nom),body:esc(p.hippodrome)+" · environ "+esc(p.diff)+" min avant le départ.",url:APP+"/engagements/"};
       }else if(alert.categorie==="results"){
         message={title:(p.official===true?"🏆 Résultat officiel · ":"🏆 Résultat de l’écurie · ")+esc(p.nom),body:esc(p.rang)+" à "+esc(p.hippodrome),url:APP+"/chevaux/"+alert.cheval_slug+"/"};
+      }else if(alert.categorie==="general_news"){
+        message={
+          title:"📣 Nouveau message · Écurie Initial",
+          body:"Un message de l’écurie est disponible dans votre espace associé.",
+          url:APP+"/application/mes-chevaux/?general="+encodeURIComponent(esc(p.id))+"#nouvelles-privees"
+        };
       }else if(alert.categorie==="private_news"){
         message={
           title:"🔒 Nouvelle information · "+esc(p.nom),
@@ -564,7 +573,7 @@ async function run() {
         // Les rappels imminents exigent une livraison prioritaire sur les appareils en veille.
         // Une durée de rétention limitée évite les rappels périmés bien après le départ.
         const pushOptions=alert.categorie==="before15"?{urgency:"high" as const,ttl:900}:
-          alert.categorie==="private_news"?{urgency:"high" as const}:{};
+          ["private_news","general_news"].includes(alert.categorie)?{urgency:"high" as const}:{};
         const delivered=await sendPushNotification(
           {endpoint:sub.endpoint,keys:{p256dh:sub.p256dh,auth:sub.auth_secret}},
           message,vapid,pushOptions
