@@ -172,8 +172,15 @@ async function loadRoster(){
   const res=await fetch('../../chevaux/data/chevaux.json',{cache:'no-store'});
   if(!res.ok)throw Error();
   const data=await res.json();
-  roster=(data.horses||[]).filter(h=>/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(h.id||'')&&h.name)
-    .map(h=>({id:h.id,name:h.name})).sort((a,b)=>sortFr(a.name,b.name));
+  const managed=new Map((data.horses||[]).map(h=>[h.id,{id:h.id,name:h.name}]));
+  const {data:rows,error:effectifError}=await db.from('ei_effectif_gestion').select('cheval_slug,nom,actif');
+  if(effectifError)throw effectifError;
+  for(const row of rows||[]){
+   if(!row.actif)managed.delete(row.cheval_slug);
+   else managed.set(row.cheval_slug,{id:row.cheval_slug,name:row.nom});
+  }
+  roster=[...managed.values()].filter(h=>/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(h.id||'')&&h.name)
+    .sort((a,b)=>sortFr(a.name,b.name));
   rosterLoaded=true;
  }catch{rosterLoaded=false}
 }
