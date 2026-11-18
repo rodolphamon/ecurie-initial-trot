@@ -246,17 +246,23 @@ async function init(){
     if(permissions.some(x=>x.error))throw Error('Autorisations indisponibles');
     [canEng,canGain,canValue,canRecord]=permissions.map(x=>x.data===true);
     if(!canEng&&!canGain&&!canValue&&!canRecord&&!canStatus)throw Error('Rôle Contributeur non attribué ou préouverture en cours');
-    const [horseData,editorData,trotData,galopData,engData,gainData,valueData,recordData,statusData]=await Promise.all([
+    const [horseData,editorData,trotData,galopData,engData,gainData,valueData,recordData,statusData,effectifData]=await Promise.all([
       getJson('../../chevaux/data/chevaux.json'),getJson('../../chevaux/data/editorial.json'),
       getJson('../../data/effectif-trot.json'),getJson('../../data/effectif-galop.json'),
       db.from('ei_contributions_engagements').select('cheval_slug,engagements,updated_at'),
       db.from('ei_contributions_gains').select('cheval_slug,gains,source_url,updated_at'),
       db.from('ei_contributions_valeurs').select('cheval_slug,discipline_valeur,valeur,source_url,updated_at'),
       db.from('ei_contributions_records').select('cheval_slug,chrono,source_url,updated_at'),
-      db.from('ei_statuts_chevaux').select('cheval_slug,au_repos,updated_at')
+      db.from('ei_statuts_chevaux').select('cheval_slug,au_repos,updated_at'),
+      db.from('ei_effectif_gestion').select('cheval_slug,nom,discipline,casaque,entraineur,lien_officiel,nouveau,actif')
     ]);
-    if([engData,gainData,valueData,recordData,statusData].some(x=>x.error))throw Error('Impossible de charger les corrections publiées');
-    profiles=(horseData.horses||[]).sort((a,b)=>a.name.localeCompare(b.name,'fr'));
+    if([engData,gainData,valueData,recordData,statusData,effectifData].some(x=>x.error))throw Error('Impossible de charger les corrections publiées');
+    const managed=new Map((horseData.horses||[]).map(p=>[p.id,p]));
+    for(const row of effectifData.data||[]){
+      const old=managed.get(row.cheval_slug)||{};
+      managed.set(row.cheval_slug,{...old,id:row.cheval_slug,name:row.nom,trainer:row.entraineur,discipline:row.discipline,casaque:row.casaque,horseLink:row.lien_officiel||old.horseLink||null,active:row.actif});
+    }
+    profiles=[...managed.values()].filter(p=>p.active!==false).sort((a,b)=>a.name.localeCompare(b.name,'fr'));
     editor=editorData;trot=trotData.horses||{};galop=Object.fromEntries((galopData.horses||[]).map(h=>[h.id,h]));
     liveEng=Object.fromEntries((engData.data||[]).map(v=>[v.cheval_slug,v]));
     liveGains=Object.fromEntries((gainData.data||[]).map(v=>[v.cheval_slug,v]));
