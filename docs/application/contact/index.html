@@ -21,13 +21,13 @@ main{max-width:740px;margin:0 auto;padding:16px 14px 108px}
 a{color:#a64a0b}
 a:focus-visible{outline:3px solid var(--orange);outline-offset:3px}
 .contact-buttons-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:19px;margin:0 0 13px}
-.contact-section-heading{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:4px 12px;margin-bottom:14px}
+.contact-section-heading{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;margin-bottom:14px;text-align:center}
 .contact-section-heading h2{font-size:17px;line-height:1.25;margin:0}
 .contact-section-heading p{font-size:12px;color:#746c66;margin:0}
 .contact-actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
 .contact-way{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;min-width:0;min-height:94px;padding:11px 6px;border:1px solid transparent;border-radius:12px;text-decoration:none;text-align:center;font-size:14px;font-weight:800;line-height:1.18;transition:background .15s,transform .15s}
 .contact-way:active{transform:scale(.985)}
-.contact-way-icon{font-size:24px;line-height:1}
+.contact-way-icon{font-size:24px;line-height:1;display:flex;align-items:center;justify-content:center}
 .contact-email{background:var(--orange);color:var(--black)}
 .contact-whatsapp{background:#fff;color:var(--black);border-color:#d8d1ca}
 .contact-call{background:var(--black);color:#fff}
@@ -125,7 +125,7 @@ header{background:#fff;color:#191919;border-bottom:4px solid var(--orange);paddi
       <span class="contact-way-icon" aria-hidden="true">💬</span><span>WhatsApp</span>
     </a>
     <a class="contact-way contact-call" href="tel:+33642368680" aria-label="Appeler l'Écurie Initial">
-      <span class="contact-way-icon" aria-hidden="true">📞</span><span>Appeler</span>
+      <span class="contact-way-icon" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.96.36 1.9.69 2.79a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.89.33 1.83.57 2.79.69A2 2 0 0 1 22 16.92z"/></svg></span><span>Appeler</span>
     </a>
   </div>
 </section>
