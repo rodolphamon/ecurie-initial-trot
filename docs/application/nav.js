@@ -24,7 +24,7 @@
   const isContact = currentPath.startsWith(contactBase.pathname) || currentPath.startsWith(devenirBase.pathname);
   const onPrivate = currentPath.startsWith(applicationBase.pathname) &&
     (currentPath !== applicationBase.pathname || new URLSearchParams(location.search).get("espace") === "associes") &&
-    !isContact && !currentPath.startsWith(notificationsBase.pathname);
+    !isContact && !currentPath.startsWith(notificationsBase.pathname) && !currentPath.startsWith(new URL("actualites/",applicationBase).pathname);
 
   const installed = !!(window.matchMedia?.("(display-mode: standalone)")?.matches || navigator.standalone === true);
   const beforeOpening = Date.now() < Date.parse("2026-11-30T23:00:00Z");
