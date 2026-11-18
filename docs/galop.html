@@ -14,14 +14,14 @@ h1{margin:0;font-size:clamp(25px,3.4vw,36px);line-height:1.15;font-weight:800;le
 .count{display:inline-flex;padding:9px 12px;background:#faf6f2;border:1px solid #e8ded3;border-radius:9px;font-size:13px;font-weight:700}
 .switch{display:inline-block;padding:11px 15px;background:var(--orange);border-radius:9px;color:#171717!important;text-decoration:none;font-size:13px;font-weight:800}
 .scroll{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;padding:0 14px 17px}
-.table-frame{min-width:590px;border:1px solid #ece4dc;border-radius:12px;overflow:hidden}
+.table-frame{min-width:850px;border:1px solid #ece4dc;border-radius:12px;overflow:hidden}
 table{width:100%;border-collapse:collapse;background:rgba(255,255,255,.94)}
 thead{background:#171717;color:white}th,td{padding:12px 14px;text-align:left;vertical-align:middle;border-bottom:1px solid #ece6df}
 th{font-size:13px;font-weight:700;border-bottom:3px solid var(--orange)}
 tbody tr:nth-child(even){background:#fdf8f4}tbody tr:hover{background:#fff0e5}
 tbody tr:last-child td{border-bottom:0}
 td:first-child{min-width:165px}td:nth-child(2){min-width:140px}td:nth-child(3){text-align:right;white-space:nowrap;font-weight:650;font-variant-numeric:tabular-nums}th:nth-child(3){text-align:right}
-td:nth-child(4){min-width:155px}
+td:nth-child(4),td:nth-child(5){min-width:120px}td:nth-child(6){min-width:155px}
 .ei-horse-link{color:#171717;font-weight:800;text-decoration:underline;text-decoration-color:var(--orange);text-decoration-thickness:2px;text-underline-offset:4px}
 .ei-horse-link:hover{color:#c75b0b}
 .rest{display:inline-block;vertical-align:middle;white-space:nowrap;margin-left:9px;background:#fff0e5;border:1px solid #ffd3ad;border-radius:20px;color:#aa4e08;font-weight:700;font-size:11px;padding:3px 8px}
@@ -30,9 +30,9 @@ td:nth-child(4){min-width:155px}
 @media(max-width:650px){.page{padding:0 5px;margin:8px auto}.panel-head{padding:16px 14px}.scroll{padding:0 7px 12px}td,th{padding:10px;font-size:12px}.tools{width:100%}}
 </style></head><body>
 <main class="page"><section class="panel">
-<header class="panel-head"><div><h1>EFFECTIF GALOP</h1><div class="underline"></div><p class="lead">Nos galopeurs, leurs valeurs handicap, leurs gains et leurs entraîneurs.</p></div>
+<header class="panel-head"><div><h1>EFFECTIF GALOP</h1><div class="underline"></div><p class="lead">Nos galopeurs, leurs valeurs handicap, leurs gains, leurs origines et leurs entraîneurs.</p></div>
 <div class="tools"><span id="horseCount" class="count">Chargement de l’effectif…</span><a class="switch" href="https://www.ecurie-initial.com/trotteurs/" target="_top" rel="noopener">Voir l’effectif Trot</a></div></header>
-<div class="scroll"><div class="table-frame"><table><thead><tr><th>Cheval</th><th>Valeur handicap</th><th>Gains</th><th>Entraîneur</th></tr></thead><tbody id="rows"></tbody></table></div></div>
+<div class="scroll"><div class="table-frame"><table><thead><tr><th>Cheval</th><th>Valeur handicap</th><th>Gains</th><th>Père</th><th>Mère</th><th>Entraîneur</th></tr></thead><tbody id="rows"></tbody></table></div></div>
 <p class="note">Cliquez sur un cheval pour consulter sa fiche détaillée.</p>
 </section></main>
 <script>
@@ -63,6 +63,9 @@ function display(horses){
   }else val.textContent=format(h.value);
   tr.append(val);
   const gain=el('td',money(h.gains));tr.append(gain);
+  const origins=h.origines||{};
+  tr.append(el('td',origins.pere||'—'));
+  tr.append(el('td',origins.mere||'—'));
   tr.append(el('td',h.trainer||'—'));tbody.append(tr);
  }
 }
@@ -72,8 +75,12 @@ async function getJson(path){
  return response.json();
 }
 async function init(){
- const reference=await getJson('data/effectif-galop.json');
- const horses=new Map((reference.horses||[]).map(h=>[h.id,{...h}]));
+ const [reference,profiles]=await Promise.all([
+  getJson('data/effectif-galop.json'),
+  getJson('chevaux/data/chevaux.json')
+ ]);
+ const originsById=new Map((profiles.horses||[]).map(h=>[h.id,h.origines||{}]));
+ const horses=new Map((reference.horses||[]).map(h=>[h.id,{...h,origines:{...originsById.get(h.id),...(h.origines||{})}}]));
  for(const h of horses.values())if(/obstacle/i.test(h.discipline||'')){
   h.value_historique_non_ventilee=h.value_historique_non_ventilee??h.value??null;
   h.value_plat=h.value_plat??null;
@@ -83,7 +90,7 @@ async function init(){
   const {createClient}=await import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm');
   const db=createClient('https://yeecwaaizmvrhwobukfa.supabase.co','sb_publishable_xUy2EJA3u3cKWl8BB4GNPQ_qhV9Pes3');
   const [effectif,gains,valeurs,statuts]=await Promise.all([
-    db.from('ei_effectif_gestion').select('cheval_slug,nom,discipline,entraineur,actif,nouveau'),
+    db.from('ei_effectif_gestion').select('cheval_slug,nom,discipline,entraineur,actif,nouveau,pere,mere'),
     db.from('ei_contributions_gains').select('cheval_slug,gains'),
     db.from('ei_contributions_valeurs').select('cheval_slug,discipline_valeur,valeur'),
     db.from('ei_statuts_chevaux').select('cheval_slug,au_repos')
@@ -92,7 +99,12 @@ async function init(){
   for(const row of effectif.data||[]){
    const previous=horses.get(row.cheval_slug);
    if(row.discipline==='Trot'||row.actif===false){horses.delete(row.cheval_slug);continue}
-   horses.set(row.cheval_slug,{...previous,id:row.cheval_slug,name:row.nom,trainer:row.entraineur,discipline:row.discipline,nouveau:row.nouveau});
+   const previousOrigins=previous?.origines||originsById.get(row.cheval_slug)||{};
+   horses.set(row.cheval_slug,{...previous,id:row.cheval_slug,name:row.nom,trainer:row.entraineur,discipline:row.discipline,nouveau:row.nouveau,origines:{
+    ...previousOrigins,
+    ...(row.pere?{pere:row.pere}:{}),
+    ...(row.mere?{mere:row.mere}:{})
+   }});
   }
   for(const row of gains.data||[]){
    const h=horses.get(row.cheval_slug);
@@ -116,7 +128,7 @@ async function init(){
 init().catch(error=>{
  document.getElementById('horseCount').textContent='Effectif indisponible';
  const row=el('tr'),cell=el('td','Impossible de charger les chevaux. Actualisez la page.');
- cell.colSpan=4;cell.className='error';row.append(cell);tbody.replaceChildren(row);
+ cell.colSpan=6;cell.className='error';row.append(cell);tbody.replaceChildren(row);
  console.error(error);
 });
 </script>
