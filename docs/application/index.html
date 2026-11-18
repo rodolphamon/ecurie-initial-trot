@@ -403,6 +403,38 @@ body.ei-prelaunch{padding-bottom:0!important}
   #privateArea .assoc-links{margin-bottom:10px}
 }
 
+
+/* Statut de connexion placé en haut à droite, sans bandeau superflu. */
+#privateArea .assoc-heading{display:block}
+#privateArea .assoc-heading-top{
+ display:flex;align-items:center;justify-content:space-between;
+ gap:8px 12px;flex-wrap:wrap;margin-bottom:12px;
+}
+#privateArea .assoc-heading-top .assoc-eyebrow{margin:0;flex:0 1 auto}
+#privateArea .assoc-heading-top .assoc-access,
+#privateArea .assoc-heading-top .assoc-access.is-connected{
+ display:block;flex:0 0 auto;background:transparent;
+ border:0;border-radius:0;padding:0;margin:0;
+}
+#privateArea .assoc-heading-top .assoc-login{
+ display:inline-flex;align-items:center;justify-content:center;
+ background:#f47721;color:#171717;border-radius:10px;
+ min-height:39px;padding:9px 12px;font-size:12px;font-weight:900;
+ text-decoration:none;white-space:nowrap;
+}
+#privateArea .assoc-heading-top .assoc-login.is-connected{
+ background:#171717;color:#fff;
+}
+#privateArea .assoc-access-state{
+ position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+ overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;
+}
+@media(max-width:600px){
+ #privateArea .assoc-heading-top{gap:8px;margin-bottom:10px}
+ #privateArea .assoc-heading-top .assoc-eyebrow{font-size:9px;letter-spacing:.5px}
+ #privateArea .assoc-heading-top .assoc-login{min-height:35px;padding:8px 10px;font-size:11px}
+}
+
 </style><link rel="apple-touch-icon" href="icon-ei-192.png"></head><body class="ei-prelaunch"><header><div class="brand"><img src="icon-ei-192.png" alt="Emblème officiel Écurie Initial"><div class="brand-copy"><strong>ÉCURIE <span class="brand-initial"><span class="brand-initial-i">I</span>NITIAL</span></strong></div><p class="brand-slogan"><span class="brand-slogan-line">PARTAGEONS NOTRE PASSION</span><span class="brand-slogan-date">DEPUIS 2011</span></p></div></header><div id="prelaunch" hidden><div class="prelaunch-box"><h1>🐎 Bientôt votre espace Écurie Initial</h1><p><strong>Ouverture officielle le mardi 1er décembre 2026.</strong></p><p>Vous pouvez installer l’application dès aujourd’hui. Les invités peuvent confirmer leur compte et les visiteurs extérieurs peuvent demander leur inscription sans invitation. L’accès privé reste soumis à validation, avec ouverture générale le 1er décembre.</p><p>Jusqu’à cette date, les cinq comptes pilotes et les contributeurs expressément autorisés assurent les derniers essais.</p><a href="connexion/">Me connecter</a> <a href="inscription/" style="margin-left:8px">Créer mon compte</a><p style="font-size:13px;color:#f7e9df;margin:18px 0 0"><strong>Vous pouvez installer l'application dès maintenant :</strong><br>Android : ouvrez cette page dans Chrome puis « Installer l'application ».<br>iPhone : ouvrez cette page dans Safari, puis « Partager » → « Sur l'écran d'accueil ».</p></div><p class="prelaunch-hint">Notre site public reste accessible sur <a href="https://www.ecurie-initial.com/" style="background:none;color:#a54c0b;padding:0;font:inherit;text-decoration:underline">www.ecurie-initial.com</a>.</p></div><main id="appContent" hidden>
 <div class="home-welcome" role="note">La vie de l’Écurie, course après course.</div>
 <div id="publicArea">
@@ -426,15 +458,17 @@ body.ei-prelaunch{padding-bottom:0!important}
 <section id="privateArea" hidden aria-label="Espace réservé aux associés">
  <div class="private assoc-panel">
   <div class="assoc-heading">
-   <div class="assoc-heading-copy">
+   <div class="assoc-heading-top">
     <span class="assoc-eyebrow">ÉCURIE INITIAL · ESPACE PRIVÉ</span>
+    <div class="assoc-access" id="assocAccess">
+     <span id="assocAccessState" class="assoc-access-state">Connectez-vous pour accéder à votre espace.</span>
+     <a class="button assoc-login" id="assocLogin" href="connexion/">Se connecter <span aria-hidden="true">→</span></a>
+    </div>
+   </div>
+   <div class="assoc-heading-copy">
     <h2>🔒 Espace associés</h2>
     <p>Vos chevaux, nos échanges et toutes les nouvelles de l'Écurie au même endroit.</p>
    </div>
-  </div>
-  <div class="assoc-access" id="assocAccess">
-   <span id="assocAccessState">Connectez-vous pour accéder à votre espace.</span>
-   <a class="button assoc-login" id="assocLogin" href="connexion/">Se connecter <span aria-hidden="true">→</span></a>
   </div>
   <nav class="assoc-links" aria-label="Rubriques des associés">
    <a class="assoc-link assoc-link-main" href="tribune/"><span class="assoc-link-emoji" aria-hidden="true">💬</span><span class="assoc-link-text"><strong>Tribune des supporters</strong><small>Échanges entre membres et passionnés</small></span><span class="assoc-link-arrow" aria-hidden="true">›</span></a>
