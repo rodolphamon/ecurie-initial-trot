@@ -49,7 +49,7 @@ const db=createClient('https://yeecwaaizmvrhwobukfa.supabase.co','sb_publishable
 const $=s=>document.getElementById(s);
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let profiles=[],editor={},trot={},galop={},liveEng={},liveGains={},liveValues={},liveRecords={},liveStatuses={},canStatus=false,canEng=false,canGain=false,canValue=false,canRecord=false,active='eng',events=[],horseId='';
-const fields=[['date','Date','date'],['hippodrome','Hippodrome','text'],['statut','Statut','select'],['heure','Heure de départ','time'],['prix','Prix de la course','text'],['course','Course (ex. R1C5)','text'],['type','Discipline (plat, obstacle, attelé, monté)','text'],['type_course','Type de course','courseTypeSelect'],['surface','Surface','surfaceSelect'],['distance','Distance','text'],['numero','N° du cheval','text'],['driver','Driver (trot)','text'],['jockey','Jockey (galop)','text'],['source_description','Source / justification','text']];
+const fields=[['date','Date','date'],['hippodrome','Hippodrome','text'],['statut','Statut','select'],['heure','Heure de départ','time'],['prix','Prix de la course','text'],['course','Course (ex. R1C5)','text'],['type','Discipline','disciplineSelect'],['type_course','Type de course','courseTypeSelect'],['surface','Surface','surfaceSelect'],['distance','Distance','text'],['numero','N° du cheval','text'],['driver','Driver (trot)','text'],['jockey','Jockey (galop)','text'],['source_description','Source / justification','text']];
 const statuses=[['engage','Engagé'],['declare','Déclaré partant'],['partant','Partant confirmé'],['non-partant','Non-partant'],['forfait','Forfait'],['elimine','Éliminé'],['qualification','Qualification']];
 const courseTypes=[
  ['','— Non renseigné —'],
@@ -68,6 +68,7 @@ const courseTypes=[
  ['Cavalières et Gentlemen','Cavalières et Gentlemen'],
  ['Qualification','Qualification'],['Autre','Autre']
 ];
+const disciplines=[['','— Non renseignée —'],['Plat','Plat'],['Obstacle','Obstacle'],['Trot attelé','Trot attelé'],['Trot monté','Trot monté']];
 const surfaces=[['','— Non renseignée —'],['PSF','PSF'],['Gazon','Gazon'],['Herbe','Herbe'],['Sable','Sable']];
 function msg(t,bad=false){$('msg').textContent=t;$('msg').className=bad?'bad':'good'}
 async function getJson(path){const r=await fetch(path+'?v='+Date.now(),{cache:'no-store'});if(!r.ok)throw Error('Données indisponibles : '+path);return r.json()}
@@ -82,9 +83,9 @@ function renderEvents(){
       const wrap=document.createElement('div');if(['source_description','prix'].includes(key))wrap.className='span2';
       const lab=document.createElement('label');lab.textContent=label;
       let input;
-      if(type==='select'||type==='courseTypeSelect'||type==='surfaceSelect'){
+      if(type==='select'||type==='courseTypeSelect'||type==='surfaceSelect'||type==='disciplineSelect'){
         input=document.createElement('select');
-        const choices=type==='select'?statuses:type==='courseTypeSelect'?courseTypes:surfaces;
+        const choices=type==='select'?statuses:type==='courseTypeSelect'?courseTypes:type==='disciplineSelect'?disciplines:surfaces;
         for(const [v,t] of choices){const o=document.createElement('option');o.value=v;o.textContent=t;input.append(o)}
         if(event[key]&&!choices.some(([v])=>v===event[key])){
           const legacy=document.createElement('option');legacy.value=event[key];
