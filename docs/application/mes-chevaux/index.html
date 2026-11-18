@@ -92,13 +92,18 @@ async function setup(){
   const{data:parts,error:partsError}=await db.from('participations_chevaux')
     .select('cheval_slug,cheval_nom').eq('user_id',user.id).order('cheval_nom');
   if(partsError)throw Error('Impossible de charger vos participations.');
-  const mine=parts||[];
+  // Ne montrer dans l'espace courant que les chevaux encore à l'effectif.
+  // Les liens de propriété historiques restent conservés en base.
+  const {data:managedHorses,error:managedError}=await db.from('ei_effectif_gestion').select('cheval_slug,nouveau,actif');
+  if(managedError)throw Error('Impossible de vérifier l’effectif actuel.');
+  const management=new Map((managedHorses||[]).map(row=>[row.cheval_slug,row]));
+  const mine=(parts||[]).filter(p=>management.get(p.cheval_slug)?.actif!==false);
   $('horse-count').textContent=mine.length;
   $('private').hidden=false;
   const bySlug=new Map(mine.map(p=>[p.cheval_slug,p]));
   const addLink=(name,slug)=>{
     if(!/^[a-z0-9-]+$/.test(slug||''))return el('strong',name);
-    const link=el('a',name);link.href='../../chevaux/'+encodeURIComponent(slug)+'/';return link;
+    const link=el('a',name);link.href=management.get(slug)?.nouveau?'../../chevaux/fiche/?cheval='+encodeURIComponent(slug):'../../chevaux/'+encodeURIComponent(slug)+'/';return link;
   };
   const parDate=()=>new Intl.DateTimeFormat('sv-SE',{timeZone:'Europe/Paris',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
   const displayDate=s=>s&&/^\d{4}-\d{2}-\d{2}$/.test(s)
