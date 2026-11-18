@@ -34,6 +34,8 @@
 /* Suivi de l'inscription lisible sans confondre compte actif et connexion. */
 #members td:nth-child(3){min-width:145px}
 .registration-mobile{display:none}
+.registration-usage{display:block;margin-top:7px;font-size:12px;color:#b6570b;line-height:1.3}
+#members td:nth-child(3){min-width:215px}
 .registration-state{display:block;font-size:12px;line-height:1.3;white-space:normal}
 .registration-connecte{color:#207344}
 .registration-email_confirme{color:#9b5b08}
@@ -360,20 +362,35 @@ async function init(){
    }
    const registrationCell=make('td');
    const registration=registrationStatuses[m.user_id];
-   const inscriptionLabels={connecte:'Connexion effectuée',email_confirme:'E-mail confirmé',invitation_en_attente:'Invitation en attente',inconnu:'Non vérifiable'};
    const state=registration?.etat||'inconnu';
+   const hasConfirmed=Boolean(registration?.confirmation_le);
+   const inscriptionLabels={
+     connecte:'Inscription validée',email_confirme:'Inscription validée',
+     invitation_en_attente:'Invitation en attente',inconnu:'Non vérifiable'
+   };
    const statusText=make('strong',inscriptionLabels[state]||'Non vérifiable');
    statusText.className='registration-state registration-'+state;
    registrationCell.append(statusText);
-   if(registration?.derniere_connexion){
-     const date=new Date(registration.derniere_connexion);
-     if(!Number.isNaN(date.getTime())){
-       const detail=make('small','Dernière connexion : '+date.toLocaleString('fr-FR',{dateStyle:'short',timeStyle:'short'}));
-       registrationCell.append(detail);
-     }
+   const dateLine=(label,dateValue)=>{
+     if(!dateValue)return;
+     const date=new Date(dateValue);
+     if(Number.isNaN(date.getTime()))return;
+     const detail=make('small',label+' : '+date.toLocaleString('fr-FR',{dateStyle:'short',timeStyle:'short'}));
+     registrationCell.append(detail);
+   };
+   if(hasConfirmed)dateLine('Validée',registration.confirmation_le);
+   else if(state==='invitation_en_attente')dateLine('Invitation',registration?.invitation_le);
+   dateLine('Dernière authentification',registration?.derniere_connexion);
+   const openings=Number(registration?.nombre_ouvertures||0);
+   const usage=make('strong',openings>0?'📱 '+openings+' ouverture'+(openings>1?'s':''):'📱 Aucune ouverture suivie');
+   usage.className='registration-usage';
+   registrationCell.append(usage);
+   if(openings>0){
+     dateLine('Première ouverture',registration.premiere_ouverture);
+     dateLine('Dernière ouverture',registration.derniere_ouverture);
    }
    tr.append(registrationCell);
-   const mobileRegistration=make('small',inscriptionLabels[state]||'Non vérifiable');
+   const mobileRegistration=make('small',inscriptionLabels[state]+' · '+(openings>0?openings+' ouverture'+(openings>1?'s':''):'aucune ouverture suivie'));
    mobileRegistration.className='registration-mobile registration-'+state;
    tr.firstElementChild.append(mobileRegistration);
    const roleCell=make('td',m.administrateur?'Administrateur':'Associé');tr.append(roleCell);
