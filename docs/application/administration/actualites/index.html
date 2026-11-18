@@ -2,7 +2,7 @@
 <html lang="fr"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#171717">
-<title>Publier une actualité privée · Écurie Initial</title>
+<title>Messages aux associés · Écurie Initial</title>
 <link rel="manifest" href="../../manifest.webmanifest">
 <link rel="icon" href="../../icon-ei-192.png">
 <link rel="apple-touch-icon" href="../../icon-ei-192.png">
@@ -29,15 +29,17 @@ button:disabled{opacity:.5;cursor:not-allowed}
 <body><header><strong>ÉCURIE <span>INITIAL</span></strong><div style="font-size:12px;color:#ddd">Administration · Publications privées</div></header>
 <main>
 <p><a href="../">← Administration</a></p>
-<h1>✍️ Informer les associés d'un cheval</h1>
-<p class="muted">Cette publication sera visible uniquement par les associés propriétaires du cheval sélectionné, dans « Mes chevaux ».</p>
+<h1>📣 Informer les associés</h1>
+<p class="muted">Envoyez un message général à tous les associés ou une information réservée aux propriétaires d’un cheval. Les messages restent consultables dans leur espace privé.</p>
 <p id="loading" role="status">Vérification de vos droits…</p>
 <section class="card" id="denied" hidden><h2>🔒 Accès réservé</h2><p>Connectez-vous avec un compte administrateur actif.</p><a href="../../connexion/">Se connecter</a></section>
 <section class="card" id="publisher" hidden>
   <h2>Nouvelle publication</h2>
   <form id="form">
-    <label for="horse">Cheval concerné</label>
-    <select id="horse" required><option value="">Choisir le cheval…</option></select>
+    <label for="audience">Destinataires</label>
+    <select id="audience"><option value="horse">🐎 Associés d’un cheval</option><option value="general">📣 Tous les associés</option></select>
+    <div id="horseSelectBox"><label for="horse">Cheval concerné</label>
+    <select id="horse" required><option value="">Choisir le cheval…</option></select></div>
     <label for="title">Titre (facultatif)</label>
     <input id="title" type="text" maxlength="160" placeholder="Ex. Des nouvelles de l'entraînement">
     <label for="body">Votre information</label>
@@ -46,14 +48,14 @@ button:disabled{opacity:.5;cursor:not-allowed}
     <input id="media" type="file" accept="image/jpeg,image/png,image/webp,video/mp4,video/webm,video/quicktime">
     <div class="muted">Formats : JPG, PNG, WEBP, MP4, WEBM ou MOV. Photo 12 Mo maximum, vidéo 45 Mo maximum. Un fichier par publication.</div>
     <div id="preview"></div>
-    <p class="checkline"><input type="checkbox" id="notify" checked><label for="notify">🔔 <strong>Prévenir les associés du cheval</strong><span class="muted" style="display:block">Uniquement les associés propriétaires de ce cheval ayant activé les notifications privées. Jamais les visiteurs ni les associés des autres chevaux.</span></label></p>
-    <button type="submit" id="send">Publier l'information</button>
+    <p class="checkline"><input type="checkbox" id="notify" checked><label for="notify">🔔 <strong id="notifyTitle">Prévenir les associés du cheval</strong><span id="notifyHelp" class="muted" style="display:block">Uniquement les propriétaires ayant activé les notifications privées.</span></label></p>
+    <button type="submit" id="send">📣 Publier le message</button>
     <p class="status" id="status" role="status" aria-live="polite"></p>
   </form>
 </section>
 <section class="card"><h2>Confidentialité</h2>
-<p class="muted">Les médias sont stockés dans un espace privé Supabase. Une notification n'inclut ni le texte privé ni le fichier ; elle invite le propriétaire à consulter son espace sécurisé.</p>
-<p class="muted">L'envoi Push nécessite que le service de notifications soit activé dans Supabase. Publier ici ne garantit pas la réception d'une alerte tant que ce service n'est pas opérationnel.</p>
+<p class="muted">Les textes et médias sont réservés aux associés autorisés, jamais aux visiteurs. La notification ne dévoile ni le contenu ni les pièces jointes : elle invite à consulter l'espace privé.</p>
+<p class="muted">Les notifications sont adressées aux appareils inscrits ayant accepté les alertes privées. Avant le 1er décembre 2026, seuls les comptes testeurs autorisés peuvent recevoir ces notifications.</p>
 </section></main>
 <script type="module">
 import {createClient} from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
@@ -63,6 +65,17 @@ const types={'image/jpeg':{kind:'image',ext:'jpg',max:12*1024*1024},'image/png':
 let objectURL=null;
 function status(msg,error=false){$('status').textContent=msg;$('status').className='status '+(error?'bad':'good')}
 function clearPreview(){if(objectURL){URL.revokeObjectURL(objectURL);objectURL=null}$('preview').replaceChildren()}
+function chooseAudience(){
+ const general=$('audience').value==='general';
+ $('horseSelectBox').hidden=general;
+ $('horse').required=!general;
+ $('notifyTitle').textContent=general?'Prévenir tous les associés':'Prévenir les associés du cheval';
+ $('notifyHelp').textContent=general
+  ?'Chaque associé actif verra le message, même sans cheval. Alerte uniquement sur les appareils inscrits ; accès testeurs jusqu’au 1er décembre.'
+  :'Uniquement les propriétaires du cheval ayant activé les notifications privées.';
+}
+$('audience').addEventListener('change',chooseAudience);
+chooseAudience();
 $('media').addEventListener('change',()=>{
  clearPreview();
  const file=$('media').files?.[0];
@@ -93,6 +106,8 @@ async function setup(){
    }
    const query=new URLSearchParams(location.search).get('cheval');
    if(query&&horses.some(h=>h.id===query))$('horse').value=query;
+   if(new URLSearchParams(location.search).get('general')==='1')$('audience').value='general';
+   chooseAudience();
    $('publisher').hidden=false;
  }catch(e){status(e?.message||'Impossible de charger le formulaire.',true)}
  finally{$('loading').hidden=true}
@@ -101,9 +116,11 @@ $('form').addEventListener('submit',async e=>{
  e.preventDefault();
  const btn=$('send');btn.disabled=true;status('Publication en cours…');
  let uploaded=null;
+ const general=$('audience').value==='general';
+ const bucket=general?'ei-generales-privees':'ei-chevaux-prives';
  try{
    const slug=$('horse').value;
-   if(!/^[a-z0-9]+(-[a-z0-9]+)*$/.test(slug))throw Error('Sélectionnez un cheval.');
+   if(!general&&!/^[a-z0-9]+(-[a-z0-9]+)*$/.test(slug))throw Error('Sélectionnez un cheval.');
    const body=$('body').value.trim();
    const file=$('media').files?.[0]||null;
    if(!body&&!file)throw Error('Rédigez une information ou ajoutez une photo/vidéo.');
@@ -112,25 +129,22 @@ $('form').addEventListener('submit',async e=>{
    const title=$('title').value.trim()||(type?.kind==='image'?'Nouvelle photo':type?.kind==='video'?'Nouvelle vidéo':'Informations de l’écurie');
    if(title.length>160)throw Error('Titre trop long.');
    if(file){
-     uploaded=slug+'/'+crypto.randomUUID()+'.'+type.ext;
-     const {error:uploadError}=await db.storage.from('ei-chevaux-prives')
+     uploaded=(general?'general':slug)+'/'+crypto.randomUUID()+'.'+type.ext;
+     const {error:uploadError}=await db.storage.from(bucket)
        .upload(uploaded,file,{contentType:file.type,cacheControl:'3600',upsert:false});
      if(uploadError)throw uploadError;
    }
-   const {error:insertError}=await db.from('actualites_chevaux_privees').insert({
-     cheval_slug:slug,titre:title,contenu:body,
-     media_path:uploaded,media_type:type?.kind||null,
-     notifier_associes:$('notify').checked
-   });
+   const item={titre:title,contenu:body,media_path:uploaded,media_type:type?.kind||null,notifier_associes:$('notify').checked};
+   if(!general)item.cheval_slug=slug;
+   const {error:insertError}=await db.from(general?'actualites_generales_privees':'actualites_chevaux_privees').insert(item);
    if(insertError)throw insertError;
-   status($('notify').checked
-     ?'Information publiée pour les propriétaires du cheval. Notification demandée : elle sera envoyée si le service Push est actif et les destinataires inscrits.'
-     :'Information publiée pour les propriétaires du cheval, sans demande de notification.');
+   status((general?'Message publié pour tous les associés actifs.':'Information publiée pour les propriétaires du cheval.')+
+     ($('notify').checked?' Notification demandée aux appareils ayant activé les alertes privées.':' Aucune notification demandée.'));
    $('title').value='';$('body').value='';$('media').value='';$('notify').checked=true;clearPreview();
    uploaded=null;
  }catch(err){
    // Ne pas laisser de fichier orphelin si l'insertion échoue après l'upload.
-   if(uploaded)await db.storage.from('ei-chevaux-prives').remove([uploaded]).catch(()=>{});
+   if(uploaded)await db.storage.from(bucket).remove([uploaded]).catch(()=>{});
    status((err?.message||'Publication impossible.')+' Vérifiez que la migration Supabase a été appliquée.',true);
  }finally{btn.disabled=false}
 });
