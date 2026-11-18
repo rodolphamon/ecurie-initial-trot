@@ -396,7 +396,26 @@ async function allowApp(){
   return !!member?.actif && (member.administrateur===true || ['adrien delgery','eric schott','nicolas barre','gilles moninot'].includes(norm(member.nom_affiche)));
  }catch(_){return false}
 }
-allowApp().then(open=>{app.hidden=!open;waiting.hidden=open;document.body.classList.toggle('ei-prelaunch',!open);if(open)window.loadHomeDashboard?.()})
+// Une ouverture = chargement de l'accueil authentifié, ou retour au premier plan
+// après plus de cinq minutes. Pas de suivi pour les visiteurs anonymes.
+let appAuthorized=false,lastRecordedOpen=0;
+async function recordAppOpening(){
+ if(!appAuthorized || document.hidden || Date.now()-lastRecordedOpen<300000)return;
+ try{
+   const db=createClient('https://yeecwaaizmvrhwobukfa.supabase.co','sb_publishable_xUy2EJA3u3cKWl8BB4GNPQ_qhV9Pes3');
+   const {data:{session}}=await db.auth.getSession();
+   if(!session?.user?.id)return;
+   const {error}=await db.from('ei_ouvertures_application').insert({user_id:session.user.id});
+   if(error)throw error;
+   lastRecordedOpen=Date.now();
+ }catch(error){console.info('Suivi des ouvertures indisponible',error?.message||error)}
+}
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)recordAppOpening()});
+allowApp().then(open=>{
+ appAuthorized=open;
+ app.hidden=!open;waiting.hidden=open;document.body.classList.toggle('ei-prelaunch',!open);
+ if(open){window.loadHomeDashboard?.();recordAppOpening()}
+})
 .catch(()=>{app.hidden=true;waiting.hidden=false;document.body.classList.add('ei-prelaunch')});
 </script>
 <script>
