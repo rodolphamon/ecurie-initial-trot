@@ -260,3 +260,22 @@
 /* Titre de la section effectif, distinct du bloc des derniers résultats. */
 .catalog-horses-title{font-size:20px;font-weight:900;line-height:1.25;margin:15px 2px 10px;color:#242424;letter-spacing:-.25px}
 @media(max-width:590px){.catalog-horses-title{font-size:18px;margin:13px 1px 9px}}
+
+/* Centrage des deux titres, sans changer le défilement des résultats. */
+.recent-heading{
+  position:relative;display:flex;align-items:center;justify-content:center;
+  min-height:54px;padding:9px 105px;text-align:center;
+}
+.recent-heading h2{
+  flex:0 1 auto;width:max-content;max-width:100%;
+  text-align:center;line-height:1.2;
+}
+.recent-heading .recent-scroll-hint{
+  position:absolute;right:12px;top:50%;transform:translateY(-50%);
+}
+.catalog-horses-title{text-align:center}
+@media(max-width:590px){
+  .recent-heading{min-height:53px;padding:8px 92px}
+  .recent-heading h2{font-size:clamp(12px,3.6vw,15px);line-height:1.2}
+  .recent-heading .recent-scroll-hint{right:8px}
+}
