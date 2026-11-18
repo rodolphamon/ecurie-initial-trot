@@ -287,12 +287,14 @@ function horse(s){
       +'<div class="hero">'
         +photoMarkup(p,'hero')
         +'<div class="hero-info">'
-          +'<h1>'+esc(p.name)+'</h1>'
-          +'<div class="orange-line"></div>'
+          +'<div class="hero-title-row">'
+            +'<h1>'+esc(p.name)+'</h1>'
+            +'<img class="hero-title-silk" src="'+esc(silk(p))+'" alt="Casaque de '+esc(p.name)+'" loading="lazy" decoding="async">'
+          +'</div>'
           +'<div class="hero-meta">'
+            +'<span class="orange-line hero-title-rule" aria-hidden="true"></span>'
             +'<span class="hero-trainer" title="'+esc('Entraîneur : '+(p.trainer||'—'))+'"><span aria-hidden="true">🎩</span> <span class="hero-trainer-name">'+esc(p.trainer||'—')+'</span></span>'
             +(isRest?'<span class="tag rest">Au repos</span>':'')
-            +'<img class="hero-meta-silk" src="'+esc(silk(p))+'" alt="Casaque de l’Écurie Initial" loading="lazy" decoding="async">'
           +'</div>'
         +'</div>'
       +'</div>'
