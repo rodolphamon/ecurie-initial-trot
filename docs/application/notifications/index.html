@@ -46,6 +46,13 @@ button{cursor:pointer;background:var(--orange);border:0;border-radius:9px;font-w
 <p class="muted">Sur iPhone, ajoutez d'abord Écurie Initial à l'écran d'accueil. Vous pourrez modifier vos choix ou désactiver les alertes à tout moment.</p>
 <p><a href="../diagnostic-notifications/" style="display:inline-block;padding:12px 16px;border:1px solid #f47721;border-radius:9px;background:#fff7f0;color:#703109;text-decoration:none;font-weight:700">🔎 Diagnostic des notifications</a></p>
 <p class="muted">Le diagnostic local vérifie l’affichage. Le bouton « Test serveur » envoie une vraie notification Push à ce téléphone uniquement, sans avertir les autres associés. Sur iPhone, ouvrez cette rubrique depuis l’application installée.</p></section>
+<section class="card" id="myPhonePanel" hidden>
+<h2>📱 Tester mon Samsung depuis l’ordinateur</h2>
+<p class="muted">Sur ton Samsung, clique une seule fois sur « Désigner cet appareil comme mon téléphone ». Ensuite, verrouille-le et clique sur « Envoyer le test au Samsung » depuis ton ordinateur. Aucun autre appareil ne recevra ce test.</p>
+<button type="button" class="secondary" id="markMyPhone">📱 Désigner cet appareil comme mon téléphone</button>
+<button type="button" id="sendMyPhone">🔔 Envoyer le test au Samsung</button>
+<p id="myPhoneStatus" role="status" aria-live="polite"></p>
+</section>
 <section class="card" id="andresyPanel" hidden>
 <h2>🐎 Test réservé à l'administration</h2>
 <p><strong>ANDRESY · Partant confirmé</strong></p>
@@ -111,7 +118,7 @@ async function init(){
     isMember=!!a?.actif&&a.type_compte!=='exterieur';
     if(isMember){accountScope=a.notification_scope==='all'?'all':'mine';chooseScope(accountScope);}
     if(a?.actif&&a.type_compte==='exterieur'){$('profile').textContent='Membre extérieur · '+a.nom_affiche;$('profileText').textContent='Notifications publiques des courses et des résultats. Les informations privées restent réservées aux propriétaires.';}
-    if(isMember){$('profile').textContent='Espace associé · '+a.nom_affiche;$('profileText').hidden=true;$('scopeBox').hidden=false;$('guestChecks').hidden=true;$('memberChecks').hidden=false;if(a.administrateur)$('andresyPanel').hidden=false;}
+    if(isMember){$('profile').textContent='Espace associé · '+a.nom_affiche;$('profileText').hidden=true;$('scopeBox').hidden=false;$('guestChecks').hidden=true;$('memberChecks').hidden=false;if(a.administrateur){$('andresyPanel').hidden=false;$('myPhonePanel').hidden=false;}}
   }
   registration=await navigator.serviceWorker.register('../sw.js');
   subscription=await registration.pushManager.getSubscription();
@@ -198,6 +205,26 @@ $('testRemote').onclick=async()=>{
    message('Envoi accepté par le service Push. Vérifiez si une notification arrive, puis ouvrez « Diagnostic des notifications » pour voir si elle a été reçue et affichée.');
  }catch(e){message(e.message||'Le test distant a échoué.',true)}
  finally{btn.disabled=!subscription||!isMember}
+};
+$('markMyPhone').onclick=async()=>{
+ const btn=$('markMyPhone'),out=$('myPhoneStatus');btn.disabled=true;out.textContent='Désignation du téléphone…';
+ try{
+  if(!subscription)throw Error('Activez d’abord les notifications sur cet appareil.');
+  if(!confirm('Désigner cet appareil comme l’unique téléphone à tester depuis ton ordinateur ?')){out.textContent='Désignation annulée.';return;}
+  await callServer({action:'mark_my_phone',deviceToken:deviceToken(),endpoint:subscription.endpoint});
+  out.textContent='✅ Cet appareil est désigné. Verrouille ton Samsung, puis déclenche le test depuis ton ordinateur.';
+ }catch(e){out.textContent=e.message||'Impossible de désigner cet appareil.'}
+ finally{btn.disabled=false}
+};
+$('sendMyPhone').onclick=async()=>{
+ const btn=$('sendMyPhone'),out=$('myPhoneStatus');
+ if(!confirm('Envoyer une notification uniquement au Samsung désigné ?'))return;
+ btn.disabled=true;out.textContent='Envoi ciblé au Samsung…';
+ try{
+  const result=await callServer({action:'send_my_phone_test',confirm:true});
+  out.textContent=result.sent?'✅ Service Push : envoi accepté pour 1 téléphone. Vérifie l’écran verrouillé du Samsung, puis son diagnostic.':'Envoi non confirmé.';
+ }catch(e){out.textContent=e.message||'Test impossible.'}
+ finally{btn.disabled=false}
 };
 $('sendAndresy').onclick=async()=>{
  if(!confirm('Envoyer maintenant une notification ANDRESY aux téléphones inscrits d’Adrien, Éric et Nicolas uniquement ?'))return;
