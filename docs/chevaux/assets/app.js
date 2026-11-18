@@ -224,7 +224,7 @@ function catalog(s){
       const d=currentData(p,s);
       const key=p.casaque==='galop'?(/obstacle/i.test(p.discipline||'')?'Valeurs':'Valeur'):'Record';
       return '<a class="horse-card" href="'+encodeURIComponent(p.id)+'/">'+photoMarkup(p,'card')+
-        '<div class="horse-card-body"><h2>'+esc(p.name)+'</h2><p>'+esc(p.trainer||'Entraîneur non renseigné')+'</p>'+
+        '<div class="horse-card-body"><div class="horse-card-heading"><h2 title="'+esc(p.name)+'">'+esc(p.name)+'</h2><span class="horse-card-trainer" title="'+esc('Entraîneur : '+(p.trainer||'Non renseigné'))+'">'+esc(p.trainer||'—')+'</span></div>'+
         '<div class="card-bottom"><span>'+key+' : <b>'+esc(metric(p,d))+'</b></span><span>Découvrir la fiche →</span></div></div></a>';
     }).join('')||'<p class="empty">Aucun cheval ne correspond à ces critères.</p>';
   }
