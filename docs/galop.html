@@ -1,42 +1,122 @@
-<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Effectif Galop — Écurie Initial</title><style>:root{--orange:#f47721;--dark:#171717}*{box-sizing:border-box}html,body{margin:0;padding:0;background:#fff;color:#222;font:15px Arial,Helvetica,sans-serif}.scroll{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}table{width:max-content;min-width:100%;table-layout:auto;border-collapse:collapse;background:#fff}thead{background:var(--dark);color:#fff}th,td{padding:10px 12px;border-bottom:1px solid #ececec;text-align:left;vertical-align:middle}th{font-weight:700;font-size:14px}tbody tr:nth-child(even){background:#fff7f0}tbody tr:hover{background:#ffecdc}td:first-child{font-weight:700;min-width:0;white-space:nowrap}td:nth-child(2){min-width:140px;white-space:normal}td:nth-child(3){width:135px;text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}th:nth-child(3){text-align:right}td:nth-child(4){min-width:155px}.rest{display:block;color:#aa5519;font-size:12px;font-weight:600;margin-top:3px}@media(max-width:600px){th,td{padding:8px 9px}}a.ei-horse-link{color:inherit;text-decoration:underline;text-decoration-color:#f47721;text-underline-offset:3px}a.ei-horse-link:hover{color:#cf5b0c}</style></head><body><main class="scroll"><table><thead><tr><th>Cheval</th><th>Valeur</th><th>Gains</th><th>Entraîneur</th></tr></thead><tbody id="rows"></tbody></table></main><script>
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Effectif Galop — Écurie Initial</title>
+<style>
+:root{--orange:#f47721;--dark:#171717}*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:transparent;color:#27221e;font:15px/1.5 Arial,Helvetica,sans-serif}
+.page{max-width:1100px;margin:14px auto;padding:0 12px 24px}
+.panel{background:rgba(255,255,255,.86);border:1px solid #eadfd6;border-radius:16px;box-shadow:0 8px 24px rgba(0,0,0,.07);overflow:hidden}
+.panel-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding:22px 22px 16px}
+h1{margin:0;font-size:clamp(25px,3.4vw,36px);line-height:1.15;font-weight:800;letter-spacing:-.4px}
+.underline{width:150px;height:4px;background:var(--orange);border-radius:4px;margin:12px 0}
+.lead{margin:0;color:#665e57;font-size:14px}
+.tools{display:flex;flex-wrap:wrap;align-items:center;gap:9px}
+.count{display:inline-flex;padding:9px 12px;background:#faf6f2;border:1px solid #e8ded3;border-radius:9px;font-size:13px;font-weight:700}
+.switch{display:inline-block;padding:11px 15px;background:var(--orange);border-radius:9px;color:#171717!important;text-decoration:none;font-size:13px;font-weight:800}
+.scroll{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;padding:0 14px 17px}
+.table-frame{min-width:590px;border:1px solid #ece4dc;border-radius:12px;overflow:hidden}
+table{width:100%;border-collapse:collapse;background:rgba(255,255,255,.94)}
+thead{background:#171717;color:white}th,td{padding:12px 14px;text-align:left;vertical-align:middle;border-bottom:1px solid #ece6df}
+th{font-size:13px;font-weight:700;border-bottom:3px solid var(--orange)}
+tbody tr:nth-child(even){background:#fdf8f4}tbody tr:hover{background:#fff0e5}
+tbody tr:last-child td{border-bottom:0}
+td:first-child{min-width:165px}td:nth-child(2){min-width:140px}td:nth-child(3){text-align:right;white-space:nowrap;font-weight:650;font-variant-numeric:tabular-nums}th:nth-child(3){text-align:right}
+td:nth-child(4){min-width:155px}
+.ei-horse-link{color:#171717;font-weight:800;text-decoration:underline;text-decoration-color:var(--orange);text-decoration-thickness:2px;text-underline-offset:4px}
+.ei-horse-link:hover{color:#c75b0b}
+.rest{display:table;width:max-content;margin-top:5px;background:#fff0e5;border:1px solid #ffd3ad;border-radius:20px;color:#aa4e08;font-weight:700;font-size:11px;padding:3px 8px}
+.note{margin:0;padding:0 22px 19px;color:#746b64;font-size:12px}
+.error{padding:15px;color:#a62222}
+@media(max-width:650px){.page{padding:0 5px;margin:8px auto}.panel-head{padding:16px 14px}.scroll{padding:0 7px 12px}td,th{padding:10px;font-size:12px}.tools{width:100%}}
+</style></head><body>
+<main class="page"><section class="panel">
+<header class="panel-head"><div><h1>EFFECTIF GALOP</h1><div class="underline"></div><p class="lead">Nos galopeurs, leurs valeurs handicap, leurs gains et leurs entraîneurs.</p></div>
+<div class="tools"><span id="horseCount" class="count">Chargement de l’effectif…</span><a class="switch" href="https://www.ecurie-initial.com/trotteurs/" target="_top" rel="noopener">Voir l’effectif Trot</a></div></header>
+<div class="scroll"><div class="table-frame"><table><thead><tr><th>Cheval</th><th>Valeur handicap</th><th>Gains</th><th>Entraîneur</th></tr></thead><tbody id="rows"></tbody></table></div></div>
+<p class="note">Cliquez sur un cheval pour consulter sa fiche détaillée.</p>
+</section></main>
+<script>
 const tbody=document.getElementById('rows');
-const el=(tag,txt)=>{const x=document.createElement(tag);if(txt!==undefined)x.textContent=txt;return x;};
-function display(data){tbody.replaceChildren();for(const h of (data.horses||[])){const tr=el('tr');const c=el('td');const link=el('a',h.name);link.href='chevaux/'+encodeURIComponent(h.id)+'/';link.className='ei-horse-link';link.target='_blank';link.rel='noopener';c.append(link);if(h.status==='au repos'){const rest=el('span','Au repos');rest.className='rest';c.append(rest);}tr.append(c);
- const valCell=el('td');
- if(/obstacle/i.test(h.discipline||'')){
-   const v=n=>n==null?'—':String(n).replace('.',',');
-   valCell.append(el('div','Plat : '+v(h.value_plat)),el('div','Obstacle : '+v(h.value_obstacle)));
+const el=(tag,txt)=>{const n=document.createElement(tag);if(txt!==undefined)n.textContent=String(txt);return n};
+const number=n=>n!==null&&n!==undefined&&n!==''&&Number.isFinite(Number(n));
+const format=n=>number(n)?new Intl.NumberFormat('fr-FR',{maximumFractionDigits:2}).format(Number(n)):'—';
+const money=n=>number(n)?new Intl.NumberFormat('fr-FR').format(Number(n))+' €':'—';
+function display(horses){
+ tbody.replaceChildren();
+ horses.sort((a,b)=>a.name.localeCompare(b.name,'fr',{sensitivity:'base'}));
+ document.getElementById('horseCount').textContent=horses.length+' chevaux à l’effectif';
+ for(const h of horses){
+  const tr=el('tr'),name=el('td'),link=el('a',h.name);
+  link.className='ei-horse-link';
+  link.href='chevaux/'+(h.nouveau?'fiche/?cheval='+encodeURIComponent(h.id):encodeURIComponent(h.id)+'/');
+  link.target='_blank';link.rel='noopener';
+  name.append(link);
+  if(h.status==='au repos'){const badge=el('span','Au repos');badge.className='rest';name.append(badge)}
+  tr.append(name);
+  const val=el('td');
+  if(/obstacle/i.test(h.discipline||'')){
+   val.append(el('div','Plat : '+format(h.value_plat)),el('div','Obstacle : '+format(h.value_obstacle)));
    if(h.value_historique_non_ventilee!=null){
-     const note=el('small','Anc. non ventilée : '+v(h.value_historique_non_ventilee));
-     note.style.color='#876d59';valCell.append(note);
+    const note=el('small','Anc. non ventilée : '+format(h.value_historique_non_ventilee));
+    note.style.color='#876d59';val.append(note);
    }
- }else valCell.textContent=Number.isFinite(h.value)?String(h.value).replace('.',','):'—';
- tr.append(valCell);tr.append(el('td',Number.isFinite(h.gains)?new Intl.NumberFormat('fr-FR').format(h.gains)+' €':'—'));tr.append(el('td',h.trainer||'—'));tbody.append(tr);}}
-fetch('data/effectif-galop.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('HTTP '+r.status);return r.json();}).then(async data=>{
+  }else val.textContent=format(h.value);
+  tr.append(val);
+  const gain=el('td',money(h.gains));tr.append(gain);
+  tr.append(el('td',h.trainer||'—'));tbody.append(tr);
+ }
+}
+async function getJson(path){
+ const response=await fetch(path,{cache:'no-store'});
+ if(!response.ok)throw Error('Chargement indisponible : '+path);
+ return response.json();
+}
+async function init(){
+ const reference=await getJson('data/effectif-galop.json');
+ const horses=new Map((reference.horses||[]).map(h=>[h.id,{...h}]));
+ for(const h of horses.values())if(/obstacle/i.test(h.discipline||'')){
+  h.value_historique_non_ventilee=h.value_historique_non_ventilee??h.value??null;
+  h.value_plat=h.value_plat??null;
+  h.value_obstacle=h.value_obstacle??null;
+ }
  try{
   const {createClient}=await import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm');
   const db=createClient('https://yeecwaaizmvrhwobukfa.supabase.co','sb_publishable_xUy2EJA3u3cKWl8BB4GNPQ_qhV9Pes3');
-  const [gainsResult,valeursResult]=await Promise.all([
-   db.from('ei_contributions_gains').select('cheval_slug,gains'),
-   db.from('ei_contributions_valeurs').select('cheval_slug,discipline_valeur,valeur')
+  const [effectif,gains,valeurs,statuts]=await Promise.all([
+    db.from('ei_effectif_gestion').select('cheval_slug,nom,discipline,entraineur,actif,nouveau'),
+    db.from('ei_contributions_gains').select('cheval_slug,gains'),
+    db.from('ei_contributions_valeurs').select('cheval_slug,discipline_valeur,valeur'),
+    db.from('ei_statuts_chevaux').select('cheval_slug,au_repos')
   ]);
-  if(gainsResult.error||valeursResult.error)throw Error('Modifications en direct indisponibles');
-  const horses=new Map((data.horses||[]).map(h=>[h.id,h]));
-  for(const h of data.horses||[])if(/obstacle/i.test(h.discipline||'')){
-    h.value_historique_non_ventilee=h.value??null;
-    h.value_plat=h.value_plat??null;
-    h.value_obstacle=h.value_obstacle??null;
+  if(effectif.error||gains.error||valeurs.error||statuts.error)throw Error('Corrections en direct indisponibles');
+  for(const row of effectif.data||[]){
+   const previous=horses.get(row.cheval_slug);
+   if(row.discipline==='Trot'||row.actif===false){horses.delete(row.cheval_slug);continue}
+   horses.set(row.cheval_slug,{...previous,id:row.cheval_slug,name:row.nom,trainer:row.entraineur,discipline:row.discipline,nouveau:row.nouveau});
   }
-  for(const row of gainsResult.data||[])if(horses.has(row.cheval_slug)&&Number.isSafeInteger(Number(row.gains)))
-   horses.get(row.cheval_slug).gains=Number(row.gains);
-  for(const row of valeursResult.data||[])if(horses.has(row.cheval_slug)&&Number.isFinite(Number(row.valeur))){
-    const h=horses.get(row.cheval_slug),n=Number(row.valeur);
-    if(/obstacle/i.test(h.discipline||'')){
-      if(row.discipline_valeur==='plat'){h.value_plat=n;h.value_historique_non_ventilee=null;}
-      if(row.discipline_valeur==='obstacle'){h.value_obstacle=n;h.value_historique_non_ventilee=null;}
-    }else if(row.discipline_valeur==='plat')h.value=n;
+  for(const row of gains.data||[]){
+   const h=horses.get(row.cheval_slug);
+   if(h&&number(row.gains))h.gains=Number(row.gains);
   }
- }catch(err){console.warn('Données sportives en direct indisponibles ; affichage de référence',err)}
- display(data);
-}).catch(()=>tbody.replaceChildren());
+  for(const row of valeurs.data||[]){
+   const h=horses.get(row.cheval_slug);
+   if(!h||!number(row.valeur))continue;
+   if(/obstacle/i.test(h.discipline||'')){
+    if(row.discipline_valeur==='plat'){h.value_plat=Number(row.valeur);h.value_historique_non_ventilee=null}
+    if(row.discipline_valeur==='obstacle'){h.value_obstacle=Number(row.valeur);h.value_historique_non_ventilee=null}
+   }else if(row.discipline_valeur==='plat')h.value=Number(row.valeur);
+  }
+  for(const row of statuts.data||[]){
+   const h=horses.get(row.cheval_slug);
+   if(h)h.status=row.au_repos?'au repos':'';
+  }
+ }catch(error){console.warn('Effectif Galop : données de référence conservées',error)}
+ display([...horses.values()]);
+}
+init().catch(error=>{
+ document.getElementById('horseCount').textContent='Effectif indisponible';
+ const row=el('tr'),cell=el('td','Impossible de charger les chevaux. Actualisez la page.');
+ cell.colSpan=4;cell.className='error';row.append(cell);tbody.replaceChildren(row);
+ console.error(error);
+});
 </script></body></html>
