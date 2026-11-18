@@ -106,7 +106,7 @@
   <a class="admin-hub-link" href="contributeurs/"><strong>📝 Contributeurs</strong><small>Accès aux modifications sportives</small></a>
   <a class="admin-hub-link" href="../diagnostic-notifications/"><strong>🔔 Notifications</strong><small>Vérifier les alertes sur votre appareil</small></a>
  </div>
-</section><div class="panel" id="associesPanel"><h1>Gestion des membres et associés</h1><p id="loading">Vérification des droits d'administrateur…</p><p id="error" role="alert"></p><div id="denied" hidden><p>Cette rubrique est réservée à l'administrateur de l'Écurie Initial. Connectez-vous avec votre compte autorisé.</p><a href="../connexion/">Se connecter</a></div><div id="content" hidden><p>Voici les comptes enregistrés dans l'espace privé. La Tribune est ouverte aux membres inscrits et aux associés actifs. Les fiches privées restent réservées aux associés.</p><div class="members-table-wrap"><table><thead><tr><th>Associé</th><th>Statut</th><th>Inscription</th><th>Rôle</th><th>Accès</th><th>Gestion</th></tr></thead><tbody id="members"></tbody></table></div><p class="muted" id="count"></p></div></div><div class="panel" id="registryPanel" hidden>
+</section><div class="panel" id="associesPanel"><h1>Gestion des membres et associés</h1><p id="loading">Vérification des droits d'administrateur…</p><p id="error" role="alert"></p><div id="denied" hidden><p>Cette rubrique est réservée à l'administrateur de l'Écurie Initial. Connectez-vous avec votre compte autorisé.</p><a href="../connexion/">Se connecter</a></div><div id="content" hidden><p>Voici les comptes enregistrés dans l'espace privé. La Tribune est ouverte aux membres inscrits et aux associés actifs. Les fiches privées restent réservées aux associés.</p><p id="registrationTrackingError" class="warning" role="alert" hidden>Le suivi des inscriptions et des ouvertures est momentanément indisponible. Les données historiques ne sont pas effacées ; les statistiques ne peuvent pas être affichées pour le moment.</p><div class="members-table-wrap"><table><thead><tr><th>Associé</th><th>Statut</th><th>Inscription</th><th>Rôle</th><th>Accès</th><th>Gestion</th></tr></thead><tbody id="members"></tbody></table></div><p class="muted" id="count"></p></div></div><div class="panel" id="registryPanel" hidden>
 <h2>📒 Répertoire des associés</h2>
 <p>Retrouvez ici les personnes de votre liste initiale, même si elles n'ont pas encore créé leur compte. Aucun e-mail n'est envoyé depuis cette liste.</p>
 <label for="registrySearch">Rechercher un associé déjà répertorié</label>
@@ -378,7 +378,7 @@ async function init(){
   try {
     const tracking=await action({action:'list_registration_status'});
     registrationStatuses=Object.fromEntries((tracking.inscriptions||[]).map(row=>[row.user_id,row]));
-  }catch(err){registrationStatuses={};console.warn('Suivi des inscriptions indisponible',err.message)}
+  }catch(err){registrationStatuses={};$('registrationTrackingError').hidden=false;console.warn('Suivi des inscriptions indisponible',err.message)}
 
   if(error)throw error;
   registeredNames=new Set(members.map(m=>normName(m.nom_affiche)));
@@ -405,11 +405,12 @@ async function init(){
      const detail=make('small',label+' : '+date.toLocaleString('fr-FR',{dateStyle:'short',timeStyle:'short'}));
      registrationCell.append(detail);
    };
+   dateLine('Inscription',registration?.inscription_le);
    if(hasConfirmed)dateLine('Validée',registration.confirmation_le);
    else if(state==='invitation_en_attente')dateLine('Invitation',registration?.invitation_le);
    dateLine('Dernière authentification',registration?.derniere_connexion);
    const openings=Number(registration?.nombre_ouvertures||0);
-   const usage=make('strong',openings>0?'📱 '+openings+' ouverture'+(openings>1?'s':''):'📱 Aucune ouverture suivie');
+   const usage=make('strong',!registration?'📱 Statistiques indisponibles':openings>0?'📱 '+openings+' ouverture'+(openings>1?'s':''):'📱 Aucune ouverture suivie');
    usage.className='registration-usage';
    registrationCell.append(usage);
    if(openings>0){
