@@ -44,23 +44,37 @@ h2.group-title{font-size:17px;margin:18px 1px 9px;line-height:1.3}
 .dialog .form-status{margin-top:12px;min-height:18px;font-weight:700;color:#146c43}
 .dialog .form-status.error{color:#a52623}
 .dialog .privacy-note{font-size:12px;margin:10px 0 0;color:#615a54}
-.dialog .inbox-item{padding:11px;border:1px solid #eadfd6;border-radius:9px;margin-bottom:9px}
+#teamInboxDialog{padding:15px 14px;max-height:calc(100dvh - 38px)}
+#teamInboxDialog h2{font-size:19px;margin-bottom:3px;line-height:1.23}
+#teamInboxDialog .inbox-intro{font-size:12px;line-height:1.3;margin:0 0 12px}
+.dialog .inbox-item{padding:0;border:1px solid #e9ded4;border-radius:12px;margin-bottom:9px;overflow:hidden}
 .dialog .inbox-item[open]{border-color:var(--orange)}
-.dialog .inbox-item summary{cursor:pointer;line-height:1.4;display:flex;flex-direction:column;gap:3px}
-.dialog .inbox-item summary strong{font-size:14px}
-.dialog .inbox-item summary small{font-size:11px;color:var(--muted)}
-.dialog .inbox-message{white-space:pre-wrap;overflow-wrap:anywhere;border-top:1px solid var(--line);padding-top:9px;margin-top:9px}
-.dialog .thread-post{padding:10px 12px;border-radius:10px;background:#f5f2ee;margin-top:9px;white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.4}
-.dialog .thread-post.mine{background:#fff1e4;border-left:3px solid var(--orange)}
-.dialog .thread-post .thread-author{font-size:12px;font-weight:800;margin-bottom:4px}
-.dialog .thread-post time{font-size:11px;color:#726b65;display:block;margin-top:6px}
-.dialog .thread-compose{border-top:1px solid var(--line);padding-top:11px;margin-top:12px}
-.dialog .thread-compose label{margin:0 0 5px}
-.dialog .thread-compose textarea{min-height:84px}
-.dialog .thread-compose button{display:block;width:100%;border:0;border-radius:9px;padding:11px;background:var(--orange);color:#171717;font:800 13px Arial;cursor:pointer;margin-top:7px}
+.dialog .inbox-item summary{cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 13px;min-height:60px}
+.dialog .inbox-item summary::-webkit-details-marker{display:none}
+.dialog .inbox-item summary::after{content:'⌄';font-size:17px;color:#82786f;flex-shrink:0}
+.dialog .inbox-item[open] summary::after{content:'⌃'}
+.dialog .inbox-heading{flex:1;min-width:0}
+.dialog .inbox-heading strong{display:block;font-size:15px;line-height:1.15}
+.dialog .inbox-heading .preview{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#726b64;font-size:12px;margin-top:4px}
+.dialog .inbox-heading .preview.unread{color:#30251d;font-weight:700}
+.dialog .inbox-meta{text-align:right;flex-shrink:0}
+.dialog .inbox-meta time{display:block;color:#817a74;font-size:10px}
+.dialog .unread-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--orange);margin-top:6px}
+.dialog .thread-posts{display:flex;flex-direction:column;gap:7px;padding:10px 12px 7px;border-top:1px solid #f0e9e3;max-height:43dvh;overflow-y:auto;overscroll-behavior:contain}
+.dialog .thread-post{width:fit-content;max-width:86%;padding:8px 11px;border-radius:11px 11px 11px 3px;background:#f3f0ec;line-height:1.35;white-space:pre-wrap;overflow-wrap:anywhere;font-size:13px}
+.dialog .thread-post.mine{align-self:flex-end;background:#fff0e3;border:0;border-radius:11px 11px 3px 11px}
+.dialog .thread-post time{display:block;text-align:right;font-size:10px;line-height:1.2;color:#77706b;margin-top:4px}
+.dialog .thread-compose{padding:8px 12px 11px;border-top:1px solid #eee8e2}
+.dialog .thread-compose label{font-size:12px;margin:0 0 5px;font-weight:700}
+.dialog .thread-compose .compose-row{display:grid;grid-template-columns:minmax(0,1fr) 90px;gap:7px;align-items:stretch}
+.dialog .thread-compose textarea{resize:vertical;min-height:47px;max-height:115px;font-size:13px;padding:8px 10px}
+.dialog .thread-compose button{border:0;border-radius:9px;background:var(--orange);color:#171717;font:800 12px Arial;cursor:pointer;padding:8px}
 .dialog .thread-compose button:disabled{opacity:.55}
-.dialog .thread-result{min-height:15px;margin:7px 0 0;color:#17603b;font-size:12px}
+.dialog .thread-result{margin:5px 0 0!important;color:#17603b;font-size:11px;line-height:1.3}
+.dialog .thread-result:empty{display:none}
 .dialog .thread-result.error{color:#ad2929}
+#teamInboxDialog .inbox-footer{margin-top:10px;grid-template-columns:1fr}
+#teamInboxDialog .inbox-footer .cancel{min-height:40px}
 [hidden]{display:none!important}
 
 @media(min-width:650px){.team-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.person{margin:0}.person .description{min-height:57px}}
@@ -113,9 +127,9 @@ h2.group-title{font-size:17px;margin:18px 1px 9px;line-height:1.3}
 </dialog>
 <dialog class="dialog" id="teamInboxDialog" aria-labelledby="inboxTitle">
  <h2 id="inboxTitle">📥 Mes messages · Team Initial</h2>
- <p>Retrouvez ici vos conversations privées avec la Team Initial. Seuls les participants peuvent les lire.</p>
+ <p class="inbox-intro">Échanges privés. Seuls les participants peuvent les consulter.</p>
  <div id="teamInboxList"><p>Chargement...</p></div>
- <div class="dialog-actions"><button class="cancel" type="button" id="closeInbox">Fermer</button></div>
+ <div class="dialog-actions inbox-footer"><button class="cancel" type="button" id="closeInbox">Fermer</button></div>
 </dialog>
 <script type="module">
 import {createClient} from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
@@ -126,8 +140,8 @@ const $=id=>document.getElementById(id);
 let chosen='',session=null,loadedMessages=[];
 async function refreshSession(){const {data}=await db.auth.getSession();session=data?.session||null;return session;}
 function updateCount(){
- const n=loadedMessages.filter(m=>m.unread).length;
- $('unreadCount').textContent=n?'('+n+')':'';
+ const peers=new Set(loadedMessages.filter(m=>m.unread).map(m=>m.peer_id||m.id));
+ $('unreadCount').textContent=peers.size?'('+peers.size+')':'';
 }
 async function apiPost(payload){
  await refreshSession();
@@ -197,50 +211,92 @@ $('teamMessageForm').addEventListener('submit',async e=>{
  }catch(err){status.textContent=err instanceof Error?err.message:'Une erreur est survenue.';status.classList.add('error');}
  finally{button.disabled=false;}
 });
-function threadPost(body,author,date,mine){
- const div=document.createElement('div');div.className='thread-post'+(mine?' mine':'');
- const h=document.createElement('div');h.className='thread-author';h.textContent=author;div.append(h);
- const text=document.createElement('div');text.textContent=body;div.append(text);
- const time=document.createElement('time');time.dateTime=date;
- time.textContent=new Date(date).toLocaleString('fr-FR');div.append(time);
+function formatDateTime(value){
+ return new Date(value).toLocaleString('fr-FR',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'});
+}
+function groupConversations(rows){
+ const peers=new Map();
+ for(const thread of rows){
+  const key=thread.peer_id||thread.id;
+  if(!peers.has(key))peers.set(key,{peer_id:key,correspondent:thread.correspondent,threads:[],posts:[],last_at:thread.created_at,unread:false});
+  const group=peers.get(key);
+  group.threads.push(thread);
+  group.unread=group.unread||thread.unread;
+  group.posts.push({body:thread.message,by_me:thread.direction==='sent',created_at:thread.created_at});
+  for(const reply of (thread.replies||[]))
+   group.posts.push({body:reply.body,by_me:reply.by_me,created_at:reply.created_at});
+ }
+ const groups=[...peers.values()];
+ for(const group of groups){
+  group.posts.sort((a,b)=>new Date(a.created_at).getTime()-new Date(b.created_at).getTime());
+  group.last_at=group.posts.at(-1)?.created_at||group.last_at;
+  group.reply_thread=group.threads.reduce((best,t)=>{
+   const latest=t.replies?.at(-1)?.created_at||t.created_at;
+   return !best||new Date(latest)>new Date(best.latest)?{id:t.id,latest}:best;
+  },null)?.id;
+ }
+ return groups.sort((a,b)=>new Date(b.last_at)-new Date(a.last_at));
+}
+function threadPost(post){
+ const div=document.createElement('div');
+ div.className='thread-post'+(post.by_me?' mine':'');
+ const text=document.createElement('span');text.textContent=post.body;div.append(text);
+ const time=document.createElement('time');time.dateTime=post.created_at;
+ time.textContent=formatDateTime(post.created_at);
+ div.append(time);
  return div;
 }
-function renderThread(m){
+function renderConversation(group){
  const item=document.createElement('details');item.className='inbox-item';
  const summary=document.createElement('summary');
- const name=document.createElement('strong');name.textContent=(m.unread?'● ':'')+m.correspondent;
- const stamp=document.createElement('small');
- stamp.textContent=(m.direction==='sent'?'Envoyé · ':'Reçu · ')+new Date(m.created_at).toLocaleString('fr-FR');
- summary.append(name,stamp);item.append(summary);
+ const main=document.createElement('div');main.className='inbox-heading';
+ const name=document.createElement('strong');name.textContent=group.correspondent;
+ const preview=document.createElement('span');preview.className='preview'+(group.unread?' unread':'');
+ preview.textContent=(group.posts.at(-1)?.by_me?'Vous : ':'')+(group.posts.at(-1)?.body||'');
+ main.append(name,preview);
+ const meta=document.createElement('div');meta.className='inbox-meta';
+ const date=document.createElement('time');date.dateTime=group.last_at;
+ date.textContent=formatDateTime(group.last_at);
+ const dot=document.createElement('span');dot.className='unread-dot';dot.hidden=!group.unread;
+ meta.append(date,dot);
+ summary.append(main,meta);item.append(summary);
  const posts=document.createElement('div');posts.className='thread-posts';
- posts.append(threadPost(m.message,m.direction==='sent'?'Vous':m.sender_name,m.created_at,m.direction==='sent'));
- (m.replies||[]).forEach(reply=>posts.append(threadPost(reply.body,reply.by_me?'Vous':m.correspondent,reply.created_at,reply.by_me)));
+ for(const post of group.posts)posts.append(threadPost(post));
  item.append(posts);
  const form=document.createElement('form');form.className='thread-compose';
- const label=document.createElement('label');label.textContent='Votre réponse';
- const input=document.createElement('textarea');input.required=true;input.maxLength=3000;input.rows=3;
- label.append(input);form.append(label);
- const submit=document.createElement('button');submit.type='submit';submit.textContent='✉️ Répondre';form.append(submit);
+ const label=document.createElement('label');label.textContent='Répondre à '+group.correspondent;
+ const compose=document.createElement('div');compose.className='compose-row';
+ const input=document.createElement('textarea');input.required=true;input.maxLength=3000;input.rows=2;input.placeholder='Votre message…';
+ input.setAttribute('aria-label','Votre réponse');
+ const submit=document.createElement('button');submit.type='submit';submit.textContent='✉️ Envoyer';
+ compose.append(input,submit);form.append(label,compose);
  const status=document.createElement('p');status.className='thread-result';status.setAttribute('role','status');form.append(status);
  form.addEventListener('submit',async e=>{
-  e.preventDefault();
-  const value=input.value.trim();if(!value)return;
+  e.preventDefault();const value=input.value.trim();if(!value)return;
   submit.disabled=true;status.textContent='Envoi…';status.classList.remove('error');
   try{
-   const result=await apiPost({action:'reply',id:m.id,message:value});
-   posts.append(threadPost(result.reply.body,'Vous',result.reply.created_at,true));
-   input.value='';status.textContent='✅ Réponse envoyée dans l’application.';
-  }catch(err){
-   status.textContent=err instanceof Error?err.message:'Envoi impossible.';status.classList.add('error');
-  }finally{submit.disabled=false;}
+   const response=await apiPost({action:'reply',id:group.reply_thread,message:value});
+   const post={body:response.reply.body,by_me:true,created_at:response.reply.created_at};
+   group.posts.push(post);posts.append(threadPost(post));posts.scrollTop=posts.scrollHeight;
+   group.last_at=post.created_at;preview.textContent='Vous : '+post.body;
+   date.dateTime=post.created_at;date.textContent=formatDateTime(post.created_at);
+   const source=group.threads.find(t=>t.id===group.reply_thread);
+   if(source)source.replies.push({body:post.body,by_me:true,created_at:post.created_at});
+   input.value='';status.textContent='✓ Message envoyé';
+  }catch(err){status.textContent=err instanceof Error?err.message:'Envoi impossible.';status.classList.add('error');}
+  finally{submit.disabled=false;}
  });
  item.append(form);
  item.addEventListener('toggle',async()=>{
-  if(!item.open||!m.unread)return;
-  try{
-   await apiPost({action:'mark_read',id:m.id});
-   m.unread=false;name.textContent=m.correspondent;updateCount();
-  }catch(e){console.warn('Lecture du message non confirmée.');}
+  if(!item.open)return;
+  posts.scrollTop=posts.scrollHeight;
+  const unread=group.threads.filter(t=>t.unread);
+  if(!unread.length)return;
+  const results=await Promise.allSettled(unread.map(t=>apiPost({action:'mark_read',id:t.id})));
+  results.forEach((result,i)=>{if(result.status==='fulfilled')unread[i].unread=false;});
+  group.unread=group.threads.some(t=>t.unread);
+  dot.hidden=!group.unread;preview.classList.toggle('unread',group.unread);
+  updateCount();
  });
  return item;
 }
@@ -251,7 +307,7 @@ $('inboxButton').addEventListener('click',async()=>{
   const rows=await inboxData();
   list.replaceChildren();
   if(!rows.length){const empty=document.createElement('p');empty.textContent='Aucun message pour le moment.';list.append(empty);return;}
-  rows.forEach(m=>list.append(renderThread(m)));
+  groupConversations(rows).forEach(group=>list.append(renderConversation(group)));
  }catch(err){list.textContent=err instanceof Error?err.message:'Chargement impossible.';}
 });
 $('closeInbox').addEventListener('click',()=>$('teamInboxDialog').close());
