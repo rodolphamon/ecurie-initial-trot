@@ -578,10 +578,12 @@ async function run() {
       }
       counts.attempts++;
       try{
-        // Les rappels imminents exigent une livraison prioritaire sur les appareils en veille.
-        // Une durée de rétention limitée évite les rappels périmés bien après le départ.
+        // Les notifications de courses et d'actualité doivent être prioritaires sur
+        // les téléphones en veille : éviter les retards liés au mode économie d'énergie.
+        // Les rappels 15 min expirent rapidement pour ne pas apparaître après la course.
         const pushOptions=alert.categorie==="before15"?{urgency:"high" as const,ttl:900}:
-          ["private_news","general_news"].includes(alert.categorie)?{urgency:"high" as const}:{};
+          ["confirmed","results","withdrawn","private_news","general_news"].includes(alert.categorie)
+            ?{urgency:"high" as const}:{};
         const delivered=await sendPushNotification(
           {endpoint:sub.endpoint,keys:{p256dh:sub.p256dh,auth:sub.auth_secret}},
           message,vapid,pushOptions
