@@ -287,12 +287,13 @@ function horse(s){
       +'<div class="hero">'
         +photoMarkup(p,'hero')
         +'<div class="hero-info">'
-          +'<span class="eyebrow">Écurie Initial · Fiche cheval</span>'
           +'<h1>'+esc(p.name)+'</h1>'
           +'<div class="orange-line"></div>'
-          +'<span class="tag">'+esc(p.discipline)+'</span> '
-          +(isRest?'<span class="tag rest">Au repos</span>':'')
-          +'<p class="driver">Entraîneur : '+esc(p.trainer||'—')+'</p>'
+          +'<div class="hero-meta">'
+            +'<span class="tag">'+esc(p.discipline)+'</span>'
+            +(isRest?'<span class="tag rest">Au repos</span>':'')
+            +'<span class="hero-trainer" title="'+esc('Entraîneur : '+(p.trainer||'—'))+'"><span aria-hidden="true">🎩</span> <span class="hero-trainer-name">'+esc(p.trainer||'—')+'</span></span>'
+          +'</div>'
         +'</div>'
       +'</div>'
       +'<div class="summary">'+stats(valueLabel,value)+stats('Gains en carrière',gains)+'</div>'
