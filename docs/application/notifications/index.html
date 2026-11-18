@@ -69,6 +69,11 @@ const KEY='sb_publishable_xUy2EJA3u3cKWl8BB4GNPQ_qhV9Pes3';
 const db=createClient('https://yeecwaaizmvrhwobukfa.supabase.co',KEY);
 const $=id=>document.getElementById(id);
 let isMember=false,publicKey=null,registration=null,subscription=null,accountScope=null;
+let lastAuthenticatedAccessToken=null;
+db.auth.onAuthStateChange((event,session)=>{
+ if(session?.access_token)lastAuthenticatedAccessToken=session.access_token;
+ else if(event==='SIGNED_OUT')lastAuthenticatedAccessToken=null;
+});
 const tokenKey='ei-push-device-token-v1';
 function message(s,isError=false){$('status').textContent=s;$('status').className=isError?'error':'ok'}
 function checked(id){return $(id).checked}
@@ -85,8 +90,15 @@ function base64ToBytes(str){const padding='='.repeat((4-str.length%4)%4);const r
 function deviceToken(){let t=localStorage.getItem(tokenKey);if(!t){t=Array.from(crypto.getRandomValues(new Uint8Array(32)),x=>x.toString(16).padStart(2,'0')).join('');localStorage.setItem(tokenKey,t)}return t}
 async function callServer(body){
  const {data:{session}}=await db.auth.getSession();
+ let accessToken=session?.access_token||lastAuthenticatedAccessToken;
+ if(!accessToken){
+  const {data:refreshed}=await db.auth.refreshSession();
+  accessToken=refreshed?.session?.access_token||null;
+ }
+ if(['mark_my_phone','send_my_phone_test','send_andresy_test'].includes(body.action)&&!accessToken)
+  throw Error('Session absente dans cette fenêtre. Ouvrez la connexion directement sur fiches.ecurie-initial.com (sans cadre intégré), puis revenez dans Notifications.');
  const headers={'Content-Type':'application/json','apikey':KEY};
- if(session?.access_token)headers.Authorization='Bearer '+session.access_token;
+ if(accessToken)headers.Authorization='Bearer '+accessToken;
  const res=await fetch(API,{method:'POST',headers,body:JSON.stringify(body)});
  const d=await res.json().catch(()=>({}));
  if(!res.ok)throw Error(d.error||'Service de notifications indisponible ('+res.status+').');
@@ -98,6 +110,7 @@ async function init(){
     $('serviceState').textContent='Ce navigateur ne prend pas en charge les notifications Push. Sur iPhone, utilisez l’application installée.';return;
   }
   const {data:{session}}=await db.auth.getSession();
+  if(session?.access_token)lastAuthenticatedAccessToken=session.access_token;
   if(Date.now()<Date.parse('2026-11-30T23:00:00Z')){
     let pilot=false;
     if(session?.user){
