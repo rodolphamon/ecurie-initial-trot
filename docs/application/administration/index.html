@@ -500,7 +500,7 @@ $('inviteForm').onsubmit=async e=>{
  }catch(err){
   const raw=String(err?.message||'');
   if(/email rate limit exceeded|over_email_send_rate_limit|rate limit.*email|email.*rate limit/i.test(raw)){
-    status('actionStatus','⚠️ Limite des e-mails Supabase atteinte (service intégré : 2 e-mails/heure pour tout le projet). Aucun nouvel envoi n’est possible pour le moment. Les champs et les chevaux cochés sont conservés. Pour inviter plusieurs associés sans ce blocage, configurez un serveur SMTP dans Supabase → Authentication → SMTP Settings.');
+    status('actionStatus','⚠️ Quota horaire d’e-mails Supabase atteint (erreur 429). Le SMTP personnalisé peut être configuré correctement tout en restant limité à 30 e-mails/heure par défaut. Ouvrez Supabase → Authentication → Rate Limits → Email sent, puis augmentez prudemment la limite selon la capacité de votre fournisseur SMTP. Aucun compte n’a été créé par cette tentative refusée ; les champs et chevaux cochés sont conservés.');
   }else{
     status('actionStatus',raw);
   }
