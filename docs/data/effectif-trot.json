@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-17",
+  "updated_at": "2026-11-18",
   "source": "Contrôle du 11/11/2026 : LORD ON WAY 67 395 € (Zone-Turf https://www.zone-turf.fr/cheval/lord-on-way-2075153/) ; NOSTALGIE DAIRPET 17 980 € (Geny https://www.geny.com/cheval/2863611-nostalgie-dairpet/course/1691905 et Zone-Turf https://www.zone-turf.fr/cheval/nostalgie-dairpet-2117011/). Autres valeurs historiques conservées sans validation nouvelle. ; MEMPHIS BELLE record absolu 1'16\"8 au monté le 11/11/2026 à Graignes vérifié sur Geny https://www.geny.com/cheval/2884884-memphis-belle. Gains MEMPHIS BELLE 6 990 € maintenus faute de cumul post-course explicitement confirmé. ; 13/11/2026 : LORD ON WAY record absolu attelé 1'13\"1 (21/09/2026 La Capelle, 2700m autostart), fiche Geny https://www.geny.com/cheval/2837238-lord-on-way (ancien 1'13\"8). ; 15/11/2026 : MEMPHIS BELLE gains de carrière 7 665 € (ancien 6 990 €), capture fournie par le gérant de la fiche officielle Trotteur Français / LeTROT, rubrique « Gains Totaux » ; record absolu 1'16\"8 inchangé. Provenance : capture utilisateur, non relevé autonome en direct. ; 15/11/2026 : capture fournie par le gérant de l'onglet EFFECTIF du compte propriétaire Écurie INITIAL sur LeTROT (provenance capture utilisateur, non consultation directe) : ISOLÉE DU BOUILLON gains 188 255 € (ancien 187 555 €) ; MANDRAGORA FLEURY gains 51 860 € (ancien 48 780 €) ; NOSTALGIE DAIRPET gains 22 480 € (ancien 17 980 €), record absolu affiché 1'14\"3 (ancien 1'16\"1). ; 17/11/2026 : vérification individuelle des gains de trois trotteurs de Nathalie HAMON. LUCKY DES GAUDINES 43 285 € (ancien 34 600 €, gains antérieurs aux places des 03/10, 25/10 et 30/10) : https://www.geny.com/cheval/2798166-lucky-des-gaudines. MONA LISA STARDUST 21 040 € confirmé : https://www.geny.com/cheval/2822059-mona-lisa-stardust. MYRTILLE MARBOULA 72 115 € confirmé : https://province-courses.fr/fiche_cheval.php?id=22162017A. ; 17/11/2026 : contrôle automatisé réel en lecture seule depuis le runner GitHub, fiche LeTROT LUCKY DES GAUDINES / Gains Totaux = 49 285 € (ancien 43 285 €) ; identité vérifiée, source https://www.letrot.com/stats/chevaux/LUCKY-DES-GAUDINES/ZmN8ZwMFAwoF/courses. ; 17/11/2026 : MONA LISA STARDUST, cumul précédent 21 040 €, allocation de 180 € attribuée à la 7e place de Toulouse (R5C1) le 13/11/2026, montant 21 220 € ; classement/allocations https://chutt.fr/index.php/arrivees-et-rapports/?course=1&date=13_11_2026&reunion=5. Cumul direct de la fiche LeTROT non encore contrôlé (lien officiel manquant).",
   "horses": {
     "indice-deladou": {
@@ -64,7 +64,10 @@
     },
     "odacieuse-fleury": {
       "record": null,
-      "gains": null
+      "gains": 0,
+      "gains_source_url": "https://www.letrot.com/stats/chevaux/ODACIEUSE-FLEURY/ZmZbYgsEBAYG/courses",
+      "gains_verified_at": "2026-11-18",
+      "gains_source": "LeTROT - Gains Totaux"
     },
     "olano-de-la-vallee": {
       "record": null,
