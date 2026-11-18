@@ -157,14 +157,31 @@ const normName=s=>(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowe
 function status(id,value){$(id).textContent=value}
 function make(tag,content){const node=document.createElement(tag);if(content!==undefined)node.textContent=content;return node}
 async function action(body){
- const {data:{session}}=await db.auth.getSession();
- if(!session)throw Error('Veuillez vous reconnecter.');
- const res=await fetch('https://yeecwaaizmvrhwobukfa.supabase.co/functions/v1/gerer-associes',{
+ // Refresh the admin session before operations such as sending invitations.
+ const {data:{session},error:sessionError}=await db.auth.getSession();
+ if(sessionError||!session)throw Error('Votre session a expiré. Reconnectez-vous à l’application, puis réessayez.');
+ const expiresSoon=!session.expires_at||session.expires_at-Math.floor(Date.now()/1000)<120;
+ let accessToken=session.access_token;
+ if(expiresSoon){
+  const {data:refreshed,error:refreshError}=await db.auth.refreshSession();
+  if(refreshError||!refreshed?.session)throw Error('Votre session a expiré. Reconnectez-vous à l’application, puis réessayez.');
+  accessToken=refreshed.session.access_token;
+ }
+ const endpoint='https://yeecwaaizmvrhwobukfa.supabase.co/functions/v1/gerer-associes';
+ const send=token=>fetch(endpoint,{
   method:'POST',headers:{'Content-Type':'application/json','apikey':'sb_publishable_xUy2EJA3u3cKWl8BB4GNPQ_qhV9Pes3',
-  'Authorization':'Bearer '+session.access_token},body:JSON.stringify(body)
+   'Authorization':'Bearer '+token},body:JSON.stringify(body)
  });
- const data=await res.json().catch(()=>({}));
- if(!res.ok)throw Error(data.error||'Service de gestion indisponible : vérifiez le déploiement Supabase.');
+ let res=await send(accessToken);
+ let data=await res.json().catch(()=>({}));
+ // HTTP 401 is rejected before the invitation action; retry once only.
+ if(res.status===401){
+  const {data:refreshed,error:refreshError}=await db.auth.refreshSession();
+  if(refreshError||!refreshed?.session)throw Error('Votre session a expiré. Reconnectez-vous à l’application, puis réessayez.');
+  res=await send(refreshed.session.access_token);
+  data=await res.json().catch(()=>({}));
+ }
+ if(!res.ok)throw Error(res.status===401?'Votre session est invalide. Reconnectez-vous à l’application, puis réessayez.':data.error||'Service de gestion indisponible : vérifiez le déploiement Supabase.');
  return data;
 }
 async function loadRoster(){
