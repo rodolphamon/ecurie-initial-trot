@@ -247,7 +247,7 @@ function horse(s){
   const perf=(s.editor.performances[id]||[]).slice().sort((a,b)=>b.date.localeCompare(a.date));
   const eng=(s.editor.engagements[id]||[]).filter(x=>x.date+'T'+(x.heure||'23:59')>=currentParis()).sort((a,b)=>(a.date+(a.heure||'23:59')).localeCompare(b.date+(b.heure||'23:59')));
   const tr=perf.length
-    ?'<div class="table-wrap"><table class="perf-table"><thead><tr><th>Date</th><th>Hippodrome</th><th>Rang</th><th>Driver / Jockey</th><th>Replay</th></tr></thead><tbody>'+perf.map(x=>{
+    ?'<div class="table-wrap"><table class="perf-table perf-results"><thead><tr><th>Date</th><th>Hippodrome</th><th>Rang</th><th>Driver / Jockey</th><th>Replay</th></tr></thead><tbody>'+perf.map(x=>{
       const replay=s.replayIndex[x.date+'|'+normalizeSearch(p.name)];
       const course=absoluteUrl(x.course_url);
       const direct=absoluteUrl(x.video_url);
