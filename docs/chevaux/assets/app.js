@@ -9,7 +9,7 @@ const formatValue=n=>Number.isFinite(n)?String(n).replace('.',','):'—';
 const currentParis=()=>new Intl.DateTimeFormat('sv-SE',{timeZone:'Europe/Paris',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).format(new Date()).replace(' ','T');
 const silkName=p=>p.casaque==='galop'?'casaque-galop.svg':p.casaque==='orange'?'casaque-orange.svg':'casaque-blanche.svg';
 const silk=p=>base+'../assets/'+silkName(p);
-function photoMarkup(p,style){let img=base+'photos/'+p.id+'.jpg?v='+encodeURIComponent(p.photoVersion||'1');return '<div class="'+(style==='hero'?'hero-photo':'horse-card-photo')+'">'+(style==='card'?'<span class="kind">'+esc(p.discipline)+'</span>':'')+'<img class="photo" src="'+img+'" alt="Photo de '+esc(p.name)+'" loading="lazy" onerror="this.hidden=true;this.nextElementSibling.hidden=false;this.parentNode.classList.add(\'no-photo\')" /><img class="silk" hidden src="'+silk(p)+'" alt="Casaque de l’Écurie Initial"/>'+(style==='hero'?'<span class="placeholder-tag" hidden>Photographie à venir</span>':'')+'</div>'}
+function photoMarkup(p,style){let img=p.photoUrl||base+'photos/'+p.id+'.jpg?v='+encodeURIComponent(p.photoVersion||'1');return '<div class="'+(style==='hero'?'hero-photo':'horse-card-photo')+'">'+(style==='card'?'<span class="kind">'+esc(p.discipline)+'</span>':'')+'<img class="photo" src="'+img+'" alt="Photo de '+esc(p.name)+'" loading="lazy" onerror="this.hidden=true;this.nextElementSibling.hidden=false;this.parentNode.classList.add(\'no-photo\')" /><img class="silk" hidden src="'+silk(p)+'" alt="Casaque de l’Écurie Initial"/>'+(style==='hero'?'<span class="placeholder-tag" hidden>Photographie à venir</span>':'')+'</div>'}
 async function load(){let paths=[base+'data/chevaux.json',base+'data/editorial.json',base+'../data/effectif-trot.json',base+'../data/effectif-galop.json'];let requests=await Promise.all(paths.map(async p=>{let r=await fetch(p,{cache:'no-store'});if(!r.ok)throw Error('Impossible de charger '+p);return r.json()}));let [all,editor,trot,galop]=requests;
 try{const q=await fetch(base+'data/qualifications.json',{cache:'no-store'});if(q.ok){let videos=await q.json();editor.qualifications={...(editor.qualifications||{}),...(videos.qualifications||{})};}}catch(e){console.warn('Vidéos de qualification temporairement indisponibles',e)}let gallop=new Map((galop.horses||[]).map(h=>{
   if(/obstacle/i.test(h.discipline||'')){
@@ -20,15 +20,16 @@ try{const q=await fetch(base+'data/qualifications.json',{cache:'no-store'});if(q
 try{
  const {createClient}=await import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm');
  const client=createClient('https://yeecwaaizmvrhwobukfa.supabase.co','sb_publishable_xUy2EJA3u3cKWl8BB4GNPQ_qhV9Pes3');
- const [en,ga,va,re,st,ef]=await Promise.all([
+ const [en,ga,va,re,st,ef,ph]=await Promise.all([
    client.from('ei_contributions_engagements').select('cheval_slug,engagements'),
    client.from('ei_contributions_gains').select('cheval_slug,gains'),
    client.from('ei_contributions_valeurs').select('cheval_slug,discipline_valeur,valeur'),
    client.from('ei_contributions_records').select('cheval_slug,chrono'),
    client.from('ei_statuts_chevaux').select('cheval_slug,au_repos'),
-   client.from('ei_effectif_gestion').select('cheval_slug,nom,discipline,casaque,entraineur,lien_officiel,nouveau,actif,date_sortie')
+   client.from('ei_effectif_gestion').select('cheval_slug,nom,discipline,casaque,entraineur,lien_officiel,nouveau,actif,date_sortie'),
+   client.from('ei_photos_chevaux').select('cheval_slug,photo_url')
  ]);
- if(en.error||ga.error||va.error||re.error||st.error||ef.error)throw Error('Source des contributions indisponible');
+ if(en.error||ga.error||va.error||re.error||st.error||ef.error||ph.error)throw Error('Source des contributions indisponible');
  const valid=new Set((all.horses||[]).map(h=>h.id));
  const restStatuses=Object.fromEntries((st.data||[]).filter(row=>valid.has(row.cheval_slug)).map(row=>[row.cheval_slug,row.au_repos]));
  for(const p of all.horses||[])if(Object.hasOwn(restStatuses,p.id)){p.status=restStatuses[p.id]?'au repos':'';if(gallop.has(p.id))gallop.set(p.id,{...gallop.get(p.id),status:p.status});}
@@ -73,6 +74,9 @@ try{
      trot.horses[row.cheval_slug]={};
    }
    if(!row.actif)editor.engagements[row.cheval_slug]=[];
+ }
+ for(const row of ph.data||[]){
+   const p=known.get(row.cheval_slug);if(p)known.set(row.cheval_slug,{...p,photoUrl:row.photo_url});
  }
  all.horses=[...known.values()];
  for(const row of re.data||[]){
