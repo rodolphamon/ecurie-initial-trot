@@ -497,7 +497,14 @@ $('inviteForm').onsubmit=async e=>{
   status('actionStatus',response.message||'Invitation demandée. Vérifiez la réception de l’e-mail.');
   registeredNames.add(normName(nom));renderRegistry();
   e.target.reset();$('inviteHorsesBox').hidden=false;status('prefillNotice','Compte créé. Sélectionnez une autre personne dans le répertoire si nécessaire.');updateInviteSummary();
- }catch(err){status('actionStatus',err.message)}finally{b.disabled=false}
+ }catch(err){
+  const raw=String(err?.message||'');
+  if(/email rate limit exceeded|over_email_send_rate_limit|rate limit.*email|email.*rate limit/i.test(raw)){
+    status('actionStatus','⚠️ Limite des e-mails Supabase atteinte (service intégré : 2 e-mails/heure pour tout le projet). Aucun nouvel envoi n’est possible pour le moment. Les champs et les chevaux cochés sont conservés. Pour inviter plusieurs associés sans ce blocage, configurez un serveur SMTP dans Supabase → Authentication → SMTP Settings.');
+  }else{
+    status('actionStatus',raw);
+  }
+ }finally{b.disabled=false}
 };
 await init();
 </script><script defer src="../nav.js?v=20261117tabsresultatspartants1"></script></body></html>
