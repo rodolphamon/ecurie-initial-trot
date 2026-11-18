@@ -212,3 +212,10 @@
  .perf-results th,.perf-results td{padding:10px 9px}
  .perf-results th:nth-child(3),.perf-results td:nth-child(3){padding-left:4px;padding-right:4px}
 }
+
+
+/* Catalogue : cheval et entraîneur sur une seule ligne, même sur mobile. */
+.horse-card-heading{display:flex;align-items:baseline;justify-content:space-between;gap:9px;min-width:0}
+.horse-card-heading h2{flex:1 1 auto;min-width:0;margin:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:clamp(15px,1.6vw,20px)}
+.horse-card-heading .horse-card-trainer{display:block;flex:0 1 auto;max-width:44%;min-width:0;margin:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:right;color:var(--muted);font-size:clamp(12px,1.1vw,14px);line-height:1.3;font-weight:500}
+@media(max-width:590px){.horse-card-heading{gap:6px}.horse-card-heading h2{font-size:clamp(14px,4vw,17px)}.horse-card-heading .horse-card-trainer{font-size:clamp(11px,3.1vw,13px);max-width:43%}}
