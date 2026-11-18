@@ -24,24 +24,8 @@ h2.group-title{font-size:17px;margin:18px 1px 9px;line-height:1.3}
 .person h3{font-size:20px;margin:0 0 3px;line-height:1.25}
 .person .function{margin:0;color:var(--muted);font-size:13px}
 .person .description{margin:7px 0 12px;line-height:1.4;font-size:13px}
-.contact-person{display:flex;width:100%;align-items:center;justify-content:center;gap:8px;border:0;border-radius:9px;background:var(--orange);color:#171717;min-height:43px;font:700 13px/1.2 Arial,sans-serif;padding:10px;cursor:pointer}
-.contact-person:focus-visible,.action:focus-visible{outline:3px solid #1e1e1e;outline-offset:2px}
-.note{font-size:12px;color:var(--muted);line-height:1.4;margin:14px 2px}
-.dialog{width:min(94vw,520px);max-height:calc(100vh - 55px);border:1px solid var(--line);border-radius:14px;background:#fff;box-shadow:0 15px 50px #0003;padding:20px;color:var(--ink)}
-.dialog::backdrop{background:#0009}
-.dialog h2{font-size:21px;line-height:1.25;margin:0 0 6px}
-.dialog p{font-size:13px;color:var(--muted);margin:0 0 12px}
-.dialog label{display:block;font-size:13px;font-weight:700;margin:11px 0 4px}
-.dialog input,.dialog textarea{font:14px/1.35 Arial,sans-serif;width:100%;background:#fff;border:1px solid #d5cbc2;border-radius:8px;padding:10px;color:var(--ink)}
-.dialog textarea{resize:vertical;min-height:120px}
-.dialog-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
-.dialog-actions button{min-height:43px;border:0;border-radius:8px;padding:10px;font:700 13px Arial,sans-serif;cursor:pointer}
-.action{background:var(--orange);color:#171717}
-.cancel{background:#f0ece7;color:#38322c}
-.dialog .hint{font-size:11px;margin-top:10px}
-#prepared{margin-top:12px;border-left:3px solid var(--orange);background:#fff5eb;padding:9px 11px}
-#prepared[hidden]{display:none}
-#prepared a{font-weight:700}
+.contact-person{display:flex;width:100%;align-items:center;justify-content:center;gap:8px;border:0;border-radius:9px;background:var(--orange);color:#171717;min-height:43px;font:700 13px/1.2 Arial,sans-serif;padding:10px;cursor:pointer;text-decoration:none}
+.contact-person:focus-visible{outline:3px solid #1e1e1e;outline-offset:2px}
 @media(min-width:650px){.team-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.person{margin:0}.person .description{min-height:57px}}
 @media(max-width:480px){.intro{padding:16px}.intro h1{font-size:23px}.person{padding:12px 14px}.dialog{padding:16px}}
 </style>
@@ -56,64 +40,19 @@ h2.group-title{font-size:17px;margin:18px 1px 9px;line-height:1.3}
 </section>
 <h2 class="group-title">🏇 Direction de l’Écurie</h2>
 <div class="team-grid">
- <article class="person"><h3>Rodolphe HAMON</h3><p class="function">Gérant de l’Écurie Initial</p><p class="description">Direction générale, gestion des associés et suivi des chevaux.</p><button class="contact-person" type="button" data-person="rodolphe">✉️ Envoyer un message</button></article>
+ <article class="person"><h3>Rodolphe HAMON</h3><p class="function">Gérant de l’Écurie Initial</p><p class="description">Direction générale, gestion des associés et suivi des chevaux.</p><a class="contact-person" href="mailto:contact@ecurie-initial.com?subject=Message%20%C3%A0%20Rodolphe%20HAMON%20%E2%80%94%20Team%20Initial" aria-label="Envoyer un e-mail à Rodolphe HAMON">✉️ Envoyer un message</a></article>
 </div>
 <h2 class="group-title">🐎 Contributions sportives</h2>
 <div class="team-grid">
- <article class="person"><h3>Arnaud PUSKAS</h3><p class="function">Contribution sportive</p><p class="description">Participation au suivi des informations sportives.</p><button class="contact-person" type="button" data-person="arnaud">✉️ Envoyer un message</button></article>
- <article class="person"><h3>Nicolas BARRÉ</h3><p class="function">Contribution sportive</p><p class="description">Participation au suivi des informations sportives.</p><button class="contact-person" type="button" data-person="nicolas">✉️ Envoyer un message</button></article>
+ <article class="person"><h3>Arnaud PUSKAS</h3><p class="function">Contribution sportive</p><p class="description">Participation au suivi des informations sportives.</p><a class="contact-person" href="mailto:petidom1@hotmail.fr?subject=Message%20%C3%A0%20Arnaud%20PUSKAS%20%E2%80%94%20Team%20Initial" aria-label="Envoyer un e-mail à Arnaud PUSKAS">✉️ Envoyer un message</a></article>
+ <article class="person"><h3>Nicolas BARRÉ</h3><p class="function">Contribution sportive</p><p class="description">Participation au suivi des informations sportives.</p><a class="contact-person" href="mailto:nicolas.barre64@sfr.fr?subject=Message%20%C3%A0%20Nicolas%20BARR%C3%89%20%E2%80%94%20Team%20Initial" aria-label="Envoyer un e-mail à Nicolas BARRÉ">✉️ Envoyer un message</a></article>
 </div>
 <h2 class="group-title">📱 Communication et réseaux sociaux</h2>
 <div class="team-grid">
- <article class="person"><h3>Émilie MARÉCHAL</h3><p class="function">Community manager</p><p class="description">Communication de l’écurie et animation des réseaux sociaux.</p><button class="contact-person" type="button" data-person="emilie">✉️ Envoyer un message</button></article>
+ <article class="person"><h3>Émilie MARÉCHAL</h3><p class="function">Community manager</p><p class="description">Communication de l’écurie et animation des réseaux sociaux.</p><a class="contact-person" href="mailto:emiliemarechall@gmail.com?subject=Message%20%C3%A0%20%C3%89milie%20MAR%C3%89CHAL%20%E2%80%94%20Team%20Initial" aria-label="Envoyer un e-mail à Émilie MARÉCHAL">✉️ Envoyer un message</a></article>
 </div>
 
 </main>
-<dialog class="dialog" id="messageDialog" aria-labelledby="dialogTitle">
- <h2 id="dialogTitle">Envoyer un message</h2>
- <p>Votre message sera adressé à <strong id="recipientName"></strong> par l’intermédiaire de l’Écurie Initial.</p>
- <form id="messageForm">
-  <label for="senderName">Votre nom</label><input id="senderName" name="nom" maxlength="100" autocomplete="name" required>
-  <label for="senderEmail">Votre e-mail</label><input id="senderEmail" name="email" type="email" maxlength="254" autocomplete="email" required>
-  <label for="messageBody">Votre message</label><textarea id="messageBody" maxlength="3000" required></textarea>
-  <div class="dialog-actions"><button class="cancel" type="button" id="cancelMessage">Annuler</button><button class="action" type="submit">✉️ Préparer l'e-mail</button></div>
- </form>
- <p class="hint">Votre application de messagerie s'ouvrira : vous devrez encore appuyer sur « Envoyer ». Aucun message n'est envoyé automatiquement depuis ce formulaire.</p>
- <div id="prepared" hidden role="status">Si votre messagerie ne s'ouvre pas, <a id="openMail" href="mailto:contact@ecurie-initial.com">ouvrez l'e-mail préparé ici</a>.</div>
-</dialog>
-<script>
-(function(){
-'use strict';
-const recipients={rodolphe:'Rodolphe HAMON',emilie:'Émilie MARÉCHAL',arnaud:'Arnaud PUSKAS',nicolas:'Nicolas BARRÉ'};
-const dialog=document.getElementById('messageDialog');
-const form=document.getElementById('messageForm');
-let selected=null,previousFocus=null;
-document.querySelectorAll('button[data-person]').forEach(button=>button.addEventListener('click',()=>{
- const key=button.dataset.person;if(!Object.prototype.hasOwnProperty.call(recipients,key))return;
- selected=key;previousFocus=button;form.reset();document.getElementById('prepared').hidden=true;
- document.getElementById('recipientName').textContent=recipients[key];
- document.getElementById('dialogTitle').textContent='✉️ Contacter '+recipients[key];
- dialog.showModal();document.getElementById('senderName').focus();
-}));
-document.getElementById('cancelMessage').addEventListener('click',()=>dialog.close());
-dialog.addEventListener('close',()=>previousFocus?.focus());
-dialog.addEventListener('click',event=>{if(event.target===dialog)dialog.close()});
-form.addEventListener('submit',event=>{
- event.preventDefault();
- if(!selected||!form.reportValidity())return;
- const name=document.getElementById('senderName').value.trim();
- const email=document.getElementById('senderEmail').value.trim();
- const message=document.getElementById('messageBody').value.trim();
- if(!name||!email||!message)return;
- const subject='À l’attention de '+recipients[selected]+' — Team Initial';
- const body='Destinataire : '+recipients[selected]+'\nExpéditeur : '+name+'\nE-mail de réponse : '+email+'\n\nMessage :\n'+message+'\n\n---\nMessage préparé depuis la page Team Initial.';
- const link='mailto:contact@ecurie-initial.com?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
- const fallback=document.getElementById('openMail');fallback.href=link;
- document.getElementById('prepared').hidden=false;
- window.location.href=link;
-});
-})();
-</script>
 <script defer src="../nav.js?v=20261118teampublic1"></script>
 </body>
 </html>
