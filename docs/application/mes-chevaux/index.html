@@ -25,6 +25,7 @@
 .news-delete{display:inline-block;margin-top:10px;margin-left:12px;padding:7px 10px;border:1px solid #ddadaa;border-radius:8px;background:#fff2f0;color:#9a2521;font:700 12px Arial,sans-serif;cursor:pointer}
 .news-delete:disabled{opacity:.45;cursor:wait}
 #news-delete-status{min-height:16px;margin:6px 0;color:#1d6643;font-size:13px;font-weight:bold}
+#private-news .general-news{border-left-color:#171717!important;background:#fff7ee}
 </style><link rel="manifest" href="../manifest.webmanifest"><link rel="apple-touch-icon" href="../icon-ei-192.png"></head>
 <body><header><strong>ÉCURIE <span>INITIAL</span></strong><div style="font-size:12px;color:#ddd">Mon espace personnel</div></header><main>
 <p><a href="../">← Retour à l'application</a></p><h1>🐎 Mes chevaux</h1><p id="loading">Vérification de votre accès…</p>
@@ -76,6 +77,9 @@ async function setup(){
     const quick=el('a','✍️ Publier une information privée','button');
     quick.href='../administration/actualites/';
     $('welcome').after(quick);
+    const general=el('a','📣 Message général aux associés','button');
+    general.href='../administration/actualites/?general=1';
+    $('welcome').after(general);
   }
   try{
     const permissions=await Promise.all(['engagements','gains','valeurs','records'].map(section=>db.rpc('ei_peut_contribuer',{section})));
@@ -108,13 +112,20 @@ async function setup(){
   }));
   const infoId=new URLSearchParams(location.search).get('info');
   const isInfoId=/^[0-9]{1,18}$/.test(infoId||'');
+  const generalId=new URLSearchParams(location.search).get('general');
+  const isGeneralId=/^[0-9]{1,18}$/.test(generalId||'');
+  let generalQuery=db.from('actualites_generales_privees')
+    .select('id,titre,contenu,media_path,media_type,created_at')
+    .order('created_at',{ascending:false}).limit(30);
+  if(isGeneralId)generalQuery=generalQuery.eq('id',generalId);
   let privateQuery=db.from('actualites_chevaux_privees')
     .select('id,cheval_slug,titre,contenu,media_path,media_type,created_at')
     .in('cheval_slug',mine.map(p=>p.cheval_slug))
     .order('created_at',{ascending:false}).limit(30);
   if(isInfoId)privateQuery=privateQuery.eq('id',infoId);
-  const privatePromise=mine.length?privateQuery:Promise.resolve({data:[],error:null});
-  const [pubResult,privResult]=await Promise.allSettled([publicPromise,privatePromise]);
+  const privatePromise=mine.length&&!isGeneralId?privateQuery:Promise.resolve({data:[],error:null});
+  const generalPromise=isInfoId?Promise.resolve({data:[],error:null}):generalQuery;
+  const [pubResult,privResult,genResult]=await Promise.allSettled([publicPromise,privatePromise,generalPromise]);
   let editorial=null,profiles=null;
   if(pubResult.status==='fulfilled'){
     [editorial,profiles]=pubResult.value;
@@ -172,55 +183,63 @@ async function setup(){
     row.append(top,el('small',[displayDate(result.date),result.hippodrome||''].filter(Boolean).join(' · '),'muted'));
     perfBox.append(row);
   }
-  if(privResult.status==='fulfilled'&&!privResult.value.error){
-    for(const n of privResult.value.data||[]){
-      if(!bySlug.has(n.cheval_slug))continue;
-      const box=el('article',undefined,'news');
-      box.append(el('strong',(bySlug.get(n.cheval_slug)?.cheval_nom||'Cheval')+' · '+n.titre));
-      if(n.contenu)box.append(el('p',n.contenu));
-      if(n.media_path&&['image','video'].includes(n.media_type)){
-        const {data:media,error:mediaError}=await db.storage.from('ei-chevaux-prives')
-          .createSignedUrl(n.media_path,3600);
-        if(!mediaError&&media?.signedUrl){
-          const element=el(n.media_type==='image'?'img':'video');
-          element.src=media.signedUrl;
-          if(n.media_type==='image'){element.alt='Photo privée : '+n.titre;element.loading='lazy'}
-          else{element.controls=true;element.preload='metadata';element.playsInline=true}
-          box.append(element);
-        }else box.append(el('p','Média privé indisponible pour le moment.','muted'));
-      }
-      box.append(el('small',formatDate(n.created_at)));
-      if(member.administrateur){
-        const remove=el('button','🗑 Supprimer cette publication','news-delete');
-        remove.type='button';
-        remove.setAttribute('aria-label','Supprimer la publication '+n.titre+' du cheval '+(bySlug.get(n.cheval_slug)?.cheval_nom||n.cheval_slug));
-        remove.onclick=async()=>{
-          if(!confirm('Supprimer définitivement cette publication concernant '+(bySlug.get(n.cheval_slug)?.cheval_nom||n.cheval_slug)+' ?\nLe texte et la photo/vidéo seront retirés. Les notifications déjà reçues ne peuvent pas être effacées.'))return;
-          remove.disabled=true;
-          $('news-delete-status').textContent='Suppression de la publication…';
-          try{
-            const {data:deleted,error:deleteError}=await db.from('actualites_chevaux_privees')
-              .delete().eq('id',n.id).eq('cheval_slug',n.cheval_slug).select('id,media_path').single();
-            if(deleteError||!deleted)throw(deleteError||new Error('Publication non supprimée.'));
-            box.remove();
-            $('news-delete-status').textContent='Publication « '+n.titre+' » supprimée.';
-            if(deleted.media_path){
-              const {error:mediaError}=await db.storage.from('ei-chevaux-prives').remove([deleted.media_path]);
-              if(mediaError)$('news-delete-status').textContent+=' Le fichier associé n’a pas pu être effacé du stockage : '+mediaError.message;
-            }
-          }catch(err){
-            remove.disabled=false;
-            $('news-delete-status').textContent='Suppression impossible : '+(err?.message||'erreur inconnue');
-          }
-        };
-        box.append(remove);
-      }
-      $('private-news').append(box);
-      $('newsSection').hidden=false;
+  const horseNews=privResult.status==='fulfilled'&&!privResult.value.error?(privResult.value.data||[]):[];
+  const generalNews=genResult.status==='fulfilled'&&!genResult.value.error?(genResult.value.data||[]):[];
+  if(privResult.status==='rejected'||privResult.value?.error||genResult.status==='rejected'||genResult.value?.error)
+    console.warn('Une partie des informations privées est indisponible.');
+  const news=[...horseNews.map(n=>({...n,isGeneral:false})),
+    ...generalNews.map(n=>({...n,isGeneral:true}))]
+    .sort((a,b)=>b.created_at.localeCompare(a.created_at)).slice(0,40);
+  for(const n of news){
+    if(!n.isGeneral&&!bySlug.has(n.cheval_slug))continue;
+    const box=el('article',undefined,'news'+(n.isGeneral?' general-news':''));
+    box.append(el('strong',n.isGeneral?'📣 Écurie Initial · '+n.titre:(bySlug.get(n.cheval_slug)?.cheval_nom||'Cheval')+' · '+n.titre));
+    if(n.contenu)box.append(el('p',n.contenu));
+    const bucket=n.isGeneral?'ei-generales-privees':'ei-chevaux-prives';
+    if(n.media_path&&['image','video'].includes(n.media_type)){
+      const {data:media,error:mediaError}=await db.storage.from(bucket)
+        .createSignedUrl(n.media_path,3600);
+      if(!mediaError&&media?.signedUrl){
+        const element=el(n.media_type==='image'?'img':'video');
+        element.src=media.signedUrl;
+        if(n.media_type==='image'){element.alt='Photo privée : '+n.titre;element.loading='lazy'}
+        else{element.controls=true;element.preload='metadata';element.playsInline=true}
+        box.append(element);
+      }else box.append(el('p','Média privé indisponible pour le moment.','muted'));
     }
-    if(window.location.hash==='#nouvelles-privees'&&!$('newsSection').hidden)
-      $('newsSection').scrollIntoView({behavior:'smooth',block:'start'});
+    box.append(el('small',formatDate(n.created_at)));
+    if(member.administrateur){
+      const remove=el('button','🗑 Supprimer cette publication','news-delete');
+      remove.type='button';
+      remove.setAttribute('aria-label','Supprimer '+n.titre+(n.isGeneral?' pour tous les associés':' du cheval '+(bySlug.get(n.cheval_slug)?.cheval_nom||n.cheval_slug)));
+      remove.onclick=async()=>{
+        const target=n.isGeneral?'ce message général':'cette publication pour '+(bySlug.get(n.cheval_slug)?.cheval_nom||n.cheval_slug);
+        if(!confirm('Supprimer définitivement '+target+' ?\\nLes notifications déjà reçues ne pourront pas être effacées.'))return;
+        remove.disabled=true;
+        $('news-delete-status').textContent='Suppression de la publication…';
+        try{
+          let query=db.from(n.isGeneral?'actualites_generales_privees':'actualites_chevaux_privees').delete().eq('id',n.id);
+          if(!n.isGeneral)query=query.eq('cheval_slug',n.cheval_slug);
+          const {data:deleted,error:deleteError}=await query.select('id,media_path').single();
+          if(deleteError||!deleted)throw(deleteError||new Error('Publication non supprimée.'));
+          box.remove();
+          $('news-delete-status').textContent='Publication « '+n.titre+' » supprimée.';
+          if(deleted.media_path){
+            const {error:mediaError}=await db.storage.from(bucket).remove([deleted.media_path]);
+            if(mediaError)$('news-delete-status').textContent+=' Le fichier associé n’a pas pu être effacé du stockage : '+mediaError.message;
+          }
+        }catch(err){
+          remove.disabled=false;
+          $('news-delete-status').textContent='Suppression impossible : '+(err?.message||'erreur inconnue');
+        }
+      };
+      box.append(remove);
+    }
+    $('private-news').append(box);
+    $('newsSection').hidden=false;
   }
+  if(window.location.hash==='#nouvelles-privees'&&!$('newsSection').hidden)
+    $('newsSection').scrollIntoView({behavior:'smooth',block:'start'});
   const profilesBySlug=new Map((profiles?.horses||[]).map(h=>[h.id,h]));
   const nodes=[];
   for(const p of mine){
