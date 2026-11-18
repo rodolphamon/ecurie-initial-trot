@@ -51,12 +51,23 @@ const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&
 let profiles=[],editor={},trot={},galop={},liveEng={},liveGains={},liveValues={},liveRecords={},liveStatuses={},canStatus=false,canEng=false,canGain=false,canValue=false,canRecord=false,active='eng',events=[],horseId='';
 const fields=[['date','Date','date'],['hippodrome','Hippodrome','text'],['statut','Statut','select'],['heure','Heure de départ','time'],['prix','Prix de la course','text'],['course','Course (ex. R1C5)','text'],['type','Discipline (plat, obstacle, attelé, monté)','text'],['type_course','Type de course','courseTypeSelect'],['surface','Surface','surfaceSelect'],['distance','Distance','text'],['numero','N° du cheval','text'],['driver','Driver (trot)','text'],['jockey','Jockey (galop)','text'],['source_description','Source / justification','text']];
 const statuses=[['engage','Engagé'],['declare','Déclaré partant'],['partant','Partant confirmé'],['non-partant','Non-partant'],['forfait','Forfait'],['elimine','Éliminé'],['qualification','Qualification']];
-const courseTypes=[['','— Non renseigné —'],['Handicap','Handicap'],['Réclamer','Réclamer / À réclamer'],
-['Maiden','Maiden'],['Inédits','Inédits'],['Course à conditions','Course à conditions'],
-['Classe 1','Classe 1'],['Classe 2','Classe 2'],['Classe 3','Classe 3'],['Classe 4','Classe 4'],
-['Listed','Listed'],['Groupe 1','Groupe 1'],['Groupe 2','Groupe 2'],['Groupe 3','Groupe 3'],
-['Course de série','Course de série (trot)'],['Course européenne','Course européenne (trot)'],
-['Course amateurs','Course amateurs'],['Qualification','Qualification'],['Autre','Autre']];
+const courseTypes=[
+ ['','— Non renseigné —'],
+ ['Handicap','Handicap'],
+ ['Réclamer','Réclamer / À réclamer'],
+ ['Maiden','Maiden'],['Inédits','Inédits'],['Course à conditions','Course à conditions'],
+ ['Classe 1','Classe 1'],['Classe 2','Classe 2'],['Classe 3','Classe 3'],['Classe 4','Classe 4'],
+ ['Listed','Listed'],
+ ['Groupe 1','Groupe I'],['Groupe 2','Groupe II'],['Groupe 3','Groupe III'],
+ ['Course A','Course A'],['Course B','Course B'],['Course C','Course C'],
+ ['Course D','Course D'],['Course E','Course E'],['Course F','Course F'],['Course G','Course G'],
+ ['Course européenne','Course européenne (trot)'],
+ ['Course amateurs','Amateurs'],
+ ['Cavalières','Cavalières'],
+ ['Gentlemen','Gentlemen'],
+ ['Cavalières et Gentlemen','Cavalières et Gentlemen'],
+ ['Qualification','Qualification'],['Autre','Autre']
+];
 const surfaces=[['','— Non renseignée —'],['PSF','PSF'],['Gazon','Gazon'],['Herbe','Herbe'],['Sable','Sable']];
 function msg(t,bad=false){$('msg').textContent=t;$('msg').className=bad?'bad':'good'}
 async function getJson(path){const r=await fetch(path+'?v='+Date.now(),{cache:'no-store'});if(!r.ok)throw Error('Données indisponibles : '+path);return r.json()}
