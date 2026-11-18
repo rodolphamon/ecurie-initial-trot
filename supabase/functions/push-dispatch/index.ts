@@ -15,7 +15,9 @@ const PILOT_LAUNCH_AT = Date.parse("2026-11-30T23:00:00Z");
 const editorialUrl = "https://raw.githubusercontent.com/rodolphamon/ecurie-initial-trot/main/docs/chevaux/data/editorial.json";
 const horsesUrl = APP + "/chevaux/data/chevaux.json";
 const NON_PARTANT = new Set(["non-partant", "np"]);
-const CONFIRMED = new Set(["partant", "declare"]);
+// Seul le statut explicitement validé « Partant confirmé » déclenche les alertes.
+// « declare » peut résulter d’une simple déclaration de monte, sans partant officiel.
+const CONFIRMED = new Set(["partant"]);
 type Event = { date: string; hippodrome?: string; heure?: string; statut?: string; prix?: string; course?: string };
 type Race = { event_key: string; cheval_slug: string; cheval_nom: string; date_course: string; hippodrome: string; course: string|null; statut: string; depart: string|null };
 type Alert = { id: string; categorie: string; cheval_slug: string|null; payload: Record<string, unknown>; expires_at: string };
@@ -375,10 +377,13 @@ async function run() {
       if(!bootstrap&&(!old||old.statut!==row.statut)){
         const detail={nom:row.cheval_nom,hippodrome:row.hippodrome,date:row.date_course,heure:e.heure||"",course:row.course};
         if(CONFIRMED.has(row.statut)&&!CONFIRMED.has(old?.statut||"") && row.date_course>=clock.date) {
-          await saveAlert({id:"confirmed:"+row.event_key,categorie:"confirmed",cheval_slug:slug,payload:detail,expires_at:iso(now+6*3600_000)});counts.alerts++;
+          // ID distinct des anciennes alertes « confirmed: » déclenchées à tort
+          // pour une simple déclaration de monte : conserver l’historique et
+          // permettre une seule alerte lors de la validation réelle.
+          await saveAlert({id:"confirmed-final:"+row.event_key,categorie:"confirmed",cheval_slug:slug,payload:detail,expires_at:iso(now+6*3600_000)});counts.alerts++;
         }
         // Seul le NON-PARTANT peut générer une notification de retrait.
-        // Il faut une déclaration antérieure : "declare" ou "partant".
+        // Il faut un partant confirmé antérieur ; « declare » ne suffit pas.
         // Les statuts "forfait" et "elimine" n'envoient AUCUNE notification.
         if(old && row.date_course>=clock.date &&
            CONFIRMED.has(old.statut) && NON_PARTANT.has(row.statut)){
@@ -482,7 +487,12 @@ async function run() {
   for(const alert of alerts||[]){
     // Un forfait annule les rappels et confirmations encore dans la file d'envoi.
     if(alert.categorie==="confirmed"||alert.categorie==="before15"){
-      const raceKey=alert.id.slice(alert.categorie.length+1);
+      // Ne jamais réexpédier les anciennes fausses alertes « confirmed: ».
+      // Seules les nouvelles confirmations explicites sont distribuées.
+      if(alert.categorie==="confirmed" && !alert.id.startsWith("confirmed-final:"))continue;
+      const raceKey=alert.categorie==="confirmed"
+        ?alert.id.slice("confirmed-final:".length)
+        :alert.id.slice("before15:".length);
       if(!CONFIRMED.has(currentRaceStates.get(raceKey)||""))continue;
     }
     if(alert.categorie==="withdrawn"){
