@@ -1,6 +1,6 @@
 {
   "schema": "ecurie-initial-profils-v1",
-  "updated_at": "2026-11-17",
+  "updated_at": "2026-11-18",
   "note": "Pour les performances : au maximum les cinq dernières sorties documentées, dont les sources sont conservées en interne pour contrôle. Les classements exacts n'ont été indiqués que lorsqu'ils étaient disponibles. Les jeunes chevaux inédits n'ont pas de performances inventées. Les engagements existants sont conservés ; les nouveaux engagements au trot du 13/11/2026 sont ajoutés sans reprendre les horaires. Résultats du 13/11/2026 (MONA LISA STARDUST 7e, VICTORIA SECRET non placée) communiqués par l'Écurie Initial.",
   "performances": {
     "memphis-belle": [
@@ -1109,7 +1109,11 @@
         "source_url": "https://pro.france-galop.com/EspacePro/Course/CourseDetailsPage?anneeCourse=2026&specialite=P&numProgramme=6508",
         "code_programme": "6508",
         "part": "A (20 %)",
-        "numero": 4
+        "numero": 4,
+        "reunion_annulee": true,
+        "mention": "RÉUNION ANNULÉE",
+        "motif_annulation": "Réunion d'Amiens du 18 novembre 2026 annulée",
+        "notifier_partant": false
       }
     ],
     "giorgiana": [
