@@ -19,9 +19,10 @@
   const podiumsBase = new URL("palmares/", siteBase);
   const associesBase = new URL("?espace=associes", applicationBase);
   const contactBase = new URL("contact/", applicationBase);
+  const teamBase = new URL("team-initial/", applicationBase);
   const devenirBase = new URL("devenir-associe/", applicationBase);
   const notificationsBase = new URL("notifications/", applicationBase);
-  const isContact = currentPath.startsWith(contactBase.pathname) || currentPath.startsWith(devenirBase.pathname);
+  const isContact = currentPath.startsWith(contactBase.pathname) || currentPath.startsWith(devenirBase.pathname) || currentPath.startsWith(teamBase.pathname);
   const onPrivate = currentPath.startsWith(applicationBase.pathname) &&
     (currentPath !== applicationBase.pathname || new URLSearchParams(location.search).get("espace") === "associes") &&
     !isContact && !currentPath.startsWith(notificationsBase.pathname) && !currentPath.startsWith(new URL("actualites/",applicationBase).pathname);
@@ -103,6 +104,13 @@
   }
 
   document.body.appendChild(nav);
+  }
+
+  // Les pages Contact, Devenir associé et Team Initial sont publiques avant le lancement.
+  // Le contrôle strict des pages privées reste inchangé.
+  if (installed && beforeOpening && isContact) {
+    mountNavigation();
+    return;
   }
 
   if (installed && beforeOpening) {
