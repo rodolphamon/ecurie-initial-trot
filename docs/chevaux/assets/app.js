@@ -26,7 +26,7 @@ try{
    client.from('ei_contributions_valeurs').select('cheval_slug,discipline_valeur,valeur'),
    client.from('ei_contributions_records').select('cheval_slug,chrono'),
    client.from('ei_statuts_chevaux').select('cheval_slug,au_repos'),
-   client.from('ei_effectif_gestion').select('cheval_slug,nom,discipline,casaque,entraineur,lien_officiel,nouveau,actif,date_sortie'),
+   client.from('ei_effectif_gestion').select('cheval_slug,nom,discipline,casaque,entraineur,lien_officiel,nouveau,actif,date_sortie,annee_naissance,pere,mere,pere_de_mere'),
    client.from('ei_photos_chevaux').select('cheval_slug,photo_url')
  ]);
  if(en.error||ga.error||va.error||re.error||st.error||ef.error||ph.error)throw Error('Source des contributions indisponible');
@@ -61,14 +61,18 @@ try{
      id:row.cheval_slug,name:row.nom,discipline:row.discipline,
      trainer:row.entraineur,casaque:row.casaque,
      horseLink:row.lien_officiel||old?.horseLink||null,
-     active:row.actif, newHorse:row.nouveau,dateSortie:row.date_sortie
+     active:row.actif, newHorse:row.nouveau,dateSortie:row.date_sortie,
+     birth_year:row.annee_naissance??old?.birth_year??null,
+     origines:(row.pere||row.mere||row.pere_de_mere||old?.origines)?{
+       pere:row.pere??old?.origines?.pere??'',mere:row.mere??old?.origines?.mere??'',
+       pere_de_mere:row.pere_de_mere??old?.origines?.pere_de_mere??''}:null
    };
    const current={...old,...update};
    known.set(row.cheval_slug,current);
    valid.add(row.cheval_slug);
    if(row.casaque==='galop'){
      const previous=gallop.get(row.cheval_slug)||{};
-     gallop.set(row.cheval_slug,{...previous,trainer:row.entraineur,discipline:row.discipline});
+     gallop.set(row.cheval_slug,{...previous,trainer:row.entraineur,discipline:row.discipline,birth_year:current.birth_year,origines:current.origines});
    }else if(!trot.horses?.[row.cheval_slug]){
      trot.horses=trot.horses||{};
      trot.horses[row.cheval_slug]={};
