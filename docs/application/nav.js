@@ -59,7 +59,7 @@
 
   function mountNavigation() {
   const tabs = [
-    { label: "🏁 Résultats", href: chevauxBase.href, active: currentPath.startsWith(chevauxBase.pathname) },
+    { label: "🏁 Résultats & Chevaux", href: chevauxBase.href, active: currentPath.startsWith(chevauxBase.pathname) },
     { label: "📅 Partants", href: coursesBase.href, active: currentPath.startsWith(coursesBase.pathname) },
     { label: "🏆 Podiums", href: podiumsBase.href, active: currentPath.startsWith(podiumsBase.pathname) },
     { label: "🔒 Associés", href: associesBase.href, active: onPrivate },
@@ -89,6 +89,7 @@
     #ei-app-nav a[aria-current="page"] { background: #37302b; color: #ffa568 !important; font-weight: 700 !important; }
     #ei-app-nav a:focus-visible { outline: 2px solid #f47721; outline-offset: -2px; }
     #ei-app-nav a:active { background: #4b362a; }
+    @media (max-width: 759px) { #ei-app-nav a:first-child { white-space: normal; font-size: 10px !important; line-height: 1.15; padding-left: 1px; padding-right: 1px; } }
     @media (max-width: 370px) { #ei-app-nav a { font-size: 10px !important; letter-spacing: -.2px; padding-left: 0; padding-right: 0; } }
     @media (min-width: 760px) { #ei-app-nav { max-width: none; } #ei-app-nav a { font-size: 14px !important; } }
   `;
