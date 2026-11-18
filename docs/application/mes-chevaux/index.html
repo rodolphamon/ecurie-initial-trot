@@ -34,17 +34,17 @@
 @media(min-width:670px){.quick-actions{grid-template-columns:repeat(2,minmax(0,1fr))}}
 </style><link rel="manifest" href="../manifest.webmanifest"><link rel="apple-touch-icon" href="../icon-ei-192.png"></head>
 <body><header><strong>ÉCURIE <span>INITIAL</span></strong><div style="font-size:12px;color:#ddd">Mon espace personnel</div></header><main>
-<p><a href="../">← Retour à l'application</a></p><h1>🐎 Mes chevaux</h1><p id="loading">Vérification de votre accès…</p>
+<p><a href="../">← Retour à l'application</a></p><h1 id="privateTitle">🐎 Mes chevaux</h1><p id="loading">Vérification de votre accès…</p>
 <section class="card" id="locked" hidden><h2>🔒 Espace réservé</h2><p>Les fiches privées sont accessibles uniquement aux associés propriétaires autorisés.</p><a class="button" href="../connexion/">Se connecter</a></section>
 <div id="private" hidden>
 <p id="welcome" class="muted"></p>
 <nav id="quick-actions" class="quick-actions" aria-label="Raccourcis de gestion" hidden></nav>
 <div class="dash-stats">
-  <div class="dash-stat"><b id="horse-count">—</b><small>Chevaux dans mes participations</small></div>
+  <div class="dash-stat"><b id="horse-count">—</b><small id="horseCountLabel">Chevaux dans mes participations</small></div>
   <div class="dash-stat"><b id="starters-count">—</b><small>Prochains partants confirmés</small></div>
 </div>
 <section class="card">
-  <div class="card-heading"><h2>📅 Mes prochaines courses</h2><a href="../../engagements/">Toutes les courses</a></div>
+  <div class="card-heading"><h2 id="racesHeading">📅 Mes prochaines courses</h2><a href="../../engagements/">Toutes les courses</a></div>
   <div id="next-races"></div>
 </section>
 <section class="card" id="newsSection" hidden>
@@ -54,7 +54,7 @@
   <h2>🏆 Dernières performances</h2><div id="last-results"></div>
 </section>
 <section class="card">
-  <div class="card-heading"><h2>Mes participations</h2><span id="horse-shown" class="muted"></span></div>
+  <div class="card-heading"><h2 id="participationsHeading">Mes participations</h2><span id="horse-shown" class="muted"></span></div>
   <p><input id="horse-search" type="search" placeholder="Rechercher un de mes chevaux…" aria-label="Rechercher parmi mes chevaux"></p>
   <div id="horses" class="horse-grid"></div>
 </section>
@@ -79,7 +79,15 @@ async function setup(){
   const{data:member,error:memberError}=await db.from('associes')
     .select('nom_affiche,actif,administrateur,type_compte').eq('user_id',user.id).maybeSingle();
   if(memberError||!member?.actif||member.type_compte==='exterieur'){$('locked').hidden=false;return}
-  $('welcome').textContent='Bienvenue '+member.nom_affiche+' !';
+  const observer=member.type_compte==='observateur';
+  $('welcome').textContent=observer?'Bienvenue '+member.nom_affiche+' · Équipe communication — lecture seule.':'Bienvenue '+member.nom_affiche+' !';
+  if(observer){
+    $('privateTitle').textContent='🐎 Toute l’Écurie';
+    $('horseCountLabel').textContent='Chevaux de l’Écurie';
+    $('racesHeading').textContent='📅 Prochaines courses de l’Écurie';
+    $('participationsHeading').textContent='Tous les chevaux';
+    $('horse-search').placeholder='Rechercher un cheval…';
+  }
   if(member.administrateur){
     const quick=el('a','✍️ Publier une information privée','button');
     quick.href='../administration/actualites/';
@@ -109,10 +117,12 @@ async function setup(){
   if(partsError)throw Error('Impossible de charger vos participations.');
   // Ne montrer dans l'espace courant que les chevaux encore à l'effectif.
   // Les liens de propriété historiques restent conservés en base.
-  const {data:managedHorses,error:managedError}=await db.from('ei_effectif_gestion').select('cheval_slug,nouveau,actif');
+  const {data:managedHorses,error:managedError}=await db.from('ei_effectif_gestion').select('cheval_slug,nom,nouveau,actif');
   if(managedError)throw Error('Impossible de vérifier l’effectif actuel.');
   const management=new Map((managedHorses||[]).map(row=>[row.cheval_slug,row]));
-  const mine=(parts||[]).filter(p=>management.get(p.cheval_slug)?.actif!==false);
+  const mine=observer
+    ? (managedHorses||[]).filter(h=>h.actif).map(h=>({cheval_slug:h.cheval_slug,cheval_nom:h.nom||h.cheval_slug}))
+    : (parts||[]).filter(p=>management.get(p.cheval_slug)?.actif!==false);
   $('horse-count').textContent=mine.length;
   $('private').hidden=false;
   const bySlug=new Map(mine.map(p=>[p.cheval_slug,p]));
