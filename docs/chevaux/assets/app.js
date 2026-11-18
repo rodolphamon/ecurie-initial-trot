@@ -20,14 +20,17 @@ try{const q=await fetch(base+'data/qualifications.json',{cache:'no-store'});if(q
 try{
  const {createClient}=await import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm');
  const client=createClient('https://yeecwaaizmvrhwobukfa.supabase.co','sb_publishable_xUy2EJA3u3cKWl8BB4GNPQ_qhV9Pes3');
- const [en,ga,va,re]=await Promise.all([
+ const [en,ga,va,re,st]=await Promise.all([
    client.from('ei_contributions_engagements').select('cheval_slug,engagements'),
    client.from('ei_contributions_gains').select('cheval_slug,gains'),
    client.from('ei_contributions_valeurs').select('cheval_slug,discipline_valeur,valeur'),
-   client.from('ei_contributions_records').select('cheval_slug,chrono')
+   client.from('ei_contributions_records').select('cheval_slug,chrono'),
+   client.from('ei_statuts_chevaux').select('cheval_slug,au_repos')
  ]);
- if(en.error||ga.error||va.error||re.error)throw Error('Source des contributions indisponible');
+ if(en.error||ga.error||va.error||re.error||st.error)throw Error('Source des contributions indisponible');
  const valid=new Set((all.horses||[]).map(h=>h.id));
+ const restStatuses=Object.fromEntries((st.data||[]).filter(row=>valid.has(row.cheval_slug)).map(row=>[row.cheval_slug,row.au_repos]));
+ for(const p of all.horses||[])if(Object.hasOwn(restStatuses,p.id))p.status=restStatuses[p.id]?'au repos':'';
  editor.engagements=editor.engagements||{};
  for(const row of en.data||[])if(valid.has(row.cheval_slug)&&Array.isArray(row.engagements))
    editor.engagements[row.cheval_slug]=row.engagements;
