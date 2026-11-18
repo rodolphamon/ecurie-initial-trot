@@ -31,6 +31,15 @@
 #registryPanel .registry-row .registry-name{font-weight:bold;overflow-wrap:anywhere}
 #registryPanel .registry-row .registry-count{font-size:12px;color:#666}
 @media(max-width:650px){#registryPanel .registry-row{grid-template-columns:minmax(0,1fr) auto;gap:7px}}
+/* Suivi de l'inscription lisible sans confondre compte actif et connexion. */
+#members td:nth-child(3){min-width:145px}
+.registration-state{display:block;font-size:12px;line-height:1.3;white-space:normal}
+.registration-connecte{color:#207344}
+.registration-email_confirme{color:#9b5b08}
+.registration-invitation_en_attente{color:#8d5400}
+.registration-inconnu{color:#777}
+#members td:nth-child(3) small{display:block;margin-top:4px;font-size:11px;line-height:1.25;color:#666}
+@media(min-width:900px){main{max-width:1080px}}
 /* Administration mobile : chaque associé tient sur deux rangées, sans défilement horizontal. */
 .members-table-wrap{width:100%}
 @media(max-width:650px){
@@ -89,7 +98,7 @@
   <a class="admin-hub-link" href="contributeurs/"><strong>📝 Contributeurs</strong><small>Accès aux modifications sportives</small></a>
   <a class="admin-hub-link" href="../diagnostic-notifications/"><strong>🔔 Notifications</strong><small>Vérifier les alertes sur votre appareil</small></a>
  </div>
-</section><div class="panel" id="associesPanel"><h1>Gestion des associés</h1><p id="loading">Vérification des droits d'administrateur…</p><p id="error" role="alert"></p><div id="denied" hidden><p>Cette rubrique est réservée à l'administrateur de l'Écurie Initial. Connectez-vous avec votre compte autorisé.</p><a href="../connexion/">Se connecter</a></div><div id="content" hidden><p>Voici les comptes enregistrés dans l'espace privé. Seuls les associés actifs peuvent consulter les publications.</p><div class="members-table-wrap"><table><thead><tr><th>Associé</th><th>Statut</th><th>Rôle</th><th>Accès</th><th>Gestion</th></tr></thead><tbody id="members"></tbody></table></div><p class="muted" id="count"></p></div></div><div class="panel" id="registryPanel" hidden>
+</section><div class="panel" id="associesPanel"><h1>Gestion des associés</h1><p id="loading">Vérification des droits d'administrateur…</p><p id="error" role="alert"></p><div id="denied" hidden><p>Cette rubrique est réservée à l'administrateur de l'Écurie Initial. Connectez-vous avec votre compte autorisé.</p><a href="../connexion/">Se connecter</a></div><div id="content" hidden><p>Voici les comptes enregistrés dans l'espace privé. Seuls les associés actifs peuvent consulter les publications.</p><div class="members-table-wrap"><table><thead><tr><th>Associé</th><th>Statut</th><th>Inscription</th><th>Rôle</th><th>Accès</th><th>Gestion</th></tr></thead><tbody id="members"></tbody></table></div><p class="muted" id="count"></p></div></div><div class="panel" id="registryPanel" hidden>
 <h2>📒 Répertoire des associés</h2>
 <p>Retrouvez ici les personnes de votre liste initiale, même si elles n'ont pas encore créé leur compte. Aucun e-mail n'est envoyé depuis cette liste.</p>
 <label for="registrySearch">Rechercher un associé déjà répertorié</label>
@@ -136,7 +145,7 @@
 import {createClient} from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
 const db=createClient('https://yeecwaaizmvrhwobukfa.supabase.co','sb_publishable_xUy2EJA3u3cKWl8BB4GNPQ_qhV9Pes3');
 const $=id=>document.getElementById(id);
-let selectedMember=null,emailMember=null,roster=[],rosterLoaded=false,registeredNames=new Set(),registryOwners=[],registryLoadError='';
+let selectedMember=null,emailMember=null,roster=[],rosterLoaded=false,registeredNames=new Set(),registryOwners=[],registryLoadError='',registrationStatuses={};
 const sortFr=(a,b)=>a.localeCompare(b,'fr',{sensitivity:'base'});
 const normName=s=>(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();
 function status(id,value){$(id).textContent=value}
@@ -334,13 +343,34 @@ async function init(){
   const {data:me,error:roleError}=await db.from('associes').select('administrateur,actif').eq('user_id',user.id).maybeSingle();
   if(roleError||!me?.actif||!me.administrateur){$('denied').hidden=false;return}
   const {data:members,error}=await db.from('associes').select('user_id,nom_affiche,actif,administrateur').order('nom_affiche');
+  try {
+    const tracking=await action({action:'list_registration_status'});
+    registrationStatuses=Object.fromEntries((tracking.inscriptions||[]).map(row=>[row.user_id,row]));
+  }catch(err){registrationStatuses={};console.warn('Suivi des inscriptions indisponible',err.message)}
+
   if(error)throw error;
   registeredNames=new Set(members.map(m=>normName(m.nom_affiche)));
   for(const m of members){
    const tr=make('tr');
-   for(const value of [m.nom_affiche,m.actif?'Actif':'Suspendu',m.administrateur?'Administrateur':'Associé']){
+   for(const value of [m.nom_affiche,m.actif?'Actif':'Suspendu']){
     const td=make('td',value);tr.append(td);
    }
+   const registrationCell=make('td');
+   const registration=registrationStatuses[m.user_id];
+   const inscriptionLabels={connecte:'Connexion effectuée',email_confirme:'E-mail confirmé',invitation_en_attente:'Invitation en attente',inconnu:'Non vérifiable'};
+   const state=registration?.etat||'inconnu';
+   const statusText=make('strong',inscriptionLabels[state]||'Non vérifiable');
+   statusText.className='registration-state registration-'+state;
+   registrationCell.append(statusText);
+   if(registration?.derniere_connexion){
+     const date=new Date(registration.derniere_connexion);
+     if(!Number.isNaN(date.getTime())){
+       const detail=make('small','Dernière connexion : '+date.toLocaleString('fr-FR',{dateStyle:'short',timeStyle:'short'}));
+       registrationCell.append(detail);
+     }
+   }
+   tr.append(registrationCell);
+   const roleCell=make('td',m.administrateur?'Administrateur':'Associé');tr.append(roleCell);
    const access=make('td');
    if(!m.administrateur){
     const b=make('button',m.actif?'Suspendre':'Réactiver');b.type='button';
