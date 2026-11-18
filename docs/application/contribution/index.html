@@ -6,7 +6,7 @@
 h1{font-size:27px;margin:4px 0 10px}h2{font-size:20px;margin:0 0 10px}a{color:#a34b0d}.muted{color:#69615c}.card{padding:19px;background:#fff;border:1px solid #e9ddd2;border-radius:14px;margin:15px 0}.flex{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:15px 0;grid-auto-rows:minmax(70px,auto)}.tabs button{background:white;color:#222;border:1px solid #e6c8b0;width:100%;height:100%;min-width:0;min-height:70px;white-space:normal;text-align:center;line-height:1.25;padding:12px 8px;overflow-wrap:break-word}.tabs button.on{background:#171717;color:#fff}
 button,.btn{font:inherit;cursor:pointer;padding:10px 15px;background:#f47721;color:#1b1b1b;border:0;border-radius:9px;font-weight:750;text-decoration:none;display:inline-block}button:disabled{opacity:.5;cursor:wait}.outline{background:#f3f0ed}.danger{background:#f8e7e5;color:#8b211d}.row{border:1px solid #eadfd4;border-radius:12px;background:#fefdfc;margin:12px 0;padding:14px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.row-actions{grid-column:1/-1;display:flex;justify-content:flex-end}
 label{display:block;font-weight:bold;font-size:13px;margin-bottom:6px}input,select,textarea{width:100%;border:1px solid #d8c9ba;background:white;border-radius:8px;padding:11px;font:inherit;color:#222}textarea{min-height:72px;resize:vertical}input:focus,select:focus,textarea:focus{outline:2px solid #f47721}#msg{font-weight:650;min-height:20px;margin:12px 0}#msg.bad{color:#a22}#msg.good{color:#157044}[hidden]{display:none!important}
-.notice{border-left:4px solid #f47721;background:#fff6ee;padding:12px 15px}#obstacleValueBlock{margin-top:20px;padding-top:14px;border-top:1px solid #e9ddd2}#valueSection h3,#gainSection h3{margin:18px 0 8px;font-size:17px}#combinedGalop,#combinedTrot,#combinedObstacle{border-top:1px solid #e9ddd2;margin-top:16px;padding-top:12px}#gainForm label{margin-top:12px}.full{grid-column:1/-1}.span2{grid-column:span 2}
+.notice{border-left:4px solid #f47721;background:#fff6ee;padding:12px 15px}#obstacleValueBlock{margin-top:20px;padding-top:14px;border-top:1px solid #e9ddd2}#valueSection h3,#gainSection h3{margin:18px 0 8px;font-size:17px}#combinedGalop,#combinedTrot,#combinedObstacle,#combinedStatus{border-top:1px solid #e9ddd2;margin-top:16px;padding-top:12px}#gainForm label{margin-top:12px}.full{grid-column:1/-1}.span2{grid-column:span 2}
 @media(max-width:650px){.row{grid-template-columns:repeat(2,minmax(0,1fr))}.span2{grid-column:1/-1}h1{font-size:23px}}
 </style></head>
 <body><header><strong>ÉCURIE <span>INITIAL</span></strong><div>Gestion des données — contributeurs autorisés</div></header>
@@ -16,9 +16,9 @@ label{display:block;font-weight:bold;font-size:13px;margin-bottom:6px}input,sele
 <div id="denied" class="card" hidden><p>Vous n’avez pas accès à cette rubrique. Le gérant doit vous attribuer le rôle Contributeur. L’accès général reste également fermé avant le 1er décembre, sauf autorisation de test.</p><a href="../connexion/">Se connecter ou vérifier mon invitation</a></div>
 <section id="work" hidden>
 <div class="card"><label for="horse">Cheval concerné</label><select id="horse"><option value="">Sélectionner un cheval…</option></select><p id="horsehint" class="muted"></p></div>
-<div class="tabs"><button type="button" id="tabEng" class="on">📅 Engagements</button><button type="button" id="tabGain">💰 Gains et performances</button><button type="button" id="tabValue" hidden>📊 Valeur handicap (galop)</button><button type="button" id="tabRecord" hidden>⏱️ Record absolu (trot)</button><button type="button" id="tabStatus" hidden>🐴 Statut du cheval</button></div>
+<div class="tabs"><button type="button" id="tabEng" class="on">📅 Engagements</button><button type="button" id="tabGain">💰 Gains et performances</button><button type="button" id="tabValue" hidden>📊 Valeur handicap (galop)</button><button type="button" id="tabRecord" hidden>⏱️ Record absolu (trot)</button></div>
 <div id="engSection" class="card"><h2>Engagements du cheval</h2><p class="muted">Ajouter un engagement, le modifier ou l’enlever. Précisez le type de course (handicap, réclamer…) et la surface (PSF, gazon, herbe ou sable) si connus. En cas d’heure ou de jockey inconnu, laissez le champ vide. Le calendrier n’affiche que les prochaines courses.</p><div id="events"></div><div class="flex"><button type="button" class="outline" id="add">+ Ajouter un engagement</button><button type="button" id="saveEng">Publier les engagements</button></div></div>
-<div id="gainSection" class="card" hidden><h2>Gains et performances</h2><p id="currentGain" class="muted"></p><form id="gainForm"><label for="gain">Gains totaux de carrière (€)</label><input id="gain" type="number" min="0" max="1000000000" step="1"><label for="source">Lien de vérification (facultatif)</label><input id="source" type="url" placeholder="https://..." pattern="https://.*"><p class="muted">Ne pas confondre les gains totaux du cheval avec les gains de l’année ou les allocations d’une course.</p><div id="combinedGalop" hidden><h3>📊 Valeur handicap</h3><label for="combinedPlat">Valeur handicap — Plat</label><input id="combinedPlat" type="number" min="0" max="120" step="0.1"><label for="combinedPlatSource">Lien de vérification plat (facultatif)</label><input id="combinedPlatSource" type="url" placeholder="https://..."><div id="combinedObstacle" hidden><label for="combinedObstacleValue">Valeur handicap — Obstacle</label><input id="combinedObstacleValue" type="number" min="0" max="120" step="0.1"><label for="combinedObstacleSource">Lien de vérification obstacle (facultatif)</label><input id="combinedObstacleSource" type="url" placeholder="https://..."></div></div><div id="combinedTrot" hidden><h3>⏱️ Record absolu</h3><label for="combinedRecord">Record personnel</label><input id="combinedRecord" type="text" placeholder="1'12&quot;4"><label for="combinedRecordSource">Lien de vérification record (facultatif)</label><input id="combinedRecordSource" type="url" placeholder="https://..."></div><button id="combinedSave" type="submit">Enregistrer les modifications</button></form></div>
+<div id="gainSection" class="card" hidden><h2>Gains et performances</h2><p id="currentGain" class="muted"></p><form id="gainForm"><label for="gain">Gains totaux de carrière (€)</label><input id="gain" type="number" min="0" max="1000000000" step="1"><label for="source">Lien de vérification (facultatif)</label><input id="source" type="url" placeholder="https://..." pattern="https://.*"><p class="muted">Ne pas confondre les gains totaux du cheval avec les gains de l’année ou les allocations d’une course.</p><div id="combinedGalop" hidden><h3>📊 Valeur handicap</h3><label for="combinedPlat">Valeur handicap — Plat</label><input id="combinedPlat" type="number" min="0" max="120" step="0.1"><label for="combinedPlatSource">Lien de vérification plat (facultatif)</label><input id="combinedPlatSource" type="url" placeholder="https://..."><div id="combinedObstacle" hidden><label for="combinedObstacleValue">Valeur handicap — Obstacle</label><input id="combinedObstacleValue" type="number" min="0" max="120" step="0.1"><label for="combinedObstacleSource">Lien de vérification obstacle (facultatif)</label><input id="combinedObstacleSource" type="url" placeholder="https://..."></div></div><div id="combinedTrot" hidden><h3>⏱️ Record absolu</h3><label for="combinedRecord">Record personnel</label><input id="combinedRecord" type="text" placeholder="1'12&quot;4"><label for="combinedRecordSource">Lien de vérification record (facultatif)</label><input id="combinedRecordSource" type="url" placeholder="https://..."></div><div id="combinedStatus" hidden><h3>🐴 Statut du cheval</h3><label for="restStatus">Situation actuelle</label><select id="restStatus"><option value="false">En activité</option><option value="true">Au repos</option></select><p class="muted">Seule la mention « Au repos » apparaît sur la fiche publique. En activité : aucune mention.</p></div><button id="combinedSave" type="submit">Enregistrer les modifications</button></form></div>
 <div id="valueSection" class="card" hidden>
 <h2>Valeurs handicap — galop et obstacle</h2>
 <p class="muted">Chaque discipline possède sa propre valeur. Une modification de l’obstacle ne modifie jamais le plat.</p>
@@ -37,7 +37,7 @@ label{display:block;font-weight:bold;font-size:13px;margin-bottom:6px}input,sele
 <button type="submit">Publier la valeur obstacle</button>
 </form>
 </div></div>
-<div id="statusSection" class="card" hidden><h2>Statut du cheval</h2><p class="muted">Seule la mention « Au repos » sera visible sur la fiche publique. En activité : aucune mention.</p><form id="statusForm"><label for="restStatus">Situation actuelle</label><select id="restStatus"><option value="false">En activité</option><option value="true">Au repos</option></select><button type="submit">Publier le statut</button></form></div>
+
 <div id="recordSection" class="card" hidden><h2>Record absolu — trot</h2><p id="currentRecord" class="muted"></p><form id="recordForm"><label for="record">Record chronométrique personnel du cheval</label><input id="record" type="text" placeholder="1'12&quot;4" pattern="[0-9]{1,2}'[0-5][0-9]&quot;[0-9]" required><label for="recordSource">Lien de vérification (facultatif)</label><input id="recordSource" type="url" placeholder="https://..." pattern="https://.*"><p class="muted">Renseigner le record absolu du cheval, pas son meilleur temps sur une distance ou un parcours particulier. Format : 1'12&quot;4.</p><button type="submit">Publier le record absolu</button></form></div>
 <p id="msg" role="status" aria-live="polite"></p>
 <div class="notice"><strong>Publication directe.</strong> Après l’enregistrement, actualisez une fiche cheval ou le calendrier pour constater la mise à jour.</div>
@@ -108,7 +108,9 @@ function selectHorse(){
   horseId=$('horse').value;
   const p=choice();
   $('restStatus').value=String(liveStatuses[horseId]?.au_repos??(p?.status==='au repos'));
-  $('statusForm').querySelector('button').disabled=!horseId||!canStatus;
+  $('restStatus').dataset.original=$('restStatus').value;
+  $('combinedStatus').hidden=!canStatus;
+  $('restStatus').disabled=!canStatus;
   const list=liveEng[horseId]?.engagements??editor.engagements?.[horseId]??[];
   events=structuredClone(Array.isArray(list)?list:[]);
   const staticGain=p?.casaque==='galop'?galop[p.id]?.gains:trot[p?.id]?.gains;
@@ -125,7 +127,7 @@ function selectHorse(){
   // Seule la rubrique incompatible avec la discipline choisie est désactivée.
   $('tabValue').hidden=true;
   $('tabRecord').hidden=true;
-  $('tabStatus').hidden=!canStatus;
+
   $('tabValue').disabled=!!p&&!isGalop;
   $('tabRecord').disabled=!!p&&isGalop;
   const isObstacle=!!p&&isGalop&&/obstacle|steeple|cross/i.test(p.discipline||'');
@@ -138,7 +140,7 @@ function selectHorse(){
   const vals={combinedPlat:platValue,combinedObstacleValue:obstacleValue,combinedRecord:currentRec,combinedPlatSource:platEntry?.source_url||'',combinedObstacleSource:obstacleEntry?.source_url||'',combinedRecordSource:liveRecords[horseId]?.source_url||''};
   for(const [id,v] of Object.entries(vals)){$(id).value=v==null?'':String(v);$(id).dataset.original=$(id).value}
   for(const id of ['gain','source'])$(id).dataset.original=$(id).value;
-  $('gain').disabled=!canGain;$('source').disabled=!canGain;$('combinedSave').disabled=!horseId||!(canGain||(isGalop?canValue:canRecord));
+  $('gain').disabled=!canGain;$('source').disabled=!canGain;$('combinedSave').disabled=!horseId||!(canGain||(isGalop?canValue:canRecord)||canStatus);
   $('obstacleValueBlock').hidden=!isObstacle;
   const legacy=isObstacle?galop[horseId]?.value:null;
   $('legacyValue').hidden=!isObstacle||legacy==null||!!platEntry||!!obstacleEntry;
@@ -160,10 +162,10 @@ function selectHorse(){
 }
 function tab(which){
   active=which;
-  for(const [key,id] of [['eng','engSection'],['gain','gainSection'],['value','valueSection'],['record','recordSection'],['status','statusSection']])$(id).hidden=key!==which;
-  for(const [key,id] of [['eng','tabEng'],['gain','tabGain'],['value','tabValue'],['record','tabRecord'],['status','tabStatus']])$(id).classList.toggle('on',key===which);
+  for(const [key,id] of [['eng','engSection'],['gain','gainSection'],['value','valueSection'],['record','recordSection']])$(id).hidden=key!==which;
+  for(const [key,id] of [['eng','tabEng'],['gain','tabGain'],['value','tabValue'],['record','tabRecord']])$(id).classList.toggle('on',key===which);
 }
-$('tabEng').onclick=()=>tab('eng');$('tabGain').onclick=()=>tab('gain');$('tabValue').onclick=()=>tab('value');$('tabRecord').onclick=()=>tab('record');$('tabStatus').onclick=()=>tab('status');
+$('tabEng').onclick=()=>tab('eng');$('tabGain').onclick=()=>tab('gain');$('tabValue').onclick=()=>tab('value');$('tabRecord').onclick=()=>tab('record');
 $('horse').onchange=selectHorse;
 $('add').onclick=()=>{events.push({date:'',hippodrome:'',statut:'engage'});renderEvents();$('events').lastElementChild?.scrollIntoView({behavior:'smooth',block:'center'})};
 $('saveEng').onclick=async()=>{
@@ -192,11 +194,12 @@ $('gainForm').onsubmit=async e=>{
  try{
   if(canGain&&(changed('gain')||changed('source'))){const raw=$('gain').value.trim(),gains=Number(raw);if(!raw||!Number.isSafeInteger(gains)||gains<0||gains>1000000000)throw Error('Montant de gains incorrect.');jobs.push(['gains','ei_contributions_gains',{cheval_slug:horseId,gains,source_url:url('source')},'cheval_slug']);}
   if(isGalop&&canValue){for(const [kind,id,src] of [['plat','combinedPlat','combinedPlatSource'],...(/obstacle|steeple|cross/i.test(p.discipline||'')?[['obstacle','combinedObstacleValue','combinedObstacleSource']]:[])]){if(!changed(id)&&!changed(src))continue;const raw=$(id).value.trim(),valeur=Number(raw);if(!raw||!Number.isFinite(valeur)||valeur<0||valeur>120||Math.abs(valeur*10-Math.round(valeur*10))>0.000001)throw Error('Valeur '+kind+' incorrecte.');jobs.push(['valeur '+kind,'ei_contributions_valeurs',{cheval_slug:horseId,discipline_valeur:kind,valeur,source_url:url(src)},'cheval_slug,discipline_valeur']);}}
+  if(canStatus&&changed('restStatus'))jobs.push(['statut','ei_statuts_chevaux',{cheval_slug:horseId,au_repos:$('restStatus').value==='true',updated_at:new Date().toISOString()},'cheval_slug']);
   if(!isGalop&&canRecord&&(changed('combinedRecord')||changed('combinedRecordSource'))){const chrono=$('combinedRecord').value.trim().replace(/[’‘]/g,String.fromCharCode(39)).replace(/[″”]/g,String.fromCharCode(34));if(!new RegExp('^[0-9]{1,2}\\x27[0-5][0-9]\\x22[0-9]$').test(chrono))throw Error('Record incorrect (format 1 min 12 s 4).');jobs.push(['record','ei_contributions_records',{cheval_slug:horseId,chrono,source_url:url('combinedRecordSource')},'cheval_slug']);}
  }catch(err){msg(err.message,true);return}
  if(!jobs.length){msg('Aucune modification à publier.');return}
  const btn=$('combinedSave');btn.disabled=true;msg('Publication en cours…');const done=[];
- try{for(const [name,table,row,conflict] of jobs){const {data,error}=await db.from(table).upsert(row,{onConflict:conflict}).select('*').single();if(error)throw Error(name+' : '+error.message);if(table==='ei_contributions_gains')liveGains[horseId]=data;if(table==='ei_contributions_valeurs')liveValues[horseId+'|'+row.discipline_valeur]=data;if(table==='ei_contributions_records')liveRecords[horseId]=data;done.push(name);}
+ try{for(const [name,table,row,conflict] of jobs){const {data,error}=await db.from(table).upsert(row,{onConflict:conflict}).select('*').single();if(error)throw Error(name+' : '+error.message);if(table==='ei_contributions_gains')liveGains[horseId]=data;if(table==='ei_contributions_valeurs')liveValues[horseId+'|'+row.discipline_valeur]=data;if(table==='ei_contributions_records')liveRecords[horseId]=data;if(table==='ei_statuts_chevaux')liveStatuses[horseId]=data;done.push(name);}
  selectHorse();msg('Modifications publiées pour '+p.name+' : '+done.join(', ')+'.');
  }catch(err){selectHorse();msg('Publication partielle ('+(done.join(', ')||'aucune')+'). '+err.message,true)}finally{btn.disabled=false}
 };
@@ -242,19 +245,6 @@ $('recordForm').onsubmit=async e=>{
  }catch(error){msg('Publication refusée : '+(error.message||'erreur inconnue'),true)}
  finally{btn.disabled=false}
 };
-$('statusForm').onsubmit=async e=>{
- e.preventDefault();
- if(!horseId||!canStatus)return;
- const p=choice(),value=$('restStatus').value==='true';
- const btn=$('statusForm').querySelector('button');btn.disabled=true;
- try{
-   const {data,error}=await db.from('ei_statuts_chevaux').upsert({cheval_slug:horseId,au_repos:value,updated_at:new Date().toISOString()},{onConflict:'cheval_slug'}).select('cheval_slug,au_repos,updated_at').single();
-   if(error)throw error;
-   liveStatuses[horseId]=data;
-   msg('Statut publié pour '+p.name+' : '+(value?'Au repos':'En activité (aucune mention affichée)')+'.');
- }catch(error){msg('Publication refusée : '+(error.message||'erreur inconnue'),true)}
- finally{btn.disabled=false}
-};
 async function init(){
   try{
     const {data:{user},error:authError}=await db.auth.getUser();if(authError||!user)throw Error('Connexion requise');
@@ -291,8 +281,8 @@ async function init(){
     for(const p of profiles){const option=document.createElement('option');option.value=p.id;option.textContent=p.name;$('horse').append(option)}
     $('tabEng').hidden=!canEng;$('tabGain').hidden=!(canGain||canValue||canRecord);
     $('tabValue').hidden=true;$('tabRecord').hidden=true;
-    $('tabStatus').hidden=!canStatus;
-    tab(canEng?'eng':canGain||canValue||canRecord?'gain':'status');
+
+    tab(canEng?'eng':'gain');
     const wanted=new URLSearchParams(location.search).get('cheval');
     if(wanted&&profiles.some(p=>p.id===wanted))$('horse').value=wanted;
     selectHorse();$('work').hidden=false;
