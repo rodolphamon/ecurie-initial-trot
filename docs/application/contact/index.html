@@ -11,48 +11,53 @@
 <style>
 :root{--orange:#f47721;--black:#171717;--line:#e8dfd8}
 *{box-sizing:border-box}
-body{margin:0;background:#f7f5f2;color:#252525;font:15px/1.55 Arial,Helvetica,sans-serif}
+body{margin:0;background:#f7f5f2;color:#252525;font:15px/1.48 Arial,Helvetica,sans-serif}
 header{background:var(--black);color:#fff;padding:16px 18px}
 .brand{display:flex;align-items:center;gap:12px}
 .brand img{width:54px;height:54px;object-fit:contain;background:#fff;border-radius:10px;padding:3px}
 .brand strong{display:block;font-size:21px;letter-spacing:.4px}
 .brand small{display:block;color:#ded4ce;letter-spacing:1px;font-size:11px}
-main{max-width:720px;margin:auto;padding:18px 14px 102px}
+main{max-width:740px;margin:0 auto;padding:16px 14px 108px}
 a{color:#a64a0b}
 a:focus-visible{outline:3px solid var(--orange);outline-offset:3px}
-.back{font-size:13px;text-decoration:none}
-.hero{background:var(--black);color:white;padding:23px;border-radius:16px;border-top:5px solid var(--orange);margin:17px 0}
-.hero h1{margin:0 0 10px;font-size:30px}
-.hero p{margin:0;color:#eee;line-height:1.6}
-.card{background:#fff;border:1px solid var(--line);border-radius:15px;padding:20px;margin:15px 0}
-.card h2{font-size:19px;margin:0 0 10px}
-.card p{margin:8px 0 15px}
-.contact-item{display:flex;flex-direction:column;gap:5px;padding:15px 0;border-bottom:1px solid #eee}
-.contact-item:last-child{border-bottom:0}
-.contact-item strong{font-size:16px}
-.muted{font-size:13px;color:#666}
-.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
-.button{display:inline-flex;justify-content:center;align-items:center;min-height:48px;border-radius:10px;padding:12px 17px;color:#171717;background:var(--orange);font-weight:800;text-decoration:none;gap:8px}
-.button.secondary{background:#f2ebe5}
-.button.dark{color:#fff;background:var(--black)}
-.small{font-size:13px}
-@media(max-width:430px){main{padding:16px 12px 102px}.card,.hero{padding:18px}.button{width:100%}}
-
-/* Contact : trois boutons uniformes, orange / blanc / noir. */
-.contact-buttons-card{padding:22px}
-.contact-actions{display:flex;flex-direction:column;gap:16px;margin:0}
-.contact-actions .button{
-  display:flex;width:100%;min-height:62px;align-items:center;justify-content:center;
-  border-radius:13px;padding:14px 16px;font-size:17px;font-weight:800;
-  text-align:center;border:1px solid transparent;
+.back{display:inline-block;color:#8f491d;font-size:13px;font-weight:700;text-decoration:none;margin:0 0 14px}
+.hero{background:var(--black);color:white;padding:22px 24px;border-radius:17px;border-top:5px solid var(--orange);margin:0 0 13px}
+.hero h1{font-size:clamp(25px,4.8vw,32px);line-height:1.16;margin:0 0 8px;letter-spacing:-.55px}
+.hero p{font-size:14px;line-height:1.5;margin:0;color:#e7e1dc}
+.contact-buttons-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:19px;margin:0 0 13px}
+.contact-section-heading{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:4px 12px;margin-bottom:14px}
+.contact-section-heading h2{font-size:17px;line-height:1.25;margin:0}
+.contact-section-heading p{font-size:12px;color:#746c66;margin:0}
+.contact-actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.contact-way{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;min-width:0;min-height:94px;padding:11px 6px;border:1px solid transparent;border-radius:12px;text-decoration:none;text-align:center;font-size:14px;font-weight:800;line-height:1.18;transition:background .15s,transform .15s}
+.contact-way:active{transform:scale(.985)}
+.contact-way-icon{font-size:24px;line-height:1}
+.contact-email{background:var(--orange);color:var(--black)}
+.contact-whatsapp{background:#fff;color:var(--black);border-color:#d8d1ca}
+.contact-call{background:var(--black);color:#fff}
+.join-card{display:flex;align-items:center;justify-content:space-between;gap:15px;background:#fff;border:1px solid var(--line);border-left:5px solid var(--orange);border-radius:15px;padding:17px 19px}
+.join-copy{min-width:0}
+.join-copy h2{font-size:19px;line-height:1.25;margin:0 0 5px}
+.join-copy p{font-size:13px;color:#605953;margin:0;line-height:1.45}
+.join-action{display:inline-flex;flex:0 0 auto;align-items:center;justify-content:center;gap:6px;padding:11px 13px;min-height:44px;border-radius:9px;background:#171717;color:#fff;text-decoration:none;font-size:13px;font-weight:800;text-align:center;line-height:1.2}
+.contact-note{font-size:11px;color:#77716d;line-height:1.45;margin:12px 2px 0}
+@media(max-width:570px){
+ main{padding:13px 12px 102px}
+ .hero{padding:18px 18px 19px;border-radius:15px}
+ .hero h1{font-size:26px}
+ .hero p{font-size:13px}
+ .contact-buttons-card{padding:15px}
+ .contact-section-heading{margin-bottom:12px}
+ .contact-actions{gap:8px}
+ .contact-way{font-size:13px;min-height:82px;gap:5px;padding:10px 3px}
+ .contact-way-icon{font-size:22px}
+ .join-card{padding:15px;align-items:flex-start;flex-direction:column;gap:12px}
+ .join-copy h2{font-size:17px}
+ .join-action{width:100%}
 }
-.contact-actions .contact-email{background:var(--orange);color:var(--black)}
-.contact-actions .contact-whatsapp{background:#fff;color:var(--black);border-color:#d8d1ca}
-.contact-actions .contact-call{background:var(--black);color:#fff}
-@media(max-width:430px){
-  .contact-buttons-card{padding:18px}
-  .contact-actions{gap:14px}
-  .contact-actions .button{min-height:60px;font-size:16px}
+@media(max-width:345px){
+ .contact-actions{gap:5px}
+ .contact-way{font-size:12px;padding:8px 2px}
 }
 
 /* Contact : identité identique à l'accueil — ÉCURIE INITIAL à gauche, slogan à droite. */
@@ -114,24 +119,36 @@ header{background:#fff;color:#191919;border-bottom:4px solid var(--orange);paddi
 <body>
 <header><div class="brand"><img src="../icon-ei-192.png" alt="Emblème officiel Écurie Initial"><div class="brand-copy"><strong>ÉCURIE <span class="brand-initial"><span class="brand-initial-i">ı</span>NITIAL</span></strong></div><p class="brand-slogan"><span class="brand-slogan-line">PARTAGEONS NOTRE PASSION</span><span class="brand-slogan-date">DEPUIS 2011</span></p></div></header>
 <main>
-<p><a class="back" href="../">← Retour à l'application</a></p>
-<section class="hero">
- <h1>✉️ Contact</h1>
- <p>Une question sur l'écurie, nos chevaux ou les parts disponibles ? Échangeons directement. Nous serons heureux de vous renseigner.</p>
+<a class="back" href="../">← Retour à l'application</a>
+<section class="hero" aria-labelledby="contact-title">
+  <h1 id="contact-title">✉️ Contact</h1>
+  <p>Une question sur les chevaux, les parts disponibles ou la vie de l’écurie ? Nous sommes à votre écoute.</p>
 </section>
-<section class="card contact-buttons-card" aria-label="Moyens de contact">
- <div class="actions contact-actions">
-  <a class="button contact-email" id="email" href="mailto:contact@ecurie-initial.com">Envoyer un e-mail</a>
-  <a class="button contact-whatsapp" id="whatsapp" href="https://wa.me/33642368680" target="_blank" rel="noopener noreferrer">Écrire sur WhatsApp</a>
-  <a class="button contact-call" href="tel:+33642368680">Appeler</a>
- </div>
+<section class="contact-buttons-card" aria-labelledby="contact-methods">
+  <div class="contact-section-heading">
+    <h2 id="contact-methods">Échangeons directement</h2>
+    <p>Choisissez votre moyen de contact</p>
+  </div>
+  <div class="contact-actions">
+    <a class="contact-way contact-email" id="email" href="mailto:contact@ecurie-initial.com" aria-label="Envoyer un e-mail à l'Écurie Initial">
+      <span class="contact-way-icon" aria-hidden="true">✉️</span><span>E-mail</span>
+    </a>
+    <a class="contact-way contact-whatsapp" id="whatsapp" href="https://wa.me/33642368680" target="_blank" rel="noopener noreferrer" aria-label="Écrire à l'Écurie Initial sur WhatsApp">
+      <span class="contact-way-icon" aria-hidden="true">💬</span><span>WhatsApp</span>
+    </a>
+    <a class="contact-way contact-call" href="tel:+33642368680" aria-label="Appeler l'Écurie Initial">
+      <span class="contact-way-icon" aria-hidden="true">📞</span><span>Appeler</span>
+    </a>
+  </div>
 </section>
-<section class="card">
- <h2>Vous souhaitez devenir associé ?</h2>
- <p>Découvrez le principe de la propriété en parts, les chevaux de l'écurie et la façon de vivre les courses à nos côtés.</p>
- <a class="button dark" href="../devenir-associe/">🧡 Découvrir comment nous rejoindre</a>
+<section class="join-card" aria-labelledby="join-title">
+  <div class="join-copy">
+    <h2 id="join-title">🧡 Devenir associé</h2>
+    <p>Vivez les courses à nos côtés : découvrez la propriété en parts.</p>
+  </div>
+  <a class="join-action" href="../devenir-associe/">Découvrir <span aria-hidden="true">→</span></a>
 </section>
-<p class="muted">L'envoi d'un message ouvre votre application de messagerie ou WhatsApp. Aucune demande n'est enregistrée automatiquement sur cette page.</p>
+<p class="contact-note">Les boutons ouvrent directement votre messagerie, WhatsApp ou votre téléphone.</p>
 </main>
 <script>
 const query=new URLSearchParams(location.search);
