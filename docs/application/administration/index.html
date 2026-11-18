@@ -41,12 +41,15 @@
  #members td{display:block;min-width:0!important;width:auto!important;padding:0;border:0;font-size:12px;line-height:1.25}
  #members td:nth-child(1){grid-column:1;grid-row:1;font-size:13px;font-weight:750;overflow-wrap:anywhere}
  #members td:nth-child(2){grid-column:2;grid-row:1;text-align:right}
- #members td:nth-child(3){display:none}
+ #members td:nth-child(3){display:block;grid-column:1/-1;grid-row:3;background:#fffaf5;border:1px solid #eee1d5;border-radius:9px;padding:11px 12px;font-size:12px}
+ #members td:nth-child(3)::before{content:"📊 Suivi des accès";display:block;font-size:12px;font-weight:700;margin-bottom:7px;color:#27221e}
+ #members td:nth-child(3) small{font-size:12px;margin-top:5px;line-height:1.4}
+ #members td:nth-child(3) .registration-usage{font-size:12px;margin-top:9px}
  #members td:nth-child(4){grid-column:1/-1;grid-row:2;text-align:left;font-size:11px;color:#655b54}
- #members td:nth-child(5){grid-column:1/-1;grid-row:3}
+ #members td:nth-child(5){grid-column:1/-1;grid-row:4}
  #members .member-action-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
  #members .member-action-grid button{min-height:41px;font-size:12px;padding:9px 5px}
- #members .registration-mobile{display:block;font-size:10px;margin-top:4px;line-height:1.2}
+ #members .registration-mobile{display:none}
 }
 /* Outils de l'administration : une présentation compacte et cohérente sur mobile. */
 .admin-tool-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,225px),1fr));gap:12px;margin:0 0 15px}
@@ -91,6 +94,12 @@ body[data-admin-view="emailPanel"] #emailPanel:not([hidden]),
 body[data-admin-view="actions"] #actions:not([hidden]){display:block!important}
 #adminDetailNav{margin:0 0 12px}
 #adminDetailNav[hidden]{display:none!important}
+/* Synthèse réservée au tableau de gestion des associés. */
+.access-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:12px 0 15px}
+.access-summary div{background:#faf7f3;border:1px solid #eadfd4;border-radius:10px;padding:11px;text-align:center}
+.access-summary strong{display:block;font-size:22px;line-height:1.2}
+.access-summary span{display:block;font-size:12px;color:#625952;margin-top:4px}
+@media(max-width:650px){.access-summary strong{font-size:19px}.access-summary div{padding:9px 6px}.access-summary span{font-size:11px}}
 </style><link rel="manifest" href="../manifest.webmanifest"><link rel="apple-touch-icon" href="../icon-ei-192.png"></head><body><header><strong>ÉCURIE <span>INITIAL</span></strong><div>Gestion de l'Écurie Initial</div></header><main><nav><a href="../connexion/">← Mon espace associé</a></nav>
 <nav id="adminDetailNav" hidden><a href="#adminDashboard">← Administration</a></nav>
 <section class="panel admin-hub" id="adminDashboard" aria-label="Tableau de bord d'administration" hidden>
@@ -107,7 +116,12 @@ body[data-admin-view="actions"] #actions:not([hidden]){display:block!important}
   <a class="admin-hub-link" href="contributeurs/"><strong>🤝 Team Initial</strong><small>Communication et contributeurs sportifs</small></a>
   <a class="admin-hub-link" href="../diagnostic-notifications/"><strong>🔔 Notifications</strong><small>Vérifier les alertes sur votre appareil</small></a>
  </div>
-</section><div class="panel" id="associesPanel"><h1>Gestion des membres et associés</h1><p id="loading">Vérification des droits d'administrateur…</p><p id="error" role="alert"></p><div id="denied" hidden><p>Cette rubrique est réservée à l'administrateur de l'Écurie Initial. Connectez-vous avec votre compte autorisé.</p><a href="../connexion/">Se connecter</a></div><div id="content" hidden><p>Voici les comptes enregistrés dans l'espace privé. La Tribune est ouverte aux membres inscrits et aux associés actifs. Les fiches privées restent réservées aux associés.</p><p id="registrationTrackingError" class="warning" role="alert" hidden>Le suivi des inscriptions et des ouvertures est momentanément indisponible. Les données historiques ne sont pas effacées ; les statistiques ne peuvent pas être affichées pour le moment.</p><div class="members-table-wrap"><table><thead><tr><th>Associé</th><th>Statut</th><th>Inscription</th><th>Rôle</th><th>Gestion du compte</th></tr></thead><tbody id="members"></tbody></table></div><p class="muted" id="count"></p></div></div><div class="panel" id="registryPanel" hidden>
+</section><div class="panel" id="associesPanel"><h1>Gestion des membres et associés</h1><p id="loading">Vérification des droits d'administrateur…</p><p id="error" role="alert"></p><div id="denied" hidden><p>Cette rubrique est réservée à l'administrateur de l'Écurie Initial. Connectez-vous avec votre compte autorisé.</p><a href="../connexion/">Se connecter</a></div><div id="content" hidden><p>Suivez les comptes, les dates d’inscription, les connexions et les ouvertures de l’application.</p>
+<div class="access-summary" id="accessSummary" hidden aria-label="Statistiques des accès">
+<div><strong id="summaryAccounts">—</strong><span>Comptes inscrits</span></div>
+<div><strong id="summaryConnected">—</strong><span>Déjà connectés</span></div>
+<div><strong id="summaryOpenings">—</strong><span>Ouvertures suivies</span></div>
+</div><p id="registrationTrackingError" class="warning" role="alert" hidden>Le suivi des inscriptions et des ouvertures est momentanément indisponible. Les données historiques ne sont pas effacées ; les statistiques ne peuvent pas être affichées pour le moment.</p><div class="members-table-wrap"><table><thead><tr><th>Associé</th><th>Statut</th><th>Suivi des accès</th><th>Rôle</th><th>Gestion du compte</th></tr></thead><tbody id="members"></tbody></table></div><p class="muted" id="count"></p></div></div><div class="panel" id="registryPanel" hidden>
 <h2>📒 Répertoire des associés</h2>
 <p>Retrouvez ici les personnes de votre liste initiale, même si elles n'ont pas encore créé leur compte. Aucun e-mail n'est envoyé depuis cette liste.</p>
 <label for="registrySearch">Rechercher un associé déjà répertorié</label>
@@ -428,7 +442,7 @@ async function init(){
    dateLine('Inscription',registration?.inscription_le);
    if(hasConfirmed)dateLine('Validée',registration.confirmation_le);
    else if(state==='invitation_en_attente')dateLine('Invitation',registration?.invitation_le);
-   dateLine('Dernière authentification',registration?.derniere_connexion);
+   dateLine('Dernière connexion',registration?.derniere_connexion);
    const openings=Number(registration?.nombre_ouvertures||0);
    const usage=make('strong',!registration?'📱 Statistiques indisponibles':openings>0?'📱 '+openings+' ouverture'+(openings>1?'s':''):'📱 Aucune ouverture suivie');
    usage.className='registration-usage';
@@ -487,6 +501,12 @@ async function init(){
    $('members').append(tr);
   }
   $('count').textContent=members.length+' compte(s) enregistré(s)';
+  if(Object.keys(registrationStatuses).length){
+   $('summaryAccounts').textContent=String(members.length);
+   $('summaryConnected').textContent=String(members.filter(m=>Boolean(registrationStatuses[m.user_id]?.derniere_connexion)).length);
+   $('summaryOpenings').textContent=String(members.reduce((total,m)=>total+Number(registrationStatuses[m.user_id]?.nombre_ouvertures||0),0));
+   $('accessSummary').hidden=false;
+  }
   $('adminDashboard').hidden=false;$('content').hidden=false;$('actions').hidden=false;$('privateNewsPanel').hidden=false;$('contributorPanel').hidden=false;$('tribunePanel').hidden=false;
   adminViewFromHash();
   await loadRoster();
