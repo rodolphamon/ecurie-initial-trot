@@ -264,6 +264,13 @@ body.ei-prelaunch{padding-bottom:0!important}
  .home-dashboard .dash-result-people{font-size:9px}
 }
 
+/* Dernier communiqué officiel publié, sans informations privées. */
+#appContent .home-public-news{display:flex;flex-direction:column;gap:5px;background:#fff;border:1px solid #e7ded6;border-left:5px solid #f47721;border-radius:12px;padding:15px;margin:10px 0;text-decoration:none;color:#28211c}
+#appContent .home-public-news[hidden]{display:none!important}
+#appContent .home-public-news>span:first-child{font-weight:800;color:#b4581a;font-size:11px;letter-spacing:.25px}
+#appContent .home-public-news strong{font-size:18px;line-height:1.25}
+#appContent .home-public-news small{font-size:13px;line-height:1.35;color:#57514c;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
+#appContent .home-public-news .news-read{font-size:12px;font-weight:800;color:#ba5713}
 /* Bandeau d'accueil sur une seule ligne, sous le liseré orange. */
 #appContent .home-welcome{
   display:flex;align-items:center;justify-content:center;
@@ -341,13 +348,14 @@ body.ei-prelaunch{padding-bottom:0!important}
 <a href="../engagements/" id="dashNextLink"><span class="dash-label" id="dashNextLabel">Prochain rendez-vous</span><span class="dash-next-identity"><strong id="dashNextHorse">À venir</strong><span id="dashNextJockey" class="dash-next-jockey" hidden><span class="dash-role-emoji" aria-hidden="true">🏇</span><span class="dash-next-jockey-name"></span></span></span><span class="dash-detail" id="dashNextDetail">Voir les engagements</span><img class="dash-next-silk" id="dashNextSilk" alt="" width="43" height="54" hidden></a>
 <a href="../chevaux/" id="dashResultLink"><span class="dash-label dash-result-heading">Dernière performance</span><span class="dash-result-copy"><strong id="dashResultHorse">À venir</strong><span class="dash-detail" id="dashResultDetail">Voir les performances</span></span><img class="dash-result-silk" id="dashResultSilk" alt="" width="43" height="57" hidden><span class="dash-result-people" aria-label="Jockey ou driver et entraîneur"><span id="dashResultRider" class="dash-result-person" hidden><span class="dash-role-emoji" aria-hidden="true">🏇</span><span class="dash-person-name"></span></span><span id="dashResultTrainer" class="dash-result-person" hidden><span class="dash-role-emoji" aria-hidden="true">🎩</span><span class="dash-person-name"></span></span></span><span class="dash-result-score" id="dashResultRank" aria-label="Classement" hidden>—</span></a>
 </div>
+<a id="homePublicAnnouncement" class="home-public-news" href="actualites/" hidden><span>📣 MESSAGE DE L’ÉCURIE</span><strong id="homePublicNewsTitle"></strong><small id="homePublicNewsPreview"></small><span class="news-read">Lire l’annonce</span></a>
 <h2 class="home-title"><span class="orange-dot" aria-hidden="true"></span>À découvrir</h2>
 <div class="cards">
 <a class="card" href="../chevaux/"><strong>🐎 Effectif et résultats</strong><small>Découvrez nos chevaux, leurs fiches et leurs performances.</small></a>
 <a class="card" href="../engagements/"><strong>📅 Prochains partants</strong><small>Retrouvez les chevaux engagés et les partants à venir.</small></a>
 <a class="card" href="../palmares/"><strong>🏆 Victoires & podiums</strong><small>Revivez nos victoires et nos plus belles places d’honneur.</small></a>
 <a class="card" href="notifications/"><strong>🔔 Notifications</strong><small>Restez informés des partants et des résultats.</small></a>
-<a class="card tribune-card" href="tribune/"><strong>💬 La Tribune</strong><small>Échangez avec la communauté Écurie Initial. Accès aux membres inscrits, sans obligation de posséder un cheval.</small></a>
+<a class="card tribune-card" href="tribune/"><strong>💬 Tribune des supporters</strong><small>Échangez entre passionnés de l’Écurie Initial, associés ou non. Accès aux membres inscrits.</small></a>
 <a class="card" href="devenir-associe/"><strong>🧡 Devenir associé</strong><small>Vivez les émotions des courses à nos côtés.</small></a>
 <a class="card" href="contact/"><strong>✉️ Nous contacter</strong><small>Une question, une idée ? Parlons-en ensemble.</small></a>
 </div></div>
@@ -365,7 +373,7 @@ body.ei-prelaunch{padding-bottom:0!important}
    <a class="button assoc-login" href="connexion/">Se connecter <span aria-hidden="true">→</span></a>
   </div>
   <nav class="assoc-links" aria-label="Rubriques des associés">
-   <a class="assoc-link assoc-link-main" href="tribune/"><span class="assoc-link-emoji" aria-hidden="true">💬</span><span class="assoc-link-text"><strong>La Tribune</strong><small>Messages, photos et échanges entre associés</small></span><span class="assoc-link-arrow" aria-hidden="true">›</span></a>
+   <a class="assoc-link assoc-link-main" href="tribune/"><span class="assoc-link-emoji" aria-hidden="true">💬</span><span class="assoc-link-text"><strong>Tribune des supporters</strong><small>Échanges entre membres et passionnés</small></span><span class="assoc-link-arrow" aria-hidden="true">›</span></a>
    <a class="assoc-link" href="mes-chevaux/"><span class="assoc-link-emoji" aria-hidden="true">🐎</span><span class="assoc-link-text"><strong>Mes chevaux</strong><small>Suivi de vos participations</small></span><span class="assoc-link-arrow" aria-hidden="true">›</span></a>
    <a class="assoc-link" href="notifications/"><span class="assoc-link-emoji" aria-hidden="true">🔔</span><span class="assoc-link-text"><strong>Notifications</strong><small>Vos alertes et actualités</small></span><span class="assoc-link-arrow" aria-hidden="true">›</span></a>
   </nav>
@@ -518,5 +526,20 @@ window.loadHomeDashboard=async function(){
   }catch(e){console.info("Accueil : engagements de référence conservés",e)}
  }catch(e){console.warn("Accueil : données dynamiques momentanément indisponibles",e)}
 };
+</script>
+<script type="module">
+import {createClient as createNewsClient} from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+try{
+ const client=createNewsClient('https://yeecwaaizmvrhwobukfa.supabase.co','sb_publishable_xUy2EJA3u3cKWl8BB4GNPQ_qhV9Pes3');
+ const {data,error}=await client.from('actualites_generales_publiques').select('id,titre,contenu')
+   .order('created_at',{ascending:false}).limit(1).maybeSingle();
+ if(!error&&data){
+  document.getElementById('homePublicNewsTitle').textContent=data.titre;
+  document.getElementById('homePublicNewsPreview').textContent=data.contenu;
+  const card=document.getElementById('homePublicAnnouncement');
+  card.href='actualites/?id='+encodeURIComponent(data.id);
+  card.hidden=false;
+ }
+}catch(_){/* L'accueil reste disponible même hors réseau. */}
 </script>
 <script defer src="nav.js?v=20261118connexion-preouverture"></script></body></html>
