@@ -50,7 +50,17 @@ h2.group-title{font-size:17px;margin:18px 1px 9px;line-height:1.3}
 .dialog .inbox-item summary strong{font-size:14px}
 .dialog .inbox-item summary small{font-size:11px;color:var(--muted)}
 .dialog .inbox-message{white-space:pre-wrap;overflow-wrap:anywhere;border-top:1px solid var(--line);padding-top:9px;margin-top:9px}
-.dialog .inbox-email{font-weight:700;overflow-wrap:anywhere;font-size:12px;margin-top:8px}
+.dialog .thread-post{padding:10px 12px;border-radius:10px;background:#f5f2ee;margin-top:9px;white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.4}
+.dialog .thread-post.mine{background:#fff1e4;border-left:3px solid var(--orange)}
+.dialog .thread-post .thread-author{font-size:12px;font-weight:800;margin-bottom:4px}
+.dialog .thread-post time{font-size:11px;color:#726b65;display:block;margin-top:6px}
+.dialog .thread-compose{border-top:1px solid var(--line);padding-top:11px;margin-top:12px}
+.dialog .thread-compose label{margin:0 0 5px}
+.dialog .thread-compose textarea{min-height:84px}
+.dialog .thread-compose button{display:block;width:100%;border:0;border-radius:9px;padding:11px;background:var(--orange);color:#171717;font:800 13px Arial;cursor:pointer;margin-top:7px}
+.dialog .thread-compose button:disabled{opacity:.55}
+.dialog .thread-result{min-height:15px;margin:7px 0 0;color:#17603b;font-size:12px}
+.dialog .thread-result.error{color:#ad2929}
 [hidden]{display:none!important}
 
 @media(min-width:650px){.team-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.person{margin:0}.person .description{min-height:57px}}
@@ -88,8 +98,6 @@ h2.group-title{font-size:17px;margin:18px 1px 9px;line-height:1.3}
  <form id="teamMessageForm">
   <label for="teamSenderName">Nom et prénom</label>
   <input id="teamSenderName" name="senderName" autocomplete="name" maxlength="100" required>
-  <label for="teamSenderEmail">Votre adresse e-mail</label>
-  <input id="teamSenderEmail" name="senderEmail" type="email" autocomplete="email" maxlength="254" required>
   <label for="teamMessageText">Votre message</label>
   <textarea id="teamMessageText" maxlength="3000" minlength="5" required></textarea>
   <div aria-hidden="true" style="position:absolute;left:-9999px;height:1px;overflow:hidden"><label for="teamWebsite">Site web</label><input id="teamWebsite" tabindex="-1" autocomplete="off"></div>
@@ -98,13 +106,14 @@ h2.group-title{font-size:17px;margin:18px 1px 9px;line-height:1.3}
    <button type="submit" class="submit" id="sendTeamMessage">✉️ Envoyer</button>
   </div>
  </form>
- <p class="privacy-note">Les adresses personnelles des membres de l'équipe ne sont pas communiquées. Vos coordonnées servent uniquement à transmettre votre message et permettre une réponse.</p>
+ <p class="privacy-note">Échanges privés dans l’application, sans communication d’adresses e-mail. Un compte connecté est nécessaire pour recevoir les réponses.</p>
+ <p id="teamLoginPrompt" class="privacy-note" hidden><a href="../connexion/">Se connecter</a> ou <a href="../inscription/">créer un compte</a> pour participer à une conversation privée.</p>
  <p id="teamMessageStatus" class="form-status" role="status" aria-live="polite"></p>
  <button type="button" id="teamCloseAfterSend" hidden class="inbox-entry visible" style="width:100%">Fermer</button>
 </dialog>
 <dialog class="dialog" id="teamInboxDialog" aria-labelledby="inboxTitle">
  <h2 id="inboxTitle">📥 Mes messages · Team Initial</h2>
- <p>Seul le membre de l'équipe concerné peut consulter les messages qui lui sont adressés.</p>
+ <p>Retrouvez ici vos conversations privées avec la Team Initial. Seuls les participants peuvent les lire.</p>
  <div id="teamInboxList"><p>Chargement...</p></div>
  <div class="dialog-actions"><button class="cancel" type="button" id="closeInbox">Fermer</button></div>
 </dialog>
@@ -112,95 +121,141 @@ h2.group-title{font-size:17px;margin:18px 1px 9px;line-height:1.3}
 import {createClient} from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
 const API='https://yeecwaaizmvrhwobukfa.supabase.co/functions/v1/team-contact';
 const db=createClient('https://yeecwaaizmvrhwobukfa.supabase.co','sb_publishable_xUy2EJA3u3cKWl8BB4GNPQ_qhV9Pes3');
-const nameByKey={rodolphe:'Rodolphe HAMON',arnaud:'Arnaud PUSKAS',nicolas:'Nicolas BARRÉ',emilie:'Émilie MARÉCHAL'};
+const names={rodolphe:'Rodolphe HAMON',arnaud:'Arnaud PUSKAS',nicolas:'Nicolas BARRÉ',emilie:'Émilie MARÉCHAL'};
 const $=id=>document.getElementById(id);
-let chosen='',session=null;
-async function checkInbox(){
+let chosen='',session=null,loadedMessages=[];
+async function refreshSession(){const {data}=await db.auth.getSession();session=data?.session||null;return session;}
+function updateCount(){
+ const n=loadedMessages.filter(m=>m.unread).length;
+ $('unreadCount').textContent=n?'('+n+')':'';
+}
+async function apiPost(payload){
+ await refreshSession();
+ if(!session)throw new Error('Connectez-vous pour utiliser la messagerie privée.');
+ const response=await fetch(API,{
+  method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+session.access_token},
+  body:JSON.stringify(payload)
+ });
+ const result=await response.json();
+ if(!response.ok||!result.ok)throw new Error(result.error||'Envoi impossible.');
+ return result;
+}
+async function inboxData(){
+ await refreshSession();
+ if(!session)throw new Error('Connectez-vous pour consulter vos messages.');
+ const response=await fetch(API+'?action=inbox',{headers:{Authorization:'Bearer '+session.access_token}});
+ const result=await response.json();
+ if(!response.ok||!result.ok)throw new Error(result.error||'Consultation indisponible.');
+ loadedMessages=result.messages||[];
+ updateCount();
+ return loadedMessages;
+}
+async function initialize(){
  try{
-  const {data}=await db.auth.getSession();session=data?.session||null;
+  await refreshSession();
   if(!session)return;
-  const resp=await fetch(API+'?action=inbox',{headers:{Authorization:'Bearer '+session.access_token}});
-  if(!resp.ok)return;
-  const content=await resp.json();
   $('inboxButton').classList.add('visible');
-  const unread=(content.messages||[]).filter(x=>!x.read_at).length;
-  $('unreadCount').textContent=unread?'('+unread+')':'';
-  if(session.user?.email)$('teamSenderEmail').value=session.user.email;
- }catch(e){console.warn('Team Initial : consultation indisponible.');}
+  const preferred=session.user.user_metadata?.nom_demande||session.user.user_metadata?.full_name||'';
+  if(preferred)$('teamSenderName').value=preferred;
+  await inboxData();
+ }catch(e){console.warn('Messagerie Team Initial momentanément indisponible.');}
 }
 document.querySelectorAll('.contact-person[data-person]').forEach(button=>{
- button.addEventListener('click',()=>{
+ button.addEventListener('click',async()=>{
   chosen=button.dataset.person||'';
-  if(!nameByKey[chosen])return;
-  $('teamMessageForm').reset();
-  $('teamMessageForm').hidden=false;
+  if(!names[chosen])return;
+  const form=$('teamMessageForm'),status=$('teamMessageStatus');
+  form.reset();status.textContent='';status.classList.remove('error');
   $('teamCloseAfterSend').hidden=true;
-  $('teamMessageStatus').textContent='';
-  $('teamMessageStatus').classList.remove('error');
-  $('dialogTitle').textContent='✉️ Écrire à '+nameByKey[chosen];
-  if(session?.user?.email)$('teamSenderEmail').value=session.user.email;
+  $('dialogTitle').textContent='✉️ Écrire à '+names[chosen];
+  await refreshSession();
+  form.hidden=!session;
+  $('teamLoginPrompt').hidden=!!session;
+  if(session){
+   const preferred=session.user.user_metadata?.nom_demande||session.user.user_metadata?.full_name||'';
+   if(preferred)$('teamSenderName').value=preferred;
+  }
   $('teamMessageDialog').showModal();
-  $('teamSenderName').focus();
+  if(session)$('teamSenderName').focus();
  });
 });
 $('closeTeamMessage').addEventListener('click',()=>$('teamMessageDialog').close());
 $('teamCloseAfterSend').addEventListener('click',()=>$('teamMessageDialog').close());
 $('teamMessageForm').addEventListener('submit',async e=>{
- e.preventDefault();if(!chosen||!$('teamMessageForm').reportValidity())return;
- const send=$('sendTeamMessage'),status=$('teamMessageStatus');
- send.disabled=true;status.classList.remove('error');status.textContent='Transmission du message…';
+ e.preventDefault();
+ if(!chosen||!$('teamMessageForm').reportValidity())return;
+ const button=$('sendTeamMessage'),status=$('teamMessageStatus');
+ button.disabled=true;status.classList.remove('error');status.textContent='Transmission du message…';
  try{
-  const response=await fetch(API,{
-   method:'POST',headers:{'Content-Type':'application/json'},
-   body:JSON.stringify({action:'send',recipient:chosen,
-    name:$('teamSenderName').value,email:$('teamSenderEmail').value,
-    message:$('teamMessageText').value,website:$('teamWebsite').value})
-  });
-  const data=await response.json();
-  if(!response.ok||!data.ok)throw new Error(data.error||'Transmission impossible.');
+  const result=await apiPost({action:'send',recipient:chosen,
+   name:$('teamSenderName').value,message:$('teamMessageText').value,
+   website:$('teamWebsite').value});
   $('teamMessageForm').hidden=true;
   $('teamCloseAfterSend').hidden=false;
-  status.textContent='✅ '+(data.message||'Message transmis.');
+  status.textContent='✅ '+(result.message||'Message envoyé dans la boîte privée.');
+  await inboxData().catch(()=>{});
  }catch(err){status.textContent=err instanceof Error?err.message:'Une erreur est survenue.';status.classList.add('error');}
- finally{send.disabled=false;}
+ finally{button.disabled=false;}
 });
+function threadPost(body,author,date,mine){
+ const div=document.createElement('div');div.className='thread-post'+(mine?' mine':'');
+ const h=document.createElement('div');h.className='thread-author';h.textContent=author;div.append(h);
+ const text=document.createElement('div');text.textContent=body;div.append(text);
+ const time=document.createElement('time');time.dateTime=date;
+ time.textContent=new Date(date).toLocaleString('fr-FR');div.append(time);
+ return div;
+}
+function renderThread(m){
+ const item=document.createElement('details');item.className='inbox-item';
+ const summary=document.createElement('summary');
+ const name=document.createElement('strong');name.textContent=(m.unread?'● ':'')+m.correspondent;
+ const stamp=document.createElement('small');
+ stamp.textContent=(m.direction==='sent'?'Envoyé · ':'Reçu · ')+new Date(m.created_at).toLocaleString('fr-FR');
+ summary.append(name,stamp);item.append(summary);
+ const posts=document.createElement('div');posts.className='thread-posts';
+ posts.append(threadPost(m.message,m.direction==='sent'?'Vous':m.sender_name,m.created_at,m.direction==='sent'));
+ (m.replies||[]).forEach(reply=>posts.append(threadPost(reply.body,reply.by_me?'Vous':m.correspondent,reply.created_at,reply.by_me)));
+ item.append(posts);
+ const form=document.createElement('form');form.className='thread-compose';
+ const label=document.createElement('label');label.textContent='Votre réponse';
+ const input=document.createElement('textarea');input.required=true;input.maxLength=3000;input.rows=3;
+ label.append(input);form.append(label);
+ const submit=document.createElement('button');submit.type='submit';submit.textContent='✉️ Répondre';form.append(submit);
+ const status=document.createElement('p');status.className='thread-result';status.setAttribute('role','status');form.append(status);
+ form.addEventListener('submit',async e=>{
+  e.preventDefault();
+  const value=input.value.trim();if(!value)return;
+  submit.disabled=true;status.textContent='Envoi…';status.classList.remove('error');
+  try{
+   const result=await apiPost({action:'reply',id:m.id,message:value});
+   posts.append(threadPost(result.reply.body,'Vous',result.reply.created_at,true));
+   input.value='';status.textContent='✅ Réponse envoyée dans l’application.';
+  }catch(err){
+   status.textContent=err instanceof Error?err.message:'Envoi impossible.';status.classList.add('error');
+  }finally{submit.disabled=false;}
+ });
+ item.append(form);
+ item.addEventListener('toggle',async()=>{
+  if(!item.open||!m.unread)return;
+  try{
+   await apiPost({action:'mark_read',id:m.id});
+   m.unread=false;name.textContent=m.correspondent;updateCount();
+  }catch(e){console.warn('Lecture du message non confirmée.');}
+ });
+ return item;
+}
 $('inboxButton').addEventListener('click',async()=>{
- const inbox=$('teamInboxDialog'),list=$('teamInboxList');
- list.replaceChildren();const loading=document.createElement('p');loading.textContent='Chargement des messages…';list.append(loading);
- inbox.showModal();
+ const list=$('teamInboxList'),dialog=$('teamInboxDialog');
+ list.textContent='Chargement des messages…';dialog.showModal();
  try{
-  const {data}=await db.auth.getSession(),token=data?.session?.access_token;
-  if(!token)throw new Error('Reconnectez-vous pour consulter vos messages.');
-  const response=await fetch(API+'?action=inbox',{headers:{Authorization:'Bearer '+token}});
-  const result=await response.json();
-  if(!response.ok||!result.ok)throw new Error(result.error||'Consultation impossible.');
+  const rows=await inboxData();
   list.replaceChildren();
-  const rows=result.messages||[];
-  if(!rows.length){const p=document.createElement('p');p.textContent='Vous n’avez aucun message pour le moment.';list.append(p);return;}
-  rows.forEach(m=>{
-   const item=document.createElement('details');item.className='inbox-item';
-   const summary=document.createElement('summary');
-   const heading=document.createElement('strong');heading.textContent=(m.read_at?'':'● ') + m.sender_name;
-   const date=document.createElement('small');date.textContent=new Date(m.created_at).toLocaleString('fr-FR');
-   summary.append(heading,date);item.append(summary);
-   const body=document.createElement('div');body.className='inbox-message';body.textContent=m.message;
-   const from=document.createElement('div');from.className='inbox-email';
-   const reply=document.createElement('a');reply.textContent='Répondre à '+m.sender_email;
-   reply.href='mailto:'+encodeURIComponent(m.sender_email)+'?subject='+encodeURIComponent('Réponse de la Team Initial');
-   from.append(reply);item.append(body,from);
-   item.addEventListener('toggle',async()=>{
-    if(!item.open||m.read_at)return;
-    m.read_at=new Date().toISOString();heading.textContent=m.sender_name;
-    await fetch(API,{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+token},body:JSON.stringify({action:'mark_read',id:m.id})}).catch(()=>{});
-    const unread=[...list.querySelectorAll('summary strong')].filter(x=>x.textContent.startsWith('●')).length;
-    $('unreadCount').textContent=unread?'('+unread+')':'';
-   });
-   list.append(item);
-  });
+  if(!rows.length){const empty=document.createElement('p');empty.textContent='Aucun message pour le moment.';list.append(empty);return;}
+  rows.forEach(m=>list.append(renderThread(m)));
  }catch(err){list.textContent=err instanceof Error?err.message:'Chargement impossible.';}
 });
 $('closeInbox').addEventListener('click',()=>$('teamInboxDialog').close());
-checkInbox();
+initialize();
 </script>
 <script defer src="../nav.js?v=20261118teampublic1"></script>
 </body>
