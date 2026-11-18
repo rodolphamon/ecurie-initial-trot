@@ -75,7 +75,24 @@
 @media(max-width:480px){.admin-hub-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.admin-hub-link{padding:12px 10px;min-height:90px}.admin-hub h1{font-size:23px}.admin-hub-link strong{font-size:13px}}
 #inviteHorsesBox[hidden]{display:none!important}
 #members td:nth-child(6) .inline-actions{grid-template-columns:repeat(2,minmax(0,1fr))}
+/* L'accueil Administration montre uniquement les raccourcis ; chaque outil reste accessible au clic. */
+main > .admin-tool-grid{display:none!important}
+body[data-admin-view] #adminDashboard,
+body[data-admin-view] #associesPanel,
+body[data-admin-view] #registryPanel,
+body[data-admin-view] #horsePanel,
+body[data-admin-view] #emailPanel,
+body[data-admin-view] #actions{display:none!important}
+body[data-admin-view="home"] #adminDashboard:not([hidden]),
+body[data-admin-view="associesPanel"] #associesPanel:not([hidden]),
+body[data-admin-view="registryPanel"] #registryPanel:not([hidden]),
+body[data-admin-view="horsePanel"] #horsePanel:not([hidden]),
+body[data-admin-view="emailPanel"] #emailPanel:not([hidden]),
+body[data-admin-view="actions"] #actions:not([hidden]){display:block!important}
+#adminDetailNav{margin:0 0 12px}
+#adminDetailNav[hidden]{display:none!important}
 </style><link rel="manifest" href="../manifest.webmanifest"><link rel="apple-touch-icon" href="../icon-ei-192.png"></head><body><header><strong>ÉCURIE <span>INITIAL</span></strong><div>Gestion de l'Écurie Initial</div></header><main><nav><a href="../connexion/">← Mon espace associé</a></nav>
+<nav id="adminDetailNav" hidden><a href="#adminDashboard">← Administration</a></nav>
 <section class="panel admin-hub" id="adminDashboard" aria-label="Tableau de bord d'administration" hidden>
  <h1>🛠️ Administration</h1>
  <p class="admin-hub-intro">Tous vos accès de gestion au même endroit.</p>
@@ -139,6 +156,25 @@ const db=createClient('https://yeecwaaizmvrhwobukfa.supabase.co','sb_publishable
 const $=id=>document.getElementById(id);
 let selectedMember=null,emailMember=null,roster=[],rosterLoaded=false,registeredNames=new Set(),registryOwners=[],registryLoadError='',registrationStatuses={};
 const sortFr=(a,b)=>a.localeCompare(b,'fr',{sensitivity:'base'});
+const adminViews=new Set(['associesPanel','registryPanel','actions','horsePanel','emailPanel']);
+function setAdminView(view){
+ if(!adminViews.has(view))view='home';
+ if((view==='horsePanel'&&!selectedMember)||(view==='emailPanel'&&!emailMember))view='associesPanel';
+ document.body.dataset.adminView=view;
+ $('adminDetailNav').hidden=view==='home';
+ return view;
+}
+function adminViewFromHash(){return setAdminView(location.hash.slice(1))}
+function openAdminView(view){
+ const active=setAdminView(view);
+ if(location.hash!=='#'+active)location.hash='#'+active;
+ requestAnimationFrame(()=>$(active)?.scrollIntoView({behavior:'smooth',block:'start'}));
+}
+window.addEventListener('hashchange',()=>{
+ const view=adminViewFromHash();
+ if(view==='home')scrollTo({top:0,behavior:'instant'});
+ else requestAnimationFrame(()=>$(view)?.scrollIntoView({block:'start'}));
+});
 const normName=s=>(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();
 function status(id,value){$(id).textContent=value}
 function make(tag,content){const node=document.createElement(tag);if(content!==undefined)node.textContent=content;return node}
@@ -231,7 +267,7 @@ function prepareExistingOwner(owner){
   ' cheval(aux) précoché(s) sur '+owner.horses.length+' rattachement(s) du répertoire.'+
   (notListed.length?' Attention : '+notListed.length+' cheval(aux) ne sont plus dans l’effectif affiché.':'')+
   ' Vérifiez puis indiquez son e-mail pour envoyer l’invitation.');
- $('actions').scrollIntoView({behavior:'smooth',block:'start'});
+ openAdminView('actions');
  $('email').focus({preventScroll:true});
 }
 function renderRegistry(){
@@ -319,8 +355,8 @@ async function selectHorses(member){
  selectedMember=member;
  $('horseMemberName').textContent=member.nom_affiche;
  $('horsePanel').hidden=false;
+ openAdminView('horsePanel');
  await renderHorses(member);
- $('horsePanel').scrollIntoView({behavior:'smooth',block:'start'});
 }
 $('horseForm').onsubmit=async e=>{
  e.preventDefault();if(!selectedMember)return;
@@ -339,7 +375,7 @@ function selectEmail(member){
  $('newEmail').value='';
  status('emailStatus','');
  $('emailPanel').hidden=false;
- $('emailPanel').scrollIntoView({behavior:'smooth',block:'start'});
+ openAdminView('emailPanel');
 }
 $('emailForm').onsubmit=async e=>{
  e.preventDefault();if(!emailMember)return;
@@ -452,6 +488,7 @@ async function init(){
   }
   $('count').textContent=members.length+' compte(s) enregistré(s)';
   $('adminDashboard').hidden=false;$('content').hidden=false;$('actions').hidden=false;$('privateNewsPanel').hidden=false;$('contributorPanel').hidden=false;$('tribunePanel').hidden=false;
+  adminViewFromHash();
   await loadRoster();
   renderInviteRoster();
   await loadRegistry();
