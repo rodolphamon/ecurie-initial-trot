@@ -203,6 +203,10 @@
 .hero-trainer>span[aria-hidden]{flex:0 0 auto;font-size:1.15em}
 .hero-trainer-name{display:block;min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
 .hero-meta .tag.rest{flex:0 0 auto;white-space:nowrap;font-size:11px;padding:5px 8px}
+/* Âge hippique visible dès l'ouverture de chaque fiche. */
+.hero-age{display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;padding:5px 9px;border:1px solid #f2d4b9;border-radius:999px;background:#fff5eb;color:#9e4b14;font-size:12px;font-weight:850;line-height:1.15;white-space:nowrap}
+@media(max-width:600px){.hero-meta{flex-wrap:wrap;row-gap:7px}.hero-age{padding:4px 8px;font-size:11px}}
+
 @media(max-width:590px){
  .hero-title-row{gap:8px}
  .hero-title-row h1{font-size:clamp(24px,7.2vw,39px);letter-spacing:-1.1px}
