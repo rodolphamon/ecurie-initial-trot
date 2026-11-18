@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#171717">
-<title>Gestion des contributeurs · Écurie Initial</title>
+<title>Team Initial · Écurie Initial</title>
 <style>
 *{box-sizing:border-box}body{margin:0;background:#f8f6f3;color:#27221e;font:15px/1.5 Arial,sans-serif}
 header{background:#171717;color:#fff;padding:20px}header strong{font-size:22px}header span{color:#f47721}
@@ -10,21 +10,27 @@ h1{font-size:25px;margin:7px 0}h2{font-size:21px;margin:3px 0 12px}
 button{background:#f47721;border:0;padding:12px 18px;border-radius:8px;font:inherit;font-weight:bold;cursor:pointer}
 button:disabled{opacity:.5}a{color:#a94b0d}.muted{color:#635d58}[hidden]{display:none!important}
 .warning{background:#fff5eb;padding:13px;border-left:4px solid #f47721}
-.status{min-height:20px}.rights{margin:8px 0 15px}.role{font-weight:bold}
+.status{min-height:20px}.rights{margin:8px 0 15px}.role{font-weight:bold}.team-person{padding:13px 0;border-bottom:1px solid #eae4df}.team-person:last-child{border-bottom:0}.team-person p{margin:7px 0;overflow-wrap:anywhere}.team-person button{margin-top:6px}.team-person strong{font-size:17px}
 </style>
 </head><body>
-<header><strong>ÉCURIE <span>INITIAL</span></strong><div>Attribution des rôles</div></header>
+<header><strong>ÉCURIE <span>INITIAL</span></strong><div>Équipe de l'Écurie</div></header>
 <main>
 <nav><a href="../">← Administration</a></nav>
 <div class="card">
-<h1>📝 Contributeurs</h1>
-<p>Arnaud PUSKAS et Nicolas BARRÉ peuvent mettre à jour les <strong>engagements</strong>, les <strong>gains de carrière</strong>, les <strong>valeurs handicap (galop)</strong> et les <strong>records chronométriques (trot)</strong>. Publication directe, sans fonctions d’administration ni accès à la gestion des associés.</p>
+<h1>🤝 Team Initial</h1>
+<p>Retrouvez ici les membres de l'équipe de l'Écurie Initial, avec leurs droits propres : <strong>communication en lecture seule</strong> ou <strong>contribution sportive</strong>.</p>
 <p class="muted">Les autorisations sportives et la gestion des fiches sont indépendantes. Les statuts ci-dessous sont vérifiés sur les comptes réels de l’application.</p>
 <p id="loading">Vérification de votre accès administrateur…</p>
 <p id="denied" hidden class="warning">Réservé au gérant administrateur. <a href="../../connexion/">Se connecter</a></p>
 <p id="accessStatus" role="status"></p>
 </div>
 <div id="contributorCards" hidden>
+<section class="card" aria-labelledby="communicationTitle">
+ <h2 id="communicationTitle">📱 Communication et réseaux sociaux</h2>
+ <div id="teamMembers"><p class="muted">Chargement des accès de l'équipe…</p></div>
+ <p id="teamStatus" class="status" role="status" aria-live="polite"></p>
+</section>
+<h2>🐎 Contributions sportives</h2>
 <section class="card" aria-labelledby="arnaudTitle">
 <h2 id="arnaudTitle">Arnaud PUSKAS</h2>
 <p id="arnaudLoading" class="muted">Recherche de son compte…</p>
@@ -115,6 +121,82 @@ async function loadContributor(target){
   $(key+'Status').textContent='Impossible de vérifier ses droits : '+(e.message||'erreur inconnue');
  }finally{$(key+'Loading').hidden=true}
 }
+
+function teamElt(tag,content){
+ const el=document.createElement(tag);
+ if(content!==undefined)el.textContent=content;
+ return el;
+}
+async function teamAction(body){
+ const {data:{session},error}=await db.auth.getSession();
+ if(error||!session)throw Error("Reconnectez-vous à l'application pour gérer les invitations.");
+ let jwt=session.access_token;
+ if(!session.expires_at||session.expires_at-Math.floor(Date.now()/1000)<120){
+  const {data:refreshed,error:refreshError}=await db.auth.refreshSession();
+  if(refreshError||!refreshed?.session)throw Error("Session expirée, reconnectez-vous.");
+  jwt=refreshed.session.access_token;
+ }
+ const request=token=>fetch("https://yeecwaaizmvrhwobukfa.supabase.co/functions/v1/gerer-associes",{
+  method:"POST",headers:{"Content-Type":"application/json",
+   "apikey":"sb_publishable_xUy2EJA3u3cKWl8BB4GNPQ_qhV9Pes3",
+   "Authorization":"Bearer "+token},
+  body:JSON.stringify(body)
+ });
+ let response=await request(jwt);
+ if(response.status===401){
+  const {data:refresh,error:refreshError}=await db.auth.refreshSession();
+  if(refreshError||!refresh?.session)throw Error("Session expirée, reconnectez-vous.");
+  response=await request(refresh.session.access_token);
+ }
+ const result=await response.json().catch(()=>({}));
+ if(!response.ok)throw Error(result.error||"Impossible d'effectuer cette action.");
+ return result;
+}
+async function loadTeamInitial(){
+ const container=$('teamMembers');container.replaceChildren();
+ try{
+  const {membres=[]}=await teamAction({action:'list_team_initial'});
+  if(!membres.length){container.append(teamElt('p',"Aucun accès communication préparé."));return;}
+  for(const member of membres){
+   const box=teamElt('div');box.className='team-person';
+   box.append(teamElt('strong',member.nom_affiche));
+   box.append(teamElt('p',member.email));
+   box.append(teamElt('p','Fonction : communication et réseaux sociaux · accès en lecture seule, sans modification ni publication.'));
+   const states={
+    pret_a_inviter:"Compte non créé — invitation à envoyer",
+    en_attente:"Invitation envoyée — confirmation de l'e-mail en attente",
+    confirme:"Compte confirmé — accès autorisé",
+    connecte:"Compte actif — connexion déjà effectuée"
+   };
+   const info=teamElt('p',states[member.etat]||'Statut non vérifiable');
+   info.className='muted';box.append(info);
+   if(member.type_compte && member.type_compte!=='observateur'){
+    const warning=teamElt('p',"Attention : ce compte possède un autre rôle. Vérifiez les droits avant toute action.");
+    warning.className='warning';box.append(warning);
+   } else if(member.etat==='pret_a_inviter'||member.etat==='confirme'||member.etat==='connecte'){
+    const button=teamElt('button',member.etat==='pret_a_inviter'?"✉️ Envoyer l'invitation":"✉️ Renvoyer un lien d'accès");
+    button.type='button';
+    button.addEventListener('click',async()=>{
+     if(!confirm("Envoyer un e-mail d'accès à "+member.nom_affiche+" ("+member.email+") ?"))return;
+     button.disabled=true;$('teamStatus').textContent="Envoi de l'e-mail en cours…";
+     try{
+      const result=await teamAction({action:'invite_team_initial',email:member.email});
+      $('teamStatus').textContent=result.message||"E-mail envoyé. Vérifiez la réception.";
+      await loadTeamInitial();
+     }catch(error){$('teamStatus').textContent=error.message||"Envoi impossible.";button.disabled=false}
+    });
+    box.append(button);
+   }else{
+    box.append(teamElt('p',"Le lien a déjà été envoyé. Vérifiez la boîte de réception et les courriers indésirables."));
+   }
+   container.append(box);
+  }
+ }catch(error){
+  const problem=teamElt('p',"Chargement de Team Initial impossible : "+(error.message||"Erreur inconnue"));
+  problem.className='warning';container.append(problem);
+ }
+}
+
 async function init(){
  try{
   const {data:{user},error}=await db.auth.getUser();
@@ -124,7 +206,7 @@ async function init(){
   if(memberError)throw memberError;
   if(!member?.actif||!member.administrateur)throw Error('Administrateur requis');
   $('contributorCards').hidden=false;
-  await Promise.all(targets.map(loadContributor));
+  await Promise.all([loadTeamInitial(),...targets.map(loadContributor)]);
  }catch(e){
   $('denied').hidden=false;
   $('accessStatus').textContent=e.message||'Accès non autorisé';
