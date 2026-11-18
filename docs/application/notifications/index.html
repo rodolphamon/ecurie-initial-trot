@@ -27,13 +27,14 @@ button{cursor:pointer;background:var(--orange);border:0;border-radius:9px;font-w
 <div class="row"><input type="checkbox" id="daily" checked><label for="daily"><strong>Partants du jour à 10h00</strong><div class="muted">Une synthèse uniquement lorsqu'un cheval court.</div></label></div>
 <div class="row"><input type="checkbox" id="results" checked><label for="results"><strong>Résultats officiels</strong><div class="muted">Dès validation du résultat.</div></label></div>
 </div>
+<div class="row"><input type="checkbox" id="publicNews" checked><label for="publicNews"><strong>📢 Annonces publiques de l’Écurie</strong><div class="muted">Messages officiels destinés à toute la communauté, y compris aux supporters sans cheval.</div></label></div>
 <div id="memberChecks" hidden>
 <div class="row"><input type="checkbox" id="confirmed" checked><label for="confirmed"><strong>Partant confirmé</strong><div class="muted">À la déclaration du partant.</div></label></div>
 <div class="row"><input type="checkbox" id="reminder10" checked><label for="reminder10"><strong>Rappel à 10h00</strong><div class="muted">Le jour de la course.</div></label></div>
 <div class="row"><input type="checkbox" id="before15" checked><label for="before15"><strong>15 minutes avant le départ</strong></label></div>
 <div class="row"><input type="checkbox" id="resultMember" checked><label for="resultMember"><strong>Résultat officiel</strong></label></div>
 <div class="row"><input type="checkbox" id="withdrawn" checked><label for="withdrawn"><strong>Non-partant</strong></label></div>
-<div class="row"><input type="checkbox" id="generalNews" checked><label for="generalNews"><strong>📣 Messages généraux de l’écurie</strong><div class="muted">Annonces destinées à tous les associés. Le texte complet reste dans votre espace privé.</div></label></div>
+<div class="row"><input type="checkbox" id="generalNews" checked><label for="generalNews"><strong>🔒 Messages privés aux associés</strong><div class="muted">Annonces réservées aux associés. Le contenu reste dans votre espace privé.</div></label></div>
 <div class="row"><input type="checkbox" id="privateNews" checked><label for="privateNews"><strong>Nouvelles privées de mes chevaux</strong><div class="muted">Informations, photos et vidéos réservées aux propriétaires. Uniquement les chevaux dont je possède des parts.</div></label></div>
 </div>
 </section>
@@ -90,8 +91,8 @@ function chooseScope(scope){
 }
 function prefs(){return isMember?{
   scope:document.querySelector('input[name="scope"]:checked').value,
-  confirmed:checked('confirmed'),daily:checked('reminder10'),before15:checked('before15'),results:checked('resultMember'),withdrawn:checked('withdrawn'),private_news:checked('privateNews'),general_news:checked('generalNews')
-}:{scope:'all',confirmed:false,daily:checked('daily'),before15:false,results:checked('results'),withdrawn:false,private_news:false,general_news:false}}
+  confirmed:checked('confirmed'),daily:checked('reminder10'),before15:checked('before15'),results:checked('resultMember'),withdrawn:checked('withdrawn'),private_news:checked('privateNews'),general_news:checked('generalNews'),public_news:checked('publicNews')
+}:{scope:'all',confirmed:false,daily:checked('daily'),before15:false,results:checked('results'),withdrawn:false,private_news:false,general_news:false,public_news:checked('publicNews')}}
 function base64ToBytes(str){const padding='='.repeat((4-str.length%4)%4);const raw=atob((str+padding).replace(/-/g,'+').replace(/_/g,'/'));return Uint8Array.from(raw,c=>c.charCodeAt(0))}
 function deviceToken(){let t=localStorage.getItem(tokenKey);if(!t){t=Array.from(crypto.getRandomValues(new Uint8Array(32)),x=>x.toString(16).padStart(2,'0')).join('');localStorage.setItem(tokenKey,t)}return t}
 async function callServer(body){
@@ -136,7 +137,7 @@ async function init(){
     const {data:a}=await db.from('associes').select('actif,nom_affiche,administrateur,notification_scope,type_compte').eq('user_id',session.user.id).maybeSingle();
     isMember=!!a?.actif&&a.type_compte!=='exterieur';
     if(isMember){accountScope=a.notification_scope==='all'?'all':'mine';chooseScope(accountScope);}
-    if(a?.actif&&a.type_compte==='exterieur'){$('profile').textContent='Membre extérieur · '+a.nom_affiche;$('profileText').textContent='Notifications publiques des courses et des résultats. Les informations privées restent réservées aux propriétaires.';}
+    if(a?.actif&&a.type_compte==='exterieur'){$('profile').textContent='Membre extérieur · '+a.nom_affiche;$('profileText').textContent='Notifications publiques des courses, résultats et annonces de l’Écurie. Les informations privées restent réservées aux propriétaires.';}
     if(isMember){$('profile').textContent='Espace associé · '+a.nom_affiche;$('profileText').hidden=true;$('scopeBox').hidden=false;$('guestChecks').hidden=true;$('memberChecks').hidden=false;if(a.administrateur){$('andresyPanel').hidden=false;$('myPhonePanel').hidden=false;}}
   }
   registration=await navigator.serviceWorker.register('../sw.js');
@@ -168,6 +169,7 @@ async function init(){
       const state=await callServer({action:'status',deviceToken:deviceToken(),endpoint:subscription.endpoint});
       const p=state.preferences;
       if(state.active && p){
+        $('publicNews').checked=p.public_news!==false;
         if(isMember)$('testRemote').disabled=false;
         if(isMember){
           for(const [field,id] of Object.entries({confirmed:'confirmed',daily:'reminder10',before15:'before15',results:'resultMember',withdrawn:'withdrawn',private_news:'privateNews',general_news:'generalNews'}))
