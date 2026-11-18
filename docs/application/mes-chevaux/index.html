@@ -26,12 +26,19 @@
 .news-delete:disabled{opacity:.45;cursor:wait}
 #news-delete-status{min-height:16px;margin:6px 0;color:#1d6643;font-size:13px;font-weight:bold}
 #private-news .general-news{border-left-color:#171717!important;background:#fff7ee}
+/* Raccourcis d'administration : cartes discrètes, orange seulement en accent. */
+.quick-actions{display:grid;grid-template-columns:1fr;gap:9px;margin:14px 0 19px}
+.quick-actions .button{display:flex;align-items:center;min-width:0;width:100%;margin:0;padding:13px 15px;background:#fffaf6;color:#25211e;border:1px solid #e6ddd4;border-left:4px solid #f47721;border-radius:11px;box-shadow:0 2px 8px #17171708;font-size:14px;line-height:1.35;font-weight:750;text-decoration:none;overflow-wrap:break-word;transition:background .16s,border-color .16s}
+.quick-actions .button:hover,.quick-actions .button:focus-visible{background:#fff0e4;border-color:#f47721}
+.quick-actions .button:active{background:#ffe6d1}
+@media(min-width:670px){.quick-actions{grid-template-columns:repeat(2,minmax(0,1fr))}}
 </style><link rel="manifest" href="../manifest.webmanifest"><link rel="apple-touch-icon" href="../icon-ei-192.png"></head>
 <body><header><strong>ÉCURIE <span>INITIAL</span></strong><div style="font-size:12px;color:#ddd">Mon espace personnel</div></header><main>
 <p><a href="../">← Retour à l'application</a></p><h1>🐎 Mes chevaux</h1><p id="loading">Vérification de votre accès…</p>
 <section class="card" id="locked" hidden><h2>🔒 Espace réservé</h2><p>Connectez-vous avec votre compte associé validé.</p><a class="button" href="../connexion/">Se connecter</a></section>
 <div id="private" hidden>
 <p id="welcome" class="muted"></p>
+<nav id="quick-actions" class="quick-actions" aria-label="Raccourcis de gestion" hidden></nav>
 <div class="dash-stats">
   <div class="dash-stat"><b id="horse-count">—</b><small>Chevaux dans mes participations</small></div>
   <div class="dash-stat"><b id="starters-count">—</b><small>Prochains partants confirmés</small></div>
@@ -76,17 +83,17 @@ async function setup(){
   if(member.administrateur){
     const quick=el('a','✍️ Publier une information privée','button');
     quick.href='../administration/actualites/';
-    $('welcome').after(quick);
+    $('quick-actions').prepend(quick);$('quick-actions').hidden=false;
     const general=el('a','📣 Message général aux associés','button');
     general.href='../administration/actualites/?general=1';
-    $('welcome').after(general);
+    $('quick-actions').prepend(general);$('quick-actions').hidden=false;
   }
   try{
     const permissions=await Promise.all(['engagements','gains','valeurs','records'].map(section=>db.rpc('ei_peut_contribuer',{section})));
     if(permissions.some(p=>p.data===true)){
       const shortcut=el('a','📝 Gérer engagements, gains, valeurs et records','button');
       shortcut.href='../contribution/';
-      $('welcome').after(shortcut);
+      $('quick-actions').prepend(shortcut);$('quick-actions').hidden=false;
     }
   }catch(_){}
   try{
@@ -94,7 +101,7 @@ async function setup(){
     if(!photoError&&(member.administrateur||photoRights)){
       const photoLink=el('a','🐎 Ajouter un cheval / gérer les fiches','button');
       photoLink.href='../administration/effectif/';
-      $('welcome').after(photoLink);
+      $('quick-actions').prepend(photoLink);$('quick-actions').hidden=false;
     }
   }catch(_){}
   const{data:parts,error:partsError}=await db.from('participations_chevaux')
