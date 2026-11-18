@@ -447,7 +447,7 @@ async function run() {
   const holdings=new Map<string,Set<string>>();
   if(userIds.length){
     const {data:members,error:memErr}=await sb.from("associes")
-      .select("user_id,nom_affiche,administrateur").eq("actif",true).in("user_id",userIds);
+      .select("user_id,nom_affiche,administrateur,type_compte").eq("actif",true).in("user_id",userIds);
     if(memErr)throw memErr;
     const launchOpen=!prelaunch;
     const pilots=new Set<string>();
@@ -474,8 +474,10 @@ async function run() {
       for(const c of contributors||[])earlyContributors.add(c.user_id);
     }
     for(const m of members||[]){
-      if(launchOpen||pilots.has(m.user_id)||earlyContributors.has(m.user_id))active.add(m.user_id);
-      if(m.administrateur===true)admins.add(m.user_id);
+      // Les membres extérieurs utilisent exclusivement les abonnements publics.
+      if(m.type_compte!=="exterieur" &&
+         (launchOpen||pilots.has(m.user_id)||earlyContributors.has(m.user_id)))active.add(m.user_id);
+      if(m.type_compte!=="exterieur"&&m.administrateur===true)admins.add(m.user_id);
     }
     const {data:parts,error:partsErr}=await sb.from("participations_chevaux").select("user_id,cheval_slug").in("user_id",userIds).limit(10000);
     if(partsErr)throw partsErr;
