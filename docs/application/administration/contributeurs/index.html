@@ -1,59 +1,133 @@
-<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#171717">
-<title>Attribution Contributeur · Écurie Initial</title>
-<style>*{box-sizing:border-box}body{margin:0;background:#f8f6f3;color:#27221e;font:15px/1.5 Arial,sans-serif}header{background:#171717;color:#fff;padding:20px}header strong{font-size:22px}header span{color:#f47721}
-main{max-width:730px;margin:auto;padding:20px 15px 85px}.card{background:#fff;border:1px solid #e8ddd3;border-radius:14px;padding:20px;margin:15px 0}h1{font-size:25px;margin:7px 0}button{background:#f47721;border:0;padding:12px 18px;border-radius:8px;font:inherit;font-weight:bold;cursor:pointer}button:disabled{opacity:.5}a{color:#a94b0d}.muted{color:#635d58}[hidden]{display:none!important}#status{min-height:20px}.warning{background:#fff5eb;padding:13px;border-left:4px solid #f47721}</style>
-</head><body><header><strong>ÉCURIE <span>INITIAL</span></strong><div>Attribution des rôles</div></header>
-<main><nav><a href="../">← Administration</a></nav><div class="card">
-<h1>Contributeur — Arnaud PUSKAS</h1><p>Autorisation sportive : <strong>engagements</strong>, <strong>gains de carrière</strong>, <strong>valeurs handicap (galop)</strong> et <strong>records chronométriques (trot)</strong>. Publication directe. Aucun droit d’administration ni d’accès à la gestion des associés.</p>
-<p id="loading">Recherche du compte associé…</p><p id="denied" hidden>Réservé au gérant administrateur. <a href="../../connexion/">Se connecter</a></p>
-<div id="unregistered" hidden class="warning"><strong>En attente d’inscription.</strong><p>Arnaud PUSKAS figure dans le répertoire des propriétaires mais aucun compte actif correspondant n’est encore identifié dans l’application. Préparez son invitation, puis revenez sur cette page pour attribuer ses droits.</p><p><a href="../">Gérer les invitations aux associés</a></p></div>
-<div id="ready" hidden><p><strong>Compte :</strong> <span id="person"></span></p><p><strong>Rôle :</strong> <span id="role"></span></p><p><button type="button" id="toggle"></button></p><p class="muted">Les droits sont enregistrés directement dans Supabase, liés à l’identifiant sécurisé de son compte.</p></div>
-<p id="status" role="status" aria-live="polite"></p>
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#171717">
+<title>Gestion des contributeurs · Écurie Initial</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f8f6f3;color:#27221e;font:15px/1.5 Arial,sans-serif}
+header{background:#171717;color:#fff;padding:20px}header strong{font-size:22px}header span{color:#f47721}
+main{max-width:730px;margin:auto;padding:20px 15px 85px}
+.card{background:#fff;border:1px solid #e8ddd3;border-radius:14px;padding:20px;margin:15px 0}
+h1{font-size:25px;margin:7px 0}h2{font-size:21px;margin:3px 0 12px}
+button{background:#f47721;border:0;padding:12px 18px;border-radius:8px;font:inherit;font-weight:bold;cursor:pointer}
+button:disabled{opacity:.5}a{color:#a94b0d}.muted{color:#635d58}[hidden]{display:none!important}
+.warning{background:#fff5eb;padding:13px;border-left:4px solid #f47721}
+.status{min-height:20px}.rights{margin:8px 0 15px}.role{font-weight:bold}
+</style>
+</head><body>
+<header><strong>ÉCURIE <span>INITIAL</span></strong><div>Attribution des rôles</div></header>
+<main>
+<nav><a href="../">← Administration</a></nav>
+<div class="card">
+<h1>📝 Contributeurs</h1>
+<p>Arnaud PUSKAS et Nicolas BARRÉ peuvent mettre à jour les <strong>engagements</strong>, les <strong>gains de carrière</strong>, les <strong>valeurs handicap (galop)</strong> et les <strong>records chronométriques (trot)</strong>. Publication directe, sans fonctions d’administration ni accès à la gestion des associés.</p>
+<p class="muted">Chaque autorisation est individuelle. Les statuts ci-dessous proviennent des comptes réels de l'application.</p>
+<p id="loading">Vérification de votre accès administrateur…</p>
+<p id="denied" hidden class="warning">Réservé au gérant administrateur. <a href="../../connexion/">Se connecter</a></p>
+<p id="accessStatus" role="status"></p>
 </div>
-<div class="card"><h2>Accès d’Arnaud</h2><p>Arnaud peut ouvrir <a href="../../contribution/">Gestion sportive des chevaux</a> depuis son espace personnel. Son accès de contribution est autorisé avant le 1er décembre, sans ouvrir l'application aux autres associés.</p></div>
+<div id="contributorCards" hidden>
+<section class="card" aria-labelledby="arnaudTitle">
+<h2 id="arnaudTitle">Arnaud PUSKAS</h2>
+<p id="arnaudLoading" class="muted">Recherche de son compte…</p>
+<div id="arnaudMissing" hidden class="warning">Compte actif non identifié. <a href="../">Vérifier les invitations et les accès</a>.</div>
+<div id="arnaudReady" hidden>
+<p><strong>Compte :</strong> <span id="arnaudPerson"></span></p>
+<p><strong>Rôle :</strong> <span class="role" id="arnaudRole"></span></p>
+<p><button type="button" id="arnaudToggle"></button></p>
+</div>
+<p id="arnaudStatus" class="status" role="status" aria-live="polite"></p>
+</section>
+<section class="card" aria-labelledby="nicolasTitle">
+<h2 id="nicolasTitle">Nicolas BARRÉ</h2>
+<p id="nicolasLoading" class="muted">Recherche de son compte…</p>
+<div id="nicolasMissing" hidden class="warning">Compte actif non identifié. <a href="../">Vérifier les invitations et les accès</a>.</div>
+<div id="nicolasReady" hidden>
+<p><strong>Compte :</strong> <span id="nicolasPerson"></span></p>
+<p><strong>Rôle :</strong> <span class="role" id="nicolasRole"></span></p>
+<p><button type="button" id="nicolasToggle"></button></p>
+</div>
+<p id="nicolasStatus" class="status" role="status" aria-live="polite"></p>
+</section>
+<div class="card">
+<h2>Accès à la gestion sportive</h2>
+<p>Les contributeurs autorisés peuvent ouvrir <a href="../../contribution/">Gestion sportive des chevaux</a> depuis leur espace personnel. Leur accès anticipé peut être activé sans ouvrir l'application aux autres associés avant le 1er décembre 2026.</p>
+</div>
+</div>
 </main>
 <script type="module">
 import {createClient} from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
 const db=createClient('https://yeecwaaizmvrhwobukfa.supabase.co','sb_publishable_xUy2EJA3u3cKWl8BB4GNPQ_qhV9Pes3');
 const $=id=>document.getElementById(id);
 const norm=s=>String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toUpperCase().replace(/\s+/g,' ').trim();
-let candidate=null,role=null;
-async function refresh(){
- const {data,error}=await db.from('ei_contributeurs').select('user_id,actif,engagements,gains,valeurs,records,acces_avant_ouverture').eq('user_id',candidate.user_id).maybeSingle();
+const targets=[
+ {key:'arnaud',name:'Arnaud PUSKAS',search:'%PUSKAS%',normalized:'ARNAUD PUSKAS',candidate:null,role:null},
+ {key:'nicolas',name:'Nicolas BARRÉ',search:'%BARR%',normalized:'NICOLAS BARRE',candidate:null,role:null}
+];
+async function refresh(target){
+ const {data,error}=await db.from('ei_contributeurs')
+   .select('user_id,actif,engagements,gains,valeurs,records,acces_avant_ouverture')
+   .eq('user_id',target.candidate.user_id).maybeSingle();
  if(error)throw error;
- role=data;
- $('role').textContent=role?.actif&&role.engagements&&role.gains&&role.valeurs&&role.records?'Actif — engagements, gains, valeurs et records'+(role.acces_avant_ouverture?' (accès anticipé)':''):'Non activé / accès incomplet';
- $('toggle').textContent=role?.actif?'Désactiver le rôle Contributeur':'Activer le rôle Contributeur';
- $('ready').hidden=false;
+ target.role=data;
+ const complete=data?.actif&&data.engagements&&data.gains&&data.valeurs&&data.records;
+ $(target.key+'Role').textContent=complete
+   ?'Actif — engagements, gains, valeurs et records'+(data.acces_avant_ouverture?' (accès anticipé)':'')
+   :data?.actif?'Actif — autorisations incomplètes':'Non activé';
+ $(target.key+'Toggle').textContent=data?.actif?'Désactiver le rôle Contributeur':'Activer le rôle Contributeur';
+ $(target.key+'Ready').hidden=false;
 }
-$('toggle').onclick=async()=>{
- const btn=$('toggle');btn.disabled=true;$('status').textContent='Enregistrement…';
+async function toggle(target){
+ if(!target.candidate)return;
+ const btn=$(target.key+'Toggle');btn.disabled=true;
+ $(target.key+'Status').textContent='Enregistrement…';
  try{
-  const shouldActivate=!(role?.actif);
-  let result;
-  if(shouldActivate)
-    result=await db.from('ei_contributeurs').upsert({user_id:candidate.user_id,actif:true,engagements:true,gains:true,valeurs:true,records:true,acces_avant_ouverture:true},{onConflict:'user_id'});
-  else result=await db.from('ei_contributeurs').update({actif:false}).eq('user_id',candidate.user_id);
+  const shouldActivate=!target.role?.actif;
+  const result=shouldActivate
+   ?await db.from('ei_contributeurs').upsert({
+      user_id:target.candidate.user_id,actif:true,engagements:true,gains:true,
+      valeurs:true,records:true,acces_avant_ouverture:true
+    },{onConflict:'user_id'}).select('user_id').single()
+   :await db.from('ei_contributeurs').update({actif:false})
+      .eq('user_id',target.candidate.user_id).select('user_id').single();
   if(result.error)throw result.error;
-  await refresh();
-  $('status').textContent=shouldActivate?'Droits Contributeur activés pour Arnaud PUSKAS.':'Droits Contributeur désactivés.';
- }catch(e){$('status').textContent='Modification refusée : '+(e.message||'erreur inconnue')}
- finally{btn.disabled=false}
-};
+  await refresh(target);
+  $(target.key+'Status').textContent=shouldActivate
+    ?'Droits Contributeur activés pour '+target.name+'.'
+    :'Droits Contributeur désactivés pour '+target.name+'.';
+ }catch(e){
+  $(target.key+'Status').textContent='Modification refusée : '+(e.message||'erreur inconnue');
+ }finally{btn.disabled=false}
+}
+async function loadContributor(target){
+ const key=target.key;
+ try{
+  const {data:members,error}=await db.from('associes')
+    .select('user_id,nom_affiche,actif').ilike('nom_affiche',target.search);
+  if(error)throw error;
+  const matches=(members||[]).filter(a=>a.actif&&norm(a.nom_affiche)===target.normalized);
+  if(matches.length!==1){$(key+'Missing').hidden=false;return}
+  target.candidate=matches[0];
+  $(key+'Person').textContent=target.candidate.nom_affiche;
+  await refresh(target);
+  $(key+'Toggle').addEventListener('click',()=>toggle(target));
+ }catch(e){
+  $(key+'Status').textContent='Impossible de vérifier ses droits : '+(e.message||'erreur inconnue');
+ }finally{$(key+'Loading').hidden=true}
+}
 async function init(){
  try{
   const {data:{user},error}=await db.auth.getUser();
   if(error||!user)throw Error('Non connecté');
-  const {data:member}=await db.from('associes').select('actif,administrateur').eq('user_id',user.id).maybeSingle();
+  const {data:member,error:memberError}=await db.from('associes')
+    .select('actif,administrateur').eq('user_id',user.id).maybeSingle();
+  if(memberError)throw memberError;
   if(!member?.actif||!member.administrateur)throw Error('Administrateur requis');
-  const {data:members,error:fetchError}=await db.from('associes').select('user_id,nom_affiche,actif').ilike('nom_affiche','%PUSKAS%');
-  if(fetchError)throw fetchError;
-  const matches=(members||[]).filter(a=>a.actif&&norm(a.nom_affiche)==='ARNAUD PUSKAS');
-  if(matches.length!==1){$('unregistered').hidden=false;return}
-  candidate=matches[0];$('person').textContent=candidate.nom_affiche;
-  await refresh();
- }catch(e){$('denied').hidden=false;$('status').textContent=e.message}
- finally{$('loading').hidden=true}
+  $('contributorCards').hidden=false;
+  await Promise.all(targets.map(loadContributor));
+ }catch(e){
+  $('denied').hidden=false;
+  $('accessStatus').textContent=e.message||'Accès non autorisé';
+ }finally{$('loading').hidden=true}
 }
 init();
-</script><script defer src="../../nav.js?v=20261117tabsresultatspartants1"></script></body></html>
+</script><script defer src="../../nav.js?v=20261117tabsresultatspartants1"></script>
+</body></html>
