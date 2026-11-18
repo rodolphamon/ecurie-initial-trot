@@ -20,14 +20,15 @@ try{const q=await fetch(base+'data/qualifications.json',{cache:'no-store'});if(q
 try{
  const {createClient}=await import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm');
  const client=createClient('https://yeecwaaizmvrhwobukfa.supabase.co','sb_publishable_xUy2EJA3u3cKWl8BB4GNPQ_qhV9Pes3');
- const [en,ga,va,re,st]=await Promise.all([
+ const [en,ga,va,re,st,ef]=await Promise.all([
    client.from('ei_contributions_engagements').select('cheval_slug,engagements'),
    client.from('ei_contributions_gains').select('cheval_slug,gains'),
    client.from('ei_contributions_valeurs').select('cheval_slug,discipline_valeur,valeur'),
    client.from('ei_contributions_records').select('cheval_slug,chrono'),
-   client.from('ei_statuts_chevaux').select('cheval_slug,au_repos')
+   client.from('ei_statuts_chevaux').select('cheval_slug,au_repos'),
+   client.from('ei_effectif_gestion').select('cheval_slug,nom,discipline,casaque,entraineur,lien_officiel,nouveau,actif,date_sortie')
  ]);
- if(en.error||ga.error||va.error||re.error||st.error)throw Error('Source des contributions indisponible');
+ if(en.error||ga.error||va.error||re.error||st.error||ef.error)throw Error('Source des contributions indisponible');
  const valid=new Set((all.horses||[]).map(h=>h.id));
  const restStatuses=Object.fromEntries((st.data||[]).filter(row=>valid.has(row.cheval_slug)).map(row=>[row.cheval_slug,row.au_repos]));
  for(const p of all.horses||[])if(Object.hasOwn(restStatuses,p.id)){p.status=restStatuses[p.id]?'au repos':'';if(gallop.has(p.id))gallop.set(p.id,{...gallop.get(p.id),status:p.status});}
@@ -50,6 +51,23 @@ try{
      gallop.set(row.cheval_slug,{...h,value:n});
    }
  }
+ // Changements d'effectif : la base historique conserve les chevaux vendus.
+ // Les achats récents sont des profils dynamiques, et les entraîneurs sont actualisés ici.
+ const known=new Map((all.horses||[]).map(h=>[h.id,h]));
+ for(const row of ef.data||[]){
+   const old=known.get(row.cheval_slug);
+   const update={
+     id:row.cheval_slug,name:row.nom,discipline:row.discipline,
+     trainer:row.entraineur,casaque:row.casaque,
+     horseLink:row.lien_officiel||old?.horseLink||null,
+     active:row.actif, newHorse:row.nouveau,dateSortie:row.date_sortie
+   };
+   const current={...old,...update};
+   known.set(row.cheval_slug,current);
+   if(gallop.has(row.cheval_slug))gallop.set(row.cheval_slug,{...gallop.get(row.cheval_slug),trainer:row.entraineur,discipline:row.discipline});
+   if(!row.actif)editor.engagements[row.cheval_slug]=[];
+ }
+ all.horses=[...known.values()];
  for(const row of re.data||[]){
    if(!valid.has(row.cheval_slug)||!trot.horses?.[row.cheval_slug]||!/^\d{1,2}'[0-5]\d"\d$/.test(row.chrono||''))continue;
    trot.horses[row.cheval_slug].record=row.chrono;
@@ -66,7 +84,7 @@ if(url&&replay.date&&replay.cheval){
     url:direct?url:replayLetrot?(sourceLetrot||url):ficheLetrot?resultatLetrot:url,
     kind:direct?'video':replayLetrot?'letrot':ficheLetrot?'letrot_result':replay.verification_replay_2026_11_16?.statut==='page_course_avec_rubrique_replay'?'replay_page':/equidia\.fr/i.test(url)?'equidia':'course'
   };
-}}}}catch(error){console.warn('Liens vidéo temporairement indisponibles',error)}return {profiles:all.horses.map(p=>({...p,...(gallop.get(p.id)||{})})),editor,trot:trot.horses||{},gallop,replayIndex,updates:{trot:trot.updated_at,galop:galop.updated_at}}}
+}}}}catch(error){console.warn('Liens vidéo temporairement indisponibles',error)}return {profiles:all.horses.map(p=>({...p,...(gallop.get(p.id)||{}),trainer:p.trainer,active:p.active,newHorse:p.newHorse,dateSortie:p.dateSortie})),editor,trot:trot.horses||{},gallop,replayIndex,updates:{trot:trot.updated_at,galop:galop.updated_at}}}
 const installedApp = window.matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
 if(installedApp) document.documentElement.classList.add('ei-app-installed');
 function header(){return '<header class="top"><div class="shell top-inner"><a class="wordmark" href="'+base+'index.html"><img class="wordmark-logo" src="'+base+'assets/embleme-ei.png?v=20261112h" alt="Écurie Initial" width="46" height="46"><span class="wordmark-copy"><span class="wordmark-title">ÉCURIE <span class="wordmark-initial"><span class="wordmark-initial-i">'+(installedApp?'ı':'I')+'</span>NITIAL</span></span><small>PARTAGEONS NOTRE PASSION DEPUIS 2011</small></span></a>'+(installedApp?'<span class="wordmark-slogan"><span class="wordmark-slogan-line">PARTAGEONS NOTRE PASSION</span><span class="wordmark-slogan-date">DEPUIS 2011</span></span>':'<nav class="top-nav"><a href="'+base+'index.html">Nos chevaux</a><a href="https://www.ecurie-initial.com/trotteurs/" target="_blank" rel="noopener noreferrer">Trot</a><a href="https://www.ecurie-initial.com/galopeurs/" target="_blank" rel="noopener noreferrer">Galop</a><a href="https://www.ecurie-initial.com/" target="_blank" rel="noopener noreferrer">Site officiel</a></nav>')+'</div></header>'}
@@ -176,7 +194,7 @@ function latestResults(s){
 
 function catalog(s){
   const host=$('#app');
-  const alphabetical=[...s.profiles].sort((a,b)=>a.name.localeCompare(b.name,'fr',{sensitivity:'base'}));
+  const alphabetical=[...s.profiles].filter(p=>p.active!==false).sort((a,b)=>a.name.localeCompare(b.name,'fr',{sensitivity:'base'}));
   // Une seule option par entraîneur, même si plusieurs chevaux sont entraînés par lui.
   const trainers=[...new Set(alphabetical.map(p=>p.trainer).filter(Boolean))]
     .sort((a,b)=>a.localeCompare(b,'fr',{sensitivity:'base'}));
@@ -226,7 +244,7 @@ function catalog(s){
     $('#cards').innerHTML=shown.map(p=>{
       const d=currentData(p,s);
       const key=p.casaque==='galop'?(/obstacle/i.test(p.discipline||'')?'Valeurs':'Valeur'):'Record';
-      return '<a class="horse-card" href="'+encodeURIComponent(p.id)+'/">'+photoMarkup(p,'card')+
+      return '<a class="horse-card" href="'+(p.newHorse?'fiche/?cheval='+encodeURIComponent(p.id):encodeURIComponent(p.id)+'/')+'">'+photoMarkup(p,'card')+
         '<div class="horse-card-body"><div class="horse-card-heading"><h2 title="'+esc(p.name)+'">'+esc(p.name)+'</h2><span class="horse-card-trainer" title="'+esc('Entraîneur : '+(p.trainer||'Non renseigné'))+'">'+esc(p.trainer||'—')+'</span></div>'+
         '<div class="card-bottom"><span>'+key+' : <b>'+esc(metric(p,d))+'</b></span><span>Découvrir la fiche →</span></div></div></a>';
     }).join('')||'<p class="empty">Aucun cheval ne correspond à ces critères.</p>';
@@ -238,12 +256,13 @@ function catalog(s){
 function info(label,value){return '<div class="info-item"><span>'+esc(label)+'</span><strong>'+esc(value||'—')+'</strong></div>'}
 function stats(label,value){return '<div class="summary-card"><span>'+esc(label)+'</span><strong>'+esc(value||'—')+'</strong></div>'}
 function horse(s){
-  const id=document.body.dataset.horse;
+  const id=document.body.dataset.horse||new URLSearchParams(location.search).get('cheval');
   const p=s.profiles.find(x=>x.id===id);
   if(!p)throw Error('Ce cheval ne figure pas dans l’effectif.');
   const isGalop=p.casaque==='galop';
   const d=currentData(p,s);
   const isRest=p.status==='au repos';
+  if(p.active===false)document.title=p.name+' · Ancien cheval de l’Écurie Initial';
   const value=metric(p,d);
   const valueLabel=isGalop?(/obstacle/i.test(p.discipline||'')?'Valeurs handicap plat / obstacle':'Valeur handicap'):'Record';
   const gains=money(d.gains);
