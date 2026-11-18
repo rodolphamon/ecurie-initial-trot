@@ -206,6 +206,20 @@ body[data-admin-view="actions"] #actions:not([hidden]){display:block!important}
 .member-type-filter button[aria-pressed="true"]{background:#f47721;border-color:#f47721;color:#191919}
 .member-type-filter button:focus-visible{outline:2px solid #9d470c;outline-offset:2px}
 @media(max-width:650px){.member-type-filter{gap:4px;margin:7px 0}.member-type-filter button{font-size:11px;padding:8px 3px;min-height:36px}}
+
+/* Indicateurs mobiles : quatre compteurs compacts, recalculés sur les membres visibles. */
+.access-summary{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;margin:10px 0 9px}
+.access-summary .metric-card{min-width:0;min-height:74px;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:8px 3px;background:#faf8f5;border:1px solid #e8ded3;border-radius:10px;text-align:center}
+.access-summary .metric-card strong{font-size:23px;line-height:1.12;color:#25211d;font-variant-numeric:tabular-nums}
+.access-summary .metric-card span{font-size:11px;line-height:1.22;color:#625952;margin-top:5px}
+.access-summary .metric-card.highlight{background:#fff1e7;border-color:#edc4a9}
+.access-summary .metric-card.highlight strong{color:#a64d10}
+@media(max-width:650px){
+ .access-summary{grid-template-columns:repeat(4,minmax(0,1fr));gap:5px;margin:6px 0 9px}
+ .access-summary .metric-card{min-height:67px;padding:7px 2px;border-radius:9px}
+ .access-summary .metric-card strong{font-size:21px;line-height:1.08}
+ .access-summary .metric-card span{font-size:10px;line-height:1.12;margin-top:4px}
+}
 </style><link rel="manifest" href="../manifest.webmanifest"><link rel="apple-touch-icon" href="../icon-ei-192.png"></head><body><header><strong>ÉCURIE <span>INITIAL</span></strong><div>Gestion de l'Écurie Initial</div></header><main><nav><a href="../connexion/">← Mon espace associé</a></nav>
 <nav id="adminDetailNav" hidden><a href="#adminDashboard">← Administration</a></nav>
 <section class="panel admin-hub" id="adminDashboard" aria-label="Tableau de bord d'administration" hidden>
@@ -223,10 +237,11 @@ body[data-admin-view="actions"] #actions:not([hidden]){display:block!important}
   <a class="admin-hub-link" href="../diagnostic-notifications/"><strong>🔔 Notifications</strong><small>Vérifier les alertes sur votre appareil</small></a>
  </div>
 </section><div class="panel" id="associesPanel"><h1>Gestion des membres</h1><p id="loading">Vérification des droits d'administrateur…</p><p id="error" role="alert"></p><div id="denied" hidden><p>Cette rubrique est réservée à l'administrateur de l'Écurie Initial. Connectez-vous avec votre compte autorisé.</p><a href="../connexion/">Se connecter</a></div><div id="content" hidden><p>Suivez les comptes, les dates d’inscription, les connexions et les ouvertures de l’application.</p>
-<div class="access-summary" id="accessSummary" hidden aria-label="Statistiques des accès">
-<div><strong id="summaryAccounts">—</strong><span>Comptes inscrits</span></div>
-<div><strong id="summaryConnected">—</strong><span>Déjà connectés</span></div>
-<div><strong id="summaryOpenings">—</strong><span>Ouvertures suivies</span></div>
+<div class="access-summary" id="accessSummary" aria-label="Statistiques des accès selon le filtre sélectionné" aria-live="polite" aria-atomic="true">
+<div class="metric-card"><strong id="summaryAccounts">—</strong><span>Comptes</span></div>
+<div class="metric-card"><strong id="summaryConnected">—</strong><span>Déjà connectés</span></div>
+<div class="metric-card"><strong id="summaryUsers">—</strong><span>Ont ouvert</span></div>
+<div class="metric-card highlight"><strong id="summaryOpenings">—</strong><span>Ouvertures</span></div>
 </div><div id="memberTypeFilter" class="member-type-filter" role="group" aria-label="Filtrer les comptes par type" data-active="tous"><button type="button" data-member-type="tous" aria-pressed="true">Tous</button><button type="button" data-member-type="associe" aria-pressed="false">Associés</button><button type="button" data-member-type="exterieur" aria-pressed="false">Extérieurs</button><button type="button" data-member-type="observateur" aria-pressed="false">Équipe</button></div><p id="registrationTrackingError" class="warning" role="alert" hidden>Le suivi des inscriptions et des ouvertures est momentanément indisponible. Les données historiques ne sont pas effacées ; les statistiques ne peuvent pas être affichées pour le moment.</p><label id="archivedToggle" hidden><input type="checkbox" id="showArchivedAccounts"><span id="archivedToggleLabel">Afficher les anciennes invitations</span></label><div class="members-table-wrap"><table><thead><tr><th>Membre</th><th>Statut</th><th>Suivi des accès</th><th>Rôle</th><th>Gestion du compte</th></tr></thead><tbody id="members"></tbody></table></div><p class="muted" id="count"></p></div></div><div class="panel" id="registryPanel" hidden>
 <h2>📒 Répertoire des associés</h2>
 <p>Retrouvez ici les personnes de votre liste initiale, même si elles n'ont pas encore créé leur compte. Aucun e-mail n'est envoyé depuis cette liste.</p>
@@ -557,6 +572,9 @@ async function init(){
    else if(state==='invitation_en_attente')dateLine('Invitation',registration?.invitation_le);
    dateLine('Dernière connexion',registration?.derniere_connexion);
    const openings=Number(registration?.nombre_ouvertures||0);
+   tr.dataset.hasConnection=registration?.derniere_connexion?'true':'false';
+   tr.dataset.hasOpenings=Number.isFinite(openings)&&openings>0?'true':'false';
+   tr.dataset.openings=String(Number.isFinite(openings)&&openings>0?openings:0);
    const usage=make('strong',!registration?'📱 Statistiques indisponibles':openings>0?'📱 '+openings+' ouverture'+(openings>1?'s':''):'📱 Aucune ouverture suivie');
    usage.className='registration-usage';
    registrationCell.append(usage);
@@ -643,13 +661,22 @@ async function init(){
   const updateMemberList=()=>{
    const selected=filterBar.dataset.active||'tous';
    const includeArchived=$('showArchivedAccounts').checked;
-   let visible=0;
+   let visible=0,connected=0,users=0,openings=0;
    for(const row of $('members').querySelectorAll('tr.member-row')){
     const matchingType=selected==='tous'||row.dataset.memberType===selected;
     const matchingArchive=row.dataset.archived!=='true'||includeArchived;
     row.hidden=!(matchingType&&matchingArchive);
-    if(!row.hidden)visible++;
+    if(row.hidden)continue;
+    visible++;
+    if(row.dataset.hasConnection==='true')connected++;
+    if(row.dataset.hasOpenings==='true')users++;
+    openings+=Number(row.dataset.openings||0);
    }
+   const trackingAvailable=Object.keys(registrationStatuses).length>0;
+   $('summaryAccounts').textContent=String(visible);
+   $('summaryConnected').textContent=trackingAvailable?String(connected):'—';
+   $('summaryUsers').textContent=trackingAvailable?String(users):'—';
+   $('summaryOpenings').textContent=trackingAvailable?String(openings):'—';
    $('count').textContent=visible+' compte(s) affiché(s)'+(!includeArchived&&archivedCount?' · '+archivedCount+' ancienne(s) invitation(s) masquée(s)':'');
   };
   for(const btn of filterBar.querySelectorAll('button[data-member-type]')){
@@ -665,12 +692,7 @@ async function init(){
   }
   $('showArchivedAccounts').addEventListener('change',updateMemberList);
   updateMemberList();
-  if(Object.keys(registrationStatuses).length){
-   $('summaryAccounts').textContent=String(members.length);
-   $('summaryConnected').textContent=String(members.filter(m=>Boolean(registrationStatuses[m.user_id]?.derniere_connexion)).length);
-   $('summaryOpenings').textContent=String(members.reduce((total,m)=>total+Number(registrationStatuses[m.user_id]?.nombre_ouvertures||0),0));
-   $('accessSummary').hidden=false;
-  }
+
   $('adminDashboard').hidden=false;$('content').hidden=false;$('actions').hidden=false;$('privateNewsPanel').hidden=false;$('contributorPanel').hidden=false;$('tribunePanel').hidden=false;
   adminViewFromHash();
   await loadRoster();
