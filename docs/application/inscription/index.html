@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#171717">
+<title>Inscription · Écurie Initial</title><link rel="manifest" href="../manifest.webmanifest">
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f6f4f1;color:#242424;font:15px/1.5 Arial,sans-serif}header{background:#171717;color:white;padding:18px 20px}header strong{font-size:22px}header span{color:#f47721}main{max-width:570px;margin:25px auto;padding:0 14px 45px}.panel{background:#fff;border:1px solid #eadfd6;border-radius:15px;padding:23px}h1{margin:0 0 12px;font-size:26px}label{display:block;font-weight:700;font-size:13px;margin:14px 0 6px}input{width:100%;padding:12px;border:1px solid #d1c4b9;border-radius:8px;font:inherit}button{font:inherit;font-weight:800;border:0;border-radius:9px;background:#f47721;padding:12px 17px;cursor:pointer;margin-top:17px}button:disabled{opacity:.55;cursor:not-allowed}.muted{color:#665d57;font-size:13px;line-height:1.55}a{color:#a54c0b}.note{background:#fff5eb;border-left:4px solid #f47721;padding:12px;margin:16px 0}#message{font-weight:700;min-height:20px;margin:12px 0}#message.error{color:#a22222}#message.ok{color:#167044}[hidden]{display:none!important}
+</style></head><body>
+<header><strong>ÉCURIE <span>INITIAL</span></strong><div>Inscription à l'application</div></header>
+<main><div class="panel"><p><a href="../connexion/">← Connexion</a></p><h1>Créer mon compte</h1>
+<p>Vous pouvez demander un compte dès maintenant, même sans invitation, puis installer l'application sur votre téléphone.</p>
+<div class="note">L'inscription ne donne pas automatiquement accès à l'espace privé des associés. Les accès réservés sont attribués uniquement après validation par l'Écurie. Ouverture générale prévue le 1er décembre 2026.</div>
+<form id="registration" hidden>
+<label for="name">Nom et prénom</label><input id="name" autocomplete="name" maxlength="100" required>
+<label for="email">Adresse e-mail</label><input id="email" type="email" autocomplete="email" maxlength="254" required>
+<label for="password">Mot de passe (12 caractères minimum)</label><input id="password" type="password" autocomplete="new-password" minlength="12" required>
+<div id="captcha" style="margin-top:18px"></div>
+<button id="submit" type="submit" disabled>Créer mon compte</button>
+</form>
+<p id="unavailable" class="note">L'inscription publique sécurisée n'est pas encore activée. La protection anti-robots doit être configurée avant l'ouverture du formulaire.</p>
+<p id="message" role="status" aria-live="polite"></p>
+<div id="success" hidden class="note"><strong>Demande enregistrée.</strong><p>Consultez votre boîte e-mail pour confirmer votre adresse. Votre compte ne donne pas automatiquement accès aux rubriques réservées aux associés.</p><p><a href="../">📲 Ouvrir et installer l'application</a></p></div>
+<p class="muted">Installation possible dès maintenant : sur Android, ouvrez l'application dans Chrome et choisissez « Installer » ; sur iPhone, utilisez Safari → Partager → Sur l'écran d'accueil.</p>
+</div></main>
+<script type="module">
+import {createClient} from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+import {TURNSTILE_SITE_KEY} from './captcha-config.js';
+const db=createClient('https://yeecwaaizmvrhwobukfa.supabase.co','sb_publishable_xUy2EJA3u3cKWl8BB4GNPQ_qhV9Pes3');
+const $=id=>document.getElementById(id);let token='',widgetId=null;
+const msg=(text,bad=false)=>{$('message').textContent=text;$('message').className=bad?'error':'ok'};
+if(TURNSTILE_SITE_KEY && /^[A-Za-z0-9_-]{5,}$/.test(TURNSTILE_SITE_KEY)){
+ $('registration').hidden=false;$('unavailable').hidden=true;
+ const script=document.createElement('script');script.src='https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';script.async=true;
+ script.onload=()=>{widgetId=window.turnstile.render('#captcha',{sitekey:TURNSTILE_SITE_KEY,callback:t=>{token=t;$('submit').disabled=false},'expired-callback':()=>{token='';$('submit').disabled=true},'error-callback':()=>{token='';$('submit').disabled=true;msg('La vérification anti-robots a échoué. Réessayez.',true)}})};
+ script.onerror=()=>msg('Protection anti-robots indisponible. Réessayez plus tard.',true);
+ document.head.append(script);
+}
+$('registration').onsubmit=async e=>{
+ e.preventDefault();if(!token){msg('Validez la vérification anti-robots.',true);return}
+ const button=$('submit');button.disabled=true;msg('Inscription en cours…');
+ try{
+  const {error}=await db.auth.signUp({email:$('email').value.trim().toLowerCase(),password:$('password').value,
+   options:{captchaToken:token,emailRedirectTo:new URL('../connexion/',location.href).href,data:{nom_demande:$('name').value.trim()}}});
+  if(error)throw error;
+  $('registration').hidden=true;$('success').hidden=false;msg('Vérifiez votre adresse e-mail pour confirmer votre compte.');
+ }catch(error){msg('Impossible de créer le compte : '+(error.message||'erreur inconnue'),true);
+  token='';if(widgetId!==null&&window.turnstile)window.turnstile.reset(widgetId);
+ }finally{button.disabled=!token}
+};
+</script></body></html>
