@@ -31,11 +31,13 @@
   const isAppHome = currentPath === applicationBase.pathname || currentPath === applicationBase.pathname + "index.html";
   const connexionPath = new URL("connexion/", applicationBase).pathname;
   const isConnexion = currentPath === connexionPath || currentPath === connexionPath + "index.html";
+  const actualitesPath = new URL("actualites/", applicationBase).pathname;
+  const isPublicNews = currentPath === actualitesPath || currentPath === actualitesPath + "index.html";
 
   // Avant le lancement, chacun doit pouvoir ouvrir la connexion pour accepter
   // son invitation et définir son mot de passe, même depuis la PWA installée.
   // Les autres rubriques restent soumises au contrôle de préouverture.
-  if (installed && beforeOpening && isConnexion) return;
+  if (installed && beforeOpening && (isConnexion || isPublicNews)) return;
 
   // La fermeture s'applique à la PWA installée, pas aux pages du site public.
   async function canAccessInstalledApp() {
