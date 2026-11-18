@@ -52,6 +52,12 @@ button{cursor:pointer;background:var(--orange);border:0;border-radius:9px;font-w
 <button type="button" class="secondary" id="markMyPhone">📱 Désigner cet appareil comme mon téléphone</button>
 <button type="button" id="sendMyPhone">🔔 Envoyer le test au Samsung</button>
 <p id="myPhoneStatus" role="status" aria-live="polite"></p>
+<div style="margin-top:14px;border-top:1px solid #ddd;padding-top:12px">
+  <strong>📊 Délais des notifications (7 derniers jours)</strong>
+  <p class="muted">Comparaison entre l'acceptation par le service Push, la réception dans l'application et la demande d'affichage Android.</p>
+  <button type="button" class="secondary" id="pushLatencyReport">Actualiser les délais</button>
+  <div id="pushLatencyResult" role="status" aria-live="polite" style="white-space:pre-line;margin-top:10px;font-size:.9em"></div>
+</div>
 </section>
 <section class="card" id="andresyPanel" hidden>
 <h2>🐎 Test réservé à l'administration</h2>
@@ -218,6 +224,22 @@ $('testRemote').onclick=async()=>{
    message('Envoi accepté par le service Push. Vérifiez si une notification arrive, puis ouvrez « Diagnostic des notifications » pour voir si elle a été reçue et affichée.');
  }catch(e){message(e.message||'Le test distant a échoué.',true)}
  finally{btn.disabled=!subscription||!isMember}
+};
+$('pushLatencyReport').onclick=async()=>{
+ const btn=$('pushLatencyReport'),out=$('pushLatencyResult');
+ btn.disabled=true;out.textContent='Chargement des mesures…';
+ try{
+  const result=await callServer({action:'push_latency_report'});
+  const format=t=>t?new Date(t).toLocaleString('fr-FR',{timeZone:'Europe/Paris',day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit'}):'—';
+  const rows=result.rows||[];
+  out.textContent=rows.length?rows.slice(0,35).map(r=>
+    [format(r.accepted_at),r.account+' · '+r.device,
+    r.category,
+    r.latency_seconds==null?'Réception non confirmée':('Reçu après '+r.latency_seconds+' s'),
+    r.shown_at?'Affichage demandé '+format(r.shown_at):(r.display_error?'Erreur '+r.display_error:'Affichage non confirmé')].join(' | ')
+  ).join('\n\n'):'Aucune mesure disponible pour le moment. Les prochains envois seront suivis.';
+ }catch(e){out.textContent=e.message||'Mesures indisponibles.'}
+ finally{btn.disabled=false}
 };
 $('markMyPhone').onclick=async()=>{
  const btn=$('markMyPhone'),out=$('myPhoneStatus');btn.disabled=true;out.textContent='Désignation du téléphone…';
