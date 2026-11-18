@@ -10,7 +10,7 @@
   const applicationBase = new URL("./", script.src);
   // En-tête Écurie Initial partagé par toutes les rubriques et fiches.
   const headerScript = document.createElement("script");
-  headerScript.src = new URL("header.js?v=20261118etoile-detachee2", applicationBase).href;
+  headerScript.src = new URL("header.js?v=20261118etoile-affinee3", applicationBase).href;
   document.body.appendChild(headerScript);
   const siteBase = new URL("../", applicationBase);
   const currentPath = window.location.pathname;
