@@ -171,6 +171,12 @@ async function initialize(){
   $('inboxButton').classList.add('visible');
   const preferred=session.user.user_metadata?.nom_demande||session.user.user_metadata?.full_name||'';
   if(preferred)$('teamSenderName').value=preferred;
+  // Lien direct depuis Administration : ouvrir la boîte privée sans étape intermédiaire.
+  // Le chargement des conversations reste authentifié côté API.
+  if(new URLSearchParams(location.search).get('boite')==='1'){
+   $('inboxButton').click();
+   return;
+  }
   await inboxData();
  }catch(e){console.warn('Messagerie Team Initial momentanément indisponible.');}
 }
