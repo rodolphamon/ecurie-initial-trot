@@ -151,6 +151,20 @@ td:first-child,th:first-child{text-align:center;width:75px}td.date{white-space:n
  min-height:30px;
  box-sizing:border-box;
 }
+/* Le lien Vidéo est enveloppé dans un bloc : celui-ci doit aussi occuper
+   toute la largeur de la colonne, autrement la capsule reste plus étroite. */
+.pal-card-actions .pal-card-replay{
+ display:flex;
+ width:100%;
+ min-width:0;
+ align-items:stretch;
+}
+.pal-card-actions .pal-card-replay .replay-link{
+ display:flex;
+ flex:1 1 auto;
+ width:100%;
+ min-width:0;
+}
 .pal-card-actions .pal-card-medal{
  display:inline-flex;
  align-items:center;
