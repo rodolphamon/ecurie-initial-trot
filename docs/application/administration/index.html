@@ -406,7 +406,7 @@ async function init(){
    const mobileRegistration=make('small',inscriptionLabels[state]+' · '+(openings>0?openings+' ouverture'+(openings>1?'s':''):'aucune ouverture suivie'));
    mobileRegistration.className='registration-mobile registration-'+state;
    tr.firstElementChild.append(mobileRegistration);
-   const roleCell=make('td',m.administrateur?'Administrateur':m.type_compte==='exterieur'?'Membre extérieur':'Associé');tr.append(roleCell);
+   const roleCell=make('td',m.administrateur?'Administrateur':m.type_compte==='observateur'?'Communication · lecture seule':m.type_compte==='exterieur'?'Membre extérieur':'Associé');tr.append(roleCell);
    const manage=make('td'),buttons=make('div');buttons.className='inline-actions member-action-grid';
    let suspendBtn=null;
    if(!m.administrateur){
@@ -420,7 +420,7 @@ async function init(){
      catch(e){status('actionStatus',e.message);suspendBtn.disabled=false}
     };
    }
-   const horsesBtn=make('button','🐎 Chevaux');horsesBtn.type='button';horsesBtn.disabled=m.type_compte==='exterieur';
+   const horsesBtn=make('button','🐎 Chevaux');horsesBtn.type='button';horsesBtn.disabled=m.type_compte!=='associe';
    horsesBtn.onclick=()=>selectHorses(m);
    const emailBtn=make('button','✉️ E-mail');emailBtn.type='button';emailBtn.className='secondary';
    emailBtn.onclick=()=>selectEmail(m);
@@ -437,7 +437,7 @@ async function init(){
     }catch(error){status('actionStatus',error.message)}
     finally{accessBtn.disabled=!m.actif}
    };
-   if(!m.administrateur){
+   if(!m.administrateur && m.type_compte!=='observateur'){
     const typeBtn=make('button','👥 Statut');typeBtn.type='button';typeBtn.className='secondary';
     typeBtn.onclick=async()=>{
       const next=m.type_compte==='exterieur'?'associe':'exterieur';
