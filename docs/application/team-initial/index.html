@@ -26,6 +26,33 @@ h2.group-title{font-size:17px;margin:18px 1px 9px;line-height:1.3}
 .person .description{margin:7px 0 12px;line-height:1.4;font-size:13px}
 .contact-person{display:flex;width:100%;align-items:center;justify-content:center;gap:8px;border:0;border-radius:9px;background:var(--orange);color:#171717;min-height:43px;font:700 13px/1.2 Arial,sans-serif;padding:10px;cursor:pointer;text-decoration:none}
 .contact-person:focus-visible{outline:3px solid #1e1e1e;outline-offset:2px}
+
+.inbox-entry{display:none;margin:0 0 12px;gap:7px;align-items:center;justify-content:center;width:100%;background:#191919;color:#fff;border:0;border-radius:9px;font-weight:800;font-size:13px;min-height:43px;cursor:pointer}
+.inbox-entry.visible{display:flex}
+.dialog{width:min(94vw,540px);max-height:calc(100dvh - 55px);border:1px solid var(--line);border-radius:15px;padding:19px;background:#fff;color:var(--ink);box-shadow:0 18px 55px #0005;overflow-y:auto}
+.dialog::backdrop{background:#0009}
+.dialog h2{font-size:21px;margin:0 0 7px}
+.dialog p{font-size:13px;color:var(--muted);margin:0 0 12px}
+.dialog label{font-size:13px;display:block;font-weight:700;margin:11px 0 5px}
+.dialog input,.dialog textarea{width:100%;border:1px solid #d2cbc4;background:white;color:#222;border-radius:9px;padding:11px 12px;font:14px/1.4 Arial,sans-serif}
+.dialog textarea{resize:vertical;min-height:132px}
+.dialog-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
+.dialog-actions button{min-height:44px;border:0;border-radius:9px;font-size:13px;font-weight:800;cursor:pointer}
+.dialog-actions .submit{background:var(--orange);color:#161616}
+.dialog-actions .cancel{background:#ece8e3;color:#252525}
+.dialog button:disabled{opacity:.55;cursor:not-allowed}
+.dialog .form-status{margin-top:12px;min-height:18px;font-weight:700;color:#146c43}
+.dialog .form-status.error{color:#a52623}
+.dialog .privacy-note{font-size:12px;margin:10px 0 0;color:#615a54}
+.dialog .inbox-item{padding:11px;border:1px solid #eadfd6;border-radius:9px;margin-bottom:9px}
+.dialog .inbox-item[open]{border-color:var(--orange)}
+.dialog .inbox-item summary{cursor:pointer;line-height:1.4;display:flex;flex-direction:column;gap:3px}
+.dialog .inbox-item summary strong{font-size:14px}
+.dialog .inbox-item summary small{font-size:11px;color:var(--muted)}
+.dialog .inbox-message{white-space:pre-wrap;overflow-wrap:anywhere;border-top:1px solid var(--line);padding-top:9px;margin-top:9px}
+.dialog .inbox-email{font-weight:700;overflow-wrap:anywhere;font-size:12px;margin-top:8px}
+[hidden]{display:none!important}
+
 @media(min-width:650px){.team-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.person{margin:0}.person .description{min-height:57px}}
 @media(max-width:480px){.intro{padding:16px}.intro h1{font-size:23px}.person{padding:12px 14px}.dialog{padding:16px}}
 </style>
@@ -34,25 +61,143 @@ h2.group-title{font-size:17px;margin:18px 1px 9px;line-height:1.3}
 <header><strong>ÉCURIE <span>INITIAL</span></strong></header>
 <main>
 <a class="back" href="../contact/">← Contact</a>
+<button type="button" class="inbox-entry" id="inboxButton">📥 Mes messages <span id="unreadCount"></span></button>
 <section class="intro">
  <h1>🤝 Team Initial</h1>
  <p>Celles et ceux qui font vivre l’Écurie Initial au quotidien. Découvrez les membres de l’équipe et écrivez à la personne de votre choix.</p>
 </section>
 <h2 class="group-title">🏇 Direction de l’Écurie</h2>
 <div class="team-grid">
- <article class="person"><h3>Rodolphe HAMON</h3><p class="function">Gérant de l’Écurie Initial</p><p class="description">Direction générale, gestion des associés et suivi des chevaux.</p><a class="contact-person" href="mailto:contact@ecurie-initial.com?subject=Message%20%C3%A0%20Rodolphe%20HAMON%20%E2%80%94%20Team%20Initial" aria-label="Envoyer un e-mail à Rodolphe HAMON">✉️ Envoyer un message</a></article>
+ <article class="person"><h3>Rodolphe HAMON</h3><p class="function">Gérant de l’Écurie Initial</p><p class="description">Direction générale, gestion des associés et suivi des chevaux.</p><button class="contact-person" type="button" data-person="rodolphe">✉️ Envoyer un message</button></article>
 </div>
 <h2 class="group-title">🐎 Contributions sportives</h2>
 <div class="team-grid">
- <article class="person"><h3>Arnaud PUSKAS</h3><p class="function">Contribution sportive</p><p class="description">Participation au suivi des informations sportives.</p><a class="contact-person" href="mailto:petidom1@hotmail.fr?subject=Message%20%C3%A0%20Arnaud%20PUSKAS%20%E2%80%94%20Team%20Initial" aria-label="Envoyer un e-mail à Arnaud PUSKAS">✉️ Envoyer un message</a></article>
- <article class="person"><h3>Nicolas BARRÉ</h3><p class="function">Contribution sportive</p><p class="description">Participation au suivi des informations sportives.</p><a class="contact-person" href="mailto:nicolas.barre64@sfr.fr?subject=Message%20%C3%A0%20Nicolas%20BARR%C3%89%20%E2%80%94%20Team%20Initial" aria-label="Envoyer un e-mail à Nicolas BARRÉ">✉️ Envoyer un message</a></article>
+ <article class="person"><h3>Arnaud PUSKAS</h3><p class="function">Contribution sportive</p><p class="description">Participation au suivi des informations sportives.</p><button class="contact-person" type="button" data-person="arnaud">✉️ Envoyer un message</button></article>
+ <article class="person"><h3>Nicolas BARRÉ</h3><p class="function">Contribution sportive</p><p class="description">Participation au suivi des informations sportives.</p><button class="contact-person" type="button" data-person="nicolas">✉️ Envoyer un message</button></article>
 </div>
 <h2 class="group-title">📱 Communication et réseaux sociaux</h2>
 <div class="team-grid">
- <article class="person"><h3>Émilie MARÉCHAL</h3><p class="function">Community manager</p><p class="description">Communication de l’écurie et animation des réseaux sociaux.</p><a class="contact-person" href="mailto:emiliemarechall@gmail.com?subject=Message%20%C3%A0%20%C3%89milie%20MAR%C3%89CHAL%20%E2%80%94%20Team%20Initial" aria-label="Envoyer un e-mail à Émilie MARÉCHAL">✉️ Envoyer un message</a></article>
+ <article class="person"><h3>Émilie MARÉCHAL</h3><p class="function">Community manager</p><p class="description">Communication de l’écurie et animation des réseaux sociaux.</p><button class="contact-person" type="button" data-person="emilie">✉️ Envoyer un message</button></article>
 </div>
 
 </main>
+
+<dialog class="dialog" id="teamMessageDialog" aria-labelledby="dialogTitle">
+ <h2 id="dialogTitle">✉️ Envoyer un message</h2>
+ <p>Votre message sera transmis directement au membre de la Team Initial sélectionné.</p>
+ <form id="teamMessageForm">
+  <label for="teamSenderName">Nom et prénom</label>
+  <input id="teamSenderName" name="senderName" autocomplete="name" maxlength="100" required>
+  <label for="teamSenderEmail">Votre adresse e-mail</label>
+  <input id="teamSenderEmail" name="senderEmail" type="email" autocomplete="email" maxlength="254" required>
+  <label for="teamMessageText">Votre message</label>
+  <textarea id="teamMessageText" maxlength="3000" minlength="5" required></textarea>
+  <div aria-hidden="true" style="position:absolute;left:-9999px;height:1px;overflow:hidden"><label for="teamWebsite">Site web</label><input id="teamWebsite" tabindex="-1" autocomplete="off"></div>
+  <div class="dialog-actions">
+   <button type="button" class="cancel" id="closeTeamMessage">Annuler</button>
+   <button type="submit" class="submit" id="sendTeamMessage">✉️ Envoyer</button>
+  </div>
+ </form>
+ <p class="privacy-note">Les adresses personnelles des membres de l'équipe ne sont pas communiquées. Vos coordonnées servent uniquement à transmettre votre message et permettre une réponse.</p>
+ <p id="teamMessageStatus" class="form-status" role="status" aria-live="polite"></p>
+</dialog>
+<dialog class="dialog" id="teamInboxDialog" aria-labelledby="inboxTitle">
+ <h2 id="inboxTitle">📥 Mes messages · Team Initial</h2>
+ <p>Seul le membre de l'équipe concerné peut consulter les messages qui lui sont adressés.</p>
+ <div id="teamInboxList"><p>Chargement...</p></div>
+ <div class="dialog-actions"><button class="cancel" type="button" id="closeInbox">Fermer</button></div>
+</dialog>
+<script type="module">
+import {createClient} from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+const API='https://yeecwaaizmvrhwobukfa.supabase.co/functions/v1/team-contact';
+const db=createClient('https://yeecwaaizmvrhwobukfa.supabase.co','sb_publishable_xUy2EJA3u3cKWl8BB4GNPQ_qhV9Pes3');
+const nameByKey={rodolphe:'Rodolphe HAMON',arnaud:'Arnaud PUSKAS',nicolas:'Nicolas BARRÉ',emilie:'Émilie MARÉCHAL'};
+const $=id=>document.getElementById(id);
+let chosen='',session=null;
+async function checkInbox(){
+ try{
+  const {data}=await db.auth.getSession();session=data?.session||null;
+  if(!session)return;
+  const resp=await fetch(API+'?action=inbox',{headers:{Authorization:'Bearer '+session.access_token}});
+  if(!resp.ok)return;
+  const content=await resp.json();
+  $('inboxButton').classList.add('visible');
+  const unread=(content.messages||[]).filter(x=>!x.read_at).length;
+  $('unreadCount').textContent=unread?'('+unread+')':'';
+  if(session.user?.email)$('teamSenderEmail').value=session.user.email;
+ }catch(e){console.warn('Team Initial : consultation indisponible.');}
+}
+document.querySelectorAll('.contact-person[data-person]').forEach(button=>{
+ button.addEventListener('click',()=>{
+  chosen=button.dataset.person||'';
+  if(!nameByKey[chosen])return;
+  $('teamMessageForm').reset();
+  $('teamMessageForm').hidden=false;
+  $('teamMessageStatus').textContent='';
+  $('teamMessageStatus').classList.remove('error');
+  $('dialogTitle').textContent='✉️ Écrire à '+nameByKey[chosen];
+  if(session?.user?.email)$('teamSenderEmail').value=session.user.email;
+  $('teamMessageDialog').showModal();
+  $('teamSenderName').focus();
+ });
+});
+$('closeTeamMessage').addEventListener('click',()=>$('teamMessageDialog').close());
+$('teamMessageForm').addEventListener('submit',async e=>{
+ e.preventDefault();if(!chosen||!$('teamMessageForm').reportValidity())return;
+ const send=$('sendTeamMessage'),status=$('teamMessageStatus');
+ send.disabled=true;status.classList.remove('error');status.textContent='Transmission du message…';
+ try{
+  const response=await fetch(API,{
+   method:'POST',headers:{'Content-Type':'application/json'},
+   body:JSON.stringify({action:'send',recipient:chosen,
+    name:$('teamSenderName').value,email:$('teamSenderEmail').value,
+    message:$('teamMessageText').value,website:$('teamWebsite').value})
+  });
+  const data=await response.json();
+  if(!response.ok||!data.ok)throw new Error(data.error||'Transmission impossible.');
+  $('teamMessageForm').hidden=true;
+  status.textContent='✅ '+(data.message||'Message transmis.');
+ }catch(err){status.textContent=err instanceof Error?err.message:'Une erreur est survenue.';status.classList.add('error');}
+ finally{send.disabled=false;}
+});
+$('inboxButton').addEventListener('click',async()=>{
+ const inbox=$('teamInboxDialog'),list=$('teamInboxList');
+ list.replaceChildren();const loading=document.createElement('p');loading.textContent='Chargement des messages…';list.append(loading);
+ inbox.showModal();
+ try{
+  const {data}=await db.auth.getSession(),token=data?.session?.access_token;
+  if(!token)throw new Error('Reconnectez-vous pour consulter vos messages.');
+  const response=await fetch(API+'?action=inbox',{headers:{Authorization:'Bearer '+token}});
+  const result=await response.json();
+  if(!response.ok||!result.ok)throw new Error(result.error||'Consultation impossible.');
+  list.replaceChildren();
+  const rows=result.messages||[];
+  if(!rows.length){const p=document.createElement('p');p.textContent='Vous n’avez aucun message pour le moment.';list.append(p);return;}
+  rows.forEach(m=>{
+   const item=document.createElement('details');item.className='inbox-item';
+   const summary=document.createElement('summary');
+   const heading=document.createElement('strong');heading.textContent=(m.read_at?'':'● ') + m.sender_name;
+   const date=document.createElement('small');date.textContent=new Date(m.created_at).toLocaleString('fr-FR');
+   summary.append(heading,date);item.append(summary);
+   const body=document.createElement('div');body.className='inbox-message';body.textContent=m.message;
+   const from=document.createElement('div');from.className='inbox-email';
+   const reply=document.createElement('a');reply.textContent='Répondre à '+m.sender_email;
+   reply.href='mailto:'+encodeURIComponent(m.sender_email)+'?subject='+encodeURIComponent('Réponse de la Team Initial');
+   from.append(reply);item.append(body,from);
+   item.addEventListener('toggle',async()=>{
+    if(!item.open||m.read_at)return;
+    m.read_at=new Date().toISOString();heading.textContent=m.sender_name;
+    await fetch(API,{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+token},body:JSON.stringify({action:'mark_read',id:m.id})}).catch(()=>{});
+    const unread=[...list.querySelectorAll('summary strong')].filter(x=>x.textContent.startsWith('●')).length;
+    $('unreadCount').textContent=unread?'('+unread+')':'';
+   });
+   list.append(item);
+  });
+ }catch(err){list.textContent=err instanceof Error?err.message:'Chargement impossible.';}
+});
+$('closeInbox').addEventListener('click',()=>$('teamInboxDialog').close());
+checkInbox();
+</script>
 <script defer src="../nav.js?v=20261118teampublic1"></script>
 </body>
 </html>
