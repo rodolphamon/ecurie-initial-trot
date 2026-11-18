@@ -431,6 +431,19 @@ window.loadHomeDashboard=async function(){
    return r.json();
   }));
   const horses=Array.isArray(horsesData.horses)?horsesData.horses:[];
+  // L'effectif publié dans l'administration prévaut sur le catalogue de référence.
+  try{
+   const {createClient}=await import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm');
+   const catalogDb=createClient('https://yeecwaaizmvrhwobukfa.supabase.co','sb_publishable_xUy2EJA3u3cKWl8BB4GNPQ_qhV9Pes3');
+   const {data,error}=await catalogDb.from('ei_effectif_gestion').select('cheval_slug,nom,discipline,casaque,entraineur,nouveau,actif');
+   if(error)throw error;
+   const managed=new Map(horses.map(h=>[h.id,h]));
+   for(const row of data||[]){
+    if(!row.actif){managed.delete(row.cheval_slug);continue}
+    managed.set(row.cheval_slug,{...(managed.get(row.cheval_slug)||{}),id:row.cheval_slug,name:row.nom,discipline:row.discipline,casaque:row.casaque,trainer:row.entraineur,newHorse:row.nouveau});
+   }
+   horses.splice(0,horses.length,...managed.values());
+  }catch(error){console.warn('Effectif en direct indisponible',error)}
   const known=new Map(horses.map(h=>[h.id,h.name]));
   get("dashHorses").textContent=String(horses.length);
   const paint=()=>{
@@ -487,7 +500,7 @@ window.loadHomeDashboard=async function(){
     rank.textContent=rankValue;
     rank.title=rankValue?"Classement : "+rankValue:"";
     rank.classList.toggle("is-long",rankValue.length>5);
-    get("dashResultLink").href="../chevaux/"+encodeURIComponent(latest.slug)+"/";
+    get("dashResultLink").href=horses.find(h=>h.id===latest.slug)?.newHorse?"../chevaux/fiche/?cheval="+encodeURIComponent(latest.slug):"../chevaux/"+encodeURIComponent(latest.slug)+"/";
    }else{
     get("dashResultHorse").textContent="Aucun résultat";get("dashResultDetail").textContent="Voir les performances";get("dashResultRank").hidden=true;get("dashResultSilk").hidden=true;get("dashResultRider").hidden=true;get("dashResultTrainer").hidden=true;
    }
