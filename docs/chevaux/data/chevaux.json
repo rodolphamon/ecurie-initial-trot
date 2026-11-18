@@ -8,7 +8,8 @@
       "trainer": "Gilles PANNIER",
       "casaque": "galop",
       "horseLink": "https://pro.france-galop.com/EspacePro/Cheval/FicheCheval?numSIRE=23318863",
-      "photoVersion": "20261112-andresy2"
+      "photoVersion": "20261112-andresy2",
+      "birth_year": 2023
     },
     {
       "id": "bailychka",
@@ -17,7 +18,8 @@
       "trainer": "Gilles PANNIER",
       "casaque": "galop",
       "horseLink": null,
-      "photoVersion": "20261112-bailychka"
+      "photoVersion": "20261112-bailychka",
+      "birth_year": 2024
     },
     {
       "id": "bobrovkha",
@@ -26,7 +28,8 @@
       "trainer": "Gilles PANNIER",
       "casaque": "galop",
       "horseLink": "https://pro.france-galop.com/EspacePro/Cheval/FicheCheval?numSIRE=22165191",
-      "photoVersion": "20261112-lot5"
+      "photoVersion": "20261112-lot5",
+      "birth_year": 2022
     },
     {
       "id": "douriann",
@@ -34,7 +37,8 @@
       "discipline": "Plat",
       "trainer": "Gilles PANNIER",
       "casaque": "galop",
-      "horseLink": null
+      "horseLink": null,
+      "birth_year": 2019
     },
     {
       "id": "giorgiana",
@@ -42,7 +46,8 @@
       "discipline": "Plat",
       "trainer": "Gilles PANNIER",
       "casaque": "galop",
-      "horseLink": "https://pro.france-galop.com/EspacePro/Cheval/FicheCheval?numSIRE=20750165"
+      "horseLink": "https://pro.france-galop.com/EspacePro/Cheval/FicheCheval?numSIRE=20750165",
+      "birth_year": 2020
     },
     {
       "id": "gonafoot",
@@ -50,7 +55,8 @@
       "discipline": "Plat",
       "trainer": "Gilles PANNIER",
       "casaque": "galop",
-      "horseLink": null
+      "horseLink": null,
+      "birth_year": 2024
     },
     {
       "id": "indice-deladou",
@@ -88,7 +94,8 @@
       "trainer": "Gilles PANNIER",
       "casaque": "galop",
       "horseLink": null,
-      "photoVersion": "20261112-lot5"
+      "photoVersion": "20261112-lot5",
+      "birth_year": 2022
     },
     {
       "id": "limpide",
@@ -97,7 +104,8 @@
       "trainer": "Gilles PANNIER",
       "casaque": "galop",
       "horseLink": null,
-      "photoVersion": "20261112-lot5"
+      "photoVersion": "20261112-lot5",
+      "birth_year": 2023
     },
     {
       "id": "lord-on-way",
@@ -150,7 +158,8 @@
       "trainer": "Gilles PANNIER",
       "casaque": "galop",
       "horseLink": "https://www.geny.com/cheval/2817411-master-pat",
-      "photoVersion": "20261112-19"
+      "photoVersion": "20261112-19",
+      "birth_year": 2021
     },
     {
       "id": "memphis-belle",
@@ -293,7 +302,8 @@
       "trainer": "Gilles PANNIER",
       "casaque": "galop",
       "horseLink": "https://pro.france-galop.com/EspacePro/Cheval/FicheCheval?numSIRE=21319800",
-      "photoVersion": "20261112-19"
+      "photoVersion": "20261112-19",
+      "birth_year": 2019
     },
     {
       "id": "palazzo-grassi",
@@ -360,7 +370,8 @@
       "trainer": "Gilles PANNIER",
       "casaque": "galop",
       "horseLink": null,
-      "photoVersion": "20261112-19"
+      "photoVersion": "20261112-19",
+      "birth_year": 2023
     },
     {
       "id": "saturday-night",
@@ -369,7 +380,8 @@
       "trainer": "Gilles PANNIER",
       "casaque": "galop",
       "horseLink": null,
-      "photoVersion": "20261112-19"
+      "photoVersion": "20261112-19",
+      "birth_year": 2022
     },
     {
       "id": "singapor-initial",
@@ -378,7 +390,8 @@
       "trainer": "Gilles PANNIER",
       "casaque": "galop",
       "horseLink": null,
-      "photoVersion": "20261112-19"
+      "photoVersion": "20261112-19",
+      "birth_year": 2024
     },
     {
       "id": "victoria-secret",
@@ -387,7 +400,8 @@
       "trainer": "Gilles PANNIER",
       "casaque": "galop",
       "horseLink": null,
-      "photoVersion": "20261113-photo-rond-de-presentation"
+      "photoVersion": "20261113-photo-rond-de-presentation",
+      "birth_year": 2023
     },
     {
       "id": "vyborg",
@@ -396,7 +410,8 @@
       "trainer": "Gilles PANNIER",
       "casaque": "galop",
       "horseLink": "https://pro.france-galop.com/EspacePro/Cheval/FicheCheval?numSIRE=19302641",
-      "photoVersion": "20261112-19"
+      "photoVersion": "20261112-19",
+      "birth_year": 2019
     },
     {
       "id": "zartop",
@@ -405,7 +420,8 @@
       "trainer": "Gilles PANNIER",
       "casaque": "galop",
       "horseLink": "https://pro.france-galop.com/EspacePro/Cheval/FicheCheval?numSIRE=22163793",
-      "photoVersion": "20261112-19"
+      "photoVersion": "20261112-19",
+      "birth_year": 2022
     }
   ]
 }
