@@ -188,6 +188,8 @@ Deno.serve(async (request) => {
                 url: "https://fiches.ecurie-initial.com/chevaux/andresy/",
               },
               vapid,
+              // Même priorité haute que les rappels urgents, y compris écran verrouillé.
+              { urgency: "high", ttl: 300 },
             );
             if (sent) accepted++;
             else failed++;
