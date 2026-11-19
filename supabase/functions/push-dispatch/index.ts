@@ -609,7 +609,7 @@ async function run() {
         // les téléphones en veille : éviter les retards liés au mode économie d'énergie.
         // Les rappels 15 min expirent rapidement pour ne pas apparaître après la course.
         const pushOptions=alert.categorie==="before15"?{urgency:"high" as const,ttl:900}:
-          ["confirmed","results","withdrawn","private_news","general_news","public_news"].includes(alert.categorie)
+          ["daily","confirmed","results","withdrawn","private_news","general_news","public_news"].includes(alert.categorie)
             ?{urgency:"high" as const}:{};
         // Un identifiant aléatoire distinct par appareil et par tentative permet
         // de mesurer la réception réelle sans divulguer l'abonnement Push.
