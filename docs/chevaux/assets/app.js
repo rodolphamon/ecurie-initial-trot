@@ -9,6 +9,8 @@ const formatValue=n=>Number.isFinite(n)?String(n).replace('.',','):'—';
 const currentParis=()=>new Intl.DateTimeFormat('sv-SE',{timeZone:'Europe/Paris',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).format(new Date()).replace(' ','T');
 // En courses françaises, l'âge hippique avance le 1er janvier, sans attendre la date anniversaire.
 const horseAge=p=>{const born=Number(p.birth_year),now=Number(currentParis().slice(0,4));return Number.isInteger(born)&&born>=1990&&born<=now?now-born:null};
+// Affichage du classement : de 1re à 7e, puis NP = non placé.
+const displayRank=v=>{const raw=String(v||'').trim(),clean=normalizeSearch(raw),m=raw.match(/^(\d+)\s*(?:er|re|e|eme|ème)?$/i);return (m&&Number(m[1])>7)||clean==='non place'||clean==='non placee'?'NP':raw;};
 const horseSex=p=>['F','H','M'].includes(p.sex)?p.sex:null;
 const sexNames={F:'Femelle',H:'Hongre',M:'Mâle'};
 const silkName=p=>p.casaque==='galop'?'casaque-galop.svg':p.casaque==='orange'?'casaque-orange.svg':'casaque-blanche.svg';
@@ -178,7 +180,7 @@ function latestResults(s){
     (b.result.date+(b.result.heure||'')).localeCompare(a.result.date+(a.result.heure||''))||
     a.p.name.localeCompare(b.p.name,'fr',{sensitivity:'base'}));
   const rows=performances.slice(0,20).map(({p,result})=>{
-    const rank=String(result.rang||'').trim();
+    const rank=displayRank(result.rang);
     const medal=/^1(?:er|re|ère)?\b/i.test(rank)?' gold':/^2e\b/i.test(rank)?' silver':/^3e\b/i.test(rank)?' bronze':'';
     const direct=absoluteUrl(result.video_url);
     const course=absoluteUrl(result.course_url);
@@ -353,7 +355,7 @@ function horse(s){
         :course&&!isNonPartant
           ?'<a class="ei-video-link" href="'+esc(course)+'" target="_blank" rel="noopener noreferrer" aria-label="'+esc('Replay de '+p.name+' du '+dateFR(x.date)+' — page de course')+'">▶ Replay</a>'
           :'<span class="ei-no-video" aria-label="Aucun lien de course disponible">—</span>';
-      return '<tr><td>'+esc(dateFR(x.date))+'</td><td>'+esc(x.hippodrome)+'</td><td><span class="rank">'+esc(x.rang||'—')+'</span></td><td>'+esc(x.driver||x.jockey||'—')+'</td><td>'+video+'</td></tr>';
+      return '<tr><td>'+esc(dateFR(x.date))+'</td><td>'+esc(x.hippodrome)+'</td><td><span class="rank" title="'+esc(displayRank(x.rang)==='NP'?'Non placé':'Classement')+'">'+esc(displayRank(x.rang)||'—')+'</span></td><td>'+esc(x.driver||x.jockey||'—')+'</td><td>'+video+'</td></tr>';
     }).join('')+'</tbody></table></div>'
     :'<div class="empty">Aucune performance détaillée renseignée pour le moment.</div>';
   // Les colonnes d'information de course apparaissent à la déclaration des partants.
