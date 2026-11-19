@@ -1,6 +1,6 @@
 {
-  "source": "Gains vérifiés sur fiches individuelles Zone-Turf, Geny et autres sources référencées, le 11/11/2026. ROSA MIA : gains cumulés plat et obstacle (Geny). Valeurs handicap issues des relevés Écurie Initial sauf valeurs vérifiées individuellement. Les montants de gains peuvent différer selon les périmètres des sites tiers. Contrôle du 16/11/2026 : ZARTOP gains de carrière 30 637 € (ancien 27 349 €), fiche Zone-Turf consultée le 16/11/2026 https://www.zone-turf.fr/cheval/zartop-2037318/ ; valeur handicap 24,5 inchangée. Contrôle du 17/11/2026 : ON LOCKDOWN gains de carrière 108 536 € (ancien 108 305 €), fiche individuelle Zone-Turf https://www.zone-turf.fr/cheval/on-lockdown-1708512/ ; valeur handicap 34 inchangée.",
-  "updated_at": "2026-11-17",
+  "source": "Gains vérifiés sur fiches individuelles Zone-Turf, Geny et autres sources référencées, le 11/11/2026. ROSA MIA : gains cumulés plat et obstacle (Geny). Valeurs handicap issues des relevés Écurie Initial sauf valeurs vérifiées individuellement. Les montants de gains peuvent différer selon les périmètres des sites tiers. Contrôle du 16/11/2026 : ZARTOP gains de carrière 30 637 € (ancien 27 349 €), fiche Zone-Turf consultée le 16/11/2026 https://www.zone-turf.fr/cheval/zartop-2037318/ ; valeur handicap 24,5 inchangée. Contrôle du 17/11/2026 : ON LOCKDOWN gains de carrière 108 536 € (ancien 108 305 €), fiche individuelle Zone-Turf https://www.zone-turf.fr/cheval/on-lockdown-1708512/ ; valeur handicap 34 inchangée. Contrôle du 19/11/2026 : DOURIANN gains de carrière 170 416 € (ancien 170 128 €), fiche individuelle Zone-Turf consultée le 19/11/2026 https://www.zone-turf.fr/cheval/douriann-1806116/ ; valeur handicap conservée à 38 en attente de confirmation France Galop (Zone-Turf affiche 37).",
+  "updated_at": "2026-11-19",
   "roster_snapshot_at": "2026-11-10",
   "value_snapshot_at": "2026-11-10",
   "note": "Effectif confirmé par le gérant : 16 galopeurs, dont BOBROVKHA et VYBORG au repos. CORONADO n'appartient pas à l'Écurie Initial. SINGAPOR INITIAL n'a pas encore débuté.",
@@ -81,10 +81,10 @@
       "value_status": "verified",
       "value_source_date": "2026-11-10",
       "value_verified_at": "2026-11-11",
-      "gains": 170128,
+      "gains": 170416,
       "gains_status": "verified",
-      "gains_verified_at": "2026-11-11",
-      "verified_at": null,
+      "gains_verified_at": "2026-11-19",
+      "verified_at": "2026-11-19",
       "data_status": "verified",
       "value_source_url": "https://www.zone-turf.fr/cheval/douriann-1806116/",
       "gains_source_url": "https://www.zone-turf.fr/cheval/douriann-1806116/"
