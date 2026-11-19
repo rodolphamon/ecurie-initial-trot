@@ -9,6 +9,8 @@ const formatValue=n=>Number.isFinite(n)?String(n).replace('.',','):'—';
 const currentParis=()=>new Intl.DateTimeFormat('sv-SE',{timeZone:'Europe/Paris',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).format(new Date()).replace(' ','T');
 // En courses françaises, l'âge hippique avance le 1er janvier, sans attendre la date anniversaire.
 const horseAge=p=>{const born=Number(p.birth_year),now=Number(currentParis().slice(0,4));return Number.isInteger(born)&&born>=1990&&born<=now?now-born:null};
+const horseSex=p=>['F','H','M'].includes(p.sex)?p.sex:null;
+const sexNames={F:'Femelle',H:'Hongre',M:'Mâle'};
 const silkName=p=>p.casaque==='galop'?'casaque-galop.svg':p.casaque==='orange'?'casaque-orange.svg':'casaque-blanche.svg';
 const silk=p=>base+'../assets/'+silkName(p);
 function photoMarkup(p,style){let img=p.photoUrl||base+'photos/'+p.id+'.jpg?v='+encodeURIComponent(p.photoVersion||'1');return '<div class="'+(style==='hero'?'hero-photo':'horse-card-photo')+'">'+(style==='card'?'<span class="kind">'+esc(p.discipline)+'</span>':'')+'<img class="photo" src="'+img+'" alt="Photo de '+esc(p.name)+'" loading="lazy" onerror="this.hidden=true;this.nextElementSibling.hidden=false;this.parentNode.classList.add(\'no-photo\')" /><img class="silk" hidden src="'+silk(p)+'" alt="Casaque de l’Écurie Initial"/>'+(style==='hero'?'<span class="placeholder-tag" hidden>Photographie à venir</span>':'')+'</div>'}
@@ -28,7 +30,7 @@ try{
    client.from('ei_contributions_valeurs').select('cheval_slug,discipline_valeur,valeur'),
    client.from('ei_contributions_records').select('cheval_slug,chrono'),
    client.from('ei_statuts_chevaux').select('cheval_slug,au_repos'),
-   client.from('ei_effectif_gestion').select('cheval_slug,nom,discipline,casaque,entraineur,lien_officiel,nouveau,actif,date_sortie,annee_naissance,pere,mere,pere_de_mere'),
+   client.from('ei_effectif_gestion').select('cheval_slug,nom,discipline,casaque,entraineur,lien_officiel,nouveau,actif,date_sortie,annee_naissance,sexe,pere,mere,pere_de_mere'),
    client.from('ei_photos_chevaux').select('cheval_slug,photo_url')
  ]);
  if(en.error||ga.error||va.error||re.error||st.error||ef.error||ph.error)throw Error('Source des contributions indisponible');
@@ -65,6 +67,7 @@ try{
      horseLink:row.lien_officiel||old?.horseLink||null,
      active:row.actif, newHorse:row.nouveau,dateSortie:row.date_sortie,
      birth_year:row.annee_naissance??old?.birth_year??null,
+     sex:row.sexe||old?.sex||gallop.get(row.cheval_slug)?.sex||null,
      origines:(row.pere||row.mere||row.pere_de_mere||old?.origines)?{
        pere:row.pere??old?.origines?.pere??'',mere:row.mere??old?.origines?.mere??'',
        pere_de_mere:row.pere_de_mere??old?.origines?.pere_de_mere??''}:null
@@ -101,7 +104,7 @@ if(url&&replay.date&&replay.cheval){
     url:direct?url:replayLetrot?(sourceLetrot||url):ficheLetrot?resultatLetrot:url,
     kind:direct?'video':replayLetrot?'letrot':ficheLetrot?'letrot_result':replay.verification_replay_2026_11_16?.statut==='page_course_avec_rubrique_replay'?'replay_page':/equidia\.fr/i.test(url)?'equidia':'course'
   };
-}}}}catch(error){console.warn('Liens vidéo temporairement indisponibles',error)}return {profiles:all.horses.map(p=>({...p,...(gallop.get(p.id)||{}),trainer:p.trainer,active:p.active,newHorse:p.newHorse,dateSortie:p.dateSortie})),editor,trot:trot.horses||{},gallop,replayIndex,updates:{trot:trot.updated_at,galop:galop.updated_at}}}
+}}}}catch(error){console.warn('Liens vidéo temporairement indisponibles',error)}return {profiles:all.horses.map(p=>({...p,...(gallop.get(p.id)||{}),trainer:p.trainer,sex:p.sex||gallop.get(p.id)?.sex||null,active:p.active,newHorse:p.newHorse,dateSortie:p.dateSortie})),editor,trot:trot.horses||{},gallop,replayIndex,updates:{trot:trot.updated_at,galop:galop.updated_at}}}
 const installedApp = window.matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
 if(installedApp) document.documentElement.classList.add('ei-app-installed');
 function header(){return '<header class="top"><div class="shell top-inner"><a class="wordmark" href="'+base+'index.html"><img class="wordmark-logo" src="'+base+'assets/embleme-ei.png?v=20261112h" alt="Écurie Initial" width="46" height="46"><span class="wordmark-copy"><span class="wordmark-title">ÉCURIE <span class="wordmark-initial"><span class="wordmark-initial-i">'+(installedApp?'ı':'I')+'</span>NITIAL</span></span><small>PARTAGEONS NOTRE PASSION DEPUIS 2011</small></span></a>'+(installedApp?'<span class="wordmark-slogan"><span class="wordmark-slogan-line">PARTAGEONS NOTRE PASSION</span><span class="wordmark-slogan-date">DEPUIS 2011</span></span>':'<nav class="top-nav"><a href="'+base+'index.html">Nos chevaux</a><a href="https://www.ecurie-initial.com/trotteurs/" target="_blank" rel="noopener noreferrer">Trot</a><a href="https://www.ecurie-initial.com/galopeurs/" target="_blank" rel="noopener noreferrer">Galop</a><a href="https://www.ecurie-initial.com/" target="_blank" rel="noopener noreferrer">Site officiel</a></nav>')+'</div></header>'}
@@ -322,6 +325,8 @@ function horse(s){
   const d=currentData(p,s);
   const isRest=p.status==='au repos';
   const age=horseAge(p),ageLabel=age===null?'':age+' '+(age===1?'an':'ans');
+  const sex=horseSex(p),identityLabel=[ageLabel,sex].filter(Boolean).join(' · ');
+  const identityTitle=[age!==null?'Âge hippique : '+ageLabel:'',sex?'Sexe : '+sexNames[sex]:''].filter(Boolean).join(' · ');
   if(p.active===false)document.title=p.name+' · Ancien cheval de l’Écurie Initial';
   const value=metric(p,d);
   const valueLabel=isGalop?(/obstacle/i.test(p.discipline||'')?'Valeurs handicap plat / obstacle':'Valeur handicap'):'Record';
@@ -372,7 +377,7 @@ function horse(s){
         +'<div class="hero-info">'
           +'<div class="hero-title-row">'
             +'<h1>'+esc(p.name)
-            +(age!==null?'<span class="hero-age" title="'+esc('Né en '+p.birth_year+' · âge hippique au 1er janvier')+'">'+esc(ageLabel)+'</span>':'')
+            +(identityLabel?'<span class="hero-age" title="'+esc(identityTitle)+'" aria-label="'+esc(identityTitle)+'">'+esc(identityLabel)+'</span>':'')
             +'</h1>'
             +'<img class="hero-title-silk" src="'+esc(silk(p))+'" alt="Casaque de '+esc(p.name)+'" loading="lazy" decoding="async">'
           +'</div>'
