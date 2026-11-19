@@ -35,6 +35,7 @@ button:disabled{opacity:.5;cursor:not-allowed}.secondary{background:#ece9e6}
 <h2 style="margin-top:22px">Origines et identité du cheval</h2>
 <div class="row">
 <div><label for="birthYear">Année de naissance (facultatif)</label><input id="birthYear" type="number" min="1990" max="2100" placeholder="2023"></div>
+<div><label for="sex">Sexe</label><select id="sex" required><option value="">Sélectionner</option><option value="F">F — Femelle</option><option value="H">H — Hongre</option><option value="M">M — Mâle</option></select></div>
 <div><label for="father">Père (facultatif)</label><input id="father" maxlength="120" placeholder="Nom de l'étalon"></div>
 <div><label for="mother">Mère (facultatif)</label><input id="mother" maxlength="120" placeholder="Nom de la mère"></div>
 <div><label for="maternalGrandsire">Père de mère (facultatif)</label><input id="maternalGrandsire" maxlength="120" placeholder="Nom du père de mère"></div>
@@ -121,7 +122,7 @@ function selectedProfile(){
  const id=$('selected').value;
  const p=original(id),c=changes.get(id);
  if(!id)return null;
- if(c)return {id,name:c.nom,trainer:c.entraineur,discipline:c.discipline,casaque:c.casaque,horseLink:c.lien_officiel,active:c.actif,newHorse:c.nouveau,dateSortie:c.date_sortie,birthYear:c.annee_naissance??p?.birth_year??null,origines:{pere:c.pere??p?.origines?.pere??'',mere:c.mere??p?.origines?.mere??'',pere_de_mere:c.pere_de_mere??p?.origines?.pere_de_mere??''}};
+ if(c)return {id,name:c.nom,trainer:c.entraineur,discipline:c.discipline,casaque:c.casaque,horseLink:c.lien_officiel,active:c.actif,newHorse:c.nouveau,dateSortie:c.date_sortie,birthYear:c.annee_naissance??p?.birth_year??null,sex:c.sexe??p?.sex??null,origines:{pere:c.pere??p?.origines?.pere??'',mere:c.mere??p?.origines?.mere??'',pere_de_mere:c.pere_de_mere??p?.origines?.pere_de_mere??''}};
  if(p)return {...p,active:true,newHorse:false};
  return null;
 }
@@ -135,6 +136,7 @@ function render(){
  $('casaque').value=p?.casaque||'blanche';
  $('official').value=p?.horseLink||'';
  $('birthYear').value=p?.birthYear??p?.birth_year??'';
+ $('sex').value=p?.sex||'';
  $('father').value=p?.origines?.pere||'';
  $('mother').value=p?.origines?.mere||'';
  $('maternalGrandsire').value=p?.origines?.pere_de_mere||'';
@@ -174,14 +176,14 @@ $('discipline').onchange=()=>{
 };
 $('form').onsubmit=async e=>{
  e.preventDefault();const p=selectedProfile(),name=$('name').value.trim().toUpperCase(),id=p?.id||slugify(name);
- const discipline=$('discipline').value,casaque=$('casaque').value,trainer=$('trainer').value.trim();
- if(!id||!name||!trainer)return msg('Complétez les champs obligatoires.',true);
+ const discipline=$('discipline').value,casaque=$('casaque').value,trainer=$('trainer').value.trim(),sex=$('sex').value;
+ if(!id||!name||!trainer||!['F','H','M'].includes(sex))return msg('Complétez les champs obligatoires, dont le sexe.',true);
  if((discipline==='Trot')===(casaque==='galop'))return msg('La casaque et la discipline ne correspondent pas.',true);
  if(!p&&(originals.some(x=>x.id===id||x.name.toLowerCase()===name.toLowerCase())||changes.has(id)))return msg('Ce cheval existe déjà. Sélectionnez sa fiche dans la liste.',true);
  const year=$('birthYear').value.trim();
  if(year&&(!/^\d{4}$/.test(year)||Number(year)<1990||Number(year)>2100))return msg('Année de naissance incorrecte.',true);
  const data={
-  cheval_slug:id,nom:name,discipline,casaque,entraineur:trainer,
+  cheval_slug:id,nom:name,discipline,casaque,entraineur:trainer,sexe:sex,
   lien_officiel:$('official').value.trim()||null,
   annee_naissance:year?Number(year):null,
   pere:$('father').value.trim()||null,
@@ -206,6 +208,7 @@ async function movement(active){
  if(!active&&!date)return msg('Indiquez la date de sortie.',true);
  const old=changes.get(p.id);
  const row={cheval_slug:p.id,nom:p.name,discipline:p.discipline,casaque:p.casaque,entraineur:p.trainer,lien_officiel:p.horseLink||null,nouveau:p.newHorse||false,actif:active,date_sortie:date,modifie_le:new Date().toISOString(),
+ sexe:p.sex||old?.sexe||original(p.id)?.sex||null,
  annee_naissance:old?.annee_naissance??original(p.id)?.birth_year??null,
  pere:old?.pere??original(p.id)?.origines?.pere??null,
  mere:old?.mere??original(p.id)?.origines?.mere??null,
