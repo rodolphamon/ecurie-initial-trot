@@ -806,10 +806,13 @@ window.loadHomeDashboard=async function(){
      const trainerName=String(latest.p.entraineur||horse?.trainer||"").trim();
      rider.querySelector(".dash-person-name").textContent=riderName; rider.title=riderName?"Jockey / driver : "+riderName:"";rider.hidden=!riderName;
      trainer.querySelector(".dash-person-name").textContent=trainerName;trainer.title=trainerName?"Entraîneur : "+trainerName:"";trainer.hidden=!trainerName;
-    const rank=get("dashResultRank"),rankValue=String(latest.p.rang||"").trim();
+    const rank=get("dashResultRank"),rankRaw=String(latest.p.rang||"").trim();
+    const rankMatch=rankRaw.match(/^(\d+)\s*(?:er|re|e|eme|ème)?$/i);
+    const rankPlain=rankRaw.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();
+    const rankValue=(rankMatch&&Number(rankMatch[1])>7)||/^non placee?$/.test(rankPlain)?"NP":rankRaw;
     rank.hidden=!rankValue;
     rank.textContent=rankValue;
-    rank.title=rankValue?"Classement : "+rankValue:"";
+    rank.title=rankValue?(rankValue==="NP"?"Non placé":"Classement : "+rankValue):"";
     rank.classList.toggle("is-long",rankValue.length>5);
     get("dashResultLink").href=horses.find(h=>h.id===latest.slug)?.newHorse?"../chevaux/fiche/?cheval="+encodeURIComponent(latest.slug):"../chevaux/"+encodeURIComponent(latest.slug)+"/";
    }else{
