@@ -1,6 +1,6 @@
 {
   "schema": "ecurie-initial-profils-v1",
-  "updated_at": "2026-11-18",
+  "updated_at": "2026-11-19",
   "note": "Pour les performances : au maximum les cinq dernières sorties documentées, dont les sources sont conservées en interne pour contrôle. Les classements exacts n'ont été indiqués que lorsqu'ils étaient disponibles. Les jeunes chevaux inédits n'ont pas de performances inventées. Les engagements existants sont conservés ; les nouveaux engagements au trot du 13/11/2026 sont ajoutés sans reprendre les horaires. Résultats du 13/11/2026 (MONA LISA STARDUST 7e, VICTORIA SECRET non placée) communiqués par l'Écurie Initial.",
   "performances": {
     "memphis-belle": [
@@ -1129,7 +1129,7 @@
         "source_description": "Déclarations France Galop transmises par le gérant le 17/11/2026 ; horaire confirmé par le gérant. ",
         "code_programme": "1193",
         "part": "A (25 %)",
-        "jockey": "Léo ROUSSEL",
+        "jockey": "César BELMONT",
         "entraineur": "Gilles PANNIER",
         "course": "R1C5",
         "numero": 14,
@@ -1149,7 +1149,7 @@
         "source_description": "Déclarations France Galop transmises par le gérant le 17/11/2026 ; horaire confirmé par le gérant. ",
         "code_programme": "11197",
         "part": "R (16 %)",
-        "jockey": "Léo ROUSSEL",
+        "jockey": "Antoine HAMELIN",
         "entraineur": "Gilles PANNIER",
         "course": "R1C7",
         "numero": 5,
@@ -1169,7 +1169,7 @@
         "source_description": "Déclarations France Galop transmises par le gérant le 17/11/2026 ; horaire confirmé par le gérant. Quinté+ confirmé par le gérant.",
         "code_programme": "1190",
         "part": "A (30 %)",
-        "jockey": "Léo ROUSSEL",
+        "jockey": "César BELMONT",
         "entraineur": "Gilles PANNIER",
         "quinte_plus": true,
         "course": "R1C6",
