@@ -48,7 +48,7 @@
     {
       "id": "bobrovkha",
       "name": "BOBROVKHA",
-      "sex": null,
+      "sex": "F",
       "age": null,
       "race": "PS",
       "discipline": "Plat",
@@ -293,7 +293,7 @@
     {
       "id": "vyborg",
       "name": "VYBORG",
-      "sex": null,
+      "sex": "H",
       "age": null,
       "race": "PS",
       "discipline": "Plat",
