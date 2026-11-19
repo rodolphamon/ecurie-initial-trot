@@ -133,10 +133,11 @@ body.ei-prelaunch{padding-bottom:0!important}
 /* Dernier resultat : casaque, jockey et entraineur distincts avant la place. */
 .home-dashboard{grid-template-columns:minmax(0,.64fr) minmax(0,1.36fr)}
 .home-dashboard a:first-child .dash-detail{white-space:normal;overflow:visible;line-height:1.2}
-.home-dashboard .dash-next-identity{display:flex;align-items:baseline;gap:6px;white-space:nowrap;width:100%;min-width:0}
-.home-dashboard .dash-next-identity #dashNextHorse{flex:0 0 auto;min-width:0;max-width:52%;font-size:clamp(15px,2.9vw,19px)}
-.home-dashboard .dash-next-jockey{display:inline-flex;align-items:center;gap:4px;flex:1;min-width:0;white-space:nowrap;overflow:hidden;color:#63534b;font-weight:700;font-size:clamp(10px,1.9vw,12px);letter-spacing:-.025em}
-.home-dashboard .dash-next-jockey-name{display:block;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+/* Prochain partant : cheval, jockey complet, puis lieu/date/heure sur trois lignes. */
+.home-dashboard .dash-next-identity{display:flex;flex-direction:column;align-items:flex-start;gap:3px;white-space:normal;width:100%;min-width:0}
+.home-dashboard .dash-next-identity #dashNextHorse{display:block;flex:none;min-width:0;max-width:100%;font-size:clamp(15px,2.9vw,19px)}
+.home-dashboard .dash-next-jockey{display:flex;align-items:center;gap:4px;flex:none;width:100%;min-width:0;white-space:nowrap;overflow:visible;color:#63534b;font-weight:700;font-size:clamp(11px,1.9vw,12px);letter-spacing:-.025em}
+.home-dashboard .dash-next-jockey-name{display:block;min-width:0;overflow:visible;text-overflow:clip;white-space:nowrap}
 .home-dashboard .dash-next-jockey[hidden]{display:none}
 .home-dashboard #dashResultLink{display:grid;grid-template-columns:minmax(0,1.3fr) 43px minmax(0,1fr) auto;align-items:center;justify-content:initial;gap:6px}
 .home-dashboard #dashResultLink .dash-result-copy{flex:initial;max-width:none;min-width:0}
