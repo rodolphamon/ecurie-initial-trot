@@ -643,7 +643,12 @@ async function loadNewVictories(){
    entraineur:typeof v.entraineur==="string"?v.entraineur.trim():"",
    casaque:Object.hasOwn(silkFiles,v.casaque)?v.casaque:"blanche",
    proprietaire:typeof v.proprietaire==="string"?v.proprietaire.trim():"",
-   compteInitial:v.compteInitial!==false
+   compteInitial:v.compteInitial!==false,
+   // Conserver les liens officiels fournis avec les nouvelles victoires.
+   // Sans ces champs, les liens de replay/résultat disparaissent de l'affichage.
+   source_officielle:typeof v.source_officielle==="string"?v.source_officielle.trim():"",
+   source:typeof v.source==="string"?v.source.trim():"",
+   video:typeof v.video==="string"?v.video.trim():""
   }));
   const keys=new Set(results.map(v=>[v.date,v.cheval,v.hippodrome].join("|").toUpperCase()));
   const unique=add.filter(v=>{const key=[v.date,v.cheval,v.hippodrome].join("|").toUpperCase();if(keys.has(key))return false;keys.add(key);return true});
