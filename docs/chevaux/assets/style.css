@@ -374,3 +374,7 @@
   .horse-card-body{display:flex;flex-direction:column;justify-content:space-between}
   .horse-card-line-secondary{margin-top:auto}
 }
+
+/* Etiquettes TROT/PLAT visibles devant les photos du catalogue. */
+.horse-card-photo .kind{z-index:2}
+.horse-card-photo img.photo,.horse-card-photo img.silk{z-index:0}
