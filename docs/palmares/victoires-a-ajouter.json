@@ -2,7 +2,36 @@
   "date_reference": "2026-11-13",
   "base_victoires_validees": 172,
   "commentaire": "Victoires admissibles au compteur : trot Rodolphe HAMON (6), Nathalie HAMON (17), Écurie Initial (130) ; galop Rodolphe HAMON et Écurie Initial (19), soit 172. Les victoires de JUNINIO FLEURY de 2023 et 2024 sous la casaque HOMA sont visibles dans l'historique mais exclues du compteur. La victoire de NOSTALGIE DAIRPET au Mont-Saint-Michel le 26/04/2026 a été entièrement retirée du palmarès : achat postérieur à la course. Le compteur est calculé depuis les victoires admissibles.",
-  "victoires": [],
+  "victoires": [
+    {
+      "date": "2026-11-19",
+      "cheval": "DOURIANN",
+      "hippodrome": "SAINT-CLOUD",
+      "discipline": "galop",
+      "jockey": "César BELMONT",
+      "entraineur": "Gilles PANNIER",
+      "proprietaire": "Écurie Initial",
+      "casaque": "galop",
+      "compteInitial": true,
+      "source_officielle": "https://www.equidia.fr/courses/2026-11-19/R1/C6",
+      "source": "https://www.zeturf.fr/fr/course-du-jour/2026-11-19/R1C6-saint-cloud-prix-de-windsor",
+      "note": "1er du Prix de Windsor, Quinté+, R1C6 ; remplaçant confirmé César Belmont."
+    },
+    {
+      "date": "2026-11-19",
+      "cheval": "LE ROI LEON",
+      "hippodrome": "SAINT-CLOUD",
+      "discipline": "galop",
+      "jockey": "Antoine HAMELIN",
+      "entraineur": "Gilles PANNIER",
+      "proprietaire": "Écurie Initial",
+      "casaque": "galop",
+      "compteInitial": true,
+      "source_officielle": "https://www.equidia.fr/courses/2026-11-19/R1/C7",
+      "source": "https://www.zeturf.fr/fr/course-du-jour/2026-11-19/R1C7-saint-cloud-prix-de-boadilla-del-monte",
+      "note": "1er du Prix de Boadilla del Monte, R1C7 ; monte confirmée Antoine Hamelin."
+    }
+  ],
   "decompte_valide": {
     "trot_hamon_rodolphe": 6,
     "trot_hamon_nathalie": 17,
