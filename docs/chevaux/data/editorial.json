@@ -746,6 +746,22 @@
     ],
     "giorgiana": [
       {
+        "date": "2026-11-19",
+        "hippodrome": "Saint-Cloud",
+        "rang": "16e",
+        "officiel": true,
+        "statut": "officiel",
+        "source_description": "PMU : arrivée définitive R1C5, cheval n°14",
+        "source_url": "https://www.pmu.fr/turf/",
+        "source_api": "https://online.turfinfo.api.pmu.fr/rest/client/1/programme/19112026",
+        "course": "R1C5",
+        "numero": 14,
+        "video_url": "https://www.equidia.fr/courses/2026-11-19/R1/C5",
+        "course_url": "https://www.equidia.fr/courses/2026-11-19/R1/C5",
+        "video_source": "equidia_course",
+        "jockey": "César BELMONT"
+      },
+      {
         "date": "2026-10-26",
         "hippodrome": "Toulouse",
         "rang": "7e",
