@@ -39,6 +39,12 @@ function parisDeparture(date: string, heure?: string): string|null {
   return new Date(Date.parse(date+"T"+heure+":00Z")-off*3600000).toISOString();
 }
 const esc=(s:unknown)=>String(s||"").slice(0,240);
+// 1er à 7e ; au-delà NP (non placé). DAI et non-partant conservent leur statut.
+const displayRank=(value:unknown):string=>{
+  const raw=esc(value).trim(),m=raw.match(/^(\d+)\s*(?:er|re|e|eme|ème)?$/i);
+  const plain=raw.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();
+  return (m&&Number(m[1])>7)||/^non placee?$/.test(plain)?"NP":raw;
+};
 // Annonce lisible, en reprenant exclusivement l'hippodrome et l'heure déclarés.
 function annonceCourse(nom:unknown, hippodrome:unknown, heure:unknown, jour:string):string {
   const horse=esc(nom).trim();
@@ -174,7 +180,7 @@ async function pmuOfficialAlerts(
          pmuText(horseMatches[0].nom)!==pmuText(horseNames[item.slug]))continue;
       await saveAlert({id:item.id,categorie:"results",cheval_slug:item.slug,payload:{
         nom:horseNames[item.slug],hippodrome:item.event.hippodrome,
-        date:day,rang:rank===1?"1er":rank+"e",official:true,pilotTest:false,
+        date:day,rang:displayRank(rank===1?"1er":rank+"e"),official:true,pilotTest:false,
         source:"PMU - arrivée définitive",
       },expires_at:iso(now+36*3600_000)});
       console.log("[PMU-PUSH] Arrivée officielle vérifiée : "+item.slug+
@@ -427,7 +433,7 @@ async function run() {
       const pKey=[slug,date,esc(p.hippodrome).toLowerCase()].join("|");
       await saveAlert({id:"results:"+pKey,categorie:"results",cheval_slug:slug,payload:{
         nom:horseNames[slug]||slug.replace(/-/g," ").toUpperCase(),
-        hippodrome:esc(p.hippodrome),rang:esc(p.rang||p.classement||"Résultat disponible"),date,
+        hippodrome:esc(p.hippodrome),rang:displayRank(p.rang||p.classement||"Résultat disponible"),date,
         official,pilotTest:pilotValidated
       },expires_at:iso(now+36*3600_000)});counts.alerts++;
     }
@@ -570,7 +576,7 @@ async function run() {
       }else if(alert.categorie==="before15"){
         message={title:"⏰ Départ imminent · "+esc(p.nom),body:esc(p.hippodrome)+" · environ "+esc(p.diff)+" min avant le départ.",url:APP+"/engagements/"};
       }else if(alert.categorie==="results"){
-        message={title:(p.official===true?"🏆 Résultat officiel · ":"🏆 Résultat de l’écurie · ")+esc(p.nom),body:esc(p.rang)+" à "+esc(p.hippodrome),url:APP+"/chevaux/"+alert.cheval_slug+"/"};
+        message={title:(p.official===true?"🏆 Résultat officiel · ":"🏆 Résultat de l’écurie · ")+esc(p.nom),body:(displayRank(p.rang)==="NP"?"NP (non placé)":displayRank(p.rang))+" à "+esc(p.hippodrome),url:APP+"/chevaux/"+alert.cheval_slug+"/"};
       }else if(alert.categorie==="public_news"){
         message={
           title:"📣 "+(esc(p.titre).slice(0,85)||"Message de l’Écurie"),
