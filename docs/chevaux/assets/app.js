@@ -209,6 +209,37 @@ function latestResults(s){
     +'</section>';
 }
 
+// Adapter chaque nom à la largeur réelle de sa carte, sans couper de lettres.
+function fitCatalogueHorseNames(){
+  const cards=document.querySelector('#cards');
+  if(!cards)return;
+  cards.querySelectorAll('.horse-card-line-main h2').forEach(heading=>{
+    const name=heading.querySelector('.horse-card-name');
+    const icon=heading.querySelector('.card-emoji');
+    if(!name||!icon)return;
+    heading.style.fontSize='';
+    name.style.transform='';
+    name.style.transformOrigin='';
+    const styles=getComputedStyle(heading);
+    const fontSize=parseFloat(styles.fontSize)||14;
+    const gap=parseFloat(styles.columnGap)||0;
+    const available=heading.clientWidth-icon.getBoundingClientRect().width-gap-2;
+    if(available<=0)return;
+    const range=document.createRange();
+    range.selectNodeContents(name);
+    let textWidth=range.getBoundingClientRect().width;
+    if(textWidth<=available)return;
+    // Réduire uniquement les noms longs ; les noms courts gardent leur taille.
+    const fittedSize=Math.max(9,Math.min(fontSize,Math.floor(fontSize*available/textWidth*10)/10));
+    heading.style.fontSize=fittedSize+'px';
+    textWidth=range.getBoundingClientRect().width;
+    // Cas extrême : conserver la ligne entière même sur un téléphone très étroit.
+    if(textWidth>available){
+      name.style.transformOrigin='left center';
+      name.style.transform='scaleX('+Math.min(1,available/textWidth*0.99).toFixed(3)+')';
+    }
+  });
+}
 function catalog(s){
   const host=$('#app');
   const alphabetical=[...s.profiles].filter(p=>p.active!==false).sort((a,b)=>a.name.localeCompare(b.name,'fr',{sensitivity:'base'}));
@@ -274,7 +305,9 @@ function catalog(s){
           '</div>'+
         '</div></a>';
     }).join('')||'<p class="empty">Aucun cheval ne correspond à ces critères.</p>';
+    requestAnimationFrame(fitCatalogueHorseNames);
   }
+  window.addEventListener('resize',()=>requestAnimationFrame(fitCatalogueHorseNames));
   horseSelect.addEventListener('change',redraw);
   trainerSelect.addEventListener('change',redraw);
   redraw();
