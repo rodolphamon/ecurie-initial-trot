@@ -267,11 +267,10 @@ function catalog(s){
         '<div class="horse-card-body">'+
           '<div class="horse-card-line horse-card-line-main">'+
             '<h2 title="'+esc(p.name)+'"><span class="card-emoji" aria-hidden="true">🐎</span><span class="horse-card-name">'+esc(p.name)+'</span></h2>'+
-            '<span class="horse-card-metric" title="'+esc(key+' : '+value)+'" aria-label="'+esc(key+' : '+value)+'">'+esc(value)+'</span>'+
           '</div>'+
           '<div class="horse-card-line horse-card-line-secondary">'+
             '<span class="horse-card-trainer" title="'+esc('Entraîneur : '+(p.trainer||'Non renseigné'))+'"><span class="card-emoji" aria-hidden="true">🎩</span><span class="horse-card-trainer-name">'+esc(p.trainer||'—')+'</span></span>'+
-            '<span class="horse-card-sheet" aria-hidden="true" title="Ouvrir la fiche">📄</span>'+
+            '<span class="horse-card-metric" title="'+esc(key+' : '+value)+'" aria-label="'+esc(key+' : '+value)+'">'+esc(value)+'</span>'+
           '</div>'+
         '</div></a>';
     }).join('')||'<p class="empty">Aucun cheval ne correspond à ces critères.</p>';
