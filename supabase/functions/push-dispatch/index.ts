@@ -18,7 +18,11 @@ const NON_PARTANT = new Set(["non-partant", "np"]);
 // Seul le statut explicitement validé « Partant confirmé » déclenche les alertes.
 // « declare » peut résulter d’une simple déclaration de monte, sans partant officiel.
 const CONFIRMED = new Set(["partant"]);
-type Event = { date: string; hippodrome?: string; heure?: string; statut?: string; prix?: string; course?: string };
+type Event = { date: string; hippodrome?: string; heure?: string; statut?: string; prix?: string; course?: string; reunion_annulee?: boolean };
+// La réunion d'Amiens du 18/11 est annulée. Le partant reste visible dans l'app,
+// mais ne doit jamais générer de rappel ni de recherche automatique de résultat.
+const cancelledRace = (slug: string, e: Event): boolean =>
+  e.reunion_annulee===true || (slug==="andresy" && e.date==="2026-11-18" && /amiens/i.test(String(e.hippodrome||"")));
 type Race = { event_key: string; cheval_slug: string; cheval_nom: string; date_course: string; hippodrome: string; course: string|null; statut: string; depart: string|null };
 type Alert = { id: string; categorie: string; cheval_slug: string|null; payload: Record<string, unknown>; expires_at: string };
 function parisNow(d: Date) {
@@ -105,7 +109,7 @@ async function pmuOfficialAlerts(
   for(const [slug,entries] of Object.entries(editorial.engagements||{})){
     if(!Array.isArray(entries) || !horseNames[slug])continue;
     for(const event of entries as (Event & {numero?:unknown})[]){
-      if(!event || !CONFIRMED.has(String(event.statut||"").toLowerCase()))continue;
+      if(!event || cancelledRace(slug,event) || !CONFIRMED.has(String(event.statut||"").toLowerCase()))continue;
       if(!/^\d{4}-\d{2}-\d{2}$/.test(event.date||""))continue;
       const m=String(event.course||"").match(/^R(\d+)C(\d+)$/i);
       const bib=pmuNumber(event.numero),departure=parisDeparture(event.date,event.heure);
@@ -207,7 +211,7 @@ async function pmuPreflight(
     if(!horseNames[slug]||!Array.isArray(rows))continue;
     for(let index=0;index<rows.length;index++){
       const evt=rows[index] as Event & {numero?:unknown};
-      if(!evt || !CONFIRMED.has(String(evt.statut||"").toLowerCase())
+      if(!evt || cancelledRace(slug,evt) || !CONFIRMED.has(String(evt.statut||"").toLowerCase())
         || !/^\d{4}-\d{2}-\d{2}$/.test(evt.date||"") || !evt.hippodrome)continue;
       const departureString=parisDeparture(evt.date,evt.heure);
       if(!departureString)continue;
@@ -360,6 +364,7 @@ async function run() {
     if (!Array.isArray(events)) continue;
     for (const evt of events) {
       const e=evt as Event;
+      if(cancelledRace(slug,e))continue;
       if(!/^\d{4}-\d{2}-\d{2}$/.test(e.date||""))continue;
       if(e.date<clock.date && Date.parse(e.date+"T23:59:00Z")<now-24*3600_000)continue;
       const row:Race={
@@ -413,6 +418,7 @@ async function run() {
     if(!Array.isArray(rows))continue;
     for(const perf of rows){
       const p=perf as Record<string,unknown>;
+      if(slug==="andresy" && p.date==="2026-11-18" && /amiens/i.test(String(p.hippodrome||"")))continue;
       const official=p.officiel===true||p.statut==="officiel";
       const pilotValidated=prelaunch && p.valide_ecurie===true && p.notif_testeurs===true;
       if(!official && !pilotValidated)continue;
@@ -443,6 +449,7 @@ async function run() {
   if(subsErr)throw subsErr;
   const userIds=[...new Set((subs||[]).map(s=>s.user_id).filter(Boolean))];
   const active=new Set<string>();
+  const pilots=new Set<string>();
   const admins=new Set<string>();
   const holdings=new Map<string,Set<string>>();
   if(userIds.length){
@@ -450,7 +457,6 @@ async function run() {
       .select("user_id,nom_affiche,administrateur,type_compte").eq("actif",true).in("user_id",userIds);
     if(memErr)throw memErr;
     const launchOpen=!prelaunch;
-    const pilots=new Set<string>();
     if(!launchOpen){
       const {data:rows,error:pilotError}=await sb.from("ei_lancement_pilotes")
         .select("user_id").in("user_id",userIds);
@@ -508,9 +514,12 @@ async function run() {
     for(const sub of subs||[]){
       if(Date.parse(sub.created_at)>Date.parse(alert.created_at))continue;
       const member=sub.audience==="associate" && !!sub.user_id && active.has(sub.user_id);
-      if(sub.audience==="associate"&&!member)continue;
-      // Jusqu’au 1er décembre, aucune alerte n’est adressée aux visiteurs ou aux non-testeurs.
-      if(prelaunch&&!member)continue;
+      if(sub.audience==="associate"&&!member && alert.categorie!=="public_news")continue;
+      // Avant le lancement, les annonces publiques sont réservées aux seuls
+      // comptes de la liste officielle des pilotes, jamais aux visiteurs
+      // ni aux contributeurs admis uniquement pour travailler en préouverture.
+      // Après le 1er décembre, les abonnés publics retrouvent leur accès normal.
+      if(prelaunch && (!member || (alert.categorie==="public_news" && !pilots.has(sub.user_id))))continue;
       // Anomalies avant course : exclusivement l'administrateur,
       // jamais les associés ordinaires ou les visiteurs.
       const adminWarning=alert.categorie==="preflight_warning";
@@ -562,6 +571,12 @@ async function run() {
         message={title:"⏰ Départ imminent · "+esc(p.nom),body:esc(p.hippodrome)+" · environ "+esc(p.diff)+" min avant le départ.",url:APP+"/engagements/"};
       }else if(alert.categorie==="results"){
         message={title:(p.official===true?"🏆 Résultat officiel · ":"🏆 Résultat de l’écurie · ")+esc(p.nom),body:esc(p.rang)+" à "+esc(p.hippodrome),url:APP+"/chevaux/"+alert.cheval_slug+"/"};
+      }else if(alert.categorie==="public_news"){
+        message={
+          title:"📣 "+(esc(p.titre).slice(0,85)||"Message de l’Écurie"),
+          body:esc(p.contenu).slice(0,190),
+          url:APP+"/application/actualites/?id="+encodeURIComponent(String(p.id))
+        };
       }else if(alert.categorie==="general_news"){
         message={
           title:"📣 Nouveau message · Écurie Initial",
@@ -594,12 +609,24 @@ async function run() {
         // les téléphones en veille : éviter les retards liés au mode économie d'énergie.
         // Les rappels 15 min expirent rapidement pour ne pas apparaître après la course.
         const pushOptions=alert.categorie==="before15"?{urgency:"high" as const,ttl:900}:
-          ["confirmed","results","withdrawn","private_news","general_news"].includes(alert.categorie)
+          ["confirmed","results","withdrawn","private_news","general_news","public_news"].includes(alert.categorie)
             ?{urgency:"high" as const}:{};
+        // Un identifiant aléatoire distinct par appareil et par tentative permet
+        // de mesurer la réception réelle sans divulguer l'abonnement Push.
+        const {data:receipt,error:receiptError}=await sb.from("ei_push_receipts")
+          .insert({subscription_id:sub.id,alert_id:alert.id,category:alert.categorie})
+          .select("id").single();
+        if(receiptError)console.warn("Suivi Push indisponible",receiptError.code);
+        const measuredMessage=receipt?.id ? {...message,receipt_id:receipt.id}:message;
         const delivered=await sendPushNotification(
           {endpoint:sub.endpoint,keys:{p256dh:sub.p256dh,auth:sub.auth_secret}},
-          message,vapid,pushOptions
+          measuredMessage,vapid,pushOptions
         );
+        if(receipt?.id && delivered){
+          const {error:trackError}=await sb.from("ei_push_receipts")
+            .update({accepted_at:new Date().toISOString()}).eq("id",receipt.id);
+          if(trackError)console.warn("Accusé Push accepté non daté",trackError.code);
+        }
         if(!delivered){
           await sb.from("ei_push_subscriptions").delete().eq("id",sub.id);
         }else counts.sent++;
