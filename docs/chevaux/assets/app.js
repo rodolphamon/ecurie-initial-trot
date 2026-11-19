@@ -262,9 +262,18 @@ function catalog(s){
     $('#cards').innerHTML=shown.map(p=>{
       const d=currentData(p,s);
       const key=p.casaque==='galop'?(/obstacle/i.test(p.discipline||'')?'Valeurs':'Valeur'):'Record';
-      return '<a class="horse-card" href="'+(p.newHorse?'fiche/?cheval='+encodeURIComponent(p.id):encodeURIComponent(p.id)+'/')+'">'+photoMarkup(p,'card')+
-        '<div class="horse-card-body"><div class="horse-card-heading"><h2 title="'+esc(p.name)+'">'+esc(p.name)+'</h2><span class="horse-card-trainer" title="'+esc('Entraîneur : '+(p.trainer||'Non renseigné'))+'">'+esc(p.trainer||'—')+'</span></div>'+
-        '<div class="card-bottom"><span>'+key+' : <b>'+esc(metric(p,d))+'</b></span><span>Découvrir la fiche →</span></div></div></a>';
+      const value=metric(p,d);
+      return '<a class="horse-card" href="'+(p.newHorse?'fiche/?cheval='+encodeURIComponent(p.id):encodeURIComponent(p.id)+'/')+'" aria-label="'+esc('Voir la fiche de '+p.name)+'">'+photoMarkup(p,'card')+
+        '<div class="horse-card-body">'+
+          '<div class="horse-card-line horse-card-line-main">'+
+            '<h2 title="'+esc(p.name)+'"><span class="card-emoji" aria-hidden="true">🐎</span><span class="horse-card-name">'+esc(p.name)+'</span></h2>'+
+            '<span class="horse-card-metric" title="'+esc(key+' : '+value)+'" aria-label="'+esc(key+' : '+value)+'">'+esc(value)+'</span>'+
+          '</div>'+
+          '<div class="horse-card-line horse-card-line-secondary">'+
+            '<span class="horse-card-trainer" title="'+esc('Entraîneur : '+(p.trainer||'Non renseigné'))+'"><span class="card-emoji" aria-hidden="true">🎩</span><span class="horse-card-trainer-name">'+esc(p.trainer||'—')+'</span></span>'+
+            '<span class="horse-card-sheet" aria-hidden="true" title="Ouvrir la fiche">📄</span>'+
+          '</div>'+
+        '</div></a>';
     }).join('')||'<p class="empty">Aucun cheval ne correspond à ces critères.</p>';
   }
   horseSelect.addEventListener('change',redraw);
