@@ -378,3 +378,41 @@
 /* Etiquettes TROT/PLAT visibles devant les photos du catalogue. */
 .horse-card-photo .kind{z-index:2}
 .horse-card-photo img.photo,.horse-card-photo img.silk{z-index:0}
+
+/* Catalogue : tous les noms en entier sur une ligne (taille ajustée par JS). */
+.horse-card-line-main h2{
+  width:100%;
+  display:flex;
+  flex-wrap:nowrap;
+  align-items:center;
+  min-width:0;
+  gap:4px;
+  line-height:1.15;
+  white-space:nowrap;
+}
+.horse-card-line-main .card-emoji{
+  flex:0 0 auto;
+  font-size:14px;
+}
+.horse-card-line-main .horse-card-name{
+  display:block;
+  flex:0 1 auto;
+  min-width:0;
+  white-space:nowrap;
+  overflow:visible;
+  text-overflow:clip;
+  overflow-wrap:normal;
+  word-break:normal;
+  max-width:none;
+}
+@media(max-width:590px){
+  .horse-card-line-main h2{
+    font-size:14px;
+    white-space:nowrap;
+    gap:3px;
+  }
+  .horse-card-line-main .card-emoji{font-size:13px}
+}
+@media(max-width:350px){
+  .horse-card-line-main h2{font-size:13px}
+}
