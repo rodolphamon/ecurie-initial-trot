@@ -204,6 +204,22 @@
     ],
     "douriann": [
       {
+        "date": "2026-11-19",
+        "hippodrome": "Saint-Cloud",
+        "rang": "1er",
+        "officiel": true,
+        "statut": "officiel",
+        "source_description": "PMU : arrivée définitive R1C6, cheval n°13",
+        "source_url": "https://www.pmu.fr/turf/",
+        "source_api": "https://online.turfinfo.api.pmu.fr/rest/client/1/programme/19112026",
+        "course": "R1C6",
+        "numero": 13,
+        "video_url": "https://www.equidia.fr/courses/2026-11-19/R1/C6",
+        "course_url": "https://www.equidia.fr/courses/2026-11-19/R1/C6",
+        "video_source": "equidia_course",
+        "jockey": "César BELMONT"
+      },
+      {
         "date": "2026-10-26",
         "hippodrome": "Toulouse",
         "rang": "7e",
@@ -277,6 +293,22 @@
       }
     ],
     "le-roi-leon": [
+      {
+        "date": "2026-11-19",
+        "hippodrome": "Saint-Cloud",
+        "rang": "1er",
+        "officiel": true,
+        "statut": "officiel",
+        "source_description": "PMU : arrivée définitive R1C7, cheval n°5",
+        "source_url": "https://www.pmu.fr/turf/",
+        "source_api": "https://online.turfinfo.api.pmu.fr/rest/client/1/programme/19112026",
+        "course": "R1C7",
+        "numero": 5,
+        "video_url": "https://www.equidia.fr/courses/2026-11-19/R1/C7",
+        "course_url": "https://www.equidia.fr/courses/2026-11-19/R1/C7",
+        "video_source": "equidia_course",
+        "jockey": "Antoine HAMELIN"
+      },
       {
         "date": "2026-10-28",
         "hippodrome": "Le Mans",
