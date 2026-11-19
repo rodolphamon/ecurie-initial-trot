@@ -5,6 +5,8 @@ on:
     paths:
       - "scripts/monitor_pmu_results.py"
       - "scripts/synchroniser_palmares_resultats.py"
+      - "docs/chevaux/data/editorial.json"
+      - "docs/chevaux/data/chevaux.json"
       - ".github/workflows/surveiller-resultats-pmu.yml"
   schedule:
     # GitHub déclenche au mieux toutes les 5 min ; un job interroge
