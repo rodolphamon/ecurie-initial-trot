@@ -6,7 +6,7 @@ Cette arborescence publie les fiches individuelles des **34 chevaux** de l'effec
 - Pages individuelles : `docs/chevaux/<identifiant>/index.html`
 - Style commun : `docs/chevaux/assets/style.css`
 - Affichage et filtres : `docs/chevaux/assets/app.js`
-- Noms, entraîneurs, casaques et liens vers fiches externes : `docs/chevaux/data/chevaux.json`
+- Noms, sexe (F = Femelle, H = Hongre, M = Mâle), entraîneurs, casaques et liens vers fiches externes : `docs/chevaux/data/chevaux.json`
 - Résultats et engagements communiqués par l'écurie : `docs/chevaux/data/editorial.json`
 - Gains et records Trot : `docs/data/effectif-trot.json`
 - Gains et valeurs Galop : `docs/data/effectif-galop.json`
@@ -25,4 +25,4 @@ Les noms dans les deux tableaux embarqués renvoient désormais aux nouvelles fi
 
 ## Ajouter un cheval
 
-Créer son entrée dans `docs/chevaux/data/chevaux.json`, ajouter sa page `docs/chevaux/<id>/index.html`, l'ajouter à l'effectif de référence et, le cas échéant, déposer sa photo.
+Créer son entrée (y compris le champ `sex`) dans `docs/chevaux/data/chevaux.json`, ajouter sa page `docs/chevaux/<id>/index.html`, l'ajouter à l'effectif de référence et, le cas échéant, déposer sa photo.
