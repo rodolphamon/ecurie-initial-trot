@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-15",
+  "updated_at": "2026-11-19",
   "horses": [
     {
       "id": "andresy",
@@ -9,7 +9,8 @@
       "casaque": "galop",
       "horseLink": "https://pro.france-galop.com/EspacePro/Cheval/FicheCheval?numSIRE=23318863",
       "photoVersion": "20261112-andresy2",
-      "birth_year": 2023
+      "birth_year": 2023,
+      "sex": "H"
     },
     {
       "id": "bailychka",
@@ -19,7 +20,8 @@
       "casaque": "galop",
       "horseLink": null,
       "photoVersion": "20261112-bailychka",
-      "birth_year": 2024
+      "birth_year": 2024,
+      "sex": "F"
     },
     {
       "id": "bobrovkha",
@@ -29,7 +31,8 @@
       "casaque": "galop",
       "horseLink": "https://pro.france-galop.com/EspacePro/Cheval/FicheCheval?numSIRE=22165191",
       "photoVersion": "20261112-lot5",
-      "birth_year": 2022
+      "birth_year": 2022,
+      "sex": "F"
     },
     {
       "id": "douriann",
@@ -38,7 +41,8 @@
       "trainer": "Gilles PANNIER",
       "casaque": "galop",
       "horseLink": null,
-      "birth_year": 2019
+      "birth_year": 2019,
+      "sex": "H"
     },
     {
       "id": "giorgiana",
@@ -47,7 +51,8 @@
       "trainer": "Gilles PANNIER",
       "casaque": "galop",
       "horseLink": "https://pro.france-galop.com/EspacePro/Cheval/FicheCheval?numSIRE=20750165",
-      "birth_year": 2020
+      "birth_year": 2020,
+      "sex": "F"
     },
     {
       "id": "gonafoot",
@@ -56,7 +61,8 @@
       "trainer": "Gilles PANNIER",
       "casaque": "galop",
       "horseLink": null,
-      "birth_year": 2024
+      "birth_year": 2024,
+      "sex": "F"
     },
     {
       "id": "indice-deladou",
@@ -71,7 +77,8 @@
         "mere": "ROMY DE CHAUMIERE",
         "pere_de_mere": "L'AS DE VIRETAUTE"
       },
-      "birth_year": 2018
+      "birth_year": 2018,
+      "sex": "H"
     },
     {
       "id": "isolee-du-bouillon",
@@ -85,7 +92,8 @@
         "mere": "URGELE",
         "pere_de_mere": "OTELLO PIERJI"
       },
-      "birth_year": 2018
+      "birth_year": 2018,
+      "sex": "F"
     },
     {
       "id": "le-roi-leon",
@@ -95,7 +103,8 @@
       "casaque": "galop",
       "horseLink": null,
       "photoVersion": "20261112-lot5",
-      "birth_year": 2022
+      "birth_year": 2022,
+      "sex": "H"
     },
     {
       "id": "limpide",
@@ -105,7 +114,8 @@
       "casaque": "galop",
       "horseLink": null,
       "photoVersion": "20261112-lot5",
-      "birth_year": 2023
+      "birth_year": 2023,
+      "sex": "F"
     },
     {
       "id": "lord-on-way",
@@ -119,7 +129,8 @@
         "mere": "ONLY WAY",
         "pere_de_mere": "VIKING'S WAY"
       },
-      "birth_year": 2021
+      "birth_year": 2021,
+      "sex": "H"
     },
     {
       "id": "lucky-des-gaudines",
@@ -134,7 +145,8 @@
         "pere": "EXCELLENT",
         "mere": "FIGUERA MARBOULA",
         "pere_de_mere": "THE BEST MADRIK"
-      }
+      },
+      "sex": "H"
     },
     {
       "id": "mandragora-fleury",
@@ -149,7 +161,8 @@
         "mere": "ERYA KALOUMA",
         "pere_de_mere": "ROYAL DREAM"
       },
-      "birth_year": 2022
+      "birth_year": 2022,
+      "sex": "F"
     },
     {
       "id": "master-pat",
@@ -159,7 +172,8 @@
       "casaque": "galop",
       "horseLink": "https://www.geny.com/cheval/2817411-master-pat",
       "photoVersion": "20261112-19",
-      "birth_year": 2021
+      "birth_year": 2021,
+      "sex": "H"
     },
     {
       "id": "memphis-belle",
@@ -174,7 +188,8 @@
         "mere": "DIVINE ESPERANCE",
         "pere_de_mere": "GOB DE LOUMADE"
       },
-      "birth_year": 2022
+      "birth_year": 2022,
+      "sex": "F"
     },
     {
       "id": "mona-lisa-stardust",
@@ -189,7 +204,8 @@
         "pere": "TAG WOOD",
         "mere": "GLORIA STARDUST",
         "pere_de_mere": "PASSWORD"
-      }
+      },
+      "sex": "F"
     },
     {
       "id": "moondance-okina",
@@ -204,7 +220,8 @@
         "mere": "GODIVA OKINA",
         "pere_de_mere": "TAG WOOD"
       },
-      "birth_year": 2022
+      "birth_year": 2022,
+      "sex": "F"
     },
     {
       "id": "myrtille-marboula",
@@ -218,7 +235,8 @@
         "pere": "FIFTY KALOUMA",
         "mere": "DIVA MARBOULA",
         "pere_de_mere": "MIRAGE DU GOUTIER"
-      }
+      },
+      "sex": "F"
     },
     {
       "id": "nebraska-fleury",
@@ -233,7 +251,8 @@
         "mere": "ERYA KALOUMA",
         "pere_de_mere": "ROYAL DREAM"
       },
-      "birth_year": 2023
+      "birth_year": 2023,
+      "sex": "M"
     },
     {
       "id": "nelson-star",
@@ -248,7 +267,8 @@
         "mere": "BEST STAR",
         "pere_de_mere": "LOOK DE STAR"
       },
-      "birth_year": 2023
+      "birth_year": 2023,
+      "sex": "H"
     },
     {
       "id": "nostalgie-dairpet",
@@ -263,7 +283,8 @@
         "mere": "GARDEN CITY",
         "pere_de_mere": "QUAKER JET"
       },
-      "birth_year": 2023
+      "birth_year": 2023,
+      "sex": "F"
     },
     {
       "id": "odacieuse-fleury",
@@ -278,7 +299,8 @@
         "mere": "GIRL STAR EMGE",
         "pere_de_mere": "TIMOKO"
       },
-      "birth_year": 2024
+      "birth_year": 2024,
+      "sex": "F"
     },
     {
       "id": "olano-de-la-vallee",
@@ -293,7 +315,8 @@
         "mere": "GENNY DE LA VALLEE",
         "pere_de_mere": "TEXAS CHARM"
       },
-      "birth_year": 2024
+      "birth_year": 2024,
+      "sex": "M"
     },
     {
       "id": "on-lockdown",
@@ -303,7 +326,8 @@
       "casaque": "galop",
       "horseLink": "https://pro.france-galop.com/EspacePro/Cheval/FicheCheval?numSIRE=21319800",
       "photoVersion": "20261112-19",
-      "birth_year": 2019
+      "birth_year": 2019,
+      "sex": "H"
     },
     {
       "id": "palazzo-grassi",
@@ -317,7 +341,8 @@
         "pere": "BRILLANTISSIME",
         "mere": "GIOCONDA",
         "pere_de_mere": "PASSWORD"
-      }
+      },
+      "sex": "M"
     },
     {
       "id": "phacelie-bilou",
@@ -332,7 +357,8 @@
         "mere": "FLORETTE BILOU",
         "pere_de_mere": "PRINCE D'ESPACE"
       },
-      "birth_year": 2025
+      "birth_year": 2025,
+      "sex": "F"
     },
     {
       "id": "popstar-d-eri",
@@ -346,7 +372,8 @@
         "pere": "IZOARD VEDAQUAIS",
         "mere": "CALICOBA",
         "pere_de_mere": "COCKTAIL JET"
-      }
+      },
+      "sex": "F"
     },
     {
       "id": "prince-gio",
@@ -361,7 +388,8 @@
         "pere": "IDEAL DU POMMEAU",
         "mere": "HEIDA IMPERIALE",
         "pere_de_mere": "PRINCE GEDE"
-      }
+      },
+      "sex": "M"
     },
     {
       "id": "rosa-mia",
@@ -371,7 +399,8 @@
       "casaque": "galop",
       "horseLink": null,
       "photoVersion": "20261112-19",
-      "birth_year": 2023
+      "birth_year": 2023,
+      "sex": "F"
     },
     {
       "id": "saturday-night",
@@ -381,7 +410,8 @@
       "casaque": "galop",
       "horseLink": null,
       "photoVersion": "20261112-19",
-      "birth_year": 2022
+      "birth_year": 2022,
+      "sex": "F"
     },
     {
       "id": "singapor-initial",
@@ -391,7 +421,8 @@
       "casaque": "galop",
       "horseLink": null,
       "photoVersion": "20261112-19",
-      "birth_year": 2024
+      "birth_year": 2024,
+      "sex": "H"
     },
     {
       "id": "victoria-secret",
@@ -401,7 +432,8 @@
       "casaque": "galop",
       "horseLink": null,
       "photoVersion": "20261113-photo-rond-de-presentation",
-      "birth_year": 2023
+      "birth_year": 2023,
+      "sex": "F"
     },
     {
       "id": "vyborg",
@@ -411,7 +443,8 @@
       "casaque": "galop",
       "horseLink": "https://pro.france-galop.com/EspacePro/Cheval/FicheCheval?numSIRE=19302641",
       "photoVersion": "20261112-19",
-      "birth_year": 2019
+      "birth_year": 2019,
+      "sex": "H"
     },
     {
       "id": "zartop",
@@ -421,7 +454,8 @@
       "casaque": "galop",
       "horseLink": "https://pro.france-galop.com/EspacePro/Cheval/FicheCheval?numSIRE=22163793",
       "photoVersion": "20261112-19",
-      "birth_year": 2022
+      "birth_year": 2022,
+      "sex": "H"
     }
   ]
 }
