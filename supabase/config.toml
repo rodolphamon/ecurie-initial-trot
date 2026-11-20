@@ -11,3 +11,16 @@ verify_jwt = false
 
 [functions.push-dispatch]
 verify_jwt = false
+
+# Fonctions sauvegardées depuis le service Supabase en production (20/11/2026).
+# smart-service : requiert un JWT vérifié par la plateforme.
+[functions.smart-service]
+verify_jwt = true
+
+# team-contact : authentification et contrôles métier gérés dans le code.
+[functions.team-contact]
+verify_jwt = false
+
+# push-receipt : accusés de réception des notifications ; contrôle côté code.
+[functions.push-receipt]
+verify_jwt = false
