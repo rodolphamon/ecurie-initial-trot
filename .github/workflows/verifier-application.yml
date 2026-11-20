@@ -6,7 +6,8 @@ on:
     paths:
       - 'docs/application/**'
       - 'docs/chevaux/data/**'
-      - 'supabase/functions/gerer-associes/**'
+      - 'supabase/functions/**'
+      - 'supabase/config.toml'
       - 'scripts/verifier_application.py'
       - '.github/workflows/verifier-application.yml'
   pull_request:
