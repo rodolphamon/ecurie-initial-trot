@@ -52,6 +52,15 @@ button:disabled{opacity:.5;cursor:not-allowed}
     <p class="status" id="status" role="status" aria-live="polite"></p>
   </form>
 </section>
+<section class="card" id="manageNews" hidden>
+  <h2>Gérer les annonces</h2>
+  <p class="muted">Supprimez une annonce devenue inutile. La dernière annonce publique restante s'affichera automatiquement sur l'accueil.</p>
+  <label for="manageAudience">Afficher les messages</label>
+  <select id="manageAudience"><option value="public">📢 Publics</option><option value="general">🔒 Associés</option><option value="horse">🐎 Par cheval</option></select>
+  <p class="status" id="manageStatus" role="status" aria-live="polite"></p>
+  <div id="manageList"></div>
+  <button type="button" id="refreshNews">Actualiser la liste</button>
+</section>
 <section class="card"><h2>Confidentialité</h2>
 <p class="muted">Les messages aux associés restent privés. Les annonces « Toute la communauté » sont publiques : texte et titre visibles par tous, même sans connexion.</p>
 <p class="muted">Une notification n’est envoyée qu’aux appareils ayant activé les alertes correspondantes. Les alertes privées restent limitées aux associés autorisés.</p>
@@ -91,6 +100,32 @@ $('media').addEventListener('change',()=>{
  media.alt='Aperçu du fichier choisi';
  $('preview').append(media);
 });
+const newsTables={public:'actualites_generales_publiques',general:'actualites_generales_privees',horse:'actualites_chevaux_privees'};
+async function loadNews(){
+ const audience=$('manageAudience').value,table=newsTables[audience];
+ const list=$('manageList');list.replaceChildren();$('manageStatus').textContent='Chargement…';
+ const {data,error}=await db.from(table).select('id,titre,contenu,created_at').order('created_at',{ascending:false}).limit(50);
+ if(error){$('manageStatus').textContent='Impossible de charger les messages : '+error.message;return}
+ $('manageStatus').textContent=data.length?'Les 50 publications les plus récentes sont affichées.':'Aucune publication.';
+ for(const item of data){
+  const card=document.createElement('div');card.style.cssText='padding:14px 0;border-bottom:1px solid #eee';
+  const title=document.createElement('strong');title.textContent=item.titre||'Sans titre';
+  const date=document.createElement('div');date.className='muted';date.textContent=new Date(item.created_at).toLocaleString('fr-FR');
+  const preview=document.createElement('p');preview.textContent=(item.contenu||'').slice(0,180);
+  const del=document.createElement('button');del.type='button';del.textContent='🗑️ Supprimer';del.style.cssText='background:#fff0eb;color:#a12c1e;border:1px solid #e5b3a7';
+  del.addEventListener('click',async()=>{
+   if(!confirm('Supprimer définitivement « '+(item.titre||'ce message')+' » ?'))return;
+   del.disabled=true;
+   const {data:deleted,error:deleteError}=await db.from(table).delete().eq('id',item.id).select('id');
+   if(deleteError||!deleted?.length){$('manageStatus').textContent='Suppression impossible : '+(deleteError?.message||'aucune ligne supprimée');del.disabled=false;return}
+   await loadNews();
+   $('manageStatus').textContent='Message supprimé. L’accueil affichera la dernière annonce publique restante.';
+  });
+  card.append(title,date,preview,del);list.append(card);
+ }
+}
+$('manageAudience').addEventListener('change',loadNews);
+$('refreshNews').addEventListener('click',loadNews);
 async function setup(){
  try{
    const{data:{user},error:authError}=await db.auth.getUser();
@@ -110,6 +145,8 @@ async function setup(){
    else if(new URLSearchParams(location.search).get('general')==='1')$('audience').value='general';
    chooseAudience();
    $('publisher').hidden=false;
+   $('manageNews').hidden=false;
+   await loadNews();
  }catch(e){status(e?.message||'Impossible de charger le formulaire.',true)}
  finally{$('loading').hidden=true}
 }
@@ -150,6 +187,7 @@ $('form').addEventListener('submit',async e=>{
      ($('notify').checked?(everyone?' Notification demandée à tous les appareils inscrits aux annonces publiques.':' Notification demandée aux appareils inscrits aux alertes privées.'):' Aucune notification demandée.'));
    $('title').value='';$('body').value='';$('media').value='';$('notify').checked=true;clearPreview();
    uploaded=null;
+   await loadNews();
  }catch(err){
    // Ne pas laisser de fichier orphelin si l'insertion échoue après l'upload.
    if(uploaded)await db.storage.from(bucket).remove([uploaded]).catch(()=>{});
