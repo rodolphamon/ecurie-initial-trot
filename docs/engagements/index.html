@@ -32,7 +32,8 @@ h1{font-size:clamp(23px,4vw,35px);line-height:1.12;letter-spacing:-.6px;margin:6
 .events{display:grid;gap:10px}
 .event{background:var(--paper);border:1px solid var(--line);border-radius:12px;display:grid;grid-template-columns:64px minmax(0,1fr);align-items:center;gap:12px;box-shadow:0 5px 16px rgba(69,45,19,.045);overflow:hidden;padding:13px 15px;border-left:5px solid var(--orange)}
 .event.is-partant{border-left-color:#43a46c}
-.event.is-status-engage,.event.is-status-declare{border-left-color:#3b6ba8}
+.event.is-status-engage{border-left-color:#282521}
+.event.is-status-declare{border-left-color:#3b6ba8}
 .event.is-status-forfait,.event.is-status-non-partant,.event.is-status-elimine{border-left-color:#c44343}
 .event.is-status-qualification{border-left-color:#b18a31}
 .when{font-variant-numeric:tabular-nums;color:#8c6e54;font-weight:900;text-align:center;font-size:13px;min-width:0}
@@ -50,7 +51,7 @@ h1{font-size:clamp(23px,4vw,35px);line-height:1.12;letter-spacing:-.6px;margin:6
 .flag{display:flex;align-items:center;justify-content:flex-start;gap:6px 12px;flex-wrap:wrap;min-width:0;margin-top:8px}
 .pill{display:inline-block;padding:6px 9px;border-radius:999px;background:var(--warm);color:#a44b0b;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.25px;border:1px solid #f2d2b4}
 .pill.partant{background:var(--green-bg);border-color:#bde3c9;color:var(--green)}
-.pill.engage{background:#e8efff;border-color:#cdd9f4;color:#345b9d}
+.pill.engage{background:#f0efed;border-color:#d4d0cb;color:#282521}
 .pill.declare{background:#e8efff;border-color:#cdd9f4;color:#345b9d}
 .pill.non-partant,.pill.forfait,.pill.elimine{background:#ffebea;border-color:#f2cccc;color:#a52f2f}
 .pill.qualification{background:#fff4d6;border-color:#eddbac;color:#805d1f}
@@ -117,8 +118,14 @@ h1{font-size:clamp(23px,4vw,35px);line-height:1.12;letter-spacing:-.6px;margin:6
 (()=>{
 "use strict";
 const BASE="../chevaux/";
-const labels={"engage":"Engagé","declare":"Déclaré partant","partant":"Partant confirmé","non-partant":"Non-partant","forfait":"Forfait","elimine":"Éliminé","qualification":"Qualification"};
-const shortLabels={"engage":"Engagé","declare":"Déclaré","partant":"Confirmé","non-partant":"Non-partant","forfait":"Forfait","elimine":"Éliminé","qualification":"Qualif."};
+const labels={"engage":"Engagé","declare":"Déclaré partant","partant":"Partant","non-partant":"Non-partant","forfait":"Forfait","elimine":"Éliminé","qualification":"Qualification"};
+const shortLabels={"engage":"Engagé","declare":"Déclaré","partant":"Partant","non-partant":"Non-partant","forfait":"Forfait","elimine":"Éliminé","qualification":"Qualif."};
+const genderLabel=(status,horse,compact=false)=>{
+ const female=String(horse.sex||"").trim().toUpperCase()==="F";
+ if(status==="engage")return female?"Engagée":"Engagé";
+ if(status==="declare")return compact?(female?"Déclarée":"Déclaré"):(female?"Déclarée partante":"Déclaré partant");
+ return (compact?shortLabels:labels)[status]||labels.engage;
+};
 const esc=v=>String(v==null?"":v).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const paris=()=>new Intl.DateTimeFormat("sv-SE",{timeZone:"Europe/Paris",year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit",hourCycle:"h23"}).format(new Date()).replace(" ","T");
 const day=s=>new Intl.DateTimeFormat("fr-FR",{weekday:"long",day:"numeric",month:"long",year:"numeric",timeZone:"Europe/Paris"}).format(new Date(s+"T12:00:00Z"));
@@ -135,7 +142,7 @@ const byDate=new Map();
 for(const x of visible){if(!byDate.has(x.e.date))byDate.set(x.e.date,[]);byDate.get(x.e.date).push(x);}
 calendar.innerHTML=Array.from(byDate,([date,ev])=>'<section><div class="day"><h2>'+esc(day(date))+'</h2></div><div class="events">'+ev.map(({horse,id,e})=>{
 const cancelled=e.reunion_annulee||(id==='andresy'&&e.date==='2026-11-18'&&/amiens/i.test(e.hippodrome||''));
- const label=cancelled?'RÉUNION ANNULÉE':(labels[e.statut]||labels.engage);
+ const label=cancelled?'RÉUNION ANNULÉE':genderLabel(e.statut,horse);
 const time=/^\d{2}:\d{2}$/.test(e.heure||"")?e.heure.replace(":"," h "):null;
 const detail=[e.course,e.prix||e.type,e.type_course,e.surface,e.distance].filter(Boolean).join(" · ");
 const person=e.driver||e.jockey||"";
@@ -146,7 +153,7 @@ const corde=isGalop && (typeof cordeValue==="number"||typeof cordeValue==="strin
 const silkFile=horse.casaque==="galop"?"casaque-galop.svg":horse.casaque==="orange"?"casaque-orange.svg":"casaque-blanche.svg";
 return '<article class="event'+(isPartant(e)?' is-partant':'')+' is-status-'+esc(Object.hasOwn(labels,e.statut)?e.statut:'engage')+'">'
 +'<div class="when"><span class="silk-icon" role="img" aria-label="Casaque de '+esc(horse.name)+'" style="background-image:url(\'../assets/'+silkFile+'\')"></span></div>'
-+'<div class="horse"><div class="horse-heading"><strong><a target="_blank" rel="noopener noreferrer" href="'+BASE+encodeURIComponent(id)+'/">'+esc(horse.name)+'</a></strong>'+(isPartant(e)&&time?'<span class="start-time">'+esc(time)+'</span>':'')+'<span class="pill '+esc(e.statut||"engage")+'" title="'+esc(label)+'" aria-label="'+esc(label)+'"><span class="pill-full">'+esc(label)+'</span><span class="pill-compact" aria-hidden="true">'+esc(shortLabels[e.statut]||label)+'</span></span></div>'
++'<div class="horse"><div class="horse-heading"><strong><a target="_blank" rel="noopener noreferrer" href="'+BASE+encodeURIComponent(id)+'/">'+esc(horse.name)+'</a></strong>'+(isPartant(e)&&time?'<span class="start-time">'+esc(time)+'</span>':'')+'<span class="pill '+esc(e.statut||"engage")+'" title="'+esc(label)+'" aria-label="'+esc(label)+'"><span class="pill-full">'+esc(label)+'</span><span class="pill-compact" aria-hidden="true">'+esc(cancelled?'ANNULÉE':genderLabel(e.statut,horse,true))+'</span></span></div>'
 +'<div class="horse-meta"><span class="place" title="'+esc((e.hippodrome||"Hippodrome à confirmer")+' · '+(horse.discipline||"")+(e.numero?' · N° '+e.numero:'')+(corde?' · Corde : '+corde:''))+'"><span class="place-location">'+esc(e.hippodrome||"Hippodrome à confirmer")+' · '+esc(horse.discipline||"")+'</span>'+(e.numero?'<span class="place-number">· N° '+esc(e.numero)+'</span>':'')+(corde?'<span class="place-corde">· Corde : '+esc(corde)+'</span>':'')+'</span>'+(person?'<span class="person">'+esc(person)+'</span>':'')+'</div>'
 +'<div class="race-row"><div class="race" title="'+esc(detail)+'">'+(cancelled?'<strong style="color:#b42318">RÉUNION ANNULÉE · </strong>':'')+esc(detail)+'</div></div></div></article>'}).join("")+'</div></section>').join("");
 resize();
