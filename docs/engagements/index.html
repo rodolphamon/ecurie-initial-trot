@@ -172,8 +172,13 @@ try{
    data.engagements[row.cheval_slug]=row.engagements;
 }catch(error){console.warn('Engagements contributeurs indisponibles : données de référence conservées',error)}
 const ids=new Map((profiles.horses||[]).map(x=>[x.id,x])),seen=new Set(),now=paris();
+// Un forfait disparaît du calendrier dès J-2 (date locale Europe/Paris), sans supprimer la donnée.
+const forfaitCutoff=new Date(now.slice(0,10)+"T12:00:00Z");
+forfaitCutoff.setUTCDate(forfaitCutoff.getUTCDate()+2);
+const forfaitHideThrough=forfaitCutoff.toISOString().slice(0,10);
 for(const [id,engs] of Object.entries(data.engagements||{})){const horse=ids.get(id);if(!horse)continue;for(const e of Array.isArray(engs)?engs:[]){
 if(!/^\d{4}-\d{2}-\d{2}$/.test(e.date||""))continue;
+if(e.statut==="forfait"&&e.date<=forfaitHideThrough)continue;
 const t=/^\d{2}:\d{2}$/.test(e.heure||"")?e.heure:"23:59";
 if(e.date+"T"+t<now)continue;
 const key=[id,e.date,e.hippodrome||"",e.course||e.prix||e.type||""].join("|").toLowerCase();if(seen.has(key))continue;seen.add(key);rows.push({id,horse,e});
