@@ -15,6 +15,16 @@ jobs:
     steps:
       - name: Récupérer le projet
         uses: actions/checkout@v4
+      - name: Installer Python pour les contrôles
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Installer Node pour vérifier les scripts
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Vérifier les pages, rôles, fonctions et données AVANT le déploiement
+        run: python scripts/verifier_application.py
       - name: Installer Supabase CLI
         uses: supabase/setup-cli@v1
         with:
