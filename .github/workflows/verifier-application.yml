@@ -1,0 +1,34 @@
+name: Vérifier l'application avant régression
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'docs/application/**'
+      - 'docs/chevaux/data/**'
+      - 'supabase/functions/gerer-associes/**'
+      - 'scripts/verifier_application.py'
+      - '.github/workflows/verifier-application.yml'
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  regression:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le code
+        uses: actions/checkout@v4
+      - name: Installer Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Installer Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Vérifier pages, rôles, fonctions et données
+        run: python scripts/verifier_application.py
