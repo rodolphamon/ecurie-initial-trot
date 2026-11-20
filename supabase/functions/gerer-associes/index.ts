@@ -67,7 +67,7 @@ serve(async (req) => {
       const nom = String(body.nom || "").trim();
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || nom.length < 2 || nom.length > 100) return reply(400, { error: "Nom ou e-mail invalide." });
       const accountType = String(body.type_compte || "associe");
-      if (!["associe", "exterieur"].includes(accountType)) return reply(400, { error: "Type de compte invalide." });
+      if (!["associe", "exterieur", "presse"].includes(accountType)) return reply(400, { error: "Type de compte invalide." });
       // Les chevaux sélectionnés sont attachés au compte créé ; ils ne vont jamais dans le dépôt public.
       const requested = body.horses ?? [];
       if (!Array.isArray(requested) || requested.length > 40) return reply(400, { error: "Sélection de chevaux invalide." });
@@ -83,7 +83,7 @@ serve(async (req) => {
         seen.add(slug);
         horses.push({ cheval_slug: slug, cheval_nom: name });
       }
-      if (accountType === "exterieur" && horses.length) return reply(400, { error: "Un membre extérieur ne peut pas recevoir de participations aux chevaux." });
+      if (accountType !== "associe" && horses.length) return reply(400, { error: "Un membre extérieur ne peut pas recevoir de participations aux chevaux." });
       const { data, error } = await admin.auth.admin.inviteUserByEmail(email, { redirectTo: "https://fiches.ecurie-initial.com/application/connexion/" });
       if (error || !data.user) return reply(400, { error: error?.message || "Invitation impossible." });
       const { error: saveError } = await admin.from("associes").insert({ user_id: data.user.id, nom_affiche: nom, actif: true, administrateur: false, type_compte: accountType });
@@ -95,7 +95,7 @@ serve(async (req) => {
           return reply(500, { error: "L'invitation et le compte sont créés, mais les chevaux n'ont pas pu être rattachés. Utilisez le bouton « Chevaux » pour terminer, sans nouvelle invitation." });
         }
       }
-      return reply(200, { ok: true, message: "Invitation envoyée au " + (accountType === "exterieur" ? "membre extérieur" : "compte associé") + ". Mot de passe activable maintenant ; ouverture le 1er décembre 2026. " + horses.length + " cheval(aux) rattaché(s).", chevaux_rattaches: horses.length });
+      return reply(200, { ok: true, message: "Invitation envoyée au " + (accountType === "presse" ? "journaliste (accès presse)" : accountType === "exterieur" ? "membre extérieur" : "compte associé") + ". Mot de passe activable maintenant ; ouverture le 1er décembre 2026. " + horses.length + " cheval(aux) rattaché(s).", chevaux_rattaches: horses.length });
     }
     if (body.action === "set_member_type") {
       const id = String(body.user_id || "");
