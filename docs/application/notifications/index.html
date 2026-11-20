@@ -172,9 +172,9 @@ async function init(){
   $('notificationOptions').hidden=false;
   if(session?.user){
     const {data:a}=await db.from('associes').select('actif,nom_affiche,administrateur,notification_scope,type_compte').eq('user_id',session.user.id).maybeSingle();
-    isMember=!!a?.actif&&a.type_compte!=='exterieur';
+    isMember=!!a?.actif&&['associe','observateur'].includes(a.type_compte);
     if(isMember){accountScope=a.notification_scope==='all'?'all':'mine';chooseScope(accountScope);}
-    if(a?.actif&&a.type_compte==='exterieur'){$('profile').textContent='Membre extérieur · '+a.nom_affiche;$('profileText').textContent='Notifications publiques des courses, résultats et annonces de l’Écurie. Les informations privées restent réservées aux propriétaires.';}
+    if(a?.actif&&['exterieur','presse'].includes(a.type_compte)){$('profile').textContent=(a.type_compte==='presse'?'Presse':'Membre extérieur')+' · '+a.nom_affiche;$('profileText').textContent='Notifications publiques des courses, résultats et annonces de l’Écurie. Les informations privées restent réservées aux propriétaires.';}
     if(isMember){$('profile').textContent='Espace associé · '+a.nom_affiche;$('profileText').hidden=true;$('scopeBox').hidden=false;$('guestChecks').hidden=true;$('memberChecks').hidden=false;if(a.administrateur){$('andresyPanel').hidden=false;$('myPhonePanel').hidden=false;}}
   }
   registration=await navigator.serviceWorker.register('../sw.js');
