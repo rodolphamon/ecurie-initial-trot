@@ -78,7 +78,7 @@ async function setup(){
   if(error||!user){$('locked').hidden=false;return}
   const{data:member,error:memberError}=await db.from('associes')
     .select('nom_affiche,actif,administrateur,type_compte').eq('user_id',user.id).maybeSingle();
-  if(memberError||!member?.actif||member.type_compte==='exterieur'){$('locked').hidden=false;return}
+  if(memberError||!member?.actif||!['associe','observateur'].includes(member.type_compte)){$('locked').hidden=false;return}
   const observer=member.type_compte==='observateur';
   $('welcome').textContent=observer?'Bienvenue '+member.nom_affiche+' · Équipe communication — lecture seule.':'Bienvenue '+member.nom_affiche+' !';
   if(observer){
