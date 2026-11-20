@@ -50,6 +50,7 @@ check("!me.administrateur" in edge, "Contrôle du rôle administrateur absent")
 
 # Le rôle Presse est public uniquement. Ne pas l'assimiler à un associé.
 check("type_compte==='presse'" in login, "Rôle Presse absent de la connexion")
+check("press?.actif&&press.type_compte==='presse'" in login, "Le parcours Presse avant lancement a disparu")
 check("type_compte==='presse'" in home, "Rôle Presse absent de l'accueil")
 check("['associe','observateur'].includes(member.type_compte)" in horses_page, "Mes chevaux : contrôle des rôles fragilisé")
 check("['associe','exterieur','observateur'].includes(member.type_compte)" in tribune, "Tribune : contrôle des rôles fragilisé")
