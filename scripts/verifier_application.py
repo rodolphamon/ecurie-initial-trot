@@ -104,6 +104,35 @@ for path in (
     except (ValueError, TypeError) as exc:
         problems.append(f"JSON invalide : {path} ({exc})")
 
+
+# Préserver la sauvegarde des six fonctions et leurs protections de déploiement.
+# Une fonction publique ne doit jamais être restaurée avec un JWT activé par erreur,
+# et une fonction privée ne doit jamais perdre sa vérification obligatoire.
+try:
+    import tomllib
+    config = tomllib.loads(read("supabase/config.toml"))
+    function_configs = config.get("functions", {})
+except (ValueError, TypeError) as exc:
+    problems.append("Configuration Supabase invalide : " + str(exc))
+    function_configs = {}
+
+expected_functions = {
+    "gerer-associes": True,
+    "notifications": False,
+    "push-dispatch": False,
+    "smart-service": True,
+    "team-contact": False,
+    "push-receipt": False,
+}
+for function_name, must_verify_jwt in expected_functions.items():
+    path = f"supabase/functions/{function_name}/index.ts"
+    source = read(path)
+    check(bool(source.strip()), "Fonction Supabase vide : " + function_name)
+    expected = function_configs.get(function_name, {}).get("verify_jwt")
+    check(expected is must_verify_jwt, f"Paramètre verify_jwt invalide ou absent pour {function_name}")
+    check(not re.search(r"(?:sb_secret_[A-Za-z0-9_-]{12,}|ghp_[A-Za-z0-9]{25,}|sk_[A-Za-z0-9]{25,}|eyJ[A-Za-z0-9_-]{40,}\\.[A-Za-z0-9_.-]+)", source),
+          "Possible secret dans la fonction " + function_name)
+
 if problems:
     print("❌ Contrôles Écurie Initial :")
     for problem in problems:
