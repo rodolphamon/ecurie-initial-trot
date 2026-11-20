@@ -663,6 +663,7 @@ async function refreshAssocAccess(){
   if(memberError||!member?.actif)return;
   note.textContent=member.type_compte==='exterieur'?'Votre compte membre est actif.'
     :member.type_compte==='observateur'?'Votre accès Team Initial est actif.'
+    :member.type_compte==='presse'?'Votre compte Presse est actif : consultation publique uniquement.'
     :'Votre accès associé est actif.';
   action.textContent='✓ CONNECTÉ';
   action.removeAttribute('href');
