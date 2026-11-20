@@ -201,7 +201,7 @@ body[data-admin-view="actions"] #actions:not([hidden]){display:block!important}
 #archivedToggle input{width:17px;height:17px;margin:0;flex:none;accent-color:#f47721}
 
 /* Filtres de type de compte : tous, associés, extérieurs et équipe. */
-.member-type-filter{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin:10px 0}
+.member-type-filter{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;margin:10px 0}
 .member-type-filter button{min-width:0;background:#f6f1ec;border:1px solid #e7dfd6;color:#322d29;border-radius:8px;padding:10px 5px;font-size:12px;line-height:1.2;font-weight:700;white-space:normal}
 .member-type-filter button[aria-pressed="true"]{background:#f47721;border-color:#f47721;color:#191919}
 .member-type-filter button:focus-visible{outline:2px solid #9d470c;outline-offset:2px}
@@ -228,6 +228,7 @@ body[data-admin-view="actions"] #actions:not([hidden]){display:block!important}
  <div class="admin-hub-grid">
   <a class="admin-hub-link" href="#associesPanel"><strong>👥 Membres et accès</strong><small>Associés et membres extérieurs</small></a>
   <a class="admin-hub-link" href="#actions"><strong>✉️ Invitations</strong><small>Inviter et attribuer les chevaux</small></a>
+  <a class="admin-hub-link" href="#actions" data-press-link="true"><strong>📰 Accès Presse</strong><small>Inviter un journaliste en lecture publique</small></a>
   <a class="admin-hub-link" href="../contribution/"><strong>🐎 Gestion sportive</strong><small>Engagements, gains, valeurs, records</small></a>
   <a class="admin-hub-link" href="effectif/"><strong>🏇 Gestion de l’effectif</strong><small>Achats, ventes, entraîneurs</small></a>
   <a class="admin-hub-link" href="tribune/"><strong>🛡️ Tribune</strong><small>Modérer les publications</small></a>
@@ -242,7 +243,7 @@ body[data-admin-view="actions"] #actions:not([hidden]){display:block!important}
 <div class="metric-card"><strong id="summaryConnected">—</strong><span>Déjà connectés</span></div>
 <div class="metric-card"><strong id="summaryUsers">—</strong><span>Ont ouvert</span></div>
 <div class="metric-card highlight"><strong id="summaryOpenings">—</strong><span>Ouvertures</span></div>
-</div><div id="memberTypeFilter" class="member-type-filter" role="group" aria-label="Filtrer les comptes par type" data-active="tous"><button type="button" data-member-type="tous" aria-pressed="true">Tous</button><button type="button" data-member-type="associe" aria-pressed="false">Associés</button><button type="button" data-member-type="exterieur" aria-pressed="false">Extérieurs</button><button type="button" data-member-type="observateur" aria-pressed="false">Équipe</button></div><p id="registrationTrackingError" class="warning" role="alert" hidden>Le suivi des inscriptions et des ouvertures est momentanément indisponible. Les données historiques ne sont pas effacées ; les statistiques ne peuvent pas être affichées pour le moment.</p><label id="archivedToggle" hidden><input type="checkbox" id="showArchivedAccounts"><span id="archivedToggleLabel">Afficher les anciennes invitations</span></label><div class="members-table-wrap"><table><thead><tr><th>Membre</th><th>Statut</th><th>Suivi des accès</th><th>Rôle</th><th>Gestion du compte</th></tr></thead><tbody id="members"></tbody></table></div><p class="muted" id="count"></p></div></div><div class="panel" id="registryPanel" hidden>
+</div><div id="memberTypeFilter" class="member-type-filter" role="group" aria-label="Filtrer les comptes par type" data-active="tous"><button type="button" data-member-type="tous" aria-pressed="true">Tous</button><button type="button" data-member-type="associe" aria-pressed="false">Associés</button><button type="button" data-member-type="exterieur" aria-pressed="false">Extérieurs</button><button type="button" data-member-type="observateur" aria-pressed="false">Équipe</button><button type="button" data-member-type="presse" aria-pressed="false">Presse</button></div><p id="registrationTrackingError" class="warning" role="alert" hidden>Le suivi des inscriptions et des ouvertures est momentanément indisponible. Les données historiques ne sont pas effacées ; les statistiques ne peuvent pas être affichées pour le moment.</p><label id="archivedToggle" hidden><input type="checkbox" id="showArchivedAccounts"><span id="archivedToggleLabel">Afficher les anciennes invitations</span></label><div class="members-table-wrap"><table><thead><tr><th>Membre</th><th>Statut</th><th>Suivi des accès</th><th>Rôle</th><th>Gestion du compte</th></tr></thead><tbody id="members"></tbody></table></div><p class="muted" id="count"></p></div></div><div class="panel" id="registryPanel" hidden>
 <h2>📒 Répertoire des associés</h2>
 <p>Retrouvez ici les personnes de votre liste initiale, même si elles n'ont pas encore créé leur compte. Aucun e-mail n'est envoyé depuis cette liste.</p>
 <label for="registrySearch">Rechercher un associé déjà répertorié</label>
@@ -285,7 +286,7 @@ body[data-admin-view="actions"] #actions:not([hidden]){display:block!important}
     <a class="tool-button primary" href="contributeurs/">Ouvrir Team Initial</a>
   </div>
 </div>
-</div><div class="panel" id="actions" hidden><h2>Invitations et gestion des accès</h2><p class="warning"><strong>Préouverture jusqu’au 1er décembre 2026.</strong> Les associés invités peuvent créer leur mot de passe maintenant, mais ne pourront pas utiliser leur espace avant cette date. Seuls Adrien Delgery, Nicolas Barré, Éric Schott, Gilles Moninot et l’administrateur y accèdent pour les tests.</p><p>Les invitations sont individuelles et nécessitent la protection de préouverture côté Supabase.</p><form id="inviteForm"><p id="prefillNotice" class="muted">Pour une personne déjà connue, utilisez « Préparer l’invitation » dans le répertoire ci-dessus : ses chevaux seront cochés automatiquement.</p><label for="nom">Nom affiché</label><input id="nom" maxlength="100" required placeholder="Prénom NOM"><label for="email">Adresse e-mail</label><input id="email" type="email" required placeholder="membre@exemple.fr"><label for="inviteType">Statut du compte</label><select id="inviteType" class="small-select"><option value="associe">Associé propriétaire</option><option value="exterieur">Membre extérieur · Tribune et notifications publiques</option></select><fieldset class="invite-horses" id="inviteHorsesBox"><legend>🐎 Chevaux de cet associé</legend><p class="muted">Cochez ses chevaux pour les rattacher dès la création du compte. Vous pourrez modifier cette liste ensuite.</p><input type="search" id="inviteHorseFilter" placeholder="Rechercher un cheval…" aria-label="Rechercher un cheval à attribuer"><div id="inviteHorseChoices" class="invite-roster"></div><p id="inviteHorseCount" class="invite-roster-state" role="status">Chargement des chevaux…</p></fieldset><button type="submit">Créer le compte et envoyer l'invitation</button></form><p id="actionStatus" role="status"></p><p class="muted">Les invitations sont individuelles. Aucun mot de passe ne doit être communiqué.</p><p class="muted">Pour corriger une adresse existante ou rattacher un cheval, choisissez le compte dans le tableau « Gestion des associés ».</p></div></main><script type="module">
+</div><div class="panel" id="actions" hidden><h2>Invitations et gestion des accès</h2><p class="warning"><strong>Préouverture jusqu’au 1er décembre 2026.</strong> Les associés invités peuvent créer leur mot de passe maintenant, mais ne pourront pas utiliser leur espace avant cette date. Seuls Adrien Delgery, Nicolas Barré, Éric Schott, Gilles Moninot et l’administrateur y accèdent pour les tests.</p><p>Les invitations sont individuelles et nécessitent la protection de préouverture côté Supabase.</p><form id="inviteForm"><p id="prefillNotice" class="muted">Pour une personne déjà connue, utilisez « Préparer l’invitation » dans le répertoire ci-dessus : ses chevaux seront cochés automatiquement.</p><label for="nom">Nom affiché</label><input id="nom" maxlength="100" required placeholder="Prénom NOM"><label for="email">Adresse e-mail</label><input id="email" type="email" required placeholder="membre@exemple.fr"><label for="inviteType">Statut du compte</label><select id="inviteType" class="small-select"><option value="associe">Associé propriétaire</option><option value="exterieur">Membre extérieur · Tribune et notifications publiques</option><option value="presse">Presse · consultation des informations publiques uniquement</option></select><fieldset class="invite-horses" id="inviteHorsesBox"><legend>🐎 Chevaux de cet associé</legend><p class="muted">Cochez ses chevaux pour les rattacher dès la création du compte. Vous pourrez modifier cette liste ensuite.</p><input type="search" id="inviteHorseFilter" placeholder="Rechercher un cheval…" aria-label="Rechercher un cheval à attribuer"><div id="inviteHorseChoices" class="invite-roster"></div><p id="inviteHorseCount" class="invite-roster-state" role="status">Chargement des chevaux…</p></fieldset><button type="submit">Créer le compte et envoyer l'invitation</button></form><p id="actionStatus" role="status"></p><p class="muted">Les invitations sont individuelles. Aucun mot de passe ne doit être communiqué.</p><p class="muted">Pour corriger une adresse existante ou rattacher un cheval, choisissez le compte dans le tableau « Gestion des associés ».</p></div></main><script type="module">
 import {createClient} from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
 const db=createClient('https://yeecwaaizmvrhwobukfa.supabase.co','sb_publishable_xUy2EJA3u3cKWl8BB4GNPQ_qhV9Pes3');
 const $=id=>document.getElementById(id);
@@ -540,7 +541,7 @@ async function init(){
   let archivedCount=0;
   for(const m of members){
    const tr=make('tr');tr.classList.add('member-row');
-   tr.dataset.memberType=['associe','exterieur','observateur'].includes(m.type_compte)?m.type_compte:'associe';
+   tr.dataset.memberType=['associe','exterieur','observateur','presse'].includes(m.type_compte)?m.type_compte:'associe';
    if(!m.actif && /\(ancienne invitation\)/i.test(m.nom_affiche)){
     tr.dataset.archived='true';
     tr.hidden=true;
@@ -583,7 +584,7 @@ async function init(){
      dateLine('Dernière ouverture',registration.derniere_ouverture);
    }
    tr.append(registrationCell);
-   const roleLabel=m.administrateur?'Administrateur':m.type_compte==='observateur'?'Communication · lecture seule':m.type_compte==='exterieur'?'Membre extérieur':'Associé';
+   const roleLabel=m.administrateur?'Administrateur':m.type_compte==='observateur'?'Communication · lecture seule':m.type_compte==='exterieur'?'Membre extérieur':m.type_compte==='presse'?'Presse':'Associé';
    const mobileRegistration=make('small',roleLabel+' · '+(state==='connecte'||state==='email_confirme'?'✓ Inscrit':state==='invitation_en_attente'?'⏳ Invitation en attente':'Inscription à vérifier')+' · '+(!registration?'📱 Stat. indisponibles':openings>0?'📱 '+openings+' ouverture'+(openings>1?'s':''):'📱 0 ouverture'));
    mobileRegistration.className='registration-mobile registration-'+state;
    tr.firstElementChild.append(mobileRegistration);
@@ -702,20 +703,20 @@ async function init(){
  finally{$('loading').hidden=true}
 }
 $('inviteType').onchange=()=>{
-  const exterior=$('inviteType').value==='exterieur';
+  const exterior=$('inviteType').value!=='associe';
   $('inviteHorsesBox').hidden=exterior;
-  status('prefillNotice',exterior?'Membre extérieur : Tribune et notifications publiques, sans informations confidentielles.':'Cochez uniquement les chevaux réellement détenus par cette personne.');
+  status('prefillNotice',exterior?($('inviteType').value==='presse'?'Presse : consultation publique uniquement, sans informations privées ni droit de modification.':'Membre extérieur : Tribune et notifications publiques, sans informations confidentielles.'):'Cochez uniquement les chevaux réellement détenus par cette personne.');
 };
 $('inviteForm').onsubmit=async e=>{
  e.preventDefault();
  const accountType=$('inviteType').value;
  if(accountType==='associe'&&!rosterLoaded){status('actionStatus','Liste des chevaux indisponible : actualisez cette page avant de créer un compte.');return}
  const picked=[...$('inviteHorseChoices').querySelectorAll('input:checked')];
- const horses=(accountType==='exterieur'?[]:picked.map(input=>roster.find(h=>h.id===input.value)).filter(Boolean))
+ const horses=(accountType!=='associe'?[]:picked.map(input=>roster.find(h=>h.id===input.value)).filter(Boolean))
   .map(h=>({cheval_slug:h.id,cheval_nom:h.name}));
  const nom=$('nom').value.trim(),email=$('email').value.trim().toLowerCase();
  if(registeredNames.has(normName(nom))){status('actionStatus','Cette personne possède déjà un compte. Utilisez « Lien d’accès » dans la gestion des membres.');return;}
- const warning=(accountType==='exterieur'?'Membre extérieur : accès à la Tribune et aux notifications publiques, sans fiches privées.':(horses.length?horses.length+' cheval(aux) associé(s) à son compte.':'Aucun cheval rattaché pour le moment.'))+'\nMot de passe activable maintenant, mais accès à l’espace réservé jusqu’au 1er décembre 2026.';
+ const warning=(accountType==='presse'?'Presse : consultation des informations publiques, sans accès privé ni modification.':accountType==='exterieur'?'Membre extérieur : accès à la Tribune et aux notifications publiques, sans fiches privées.':(horses.length?horses.length+' cheval(aux) associé(s) à son compte.':'Aucun cheval rattaché pour le moment.'))+'\nMot de passe activable maintenant, mais accès à l’espace réservé jusqu’au 1er décembre 2026.';
  if(!confirm('Inviter '+nom+' à l’adresse '+email+' ?\n'+warning))return;
  const b=e.target.querySelector('button');b.disabled=true;
  status('actionStatus','Création du compte et invitation en cours…');
@@ -733,5 +734,6 @@ $('inviteForm').onsubmit=async e=>{
   }
  }finally{b.disabled=false}
 };
+document.querySelector('[data-press-link]')?.addEventListener('click',()=>{setTimeout(()=>{const field=$('inviteType');if(field){field.value='presse';field.dispatchEvent(new Event('change'));$('nom')?.focus();}},80)});
 await init();
 </script><script defer src="../nav.js?v=20261117tabsresultatspartants1"></script></body></html>
