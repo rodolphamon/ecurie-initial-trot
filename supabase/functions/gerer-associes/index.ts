@@ -30,6 +30,58 @@ serve(async (req) => {
 
     // Répertoire interne de référence : fiches préexistantes, sans création de compte ni e-mail.
     // Accessible uniquement après vérification du JWT et du rôle administrateur ci-dessus.
+    // Statistiques privées des inscriptions et ouvertures, réservées à l'administrateur authentifié.
+    if (body.action === "list_registration_status") {
+      const users: Array<{ id: string; created_at?: string; invited_at?: string; email_confirmed_at?: string; confirmed_at?: string; last_sign_in_at?: string }> = [];
+      for (let page = 1; page <= 100; page++) {
+        const { data, error } = await admin.auth.admin.listUsers({ page, perPage: 1000 });
+        if (error) {
+          console.error("list_registration_status.auth", error.message);
+          return reply(500, { error: "Impossible de charger les inscriptions." });
+        }
+        const batch = data?.users || [];
+        users.push(...batch);
+        if (batch.length < 1000) break;
+      }
+      const openingStats = new Map<string, { count: number; first: string; last: string }>();
+      for (let start = 0; start < 100000; start += 1000) {
+        const { data, error } = await admin.from("ei_ouvertures_application")
+          .select("user_id,ouvert_le").order("id", { ascending: true }).range(start, start + 999);
+        if (error) {
+          console.error("list_registration_status.openings", { code: error.code, message: error.message });
+          return reply(500, { error: "Impossible de charger les ouvertures." });
+        }
+        const batch = data || [];
+        for (const opening of batch) {
+          if (!opening.user_id || !opening.ouvert_le) continue;
+          const prev = openingStats.get(opening.user_id);
+          if (!prev) openingStats.set(opening.user_id, { count: 1, first: opening.ouvert_le, last: opening.ouvert_le });
+          else {
+            prev.count++;
+            if (opening.ouvert_le < prev.first) prev.first = opening.ouvert_le;
+            if (opening.ouvert_le > prev.last) prev.last = opening.ouvert_le;
+          }
+        }
+        if (batch.length < 1000) break;
+      }
+      const inscriptions = users.map(u => {
+        const stats = openingStats.get(u.id);
+        const confirmed = u.email_confirmed_at || u.confirmed_at || null;
+        return {
+          user_id: u.id,
+          etat: u.last_sign_in_at ? "connecte" : confirmed ? "email_confirme" : "invitation_en_attente",
+          inscription_le: u.created_at || null,
+          invitation_le: u.invited_at || null,
+          confirmation_le: confirmed,
+          derniere_connexion: u.last_sign_in_at || null,
+          nombre_ouvertures: stats?.count || 0,
+          premiere_ouverture: stats?.first || null,
+          derniere_ouverture: stats?.last || null,
+        };
+      });
+      return reply(200, { ok: true, inscriptions });
+    }
+
     if (body.action === "list_registry") {
       const { data: links, error } = await admin.from("affectations_proprietaires")
         .select("nom_associe,cheval_slug,cheval_nom").order("nom_associe").limit(1000);
