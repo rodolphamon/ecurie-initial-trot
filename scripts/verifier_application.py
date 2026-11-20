@@ -130,7 +130,7 @@ for function_name, must_verify_jwt in expected_functions.items():
     check(bool(source.strip()), "Fonction Supabase vide : " + function_name)
     expected = function_configs.get(function_name, {}).get("verify_jwt")
     check(expected is must_verify_jwt, f"Paramètre verify_jwt invalide ou absent pour {function_name}")
-    check(not re.search(r"(?:sb_secret_[A-Za-z0-9_-]{12,}|ghp_[A-Za-z0-9]{25,}|sk_[A-Za-z0-9]{25,}|eyJ[A-Za-z0-9_-]{40,}\\.[A-Za-z0-9_.-]+)", source),
+    check(not re.search(r"(?:sb_secret_[A-Za-z0-9_-]{12,}|ghp_[A-Za-z0-9]{25,}|sk_[A-Za-z0-9]{25,}|eyJ[A-Za-z0-9_-]{40,}\.[A-Za-z0-9_.-]+)", source),
           "Possible secret dans la fonction " + function_name)
 
 if problems:
