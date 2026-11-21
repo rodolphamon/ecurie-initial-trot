@@ -56,6 +56,28 @@ check("['associe','observateur'].includes(member.type_compte)" in horses_page, "
 check("['associe','exterieur','observateur'].includes(member.type_compte)" in tribune, "Tribune : contrôle des rôles fragilisé")
 check("['associe','observateur'].includes(a.type_compte)" in notifications, "Notifications : rôle Presse assimilé à un associé")
 
+# Suivi des ouvertures : protéger toute modification future contre le retour des doublons.
+# Le verrou serveur est indispensable (plusieurs appareils) ; le localStorage seul ne suffit pas.
+opening_migration = read("supabase/migrations/20261121_ei_ouvertures_application_anti_doublons.sql")
+check(
+    "pg_advisory_xact_lock" in opening_migration
+    and "new.ouvert_le := maintenant" in opening_migration
+    and "filtrer_ouverture_application" in opening_migration,
+    "Ouvertures : protection atomique et horodatage serveur manquants dans la migration",
+)
+check(
+    "lastRecordedOpenByUser" in home
+    and "localStorage.setItem(storageKey" in home
+    and "openingInFlight=true" in home,
+    "Ouvertures : limitation persistante par membre ou protection en cours absente",
+)
+check(
+    "const minOpeningGapMs = 5 * 60 * 1000" in edge
+    and "openedMs - prev.lastMs >= minOpeningGapMs" in edge
+    and '.order("ouvert_le", { ascending: true })' in edge,
+    "Ouvertures : l'historique n'est plus dédoublonné chronologiquement",
+)
+
 # Les pages principales ne doivent pas être supprimées.
 for page in (
     "docs/application/index.html",
