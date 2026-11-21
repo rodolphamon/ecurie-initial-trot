@@ -33,9 +33,22 @@ main{padding:12px 14px calc(100px + env(safe-area-inset-bottom))}
   #postSection .muted{margin-bottom:11px}
   .card .post{padding:12px 0}
 }
-</style><link rel="manifest" href="../manifest.webmanifest"><link rel="apple-touch-icon" href="../icon-192.png"></head><body><header><strong>ÉCURIE <span>INITIAL</span></strong><div style="font-size:12px;color:#ddd">La communauté de l'Écurie</div></header><main><section class="card tribune-intro"><h1>La Tribune des supporters</h1><p>La Tribune accueille tous les passionnés de l'Écurie Initial, associés ou supporters sans cheval. Partageons nos nouvelles et nos émotions dans un esprit convivial.</p><p id="loading">Vérification de votre accès privé…</p><div id="locked" hidden><p><strong>🔒 Réservé aux membres inscrits.</strong></p><p>Connectez-vous pour consulter et participer aux échanges.</p><a class="button" href="../connexion/">Se connecter</a></div><p id="message" role="status" aria-live="polite"></p></section><section class="card" id="officialNews"><h2>📣 Messages officiels de l’Écurie</h2><p class="muted">Annonces publiques, visibles même sans compte. <a href="../actualites/">Voir toutes les annonces</a></p><div id="officialNewsFeed"></div></section><div id="private" hidden><section class="card" id="postSection"><h2>Partagez une nouvelle</h2><p class="muted" id="welcome"></p><form id="postForm"><label for="postText">Votre message</label><textarea id="postText" rows="4" maxlength="5000" required placeholder="Des nouvelles d'un cheval, un encouragement, un souvenir de course…"></textarea><button type="submit">Publier dans la Tribune</button></form></section><section class="card"><h2>Les échanges de l'écurie</h2><div id="feed"></div><button id="more" type="button" hidden>Afficher d'autres publications</button></section></div></main><script type="module">
+
+/* Photos de la Tribune : aperçu lisible et adaptation mobile. */
+.photo-choice{display:inline-flex!important;align-items:center;justify-content:center;background:#f7ede5;border:1px solid #e4c7b0;border-radius:10px;padding:11px 14px;color:#6f330c;font-weight:700;cursor:pointer;margin:6px 9px 6px 0!important;min-height:44px}
+.photo-choice:focus-within{outline:3px solid #f47721;outline-offset:2px}
+.photo-choice input{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden}
+.photo-tools{display:flex;flex-wrap:wrap;align-items:center;gap:5px}
+.photo-tools button{background:#f4f1ed;border:1px solid #d6c7b9;color:#443a32;margin:0}
+#photoSelection{margin:9px 0 0}
+#photoPreview{display:block;width:100%;max-width:360px;max-height:300px;object-fit:contain;border:1px solid #e9e1da;border-radius:10px;background:#f6f4f1}
+.post-photo{display:block;margin:10px 0 7px;max-width:100%;width:max-content}
+.post-photo img{display:block;width:auto;max-width:100%;max-height:450px;object-fit:contain;border-radius:11px;border:1px solid #ece4dc}
+.photo-unavailable{font-size:13px;color:#68615b}
+@media(max-width:600px){.photo-choice,.photo-tools button{flex:1}.post-photo{width:100%}.post-photo img{width:100%;height:auto;max-height:430px}}
+</style><link rel="manifest" href="../manifest.webmanifest"><link rel="apple-touch-icon" href="../icon-192.png"></head><body><header><strong>ÉCURIE <span>INITIAL</span></strong><div style="font-size:12px;color:#ddd">La communauté de l'Écurie</div></header><main><section class="card tribune-intro"><h1>La Tribune des supporters</h1><p>La Tribune accueille tous les passionnés de l'Écurie Initial, associés ou supporters sans cheval. Partageons nos nouvelles et nos émotions dans un esprit convivial.</p><p id="loading">Vérification de votre accès privé…</p><div id="locked" hidden><p><strong>🔒 Réservé aux membres inscrits.</strong></p><p>Connectez-vous pour consulter et participer aux échanges.</p><a class="button" href="../connexion/">Se connecter</a></div><p id="message" role="status" aria-live="polite"></p></section><section class="card" id="officialNews"><h2>📣 Messages officiels de l’Écurie</h2><p class="muted">Annonces publiques, visibles même sans compte. <a href="../actualites/">Voir toutes les annonces</a></p><div id="officialNewsFeed"></div></section><div id="private" hidden><section class="card" id="postSection"><h2>Partagez une nouvelle</h2><p class="muted" id="welcome"></p><form id="postForm"><label for="postText">Votre message <span class="muted">(facultatif si vous ajoutez une photo)</span></label><textarea id="postText" rows="4" maxlength="5000" placeholder="Des nouvelles d'un cheval, un encouragement, un souvenir de course…"></textarea><div class="photo-tools"><label class="photo-choice" for="postPhoto">📷 Ajouter une photo<input id="postPhoto" type="file" accept="image/*" aria-label="Choisir une photo du téléphone ou prendre une photo"></label><button id="removePhoto" type="button" hidden>Retirer la photo</button></div><div id="photoSelection" hidden><img id="photoPreview" alt="Aperçu de la photo sélectionnée"></div><p class="muted">Photo ou message, ou les deux. Une photo par publication ; taille optimisée automatiquement.</p><button id="publishBtn" type="submit">Publier dans la Tribune</button></form></section><section class="card"><h2>Les échanges de l'écurie</h2><div id="feed"></div><button id="more" type="button" hidden>Afficher d'autres publications</button></section></div></main><script type="module">
 import{createClient}from'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
-const db=createClient('https://yeecwaaizmvrhwobukfa.supabase.co','sb_publishable_xUy2EJA3u3cKWl8BB4GNPQ_qhV9Pes3');const $=id=>document.getElementById(id);let user=null,members=new Map(),offset=0,readOnly=false;const pageSize=15;
+const db=createClient('https://yeecwaaizmvrhwobukfa.supabase.co','sb_publishable_xUy2EJA3u3cKWl8BB4GNPQ_qhV9Pes3');const $=id=>document.getElementById(id);let user=null,members=new Map(),offset=0,readOnly=false;const pageSize=15, PHOTO_BUCKET='ei-tribune-photos';let previewObjectUrl=null;
 function message(t,ok=false){$('message').textContent=t;$('message').className=ok?'ok':''}
 function node(tag,text,cls){const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n}
 function name(id){return members.get(id)||'Un membre'}
@@ -43,10 +56,97 @@ function formattedMessage(value){const p=node('p');const parts=value.split(/(\*\
 function date(value){return new Date(value).toLocaleString('fr-FR',{dateStyle:'medium',timeStyle:'short'})}
 async function loadMembers(){const{data,error}=await db.rpc('ei_tribune_membres');if(error)throw error;members=new Map((data||[]).map(x=>[x.user_id,x.nom_affiche]))}
 async function loadComments(postId,target){const{data,error}=await db.from('commentaires').select('id,auteur_id,contenu,created_at').eq('publication_id',postId).order('created_at',{ascending:true}).limit(100);if(error)throw error;target.replaceChildren();for(const c of data){const div=node('div',undefined,'comment');div.append(node('strong',name(c.auteur_id)),node('small',' · '+date(c.created_at)),formattedMessage(c.contenu));target.append(div)}}
-function renderPost(p){const article=node('article',undefined,'post');article.append(node('strong',name(p.auteur_id)),node('small',' · '+date(p.created_at)),formattedMessage(p.contenu));const comments=node('div');const toggle=node('button','Commentaires');toggle.type='button';toggle.onclick=async()=>{toggle.disabled=true;try{await loadComments(p.id,comments);comments.hidden=!comments.hidden;if(!readOnly)form.hidden=!form.hidden}catch(e){message('Impossible de charger les commentaires.')}finally{toggle.disabled=false}};comments.hidden=true;const form=node('form');form.hidden=true;const field=node('textarea');field.rows=2;field.maxLength=1500;field.required=true;field.placeholder='Écrire un commentaire…';const submit=node('button','Commenter');submit.type='submit';form.append(field,submit);form.onsubmit=async e=>{e.preventDefault();submit.disabled=true;const {error}=await db.from('commentaires').insert({publication_id:p.id,auteur_id:user.id,contenu:field.value.trim()});submit.disabled=false;if(error){message('Commentaire non publié. Réessayez.');return}field.value='';await loadComments(p.id,comments)};article.append(toggle,comments,form);return article}
-async function loadPosts(reset=false){if(reset){offset=0;$('feed').replaceChildren()}const{data,error}=await db.from('publications').select('id,auteur_id,contenu,created_at').order('created_at',{ascending:false}).range(offset,offset+pageSize-1);if(error)throw error;if(reset&&data.length===0)$('feed').append(node('p','La Tribune attend son premier message !','muted'));for(const p of data)$('feed').append(renderPost(p));offset+=data.length;$('more').hidden=data.length<pageSize}
+function renderPost(p){
+ const article=node('article',undefined,'post');
+ article.append(node('strong',name(p.auteur_id)),node('small',' · '+date(p.created_at)));
+ if(p.contenu?.trim())article.append(formattedMessage(p.contenu));
+ if(p.photo_path){
+  const holder=node('div',undefined,'post-photo-holder');
+  const loading=node('small','Chargement de la photo…','photo-unavailable');holder.append(loading);article.append(holder);
+  db.storage.from(PHOTO_BUCKET).createSignedUrl(p.photo_path,3600).then(({data,error})=>{
+   if(error||!data?.signedUrl)throw error||Error('Lien indisponible');
+   const link=node('a',undefined,'post-photo');link.href=data.signedUrl;link.target='_blank';link.rel='noopener noreferrer';link.setAttribute('aria-label','Afficher la photo en grand');
+   const img=node('img');img.alt='Photo publiée par '+name(p.auteur_id);img.loading='lazy';
+   img.onerror=()=>{holder.replaceChildren(node('small','Photo momentanément indisponible.','photo-unavailable'))};
+   img.src=data.signedUrl;link.append(img);holder.replaceChildren(link);
+  }).catch(()=>{holder.replaceChildren(node('small','Photo momentanément indisponible.','photo-unavailable'))});
+ }
+ const comments=node('div');
+ const toggle=node('button','Commentaires');toggle.type='button';toggle.onclick=async()=>{toggle.disabled=true;try{await loadComments(p.id,comments);comments.hidden=!comments.hidden;if(!readOnly)form.hidden=!form.hidden}catch(e){message('Impossible de charger les commentaires.')}finally{toggle.disabled=false}};
+ comments.hidden=true;
+ const form=node('form');form.hidden=true;const field=node('textarea');field.rows=2;field.maxLength=1500;field.required=true;field.placeholder='Écrire un commentaire…';
+ const submit=node('button','Commenter');submit.type='submit';form.append(field,submit);
+ form.onsubmit=async e=>{e.preventDefault();submit.disabled=true;const {error}=await db.from('commentaires').insert({publication_id:p.id,auteur_id:user.id,contenu:field.value.trim()});submit.disabled=false;if(error){message('Commentaire non publié. Réessayez.');return}field.value='';await loadComments(p.id,comments)};
+ article.append(toggle,comments,form);return article
+}
+async function loadPosts(reset=false){if(reset){offset=0;$('feed').replaceChildren()}const{data,error}=await db.from('publications') .select('id,auteur_id,contenu,created_at,photo_path').order('created_at',{ascending:false}).range(offset,offset+pageSize-1);if(error)throw error;if(reset&&data.length===0)$('feed').append(node('p','La Tribune attend son premier message !','muted'));for(const p of data)$('feed').append(renderPost(p));offset+=data.length;$('more').hidden=data.length<pageSize}
 $('more').onclick=async()=>{try{await loadPosts()}catch(e){message('Impossible de charger les publications.')}};
-$('postForm').onsubmit=async e=>{e.preventDefault();const field=$('postText'),text=field.value.trim();if(!text)return;const btn=e.target.querySelector('button');btn.disabled=true;const{error}=await db.from('publications').insert({auteur_id:user.id,contenu:text});btn.disabled=false;if(error){message('Publication impossible. Vérifiez votre accès et réessayez.');return}field.value='';message('Message publié.',true);await loadPosts(true)};
+function resetPhoto(){
+ if(previewObjectUrl){URL.revokeObjectURL(previewObjectUrl);previewObjectUrl=null}
+ $('postPhoto').value='';$('photoSelection').hidden=true;$('photoPreview').removeAttribute('src');$('removePhoto').hidden=true;
+}
+$('removePhoto').onclick=resetPhoto;
+$('postPhoto').addEventListener('change',()=>{
+ if(previewObjectUrl){URL.revokeObjectURL(previewObjectUrl);previewObjectUrl=null}
+ const file=$('postPhoto').files?.[0];
+ if(!file){resetPhoto();return}
+ if(!file.type.startsWith('image/')||file.size>20*1024*1024){
+  message('Choisissez une image de moins de 20 Mo. Elle sera optimisée avant publication.');resetPhoto();return
+ }
+ previewObjectUrl=URL.createObjectURL(file);
+ $('photoPreview').src=previewObjectUrl;$('photoSelection').hidden=false;$('removePhoto').hidden=false;message('');
+});
+async function preparePhoto(file){
+ if(!file.type.startsWith('image/')||file.size>20*1024*1024)throw Error('Format de photo ou taille non pris en charge (20 Mo maximum avant optimisation).');
+ const url=URL.createObjectURL(file);
+ try{
+  const img=new Image();
+  await new Promise((resolve,reject)=>{img.onload=resolve;img.onerror=()=>reject(Error('Impossible de lire cette photo. Essayez une photo JPG ou PNG.'));img.src=url});
+  if(!img.naturalWidth||!img.naturalHeight)throw Error('Photo invalide.');
+  const canvas=document.createElement('canvas');
+  let limit=1800,quality=0.84,blob;
+  for(let attempt=0;attempt<4;attempt++){
+   const ratio=Math.min(1,limit/Math.max(img.naturalWidth,img.naturalHeight));
+   canvas.width=Math.max(1,Math.round(img.naturalWidth*ratio));
+   canvas.height=Math.max(1,Math.round(img.naturalHeight*ratio));
+   const ctx=canvas.getContext('2d');
+   if(!ctx)throw Error('Votre navigateur ne peut pas préparer cette photo.');
+   ctx.fillStyle='#ffffff';ctx.fillRect(0,0,canvas.width,canvas.height);
+   ctx.drawImage(img,0,0,canvas.width,canvas.height);
+   blob=await new Promise(resolve=>canvas.toBlob(resolve,'image/jpeg',quality));
+   if(!blob)throw Error('Impossible de convertir cette photo.');
+   if(blob.size<=4*1024*1024)break;
+   limit=Math.round(limit*0.75);quality=Math.max(0.6,quality-0.08);
+  }
+  if(blob.size>4*1024*1024)throw Error('La photo reste trop volumineuse après optimisation.');
+  // La conversion JPEG supprime les métadonnées EXIF de la photo d'origine.
+  return blob;
+ }finally{URL.revokeObjectURL(url)}
+}
+$('postForm').onsubmit=async e=>{
+ e.preventDefault();
+ const text=$('postText').value.trim(),file=$('postPhoto').files?.[0];
+ if(!text&&!file){message('Ajoutez un message ou une photo pour publier.');return}
+ if(readOnly||!user){message('Ce compte ne peut pas publier.');return}
+ const btn=$('publishBtn');btn.disabled=true;btn.textContent='Publication en cours…';
+ let photoPath=null,created=false;
+ try{
+  if(file){
+   message('Préparation et envoi de votre photo…');
+   const jpg=await preparePhoto(file);
+   photoPath=user.id+'/'+crypto.randomUUID()+'.jpg';
+   const {error:uploadError}=await db.storage.from(PHOTO_BUCKET).upload(photoPath,jpg,{contentType:'image/jpeg',cacheControl:'3600',upsert:false});
+   if(uploadError)throw uploadError;
+  }
+  const {error:postError}=await db.from('publications').insert({auteur_id:user.id,contenu:text,photo_path:photoPath});
+  if(postError)throw postError;
+  created=true;$('postText').value='';resetPhoto();message('Publication ajoutée à la Tribune.',true);
+  try{await loadPosts(true)}catch(_){message('Publication enregistrée, mais actualisation impossible. Rechargez la page.',true)}
+ }catch(error){
+  if(photoPath&&!created){try{await db.storage.from(PHOTO_BUCKET).remove([photoPath])}catch(_){}}
+  message('Publication impossible : '+(error?.message||'Réessayez.')+' Votre message est conservé.');
+ }finally{btn.disabled=false;btn.textContent='Publier dans la Tribune'}
+};
 async function loadOfficial(){
  const target=$('officialNewsFeed');
  try{
