@@ -8,6 +8,7 @@ on:
       - 'docs/chevaux/data/**'
       - 'supabase/functions/**'
       - 'supabase/config.toml'
+      - 'supabase/migrations/**'
       - 'scripts/verifier_application.py'
       - '.github/workflows/verifier-application.yml'
   pull_request:
