@@ -1,6 +1,6 @@
 {
   "schema": "ecurie-initial-profils-v1",
-  "updated_at": "2026-11-19",
+  "updated_at": "2026-11-21",
   "note": "Pour les performances : au maximum les cinq dernières sorties documentées, dont les sources sont conservées en interne pour contrôle. Les classements exacts n'ont été indiqués que lorsqu'ils étaient disponibles. Les jeunes chevaux inédits n'ont pas de performances inventées. Les engagements existants sont conservés ; les nouveaux engagements au trot du 13/11/2026 sont ajoutés sans reprendre les horaires. Résultats du 13/11/2026 (MONA LISA STARDUST 7e, VICTORIA SECRET non placée) communiqués par l'Écurie Initial.",
   "performances": {
     "memphis-belle": [
@@ -1253,12 +1253,44 @@
     ],
     "memphis-belle": [
       {
+        "date": "2026-11-27",
+        "hippodrome": "Toulouse",
+        "type": "Trot monté",
+        "prix": "Prix de Cazaux-Saves",
+        "statut": "engage",
+        "source_description": "Capture Infonet LeTROT transmise le 21/11/2026 (sans horaires ni déclaration de partant)"
+      },
+      {
+        "date": "2026-11-28",
+        "hippodrome": "Le Croisé-Laroche",
+        "type": "Trot attelé",
+        "prix": "Prix Pan de la Vaudere",
+        "statut": "engage",
+        "source_description": "Capture Infonet LeTROT transmise le 21/11/2026 (sans horaires ni déclaration de partant)"
+      },
+      {
+        "date": "2026-11-29",
+        "hippodrome": "Châteaubriant",
+        "type": "Trot attelé",
+        "prix": "Prix du Bois Hamon",
+        "statut": "engage",
+        "source_description": "Capture Infonet LeTROT transmise le 21/11/2026 (sans horaires ni déclaration de partant)"
+      },
+      {
         "date": "2026-11-29",
         "hippodrome": "Reims",
         "type": "Trot monté",
         "statut": "engage",
         "source_description": "Capture engagements LeTROT transmise le 14/11/2026",
         "prix": "Prix de l'Hippodrome de Reims"
+      },
+      {
+        "date": "2026-11-30",
+        "hippodrome": "Vincennes",
+        "type": "Trot monté",
+        "prix": "Prix de Nonant le Pin",
+        "statut": "engage",
+        "source_description": "Capture Infonet LeTROT transmise le 21/11/2026 (sans horaires ni déclaration de partant)"
       },
       {
         "date": "2026-12-13",
