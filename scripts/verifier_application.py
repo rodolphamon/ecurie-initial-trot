@@ -86,6 +86,30 @@ check(
     "Ouvertures : l'accès direct aux pages depuis les notifications n'est plus suivi",
 )
 
+# Tribune des supporters : les photos doivent être privées et liées à leur auteur.
+tribune_photos_migration = read("supabase/migrations/20261121_ei_tribune_photos_privees.sql")
+check(
+    "id=\"postPhoto\"" in tribune
+    and "preparePhoto(file)" in tribune
+    and "createSignedUrl(p.photo_path,3600)" in tribune
+    and ".select('id,auteur_id,contenu,created_at,photo_path')" in tribune,
+    "Tribune : sélection, conversion, lecture ou affichage de photos manquant",
+)
+check(
+    "ei-tribune-photos" in tribune_photos_migration
+    and "false, 4194304" in tribune_photos_migration
+    and "tribune photos lecture membres" in tribune_photos_migration
+    and "tribune photos ajout auteur" in tribune_photos_migration
+    and "tribune photos suppression auteur" in tribune_photos_migration
+    and "public.ei_est_observateur()" in tribune_photos_migration
+    and "split_part(photo_path, '/', 1) = auteur_id::text" in tribune_photos_migration,
+    "Tribune : stockage privé, restrictions d'auteur ou droits de consultation manquants",
+)
+check(
+    "if(readOnly)$('postSection').hidden=true" in tribune,
+    "Tribune : le rôle lecture seule peut publier",
+)
+
 # Les pages principales ne doivent pas être supprimées.
 for page in (
     "docs/application/index.html",
