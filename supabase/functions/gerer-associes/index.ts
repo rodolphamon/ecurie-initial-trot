@@ -43,10 +43,18 @@ serve(async (req) => {
         users.push(...batch);
         if (batch.length < 1000) break;
       }
-      const openingStats = new Map<string, { count: number; first: string; last: string }>();
+      // Historique conservé intégralement : le compteur ne retient qu'une
+      // ouverture par membre et par fenêtre glissante de cinq minutes.
+      // Comparer à la DERNIÈRE ouverture retenue (pas au dernier doublon).
+      // La base empêche désormais aussi les nouvelles insertions rapprochées.
+      const minOpeningGapMs = 5 * 60 * 1000;
+      const openingStats = new Map<string, { count: number; first: string; last: string; lastMs: number }>();
       for (let start = 0; start < 100000; start += 1000) {
         const { data, error } = await admin.from("ei_ouvertures_application")
-          .select("user_id,ouvert_le").order("id", { ascending: true }).range(start, start + 999);
+          .select("user_id,ouvert_le")
+          .order("ouvert_le", { ascending: true })
+          .order("id", { ascending: true })
+          .range(start, start + 999);
         if (error) {
           console.error("list_registration_status.openings", { code: error.code, message: error.message });
           return reply(500, { error: "Impossible de charger les ouvertures." });
@@ -54,12 +62,17 @@ serve(async (req) => {
         const batch = data || [];
         for (const opening of batch) {
           if (!opening.user_id || !opening.ouvert_le) continue;
+          const openedMs = Date.parse(opening.ouvert_le);
+          if (!Number.isFinite(openedMs)) continue;
           const prev = openingStats.get(opening.user_id);
-          if (!prev) openingStats.set(opening.user_id, { count: 1, first: opening.ouvert_le, last: opening.ouvert_le });
-          else {
+          if (!prev) {
+            openingStats.set(opening.user_id, {
+              count: 1, first: opening.ouvert_le, last: opening.ouvert_le, lastMs: openedMs,
+            });
+          } else if (openedMs - prev.lastMs >= minOpeningGapMs) {
             prev.count++;
-            if (opening.ouvert_le < prev.first) prev.first = opening.ouvert_le;
-            if (opening.ouvert_le > prev.last) prev.last = opening.ouvert_le;
+            prev.last = opening.ouvert_le;
+            prev.lastMs = openedMs;
           }
         }
         if (batch.length < 1000) break;
