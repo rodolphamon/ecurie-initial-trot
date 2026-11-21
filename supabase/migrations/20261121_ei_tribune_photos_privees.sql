@@ -20,7 +20,7 @@ alter table public.publications
   add constraint publications_photo_path_check
   check (
     photo_path is null or (
-      photo_path ~ '^[0-9a-f-]{36}/[0-9a-f-]{36}\\.jpg$'
+      photo_path ~ '^[0-9a-f-]{36}/[0-9a-f-]{36}\.jpg$'
       and split_part(photo_path, '/', 1) = auteur_id::text
     )
   );
@@ -48,7 +48,7 @@ for insert to authenticated
 with check (
   bucket_id = 'ei-tribune-photos'
   and public.est_membre_tribune()
-  and name ~ ('^' || (select auth.uid())::text || '/[0-9a-f-]{36}\\.jpg$')
+  and name ~ ('^' || (select auth.uid())::text || '/[0-9a-f-]{36}\.jpg$')
 );
 
 -- Suppression uniquement de ses propres fichiers (retour arrière si la publication échoue).
