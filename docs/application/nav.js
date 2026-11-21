@@ -35,6 +35,58 @@
   const actualitesPath = new URL("actualites/", applicationBase).pathname;
   const isPublicNews = currentPath === actualitesPath || currentPath === actualitesPath + "index.html";
 
+  // Une notification peut ouvrir directement Mes chevaux, Notifications ou Actualités.
+  // Ces entrées dans l'application étaient absentes des statistiques de l'accueil.
+  // Limiter ce suivi aux chemins /application/ et aux comptes autorisés ;
+  // les pages publiques Chevaux, Résultats, Contact et Connexion sont exclues.
+  const isDeepAppPage = currentPath.startsWith(applicationBase.pathname)
+    && !isAppHome && !isConnexion && !isContact
+    && !currentPath.startsWith(new URL("inscription/", applicationBase).pathname);
+  if (isDeepAppPage) {
+    let deepOpeningInFlight = false;
+    const trackAppDeepLink = async () => {
+      if (document.hidden || deepOpeningInFlight) return;
+      deepOpeningInFlight = true;
+      try {
+        const { createClient } = await import("https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm");
+        const db = createClient(
+          "https://yeecwaaizmvrhwobukfa.supabase.co",
+          "sb_publishable_xUy2EJA3u3cKWl8BB4GNPQ_qhV9Pes3"
+        );
+        const { data: { session }, error: sessionError } = await db.auth.getSession();
+        if (sessionError || !session?.user?.id) return;
+        const { data: access, error: accessError } = await db.rpc("ei_etat_lancement");
+        if (accessError || access?.autorise !== true) return;
+        const key = "ei-derniere-ouverture-" + session.user.id;
+        const now = Date.now();
+        let last = 0;
+        try {
+          const value = Number(localStorage.getItem(key));
+          if (Number.isFinite(value) && value <= now && value > 0) last = value;
+        } catch (_) { /* Le verrou Supabase reste la protection principale. */ }
+        if (now - last < 5 * 60 * 1000) return;
+        const { error } = await db.from("ei_ouvertures_application")
+          .insert({ user_id: session.user.id });
+        if (error) throw error;
+        try { localStorage.setItem(key, String(Date.now())); } catch (_) {}
+      } catch (error) {
+        console.info("Suivi des ouvertures directes indisponible", error?.message || error);
+      } finally {
+        deepOpeningInFlight = false;
+      }
+    };
+    document.addEventListener("visibilitychange", () => {
+      if (!document.hidden) trackAppDeepLink();
+    });
+    window.addEventListener("pageshow", trackAppDeepLink);
+    window.addEventListener("online", trackAppDeepLink);
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", trackAppDeepLink, { once: true });
+    } else {
+      trackAppDeepLink();
+    }
+  }
+
   // Avant le lancement, chacun doit pouvoir ouvrir la connexion pour accepter
   // son invitation et définir son mot de passe, même depuis la PWA installée.
   // Les autres rubriques restent soumises au contrôle de préouverture.
