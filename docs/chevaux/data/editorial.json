@@ -437,7 +437,7 @@
         "hippodrome": "Enghien",
         "rang": "Arrêté",
         "source_url": "https://www.geny.com/course/1691245-2026-10-15-enghien-prix-de-la-porte-saint-denis/arrivee-rapports",
-        "driver": "S.E. PASQUIER",
+        "driver": "S.-E. PASQUIER",
         "type": "Trot monté",
         "source_description": "Infonet LeTROT, consultation directe du 21/11/2026"
       },
@@ -688,7 +688,7 @@
         "hippodrome": "Bernay",
         "rang": "Dai",
         "source_url": "https://www.zone-turf.fr/cheval/nebraska-fleury-2141335/resume-de-carriere/",
-        "driver": "P.L. DESAUNETTE",
+        "driver": "Pierre-Louis DESAUNETTE",
         "course_url": "https://www.geny.com/en/course/1666670-2026-07-12-bernay-prix-de-la-commune-de-serquigny/arrivee-rapports?orga=PMH",
         "type": "Trot attelé",
         "source_description": "Infonet LeTROT, consultation directe du 21/11/2026"
@@ -698,7 +698,7 @@
         "hippodrome": "Royan-Atlantique",
         "rang": "2e",
         "source_url": "https://www.zone-turf.fr/cheval/nebraska-fleury-2141335/resume-de-carriere/",
-        "driver": "P.L. DESAUNETTE",
+        "driver": "Pierre-Louis DESAUNETTE",
         "course_url": "https://www.geny.com/course/1654353-2026-05-24-royan-la-palmyre-prix-de-l-hippodrome-chatelaillon-plage/arrivee-rapports",
         "type": "Trot attelé",
         "source_description": "Infonet LeTROT, consultation directe du 21/11/2026"
@@ -728,7 +728,7 @@
         "hippodrome": "Fleurance",
         "rang": "Dai",
         "source_url": "https://www.zone-turf.fr/cheval/nelson-star-2151766/resume-de-carriere/",
-        "driver": "P. GERAY",
+        "driver": "Pierre GERAY",
         "course_url": "https://www.geny.com/course/1675038-2026-08-09-fleurance-prix-roger-barrieu-gr-b/arrivee-rapports?orga=PMH",
         "type": "Trot attelé",
         "source_description": "Infonet LeTROT, consultation directe du 21/11/2026"
@@ -738,7 +738,7 @@
         "hippodrome": "Eauze",
         "rang": "Dai",
         "source_url": "https://www.zone-turf.fr/cheval/nelson-star-2151766/resume-de-carriere/",
-        "driver": "M. HANQUIER",
+        "driver": "Michel HANQUIER",
         "course_url": "https://www.geny.com/course/1673098-2026-08-02-eauze-prix-d-espas/arrivee-rapports?orga=PMH",
         "type": "Trot attelé",
         "source_description": "Infonet LeTROT, consultation directe du 21/11/2026"
@@ -748,7 +748,7 @@
         "hippodrome": "Le Dorat",
         "rang": "Dai",
         "source_url": "https://www.zone-turf.fr/cheval/nelson-star-2151766/resume-de-carriere/",
-        "driver": "M. GERGOUIL",
+        "driver": "Matthéo GERGOUIL",
         "course_url": "https://www.geny.com/course/1668043-2026-07-14-le-dorat-prix-de-la-commune-de-saint-ouen/arrivee-rapports?orga=PMH",
         "type": "Trot attelé",
         "source_description": "Infonet LeTROT, consultation directe du 21/11/2026"
@@ -778,7 +778,7 @@
         "hippodrome": "Vire",
         "rang": "3e",
         "source_url": "https://www.geny.com/cheval/2863611-nostalgie-dairpet/course/1691905",
-        "driver": "A.G. MAILLARD",
+        "driver": "A.-G. MAILLARD",
         "type": "Trot attelé",
         "source_description": "Infonet LeTROT, consultation directe du 21/11/2026"
       },
