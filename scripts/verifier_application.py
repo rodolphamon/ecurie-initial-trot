@@ -30,6 +30,7 @@ def read(path: str) -> str:
 admin = read("docs/application/administration/index.html")
 edge = read("supabase/functions/gerer-associes/index.ts")
 home = read("docs/application/index.html")
+nav = read("docs/application/nav.js")
 login = read("docs/application/connexion/index.html")
 horses_page = read("docs/application/mes-chevaux/index.html")
 tribune = read("docs/application/tribune/index.html")
@@ -76,6 +77,13 @@ check(
     and "openedMs - prev.lastMs >= minOpeningGapMs" in edge
     and '.order("ouvert_le", { ascending: true })' in edge,
     "Ouvertures : l'historique n'est plus dédoublonné chronologiquement",
+)
+check(
+    "const isDeepAppPage =" in nav
+    and "trackAppDeepLink" in nav
+    and 'db.rpc("ei_etat_lancement")' in nav
+    and '"ei-derniere-ouverture-" + session.user.id' in nav,
+    "Ouvertures : l'accès direct aux pages depuis les notifications n'est plus suivi",
 )
 
 # Les pages principales ne doivent pas être supprimées.
