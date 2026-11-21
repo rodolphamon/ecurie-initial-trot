@@ -8,15 +8,19 @@
         "date": "2026-11-11",
         "hippodrome": "Graignes",
         "rang": "5e",
-        "jockey": "A. LAMY",
-        "source_url": "https://www.geny.com/course/1697686-2026-11-11-graignes-prix-pierre-massieu/arrivee-rapports"
+        "source_url": "https://www.geny.com/course/1697686-2026-11-11-graignes-prix-pierre-massieu/arrivee-rapports",
+        "type": "Trot monté",
+        "driver": "A. LAMY",
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026"
       },
       {
         "date": "2026-11-01",
         "hippodrome": "Lisieux",
         "rang": "3e",
         "source_url": "https://www.geny.com/cheval/2884884-memphis-belle",
-        "driver": "A. ANGOT"
+        "driver": "A. ANGOT",
+        "type": "Trot monté",
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026"
       },
       {
         "date": "2026-09-27",
@@ -24,7 +28,9 @@
         "rang": "Dai",
         "source_url": "https://www.geny.com/cheval/2884884-memphis-belle",
         "driver": "Y. LEBOURGEOIS",
-        "course_url": "https://www.zone-turf.fr/rapports/phh-c5-prix-race-and-care-1163012.html"
+        "course_url": "https://www.zone-turf.fr/rapports/phh-c5-prix-race-and-care-1163012.html",
+        "type": "Trot attelé",
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026"
       },
       {
         "date": "2026-09-13",
@@ -32,7 +38,9 @@
         "rang": "Dai",
         "source_url": "https://www.geny.com/cheval/2884884-memphis-belle",
         "driver": "A. BOURGOIN-TIMBERT",
-        "course_url": "https://www.zone-turf.fr/rapports/phh-c5-prix-du-pmu-le-totem-1161360.html"
+        "course_url": "https://www.zone-turf.fr/rapports/phh-c5-prix-du-pmu-le-totem-1161360.html",
+        "type": "Trot attelé",
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026"
       },
       {
         "date": "2026-08-30",
@@ -40,7 +48,9 @@
         "rang": "Dai",
         "source_url": "https://www.geny.com/cheval/2884884-memphis-belle",
         "driver": "J. CHAVATTE",
-        "course_url": "https://www.geny.com/course/1680148-2026-08-30-villeneuve-sur-lot-prix-du-cafe-theatre-chez-tonton-gr-a/arrivee-rapports?orga=PMH"
+        "course_url": "https://www.geny.com/course/1680148-2026-08-30-villeneuve-sur-lot-prix-du-cafe-theatre-chez-tonton-gr-a/arrivee-rapports?orga=PMH",
+        "type": "Trot attelé",
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026"
       }
     ],
     "lucky-des-gaudines": [
@@ -49,7 +59,9 @@
         "hippodrome": "Toulouse",
         "rang": "2e",
         "source_url": "https://www.geny.com/cheval/2798166-lucky-des-gaudines",
-        "driver": "M. DAOUGABEL"
+        "driver": "M. DAOUGABEL",
+        "type": "Trot attelé",
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026"
       },
       {
         "date": "2026-10-25",
@@ -57,28 +69,36 @@
         "rang": "2e",
         "source_url": "https://www.geny.com/cheval/2798166-lucky-des-gaudines",
         "driver": "M. DAOUGABEL",
-        "course_url": "https://www.geny.com/course/1693655-2026-10-25-montauban-prix-de-toulouse/arrivee-rapports?orga=PMH"
+        "course_url": "https://www.geny.com/course/1693655-2026-10-25-montauban-prix-de-toulouse/arrivee-rapports?orga=PMH",
+        "type": "Trot attelé",
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026"
       },
       {
         "date": "2026-10-03",
         "hippodrome": "Beaumont-de-Lomagne",
         "rang": "2e",
         "source_url": "https://www.geny.com/cheval/2798166-lucky-des-gaudines",
-        "driver": "M. DAOUGABEL"
+        "driver": "M. DAOUGABEL",
+        "type": "Trot attelé",
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026"
       },
       {
         "date": "2026-09-18",
         "hippodrome": "Toulouse",
         "rang": "7e",
         "source_url": "https://www.geny.com/cheval/2798166-lucky-des-gaudines",
-        "driver": "M. DAOUGABEL"
+        "driver": "M. DAOUGABEL",
+        "type": "Trot attelé",
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026"
       },
       {
         "date": "2026-08-24",
         "hippodrome": "Castéra-Verduzan",
-        "rang": "10e",
+        "rang": "Non partant",
         "source_url": "https://www.geny.com/cheval/2798166-lucky-des-gaudines",
-        "driver": "L. QUESNEL"
+        "driver": "L. QUESNEL",
+        "type": "Trot attelé",
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026"
       }
     ],
     "gonafoot": [
@@ -171,35 +191,45 @@
         "hippodrome": "Enghien",
         "rang": "Dai",
         "driver": "M. LEGROS",
-        "source_url": "https://www.geny.com/cheval/2837238-lord-on-way"
+        "source_url": "https://www.geny.com/cheval/2837238-lord-on-way",
+        "type": "Trot attelé",
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026"
       },
       {
         "date": "2026-09-21",
         "hippodrome": "La Capelle",
         "rang": "1er",
         "driver": "M. LEGROS",
-        "source_url": "https://www.geny.com/cheval/2837238-lord-on-way"
+        "source_url": "https://www.geny.com/cheval/2837238-lord-on-way",
+        "type": "Trot attelé",
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026"
       },
       {
         "date": "2026-09-04",
         "hippodrome": "Lyon-Parilly",
         "rang": "1er",
         "driver": "M. LEGROS",
-        "source_url": "https://www.geny.com/cheval/2837238-lord-on-way"
+        "source_url": "https://www.geny.com/cheval/2837238-lord-on-way",
+        "type": "Trot attelé",
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026"
       },
       {
         "date": "2026-08-27",
         "hippodrome": "Pornichet",
         "rang": "1er",
         "driver": "M. LEGROS",
-        "source_url": "https://www.geny.com/cheval/2837238-lord-on-way"
+        "source_url": "https://www.geny.com/cheval/2837238-lord-on-way",
+        "type": "Trot attelé",
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026"
       },
       {
         "date": "2026-08-20",
         "hippodrome": "Divonne-les-Bains",
         "rang": "3e",
         "driver": "M. LEGROS",
-        "source_url": "https://www.geny.com/cheval/2837238-lord-on-way"
+        "source_url": "https://www.geny.com/cheval/2837238-lord-on-way",
+        "type": "Trot attelé",
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026"
       }
     ],
     "douriann": [
@@ -351,35 +381,45 @@
         "hippodrome": "Toulouse",
         "rang": "Dai",
         "source_url": "https://www.iturf.fr/courses/indice-deladou.html",
-        "driver": "E. BOUCLET"
+        "driver": "E. BOUCLET",
+        "type": "Trot monté",
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026"
       },
       {
         "date": "2026-10-10",
         "hippodrome": "Caen",
         "rang": "Dai",
         "source_url": "https://www.iturf.fr/courses/indice-deladou.html",
-        "driver": "E. ALLARD"
+        "driver": "E. ALLARD",
+        "type": "Trot attelé",
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026"
       },
       {
         "date": "2026-03-06",
         "hippodrome": "Enghien",
         "rang": "7e",
         "source_url": "https://www.iturf.fr/courses/indice-deladou.html",
-        "driver": "E. BOUCLET"
+        "driver": "E. BOUCLET",
+        "type": "Trot monté",
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026"
       },
       {
         "date": "2026-02-20",
         "hippodrome": "Vincennes",
         "rang": "4e",
         "source_url": "https://www.iturf.fr/courses/indice-deladou.html",
-        "driver": "E. BOUCLET"
+        "driver": "E. BOUCLET",
+        "type": "Trot monté",
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026"
       },
       {
         "date": "2026-01-25",
         "hippodrome": "Vincennes",
         "rang": "2e",
         "source_url": "https://www.iturf.fr/courses/indice-deladou.html",
-        "driver": "E. BOUCLET"
+        "driver": "E. BOUCLET",
+        "type": "Trot monté",
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026"
       }
     ],
     "isolee-du-bouillon": [
@@ -388,35 +428,45 @@
         "hippodrome": "Laval",
         "rang": "6e",
         "source_url": "https://iturf.b-cdn.net/courses/isolee-du-bouillon.html",
-        "driver": "T. BELLET"
+        "driver": "TH. BELLET",
+        "type": "Trot attelé",
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026"
       },
       {
         "date": "2026-10-15",
         "hippodrome": "Enghien",
-        "rang": "Arrêtée",
+        "rang": "Arrêté",
         "source_url": "https://www.geny.com/course/1691245-2026-10-15-enghien-prix-de-la-porte-saint-denis/arrivee-rapports",
-        "driver": "S.-E. PASQUIER"
+        "driver": "S.E. PASQUIER",
+        "type": "Trot monté",
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026"
       },
       {
         "date": "2026-09-27",
         "hippodrome": "Vincennes",
-        "rang": "Non placée",
+        "rang": "Non partant",
         "source_url": "https://iturf.b-cdn.net/courses/isolee-du-bouillon.html",
-        "driver": "M. LEGROS"
+        "driver": "M. LEGROS",
+        "type": "Trot attelé",
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026"
       },
       {
         "date": "2026-09-12",
         "hippodrome": "Vincennes",
         "rang": "9e",
         "source_url": "https://iturf.b-cdn.net/courses/isolee-du-bouillon.html",
-        "driver": "M. LEGROS"
+        "driver": "M. LEGROS",
+        "type": "Trot attelé",
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026"
       },
       {
-        "date": "2026-06-27",
-        "hippodrome": "Enghien",
-        "rang": "5e",
-        "source_url": "https://iturf.b-cdn.net/courses/isolee-du-bouillon.html",
-        "driver": "M. LEGROS"
+        "date": "2026-08-16",
+        "hippodrome": "Agon-Coutainville",
+        "rang": "6e",
+        "type": "Trot attelé",
+        "driver": "A. LAMY",
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026",
+        "source_url": "https://infonet.letrot.com/"
       }
     ],
     "mandragora-fleury": [
@@ -425,35 +475,45 @@
         "hippodrome": "Craon",
         "rang": "3e",
         "source_url": "https://www.canalturf.com/courses_fiche_cheval.php?idcheval=503598",
-        "driver": "P. PACAUD"
+        "driver": "P. PACAUD",
+        "type": "Trot attelé",
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026"
       },
       {
         "date": "2026-09-11",
         "hippodrome": "Vincennes",
-        "rang": "14e",
+        "rang": "Non partant",
         "source_url": "https://www.canalturf.com/courses_fiche_cheval.php?idcheval=503598",
-        "driver": "V. HÉBERT"
+        "driver": "V. HÉBERT",
+        "type": "Trot attelé",
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026"
       },
       {
         "date": "2026-08-28",
         "hippodrome": "Cabourg",
-        "rang": "Non placée",
+        "rang": "Dai",
         "source_url": "https://www.canalturf.com/courses_fiche_cheval.php?idcheval=503598",
-        "driver": "P. PACAUD"
+        "driver": "P. PACAUD",
+        "type": "Trot attelé",
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026"
       },
       {
-        "date": "2026-07-12",
-        "hippodrome": "Clairefontaine",
+        "date": "2026-08-15",
+        "hippodrome": "Carentan",
+        "rang": "3e",
+        "type": "Trot attelé",
+        "driver": "P. PACAUD",
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026",
+        "source_url": "https://infonet.letrot.com/"
+      },
+      {
+        "date": "2026-08-03",
+        "hippodrome": "Rochefort-sur-Loire",
         "rang": "2e",
-        "source_url": "https://www.canalturf.com/courses_fiche_cheval.php?idcheval=503598",
-        "driver": "P. PACAUD"
-      },
-      {
-        "date": "2026-06-16",
-        "hippodrome": "Vincennes",
-        "rang": "9e",
-        "source_url": "https://www.canalturf.com/courses_fiche_cheval.php?idcheval=503598",
-        "driver": "V. HÉBERT"
+        "type": "Trot attelé",
+        "driver": "P. PACAUD",
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026",
+        "source_url": "https://infonet.letrot.com/"
       }
     ],
     "mona-lisa-stardust": [
@@ -462,35 +522,45 @@
         "hippodrome": "Toulouse",
         "rang": "7e",
         "driver": "A. HONORÉ",
-        "source_url": "https://www.geny.com/course/1698176-2026-11-13-toulouse-prix-de-l-hippodrome-d-eauze/arrivee-rapports"
+        "source_url": "https://www.geny.com/course/1698176-2026-11-13-toulouse-prix-de-l-hippodrome-d-eauze/arrivee-rapports",
+        "type": "Trot attelé",
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026"
+      },
+      {
+        "date": "2026-10-24",
+        "hippodrome": "Grenade-sur-Garonne",
+        "rang": "Dai",
+        "type": "Trot attelé",
+        "driver": "M. HANQUIER",
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026",
+        "source_url": "https://infonet.letrot.com/"
+      },
+      {
+        "date": "2026-10-05",
+        "hippodrome": "Castéra-Verduzan",
+        "rang": "8e",
+        "type": "Trot attelé",
+        "driver": "M. GERGOUIL",
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026",
+        "source_url": "https://infonet.letrot.com/"
       },
       {
         "date": "2026-09-18",
         "hippodrome": "Toulouse",
         "rang": "9e",
         "source_url": "https://www.iturf.fr/courses/mona-lisa-stardust.html",
-        "driver": "M. GERGOUIL"
+        "driver": "M. GERGOUIL",
+        "type": "Trot attelé",
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026"
       },
       {
-        "date": "2026-04-03",
-        "hippodrome": "Toulouse",
-        "rang": "8e",
-        "source_url": "https://www.iturf.fr/courses/mona-lisa-stardust.html",
-        "driver": "M. HANQUIER"
-      },
-      {
-        "date": "2026-03-26",
-        "hippodrome": "Toulouse",
+        "date": "2026-09-05",
+        "hippodrome": "Valence-sur-Baïse",
         "rang": "4e",
-        "source_url": "https://www.iturf.fr/courses/mona-lisa-stardust.html",
-        "driver": "M. HANQUIER"
-      },
-      {
-        "date": "2026-03-15",
-        "hippodrome": "Agen",
-        "rang": "1re",
-        "source_url": "https://www.iturf.fr/courses/mona-lisa-stardust.html",
-        "driver": "M. HANQUIER"
+        "type": "Trot attelé",
+        "driver": "M. GRASSET",
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026",
+        "source_url": "https://infonet.letrot.com/"
       }
     ],
     "moondance-okina": [
@@ -499,35 +569,45 @@
         "hippodrome": "Vincennes",
         "rang": "6e",
         "source_url": "https://www.geny.com/cheval/2842128-moondance-okina/course/1654891",
-        "driver": "M. LEGROS"
+        "driver": "M. LEGROS",
+        "type": "Trot attelé",
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026"
       },
       {
         "date": "2026-06-02",
         "hippodrome": "Vincennes",
         "rang": "4e",
         "source_url": "https://www.geny.com/cheval/2842128-moondance-okina/course/1654891",
-        "driver": "M. LEGROS"
+        "driver": "M. LEGROS",
+        "type": "Trot attelé",
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026"
       },
       {
         "date": "2026-05-26",
         "hippodrome": "Vincennes",
         "rang": "3e",
         "source_url": "https://www.geny.com/cheval/2842128-moondance-okina/course/1654891",
-        "driver": "F. LAGADEUC"
+        "driver": "F. LAGADEUC",
+        "type": "Trot attelé",
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026"
       },
       {
         "date": "2026-04-30",
         "hippodrome": "Saint-Brieuc",
         "rang": "5e",
         "source_url": "https://www.geny.com/cheval/2842128-moondance-okina/course/1654891",
-        "driver": "R. LAMY"
+        "driver": "R. LAMY",
+        "type": "Trot attelé",
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026"
       },
       {
         "date": "2026-04-12",
         "hippodrome": "Graignes",
         "rang": "2e",
         "source_url": "https://www.geny.com/cheval/2842128-moondance-okina/course/1654891",
-        "driver": "S. ERNAULT"
+        "driver": "S. ERNAULT",
+        "type": "Trot attelé",
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026"
       }
     ],
     "myrtille-marboula": [
@@ -543,28 +623,36 @@
         "hippodrome": "Vincennes",
         "rang": "9e",
         "source_url": "https://www.canalturf.com/courses_fiche_cheval.php?idcheval=485255",
-        "driver": "M. CHAMPENOIS"
+        "driver": "M. CHAMPENOIS",
+        "type": "Trot monté",
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026"
       },
       {
         "date": "2026-09-22",
         "hippodrome": "Vincennes",
-        "rang": "1re",
+        "rang": "1er",
         "source_url": "https://www.canalturf.com/courses_fiche_cheval.php?idcheval=485255",
-        "driver": "G. GELORMINI"
+        "driver": "G. GELORMINI",
+        "type": "Trot attelé",
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026"
       },
       {
         "date": "2026-08-26",
         "hippodrome": "Vincennes",
-        "rang": "Non placée",
+        "rang": "Dai",
         "source_url": "https://www.canalturf.com/courses_fiche_cheval.php?idcheval=485255",
-        "driver": "F. LAGADEUC"
+        "driver": "F. LAGADEUC",
+        "type": "Trot attelé",
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026"
       },
       {
         "date": "2026-08-08",
         "hippodrome": "Enghien",
-        "rang": "1re",
+        "rang": "1er",
         "source_url": "https://www.canalturf.com/courses_fiche_cheval.php?idcheval=485255",
-        "driver": "G. GELORMINI"
+        "driver": "G. GELORMINI",
+        "type": "Trot attelé",
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026"
       }
     ],
     "nebraska-fleury": [
@@ -573,79 +661,97 @@
         "hippodrome": "Cabourg",
         "rang": "2e",
         "source_url": "https://www.zone-turf.fr/cheval/nebraska-fleury-2141335/resume-de-carriere/",
-        "driver": "A. ANDRÉ"
+        "driver": "A. ANDRÉ",
+        "type": "Trot attelé",
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026"
       },
       {
         "date": "2026-08-02",
         "hippodrome": "Aix-les-Bains",
         "rang": "1er",
         "source_url": "https://www.zone-turf.fr/cheval/nebraska-fleury-2141335/resume-de-carriere/",
-        "driver": "Th. BRIAND"
+        "driver": "TH. BRIAND",
+        "type": "Trot attelé",
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026"
       },
       {
         "date": "2026-07-19",
-        "hippodrome": "Clairefontaine",
+        "hippodrome": "Deauville-Clairefontaine",
         "rang": "1er",
         "source_url": "https://www.zone-turf.fr/cheval/nebraska-fleury-2141335/resume-de-carriere/",
-        "driver": "M. LEGROS"
+        "driver": "M. LEGROS",
+        "type": "Trot attelé",
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026"
       },
       {
         "date": "2026-07-12",
         "hippodrome": "Bernay",
         "rang": "Dai",
         "source_url": "https://www.zone-turf.fr/cheval/nebraska-fleury-2141335/resume-de-carriere/",
-        "driver": "Pierre-Louis DESAUNETTE",
-        "course_url": "https://www.geny.com/en/course/1666670-2026-07-12-bernay-prix-de-la-commune-de-serquigny/arrivee-rapports?orga=PMH"
+        "driver": "P.L. DESAUNETTE",
+        "course_url": "https://www.geny.com/en/course/1666670-2026-07-12-bernay-prix-de-la-commune-de-serquigny/arrivee-rapports?orga=PMH",
+        "type": "Trot attelé",
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026"
       },
       {
         "date": "2026-05-24",
-        "hippodrome": "Royan-La Palmyre",
+        "hippodrome": "Royan-Atlantique",
         "rang": "2e",
         "source_url": "https://www.zone-turf.fr/cheval/nebraska-fleury-2141335/resume-de-carriere/",
-        "driver": "Pierre-Louis DESAUNETTE",
-        "course_url": "https://www.geny.com/course/1654353-2026-05-24-royan-la-palmyre-prix-de-l-hippodrome-chatelaillon-plage/arrivee-rapports"
+        "driver": "P.L. DESAUNETTE",
+        "course_url": "https://www.geny.com/course/1654353-2026-05-24-royan-la-palmyre-prix-de-l-hippodrome-chatelaillon-plage/arrivee-rapports",
+        "type": "Trot attelé",
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026"
       }
     ],
     "nelson-star": [
+      {
+        "date": "2026-08-29",
+        "hippodrome": "Villeréal",
+        "rang": "Dai",
+        "type": "Trot attelé",
+        "driver": "M. GERGOUIL",
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026",
+        "source_url": "https://infonet.letrot.com/"
+      },
+      {
+        "date": "2026-08-17",
+        "hippodrome": "Auch",
+        "rang": "9e",
+        "type": "Trot attelé",
+        "driver": "M. HANQUIER",
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026",
+        "source_url": "https://infonet.letrot.com/"
+      },
       {
         "date": "2026-08-09",
         "hippodrome": "Fleurance",
         "rang": "Dai",
         "source_url": "https://www.zone-turf.fr/cheval/nelson-star-2151766/resume-de-carriere/",
-        "driver": "Pierre GERAY",
-        "course_url": "https://www.geny.com/course/1675038-2026-08-09-fleurance-prix-roger-barrieu-gr-b/arrivee-rapports?orga=PMH"
+        "driver": "P. GERAY",
+        "course_url": "https://www.geny.com/course/1675038-2026-08-09-fleurance-prix-roger-barrieu-gr-b/arrivee-rapports?orga=PMH",
+        "type": "Trot attelé",
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026"
       },
       {
         "date": "2026-08-02",
         "hippodrome": "Eauze",
         "rang": "Dai",
         "source_url": "https://www.zone-turf.fr/cheval/nelson-star-2151766/resume-de-carriere/",
-        "driver": "Michel HANQUIER",
-        "course_url": "https://www.geny.com/course/1673098-2026-08-02-eauze-prix-d-espas/arrivee-rapports?orga=PMH"
+        "driver": "M. HANQUIER",
+        "course_url": "https://www.geny.com/course/1673098-2026-08-02-eauze-prix-d-espas/arrivee-rapports?orga=PMH",
+        "type": "Trot attelé",
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026"
       },
       {
         "date": "2026-07-14",
         "hippodrome": "Le Dorat",
         "rang": "Dai",
         "source_url": "https://www.zone-turf.fr/cheval/nelson-star-2151766/resume-de-carriere/",
-        "driver": "Matthéo GERGOUIL",
-        "course_url": "https://www.geny.com/course/1668043-2026-07-14-le-dorat-prix-de-la-commune-de-saint-ouen/arrivee-rapports?orga=PMH"
-      },
-      {
-        "date": "2026-07-01",
-        "hippodrome": "Biarritz",
-        "rang": "Arrêté",
-        "source_url": "https://www.zone-turf.fr/cheval/nelson-star-2151766/resume-de-carriere/",
-        "driver": "Maxime GRASSET",
-        "course_url": "https://www.geny.com/course/1664397-2026-07-01-biarritz-prix-label-vie-souvenir-georges-senten/arrivee-rapports?orga=PMH"
-      },
-      {
-        "date": "2026-06-07",
-        "hippodrome": "Eauze",
-        "rang": "Dai",
-        "source_url": "https://www.zone-turf.fr/cheval/nelson-star-2151766/resume-de-carriere/",
-        "driver": "Maxime GRASSET",
-        "course_url": "https://www.geny.com/course/1657529-2026-06-07-eauze-prix-robert-lanna-prix-des-vins-des-cotes-de-gascogne/arrivee-rapports"
+        "driver": "M. GERGOUIL",
+        "course_url": "https://www.geny.com/course/1668043-2026-07-14-le-dorat-prix-de-la-commune-de-saint-ouen/arrivee-rapports?orga=PMH",
+        "type": "Trot attelé",
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026"
       }
     ],
     "nostalgie-dairpet": [
@@ -654,35 +760,45 @@
         "hippodrome": "Enghien",
         "rang": "2e",
         "source_url": "https://www.geny.com/cheval/2863611-nostalgie-dairpet/course/1691905",
-        "driver": "A. LAMY"
+        "driver": "A. LAMY",
+        "type": "Trot attelé",
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026"
       },
       {
         "date": "2026-10-08",
         "hippodrome": "Enghien",
         "rang": "4e",
         "source_url": "https://www.geny.com/cheval/2863611-nostalgie-dairpet/course/1691905",
-        "driver": "A. LAMY"
+        "driver": "A. LAMY",
+        "type": "Trot attelé",
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026"
       },
       {
         "date": "2026-09-20",
         "hippodrome": "Vire",
         "rang": "3e",
         "source_url": "https://www.geny.com/cheval/2863611-nostalgie-dairpet/course/1691905",
-        "driver": "A.-G. MAILLARD"
+        "driver": "A.G. MAILLARD",
+        "type": "Trot attelé",
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026"
       },
       {
         "date": "2026-08-28",
-        "hippodrome": "Les Sables-d'Olonne",
+        "hippodrome": "Les Sables-d’Olonne",
         "rang": "3e",
         "source_url": "https://www.geny.com/cheval/2863611-nostalgie-dairpet/course/1691905",
-        "driver": "A. WIELS"
+        "driver": "A. WIELS",
+        "type": "Trot attelé",
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026"
       },
       {
         "date": "2026-08-04",
         "hippodrome": "Cabourg",
         "rang": "8e",
         "source_url": "https://www.geny.com/cheval/2863611-nostalgie-dairpet/course/1691905",
-        "driver": "V. SAUSSAYE"
+        "driver": "V. SAUSSAYE",
+        "type": "Trot attelé",
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026"
       }
     ],
     "andresy": [
@@ -1126,7 +1242,7 @@
         "hippodrome": "Vincennes",
         "type": "Trot attelé",
         "statut": "engage",
-        "source_description": "Capture des engagements Trot transmise le 13/11/2026 (horaires non retenus)",
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026",
         "prix": "Prix de Bonnieux"
       },
       {
@@ -1134,7 +1250,7 @@
         "hippodrome": "Vincennes",
         "type": "Trot monté",
         "statut": "engage",
-        "source_description": "Capture des engagements Trot transmise le 13/11/2026 (horaires non retenus)",
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026",
         "prix": "Prix de Chamalières"
       }
     ],
@@ -1231,7 +1347,7 @@
         "hippodrome": "Mauquenchy",
         "type": "Trot attelé",
         "statut": "engage",
-        "source_description": "Capture des engagements Trot transmise le 13/11/2026 (horaires non retenus)",
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026",
         "prix": "Prix le Bistrot & l'Assiette de Formerie"
       },
       {
@@ -1239,7 +1355,7 @@
         "hippodrome": "Lyon (La Soie)",
         "type": "Trot attelé",
         "statut": "engage",
-        "source_description": "Capture des engagements Trot transmise le 13/11/2026 (horaires non retenus)",
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026",
         "prix": "Prix de Champagne-Ardenne"
       },
       {
@@ -1247,7 +1363,7 @@
         "hippodrome": "Cagnes-sur-Mer",
         "type": "Trot attelé",
         "statut": "engage",
-        "source_description": "Capture des engagements Trot transmise le 13/11/2026 (horaires non retenus)",
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026",
         "prix": "Prix de la Napoule"
       }
     ],
@@ -1258,7 +1374,7 @@
         "type": "Trot monté",
         "prix": "Prix de Cazaux-Saves",
         "statut": "engage",
-        "source_description": "Capture Infonet LeTROT transmise le 21/11/2026 (sans horaires ni déclaration de partant)"
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026"
       },
       {
         "date": "2026-11-28",
@@ -1266,7 +1382,7 @@
         "type": "Trot attelé",
         "prix": "Prix Pan de la Vaudere",
         "statut": "engage",
-        "source_description": "Capture Infonet LeTROT transmise le 21/11/2026 (sans horaires ni déclaration de partant)"
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026"
       },
       {
         "date": "2026-11-29",
@@ -1274,14 +1390,14 @@
         "type": "Trot attelé",
         "prix": "Prix du Bois Hamon",
         "statut": "engage",
-        "source_description": "Capture Infonet LeTROT transmise le 21/11/2026 (sans horaires ni déclaration de partant)"
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026"
       },
       {
         "date": "2026-11-29",
         "hippodrome": "Reims",
         "type": "Trot monté",
         "statut": "engage",
-        "source_description": "Capture engagements LeTROT transmise le 14/11/2026",
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026",
         "prix": "Prix de l'Hippodrome de Reims"
       },
       {
@@ -1290,14 +1406,14 @@
         "type": "Trot monté",
         "prix": "Prix de Nonant le Pin",
         "statut": "engage",
-        "source_description": "Capture Infonet LeTROT transmise le 21/11/2026 (sans horaires ni déclaration de partant)"
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026"
       },
       {
         "date": "2026-12-13",
         "hippodrome": "Cherbourg",
         "type": "Trot attelé",
         "statut": "engage",
-        "source_description": "Capture des engagements Trot transmise le 13/11/2026 (horaires non retenus)",
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026",
         "prix": "Prix Une Tempête Dans Ma Tête"
       }
     ],
@@ -1307,7 +1423,7 @@
         "hippodrome": "Vincennes",
         "type": "Trot attelé",
         "statut": "engage",
-        "source_description": "Capture des engagements Trot transmise le 13/11/2026 (horaires non retenus)",
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026",
         "prix": "Prix de Meslay du Maine"
       },
       {
@@ -1315,7 +1431,7 @@
         "hippodrome": "Mauquenchy",
         "type": "Trot attelé",
         "statut": "engage",
-        "source_description": "Capture des engagements Trot transmise le 13/11/2026 (horaires non retenus)",
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026",
         "prix": "Prix Levasseur Réceptions"
       },
       {
@@ -1323,7 +1439,7 @@
         "hippodrome": "Vincennes",
         "type": "Trot attelé",
         "statut": "engage",
-        "source_description": "Capture des engagements Trot transmise le 13/11/2026 (horaires non retenus)",
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026",
         "prix": "Prix des Alpes"
       },
       {
@@ -1331,7 +1447,7 @@
         "hippodrome": "Vincennes",
         "type": "Trot attelé",
         "statut": "engage",
-        "source_description": "Capture des engagements Trot transmise le 13/11/2026 (horaires non retenus)",
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026",
         "prix": "Prix de Murat"
       },
       {
@@ -1339,7 +1455,7 @@
         "hippodrome": "Vincennes",
         "type": "Trot attelé",
         "statut": "engage",
-        "source_description": "Capture des engagements Trot transmise le 13/11/2026 (horaires non retenus)",
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026",
         "prix": "Prix d'Amboise"
       },
       {
@@ -1347,7 +1463,7 @@
         "hippodrome": "Vincennes",
         "type": "Trot attelé",
         "statut": "engage",
-        "source_description": "Capture des engagements Trot transmise le 13/11/2026 (horaires non retenus)",
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026",
         "prix": "Prix du Gard"
       },
       {
@@ -1355,7 +1471,7 @@
         "hippodrome": "Vincennes",
         "type": "Trot attelé",
         "statut": "engage",
-        "source_description": "Capture des engagements Trot transmise le 13/11/2026 (horaires non retenus)",
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026",
         "prix": "Prix de Nozay"
       }
     ],
