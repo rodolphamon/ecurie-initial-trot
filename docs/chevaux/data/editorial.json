@@ -1526,13 +1526,18 @@
         "date": "2026-11-24",
         "hippodrome": "Deauville",
         "type": "Plat",
-        "statut": "engage",
+        "statut": "partant",
         "prix": "Prix de Préaux",
         "allocation": 27400,
         "distance": "1900 m",
         "code_programme": "1215",
         "part": "R (16 %)",
-        "source_description": "Liste France Galop communiquée le 16/11/2026 ; horaires et statut partant confirmés séparément lorsque disponibles"
+        "source_description": "Liste France Galop communiquée le 16/11/2026 ; horaires et statut partant confirmés séparément lorsque disponibles",
+        "heure": "15:05",
+        "course": "C3",
+        "numero": "3",
+        "surface": "PSF",
+        "type_course": "Maiden"
       }
     ],
     "gonafoot": [
@@ -1546,6 +1551,20 @@
         "distance": "1300 m",
         "code_programme": "1222",
         "source_description": "Capture des engagements France Galop transmise par le gérant le 17/11/2026 ; horaires et jockeys non connus au stade des engagements"
+      },
+      {
+        "date": "2026-11-28",
+        "prix": "Prix de la forêt d'Andaigne",
+        "statut": "engage",
+        "surface": "PSF",
+        "distance": "1300 m",
+        "hippodrome": "Deauville",
+        "type_course": "Maiden",
+        "type": "Plat",
+        "allocation": 27400,
+        "code_programme": "1237",
+        "part": "R (16 %)",
+        "source_description": "France Galop Espace Pro, consultation directe du 21/11/2026"
       }
     ],
     "saturday-night": [
