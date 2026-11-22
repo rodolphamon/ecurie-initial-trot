@@ -16,7 +16,7 @@ const sexNames={F:'Femelle',H:'Hongre',M:'Mâle'};
 const silkName=p=>p.casaque==='galop'?'casaque-galop.svg':p.casaque==='orange'?'casaque-orange.svg':'casaque-blanche.svg';
 const silk=p=>base+'../assets/'+silkName(p);
 function photoMarkup(p,style){let img=p.photoUrl||base+'photos/'+p.id+'.jpg?v='+encodeURIComponent(p.photoVersion||'1');return '<div class="'+(style==='hero'?'hero-photo':'horse-card-photo')+'">'+(style==='card'?'<span class="kind">'+esc(p.discipline)+'</span>':'')+'<img class="photo" src="'+img+'" alt="Photo de '+esc(p.name)+'" loading="lazy" onerror="this.hidden=true;this.nextElementSibling.hidden=false;this.parentNode.classList.add(\'no-photo\')" /><img class="silk" hidden src="'+silk(p)+'" alt="Casaque de l’Écurie Initial"/>'+(style==='hero'?'<span class="placeholder-tag" hidden>Photographie à venir</span>':'')+'</div>'}
-async function load(){let paths=[base+'data/chevaux.json',base+'data/editorial.json',base+'../data/effectif-trot.json',base+'../data/effectif-galop.json'];let requests=await Promise.all(paths.map(async p=>{let r=await fetch(p,{cache:'no-store'});if(!r.ok)throw Error('Impossible de charger '+p);return r.json()}));let [all,editor,trot,galop]=requests;
+async function load(){let paths=[base+'data/chevaux.json',base+'data/editorial.json',base+'../data/effectif-trot.json',base+'../data/effectif-galop.json'];let requests=await Promise.all(paths.map(async p=>{let r=await fetch(p+(p.endsWith('/data/editorial.json')?'?v='+Date.now():''),{cache:'no-store'});if(!r.ok)throw Error('Impossible de charger '+p);return r.json()}));let [all,editor,trot,galop]=requests;
 try{const q=await fetch(base+'data/qualifications.json',{cache:'no-store'});if(q.ok){let videos=await q.json();editor.qualifications={...(editor.qualifications||{}),...(videos.qualifications||{})};}}catch(e){console.warn('Vidéos de qualification temporairement indisponibles',e)}let gallop=new Map((galop.horses||[]).map(h=>{
   if(/obstacle/i.test(h.discipline||'')){
     return [h.id,{...h,value_historique_non_ventilee:h.value??null,value_plat:h.value_plat??null,value_obstacle:h.value_obstacle??null}];
@@ -420,5 +420,26 @@ const eiNavScript=document.createElement('script');
 eiNavScript.src=base+'../application/nav.js?v=20261118resultatschevaux1';
 document.body.appendChild(eiNavScript);
 
-load().then(s=>{if(document.body.dataset.page==='fiche')horse(s);else catalog(s)}).catch(err=>{console.error(err);$('#app').innerHTML=header()+'<main class="shell"><div class="error"><h1>Informations temporairement indisponibles</h1><p>Le catalogue n’a pas pu être chargé. Réessayez en actualisant la page.</p><p><a href="https://www.ecurie-initial.com/">Retour au site officiel</a></p></div></main>'+footer()});
+// En PWA, un écran conservé en mémoire ne doit pas garder les anciens résultats.
+function watchFreshResults(state){
+  const initialResults=JSON.stringify(state.editor.performances||{});
+  let checking=false,lastChecked=Date.now();
+  async function check(force=false){
+    if(document.hidden||checking||(!force&&Date.now()-lastChecked<45000))return;
+    checking=true;lastChecked=Date.now();
+    try{
+      const response=await fetch(base+'data/editorial.json?v='+Date.now(),{cache:'no-store'});
+      if(!response.ok)throw Error('Contrôle des résultats indisponible');
+      const fresh=await response.json();
+      if(JSON.stringify(fresh.performances||{})!==initialResults)location.reload();
+    }catch(error){console.info('Vérification des derniers résultats différée',error)}
+    finally{checking=false}
+  }
+  document.addEventListener('visibilitychange',()=>{if(!document.hidden)void check(true)});
+  window.addEventListener('pageshow',event=>{if(event.persisted)void check(true)});
+  window.addEventListener('focus',()=>{void check()});
+  window.addEventListener('online',()=>{void check(true)});
+  setInterval(()=>{void check()},60000);
+}
+load().then(s=>{if(document.body.dataset.page==='fiche')horse(s);else catalog(s);watchFreshResults(s)}).catch(err=>{console.error(err);$('#app').innerHTML=header()+'<main class="shell"><div class="error"><h1>Informations temporairement indisponibles</h1><p>Le catalogue n’a pas pu être chargé. Réessayez en actualisant la page.</p><p><a href="https://www.ecurie-initial.com/">Retour au site officiel</a></p></div></main>'+footer()});
 })();
