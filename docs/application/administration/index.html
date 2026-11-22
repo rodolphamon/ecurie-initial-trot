@@ -30,7 +30,7 @@
 .registration-inconnu{color:#777}
 #members td:nth-child(3) small{display:block;margin-top:4px;font-size:11px;line-height:1.25;color:#666}
 @media(min-width:900px){main{max-width:1080px}}
-.entry-reminder{padding:16px;border:1px solid #edc8aa;border-left:5px solid #f47721;border-radius:11px;background:#fffaf6;margin:14px 0 17px}.entry-reminder h2{font-size:18px;margin:0 0 10px}.entry-reminder button{background:#171717;color:#fff;min-height:46px}.entry-reminder button:disabled{opacity:.5}#reminderStatus{font-weight:bold;white-space:pre-line;color:#24532c}@media(max-width:650px){.entry-reminder button{width:100%;font-size:14px}}
+.entry-reminder{padding:16px;border:1px solid #edc8aa;border-left:5px solid #f47721;border-radius:11px;background:#fffaf6;margin:14px 0 17px}.entry-reminder h2{font-size:18px;margin:0 0 10px}.entry-reminder button{background:#171717;color:#fff;min-height:46px}.entry-reminder button:disabled{opacity:.5}#reminderStatus{font-weight:bold;white-space:pre-line;color:#24532c}#reminderStatus.is-error{color:#9b2222}#reminderCaptchaArea{padding:12px 0 16px}#reminderCaptchaArea p{font-size:14px}#reminderStop{margin-top:12px;background:#fff!important;color:#171717!important;border:1px solid #bbb!important}@media(max-width:650px){.entry-reminder button{width:100%;font-size:14px}}
 /* Mobile : actions lisibles sur une grille de deux colonnes. */
 .members-table-wrap{width:100%}
 @media(max-width:650px){
@@ -239,7 +239,7 @@ body[data-admin-view="actions"] #actions:not([hidden]){display:block!important}
   <a class="admin-hub-link" href="../team-initial/?boite=1"><strong>📥 Mes messages</strong><small>Consulter ma boîte privée</small></a>
  </div>
 </section><div class="panel" id="associesPanel"><h1>Gestion des membres</h1><p id="loading">Vérification des droits d'administrateur…</p><p id="error" role="alert"></p><div id="denied" hidden><p>Cette rubrique est réservée à l'administrateur de l'Écurie Initial. Connectez-vous avec votre compte autorisé.</p><a href="../connexion/">Se connecter</a></div><div id="content" hidden><p>Suivez les comptes, les dates d’inscription, les connexions et les ouvertures de l’application.</p>
-<div id="reminderPanel" class="entry-reminder" hidden><h2>✉️ Relancer les inscriptions inachevées</h2><p id="reminderInfo">Vérification des comptes en attente…</p><button id="reminderSend" type="button" disabled>Envoyer les nouveaux liens d’accès</button><p id="reminderStatus" role="status" aria-live="polite"></p><p class="muted">Comptes actifs jamais connectés uniquement. Les participations et autorisations sont conservées. Un quota d’e-mails peut interrompre l’envoi.</p></div><div class="access-summary" id="accessSummary" aria-label="Statistiques des accès selon le filtre sélectionné" aria-live="polite" aria-atomic="true">
+<div id="reminderPanel" class="entry-reminder" hidden><h2>✉️ Relancer les inscriptions inachevées</h2><p id="reminderInfo">Vérification des comptes en attente…</p><button id="reminderSend" type="button" disabled>Envoyer les nouveaux liens d’accès</button><div id="reminderCaptchaArea" hidden><p><strong>🔒 Vérification anti-robots</strong> : confirmez cette vérification pour autoriser chaque e-mail. Selon le téléphone, elle peut se valider automatiquement.</p><div id="reminderCaptcha"></div><button type="button" id="reminderStop" class="secondary">Arrêter la relance</button></div><p id="reminderStatus" role="status" aria-live="polite"></p><p class="muted">Comptes actifs jamais connectés uniquement. Les participations et autorisations sont conservées. Un quota d’e-mails peut interrompre l’envoi.</p></div><div class="access-summary" id="accessSummary" aria-label="Statistiques des accès selon le filtre sélectionné" aria-live="polite" aria-atomic="true">
 <div class="metric-card"><strong id="summaryAccounts">—</strong><span>Comptes</span></div>
 <div class="metric-card"><strong id="summaryConnected">—</strong><span>Déjà connectés</span></div>
 <div class="metric-card"><strong id="summaryUsers">—</strong><span>Ont ouvert</span></div>
@@ -289,6 +289,7 @@ body[data-admin-view="actions"] #actions:not([hidden]){display:block!important}
 </div>
 </div><div class="panel" id="actions" hidden><h2>Invitations et gestion des accès</h2><p class="warning"><strong>Préouverture jusqu’au 1er décembre 2026.</strong> Les personnes invitées peuvent créer leur mot de passe dès maintenant. Jusqu’au lancement officiel, l’accès aux espaces réservés reste limité aux personnes individuellement autorisées et aux testeurs habilités.</p><p>Les invitations sont individuelles et les droits d’accès restent contrôlés côté Supabase.</p><form id="inviteForm"><p id="prefillNotice" class="muted">Pour une personne déjà connue, utilisez « Préparer l’invitation » dans le répertoire ci-dessus : ses chevaux seront cochés automatiquement.</p><label for="nom">Nom affiché</label><input id="nom" maxlength="100" required placeholder="Prénom NOM"><label for="email">Adresse e-mail</label><input id="email" type="email" required placeholder="membre@exemple.fr"><label for="inviteType">Statut du compte</label><select id="inviteType" class="small-select"><option value="associe">Associé propriétaire</option><option value="exterieur">Membre extérieur · Tribune et notifications publiques</option><option value="presse">Presse · consultation des informations publiques uniquement</option></select><fieldset class="invite-horses" id="inviteHorsesBox"><legend>🐎 Chevaux de cet associé</legend><p class="muted">Cochez ses chevaux pour les rattacher dès la création du compte. Vous pourrez modifier cette liste ensuite.</p><input type="search" id="inviteHorseFilter" placeholder="Rechercher un cheval…" aria-label="Rechercher un cheval à attribuer"><div id="inviteHorseChoices" class="invite-roster"></div><p id="inviteHorseCount" class="invite-roster-state" role="status">Chargement des chevaux…</p></fieldset><button type="submit">Créer le compte et envoyer l'invitation</button></form><p id="actionStatus" role="status"></p><p class="muted">Les invitations sont individuelles. Aucun mot de passe ne doit être communiqué.</p><p class="muted">Pour corriger une adresse existante ou rattacher un cheval, choisissez le compte dans le tableau « Gestion des associés ».</p></div></main><script type="module">
 import {createClient} from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+import {TURNSTILE_SITE_KEY} from '../inscription/captcha-config.js';
 const db=createClient('https://yeecwaaizmvrhwobukfa.supabase.co','sb_publishable_xUy2EJA3u3cKWl8BB4GNPQ_qhV9Pes3');
 const $=id=>document.getElementById(id);
 let selectedMember=null,emailMember=null,roster=[],rosterLoaded=false,registeredNames=new Set(),registryOwners=[],registryLoadError='',registrationStatuses={},membersForReminders=[];
@@ -541,36 +542,94 @@ function pendingReminderMembers(statuses=registrationStatuses){
 function setupReminderPanel(){
  const panel=$('reminderPanel'),button=$('reminderSend');
  const known=Object.keys(registrationStatuses).length>0;
- panel.hidden=!known;
+ if(!reminderBusy)panel.hidden=!known;
  if(!known)return;
  const candidates=pendingReminderMembers();
  $('reminderInfo').textContent=candidates.length+' compte(s) jamais connectés et non relancés depuis cet appareil dans les dernières 24 h.';
- button.disabled=candidates.length===0;
+ button.disabled=reminderBusy||candidates.length===0;
  button.textContent='✉️ Envoyer '+candidates.length+' nouveau(x) lien(s) d’accès';
 }
+let reminderBusy=false,reminderStopped=false,captchaWidgetId=null,pendingCaptcha=null,turnstileLoading=null;
+function reminderMessage(message,error=false){
+ status('reminderStatus',message);$('reminderStatus').classList.toggle('is-error',error);
+}
+async function ensureTurnstile(){
+ if(window.turnstile)return;
+ if(!TURNSTILE_SITE_KEY)throw Error('La clé publique anti-robots est absente.');
+ if(!turnstileLoading){
+  turnstileLoading=new Promise((resolve,reject)=>{
+   const script=document.createElement('script');
+   script.src='https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+   script.async=true;
+   script.onload=()=>window.turnstile?resolve():reject(Error('La vérification anti-robots ne répond pas.'));
+   script.onerror=()=>reject(Error('Impossible de charger la vérification anti-robots.'));
+   document.head.appendChild(script);
+  });
+ }
+ await turnstileLoading;
+}
+async function requestCaptchaToken(){
+ $('reminderPanel').hidden=false;
+ $('reminderCaptchaArea').hidden=false;
+ $('reminderCaptchaArea').scrollIntoView({behavior:'smooth',block:'center'});
+ await ensureTurnstile();
+ if(reminderStopped)throw Error('Relance arrêtée.');
+ return new Promise((resolve,reject)=>{
+  pendingCaptcha={resolve,reject};
+  try{
+   if(captchaWidgetId===null){
+    captchaWidgetId=window.turnstile.render('#reminderCaptcha',{
+     sitekey:TURNSTILE_SITE_KEY,
+     callback:token=>{const pending=pendingCaptcha;pendingCaptcha=null;if(pending)pending.resolve(token)},
+     'expired-callback':()=>{if(pendingCaptcha)reminderMessage('Vérification expirée : veuillez recommencer.',true)},
+     'error-callback':()=>{const pending=pendingCaptcha;pendingCaptcha=null;pending?.reject(Error('Erreur de vérification anti-robots.'))}
+    });
+   }else window.turnstile.reset(captchaWidgetId);
+  }catch(error){const pending=pendingCaptcha;pendingCaptcha=null;pending?.reject(error)}
+ });
+}
+function stopReminder(){
+ reminderStopped=true;
+ const pending=pendingCaptcha;pendingCaptcha=null;
+ if(pending)pending.reject(Error('Relance interrompue à votre demande.'));
+ $('reminderCaptchaArea').hidden=true;
+}
+$('reminderStop').onclick=stopReminder;
+function finishReminder(){
+ reminderBusy=false;
+ $('reminderCaptchaArea').hidden=true;
+ setupReminderPanel();
+}
 $('reminderSend').onclick=async()=>{
- const button=$('reminderSend');button.disabled=true;
- status('reminderStatus','Vérification des inscriptions avant envoi…');
- let sent=0,failed='';
+ if(reminderBusy)return;
+ reminderBusy=true;reminderStopped=false;
+ $('reminderSend').disabled=true;
+ reminderMessage('Vérification des inscriptions avant envoi…');
+ let sent=0,failed='',total=0;
  try{
   const fresh=await action({action:'list_registration_status'});
   const current=Object.fromEntries((fresh.inscriptions||[]).map(row=>[row.user_id,row]));
-  const selected=pendingReminderMembers(current);
-  if(!selected.length){status('reminderStatus','Aucun compte à relancer pour le moment.');return}
-  if(!confirm('Envoyer un nouveau lien personnel à '+selected.length+' compte(s) actifs jamais connectés ?\n\nAucun nouveau compte créé, aucun cheval modifié. La relance s’arrêtera si le service e-mail refuse un envoi.')){
-   status('reminderStatus','Aucun e-mail demandé.');return;
+  const selected=pendingReminderMembers(current);total=selected.length;
+  if(!total){reminderMessage('Aucun compte à relancer pour le moment.');return}
+  if(!confirm('Envoyer un nouveau lien personnel à '+total+' compte(s) actifs jamais connectés ?\\n\\nLa vérification anti-robots est obligatoire. Le système vous demandera de la valider si nécessaire avant chaque envoi. Aucun compte ni cheval ne sera modifié.')){
+   reminderMessage('Aucun e-mail demandé.');return;
   }
   for(const m of selected){
+   if(reminderStopped)break;
    try{
-    await action({action:'send_access_email',user_id:m.user_id});
+    reminderMessage('Envoi '+(sent+1)+' / '+total+' : validation anti-robots…');
+    const captchaToken=await requestCaptchaToken();
+    if(reminderStopped)break;
+    await action({action:'send_access_email',user_id:m.user_id,captcha_token:captchaToken,only_if_never_connected:true});
     sent++;
     try{localStorage.setItem('ei-relance-acces-'+m.user_id,String(Date.now()))}catch{}
-    status('reminderStatus',sent+' / '+selected.length+' demande(s) d’envoi acceptée(s)…');
-   }catch(e){failed=e.message||'Erreur inconnue';break}
+    reminderMessage(sent+' / '+total+' demande(s) d’envoi acceptée(s).');
+   }catch(error){failed=error.message||'Erreur inconnue';break}
   }
-  status('reminderStatus',sent+' / '+selected.length+' lien(s) demandé(s).'+(failed?'\nArrêt au premier échec : '+failed+'\nLes autres comptes ne sont pas relancés.':'\nLa bonne réception reste à vérifier.'));
- }catch(e){status('reminderStatus','Relance non lancée : '+(e.message||'Vérification impossible'))}
- finally{setupReminderPanel()}
+  reminderMessage(sent+' / '+total+' lien(s) demandé(s).'+(failed?'\\nArrêt au premier échec : '+failed+'\\nLes autres comptes ne sont pas relancés.':reminderStopped?'\\nRelance arrêtée à votre demande.':'\\nLa réception des e-mails reste à vérifier.'),Boolean(failed));
+ }catch(error){
+  reminderMessage('Relance non lancée : '+(error.message||'Vérification impossible'),true);
+ }finally{finishReminder()}
 };
 
 async function init(){
@@ -685,14 +744,19 @@ async function init(){
    accessBtn.disabled=!m.actif;
    accessBtn.title=m.actif?'Envoyer un nouveau lien sans recréer le compte':'Compte suspendu';
    accessBtn.onclick=async()=>{
+    if(reminderBusy){reminderMessage('Une relance est déjà en cours.');return}
     if(!confirm('Envoyer à '+m.nom_affiche+' un e-mail pour définir ou réinitialiser son mot de passe ? Le compte et ses chevaux restent inchangés.'))return;
+    reminderBusy=true;reminderStopped=false;
     accessBtn.disabled=true;
-    status('actionStatus','Demande d’envoi du lien d’accès à '+m.nom_affiche+'…');
+    $('reminderPanel').hidden=false;
+    reminderMessage('Vérifiez que vous n’êtes pas un robot pour envoyer le lien à '+m.nom_affiche+'.');
     try{
-      const response=await action({action:'send_access_email',user_id:m.user_id});
-      status('actionStatus',response.message+' Vérifiez la réception.');
-    }catch(error){status('actionStatus',error.message)}
-    finally{accessBtn.disabled=!m.actif}
+      const captchaToken=await requestCaptchaToken();
+      if(reminderStopped)throw Error('Envoi interrompu.');
+      const response=await action({action:'send_access_email',user_id:m.user_id,captcha_token:captchaToken});
+      reminderMessage(response.message+' Vérifiez la réception.');
+    }catch(error){reminderMessage(error.message||'Envoi impossible.',true)}
+    finally{finishReminder();accessBtn.disabled=!m.actif}
    };
    if(!m.administrateur && m.type_compte!=='observateur'){
     const typeBtn=make('button','👥 Statut');typeBtn.type='button';typeBtn.className='secondary';
