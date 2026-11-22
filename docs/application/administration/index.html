@@ -30,6 +30,7 @@
 .registration-inconnu{color:#777}
 #members td:nth-child(3) small{display:block;margin-top:4px;font-size:11px;line-height:1.25;color:#666}
 @media(min-width:900px){main{max-width:1080px}}
+.entry-reminder{padding:16px;border:1px solid #edc8aa;border-left:5px solid #f47721;border-radius:11px;background:#fffaf6;margin:14px 0 17px}.entry-reminder h2{font-size:18px;margin:0 0 10px}.entry-reminder button{background:#171717;color:#fff;min-height:46px}.entry-reminder button:disabled{opacity:.5}#reminderStatus{font-weight:bold;white-space:pre-line;color:#24532c}@media(max-width:650px){.entry-reminder button{width:100%;font-size:14px}}
 /* Mobile : actions lisibles sur une grille de deux colonnes. */
 .members-table-wrap{width:100%}
 @media(max-width:650px){
@@ -238,7 +239,7 @@ body[data-admin-view="actions"] #actions:not([hidden]){display:block!important}
   <a class="admin-hub-link" href="../team-initial/?boite=1"><strong>📥 Mes messages</strong><small>Consulter ma boîte privée</small></a>
  </div>
 </section><div class="panel" id="associesPanel"><h1>Gestion des membres</h1><p id="loading">Vérification des droits d'administrateur…</p><p id="error" role="alert"></p><div id="denied" hidden><p>Cette rubrique est réservée à l'administrateur de l'Écurie Initial. Connectez-vous avec votre compte autorisé.</p><a href="../connexion/">Se connecter</a></div><div id="content" hidden><p>Suivez les comptes, les dates d’inscription, les connexions et les ouvertures de l’application.</p>
-<div class="access-summary" id="accessSummary" aria-label="Statistiques des accès selon le filtre sélectionné" aria-live="polite" aria-atomic="true">
+<div id="reminderPanel" class="entry-reminder" hidden><h2>✉️ Relancer les inscriptions inachevées</h2><p id="reminderInfo">Vérification des comptes en attente…</p><button id="reminderSend" type="button" disabled>Envoyer les nouveaux liens d’accès</button><p id="reminderStatus" role="status" aria-live="polite"></p><p class="muted">Comptes actifs jamais connectés uniquement. Les participations et autorisations sont conservées. Un quota d’e-mails peut interrompre l’envoi.</p></div><div class="access-summary" id="accessSummary" aria-label="Statistiques des accès selon le filtre sélectionné" aria-live="polite" aria-atomic="true">
 <div class="metric-card"><strong id="summaryAccounts">—</strong><span>Comptes</span></div>
 <div class="metric-card"><strong id="summaryConnected">—</strong><span>Déjà connectés</span></div>
 <div class="metric-card"><strong id="summaryUsers">—</strong><span>Ont ouvert</span></div>
@@ -290,7 +291,7 @@ body[data-admin-view="actions"] #actions:not([hidden]){display:block!important}
 import {createClient} from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
 const db=createClient('https://yeecwaaizmvrhwobukfa.supabase.co','sb_publishable_xUy2EJA3u3cKWl8BB4GNPQ_qhV9Pes3');
 const $=id=>document.getElementById(id);
-let selectedMember=null,emailMember=null,roster=[],rosterLoaded=false,registeredNames=new Set(),registryOwners=[],registryLoadError='',registrationStatuses={};
+let selectedMember=null,emailMember=null,roster=[],rosterLoaded=false,registeredNames=new Set(),registryOwners=[],registryLoadError='',registrationStatuses={},membersForReminders=[];
 const sortFr=(a,b)=>a.localeCompare(b,'fr',{sensitivity:'base'});
 const adminViews=new Set(['associesPanel','registryPanel','actions','horsePanel','emailPanel']);
 function setAdminView(view){
@@ -524,6 +525,54 @@ $('emailForm').onsubmit=async e=>{
   $('newEmail').value='';
  }catch(err){status('emailStatus',err.message)}finally{b.disabled=false}
 };
+
+function wasRecentlyReminded(id){
+ try{const timestamp=Number(localStorage.getItem('ei-relance-acces-'+id));return timestamp>0&&Date.now()>=timestamp&&Date.now()-timestamp<24*60*60*1000}
+ catch{return false}
+}
+function pendingReminderMembers(statuses=registrationStatuses){
+ return membersForReminders.filter(m=>{
+  const row=statuses[m.user_id];
+  return m.actif&&!m.administrateur&&row&&!row.derniere_connexion
+    &&(row.etat==='invitation_en_attente'||row.etat==='email_confirme')
+    &&!wasRecentlyReminded(m.user_id);
+ });
+}
+function setupReminderPanel(){
+ const panel=$('reminderPanel'),button=$('reminderSend');
+ const known=Object.keys(registrationStatuses).length>0;
+ panel.hidden=!known;
+ if(!known)return;
+ const candidates=pendingReminderMembers();
+ $('reminderInfo').textContent=candidates.length+' compte(s) jamais connectés et non relancés depuis cet appareil dans les dernières 24 h.';
+ button.disabled=candidates.length===0;
+ button.textContent='✉️ Envoyer '+candidates.length+' nouveau(x) lien(s) d’accès';
+}
+$('reminderSend').onclick=async()=>{
+ const button=$('reminderSend');button.disabled=true;
+ status('reminderStatus','Vérification des inscriptions avant envoi…');
+ let sent=0,failed='';
+ try{
+  const fresh=await action({action:'list_registration_status'});
+  const current=Object.fromEntries((fresh.inscriptions||[]).map(row=>[row.user_id,row]));
+  const selected=pendingReminderMembers(current);
+  if(!selected.length){status('reminderStatus','Aucun compte à relancer pour le moment.');return}
+  if(!confirm('Envoyer un nouveau lien personnel à '+selected.length+' compte(s) actifs jamais connectés ?\n\nAucun nouveau compte créé, aucun cheval modifié. La relance s’arrêtera si le service e-mail refuse un envoi.')){
+   status('reminderStatus','Aucun e-mail demandé.');return;
+  }
+  for(const m of selected){
+   try{
+    await action({action:'send_access_email',user_id:m.user_id});
+    sent++;
+    try{localStorage.setItem('ei-relance-acces-'+m.user_id,String(Date.now()))}catch{}
+    status('reminderStatus',sent+' / '+selected.length+' demande(s) d’envoi acceptée(s)…');
+   }catch(e){failed=e.message||'Erreur inconnue';break}
+  }
+  status('reminderStatus',sent+' / '+selected.length+' lien(s) demandé(s).'+(failed?'\nArrêt au premier échec : '+failed+'\nLes autres comptes ne sont pas relancés.':'\nLa bonne réception reste à vérifier.'));
+ }catch(e){status('reminderStatus','Relance non lancée : '+(e.message||'Vérification impossible'))}
+ finally{setupReminderPanel()}
+};
+
 async function init(){
  try {
   const {data:{user},error:authError}=await db.auth.getUser();
@@ -537,7 +586,9 @@ async function init(){
   }catch(err){registrationStatuses={};$('registrationTrackingError').hidden=false;console.warn('Suivi des inscriptions indisponible',err.message)}
 
   if(error)throw error;
-  registeredNames=new Set(members.filter(m=>!/\(ancienne invitation\)/i.test(m.nom_affiche)).map(m=>normName(m.nom_affiche)));
+  membersForReminders=members;
+   setupReminderPanel();
+   registeredNames=new Set(members.filter(m=>!/\(ancienne invitation\)/i.test(m.nom_affiche)).map(m=>normName(m.nom_affiche)));
   let archivedCount=0;
   for(const m of members){
    const tr=make('tr');tr.classList.add('member-row');
