@@ -215,14 +215,33 @@ serve(async (req) => {
       if (memberError || !member) return reply(404, { error: "Compte associé introuvable." });
       if (body.action === "send_access_email") {
         if (!member.actif) return reply(403, { error: "Réactivez d'abord le compte de cet associé." });
+        // CAPTCHA Cloudflare obligatoire pour CHAQUE envoi ; jamais de contournement.
+        const captchaToken = typeof body.captcha_token === "string" ? body.captcha_token.trim() : "";
+        if (captchaToken.length < 30 || captchaToken.length > 4096) {
+          return reply(400, { error: "Validez d'abord la vérification anti-robots avant d'envoyer un e-mail." });
+        }
         const { data: account, error: accountError } = await admin.auth.admin.getUserById(id);
         const recipient = account?.user?.email;
         if (accountError || !recipient) return reply(404, { error: "Adresse de connexion introuvable." });
-        // Un compte existant ne doit jamais être recréé pour renvoyer un accès.
+        if (body.only_if_never_connected === true && account.user?.last_sign_in_at) {
+          return reply(409, { error: "Ce membre s'est déjà connecté : aucune relance nécessaire." });
+        }
+        // Le token CAPTCHA est vérifié par Supabase Auth au moment de l'envoi.
+        // Un compte existant n'est jamais recréé ; les participations restent intactes.
         const { error } = await auth.auth.resetPasswordForEmail(recipient, {
           redirectTo: "https://fiches.ecurie-initial.com/application/connexion/",
+          captchaToken,
         });
-        if (error) return reply(429, { error: "Lien non envoyé : " + error.message + ". Vérifiez le SMTP et les limites d'envoi." });
+        if (error) {
+          const detail = error.message || "Envoi refusé";
+          const isCaptcha = /captcha|challenge|turnstile/i.test(detail);
+          const isRate = error.status === 429 || /rate limit|too many/i.test(detail);
+          return reply(isCaptcha ? 400 : isRate ? 429 : 502, {
+            error: isCaptcha ? "La vérification anti-robots est expirée ou invalide. Réessayez." :
+              isRate ? "La limite d'envoi d'e-mails est atteinte. Réessayez plus tard." :
+              "Envoi refusé par la messagerie. Vérifiez la configuration SMTP.",
+          });
+        }
         return reply(200, { ok: true, message: "Lien de définition ou réinitialisation du mot de passe demandé pour ce compte existant." });
       }
       if (body.action === "get_member_horses") {
