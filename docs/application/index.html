@@ -753,6 +753,13 @@ async function recordAppOpening(){
 document.addEventListener('visibilitychange',()=>{if(!document.hidden)recordAppOpening()});
 window.addEventListener('pageshow',()=>{if(appAuthorized)recordAppOpening()});
 window.addEventListener('online',()=>{if(appAuthorized)recordAppOpening()});
+// Réactualiser les performances au retour au premier plan et tant que l'accueil reste ouvert.
+const refreshHomeOnReturn=()=>{if(appAuthorized&&!document.hidden)window.loadHomeDashboard?.(true)};
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)refreshHomeOnReturn()});
+window.addEventListener('pageshow',event=>{if(event.persisted)refreshHomeOnReturn()});
+window.addEventListener('focus',()=>{if(appAuthorized&&!document.hidden)window.loadHomeDashboard?.()});
+window.addEventListener('online',refreshHomeOnReturn);
+setInterval(()=>{if(appAuthorized&&!document.hidden)window.loadHomeDashboard?.()},120000);
 allowApp().then(open=>{
  appAuthorized=open;
  app.hidden=!open;waiting.hidden=open;document.body.classList.toggle('ei-prelaunch',!open);
@@ -761,7 +768,10 @@ allowApp().then(open=>{
 .catch(()=>{app.hidden=true;waiting.hidden=false;document.body.classList.add('ei-prelaunch')});
 </script>
 <script>
-window.loadHomeDashboard=async function(){
+let homeDashboardLoading=false,homeDashboardLastCheck=0;
+window.loadHomeDashboard=async function(force=false){
+ if(homeDashboardLoading||(!force&&Date.now()-homeDashboardLastCheck<30000))return;
+ homeDashboardLoading=true;homeDashboardLastCheck=Date.now();
  const get=id=>document.getElementById(id);
  const stamp=d=>new Intl.DateTimeFormat("fr-FR",{day:"numeric",month:"short",timeZone:"Europe/Paris"}).format(new Date(d+"T12:00:00Z"));
  const current=()=>new Intl.DateTimeFormat("sv-SE",{timeZone:"Europe/Paris",year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit",hourCycle:"h23"}).format(new Date()).replace(" ","T");
@@ -861,6 +871,7 @@ window.loadHomeDashboard=async function(){
    paint();
   }catch(e){console.info("Accueil : engagements de référence conservés",e)}
  }catch(e){console.warn("Accueil : données dynamiques momentanément indisponibles",e)}
+ finally{homeDashboardLoading=false}
 };
 </script>
 <script type="module">
