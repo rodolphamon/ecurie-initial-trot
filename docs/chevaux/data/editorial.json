@@ -1536,6 +1536,7 @@
         "heure": "15:05",
         "course": "R1C3",
         "numero": 3,
+        "corde": 3,
         "surface": "PSF",
         "type_course": "Maiden"
       }
