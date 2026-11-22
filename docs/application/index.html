@@ -63,6 +63,15 @@ body.ei-prelaunch{padding-bottom:0!important}
 #prelaunch p{font-size:16px;line-height:1.65}
 #prelaunch a{display:inline-block;background:#f47721;color:#171717;text-decoration:none;border-radius:10px;padding:13px 18px;font-weight:800;margin-top:8px}
 #prelaunch .prelaunch-hint{color:#777;font-size:13px;margin:14px 4px}
+#prelaunch .install-spot{margin:17px 0 22px;padding:18px;border-radius:14px;background:#fff;color:#171717;border:3px solid #f47721;text-align:center}
+#prelaunch .install-spot h2{font-size:23px;line-height:1.25;margin:0 0 7px}
+#prelaunch .install-spot p{font-size:17px;line-height:1.4;margin:0 0 9px}
+#prelaunch .install-spot a{display:block;background:#f47721;color:#171717;font-size:18px;padding:16px;margin:8px 0 0}
+#prelaunch .access-spot{font-size:16px}
+#appContent .home-install-link{display:block;border-radius:12px;padding:13px 15px;margin:6px 0 14px;background:#fff2e7;border:2px solid #f47721;text-decoration:none;color:#171717;font-weight:800;text-align:center;font-size:17px}
+#appContent .home-install-link:focus-visible{outline:3px solid #171717;outline-offset:3px}
+#appContent .home-install-link span{display:block;font-size:13px;font-weight:500;margin-top:3px}
+@media(max-width:600px){#prelaunch .prelaunch-box{padding:24px 15px}#prelaunch .install-spot{padding:14px}#prelaunch .install-spot h2{font-size:21px}}
 
 /* Accueil expérimental : affichage compact et actualités dynamiques */
 #appContent .tabs{margin:5px 0 12px}
@@ -581,8 +590,9 @@ body.ei-assoc-view #appContent{padding-top:10px}
  #publicArea .cards .tribune-mobile-desc,#publicArea .cards .tribune-mobile-title{display:inline}
  #publicArea .cards .tribune-desktop-title{display:none}
 }
-</style><link rel="apple-touch-icon" href="icon-ei-192.png"></head><body class="ei-prelaunch"><header><div class="brand"><img src="icon-ei-192.png" alt="Emblème officiel Écurie Initial"><div class="brand-copy"><strong>ÉCURIE <span class="brand-initial"><span class="brand-initial-i">I</span>NITIAL</span></strong></div><p class="brand-slogan"><span class="brand-slogan-line">PARTAGEONS NOTRE PASSION</span><span class="brand-slogan-date">DEPUIS 2011</span></p></div></header><div id="prelaunch" hidden><div class="prelaunch-box"><h1>🐎 Bientôt votre espace Écurie Initial</h1><p><strong>Ouverture officielle le mardi 1er décembre 2026.</strong></p><p>Vous pouvez installer l’application dès aujourd’hui. Les invités peuvent confirmer leur compte et les visiteurs extérieurs peuvent demander leur inscription sans invitation. L’accès privé reste soumis à validation, avec ouverture générale le 1er décembre.</p><p>Jusqu’à cette date, les cinq comptes pilotes et les contributeurs expressément autorisés assurent les derniers essais.</p><a href="connexion/">Me connecter</a> <a href="inscription/" style="margin-left:8px">Créer mon compte</a><p style="font-size:13px;color:#f7e9df;margin:18px 0 0"><strong>Vous pouvez installer l'application dès maintenant :</strong><br>Android : ouvrez cette page dans Chrome puis « Installer l'application ».<br>iPhone : ouvrez cette page dans Safari, puis « Partager » → « Sur l'écran d'accueil ».</p></div><p class="prelaunch-hint">Notre site public reste accessible sur <a href="https://www.ecurie-initial.com/" style="background:none;color:#a54c0b;padding:0;font:inherit;text-decoration:underline">www.ecurie-initial.com</a>.</p></div><main id="appContent" hidden>
+</style><link rel="apple-touch-icon" href="icon-ei-192.png"></head><body class="ei-prelaunch"><header><div class="brand"><img src="icon-ei-192.png" alt="Emblème officiel Écurie Initial"><div class="brand-copy"><strong>ÉCURIE <span class="brand-initial"><span class="brand-initial-i">I</span>NITIAL</span></strong></div><p class="brand-slogan"><span class="brand-slogan-line">PARTAGEONS NOTRE PASSION</span><span class="brand-slogan-date">DEPUIS 2011</span></p></div></header><div id="prelaunch" hidden><div class="prelaunch-box"><h1>🐎 Bientôt votre espace Écurie Initial</h1><p><strong>Ouverture officielle le mardi 1er décembre 2026.</strong></p><p>Vous pouvez installer l’application dès aujourd’hui. Les invités peuvent confirmer leur compte et les visiteurs extérieurs peuvent demander leur inscription sans invitation. L’accès privé reste soumis à validation, avec ouverture générale le 1er décembre.</p><p>Jusqu’à cette date, les cinq comptes pilotes et les contributeurs expressément autorisés assurent les derniers essais.</p><div class="install-spot"><h2>📲 Installez l'application sur votre téléphone</h2><p>Retrouvez facilement l'Écurie Initial depuis votre écran d'accueil.</p><a href="installation/">📲 Installer l'application — voir les étapes</a><p style="font-size:15px;margin:10px 0 0">Android ou iPhone : suivez les instructions en gros caractères.</p></div><p class="access-spot">Pour accéder à votre compte :</p><a href="connexion/">🔑 Me connecter ou activer mon invitation</a> <a href="inscription/" style="margin-left:8px">Créer mon compte</a></div><p class="prelaunch-hint">Notre site public reste accessible sur <a href="https://www.ecurie-initial.com/" style="background:none;color:#a54c0b;padding:0;font:inherit;text-decoration:underline">www.ecurie-initial.com</a>.</p></div><main id="appContent" hidden>
 <div class="home-welcome" role="note">La vie de l’Écurie, course après course.</div>
+<a id="homeInstallLink" class="home-install-link" href="installation/">📲 Installer l'application sur mon téléphone<span>Un guide simple pour Android et iPhone</span></a>
 <div id="publicArea">
 <h2 class="home-title"><span class="orange-dot" aria-hidden="true"></span>En ce moment</h2>
 <div class="home-dashboard" aria-label="Actualité de l'écurie">
@@ -630,6 +640,7 @@ body.ei-assoc-view #appContent{padding-top:10px}
 function tab(priv){document.getElementById('publicArea').hidden=priv;document.getElementById('privateArea').hidden=!priv;document.body.classList.toggle('ei-assoc-view',priv);if(priv)window.scrollTo({top:0,behavior:'smooth'})}
 if(new URLSearchParams(location.search).get('espace')==='associes')tab(true);
 if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
+if(window.matchMedia?.('(display-mode: standalone)')?.matches||navigator.standalone===true){document.getElementById('homeInstallLink').hidden=true}
 </script>
 <script type="module">
 import {createClient} from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
