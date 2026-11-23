@@ -1544,6 +1544,7 @@
     "gonafoot": [
       {
         "date": "2026-11-25",
+        "corde": 2,
         "hippodrome": "Deauville",
         "type": "Plat",
         "statut": "engage",
