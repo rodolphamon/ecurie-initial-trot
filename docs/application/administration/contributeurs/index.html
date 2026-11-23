@@ -263,7 +263,7 @@ async function loadTeamInitial(){
    }else if(member.etat==='confirme'){
     box.append(teamElt('p',"Compte confirmé."));
    }else if(member.etat==='suspendu'){
-    const warning=teamElt('p',"Compte suspendu : réactivation à effectuer dans l'administration des associés.");
+    const warning=teamElt('p',"Compte suspendu : vous pouvez le réactiver ci-dessous.");
     warning.className='warning';box.append(warning);
    }else if(member.etat==='compte_incomplet'){
     const warning=teamElt('p',"Compte existant sans accès Team Initial configuré. Vérifiez ses droits dans l'administration.");
