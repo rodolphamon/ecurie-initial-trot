@@ -79,6 +79,15 @@ async function hash(token: string) {
   const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(token));
   return Array.from(new Uint8Array(buf), b => b.toString(16).padStart(2, "0")).join("");
 }
+// Aucun Push, y compris les tests, entre 22 h 30 et 8 h (Europe/Paris).
+function isSilentPeriodParis(date: Date = new Date()): boolean {
+  const parts=Object.fromEntries(new Intl.DateTimeFormat("en-GB",{
+    timeZone:"Europe/Paris",hour:"2-digit",minute:"2-digit",hourCycle:"h23"
+  }).formatToParts(date).map(p=>[p.type,p.value]));
+  const hour=Number(parts.hour),minute=Number(parts.minute);
+  return hour < 8 || hour > 22 || (hour === 22 && minute >= 30);
+}
+const silentPeriodError = "Notifications suspendues de 22h30 à 08h00 (heure de Paris). Réessayez à partir de 8h00.";
 const launchOpen = () => Date.now() >= Date.parse("2026-11-30T23:00:00Z");
 const normalizePilotName = (s: string) =>
   s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim().replace(/\s+/g, " ");
@@ -130,6 +139,8 @@ Deno.serve(async (request) => {
       // et aucun ciblage par 'tous les chevaux' : zéro envoi aux autres associés.
       if (body.confirm !== true)
         return respond({ error: "Confirmation explicite nécessaire." }, 400, origin);
+      if (isSilentPeriodParis())
+        return respond({ error: silentPeriodError }, 409, origin);
       const jwt = request.headers.get("authorization")?.match(/^Bearer\s+(.+)$/i)?.[1];
       if (!jwt) return respond({ error: "Connexion administrateur requise." }, 403, origin);
       const { data: identity, error: authError } = await db.auth.getUser(jwt);
@@ -187,6 +198,8 @@ Deno.serve(async (request) => {
         let failed = 0;
         for (const device of devices) {
           try {
+            if (isSilentPeriodParis())
+              return respond({ error: silentPeriodError, results }, 409, origin);
             const sent = await sendPushNotification(
               { endpoint: device.endpoint,
                 keys: { p256dh: device.p256dh, auth: device.auth_secret } },
@@ -256,8 +269,14 @@ Deno.serve(async (request) => {
           error: "Les deux clés VAPID enregistrées dans Supabase ne correspondent pas. Réenregistrez la clé publique et la clé privée issues de la même génération."
         }, 503, origin);
       }
+      if (isSilentPeriodParis())
+        return respond({ error: silentPeriodError }, 409, origin);
       lastTests.set(sub.endpoint, now);
       try {
+        if (isSilentPeriodParis()) {
+          lastTests.delete(sub.endpoint);
+          return respond({ error: silentPeriodError }, 409, origin);
+        }
         const delivered = await sendPushNotification(
           { endpoint: sub.endpoint, keys: { p256dh: sub.p256dh, auth: sub.auth_secret } },
           {
