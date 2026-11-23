@@ -28,6 +28,78 @@ serve(async (req) => {
     if (roleError || !me?.actif || !me.administrateur) return reply(403, { error: "Accès administrateur requis." });
     const body = await req.json();
 
+    // Team Initial : liste privée strictement réservée au gérant administrateur.
+    // Les invitations autorisées sont définies par ei_invitations_lecture, jamais par le client.
+    if (body.action === "list_team_initial") {
+      const { data: invites, error: inviteError } = await admin.from("ei_invitations_lecture")
+        .select("email,nom_affiche").eq("actif", true).order("nom_affiche").limit(150);
+      if (inviteError) return reply(500, { error: "Impossible de charger la liste de la Team Initial." });
+      const users: Array<{ id: string; email?: string; last_sign_in_at?: string; email_confirmed_at?: string; confirmed_at?: string; invited_at?: string }> = [];
+      for (let page = 1; page <= 100; page++) {
+        const { data, error } = await admin.auth.admin.listUsers({ page, perPage: 1000 });
+        if (error) return reply(500, { error: "Impossible de vérifier les comptes Team Initial." });
+        const batch = data?.users || [];
+        users.push(...batch);
+        if (batch.length < 1000) break;
+      }
+      const usersByEmail = new Map(users.filter(u => u.email).map(u => [u.email!.toLowerCase(), u]));
+      const ids = (invites || []).map(i => usersByEmail.get(i.email)?.id).filter((id): id is string => Boolean(id));
+      const { data: links, error: linkError } = ids.length
+        ? await admin.from("associes").select("user_id,actif,type_compte").in("user_id", ids)
+        : { data: [], error: null };
+      if (linkError) return reply(500, { error: "Impossible de vérifier les droits de la Team Initial." });
+      const accessById = new Map((links || []).map(a => [a.user_id, a]));
+      const membres = (invites || []).map(i => {
+        const account = usersByEmail.get(i.email);
+        const access = account ? accessById.get(account.id) : null;
+        const etat = !account ? "pret_a_inviter"
+          : !access ? "compte_incomplet"
+          : !access.actif ? "suspendu"
+          : account.last_sign_in_at ? "connecte"
+          : (account.email_confirmed_at || account.confirmed_at) ? "confirme"
+          : "invitation_envoyee";
+        return {
+          nom_affiche: i.nom_affiche, email: i.email,
+          type_compte: access?.type_compte || (account ? "non_rattache" : null),
+          etat,
+        };
+      });
+      return reply(200, { ok: true, membres });
+    }
+
+    if (body.action === "invite_team_initial") {
+      const email = String(body.email || "").trim().toLowerCase();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.length > 254)
+        return reply(400, { error: "Adresse d'invitation invalide." });
+      const { data: invitation, error: invitationError } = await admin.from("ei_invitations_lecture")
+        .select("email,nom_affiche").eq("email", email).eq("actif", true).maybeSingle();
+      if (invitationError || !invitation)
+        return reply(403, { error: "Personne non autorisée dans la liste Team Initial." });
+      const { data: launchReady, error: launchError } = await admin.rpc("ei_lancement_pret");
+      if (launchError || launchReady !== true)
+        return reply(503, { error: "Invitations suspendues pendant la vérification de la sécurité." });
+      for (let page = 1; page <= 100; page++) {
+        const { data, error } = await admin.auth.admin.listUsers({ page, perPage: 1000 });
+        if (error) return reply(500, { error: "Impossible de vérifier les comptes existants." });
+        const batch = data?.users || [];
+        if (batch.some(u => u.email?.toLowerCase() === email))
+          return reply(409, { error: "Ce compte existe déjà. Utilisez la relance sécurisée de l'administration si nécessaire." });
+        if (batch.length < 1000) break;
+      }
+      const { data: created, error: creationError } = await admin.auth.admin.inviteUserByEmail(email, {
+        redirectTo: "https://fiches.ecurie-initial.com/application/connexion/",
+      });
+      if (creationError || !created.user)
+        return reply(502, { error: "Envoi de l'invitation refusé par le service de messagerie." });
+      const { error: saveError } = await admin.from("associes").insert({
+        user_id: created.user.id, nom_affiche: invitation.nom_affiche, actif: true,
+        administrateur: false, type_compte: "observateur",
+      });
+      if (saveError)
+        return reply(500, { error: "Invitation envoyée, mais droits non enregistrés. Vérifiez ce compte avant toute nouvelle invitation." });
+      return reply(200, { ok: true, message: "Invitation Team Initial envoyée : accès en lecture seule." });
+    }
+
     // Répertoire interne de référence : fiches préexistantes, sans création de compte ni e-mail.
     // Accessible uniquement après vérification du JWT et du rôle administrateur ci-dessus.
     // Statistiques privées des inscriptions et ouvertures, réservées à l'administrateur authentifié.
