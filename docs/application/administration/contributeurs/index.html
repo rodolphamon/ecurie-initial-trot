@@ -240,7 +240,7 @@ async function loadTeamInitial(){
    box.append(teamElt('h2',member.nom_affiche));
    const facts=teamElt('div');facts.className='person-facts';
    const functionLine=teamElt('p');functionLine.append(teamElt('strong','Fonction : '),document.createTextNode('Communication et réseaux sociaux'));
-   const accessLine=teamElt('p');accessLine.append(teamElt('strong','Autorisations : '),document.createTextNode('Consultation uniquement, sans modification ni publication'));
+   const accessLine=teamElt('p');accessLine.append(teamElt('strong','Autorisations : '),document.createTextNode('Vérification des accès…'));
    facts.append(functionLine,accessLine);box.append(facts);
    if(member.type_compte && member.type_compte!=='observateur'){
     const warning=teamElt('p',"Attention : ce compte possède un autre rôle. Vérifiez les droits avant toute action.");
@@ -259,9 +259,9 @@ async function loadTeamInitial(){
     });
     const buttonWrap=teamElt('p');buttonWrap.className='person-action';buttonWrap.append(button);box.append(buttonWrap);
    }else if(member.etat==='connecte'){
-    box.append(teamElt('p',"Compte déjà connecté. Accès en lecture seule actif."));
+    box.append(teamElt('p',"Compte déjà connecté."));
    }else if(member.etat==='confirme'){
-    box.append(teamElt('p',"Compte confirmé. Accès en lecture seule disponible."));
+    box.append(teamElt('p',"Compte confirmé."));
    }else if(member.etat==='suspendu'){
     const warning=teamElt('p',"Compte suspendu : réactivation à effectuer dans l'administration des associés.");
     warning.className='warning';box.append(warning);
@@ -270,6 +270,27 @@ async function loadTeamInitial(){
     warning.className='warning';box.append(warning);
    }else{
     box.append(teamElt('p',"Invitation déjà envoyée. Vérifiez la boîte de réception et les courriers indésirables."));
+   }
+   // Ces commandes sont disponibles sur tout compte Team Initial déjà créé,
+   // y compris lorsqu'il a été suspendu : pas besoin de réinvitation.
+   if(member.user_id && norm(member.nom_affiche)==='EMILIE MARECHAL'){
+    const actions=teamElt('div');actions.className='access-actions';
+    const editBtn=teamElt('button','⚙️ Modifier les accès');editBtn.type='button';editBtn.className='secondary';editBtn.disabled=true;
+    const toggleBtn=teamElt('button','Vérification…');toggleBtn.type='button';toggleBtn.disabled=true;
+    const editor=teamElt('div');editor.className='access-editor';editor.hidden=true;
+    const status=teamElt('p');status.className='status';status.setAttribute('role','status');status.setAttribute('aria-live','polite');
+    const target={candidate:{user_id:member.user_id},name:member.nom_affiche,rights:null,statusEl:status,toggleBtn};
+    const sync=async()=>{
+     const rights=await getRights(target);
+     accessLine.replaceChildren(teamElt('strong','Autorisations : '),
+      document.createTextNode(summary(rights)));
+     toggleBtn.textContent=rights.account_active?'Désactiver les accès':'Réactiver les accès';
+     editBtn.disabled=false;toggleBtn.disabled=false;
+    };
+    editBtn.addEventListener('click',()=>editRights(target,editor,sync));
+    toggleBtn.addEventListener('click',()=>toggleAccount(target,sync));
+    actions.append(editBtn,toggleBtn);box.append(actions,editor,status);
+    try{await sync()}catch(error){status.textContent='Droits indisponibles : '+(error.message||'Erreur inconnue');}
    }
    container.append(box);
   }
