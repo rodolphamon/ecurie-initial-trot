@@ -59,7 +59,7 @@ serve(async (req) => {
           : (account.email_confirmed_at || account.confirmed_at) ? "confirme"
           : "invitation_envoyee";
         return {
-          nom_affiche: i.nom_affiche, email: i.email,
+          nom_affiche: i.nom_affiche, email: i.email, user_id: account?.id || null,
           type_compte: access?.type_compte || (account ? "non_rattache" : null),
           etat,
         };
