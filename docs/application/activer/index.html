@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="fr" translate="no">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="theme-color" content="#171717">
+<title>Activer mon accès · Écurie Initial</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f6f4f1;color:#222;font:16px/1.5 Arial,Helvetica,sans-serif}
+header{background:#171717;color:white;padding:18px;text-align:center;font-size:23px;font-weight:800}
+header em{font-style:normal;color:#f47721}
+main{max-width:520px;margin:32px auto;padding:0 16px}
+section{border-radius:15px;background:#fff;padding:25px 22px;border:1px solid #e5ded8;box-shadow:0 4px 15px #0000000b}
+h1{font-size:23px;line-height:1.25;margin:0 0 14px}
+p{margin:12px 0}
+label{display:block;margin:16px 0 6px;font-weight:700}
+input{width:100%;font-size:16px;padding:14px;border:1px solid #aaa;border-radius:8px}
+button{display:block;width:100%;border:0;border-radius:10px;padding:15px;background:#f47721;color:#171717;font-size:17px;font-weight:800;cursor:pointer;margin-top:18px}
+button:disabled{opacity:.65}
+a{color:#a34b10}
+.note{font-size:14px;color:#555}
+#error{color:#a52b15;font-weight:600;white-space:pre-line}
+#success{color:#236b37;font-weight:700}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<header>ÉCURIE <em>I</em>NITIAL</header>
+<main><section>
+<h1>Activer votre accès en toute sécurité</h1>
+<p>Pour protéger votre invitation, le lien n'est pas utilisé automatiquement. Appuyez vous-même sur le bouton ci-dessous pour continuer.</p>
+<p class="note">Si votre messagerie vérifie les liens à votre place, cette étape évite qu'elle consomme votre invitation.</p>
+<div id="confirm">
+<button id="verify" type="button">Continuer et vérifier mon lien</button>
+</div>
+<form id="passwordForm" hidden>
+<p>Votre lien a été vérifié. Choisissez maintenant votre mot de passe personnel.</p>
+<label for="password">Mot de passe (12 caractères minimum)</label>
+<input id="password" type="password" minlength="12" autocomplete="new-password" required>
+<label for="confirmPassword">Confirmer le mot de passe</label>
+<input id="confirmPassword" type="password" minlength="12" autocomplete="new-password" required>
+<button id="save" type="submit">Enregistrer mon mot de passe</button>
+</form>
+<p id="error" role="alert" hidden></p>
+<p id="success" role="status" hidden></p>
+<p class="note"><a href="../connexion/">Retour à la connexion</a></p>
+</section></main>
+<script type="module">
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+const db=createClient('https://yeecwaaizmvrhwobukfa.supabase.co','sb_publishable_xUy2EJA3u3cKWl8BB4GNPQ_qhV9Pes3',{auth:{detectSessionInUrl:false}});
+const $=id=>document.getElementById(id);
+const query=new URLSearchParams(window.location.search);
+const type=query.get('type');
+const tokenHash=query.get('token_hash');
+const validType=type==='recovery'||type==='invite';
+const validToken=typeof tokenHash==='string'&&/^[a-f0-9]{40,128}$/i.test(tokenHash);
+const error=t=>{$('error').textContent=t;$('error').hidden=false;$('success').hidden=true;};
+if(!validType||!validToken){$('verify').disabled=true;error('Ce lien est incomplet. Revenez à la page de connexion pour demander un nouveau lien.');}
+$('verify').addEventListener('click',async()=>{
+ if(!validType||!validToken)return;
+ $('verify').disabled=true;$('verify').textContent='Vérification…';$('error').hidden=true;
+ try{
+  const {data,error:verifyError}=await db.auth.verifyOtp({token_hash:tokenHash,type});
+  if(verifyError||!data?.session)throw new Error('Lien déjà utilisé ou expiré.');
+  // La vérification vient seulement de ce clic humain, jamais du simple chargement de la page.
+  window.history.replaceState({},'',window.location.pathname);
+  $('confirm').hidden=true;$('passwordForm').hidden=false;
+  $('password').focus({preventScroll:true});
+ }catch(_){
+  error('Ce lien a expiré ou a déjà été utilisé. Depuis la page de connexion, demandez un nouveau lien de création de mot de passe.');
+  $('verify').disabled=false;$('verify').textContent='Réessayer';
+ }
+});
+$('passwordForm').addEventListener('submit',async event=>{
+ event.preventDefault();
+ const pass=$('password').value;
+ if(pass.length<12||pass!==$('confirmPassword').value){error('Les deux mots de passe doivent être identiques et comporter au moins 12 caractères.');return;}
+ $('save').disabled=true;$('save').textContent='Enregistrement…';$('error').hidden=true;
+ try{
+  const {error:saveError}=await db.auth.updateUser({password:pass});
+  if(saveError)throw saveError;
+  $('passwordForm').hidden=true;
+  $('success').hidden=false;
+  $('success').textContent='Mot de passe enregistré ! Vous pouvez maintenant ouvrir votre application.';
+  const link=document.createElement('a');link.href='../';link.textContent='Accéder à l’application';
+  $('success').append(document.createTextNode(' '),link);
+ }catch(_){error('Enregistrement impossible. Réessayez sans demander une nouvelle invitation.');}
+ finally{$('save').disabled=false;$('save').textContent='Enregistrer mon mot de passe';}
+});
+</script>
+</body>
+</html>
