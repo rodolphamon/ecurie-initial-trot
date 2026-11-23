@@ -30,6 +30,11 @@ function parisNow(d: Date) {
   const parts=Object.fromEntries(fmt.formatToParts(d).map(x=>[x.type,x.value]));
   return { date: parts.year+"-"+parts.month+"-"+parts.day, hour:Number(parts.hour), minute:Number(parts.minute) };
 }
+// Silence des notifications entre 22 h 30 et 8 h 00 (heure de Paris, été/hiver).
+function isSilentPeriodParis(date: Date = new Date()): boolean {
+  const {hour,minute}=parisNow(date);
+  return hour < 8 || hour > 22 || (hour === 22 && minute >= 30);
+}
 function parisDeparture(date: string, heure?: string): string|null {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(date) || !/^\d{2}:\d{2}$/.test(heure||"")) return null;
   const dt = new Date(date+"T12:00:00Z");
@@ -447,6 +452,12 @@ async function run() {
         expires_at:iso(now+60*60000)});counts.alerts++;
     }
   }
+  // La collecte des événements continue toute la nuit ; seules les livraisons sont différées.
+  // Les alertes expirées ne seront pas rattrapées à 8 h.
+  if(isSilentPeriodParis()){
+    console.log("[PUSH] Envois suspendus de 22h30 à 08h00 (Europe/Paris).");
+    return {...counts,quietHours:true};
+  }
   // Livraison : ne jamais envoyer à un appareil nouvellement abonné une vieille alerte.
   const {data:alerts,error:alertsErr}=await sb.from("ei_push_alerts").select("*")
     .gt("expires_at",iso(now)).order("created_at",{ascending:true}).limit(100);
@@ -597,6 +608,8 @@ async function run() {
         };
       }
       if(!message)continue;
+      // Le traitement peut chevaucher 22h30 : vérifier à nouveau avant chaque appareil.
+      if(isSilentPeriodParis())return {...counts,quietHours:true};
       const {data:prev,error:prevErr}=await sb.from("ei_push_deliveries")
         .select("state,attempts,updated_at").eq("alert_id",alert.id).eq("subscription_id",sub.id).maybeSingle();
       if(prevErr)throw prevErr;
@@ -624,6 +637,19 @@ async function run() {
           .select("id").single();
         if(receiptError)console.warn("Suivi Push indisponible",receiptError.code);
         const measuredMessage=receipt?.id ? {...message,receipt_id:receipt.id}:message;
+        // Contrôle final juste avant l'appel au fournisseur Push. Libérer la réservation
+        // si l'heure de silence a commencé pendant les opérations en base.
+        if(isSilentPeriodParis()){
+          if(receipt?.id){
+            const {error:receiptDeleteError}=await sb.from("ei_push_receipts").delete().eq("id",receipt.id);
+            if(receiptDeleteError)throw receiptDeleteError;
+          }
+          const {error:releaseError}=await sb.from("ei_push_deliveries").delete()
+            .eq("alert_id",alert.id).eq("subscription_id",sub.id).eq("state","sending");
+          if(releaseError)throw releaseError;
+          counts.attempts--;
+          return {...counts,quietHours:true};
+        }
         const delivered=await sendPushNotification(
           {endpoint:sub.endpoint,keys:{p256dh:sub.p256dh,auth:sub.auth_secret}},
           measuredMessage,vapid,pushOptions
