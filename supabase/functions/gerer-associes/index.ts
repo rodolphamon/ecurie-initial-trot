@@ -100,6 +100,85 @@ serve(async (req) => {
       return reply(200, { ok: true, message: "Invitation Team Initial envoyée : accès en lecture seule." });
     }
 
+
+    // Administration ciblée des accès Team Initial : 3 collaborateurs nommément autorisés.
+    // L'administrateur est déjà vérifié plus haut ; aucune action de ce bloc ne permet de modifier son propre compte.
+    if (body.action === "get_team_rights" || body.action === "set_team_rights") {
+      const id = String(body.user_id || "");
+      if (!/^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/i.test(id) || id === user.id)
+        return reply(400, { error: "Compte Team Initial invalide." });
+      const { data: target, error: targetError } = await admin.from("associes")
+        .select("user_id,nom_affiche,actif,administrateur,type_compte").eq("user_id", id).maybeSingle();
+      const normalized = String(target?.nom_affiche || "").normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "").replace(/\s+/g, " ").toUpperCase().trim();
+      if (targetError || !target || target.administrateur ||
+          !new Set(["ARNAUD PUSKAS", "NICOLAS BARRE", "EMILIE MARECHAL"]).has(normalized))
+        return reply(403, { error: "Modification limitée aux trois membres de la Team Initial." });
+
+      const loadRights = async () => {
+        const [sport, fiches] = await Promise.all([
+          admin.from("ei_contributeurs")
+            .select("actif,engagements,gains,valeurs,records").eq("user_id", id).maybeSingle(),
+          admin.from("ei_droits_photos_chevaux").select("user_id").eq("user_id", id).maybeSingle(),
+        ]);
+        if (sport.error || fiches.error) throw new Error("Lecture des autorisations impossible.");
+        return {
+          account_active: target.actif,
+          engagements: Boolean(sport.data?.actif && sport.data.engagements),
+          gains: Boolean(sport.data?.actif && sport.data.gains),
+          valeurs: Boolean(sport.data?.actif && sport.data.valeurs),
+          records: Boolean(sport.data?.actif && sport.data.records),
+          fiches: Boolean(fiches.data),
+        };
+      };
+      if (body.action === "get_team_rights") {
+        try { return reply(200, { ok: true, nom: target.nom_affiche, rights: await loadRights() }); }
+        catch { return reply(500, { error: "Impossible de consulter les droits de ce membre." }); }
+      }
+
+      const keys = ["account_active", "engagements", "gains", "valeurs", "records", "fiches"] as const;
+      if (keys.some(key => typeof body[key] !== "boolean"))
+        return reply(400, { error: "Sélection des autorisations invalide." });
+      const sportsEnabled = Boolean(body.engagements || body.gains || body.valeurs || body.records);
+      const { data: existingSport, error: sportLookupError } = await admin.from("ei_contributeurs")
+        .select("user_id").eq("user_id", id).maybeSingle();
+      if (sportLookupError) return reply(500, { error: "Droits sportifs indisponibles." });
+      if (existingSport || sportsEnabled) {
+        const sports = {
+          user_id: id, actif: sportsEnabled, engagements: body.engagements,
+          gains: body.gains, valeurs: body.valeurs, records: body.records,
+        };
+        const writeSport = existingSport
+          ? await admin.from("ei_contributeurs").update(sports).eq("user_id", id).select("user_id").single()
+          : await admin.from("ei_contributeurs").insert({ ...sports, acces_avant_ouverture: false }).select("user_id").single();
+        if (writeSport.error) {
+          console.error("Team Initial sports", writeSport.error.code);
+          return reply(500, { error: "Impossible d'enregistrer les droits sportifs." });
+        }
+      }
+      const { data: existingFiches, error: photoLookupError } = await admin.from("ei_droits_photos_chevaux")
+        .select("user_id").eq("user_id", id).maybeSingle();
+      if (photoLookupError) return reply(500, { error: "Droits fiches indisponibles, vérifiez les autorisations sportives." });
+      if (body.fiches && !existingFiches) {
+        const { error } = await admin.from("ei_droits_photos_chevaux").insert({ user_id: id });
+        if (error) return reply(500, { error: "Impossible d'accorder l'accès aux fiches." });
+      } else if (!body.fiches && existingFiches) {
+        const { error } = await admin.from("ei_droits_photos_chevaux").delete().eq("user_id", id);
+        if (error) return reply(500, { error: "Impossible de retirer l'accès aux fiches." });
+      }
+      if (target.actif !== body.account_active) {
+        const { error } = await admin.from("associes").update({ actif: body.account_active }).eq("user_id", id);
+        if (error) return reply(500, { error: "Impossible de modifier l'état du compte." });
+      }
+      try {
+        const rights = await loadRights();
+        rights.account_active = body.account_active;
+        return reply(200, { ok: true, rights, message: "Autorisations enregistrées." });
+      } catch {
+        return reply(500, { error: "Autorisations modifiées mais vérification impossible. Rechargez la page." });
+      }
+    }
+
     // Répertoire interne de référence : fiches préexistantes, sans création de compte ni e-mail.
     // Accessible uniquement après vérification du JWT et du rôle administrateur ci-dessus.
     // Statistiques privées des inscriptions et ouvertures, réservées à l'administrateur authentifié.
