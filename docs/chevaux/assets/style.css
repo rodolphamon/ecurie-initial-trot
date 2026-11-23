@@ -416,3 +416,19 @@
 @media(max-width:350px){
   .horse-card-line-main h2{font-size:13px}
 }
+
+
+/* Statut d'engagement directement sous la date, y compris sur écran étroit. */
+.perf-engagements .ei-engagement-date-cell{min-width:142px;vertical-align:middle}
+.ei-engagement-date{display:block;white-space:nowrap}
+.ei-engagement-status{display:table;width:max-content;max-width:100%;border-radius:6px;
+  padding:3px 9px;margin-top:6px;font-size:11px;line-height:1.4;font-weight:800;
+  letter-spacing:.15px;white-space:nowrap;color:#fff}
+.ei-engagement-status-engage{background:#242424}
+.ei-engagement-status-declare{background:#2166bc}
+.ei-engagement-status-partant{background:#168147}
+.ei-engagement-status-forfait{background:#c12e2e}
+@media(max-width:590px){
+ .perf-engagements th,.perf-engagements td{padding:12px 11px}
+ .perf-engagements .ei-engagement-date-cell{min-width:131px}
+}
