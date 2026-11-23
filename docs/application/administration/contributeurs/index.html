@@ -22,6 +22,18 @@ button:disabled{opacity:.5}a{color:#a94b0d}.muted{color:#635d58}[hidden]{display
 .person-card button{width:100%;min-height:46px;margin:0}
 .person-card .status:not(:empty){margin:10px 0 0}
 @media(max-width:480px){.card{padding:17px}.person-card{padding:17px}button{max-width:100%}}
+
+.person-card .access-actions{display:grid;gap:9px;margin:18px 0 0}
+.person-card .access-actions button{width:100%;margin:0}
+.person-card button.secondary{background:#f0e9e1;color:#24211e;border:1px solid #d7c7b7}
+.access-editor{margin-top:13px;padding:14px;border:1px solid #e0d4c8;border-radius:11px;background:#fffaf6}
+.access-editor h3{margin:0 0 9px;font-size:17px}
+.access-editor .option{display:flex;align-items:flex-start;gap:10px;margin:10px 0;line-height:1.35;cursor:pointer}
+.access-editor .option input{width:19px;height:19px;min-width:19px;accent-color:#f47721;margin:1px 0 0}
+.access-editor .option span{font-size:15px}
+.access-editor .editor-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:14px}
+.access-editor .editor-actions button{margin:0;font-size:14px;min-width:0;padding:10px 6px}
+.access-editor .note{font-size:13px;color:#625b55;margin:10px 0}
 </style>
 </head><body>
 <header><strong>ÉCURIE <span>INITIAL</span></strong><div>Équipe de l'Écurie</div></header>
@@ -55,7 +67,7 @@ button:disabled{opacity:.5}a{color:#a94b0d}.muted{color:#635d58}[hidden]{display
 <p><span class="role" id="arnaudRole"></span></p>
 <p id="arnaudFichesLine" hidden>🐎 <span class="role" id="arnaudFiches">Vérification…</span></p>
 </div>
-<p class="person-action"><button type="button" id="arnaudToggle"></button></p>
+<div class="access-actions"><button type="button" class="secondary" id="arnaudEdit">⚙️ Modifier les accès</button><button type="button" id="arnaudToggle"></button></div><div id="arnaudEditor" class="access-editor" hidden></div>
 </div>
 <p id="arnaudStatus" class="status" role="status" aria-live="polite"></p>
 </section>
@@ -69,7 +81,7 @@ button:disabled{opacity:.5}a{color:#a94b0d}.muted{color:#635d58}[hidden]{display
 <p><span class="role" id="nicolasRole"></span></p>
 <p id="nicolasFichesLine" hidden>🐎 <span class="role" id="nicolasFiches">Vérification…</span></p>
 </div>
-<p class="person-action"><button type="button" id="nicolasToggle"></button></p>
+<div class="access-actions"><button type="button" class="secondary" id="nicolasEdit">⚙️ Modifier les accès</button><button type="button" id="nicolasToggle"></button></div><div id="nicolasEditor" class="access-editor" hidden></div>
 </div>
 <p id="nicolasStatus" class="status" role="status" aria-live="polite"></p>
 </section>
@@ -89,58 +101,102 @@ const targets=[
  {key:'arnaud',name:'Arnaud PUSKAS',search:'%PUSKAS%',normalized:'ARNAUD PUSKAS',candidate:null,role:null},
  {key:'nicolas',name:'Nicolas BARRÉ',search:'%BARR%',normalized:'NICOLAS BARRE',candidate:null,role:null}
 ];
-async function refresh(target){
- const {data,error}=await db.from('ei_contributeurs')
-   .select('user_id,actif,engagements,gains,valeurs,records,acces_avant_ouverture')
-   .eq('user_id',target.candidate.user_id).maybeSingle();
- if(error)throw error;
- target.role=data;
- const rights=await db.from('ei_droits_photos_chevaux').select('user_id').eq('user_id',target.candidate.user_id).maybeSingle();
- const fichesLine=$(target.key+'FichesLine');
- fichesLine.hidden=!rights.error&&!rights.data;
- $(target.key+'Fiches').textContent=rights.error?'Vérification des fiches indisponible':'Ajout de chevaux, modification des fiches, entraîneurs, origines et photos';
- const complete=data?.actif&&data.engagements&&data.gains&&data.valeurs&&data.records;
- $(target.key+'Role').textContent=complete
-   ?'Engagements, gains, valeurs et records'
-   :data?.actif?'Autorisations sportives incomplètes':'Contributeur désactivé';
- $(target.key+'Toggle').textContent=data?.actif?'Désactiver le rôle Contributeur':'Activer le rôle Contributeur';
- $(target.key+'Ready').hidden=false;
+const accessFields=[
+ ['account_active',"Accès à l'application (compte actif)"],
+ ['engagements','Modifier les engagements et partants'],
+ ['gains','Modifier les gains'],
+ ['valeurs','Modifier les valeurs handicap (galop)'],
+ ['records','Modifier les records (trot)'],
+ ['fiches','Ajouter des chevaux, modifier les fiches et photos']
+];
+function summary(rights){
+ if(!rights.account_active)return "Compte suspendu — aucun accès à l'application";
+ const granted=accessFields.slice(1).filter(([key])=>rights[key]).map(([,label])=>label);
+ return granted.length?granted.join(' · '):"Consultation uniquement — aucune modification autorisée";
 }
-async function toggle(target){
- if(!target.candidate)return;
- const btn=$(target.key+'Toggle');btn.disabled=true;
- $(target.key+'Status').textContent='Enregistrement…';
+async function getRights(target){
+ const response=await teamAction({action:'get_team_rights',user_id:target.candidate.user_id});
+ target.rights=response.rights;
+ return response.rights;
+}
+function setStatus(target,message){target.statusEl.textContent=message;}
+function editRights(target,host,afterSave){
+ if(!host.hidden){host.hidden=true;return}
+ const rights=target.rights;
+ if(!rights){setStatus(target,"Droits indisponibles, actualisez la page.");return}
+ host.replaceChildren();
+ const title=teamElt('h3','Autorisations de '+target.name);host.append(title);
+ const form=document.createElement('form');
+ const entries=new Map();
+ for(const [key,label] of accessFields){
+  const row=teamElt('label');row.className='option';
+  const input=document.createElement('input');input.type='checkbox';input.checked=Boolean(rights[key]);input.name=key;
+  row.append(input,teamElt('span',label));form.append(row);entries.set(key,input);
+ }
+ const note=teamElt('p',"Décocher une autorisation retire immédiatement ce droit. La publication des actualités reste réservée à l'administration.");
+ note.className='note';form.append(note);
+ const actions=teamElt('div');actions.className='editor-actions';
+ const cancel=teamElt('button','Annuler');cancel.type='button';cancel.className='secondary';
+ cancel.addEventListener('click',()=>{host.hidden=true;setStatus(target,'')});
+ const save=teamElt('button','Enregistrer');save.type='submit';
+ actions.append(cancel,save);form.append(actions);host.append(form);host.hidden=false;
+ form.addEventListener('submit',async event=>{
+  event.preventDefault();
+  const changes={};
+  for(const [key,input] of entries)changes[key]=input.checked;
+  if(!changes.account_active&&rights.account_active&&!confirm("Suspendre tous les accès de "+target.name+" à l'application ?"))return;
+  save.disabled=true;cancel.disabled=true;setStatus(target,'Enregistrement des autorisations…');
+  try{
+   await teamAction({action:'set_team_rights',user_id:target.candidate.user_id,...changes});
+   await afterSave();
+   host.hidden=true;setStatus(target,'Autorisations enregistrées pour '+target.name+'.');
+  }catch(error){
+   setStatus(target,'Enregistrement refusé : '+(error.message||'Erreur inconnue')+'. Rechargez avant de réessayer.');
+  }finally{save.disabled=false;cancel.disabled=false}
+ });
+}
+async function toggleAccount(target,afterSave){
+ if(!target.rights)return;
+ const next=!target.rights.account_active;
+ if(!confirm((next?"Réactiver l'accès à l'application pour ":"Suspendre tous les accès à l'application pour ")+target.name+" ?"))return;
+ setStatus(target,'Mise à jour du compte…');
+ target.toggleBtn.disabled=true;
  try{
-  const shouldActivate=!target.role?.actif;
-  const result=shouldActivate
-   ?await db.from('ei_contributeurs').upsert({
-      user_id:target.candidate.user_id,actif:true,engagements:true,gains:true,
-      valeurs:true,records:true,acces_avant_ouverture:true
-    },{onConflict:'user_id'}).select('user_id').single()
-   :await db.from('ei_contributeurs').update({actif:false})
-      .eq('user_id',target.candidate.user_id).select('user_id').single();
-  if(result.error)throw result.error;
-  await refresh(target);
-  $(target.key+'Status').textContent=shouldActivate
-    ?'Droits Contributeur activés pour '+target.name+'.'
-    :'Droits Contributeur désactivés pour '+target.name+'.';
- }catch(e){
-  $(target.key+'Status').textContent='Modification refusée : '+(e.message||'erreur inconnue');
- }finally{btn.disabled=false}
+  await teamAction({action:'set_team_rights',user_id:target.candidate.user_id,
+   ...target.rights,account_active:next});
+  await afterSave();
+  setStatus(target,next?'Compte réactivé.':'Compte suspendu sans suppression de ses autorisations.');
+ }catch(error){setStatus(target,'Modification refusée : '+(error.message||'Erreur inconnue'))}
+ finally{target.toggleBtn.disabled=false}
+}
+async function refresh(target){
+ const rights=await getRights(target);
+ const sport=accessFields.slice(1,5).filter(([key])=>rights[key]).map(([,label])=>label);
+ $(target.key+'Role').textContent=rights.account_active
+  ?sport.length?sport.join(' · '):'Aucun droit sportif actif'
+  :'Compte suspendu';
+ const fichesLine=$(target.key+'FichesLine');
+ fichesLine.hidden=!rights.fiches;
+ $(target.key+'Fiches').textContent='Ajout de chevaux, modification des fiches, entraîneurs, origines et photos';
+ target.toggleBtn.textContent=rights.account_active?"Désactiver les accès":"Réactiver les accès";
+ $(target.key+'Ready').hidden=false;
 }
 async function loadContributor(target){
  const key=target.key;
+ target.statusEl=$(key+'Status');
+ target.toggleBtn=$(key+'Toggle');
  try{
   const {data:members,error}=await db.from('associes')
-    .select('user_id,nom_affiche,actif').ilike('nom_affiche',target.search);
+   .select('user_id,nom_affiche,actif').ilike('nom_affiche',target.search);
   if(error)throw error;
-  const matches=(members||[]).filter(a=>a.actif&&norm(a.nom_affiche)===target.normalized);
+  const matches=(members||[]).filter(a=>norm(a.nom_affiche)===target.normalized);
   if(matches.length!==1){$(key+'Missing').hidden=false;return}
   target.candidate=matches[0];
   await refresh(target);
-  $(key+'Toggle').addEventListener('click',()=>toggle(target));
- }catch(e){
-  $(key+'Status').textContent='Impossible de vérifier ses droits : '+(e.message||'erreur inconnue');
+  target.toggleBtn.addEventListener('click',()=>toggleAccount(target,()=>refresh(target)));
+  $(key+'Edit').addEventListener('click',()=>editRights(target,$(key+'Editor'),()=>refresh(target)));
+ }catch(error){
+  setStatus(target,'Impossible de vérifier ses droits : '+(error.message||'erreur inconnue'));
  }finally{$(key+'Loading').hidden=true}
 }
 
