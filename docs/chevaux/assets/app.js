@@ -12,6 +12,15 @@ const horseAge=p=>{const born=Number(p.birth_year),now=Number(currentParis().sli
 // Affichage du classement : de 1re à 7e, puis NP = non placé.
 const displayRank=v=>{const raw=String(v||'').trim(),clean=normalizeSearch(raw),m=raw.match(/^(\d+)\s*(?:er|re|e|eme|ème)?$/i);return (m&&Number(m[1])>7)||clean==='non place'||clean==='non placee'?'NP':raw;};
 const horseSex=p=>['F','H','M'].includes(p.sex)?p.sex:null;
+// Statuts des engagements : toujours afficher le statut enregistré, sans l'inférer.
+function engagementStatus(entry,sex){
+  const raw=normalizeSearch(entry?.statut||entry?.status||'').replace(/\s+/g,'');
+  const kind=({engage:'engage',engagee:'engage',declare:'declare',declaree:'declare',partant:'partant',partante:'partant',forfait:'forfait'})[raw];
+  if(!kind)return null;
+  const feminine=sex==='F';
+  const label=kind==='forfait'?'Forfait':kind==='engage'?(feminine?'Engagée':'Engagé'):kind==='declare'?(feminine?'Déclarée':'Déclaré'):(feminine?'Partante':'Partant');
+  return {kind,label};
+}
 const sexNames={F:'Femelle',H:'Hongre',M:'Mâle'};
 const silkName=p=>p.casaque==='galop'?'casaque-galop.svg':p.casaque==='orange'?'casaque-orange.svg':'casaque-blanche.svg';
 const silk=p=>base+'../assets/'+silkName(p);
@@ -334,7 +343,15 @@ function horse(s){
   const valueLabel=isGalop?(/obstacle/i.test(p.discipline||'')?'Valeurs handicap plat / obstacle':'Valeur handicap'):'Record';
   const gains=money(d.gains);
   const perf=(s.editor.performances[id]||[]).slice().sort((a,b)=>b.date.localeCompare(a.date));
-  const eng=(s.editor.engagements[id]||[]).filter(x=>x.date+'T'+(x.heure||'23:59')>=currentParis()).sort((a,b)=>(a.date+(a.heure||'23:59')).localeCompare(b.date+(b.heure||'23:59')));
+  // Les forfaits restent visibles jusqu'à J-3, puis disparaissent dès J-2.
+  const today=currentParis().slice(0,10);
+  const limit=new Date(today+'T00:00:00Z');
+  limit.setUTCDate(limit.getUTCDate()+2);
+  const twoDaysAhead=limit.toISOString().slice(0,10);
+  const eng=(s.editor.engagements[id]||[]).filter(x=>
+    x?.date && x.date+'T'+(x.heure||'23:59')>=currentParis()
+    && (engagementStatus(x,sex)?.kind!=='forfait'||x.date>twoDaysAhead)
+  ).sort((a,b)=>(a.date+(a.heure||'23:59')).localeCompare(b.date+(b.heure||'23:59')));
   const tr=perf.length
     ?'<div class="table-wrap"><table class="perf-table perf-results"><thead><tr><th>Date</th><th>Hippodrome</th><th>Rang</th><th>Driver / Jockey</th><th>Replay</th></tr></thead><tbody>'+perf.map(x=>{
       const replay=s.replayIndex[x.date+'|'+normalizeSearch(p.name)];
@@ -358,16 +375,18 @@ function horse(s){
       return '<tr><td>'+esc(dateFR(x.date))+'</td><td>'+esc(x.hippodrome)+'</td><td><span class="rank" title="'+esc(displayRank(x.rang)==='NP'?'Non placé':'Classement')+'">'+esc(displayRank(x.rang)||'—')+'</span></td><td>'+esc(x.driver||x.jockey||'—')+'</td><td>'+video+'</td></tr>';
     }).join('')+'</tbody></table></div>'
     :'<div class="empty">Aucune performance détaillée renseignée pour le moment.</div>';
-  // Les colonnes d'information de course apparaissent à la déclaration des partants.
-  const hasDeclared=eng.some(x=>x.statut==='declare'||x.statut==='partant');
+  // La date et le statut partagent la première colonne : lisible même sur téléphone.
+  const hasDeclared=eng.some(x=>['declare','partant'].includes(engagementStatus(x,sex)?.kind));
   const te=eng.length
-    ?'<div class="table-wrap"><table class="perf-table"><thead><tr><th>Date</th><th>Hippodrome</th>'+(hasDeclared?'<th>Heure</th>':'')+'<th>Épreuve</th>'+(hasDeclared?'<th>Jockey / Driver</th>':'')+'</tr></thead><tbody>'+eng.map(x=>{
-      const declared=x.statut==='declare'||x.statut==='partant';
-       const cancelled=x.reunion_annulee||(id==='andresy'&&x.date==='2026-11-18'&&/amiens/i.test(x.hippodrome||''));
-      return '<tr><td>'+esc(dateFR(x.date))+'</td><td>'+esc(x.hippodrome)+'</td>'
+    ?'<div class="table-wrap"><table class="perf-table perf-engagements"><thead><tr><th>Date / Statut</th><th>Hippodrome</th>'+(hasDeclared?'<th>Heure</th>':'')+'<th>Épreuve</th>'+(hasDeclared?'<th>Monte</th>':'')+'</tr></thead><tbody>'+eng.map(x=>{
+      const status=engagementStatus(x,sex);
+      const declared=status?.kind==='declare'||status?.kind==='partant';
+      const cancelled=x.reunion_annulee||(id==='andresy'&&x.date==='2026-11-18'&&/amiens/i.test(x.hippodrome||''));
+      const badge=status?'<span class="ei-engagement-status ei-engagement-status-'+status.kind+'" aria-label="'+esc('Statut : '+status.label)+'">'+esc(status.label)+'</span>':'';
+      return '<tr><td class="ei-engagement-date-cell"><span class="ei-engagement-date">'+esc(dateFR(x.date))+'</span>'+badge+'</td><td>'+esc(x.hippodrome)+'</td>'
         +(hasDeclared?'<td><span class="rank">'+esc(declared?(x.heure||'—'):'—')+'</span></td>':'')
         +'<td>'+(cancelled?'<strong style="color:#b42318">RÉUNION ANNULÉE</strong> · ':'')+esc([x.course,x.prix||x.type,x.type_course,x.surface].filter(Boolean).join(' · ')||'Course')+'</td>'
-        +(hasDeclared?'<td>'+esc(declared?(x.driver||x.jockey||'—'):'—')+'</td>':'')+'</tr>';
+        +(hasDeclared?'<td>'+esc(declared?(x.driver||x.jockey||x.monte||'—'):'—')+'</td>':'')+'</tr>';
     }).join('')+'</tbody></table></div>'
     :'<div class="empty">Aucun prochain engagement renseigné.</div>';
   document.title=p.name+' | Écurie Initial';
