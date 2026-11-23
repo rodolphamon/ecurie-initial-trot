@@ -1,0 +1,62 @@
+name: Activer la récupération du mot de passe anti-prélecture
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/activer-recovery-anti-prelecture.yml'
+permissions:
+  contents: read
+concurrency:
+  group: activer-recovery-anti-prelecture
+  cancel-in-progress: false
+jobs:
+  activer:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Vérifier la page et le modèle avant déploiement
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          template=Path('supabase/email-templates/recovery.html').read_text(encoding='utf-8')
+          activation=Path('docs/application/activer/index.html').read_text(encoding='utf-8')
+          assert '{{ .TokenHash }}' in template
+          assert 'application/activer/?token_hash=' in template
+          assert 'type=recovery' in template
+          assert "auth.verifyOtp" in activation
+          assert "addEventListener('click'" in activation
+          print('Modèle et page de validation manuelle conformes.')
+          PY
+      - name: Activer le seul modèle Recovery sur Supabase
+        env:
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+        run: |
+          python - <<'PY'
+          import os, json, pathlib, urllib.request, urllib.error
+          token=os.environ.get('SUPABASE_ACCESS_TOKEN','')
+          if not token:
+              raise SystemExit('ÉCHEC : secret SUPABASE_ACCESS_TOKEN absent ; aucune configuration modifiée.')
+          endpoint='https://api.supabase.com/v1/projects/yeecwaaizmvrhwobukfa/config/auth'
+          html=pathlib.Path('supabase/email-templates/recovery.html').read_text(encoding='utf-8')
+          headers={'Authorization':'Bearer '+token,'Accept':'application/json'}
+          def req(method,payload=None):
+              body=None if payload is None else json.dumps(payload,ensure_ascii=False).encode('utf-8')
+              h={**headers,**({'Content-Type':'application/json'} if body is not None else {})}
+              try:
+                  with urllib.request.urlopen(urllib.request.Request(endpoint,headers=h,data=body,method=method),timeout=35) as r:
+                      return json.load(r)
+              except urllib.error.HTTPError as e:
+                  raise SystemExit(f'ÉCHEC API Supabase {method} : HTTP {e.code} ; contrôle des permissions nécessaire. Aucun secret affiché.')
+          previous=req('GET')
+          if not isinstance(previous,dict):
+              raise SystemExit('Format de configuration inattendu')
+          if previous.get('mailer_templates_recovery_content') != html:
+              req('PATCH',{'mailer_templates_recovery_content':html})
+              print('Modèle de récupération envoyé')
+          active=req('GET')
+          if active.get('mailer_templates_recovery_content') != html:
+              raise SystemExit('ÉCHEC : vérification après enregistrement impossible')
+          print('SUCCÈS : modèle de récupération Supabase activé et relu.')
+          PY
