@@ -189,8 +189,8 @@ async function loadTeamInitial(){
    if(member.type_compte && member.type_compte!=='observateur'){
     const warning=teamElt('p',"Attention : ce compte possède un autre rôle. Vérifiez les droits avant toute action.");
     warning.className='warning';box.append(warning);
-   } else if(member.etat==='pret_a_inviter'||member.etat==='confirme'||member.etat==='connecte'){
-    const button=teamElt('button',member.etat==='pret_a_inviter'?"✉️ Envoyer l'invitation":"✉️ Renvoyer un lien d'accès");
+   } else if(member.etat==='pret_a_inviter'){
+    const button=teamElt('button',"✉️ Envoyer l'invitation");
     button.type='button';
     button.addEventListener('click',async()=>{
      if(!confirm("Envoyer un e-mail d'accès à "+member.nom_affiche+" ("+member.email+") ?"))return;
@@ -202,8 +202,18 @@ async function loadTeamInitial(){
      }catch(error){$('teamStatus').textContent=error.message||"Envoi impossible.";button.disabled=false}
     });
     const buttonWrap=teamElt('p');buttonWrap.className='person-action';buttonWrap.append(button);box.append(buttonWrap);
+   }else if(member.etat==='connecte'){
+    box.append(teamElt('p',"Compte déjà connecté. Accès en lecture seule actif."));
+   }else if(member.etat==='confirme'){
+    box.append(teamElt('p',"Compte confirmé. Accès en lecture seule disponible."));
+   }else if(member.etat==='suspendu'){
+    const warning=teamElt('p',"Compte suspendu : réactivation à effectuer dans l'administration des associés.");
+    warning.className='warning';box.append(warning);
+   }else if(member.etat==='compte_incomplet'){
+    const warning=teamElt('p',"Compte existant sans accès Team Initial configuré. Vérifiez ses droits dans l'administration.");
+    warning.className='warning';box.append(warning);
    }else{
-    box.append(teamElt('p',"Le lien a déjà été envoyé. Vérifiez la boîte de réception et les courriers indésirables."));
+    box.append(teamElt('p',"Invitation déjà envoyée. Vérifiez la boîte de réception et les courriers indésirables."));
    }
    container.append(box);
   }
