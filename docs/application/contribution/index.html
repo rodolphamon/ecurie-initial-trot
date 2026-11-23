@@ -49,7 +49,7 @@ const db=createClient('https://yeecwaaizmvrhwobukfa.supabase.co','sb_publishable
 const $=s=>document.getElementById(s);
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let profiles=[],editor={},trot={},galop={},liveEng={},liveGains={},liveValues={},liveRecords={},liveStatuses={},canStatus=false,canEng=false,canGain=false,canValue=false,canRecord=false,active='eng',events=[],horseId='';
-const fields=[['date','Date','date'],['hippodrome','Hippodrome','text'],['statut','Statut','select'],['heure','Heure de départ','time'],['prix','Prix de la course','text'],['course','Course (ex. R1C5)','text'],['type','Discipline','disciplineSelect'],['type_course','Type de course','courseTypeSelect'],['surface','Surface','surfaceSelect'],['distance','Distance','text'],['numero','N° du cheval','text'],['corde','N° de corde (stalle — galop uniquement)','number'],['driver','Driver (trot)','text'],['jockey','Jockey (galop)','text'],['source_description','Source / justification','text']];
+const fields=[['date','Date','date'],['hippodrome','Hippodrome','text'],['statut','Statut','select'],['heure','Heure de départ','time'],['prix','Prix de la course','text'],['course','Course (ex. R1C5)','text'],['type','Discipline','disciplineSelect'],['type_course','Type de course','courseTypeSelect'],['surface','Surface','surfaceSelect'],['distance','Distance','text'],['numero','N° du cheval','text'],['corde','N° de corde (stalle — galop uniquement)','number'],['monte','Monte','text'],['source_description','Source / justification','text']];
 const statuses=[['engage','Engagé'],['declare','Déclaré partant'],['partant','Partant confirmé'],['non-partant','Non-partant'],['forfait','Forfait'],['elimine','Éliminé'],['qualification','Qualification']];
 const courseTypes=[
  ['','— Non renseigné —'],
@@ -94,8 +94,14 @@ function renderEvents(){
           legacy.textContent=event[key]+' (valeur existante)';input.append(legacy)
         }
       }else{input=document.createElement('input');input.type=type;if(key==='corde'){input.min='1';input.max='40';input.step='1';input.placeholder='Ex. 2';input.inputMode='numeric'}else input.maxLength=key==='source_description'?300:120}
-      input.dataset.field=key;input.value=event[key]??(key==='statut'?'engage':'');
-      input.oninput=()=>{events[index][key]=input.value};input.onchange=()=>{events[index][key]=input.value};
+      input.dataset.field=key;
+      const riderKey=choice()?.casaque==='galop'?'jockey':'driver';
+      input.value=key==='monte'?(event[riderKey]??event.monte??''):(event[key]??(key==='statut'?'engage':''));
+      const updateField=()=>{
+        if(key==='monte'){events[index][riderKey]=input.value;delete events[index].monte}
+        else events[index][key]=input.value;
+      };
+      input.oninput=updateField;input.onchange=updateField;
       lab.htmlFor='ev'+index+key;input.id='ev'+index+key;
       wrap.append(lab,input);group.append(wrap);
     }
@@ -176,6 +182,11 @@ $('saveEng').onclick=async()=>{
     if(!/^\d{4}-\d{2}-\d{2}$/.test(event.date||'')){msg('Chaque engagement doit avoir une date valide.',true);return}
     if(!String(event.hippodrome||'').trim()){msg('Chaque engagement doit préciser son hippodrome.',true);return}
     const clean={...event};
+    // « Monte » est un libellé unique ; les clés historiques jockey/driver restent inchangées.
+    if(clean.monte!==undefined){
+      const riderKey=choice()?.casaque==='galop'?'jockey':'driver';
+      clean[riderKey]=clean.monte;delete clean.monte;
+    }
     if(choice()?.casaque==='galop'&&clean.corde!==undefined&&clean.corde!==null&&String(clean.corde).trim()!==''){
       const corde=Number(clean.corde);
       if(!Number.isInteger(corde)||corde<1||corde>40){msg('La corde doit être un numéro entier entre 1 et 40.',true);return}
