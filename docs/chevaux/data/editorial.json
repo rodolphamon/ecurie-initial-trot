@@ -851,6 +851,16 @@
     ],
     "bailychka": [
       {
+        "date": "2026-11-24",
+        "hippodrome": "Deauville",
+        "rang": "9e",
+        "officiel": true,
+        "statut": "officiel",
+        "source_description": "PMU — arrivée définitive vérifiée par le moteur de notifications Écurie Initial (R1C3, cheval n°3)",
+        "course": "R1C3",
+        "numero": 3
+      },
+      {
         "date": "2026-09-11",
         "hippodrome": "Le Mans",
         "rang": "5e",
