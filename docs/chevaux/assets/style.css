@@ -432,3 +432,19 @@
  .perf-engagements th,.perf-engagements td{padding:12px 11px}
  .perf-engagements .ei-engagement-date-cell{min-width:131px}
 }
+
+/* Derniers résultats : classement centré entre la casaque et la colonne vidéo. */
+.recent-item{display:grid;grid-template-columns:minmax(0,50%) 44px minmax(0,1fr);gap:0}
+.recent-content{max-width:none;padding-right:4px}
+.recent-silk{position:static;transform:none;justify-self:center}
+.recent-side{display:grid;grid-template-columns:minmax(0,1fr) 78px;gap:4px;margin:0;min-width:0;justify-items:center}
+.recent-rank{grid-column:1;min-width:28px;max-width:100%}
+.recent-action{grid-column:2;justify-self:stretch;text-align:center;padding-left:4px;padding-right:4px}
+@media(max-width:760px){
+  .recent-item{grid-template-columns:minmax(0,48%) 40px minmax(0,1fr)}
+  .recent-side{grid-template-columns:minmax(0,1fr) 64px;gap:3px}
+}
+@media(max-width:350px){
+  .recent-item{grid-template-columns:minmax(0,44%) 36px minmax(0,1fr)}
+  .recent-side{grid-template-columns:minmax(0,1fr) 57px;gap:2px}
+}
