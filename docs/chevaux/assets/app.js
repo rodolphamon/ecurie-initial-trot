@@ -181,7 +181,7 @@ function latestResults(s){
       if(!result||!/^\d{4}-\d{2}-\d{2}$/.test(result.date||'')||result.date>today)continue;
       const rang=normalizeSearch(result.rang);
       // Les non-partants, annulations et qualifications ne sont pas des courses disputées.
-      if(!rang||/^(?:np\b|non partant|annul|report|qualifi)/.test(rang))continue;
+      if(!rang||/^(?:non\s*partant|forfait|annul|report|qualifi)/.test(rang))continue;
       performances.push({p,result});
     }
   }
@@ -342,7 +342,7 @@ function horse(s){
   const value=metric(p,d);
   const valueLabel=isGalop?(/obstacle/i.test(p.discipline||'')?'Valeurs handicap plat / obstacle':'Valeur handicap'):'Record';
   const gains=money(d.gains);
-  const perf=(s.editor.performances[id]||[]).slice().sort((a,b)=>b.date.localeCompare(a.date));
+  const perf=(s.editor.performances[id]||[]).filter(x=>x&&!/^(?:non\s*partant|forfait)/.test(normalizeSearch(x.rang))).sort((a,b)=>b.date.localeCompare(a.date)).slice(0,5);
   // Les forfaits restent visibles jusqu'à J-3, puis disparaissent dès J-2.
   const today=currentParis().slice(0,10);
   const limit=new Date(today+'T00:00:00Z');
