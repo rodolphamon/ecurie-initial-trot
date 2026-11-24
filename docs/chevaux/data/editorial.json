@@ -1,6 +1,6 @@
 {
   "schema": "ecurie-initial-profils-v1",
-  "updated_at": "2026-11-22",
+  "updated_at": "2026-11-24",
   "note": "Pour les performances : au maximum les cinq dernières sorties documentées, dont les sources sont conservées en interne pour contrôle. Les classements exacts n'ont été indiqués que lorsqu'ils étaient disponibles. Les jeunes chevaux inédits n'ont pas de performances inventées. Les engagements existants sont conservés ; les nouveaux engagements au trot du 13/11/2026 sont ajoutés sans reprendre les horaires. Résultats du 13/11/2026 (MONA LISA STARDUST 7e, VICTORIA SECRET non placée) communiqués par l'Écurie Initial.",
   "performances": {
     "memphis-belle": [
@@ -1224,7 +1224,22 @@
         "source_description": "Capture engagements LeTROT transmise le 14/11/2026"
       }
     ],
-    "victoria-secret": [],
+    "victoria-secret": [
+      {
+        "date": "2026-12-02",
+        "hippodrome": "Deauville",
+        "type": "Plat",
+        "statut": "engage",
+        "prix": "Prix du Manoir de la Salamandre",
+        "allocation": 50900,
+        "distance": "1900 m",
+        "code_programme": "1252",
+        "part": "A (20 %)",
+        "entraineur": "Gilles PANNIER",
+        "type_course": "Handicap",
+        "source_description": "France Galop Espace Pro — capture des engagements valides du 24/11/2026 à 12h02 (état DP-P pour les partants, VA-P pour les engagements). Catégorie HAND. (C2) ; jockey et horaire non renseignés."
+      }
+    ],
     "on-lockdown": [],
     "zartop": [],
     "master-pat": [
@@ -1542,13 +1557,15 @@
         "distance": "1900 m",
         "code_programme": "1215",
         "part": "R (16 %)",
-        "source_description": "Liste France Galop communiquée le 16/11/2026 ; horaires et statut partant confirmés séparément lorsque disponibles",
+        "source_description": "France Galop Espace Pro — capture des engagements valides du 24/11/2026 à 12h02 (état DP-P pour les partants, VA-P pour les engagements). Horaire, numéro et corde conservés des données précédentes.",
         "heure": "15:05",
         "course": "R1C3",
         "numero": 3,
         "corde": 3,
         "surface": "PSF",
-        "type_course": "Maiden"
+        "type_course": "Maiden",
+        "jockey": "César BELMONT",
+        "entraineur": "Gilles PANNIER"
       }
     ],
     "gonafoot": [
@@ -1557,39 +1574,32 @@
         "corde": 2,
         "hippodrome": "Deauville",
         "type": "Plat",
-        "statut": "engage",
+        "statut": "partant",
         "prix": "Prix du Moulin Tercey",
         "allocation": 25900,
         "distance": "1300 m",
         "code_programme": "1222",
-        "source_description": "Capture des engagements France Galop transmise par le gérant le 17/11/2026 ; horaires et jockeys non connus au stade des engagements"
-      },
-      {
-        "date": "2026-11-28",
-        "prix": "Prix de la forêt d'Andaigne",
-        "statut": "engage",
-        "surface": "PSF",
-        "distance": "1300 m",
-        "hippodrome": "Deauville",
-        "type_course": "Maiden",
-        "type": "Plat",
-        "allocation": 27400,
-        "code_programme": "1237",
+        "source_description": "France Galop Espace Pro — capture des engagements valides du 24/11/2026 à 12h02 (état DP-P pour les partants, VA-P pour les engagements). Corde conservée des données précédentes ; horaire et numéro non fournis par cette capture.",
+        "jockey": "Augustin MADAMET",
+        "entraineur": "Gilles PANNIER",
         "part": "R (16 %)",
-        "source_description": "France Galop Espace Pro, consultation directe du 21/11/2026"
+        "type_course": "Handicap"
       }
     ],
     "saturday-night": [
       {
-        "date": "2026-11-25",
+        "date": "2026-12-02",
         "hippodrome": "Deauville",
         "type": "Plat",
         "statut": "engage",
-        "prix": "Finale HD CH.",
-        "allocation": 17400,
+        "prix": "Prix du Manoir de la Salamandre",
+        "allocation": 50900,
         "distance": "1900 m",
-        "code_programme": "1224",
-        "source_description": "Capture des engagements France Galop transmise par le gérant le 17/11/2026 ; horaires et jockeys non connus au stade des engagements"
+        "code_programme": "1252",
+        "part": "R (16 %)",
+        "entraineur": "Gilles PANNIER",
+        "type_course": "Handicap",
+        "source_description": "France Galop Espace Pro — capture des engagements valides du 24/11/2026 à 12h02 (état DP-P pour les partants, VA-P pour les engagements). Catégorie HAND. (C2) ; jockey et horaire non renseignés."
       }
     ]
   }
