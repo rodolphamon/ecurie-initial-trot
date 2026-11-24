@@ -133,6 +133,88 @@ Deno.serve(async (request) => {
   try {
     const body = await request.json();
     const { action, deviceToken } = body || {};
+    if (action === "admin_test_recipients" || action === "admin_send_test" || action === "admin_test_status") {
+      const adminId = await memberId(request);
+      if (!adminId) return respond({error:"Connexion administrateur requise."},403,origin);
+      const {data:admin,error:adminError}=await db.from("associes")
+        .select("actif,administrateur").eq("user_id",adminId).maybeSingle();
+      if(adminError || !admin?.actif || !admin.administrateur)
+        return respond({error:"Réservé à l’administration."},403,origin);
+      if(action==="admin_test_recipients"){
+        const {data:subs,error:subError}=await db.from("ei_push_subscriptions")
+          .select("user_id").eq("audience","associate").not("user_id","is",null).limit(1000);
+        if(subError)throw subError;
+        const counts=new Map<string,number>();
+        for(const s of subs||[])counts.set(s.user_id,(counts.get(s.user_id)||0)+1);
+        if(!counts.size)return respond({recipients:[]},200,origin);
+        const {data:members,error:memError}=await db.from("associes")
+          .select("user_id,nom_affiche").eq("actif",true).in("type_compte",["associe","observateur"])
+          .in("user_id",[...counts.keys()]).order("nom_affiche");
+        if(memError)throw memError;
+        const recipients=[];
+        for(const m of members||[]){
+          if(await allowedMember(m.user_id))
+            recipients.push({id:m.user_id,name:m.nom_affiche,devices:counts.get(m.user_id)});
+        }
+        return respond({recipients},200,origin);
+      }
+      if(action==="admin_test_status"){
+        if(typeof body.testId!=="string" || !/^admin-test:[0-9a-f-]{36}$/.test(body.testId))
+          return respond({error:"Identifiant de test invalide."},400,origin);
+        const {data:rows,error}=await db.from("ei_push_receipts")
+          .select("accepted_at,received_at,shown_at,display_error").eq("alert_id",body.testId)
+          .eq("category","admin_test");
+        if(error)throw error;
+        return respond({devices:rows?.length||0,accepted:rows?.filter(r=>r.accepted_at).length||0,
+          received:rows?.filter(r=>r.received_at).length||0,shown:rows?.filter(r=>r.shown_at).length||0,
+          displayErrors:rows?.filter(r=>r.display_error).length||0},200,origin);
+      }
+      if(body.confirm!==true)return respond({error:"Confirmation nécessaire."},400,origin);
+      if(isSilentPeriodParis())return respond({error:silentPeriodError},409,origin);
+      const target=body.userId;
+      if(typeof target!=="string" || !/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(target))
+        return respond({error:"Choisissez un seul destinataire."},400,origin);
+      const {data:member,error:memberError}=await db.from("associes")
+        .select("user_id,nom_affiche,actif,type_compte").eq("user_id",target).maybeSingle();
+      if(memberError || !member?.actif || !["associe","observateur"].includes(member.type_compte) || !(await allowedMember(target)))
+        return respond({error:"Destinataire non autorisé."},403,origin);
+      const {data:devices,error:deviceError}=await db.from("ei_push_subscriptions")
+        .select("id,endpoint,p256dh,auth_secret").eq("user_id",target).eq("audience","associate").limit(50);
+      if(deviceError)throw deviceError;
+      const valid=(devices||[]).filter(d=>validEndpoint(d.endpoint));
+      if(!valid.length)return respond({error:"Aucun appareil inscrit aux notifications."},409,origin);
+      const now=Date.now();
+      if(valid.some(d=>now-(lastTests.get(d.endpoint)||0)<120000))
+        return respond({error:"Attendez deux minutes entre deux tests."},429,origin);
+      const {data:recent,error:recentError}=await db.from("ei_push_receipts").select("id")
+        .eq("category","admin_test").in("subscription_id",valid.map(d=>d.id))
+        .gte("created_at",new Date(now-120000).toISOString()).limit(1);
+      if(recentError)throw recentError;
+      if(recent?.length)return respond({error:"Attendez deux minutes entre deux tests."},429,origin);
+      if(!(await vapidPairMatches()))return respond({error:"Clés Push incompatibles. Aucun envoi."},503,origin);
+      for(const d of valid)lastTests.set(d.endpoint,now);
+      const testId="admin-test:"+crypto.randomUUID();
+      const vapid={publicKey:env("PUSH_VAPID_PUBLIC_KEY"),privateKey:env("PUSH_VAPID_PRIVATE_KEY"),subject:"mailto:contact@ecurie-initial.com"};
+      let accepted=0,failed=0;
+      for(const d of valid){
+        if(isSilentPeriodParis())break;
+        const {data:receipt,error:receiptError}=await db.from("ei_push_receipts")
+          .insert({subscription_id:d.id,alert_id:testId,category:"admin_test"}).select("id").single();
+        if(receiptError){failed++;continue}
+        if(isSilentPeriodParis())break;
+        try{
+          const sent=await sendPushNotification({endpoint:d.endpoint,keys:{p256dh:d.p256dh,auth:d.auth_secret}},
+            {title:"🔔 Test Écurie Initial",body:"Notification test. Confirmez sa réception à l’administration.",
+             url:"https://fiches.ecurie-initial.com/application/",receipt_id:receipt.id},
+            vapid,{urgency:"high",ttl:120});
+          if(sent){
+            accepted++;
+            await db.from("ei_push_receipts").update({accepted_at:new Date().toISOString()}).eq("id",receipt.id);
+          }else failed++;
+        }catch(e){failed++;console.warn("Test administrateur : échec Push",e instanceof Error?e.name:"inconnu")}
+      }
+      return respond({name:member.nom_affiche,testId,devices:valid.length,accepted,failed},200,origin);
+    }
     if (action === "send_andresy_test") {
       // Bouton de démonstration réservé à l'administrateur connecté.
       // Trois destinataires NOMMÉS, aucune publication dans la file générale
