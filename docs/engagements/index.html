@@ -72,14 +72,13 @@ h1{font-size:clamp(23px,4vw,35px);line-height:1.12;letter-spacing:-.6px;margin:6
 .horse-meta{display:flex;align-items:baseline;justify-content:space-between;gap:8px;min-width:0}
 .horse-meta .place{display:flex;align-items:baseline;gap:3px;flex:1 1 auto;margin:0;min-width:0;font-size:12px;overflow:hidden;white-space:nowrap}
 .horse-meta .place-location{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.horse-meta .place-number,.horse-meta .place-corde{flex:0 0 auto;white-space:nowrap}
-.horse-meta .place-corde{color:#99501d;font-weight:800}
+.horse-meta .place-number{flex:0 0 auto;white-space:nowrap}
 .horse-meta .person{margin:0;flex:none;font-size:11px;line-height:1.3;white-space:nowrap}
 .horse .race{margin:0;min-width:0;font-size:11px;line-height:1.35;white-space:normal;overflow-wrap:anywhere}
 .race-row{display:flex;align-items:baseline;gap:8px;min-width:0}
 .race-row .race{flex:1 1 auto;min-width:0}
-.race-row .ferrure-code{flex:0 0 auto;margin-left:auto;font-size:11px;line-height:1.3;font-weight:800;color:#99501d;white-space:nowrap;text-align:right}
-/* La corde est présentée après le numéro sur la ligne hippodrome / discipline. */
+.race-row .ferrure-code,.race-row .corde-code{flex:0 0 auto;margin-left:auto;font-size:11px;line-height:1.3;font-weight:800;color:#99501d;white-space:nowrap;text-align:right}
+/* La corde et la ferrure sont alignées à droite sous la monte. */
 @media(max-width:720px){
  .event{grid-template-columns:50px minmax(0,1fr);gap:9px;padding:10px 11px}
  .when .silk-icon{width:46px;height:56px}
@@ -159,8 +158,8 @@ const silkFile=horse.casaque==="galop"?"casaque-galop.svg":horse.casaque==="oran
 return '<article class="event'+(isPartant(e)?' is-partant':'')+' is-status-'+esc(Object.hasOwn(labels,e.statut)?e.statut:'engage')+'">'
 +'<div class="when"><span class="silk-icon" role="img" aria-label="Casaque de '+esc(horse.name)+'" style="background-image:url(\'../assets/'+silkFile+'\')"></span></div>'
 +'<div class="horse"><div class="horse-heading"><strong><a target="_blank" rel="noopener noreferrer" href="'+BASE+encodeURIComponent(id)+'/">'+esc(horse.name)+'</a></strong>'+(isPartant(e)&&time?'<span class="start-time">'+esc(time)+'</span>':'')+'<span class="pill '+esc(e.statut||"engage")+'" title="'+esc(label)+'" aria-label="'+esc(label)+'"><span class="pill-full">'+esc(label)+'</span><span class="pill-compact" aria-hidden="true">'+esc(cancelled?'ANNULÉE':genderLabel(e.statut,horse,true))+'</span></span></div>'
-+'<div class="horse-meta"><span class="place" title="'+esc((e.hippodrome||"Hippodrome à confirmer")+' · '+(horse.discipline||"")+(e.numero?' · N° '+e.numero:'')+(corde?' · Corde : '+corde:''))+'"><span class="place-location">'+esc(e.hippodrome||"Hippodrome à confirmer")+' · '+esc(horse.discipline||"")+'</span>'+(e.numero?'<span class="place-number">· N° '+esc(e.numero)+'</span>':'')+(corde?'<span class="place-corde">· Corde : '+esc(corde)+'</span>':'')+'</span>'+(person?'<span class="person">'+esc(person)+'</span>':'')+'</div>'
-+'<div class="race-row"><div class="race" title="'+esc(detail)+'">'+(cancelled?'<strong style="color:#b42318">RÉUNION ANNULÉE · </strong>':'')+esc(detail)+'</div>'+(ferrure?'<span class="ferrure-code" aria-label="Ferrure : '+esc(ferrure)+'">'+esc(ferrure)+'</span>':'')+'</div></div></article>'}).join("")+'</div></section>').join("");
++'<div class="horse-meta"><span class="place" title="'+esc((e.hippodrome||"Hippodrome à confirmer")+' · '+(horse.discipline||"")+(e.numero?' · N° '+e.numero:''))+'"><span class="place-location">'+esc(e.hippodrome||"Hippodrome à confirmer")+' · '+esc(horse.discipline||"")+'</span>'+(e.numero?'<span class="place-number">· N° '+esc(e.numero)+'</span>':'')+'</span>'+(person?'<span class="person">'+esc(person)+'</span>':'')+'</div>'
++'<div class="race-row"><div class="race" title="'+esc(detail)+'">'+(cancelled?'<strong style="color:#b42318">RÉUNION ANNULÉE · </strong>':'')+esc(detail)+'</div>'+(corde?'<span class="corde-code">Corde : '+esc(corde)+'</span>':ferrure?'<span class="ferrure-code" aria-label="Ferrure : '+esc(ferrure)+'">'+esc(ferrure)+'</span>':'')+'</div></div></article>'}).join("")+'</div></section>').join("");
 resize();
 }
 function resize(){try{window.parent.postMessage({kind:"ecurie-initial-engagements-height",height:document.documentElement.scrollHeight}, "*")}catch(_){}}
