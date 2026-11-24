@@ -349,7 +349,7 @@ function horse(s){
   limit.setUTCDate(limit.getUTCDate()+2);
   const twoDaysAhead=limit.toISOString().slice(0,10);
   const eng=(s.editor.engagements[id]||[]).filter(x=>
-    x?.date && x.date>=today
+    x?.date && x.date+'T'+(x.heure||'23:59')>=currentParis()
     && (engagementStatus(x,sex)?.kind!=='forfait'||x.date>twoDaysAhead)
   ).sort((a,b)=>(a.date+(a.heure||'23:59')).localeCompare(b.date+(b.heure||'23:59')));
   const tr=perf.length
@@ -424,7 +424,7 @@ function horse(s){
         ?'<section class="section"><h2 class="section-title">Qualification</h2><div class="paper ei-qualification"><span class="ei-qualification-label">'+esc(s.editor.qualifications[id].hippodrome)+' · '+esc(dateFR(s.editor.qualifications[id].date))+' · lot n°'+esc(s.editor.qualifications[id].lot)+(s.editor.qualifications[id].chrono?' · '+esc(s.editor.qualifications[id].chrono):'')+'</span><a class="ei-video-link" href="'+esc(absoluteUrl(s.editor.qualifications[id].url))+'" target="_blank" rel="noopener noreferrer" aria-label="Voir la qualification de '+esc(p.name)+'">▶ Replay</a></div></section>'
         :'')
       +'<section class="section">'
-        +'<h2 class="section-title">'+'Engagements du jour et à venir'+'</h2>'
+        +'<h2 class="section-title">'+(eng.length===1?'Prochain engagement':'Prochains engagements')+'</h2>'
         +'<div class="paper">'+te+'</div>'
       +'</section>'
       +'<div class="bottom-actions">'
