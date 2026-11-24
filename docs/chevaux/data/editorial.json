@@ -94,11 +94,12 @@
       {
         "date": "2026-08-24",
         "hippodrome": "Castéra-Verduzan",
-        "rang": "Non partant",
-        "source_url": "https://www.geny.com/cheval/2798166-lucky-des-gaudines",
+        "rang": "10e",
+        "source_url": "https://www.geny.com/course/1678722-2026-08-24-castera-verduzan-prix-du-casino-de-castera-verduzan/arrivee-rapports",
         "driver": "L. QUESNEL",
         "type": "Trot attelé",
-        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026"
+        "source_description": "Geny, résultats consultés le 24/11/2026",
+        "course_url": "https://www.geny.com/course/1678722-2026-08-24-castera-verduzan-prix-du-casino-de-castera-verduzan/arrivee-rapports"
       }
     ],
     "gonafoot": [
@@ -444,11 +445,11 @@
       {
         "date": "2026-09-27",
         "hippodrome": "Vincennes",
-        "rang": "Non partant",
-        "source_url": "https://iturf.b-cdn.net/courses/isolee-du-bouillon.html",
+        "rang": "12e",
+        "source_url": "https://www.geny.com/cheval/2692098-isolee-du-bouillon/course/1550958",
         "driver": "M. LEGROS",
         "type": "Trot attelé",
-        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026"
+        "source_description": "Geny, résultats consultés le 24/11/2026"
       },
       {
         "date": "2026-09-12",
@@ -482,11 +483,11 @@
       {
         "date": "2026-09-11",
         "hippodrome": "Vincennes",
-        "rang": "Non partant",
-        "source_url": "https://www.canalturf.com/courses_fiche_cheval.php?idcheval=503598",
+        "rang": "14e",
+        "source_url": "https://www.geny.com/cheval/2823449-mandragora-fleury/course/1609026",
         "driver": "V. HÉBERT",
         "type": "Trot attelé",
-        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026"
+        "source_description": "Geny, résultats consultés le 24/11/2026"
       },
       {
         "date": "2026-08-28",
@@ -653,6 +654,15 @@
         "driver": "G. GELORMINI",
         "type": "Trot attelé",
         "source_description": "Infonet LeTROT, consultation directe du 21/11/2026"
+      },
+      {
+        "date": "2026-07-28",
+        "hippodrome": "Meslay-du-Maine",
+        "rang": "12e",
+        "driver": "M. CHAMPENOIS",
+        "type": "Trot attelé",
+        "source_url": "https://www.geny.com/cheval/2814714-myrtille-marboula/course/1585212",
+        "source_description": "Geny, résultats consultés le 24/11/2026"
       }
     ],
     "nebraska-fleury": [
