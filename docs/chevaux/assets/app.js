@@ -381,11 +381,12 @@ function horse(s){
     ?'<div class="table-wrap"><table class="perf-table perf-engagements"><thead><tr><th>Date / Statut</th><th>Hippodrome</th>'+(hasDeclared?'<th>Heure</th>':'')+'<th>Épreuve</th>'+(hasDeclared?'<th>Monte</th>':'')+'</tr></thead><tbody>'+eng.map(x=>{
       const status=engagementStatus(x,sex);
       const declared=status?.kind==='declare'||status?.kind==='partant';
+       const ferrure=p.casaque!=='galop'&&declared&&/^(F4|PA|PP|P4|DA|DP|D4)$/.test(x.ferrure||'')?x.ferrure:'';
       const cancelled=x.reunion_annulee||(id==='andresy'&&x.date==='2026-11-18'&&/amiens/i.test(x.hippodrome||''));
       const badge=status?'<span class="ei-engagement-status ei-engagement-status-'+status.kind+'" aria-label="'+esc('Statut : '+status.label)+'">'+esc(status.label)+'</span>':'';
       return '<tr><td class="ei-engagement-date-cell"><span class="ei-engagement-date">'+esc(dateFR(x.date))+'</span>'+badge+'</td><td>'+esc(x.hippodrome)+'</td>'
         +(hasDeclared?'<td><span class="rank">'+esc(declared?(x.heure||'—'):'—')+'</span></td>':'')
-        +'<td>'+(cancelled?'<strong style="color:#b42318">RÉUNION ANNULÉE</strong> · ':'')+esc([x.course,x.prix||x.type,x.type_course,x.surface].filter(Boolean).join(' · ')||'Course')+'</td>'
+        +'<td>'+(cancelled?'<strong style="color:#b42318">RÉUNION ANNULÉE</strong> · ':'')+esc([x.course,x.prix||x.type,x.type_course,x.surface,ferrure?'Ferrure : '+ferrure:''].filter(Boolean).join(' · ')||'Course')+'</td>'
         +(hasDeclared?'<td>'+esc(declared?(x.driver||x.jockey||x.monte||'—'):'—')+'</td>':'')+'</tr>';
     }).join('')+'</tbody></table></div>'
     :'<div class="empty">Aucun prochain engagement renseigné.</div>';
