@@ -97,14 +97,7 @@ main{max-width:770px;padding:13px 14px 105px}
   <div id="pushLatencyResult" role="status" aria-live="polite" style="white-space:pre-line;margin-top:10px;font-size:.9em"></div>
 </div>
 </section>
-<section class="card" id="andresyPanel" hidden>
-<h2>🐎 Test réservé à l'administration</h2>
-<p><strong>ANDRESY · Partant confirmé</strong></p>
-<p>Mercredi 18 novembre 2026 · Amiens · 20 h 15 · Plat 1 650 m · corde 6.</p>
-<p class="muted">Envoi test uniquement à Adrien Delgery, Éric Schott et Nicolas Barré, sur les appareils qu'ils ont inscrits aux notifications. Aucun autre associé n'est contacté.</p>
-<button type="button" id="sendAndresy">Envoyer l'alerte ANDRESY aux 3 testeurs</button>
-<p id="andresyStatus" role="status" aria-live="polite"></p>
-</section></div><section class="card" id="prelaunchHold" hidden><h2>🔒 Ouverture le 1er décembre 2026</h2><p>Vous pouvez confirmer votre inscription dès aujourd’hui, mais les notifications de l’application sont réservées jusqu’au 1er décembre aux personnes bénéficiant d’un accès anticipé.</p><a href="../connexion/">Confirmer mon invitation ou me connecter</a></section>
+</div><section class="card" id="prelaunchHold" hidden><h2>🔒 Ouverture le 1er décembre 2026</h2><p>Vous pouvez confirmer votre inscription dès aujourd’hui, mais les notifications de l’application sont réservées jusqu’au 1er décembre aux personnes bénéficiant d’un accès anticipé.</p><a href="../connexion/">Confirmer mon invitation ou me connecter</a></section>
 </main>
 <script type="module">
 import {createClient} from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
@@ -139,7 +132,7 @@ async function callServer(body){
   const {data:refreshed}=await db.auth.refreshSession();
   accessToken=refreshed?.session?.access_token||null;
  }
- if(['mark_my_phone','send_my_phone_test','send_andresy_test'].includes(body.action)&&!accessToken)
+ if(['mark_my_phone','send_my_phone_test'].includes(body.action)&&!accessToken)
   throw Error('Session absente dans cette fenêtre. Ouvrez la connexion directement sur fiches.ecurie-initial.com (sans cadre intégré), puis revenez dans Notifications.');
  const headers={'Content-Type':'application/json','apikey':KEY};
  if(accessToken)headers.Authorization='Bearer '+accessToken;
@@ -175,7 +168,7 @@ async function init(){
     isMember=!!a?.actif&&['associe','observateur'].includes(a.type_compte);
     if(isMember){accountScope=a.notification_scope==='all'?'all':'mine';chooseScope(accountScope);}
     if(a?.actif&&['exterieur','presse'].includes(a.type_compte)){$('profile').textContent=(a.type_compte==='presse'?'Presse':'Membre extérieur')+' · '+a.nom_affiche;$('profileText').textContent='Notifications publiques des courses, résultats et annonces de l’Écurie. Les informations privées restent réservées aux propriétaires.';}
-    if(isMember){$('profile').textContent='Espace associé · '+a.nom_affiche;$('profileText').hidden=true;$('scopeBox').hidden=false;$('guestChecks').hidden=true;$('memberChecks').hidden=false;if(a.administrateur){$('andresyPanel').hidden=false;$('myPhonePanel').hidden=false;}}
+    if(isMember){$('profile').textContent='Espace associé · '+a.nom_affiche;$('profileText').hidden=true;$('scopeBox').hidden=false;$('guestChecks').hidden=true;$('memberChecks').hidden=false;if(a.administrateur){$('myPhonePanel').hidden=false;}}
   }
   registration=await navigator.serviceWorker.register('../sw.js');
   subscription=await registration.pushManager.getSubscription();
@@ -298,21 +291,6 @@ $('sendMyPhone').onclick=async()=>{
   const result=await callServer({action:'send_my_phone_test',confirm:true});
   out.textContent=result.sent?'✅ Service Push : envoi accepté pour 1 téléphone. Vérifie l’écran verrouillé du Samsung, puis son diagnostic.':'Envoi non confirmé.';
  }catch(e){out.textContent=e.message||'Test impossible.'}
- finally{btn.disabled=false}
-};
-$('sendAndresy').onclick=async()=>{
- if(!confirm('Envoyer maintenant une notification ANDRESY aux téléphones inscrits d’Adrien, Éric et Nicolas uniquement ?'))return;
- const btn=$('sendAndresy'),statusEl=$('andresyStatus');
- btn.disabled=true;
- statusEl.textContent='Envoi ciblé en cours…';
- try{
-   const result=await callServer({action:'send_andresy_test',confirm:true});
-   const lines=(result.results||[]).map(r=>r.name+' : '+(r.accountFound
-     ? (r.devices===0?'aucun téléphone inscrit':
-       r.accepted+' accepté(s) sur '+r.devices+' appareil(s)'+(r.failed?' · '+r.failed+' échec(s)':''))
-     : 'compte actif non trouvé'));
-   statusEl.textContent=lines.join(' | ')+'\nLe test est terminé côté serveur. Demandez à chaque testeur de confirmer la réception.';
- }catch(e){statusEl.textContent=e.message||'Erreur pendant l’envoi ciblé.'}
  finally{btn.disabled=false}
 };
 init();
