@@ -44,11 +44,11 @@ function parisDeparture(date: string, heure?: string): string|null {
   return new Date(Date.parse(date+"T"+heure+":00Z")-off*3600000).toISOString();
 }
 const esc=(s:unknown)=>String(s||"").slice(0,240);
-// Résultats : 1er à 7e ; au-delà NC (non classé dans les sept premiers).
+// Résultats : chiffres 1 à 9, puis 0 au-delà ; codes hippiques conservés.
 const displayRank=(value:unknown):string=>{
   const raw=esc(value).trim(),m=raw.match(/^(\d+)\s*(?:er|re|e|eme|ème)?$/i);
   const plain=raw.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();
-  return (m&&Number(m[1])>7)||/^(?:np|nc|non placee?|non classee?)$/.test(plain)?"NC":/^(?:dai|disqualifiee?)$/.test(plain)?"DAI":/^(?:arr|arretee?)$/.test(plain)?"ARR":/^(?:t|tombee?)$/.test(plain)?"T":raw;
+  return m?(Number(m[1])>9?"0":String(Number(m[1]))):/^(?:np|nc|non placee?|non classee?)$/.test(plain)?"0":/^(?:dai|disqualifiee?)$/.test(plain)?"DAI":/^(?:arr|arretee?)$/.test(plain)?"ARR":/^(?:t|tombee?)$/.test(plain)?"T":raw;
 };
 // Annonce lisible, en reprenant exclusivement l'hippodrome et l'heure déclarés.
 function annonceCourse(nom:unknown, hippodrome:unknown, heure:unknown, jour:string):string {
@@ -587,7 +587,7 @@ async function run() {
       }else if(alert.categorie==="before15"){
         message={title:"⏰ Départ imminent · "+esc(p.nom),body:esc(p.hippodrome)+" · environ "+esc(p.diff)+" min avant le départ.",url:APP+"/engagements/"};
       }else if(alert.categorie==="results"){
-        message={title:(p.official===true?"🏆 Résultat officiel · ":"🏆 Résultat de l’écurie · ")+esc(p.nom),body:(displayRank(p.rang)==="NC"?"NC (non classé)":displayRank(p.rang))+" à "+esc(p.hippodrome),url:APP+"/chevaux/"+alert.cheval_slug+"/"};
+        message={title:(p.official===true?"🏆 Résultat officiel · ":"🏆 Résultat de l’écurie · ")+esc(p.nom),body:displayRank(p.rang)+" à "+esc(p.hippodrome),url:APP+"/chevaux/"+alert.cheval_slug+"/"};
       }else if(alert.categorie==="public_news"){
         message={
           title:"📣 "+(esc(p.titre).slice(0,85)||"Message de l’Écurie"),
