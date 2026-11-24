@@ -782,6 +782,17 @@ window.loadHomeDashboard=async function(force=false){
    if(!r.ok)throw Error("Données indisponibles");
    return r.json();
   }));
+  // Les résultats officiels peuvent précéder la publication GitHub Pages :
+  // lire aussi la source GitHub fraîche, avec repli sur le fichier publié.
+  try{
+   const latestSource=await fetch("https://raw.githubusercontent.com/rodolphamon/ecurie-initial-trot/main/docs/chevaux/data/editorial.json?v="+Date.now(),{cache:"no-store"});
+   if(latestSource.ok){
+    const fresh=await latestSource.json();
+    if(fresh&&fresh.performances&&typeof fresh.performances==="object"){
+     editorial.performances={...(editorial.performances||{}),...fresh.performances};
+    }
+   }
+  }catch(error){console.info("Accueil : résultats GitHub directs indisponibles, fichier publié conservé",error)}
   const horses=Array.isArray(horsesData.horses)?horsesData.horses:[];
   // L'effectif publié dans l'administration prévaut sur le catalogue de référence.
   try{
