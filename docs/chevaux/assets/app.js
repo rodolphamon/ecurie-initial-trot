@@ -9,8 +9,8 @@ const formatValue=n=>Number.isFinite(n)?String(n).replace('.',','):'—';
 const currentParis=()=>new Intl.DateTimeFormat('sv-SE',{timeZone:'Europe/Paris',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).format(new Date()).replace(' ','T');
 // En courses françaises, l'âge hippique avance le 1er janvier, sans attendre la date anniversaire.
 const horseAge=p=>{const born=Number(p.birth_year),now=Number(currentParis().slice(0,4));return Number.isInteger(born)&&born>=1990&&born<=now?now-born:null};
-// Affichage du classement : de 1re à 7e, puis NC = non classé dans les sept premiers.
-const displayRank=v=>{const raw=String(v||'').trim(),clean=normalizeSearch(raw),m=raw.match(/^(\d+)\s*(?:er|re|e|eme|ème)?$/i);if((m&&Number(m[1])>7)||/^(?:np|nc|non placee?|non classee?)$/.test(clean))return 'NC';if(/^(?:dai|disqualifiee?)$/.test(clean))return 'DAI';if(/^(?:arr|arretee?)$/.test(clean))return 'ARR';if(/^(?:t|tombee?)$/.test(clean))return 'T';return raw;};
+// Affichage du classement : chiffres 1 à 9, puis 0 au-delà ; codes hippiques conservés.
+const displayRank=v=>{const raw=String(v||'').trim(),clean=normalizeSearch(raw),m=raw.match(/^(\d+)\s*(?:er|re|e|eme|ème)?$/i);if(m)return Number(m[1])>9?'0':String(Number(m[1]));if(/^(?:np|nc|non placee?|non classee?)$/.test(clean))return '0';if(/^(?:dai|disqualifiee?)$/.test(clean))return 'DAI';if(/^(?:arr|arretee?)$/.test(clean))return 'ARR';if(/^(?:t|tombee?)$/.test(clean))return 'T';return raw;};
 const horseSex=p=>['F','H','M'].includes(p.sex)?p.sex:null;
 // Statuts des engagements : toujours afficher le statut enregistré, sans l'inférer.
 function engagementStatus(entry,sex){
@@ -190,7 +190,7 @@ function latestResults(s){
     a.p.name.localeCompare(b.p.name,'fr',{sensitivity:'base'}));
   const rows=performances.slice(0,20).map(({p,result})=>{
     const rank=displayRank(result.rang);
-    const medal=/^1(?:er|re|ère)?\b/i.test(rank)?' gold':/^2e\b/i.test(rank)?' silver':/^3e\b/i.test(rank)?' bronze':'';
+    const medal=rank==='1'?' gold':rank==='2'?' silver':rank==='3'?' bronze':'';
     const direct=absoluteUrl(result.video_url);
     const course=absoluteUrl(result.course_url);
     const source=absoluteUrl(result.source_url);
@@ -372,7 +372,7 @@ function horse(s){
         :course&&!isNonPartant
           ?'<a class="ei-video-link" href="'+esc(course)+'" target="_blank" rel="noopener noreferrer" aria-label="'+esc('Replay de '+p.name+' du '+dateFR(x.date)+' — page de course')+'">▶ Replay</a>'
           :'<span class="ei-no-video" aria-label="Aucun lien de course disponible">—</span>';
-      return '<tr><td>'+esc(dateFR(x.date))+'</td><td>'+esc(x.hippodrome)+'</td><td><span class="rank" title="'+esc(({NC:'Non classé dans les sept premiers',DAI:'Disqualifié',ARR:'Arrêté',T:'Tombé'})[displayRank(x.rang)]||'Classement')+'">'+esc(displayRank(x.rang)||'—')+'</span></td><td>'+esc(x.driver||x.jockey||'—')+'</td><td>'+video+'</td></tr>';
+      return '<tr><td>'+esc(dateFR(x.date))+'</td><td>'+esc(x.hippodrome)+'</td><td><span class="rank" title="'+esc(({'0':'Au-delà de la 9e place ou non placé (rang exact non renseigné)',DAI:'Disqualifié',ARR:'Arrêté',T:'Tombé'})[displayRank(x.rang)]||'Classement')+'">'+esc(displayRank(x.rang)||'—')+'</span></td><td>'+esc(x.driver||x.jockey||'—')+'</td><td>'+video+'</td></tr>';
     }).join('')+'</tbody></table></div>'
     :'<div class="empty">Aucune performance détaillée renseignée pour le moment.</div>';
   // La date et le statut partagent la première colonne : lisible même sur téléphone.
