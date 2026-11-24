@@ -831,7 +831,7 @@ window.loadHomeDashboard=async function(force=false){
    }
    for(const [slug,perfs] of Object.entries(editorial.performances||{})){
     if(!known.has(slug)||!Array.isArray(perfs))continue;
-    for(const p of perfs)if(p&&/^\d{4}-\d\d-\d\d$/.test(p.date||"")&&p.date<=now.slice(0,10))past.push({slug,p});
+    for(const p of perfs)if(p&&/^\d{4}-\d\d-\d\d$/.test(p.date||"")&&p.date<=now.slice(0,10)&&! /^(?:non[\s-]*partant|forfait|annul|report|qualifi)/i.test(String(p.rang||"").trim()))past.push({slug,p});
    }
    past.sort((a,b)=>b.p.date.localeCompare(a.p.date)||Number(!!b.p.officiel)-Number(!!a.p.officiel));
    const latest=past[0];
