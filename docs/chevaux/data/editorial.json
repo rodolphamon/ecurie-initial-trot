@@ -1,6 +1,6 @@
 {
   "schema": "ecurie-initial-profils-v1",
-  "updated_at": "2026-11-24",
+  "updated_at": "2026-11-25",
   "note": "Pour les performances : au maximum les cinq dernières sorties documentées, dont les sources sont conservées en interne pour contrôle. Les classements exacts n'ont été indiqués que lorsqu'ils étaient disponibles. Les jeunes chevaux inédits n'ont pas de performances inventées. Les engagements existants sont conservés ; les nouveaux engagements au trot du 13/11/2026 sont ajoutés sans reprendre les horaires. Résultats du 13/11/2026 (MONA LISA STARDUST 7e, VICTORIA SECRET non placée) communiqués par l'Écurie Initial.",
   "performances": {
     "memphis-belle": [
@@ -248,7 +248,8 @@
         "video_url": "https://www.equidia.fr/courses/2026-11-19/R1/C6",
         "course_url": "https://www.equidia.fr/courses/2026-11-19/R1/C6",
         "video_source": "equidia_course",
-        "jockey": "César BELMONT"
+        "jockey": "César BELMONT",
+        "entraineur": "Gilles PANNIER"
       },
       {
         "date": "2026-10-26",
@@ -338,7 +339,8 @@
         "video_url": "https://www.equidia.fr/courses/2026-11-19/R1/C7",
         "course_url": "https://www.equidia.fr/courses/2026-11-19/R1/C7",
         "video_source": "equidia_course",
-        "jockey": "Antoine HAMELIN"
+        "jockey": "Antoine HAMELIN",
+        "entraineur": "Gilles PANNIER"
       },
       {
         "date": "2026-10-28",
@@ -933,7 +935,8 @@
         "video_url": "https://www.equidia.fr/courses/2026-11-19/R1/C5",
         "course_url": "https://www.equidia.fr/courses/2026-11-19/R1/C5",
         "video_source": "equidia_course",
-        "jockey": "César BELMONT"
+        "jockey": "César BELMONT",
+        "entraineur": "Gilles PANNIER"
       },
       {
         "date": "2026-10-26",
