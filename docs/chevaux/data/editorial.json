@@ -768,6 +768,20 @@
     ],
     "nostalgie-dairpet": [
       {
+        "date": "2026-11-25",
+        "hippodrome": "Vincennes",
+        "rang": "4e",
+        "officiel": true,
+        "statut": "officiel",
+        "type": "Trot attelé",
+        "course": "R4C2",
+        "source_description": "PMU - arrivée définitive, résultat confirmé par le moteur de notifications Écurie Initial",
+        "source_url": "https://www.pmu.fr/turf/",
+        "course_url": "https://www.equidia.fr/courses/2026-11-25/R4/C2",
+        "video_url": "https://www.equidia.fr/courses/2026-11-25/R4/C2",
+        "video_source": "equidia_course"
+      },
+      {
         "date": "2026-10-17",
         "hippodrome": "Enghien",
         "rang": "2e",
