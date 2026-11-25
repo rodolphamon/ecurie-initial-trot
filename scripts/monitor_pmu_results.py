@@ -172,6 +172,61 @@ def equidia_course_url(day, code):
     return f"https://www.equidia.fr/courses/{day}/R{reunion}/C{course}"
 
 
+
+def complete_performance(perf, event):
+    """Complète une arrivée sans écraser la monte ni un replay déjà validés."""
+    before = dict(perf)
+    if (perf.get("officiel") is not True and perf.get("statut") != "officiel"
+            or perf.get("date") != event.get("date")
+            or normalize(perf.get("hippodrome")) != normalize(event.get("hippodrome"))
+            or str(perf.get("course", "")).upper() != str(event.get("course", "")).upper()
+            or not number(perf.get("numero"))
+            or number(perf.get("numero")) != number(event.get("numero"))):
+        return False
+    if not (perf.get("jockey") or perf.get("driver")):
+        for field in ("jockey", "driver", "monte"):
+            value = event.get(field)
+            if isinstance(value, str) and value.strip():
+                target = field if field != "monte" else ("driver" if
+                    normalize(event.get("type")) in ("ATTELE", "MONTE", "TROT") else "jockey")
+                perf[target] = value.strip()
+                break
+    if not perf.get("entraineur") and isinstance(event.get("entraineur"), str):
+        if event["entraineur"].strip():
+            perf["entraineur"] = event["entraineur"].strip()
+    # La destination est la page de course Equidia, pas une vidéo attestée.
+    # Le lecteur Equidia y devient accessible à sa publication.
+    try:
+        url = equidia_course_url(perf["date"], perf["course"])
+    except (ValueError, KeyError):
+        return perf != before
+    if not perf.get("course_url"):
+        perf["course_url"] = url
+    if not perf.get("video_url"):
+        perf["video_url"] = url
+        perf["video_source"] = "equidia_course"
+    return perf != before
+
+
+def enrich_existing(data):
+    """Rattrape aussi les arrivées enregistrées par un autre circuit."""
+    changed = False
+    for slug, rows in data.get("performances", {}).items():
+        for perf in rows if isinstance(rows, list) else []:
+            if not isinstance(perf, dict):
+                continue
+            candidates = [
+                e for e in data.get("engagements", {}).get(slug, [])
+                if isinstance(e, dict) and e.get("date") == perf.get("date")
+                and str(e.get("course", "")).upper() == str(perf.get("course", "")).upper()
+                and number(e.get("numero")) == number(perf.get("numero"))
+                and normalize(e.get("hippodrome")) == normalize(perf.get("hippodrome"))
+            ]
+            if len(candidates) == 1:
+                changed |= complete_performance(perf, candidates[0])
+    return changed
+
+
 def local_time(day, hour):
     if not isinstance(hour, str) or not re.fullmatch(r"\d{2}:\d{2}", hour):
         return None
@@ -291,10 +346,7 @@ def apply(data, current, is_dry_run=False, probe=False, finalized=None):
             # du partant. Conserver son nom sur la performance officielle
             # dont date + réunion/course + numéro + identité ont été contrôlés.
             # Pas de nom inventé si la déclaration ne l'indique pas.
-            for rider_field in ("jockey", "driver"):
-                rider_name = evt.get(rider_field)
-                if isinstance(rider_name, str) and rider_name.strip():
-                    perf[rider_field] = rider_name.strip()
+            complete_performance(perf, evt)
             updates.append((slug, perf))
             print(f"[PMU] CONFIRMÉ : {slug}, {evt['course']}, n°{bib}, {val}")
         except (ValueError, TypeError, KeyError) as exc:
@@ -302,7 +354,8 @@ def apply(data, current, is_dry_run=False, probe=False, finalized=None):
     if is_dry_run:
         print(f"[PMU] Essai à blanc : {len(updates)} performance(s) repérée(s), aucune écriture")
         return False
-    if not updates:
+    enriched = enrich_existing(data)
+    if not updates and not enriched:
         print("[PMU] Aucune modification")
         return False
     # Ne pas modifier d'autres données : insertion uniquement de performances vérifiées.
@@ -344,7 +397,7 @@ def poll_results(data, poll_seconds=240, interval_seconds=45, early_minutes=5):
         if not fast:
             # Un résultat officialisé tardivement reste contrôlé à chaque
             # exécution de 5 min, sans monopoliser le runner.
-            if cycles == 0 and active:
+            if cycles == 0:
                 changed_any |= apply(data, current, finalized=finalized)
             print("[PMU] Aucun partant nécessitant une surveillance rapprochée")
             break
@@ -391,7 +444,20 @@ def self_test():
     assert rank_in_arrival(race, 5)[0] is None
     assert find_race(fixture, "R1C7", "Deauville")[0] is None
     assert normalize("Maître d'Or") == normalize("MAITRE D OR")
-    print("[PMU] Tests internes réussis : ex aequo, provisoire, lieu et non classé")
+    event = {"date": "2026-11-24", "hippodrome": "Deauville",
+             "course": "R1C3", "numero": 3, "jockey": "César BELMONT",
+             "entraineur": "Gilles PANNIER"}
+    perf = {"date": event["date"], "hippodrome": event["hippodrome"],
+            "course": "R1C3", "numero": 3, "officiel": True, "rang": "9e"}
+    assert complete_performance(perf, event)
+    assert perf["jockey"] == "César BELMONT" and perf["entraineur"] == "Gilles PANNIER"
+    assert perf["video_url"] == equidia_course_url("2026-11-24", "R1C3")
+    assert not complete_performance(perf, event)
+    perf["jockey"] = "Monte confirmée différente"
+    perf["video_url"] = "https://example.org/replay-valide"
+    assert not complete_performance(perf, event)
+    assert not complete_performance({**perf, "numero": 4}, event)
+    print("[PMU] Tests internes réussis : ex aequo, provisoire, lieu, non classé et enrichissement")
 
 
 if __name__ == "__main__":
