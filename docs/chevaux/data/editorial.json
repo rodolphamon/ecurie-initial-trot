@@ -861,7 +861,10 @@
         "numero": 3,
         "jockey": "C. BELMONT",
         "entraineur": "Gilles PANNIER",
-        "source_url": "https://www.geny.com/course/1699652-2026-11-24-deauville-prix-de-preaux/arrivee-rapports?orga=PMH"
+        "source_url": "https://www.geny.com/course/1699652-2026-11-24-deauville-prix-de-preaux/arrivee-rapports?orga=PMH",
+        "video_url": "https://www.equidia.fr/courses/2026-11-24/R1/C3",
+        "video_source": "equidia_course",
+        "course_url": "https://www.equidia.fr/courses/2026-11-24/R1/C3"
       },
       {
         "date": "2026-09-11",
