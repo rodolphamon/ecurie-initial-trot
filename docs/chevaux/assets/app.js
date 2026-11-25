@@ -25,7 +25,32 @@ const sexNames={F:'Femelle',H:'Hongre',M:'Mâle'};
 const silkName=p=>p.casaque==='galop'?'casaque-galop.svg':p.casaque==='orange'?'casaque-orange.svg':'casaque-blanche.svg';
 const silk=p=>base+'../assets/'+silkName(p);
 function photoMarkup(p,style){let img=p.photoUrl||base+'photos/'+p.id+'.jpg?v='+encodeURIComponent(p.photoVersion||'1');return '<div class="'+(style==='hero'?'hero-photo':'horse-card-photo')+'">'+(style==='card'?'<span class="kind">'+esc(p.discipline)+'</span>':'')+'<img class="photo" src="'+img+'" alt="Photo de '+esc(p.name)+'" loading="lazy" onerror="this.hidden=true;this.nextElementSibling.hidden=false;this.parentNode.classList.add(\'no-photo\')" /><img class="silk" hidden src="'+silk(p)+'" alt="Casaque de l’Écurie Initial"/>'+(style==='hero'?'<span class="placeholder-tag" hidden>Photographie à venir</span>':'')+'</div>'}
-async function load(){let paths=[base+'data/chevaux.json',base+'data/editorial.json',base+'../data/effectif-trot.json',base+'../data/effectif-galop.json'];let requests=await Promise.all(paths.map(async p=>{let r=await fetch(p+(p.endsWith('/data/editorial.json')?'?v='+Date.now():''),{cache:'no-store'});if(!r.ok)throw Error('Impossible de charger '+p);return r.json()}));let [all,editor,trot,galop]=requests;
+
+// Résultats officiels déjà enregistrés par le moteur push, sans attendre GitHub Pages.
+async function freshPerformances(editor){
+  const merged={...(editor.performances||{})};
+  try{
+    const response=await fetch('https://raw.githubusercontent.com/rodolphamon/ecurie-initial-trot/main/docs/chevaux/data/editorial.json?v='+Date.now(),{cache:'no-store',signal:AbortSignal.timeout(4500)});
+    if(response.ok){const data=await response.json();Object.assign(merged,data.performances||{});}
+  }catch(e){console.info('Source GitHub directe indisponible',e)}
+  try{
+    const response=await fetch('https://yeecwaaizmvrhwobukfa.supabase.co/functions/v1/public-race-results',{cache:'no-store',signal:AbortSignal.timeout(4500)});
+    if(!response.ok)throw Error('Résultats directs indisponibles');
+    const data=await response.json();
+    for(const [slug,rows] of Object.entries(data.performances||{})){
+      if(!Array.isArray(rows))continue;
+      const list=[...(merged[slug]||[])];
+      for(const row of rows){
+        const index=list.findIndex(p=>p.date===row.date&&normalizeSearch(p.hippodrome)===normalizeSearch(row.hippodrome));
+        if(index<0)list.push(row);
+        else if(list[index].officiel!==true&&list[index].statut!=='officiel')list[index]={...list[index],...row};
+      }
+      merged[slug]=list.sort((a,b)=>b.date.localeCompare(a.date));
+    }
+  }catch(e){console.info('Résultats directs indisponibles, historique conservé',e)}
+  return merged;
+}
+async function load(){let paths=[base+'data/chevaux.json',base+'data/editorial.json',base+'../data/effectif-trot.json',base+'../data/effectif-galop.json'];let requests=await Promise.all(paths.map(async p=>{let r=await fetch(p+(p.endsWith('/data/editorial.json')?'?v='+Date.now():''),{cache:'no-store'});if(!r.ok)throw Error('Impossible de charger '+p);return r.json()}));let [all,editor,trot,galop]=requests;editor.performances=await freshPerformances(editor);
 try{const q=await fetch(base+'data/qualifications.json',{cache:'no-store'});if(q.ok){let videos=await q.json();editor.qualifications={...(editor.qualifications||{}),...(videos.qualifications||{})};}}catch(e){console.warn('Vidéos de qualification temporairement indisponibles',e)}let gallop=new Map((galop.horses||[]).map(h=>{
   if(/obstacle/i.test(h.discipline||'')){
     return [h.id,{...h,value_historique_non_ventilee:h.value??null,value_plat:h.value_plat??null,value_obstacle:h.value_obstacle??null}];
@@ -451,7 +476,8 @@ function watchFreshResults(state){
       const response=await fetch(base+'data/editorial.json?v='+Date.now(),{cache:'no-store'});
       if(!response.ok)throw Error('Contrôle des résultats indisponible');
       const fresh=await response.json();
-      if(JSON.stringify(fresh.performances||{})!==initialResults)location.reload();
+      const latest=await freshPerformances(fresh);
+      if(JSON.stringify(latest)!==initialResults)location.reload();
     }catch(error){console.info('Vérification des derniers résultats différée',error)}
     finally{checking=false}
   }
