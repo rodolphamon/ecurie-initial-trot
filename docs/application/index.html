@@ -809,6 +809,7 @@ window.loadHomeDashboard=async function(force=false){
   }catch(error){console.warn('Effectif en direct indisponible',error)}
   const known=new Map(horses.map(h=>[h.id,h.name]));
   get("dashHorses").textContent=String(horses.length);
+  const referenceEngagements={...(editorial.engagements||{})};
   const paint=()=>{
    const now=current(),upcoming=[],past=[];
    for(const [slug,events] of Object.entries(editorial.engagements||{})){
@@ -857,7 +858,7 @@ window.loadHomeDashboard=async function(force=false){
      const rider=get("dashResultRider"),trainer=get("dashResultTrainer");
      // Le résultat officiel peut ne contenir que le classement. À défaut de monte
      // dans la performance, reprendre uniquement la monte déclarée de la même course.
-     const sameCourse=(editorial.engagements?.[latest.slug]||[]).filter(e=>{
+     const matchingCourse=events=>(Array.isArray(events)?events:[]).filter(e=>{
       if(!e||e.date!==latest.p.date||!["partant","declare"].includes(e.statut)||e.reunion_annulee)return false;
       const venue=v=>String(v||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").trim().toLowerCase();
       if(!venue(e.hippodrome)||venue(e.hippodrome)!==venue(latest.p.hippodrome))return false;
@@ -866,7 +867,9 @@ window.loadHomeDashboard=async function(force=false){
       if(e.numero!=null&&latest.p.numero!=null&&String(e.numero)!==String(latest.p.numero))return false;
       return true;
      });
-     const declared=sameCourse.length===1?sameCourse[0]:null;
+     const sameCourse=matchingCourse(editorial.engagements?.[latest.slug]);
+     const referenceCourse=matchingCourse(referenceEngagements[latest.slug]);
+     const declared=sameCourse.length===1?sameCourse[0]:sameCourse.length===0&&referenceCourse.length===1?referenceCourse[0]:null;
      const officialRider=String(latest.p.jockey||latest.p.driver||"").trim();
      const riderName=officialRider||String(declared?.jockey||declared?.driver||"").trim();
      const trainerName=String(latest.p.entraineur||declared?.entraineur||horse?.trainer||"").trim();
