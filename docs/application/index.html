@@ -793,6 +793,25 @@ window.loadHomeDashboard=async function(force=false){
     }
    }
   }catch(error){console.info("Accueil : résultats GitHub directs indisponibles, fichier publié conservé",error)}
+  // Le moteur push publie les arrivées officielles avant la reconstruction Pages.
+  try{
+   const response=await fetch("https://yeecwaaizmvrhwobukfa.supabase.co/functions/v1/public-race-results",{cache:"no-store",signal:AbortSignal.timeout(4500)});
+   if(response.ok){
+    const live=await response.json();
+    const norm=v=>String(v||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/[^a-z0-9]+/g," ").trim();
+    editorial.performances=editorial.performances||{};
+    for(const [slug,rows] of Object.entries(live.performances||{})){
+     if(!Array.isArray(rows))continue;
+     const list=[...(editorial.performances[slug]||[])];
+     for(const row of rows){
+      const index=list.findIndex(p=>p.date===row.date&&norm(p.hippodrome)===norm(row.hippodrome));
+      if(index<0)list.push(row);
+      else if(list[index].officiel!==true&&list[index].statut!=="officiel")list[index]={...list[index],...row};
+     }
+     editorial.performances[slug]=list.sort((a,b)=>b.date.localeCompare(a.date));
+    }
+   }
+  }catch(error){console.info("Résultats directs indisponibles, historique conservé",error)}
   const horses=Array.isArray(horsesData.horses)?horsesData.horses:[];
   // L'effectif publié dans l'administration prévaut sur le catalogue de référence.
   try{
