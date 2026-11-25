@@ -198,6 +198,28 @@ function searchScore(p,query){
 
 /* Sept dernières courses, toutes disciplines confondues. Source unique :
    le même editorial.json que les fiches chevaux et l'application. */
+// Compléter le résultat depuis la déclaration de la même course, sans écraser les données validées.
+function resultDetails(s,slug,row){
+  const candidates=(s.editor.engagements?.[slug]||[]).filter(e=>
+    e&&e.date===row.date&&normalizeSearch(e.hippodrome)===normalizeSearch(row.hippodrome)
+    &&['partant','declare'].includes(String(e.statut||'').toLowerCase())
+    &&(!row.course||!e.course||String(row.course).toUpperCase()===String(e.course).toUpperCase())
+    &&(!row.numero||!e.numero||Number(row.numero)===Number(e.numero)));
+  if(candidates.length!==1)return row;
+  const e=candidates[0],out={...row};
+  if(!out.driver&&!out.jockey){
+    if(e.driver)out.driver=e.driver;
+    else if(e.jockey)out.jockey=e.jockey;
+    else if(e.monte)out.driver=e.monte;
+  }
+  const code=String(out.course||e.course||'').toUpperCase();
+  if(!out.video_url&&/^R\d+C\d+$/.test(code)){
+    out.course_url=out.course_url||'https://www.equidia.fr/courses/'+out.date+'/'+code.replace('C','/C');
+    out.video_url=out.course_url;
+    out.video_source='equidia_course';
+  }
+  return out;
+}
 function latestResults(s){
   const today=currentParis().slice(0,10);
   const performances=[];
@@ -207,7 +229,7 @@ function latestResults(s){
       const rang=normalizeSearch(result.rang);
       // Les non-partants, annulations et qualifications ne sont pas des courses disputées.
       if(!rang||/^(?:non\s*partant|forfait|annul|report|qualifi)/.test(rang))continue;
-      performances.push({p,result});
+      performances.push({p,result:resultDetails(s,p.id,result)});
     }
   }
   performances.sort((a,b)=>
@@ -367,7 +389,7 @@ function horse(s){
   const value=metric(p,d);
   const valueLabel=isGalop?(/obstacle/i.test(p.discipline||'')?'Valeurs handicap plat / obstacle':'Valeur handicap'):'Record';
   const gains=money(d.gains);
-  const perf=(s.editor.performances[id]||[]).filter(x=>x&&!/^(?:non\s*partant|forfait)/.test(normalizeSearch(x.rang))).sort((a,b)=>b.date.localeCompare(a.date)).slice(0,5);
+  const perf=(s.editor.performances[id]||[]).filter(x=>x&&!/^(?:non\s*partant|forfait)/.test(normalizeSearch(x.rang))).sort((a,b)=>b.date.localeCompare(a.date)).slice(0,5).map(x=>resultDetails(s,id,x));
   // Les forfaits restent visibles jusqu'à J-3, puis disparaissent dès J-2.
   const today=currentParis().slice(0,10);
   const limit=new Date(today+'T00:00:00Z');
