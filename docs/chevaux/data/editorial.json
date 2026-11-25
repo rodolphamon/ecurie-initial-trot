@@ -779,7 +779,9 @@
         "source_url": "https://www.pmu.fr/turf/",
         "course_url": "https://www.equidia.fr/courses/2026-11-25/R4/C2",
         "video_url": "https://www.equidia.fr/courses/2026-11-25/R4/C2",
-        "video_source": "equidia_course"
+        "video_source": "equidia_course",
+        "driver": "David THOMAIN",
+        "numero": 4
       },
       {
         "date": "2026-10-17",
@@ -788,7 +790,12 @@
         "source_url": "https://www.geny.com/cheval/2863611-nostalgie-dairpet/course/1691905",
         "driver": "A. LAMY",
         "type": "Trot attelé",
-        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026"
+        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026",
+        "course": "R5C7",
+        "numero": 11,
+        "course_url": "https://www.equidia.fr/courses/2026-10-17/R5/C7",
+        "video_url": "https://www.equidia.fr/courses/2026-10-17/R5/C7",
+        "video_source": "equidia_course"
       },
       {
         "date": "2026-10-08",
