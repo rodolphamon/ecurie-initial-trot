@@ -855,9 +855,22 @@ window.loadHomeDashboard=async function(force=false){
     else{silk.hidden=true;silk.removeAttribute("src")}
     get("dashResultDetail").textContent=[latest.p.hippodrome,stamp(latest.p.date)].filter(Boolean).join(" · ");
      const rider=get("dashResultRider"),trainer=get("dashResultTrainer");
-     const riderName=String(latest.p.jockey||latest.p.driver||"").trim();
-     const trainerName=String(latest.p.entraineur||horse?.trainer||"").trim();
-     rider.querySelector(".dash-person-name").textContent=riderName; rider.title=riderName?"Jockey / driver : "+riderName:"";rider.hidden=!riderName;
+     // Le résultat officiel peut ne contenir que le classement. À défaut de monte
+     // dans la performance, reprendre uniquement la monte déclarée de la même course.
+     const sameCourse=(editorial.engagements?.[latest.slug]||[]).filter(e=>{
+      if(!e||e.date!==latest.p.date||!["partant","declare"].includes(e.statut)||e.reunion_annulee)return false;
+      const venue=v=>String(v||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").trim().toLowerCase();
+      if(!venue(e.hippodrome)||venue(e.hippodrome)!==venue(latest.p.hippodrome))return false;
+      const a=String(e.course||"").trim().toUpperCase(),b=String(latest.p.course||"").trim().toUpperCase();
+      if(!a||!b||a!==b)return false;
+      if(e.numero!=null&&latest.p.numero!=null&&String(e.numero)!==String(latest.p.numero))return false;
+      return true;
+     });
+     const declared=sameCourse.length===1?sameCourse[0]:null;
+     const officialRider=String(latest.p.jockey||latest.p.driver||"").trim();
+     const riderName=officialRider||String(declared?.jockey||declared?.driver||"").trim();
+     const trainerName=String(latest.p.entraineur||declared?.entraineur||horse?.trainer||"").trim();
+     rider.querySelector(".dash-person-name").textContent=riderName; rider.title=riderName?(officialRider?"Jockey / driver : ":"Monte déclarée : ")+riderName:"";rider.hidden=!riderName;
      trainer.querySelector(".dash-person-name").textContent=trainerName;trainer.title=trainerName?"Entraîneur : "+trainerName:"";trainer.hidden=!trainerName;
     const rank=get("dashResultRank"),rankRaw=String(latest.p.rang||"").trim();
     const rankMatch=rankRaw.match(/^(\d+)\s*(?:er|re|e|eme|ème)?$/i);
