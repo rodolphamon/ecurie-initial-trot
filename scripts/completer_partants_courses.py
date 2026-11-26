@@ -49,6 +49,26 @@ def roster(day, venue, slug, name, event, programme, fetch=pmu.fetch_participant
     return matches[0] if len(matches) == 1 else None
 
 
+def previous_matching(previous, slug, day, event, name):
+    """Conserver la dernière liste identifiée tant que le PMU ne fournit pas de remplacement."""
+    code = str(event.get("course") or "").upper()
+    bib = pmu.number(event.get("numero"))
+    matches = [
+        c for c in previous.get("courses", [])
+        if c.get("cheval_slug") == slug and c.get("date") == day
+        and venue_key(c.get("hippodrome", "")) == venue_key(event.get("hippodrome", ""))
+        and (not code or c.get("course") == code or
+             (str(c.get("course", "")).startswith("C") and code.endswith(str(c["course"]))))
+        and any(pmu.normalize(p.get("cheval")) == pmu.normalize(name)
+                and (not bib or pmu.number(p.get("numero")) == bib)
+                for p in c.get("partants", []))
+    ]
+    if len(matches) != 1:
+        return []
+    row = matches[0]
+    return [{**row, "course": code}] if code else matches
+
+
 def self_test():
     programme = {"reunions": [{"numOfficiel": 4, "hippodrome": {"libelleCourt": "MAUQUENCHY"},
                                "courses": [{"numOrdre": 4, "discipline": "ATTELE", "nombreDeclaresPartants": 2}]}]}
@@ -61,6 +81,10 @@ def self_test():
     assert roster("2026-11-26", "Mauquenchy", "moondance-okina", "MOONDANCE OKINA", {"numero": 3}, programme, fake) is None
     assert roster("2026-11-26", "Autre hippodrome", "moondance-okina", "MOONDANCE OKINA", {}, programme, fake) is None
     assert roster("2026-11-26", "Mauquenchy", "moondance-okina", "MOONDANCE OKINA", {}, programme, lambda d,c: entries[:1]) is None
+    manual = {**row, "course": "C4"}
+    saved = {"courses": [manual]}
+    assert previous_matching(saved, "moondance-okina", "2026-11-26", {"hippodrome": "Mauquenchy", "course": "R4C4", "numero": 12}, "MOONDANCE OKINA")[0]["course"] == "R4C4"
+    assert not previous_matching(saved, "moondance-okina", "2026-11-26", {"hippodrome": "Mauquenchy", "course": "R4C5", "numero": 12}, "MOONDANCE OKINA")
     print("[OK] Partants : identité, numéro, hippodrome, liste complète et non-partants vérifiés")
 
 
@@ -105,9 +129,10 @@ def main():
                     print(f"[PARTANTS] {slug} {day} {result['course']} : {len(result['partants'])} concurrents vérifiés")
                 else:
                     print(f"[PARTANTS] {slug} {day} : liste officielle à venir")
+                    courses.extend(previous_matching(previous, slug, day, event, names[slug]))
             except (OSError, ValueError) as exc:
                 print(f"[PARTANTS] {slug} : source indisponible ({type(exc).__name__})")
-                courses.extend(c for c in previous["courses"] if c["cheval_slug"] == slug and c["date"] == day)
+                courses.extend(previous_matching(previous, slug, day, event, names[slug]))
     courses.sort(key=lambda c: (c["date"], c["course"], c["cheval_slug"]))
     if courses != previous.get("courses") or not OUTPUT.exists():
         if args.apply:
