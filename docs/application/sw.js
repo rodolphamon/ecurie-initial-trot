@@ -1,6 +1,6 @@
 // Service Worker de l'application Écurie Initial.
 // Cache minimal ; aucun contenu privé conservé volontairement en cache.
-const CACHE='ei-app-shell-v14';
+const CACHE='ei-app-shell-v15';
 self.addEventListener('install',event=>{
   event.waitUntil(caches.open(CACHE).then(c=>c.addAll(['./','manifest.webmanifest','icon-ei-192.png','notification-ei-badge.png','notification-transparent-192.png'])));
   self.skipWaiting();
@@ -29,6 +29,7 @@ function recordPushStatus(status,error,details){
         if(!open.result.objectStoreNames.contains('events'))open.result.createObjectStore('events');
       };
       open.onerror=()=>resolve();
+      open.onblocked=()=>resolve();
       open.onsuccess=()=>{
         const db=open.result;
         const tx=db.transaction('events','readwrite');
@@ -49,14 +50,17 @@ function recordPushStatus(status,error,details){
 // empêcher l'affichage d'une notification.
 async function reportPushReceipt(id,status,at,error){
  if(typeof id!=='string'||!/^[0-9a-f-]{36}$/i.test(id))return;
+ const controller=new AbortController();
+ const timer=setTimeout(()=>controller.abort(),5000);
  try{
   await fetch('https://yeecwaaizmvrhwobukfa.supabase.co/functions/v1/push-receipt',{
    method:'POST',
    headers:{'Content-Type':'application/json'},
    body:JSON.stringify({id,status,at,error:error||null}),
-   cache:'no-store'
+   cache:'no-store',signal:controller.signal
   });
  }catch(_){/* Échec télémétrie sans impact utilisateur. */}
+ finally{clearTimeout(timer);}
 }
 self.addEventListener('push',event=>{
   event.waitUntil((async()=>{
@@ -71,8 +75,8 @@ self.addEventListener('push',event=>{
     }catch{}
     const receiptId=typeof payload.receipt_id==='string'?payload.receipt_id:null;
     const receivedAt=new Date().toISOString();
-    const reportReceived=reportPushReceipt(receiptId,'received',receivedAt);
-    await recordPushStatus('received',null);
+    // Afficher en priorité : aucun accès au stockage ni au réseau avant showNotification.
+    let displayStatus='shown',displayError=null;
     try{
       await self.registration.showNotification(title,{
         body,
@@ -81,14 +85,21 @@ self.addEventListener('push',event=>{
         tag:typeof payload.tag==='string'?payload.tag:undefined,
         data:{url},renotify:false
       });
-      const shownAt=new Date().toISOString();
-      await Promise.allSettled([recordPushStatus('shown',null),
-        reportReceived,reportPushReceipt(receiptId,'shown',shownAt)]);
     }catch(e){
-      const reason=e instanceof Error?e.name:'erreur d’affichage';
-      await Promise.allSettled([recordPushStatus('error',reason),
-        reportReceived,reportPushReceipt(receiptId,'error',new Date().toISOString(),reason)]);
+      displayStatus='error';displayError=e instanceof Error?e.name:'erreur d’affichage';
     }
+    const displayAt=new Date().toISOString();
+    const local=(async()=>{
+      await recordPushStatus('received',null,{at:receivedAt});
+      await recordPushStatus(displayStatus,displayError,{at:displayAt});
+    })();
+    let timer;
+    try{
+      await Promise.race([Promise.allSettled([local,
+        reportPushReceipt(receiptId,'received',receivedAt),
+        reportPushReceipt(receiptId,displayStatus,displayAt,displayError)]),
+        new Promise(resolve=>{timer=setTimeout(resolve,6000)})]);
+    }finally{clearTimeout(timer);}
   })());
 });
 self.addEventListener('notificationclick',event=>{
