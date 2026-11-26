@@ -119,16 +119,23 @@ console.log('[OK] Détenteurs associés uniquement, identifiant unique par cours
 
 // Exécuter aussi le vrai moteur complet avec une base et un fournisseur Push
 // entièrement simulés, pour contrôler le filtrage et la réservation anti-doublon.
-async function dispatchScenario({quiet=false}={}){
+async function dispatchScenario({quiet=false,diagnostic=false,resultsEnabled=true,malformed=false}={}){
   let clock=Date.parse(quiet?'2026-12-01T21:30:00Z':'2026-12-01T10:01:00Z');
   const date=quiet?'2026-12-02':'2026-12-01';
-  const editorial={engagements:{'moondance-okina':[{...event,date,statut:'non-partant'}]},performances:{}};
+  const editorial={engagements:{'moondance-okina':[{...event,date,statut:diagnostic?'engage':'non-partant'}]},performances:{}};
   const alerts=new Map(),races=new Map(),deliveries=new Set(),sent=[];
+  const ownerUser='11111111-1111-4111-8111-111111111111';
+  const userId=id=>id==='owner'?ownerUser:id;
+  if(diagnostic)alerts.set('admin-test:11111111-1111-4111-8111-111111111111',{
+    id:'admin-test:11111111-1111-4111-8111-111111111111',categorie:'results',cheval_slug:null,
+    created_at:new Date(clock).toISOString(),expires_at:new Date(clock+360000).toISOString(),
+    payload:{diagnostic_target_user_id:malformed?'':ownerUser,not_before:new Date(clock+90000).toISOString()},
+  });
   const ids=['owner','other','observer','visitor'];
-  const subscriptions=ids.map(id=>({id,user_id:id,audience:id==='visitor'?'visitor':'associate',
-    scope:'all',withdrawn:true,created_at:'2026-11-01T00:00:00Z',endpoint:'https://push.example/'+id}));
-  const members=ids.map(id=>({user_id:id,type_compte:id==='observer'?'observateur':id==='visitor'?'exterieur':'associe'}));
-  const participations=ids.map(id=>({user_id:id,cheval_slug:id==='other'?'nostalgie-dairpet':'moondance-okina'}));
+  const subscriptions=ids.map(id=>({id,user_id:userId(id),audience:id==='visitor'?'visitor':'associate',
+    scope:'all',withdrawn:true,results:resultsEnabled,created_at:'2026-11-01T00:00:00Z',endpoint:'https://push.example/'+id}));
+  const members=ids.map(id=>({user_id:userId(id),type_compte:id==='observer'?'observateur':id==='visitor'?'exterieur':'associe'}));
+  const participations=ids.map(id=>({user_id:userId(id),cheval_slug:id==='other'?'nostalgie-dairpet':'moondance-okina'}));
   class ClockDate extends Date{constructor(value){super(value??clock);}static now(){return clock;}}
   function from(table){
     let operation='select',value,head=false,one=false;const filters=[];
@@ -188,6 +195,19 @@ async function dispatchScenario({quiet=false}={}){
   vm.createContext(context);vm.runInContext(javascript+'\nthis.dispatch=run;',context);
   await context.dispatch();
   assert.equal(alerts.size,1);
+  if(diagnostic){
+    assert.equal(sent.length,0,'Le test attend au moins 90 secondes');
+    clock+=120000;
+    await context.dispatch();
+    assert.equal(sent.length,resultsEnabled&&!malformed?1:0,'Préférence désactivée et ciblage invalide ne doivent rien envoyer');
+    if(sent.length){
+      assert.equal(sent[0].sub.endpoint,'https://push.example/owner','Un seul compte doit recevoir le test');
+      assert.match(sent[0].message.title,/Test automatique/);
+      assert.equal(sent[0].options.urgency,'high');
+      await context.dispatch();assert.equal(sent.length,1,'Le cron suivant ne doit pas renvoyer le test');
+    }
+    return;
+  }
   if(quiet){
     assert.equal(sent.length,0,'Aucun envoi pendant la plage de silence');
     clock=Date.parse('2026-12-02T07:00:00Z');
@@ -207,3 +227,7 @@ async function dispatchScenario({quiet=false}={}){
 await dispatchScenario();
 await dispatchScenario({quiet:true});
 console.log('[OK] Moteur complet : 1 détenteur livré, autres associés et observateurs exclus, report à 8h et aucun doublon');
+await dispatchScenario({diagnostic:true});
+await dispatchScenario({diagnostic:true,resultsEnabled:false});
+await dispatchScenario({diagnostic:true,malformed:true});
+console.log('[OK] Test par le vrai moteur : délai de 90 secondes, ciblage d’un seul compte, préférence respectée et aucun doublon');

@@ -559,6 +559,16 @@ async function run() {
   if(!vapid.publicKey||!vapid.privateKey)throw Error("VAPID absent");
   const currentRaceStates=new Map(races.map(x=>[x.event_key,x.statut]));
   for(const alert of alerts||[]){
+    // Les tests administrateur suivent la vraie file de résultats, avec un seul
+    // compte destinataire. Un test incomplet ou mal formé ne doit jamais diffuser.
+    const diagnostic=alert.id.startsWith("admin-test:");
+    const diagnosticTarget=alert.payload?.diagnostic_target_user_id;
+    if(diagnostic){
+      const notBefore=Date.parse(String(alert.payload?.not_before||""));
+      if(alert.categorie!=="results"||alert.cheval_slug!==null||
+         typeof diagnosticTarget!=="string"||!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(diagnosticTarget)||
+         !Number.isFinite(notBefore)||Date.now()<notBefore)continue;
+    }else if(diagnosticTarget!==undefined)continue;
     // Un forfait annule les rappels et confirmations encore dans la file d'envoi.
     if(alert.categorie==="confirmed"||alert.categorie==="before15"){
       // Ne jamais réexpédier les anciennes fausses alertes « confirmed: ».
@@ -578,6 +588,7 @@ async function run() {
          currentRaceStates.get(alertKey)!==expectedStatus)continue;
     }
     for(const sub of subs||[]){
+      if(diagnostic&&sub.user_id!==diagnosticTarget)continue;
       if(Date.parse(sub.created_at)>Date.parse(alert.created_at))continue;
       const member=sub.audience==="associate" && !!sub.user_id && active.has(sub.user_id);
       if(sub.audience==="associate"&&!member && alert.categorie!=="public_news")continue;
@@ -642,7 +653,9 @@ async function run() {
       }else if(alert.categorie==="before15"){
         message={title:"⏰ Départ imminent · "+esc(p.nom),body:esc(p.hippodrome)+" · environ "+esc(p.diff)+" min avant le départ.",url:APP+"/engagements/"};
       }else if(alert.categorie==="results"){
-        message={title:(p.official===true?"🏆 Résultat officiel · ":"🏆 Résultat de l’écurie · ")+esc(p.nom),body:displayRank(p.rang)+" à "+esc(p.hippodrome),url:APP+"/chevaux/"+alert.cheval_slug+"/"};
+        message=diagnostic
+          ?{title:"🧪 Test automatique · Écurie Initial",body:"Vérification du circuit des résultats automatiques.",url:APP+"/application/"}
+          :{title:(p.official===true?"🏆 Résultat officiel · ":"🏆 Résultat de l’écurie · ")+esc(p.nom),body:displayRank(p.rang)+" à "+esc(p.hippodrome),url:APP+"/chevaux/"+alert.cheval_slug+"/"};
       }else if(alert.categorie==="public_news"){
         message={
           title:"📣 "+(esc(p.titre).slice(0,85)||"Message de l’Écurie"),

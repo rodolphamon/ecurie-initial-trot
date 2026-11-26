@@ -162,8 +162,7 @@ Deno.serve(async (request) => {
         if(typeof body.testId!=="string" || !/^admin-test:[0-9a-f-]{36}$/.test(body.testId))
           return respond({error:"Identifiant de test invalide."},400,origin);
         const {data:rows,error}=await db.from("ei_push_receipts")
-          .select("accepted_at,received_at,shown_at,display_error").eq("alert_id",body.testId)
-          .eq("category","admin_test");
+          .select("accepted_at,received_at,shown_at,display_error").eq("alert_id",body.testId);
         if(error)throw error;
         return respond({devices:rows?.length||0,accepted:rows?.filter(r=>r.accepted_at).length||0,
           received:rows?.filter(r=>r.received_at).length||0,shown:rows?.filter(r=>r.shown_at).length||0,
@@ -179,41 +178,37 @@ Deno.serve(async (request) => {
       if(memberError || !member?.actif || !["associe","observateur"].includes(member.type_compte) || !(await allowedMember(target)))
         return respond({error:"Destinataire non autorisé."},403,origin);
       const {data:devices,error:deviceError}=await db.from("ei_push_subscriptions")
-        .select("id,endpoint,p256dh,auth_secret").eq("user_id",target).eq("audience","associate").limit(50);
+        .select("id,endpoint,results").eq("user_id",target).eq("audience","associate").limit(50);
       if(deviceError)throw deviceError;
       const valid=(devices||[]).filter(d=>validEndpoint(d.endpoint));
       if(!valid.length)return respond({error:"Aucun appareil inscrit aux notifications."},409,origin);
+      if(!valid.some(d=>d.results===true))return respond({error:"Les notifications de résultats sont désactivées pour ce compte."},409,origin);
       const now=Date.now();
       if(valid.some(d=>now-(lastTests.get(d.endpoint)||0)<120000))
         return respond({error:"Attendez deux minutes entre deux tests."},429,origin);
       const {data:recent,error:recentError}=await db.from("ei_push_receipts").select("id")
-        .eq("category","admin_test").in("subscription_id",valid.map(d=>d.id))
+        .like("alert_id","admin-test:%").in("subscription_id",valid.map(d=>d.id))
         .gte("created_at",new Date(now-120000).toISOString()).limit(1);
       if(recentError)throw recentError;
       if(recent?.length)return respond({error:"Attendez deux minutes entre deux tests."},429,origin);
+      const {data:pending,error:pendingError}=await db.from("ei_push_alerts").select("id")
+        .eq("payload->>diagnostic_target_user_id",target)
+        .gte("created_at",new Date(now-120000).toISOString()).limit(1);
+      if(pendingError)throw pendingError;
+      if(pending?.length)return respond({error:"Un test automatique est déjà programmé pour ce compte."},429,origin);
       if(!(await vapidPairMatches()))return respond({error:"Clés Push incompatibles. Aucun envoi."},503,origin);
       for(const d of valid)lastTests.set(d.endpoint,now);
       const testId="admin-test:"+crypto.randomUUID();
-      const vapid={publicKey:env("PUSH_VAPID_PUBLIC_KEY"),privateKey:env("PUSH_VAPID_PRIVATE_KEY"),subject:"mailto:contact@ecurie-initial.com"};
-      let accepted=0,failed=0;
-      for(const d of valid){
-        if(isSilentPeriodParis())break;
-        const {data:receipt,error:receiptError}=await db.from("ei_push_receipts")
-          .insert({subscription_id:d.id,alert_id:testId,category:"admin_test"}).select("id").single();
-        if(receiptError){failed++;continue}
-        if(isSilentPeriodParis())break;
-        try{
-          const sent=await sendPushNotification({endpoint:d.endpoint,keys:{p256dh:d.p256dh,auth:d.auth_secret}},
-            {title:"🔔 Test Écurie Initial",body:"Notification test. Confirmez sa réception à l’administration.",
-             url:"https://fiches.ecurie-initial.com/application/",receipt_id:receipt.id},
-            vapid,{urgency:"high",ttl:120});
-          if(sent){
-            accepted++;
-            await db.from("ei_push_receipts").update({accepted_at:new Date().toISOString()}).eq("id",receipt.id);
-          }else failed++;
-        }catch(e){failed++;console.warn("Test administrateur : échec Push",e instanceof Error?e.name:"inconnu")}
-      }
-      return respond({name:member.nom_affiche,testId,devices:valid.length,accepted,failed},200,origin);
+      const notBefore=new Date(now+90000).toISOString();
+      // Même file, même préférence Résultats, même cron et même livraison
+      // que les courses réelles. Le ciblage est imposé côté moteur.
+      const {error:queueError}=await db.from("ei_push_alerts").insert({
+        id:testId,categorie:"results",cheval_slug:null,
+        payload:{diagnostic_target_user_id:target,diagnostic_created_by:adminId,not_before:notBefore},
+        expires_at:new Date(now+6*60000).toISOString(),
+      });
+      if(queueError)throw queueError;
+      return respond({name:member.nom_affiche,testId,devices:valid.length,queued:true,notBefore},200,origin);
     }
     if (action === "send_andresy_test") {
       // Bouton de démonstration réservé à l'administrateur connecté.
