@@ -11236,9 +11236,14 @@
         "date": "2026-11-29",
         "hippodrome": "Reims",
         "type": "Trot monté",
-        "statut": "engage",
-        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026",
-        "prix": "Prix de l'Hippodrome de Reims"
+        "statut": "partant",
+        "source_description": "Liste des partants communiquée par le gérant le 26/11/2026 (capture Infonet LeTROT, course 1 ; horaire et code réunion PMU à confirmer).",
+        "prix": "Prix de Bjerke",
+        "numero": 1,
+        "driver": "J. MAILLARD",
+        "entraineur": "L. BARASSIN",
+        "distance": "2550 m",
+        "ferrure": "D4"
       },
       {
         "date": "2026-11-30",
