@@ -481,7 +481,7 @@ function horse(s){
       const people=[['Monte',x.driver||x.jockey],['Entraîneur',x.entraineur]];
       const details=[
         ['Réduction kilométrique',!isGalop&&x.reduction_km],
-        ['Gains obtenus',Number.isFinite(x.allocation_place)&&money(x.allocation_place)],
+        [isGalop?'Gains obtenus (hors primes)':'Gains obtenus',Number.isFinite(x.allocation_place)&&money(x.allocation_place)],
         ['Ferrure',!isGalop&&x.ferrure],
         ['Allocation de la course',Number.isFinite(x.allocation)&&money(x.allocation)]
       ];
