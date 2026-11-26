@@ -795,72 +795,86 @@
           {
             "rang": 1,
             "numero": 6,
-            "cheval": "NORTH OF STATE"
+            "cheval": "NORTH OF STATE",
+            "driver": "CL. DUVALDESTIN"
           },
           {
             "rang": 2,
             "numero": 11,
-            "cheval": "NOUCHKA ROYALE"
+            "cheval": "NOUCHKA ROYALE",
+            "driver": "GUILLAUME MARTIN"
           },
           {
             "rang": 3,
             "numero": 2,
-            "cheval": "NOVELISTA"
+            "cheval": "NOVELISTA",
+            "driver": "E. RAFFIN"
           },
           {
             "rang": 4,
             "numero": 4,
-            "cheval": "NOSTALGIE DAIRPET"
+            "cheval": "NOSTALGIE DAIRPET",
+            "driver": "D. THOMAIN"
           },
           {
             "rang": 5,
             "numero": 12,
-            "cheval": "NOTTINGHAM PLACE"
+            "cheval": "NOTTINGHAM PLACE",
+            "driver": "F. NIVARD"
           },
           {
             "rang": 6,
             "numero": 16,
-            "cheval": "NARCISSE DE BLAY"
+            "cheval": "NARCISSE DE BLAY",
+            "driver": "Y. LEBOURGEOIS"
           },
           {
             "rang": 7,
             "numero": 10,
-            "cheval": "NEVERS DE BELLANDE"
+            "cheval": "NEVERS DE BELLANDE",
+            "driver": "B. ROCHARD"
           },
           {
             "rang": 8,
             "numero": 13,
-            "cheval": "NEURO BELLA"
+            "cheval": "NEURO BELLA",
+            "driver": "LEO ABRIVARD"
           },
           {
             "rang": 9,
             "numero": 5,
-            "cheval": "NOBLE AVENUE"
+            "cheval": "NOBLE AVENUE",
+            "driver": "P.Y. VERVA"
           },
           {
             "rang": 10,
             "numero": 7,
-            "cheval": "NOGHERA COUNTESS"
+            "cheval": "NOGHERA COUNTESS",
+            "driver": "E. DE JESUS"
           },
           {
             "rang": 11,
             "numero": 14,
-            "cheval": "NEWLIFE DE CAHOT"
+            "cheval": "NEWLIFE DE CAHOT",
+            "driver": "G. JUNOD"
           },
           {
             "rang": 12,
             "numero": 1,
-            "cheval": "NOUMEA DES BROUETS"
+            "cheval": "NOUMEA DES BROUETS",
+            "driver": "A. COLLETTE"
           },
           {
             "rang": 13,
             "numero": 9,
-            "cheval": "NAPOLI DU BOUFFEY"
+            "cheval": "NAPOLI DU BOUFFEY",
+            "driver": "G. GELORMINI"
           },
           {
             "rang": 14,
             "numero": 15,
-            "cheval": "NORTHFIELDS"
+            "cheval": "NORTHFIELDS",
+            "driver": "R. DERIEUX"
           }
         ]
       },

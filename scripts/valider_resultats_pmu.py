@@ -123,6 +123,56 @@ def test_offline():
     print("[OK] TESTS ISOLÉS TERMINÉS : aucune fiche ni notification modifiée")
 
 
+def test_arrival_people():
+    runners = [
+        {"numPmu": 2, "nom": "PREMIER", "driver": "Driver premier"},
+        {"numPmu": 5, "nom": "MASTER PAT", "driver": "Monte officielle"},
+        {"numPmu": 8, "nom": "EX AEQUO", "driver": "Monte ex aequo"},
+        {"numPmu": 9, "nom": "SANS MONTE"},
+    ]
+    runner = {**runners[1], "_participants": runners}
+    for discipline, key in (("ATTELE", "driver"), ("MONTE", "jockey"), ("PLAT", "jockey")):
+        race = {**programme()["reunions"][0]["courses"][0], "discipline": discipline}
+        perf = {}
+        assert pmu.add_official_details(perf, race, runner, 2)
+        arrival = perf["arrivee"]
+        assert [r["rang"] for r in arrival] == [1, 2, 2, 4]
+        assert arrival[0][key] == "Driver premier"
+        assert arrival[1][key] == "Monte officielle"
+        assert arrival[2][key] == "Monte ex aequo"
+        assert key not in arrival[3], "Monte inventée quand la source ne la renseigne pas"
+        assert not pmu.add_official_details(perf, race, runner, 2), "Enrichissement non idempotent"
+
+    # Une arrivée publiée avant cette évolution doit être complétée par le
+    # rattrapage, sans changer les classements ni remplacer une monte vérifiée.
+    data = fixture()
+    data["performances"]["master-pat"] = [{
+        "date": "2026-11-17", "hippodrome": "Chantilly", "rang": "2e",
+        "officiel": True, "statut": "officiel", "course": "R1C7", "numero": 5,
+        "arrivee": [
+            {"rang": 1, "numero": 2, "cheval": "PREMIER", "jockey": "Monte déjà vérifiée"},
+            {"rang": 2, "numero": 5, "cheval": "MASTER PAT"},
+            {"rang": 2, "numero": 8, "cheval": "NOM DIFFERENT"},
+        ],
+    }]
+    now = datetime(2026, 11, 17, 16, 0, tzinfo=pmu.PARIS)
+    with tempfile.TemporaryDirectory() as directory:
+        output = Path(directory) / "editorial.json"
+        horses = Path(directory) / "chevaux.json"
+        horses.write_text(json.dumps({"horses": [{"id": "master-pat", "name": "MASTER PAT"}]}), encoding="utf-8")
+        with patch.object(pmu, "HORSES", horses), patch.object(pmu, "DATA", output), \
+             patch.object(pmu, "fetch_programme", return_value=(programme(), "https://example.invalid/source")), \
+             patch.object(pmu, "fetch_participants", return_value=runners), \
+             contextlib.redirect_stdout(io.StringIO()):
+            assert pmu.apply(data, now)
+            saved = json.loads(output.read_text(encoding="utf-8"))["performances"]["master-pat"][0]
+            assert saved["arrivee"][0]["jockey"] == "Monte déjà vérifiée"
+            assert saved["arrivee"][1]["jockey"] == "Monte officielle"
+            assert "jockey" not in saved["arrivee"][2], "Monte attribuée à un nom différent"
+            assert not pmu.apply(data, now), "Rattrapage non idempotent"
+    print("[OK] Drivers et jockeys, ex aequo, rattrapage et conservation des données vérifiées")
+
+
 def test_polling_timing():
     """Simulation accélérée : H+12, passages à 45 s et arrêt à l'officialisation."""
     start = datetime(2026, 11, 17, 15, 50, tzinfo=pmu.PARIS)
@@ -256,6 +306,7 @@ if __name__ == "__main__":
                         help="Contrôle strict du flux PMU réel sur les courses du 16/11/2026")
     args = parser.parse_args()
     test_offline()
+    test_arrival_people()
     test_polling_timing()
     if args.live:
         test_live()

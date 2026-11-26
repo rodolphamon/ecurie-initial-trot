@@ -183,17 +183,23 @@ def add_official_details(perf, race, runner, rank):
     suffix = {1: "1er", 2: "2eme", 3: "3eme", 4: "4eme", 5: "5eme"}.get(rank)
     tied = any(isinstance(group, list) and len(group) > 1
                and number(runner.get("numPmu")) in map(number, group) for group in race["ordreArrivee"])
-    names = {number(r.get("numPmu")): r.get("nom") for r in runner.get("_participants", [])
-             if isinstance(r, dict) and r.get("nom")}
+    runners = {number(r.get("numPmu")): r for r in runner.get("_participants", [])
+               if isinstance(r, dict) and r.get("nom")}
+    monte_key = "driver" if normalize(race.get("discipline")) == "ATTELE" else "jockey"
     arrival = []
     for group in race["ordreArrivee"]:
         group = group if isinstance(group, list) else [group]
         place = len(arrival) + 1
         for bib in map(number, group):
-            if bib not in names:
+            if bib not in runners:
                 arrival = []
                 break
-            arrival.append({"rang": place, "numero": bib, "cheval": names[bib]})
+            participant = runners[bib]
+            row = {"rang": place, "numero": bib, "cheval": participant["nom"]}
+            monte = label(participant.get("driver") or participant.get("jockey")).strip()
+            if monte:
+                row[monte_key] = monte
+            arrival.append(row)
         else:
             continue
         break
@@ -218,6 +224,17 @@ def add_official_details(perf, race, runner, rank):
     for key, value in values.items():
         if value and not perf.get(key):
             perf[key] = value
+    # Compléter les arrivées déjà publiées seulement après correspondance
+    # du rang, du numéro et du nom ; conserver toute monte déjà renseignée.
+    if arrival and perf.get("arrivee"):
+        verified = {(r["rang"], r["numero"], normalize(r["cheval"])): r for r in arrival}
+        enriched = []
+        for row in perf["arrivee"]:
+            official = verified.get((row.get("rang"), row.get("numero"), normalize(row.get("cheval"))))
+            if official and official.get(monte_key) and not any(row.get(k) for k in ("driver", "jockey", "monte")):
+                row = {**row, monte_key: official[monte_key]}
+            enriched.append(row)
+        perf["arrivee"] = enriched
     return perf != before
 
 
@@ -330,7 +347,10 @@ def apply(data, current, is_dry_run=False, probe=False, finalized=None):
     yesterday = (current.date() - timedelta(days=1)).isoformat()
     today = current.date().isoformat()
     catchup = [(slug, row) for slug, rows in data.get("performances", {}).items()
-               for row in rows if isinstance(row, dict) and row.get("officiel") is True and not row.get("arrivee")
+               for row in rows if isinstance(row, dict) and row.get("officiel") is True
+               and (not row.get("arrivee") or any(
+                   not any(place.get(k) for k in ("driver", "jockey", "monte"))
+                   for place in row["arrivee"] if isinstance(place, dict)))
                and yesterday <= row.get("date", "") <= today
                and re.fullmatch(r"R\d+C\d+", str(row.get("course") or ""), re.I)
                and number(row.get("numero")) and slug in horse_names]

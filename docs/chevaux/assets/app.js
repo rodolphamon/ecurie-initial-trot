@@ -440,7 +440,7 @@ function horse(s){
       const peopleMarkup=fields(people),detailMarkup=fields(details);
       const arrival=Array.isArray(x.arrivee)&&x.arrivee.length
         ?'<details class="ei-result-details"><summary>Arrivée officielle</summary><p class="ei-result-meta">Chevaux classés</p><ol class="ei-arrival-list">'+x.arrivee.map(row=>
-          '<li'+(row.numero===x.numero?' class="ei-arrival-current"':'')+'><span>'+esc(row.rang)+(row.rang===1?'er':'e')+'</span><span>n° '+esc(row.numero)+'</span><span>'+esc(row.cheval)+'</span></li>').join('')+'</ol></details>':'';
+          '<li'+(row.numero===x.numero?' class="ei-arrival-current"':'')+'><span>'+esc(row.rang)+(row.rang===1?'er':'e')+'</span><span class="ei-arrival-horse">'+esc(row.cheval)+'</span><span class="ei-arrival-monte">'+esc(row.driver||row.jockey||row.monte||(row.numero===x.numero&&(x.driver||x.jockey))||'—')+'</span></li>').join('')+'</ol></details>':'';
       return '<li class="ei-result-card"><div class="ei-result-top"><span class="ei-result-date">'+esc([dateFR(x.date),x.hippodrome].filter(Boolean).join(' · '))+'</span>'
         +'<span class="ei-result-rank"'+(rank==='0'?' title="Au-delà de la 9e place ou rang exact non renseigné"':'')+'>'+esc(rankText||'—')+starters+'</span></div>'
         +(x.prix?'<div class="ei-result-race">'+esc(x.prix)+'</div>':'')
