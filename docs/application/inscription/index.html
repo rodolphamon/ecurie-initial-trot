@@ -17,8 +17,10 @@
 </form>
 <p id="unavailable" class="note">L'inscription publique sécurisée n'est pas encore activée. La protection anti-robots doit être configurée avant l'ouverture du formulaire.</p>
 <p id="message" role="status" aria-live="polite"></p>
-<div id="success" hidden class="note"><strong>Demande enregistrée.</strong><p>Consultez votre boîte e-mail pour confirmer votre adresse. Votre compte ne donne pas automatiquement accès aux rubriques réservées aux associés.</p><p>Vous pouvez aussi ajouter l'application sur l'écran d'accueil de votre téléphone.</p><p><a href="../installation/" style="display:block;background:#f47721;color:#171717;padding:14px;border-radius:9px;font-size:17px;text-align:center;font-weight:800;text-decoration:none">📲 Voir comment installer l'application</a></p></div>
-<section class="install-panel" aria-label="Installation de l'application"><h2>📲 Installez l'application sur votre téléphone</h2><p>Une icône Écurie Initial directement sur votre écran d'accueil, même avant l'ouverture officielle.</p><a href="../installation/">Voir comment l'installer — Android ou iPhone</a></section>
+<div id="success" hidden class="note" style="border:2px solid #f47721" tabindex="-1" aria-labelledby="confirmation-title"><h2 id="confirmation-title">Confirmez votre adresse e-mail</h2>
+<p>Votre inscription est enregistrée. <strong>Il vous reste à confirmer votre adresse pour pouvoir vous connecter.</strong></p>
+<p>Ouvrez votre boîte de réception <strong id="confirmation-email"></strong>, puis cliquez sur le lien de confirmation dans l’e-mail de l’Écurie Initial. Si le message n’apparaît pas, vérifiez vos courriers indésirables (spams).</p></div>
+<section id="install-panel" class="install-panel" aria-label="Installation de l'application"><h2>📲 Installez l'application sur votre téléphone</h2><p>Une icône Écurie Initial directement sur votre écran d'accueil, même avant l'ouverture officielle.</p><a href="../installation/">Voir comment l'installer — Android ou iPhone</a></section>
 </div></main>
 <script type="module">
 import {createClient} from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
@@ -37,10 +39,16 @@ $('registration').onsubmit=async e=>{
  e.preventDefault();if(!token){msg('Validez la vérification anti-robots.',true);return}
  const button=$('submit');button.disabled=true;msg('Inscription en cours…');
  try{
-  const {error}=await db.auth.signUp({email:$('email').value.trim().toLowerCase(),password:$('password').value,
+  const email=$('email').value.trim().toLowerCase();
+  const {error}=await db.auth.signUp({email,password:$('password').value,
    options:{captchaToken:token,emailRedirectTo:new URL('../connexion/',location.href).href,data:{nom_demande:$('name').value.trim()}}});
   if(error)throw error;
-  $('registration').hidden=true;$('success').hidden=false;msg('Vérifiez votre adresse e-mail pour confirmer votre compte.');
+  $('registration').hidden=true;
+  $('install-panel').hidden=true;
+  $('confirmation-email').textContent=email;
+  msg('');
+  $('success').hidden=false;
+  $('success').focus();
  }catch(error){msg('Impossible de créer le compte : '+(error.message||'erreur inconnue'),true);
   token='';if(widgetId!==null&&window.turnstile)window.turnstile.reset(widgetId);
  }finally{button.disabled=!token}
