@@ -640,7 +640,7 @@ body.ei-assoc-view #appContent{padding-top:10px}
 <script>
 function tab(priv){document.getElementById('publicArea').hidden=priv;document.getElementById('privateArea').hidden=!priv;document.body.classList.toggle('ei-assoc-view',priv);if(priv)window.scrollTo({top:0,behavior:'smooth'})}
 if(new URLSearchParams(location.search).get('espace')==='associes')tab(true);
-if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
+if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js',{updateViaCache:'none'}).catch(()=>{});
 if(window.matchMedia?.('(display-mode: standalone)')?.matches||navigator.standalone===true){document.getElementById('homeInstallLink').hidden=true}
 </script>
 <script type="module">

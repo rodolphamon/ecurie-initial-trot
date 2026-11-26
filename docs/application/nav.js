@@ -8,6 +8,30 @@
   const script = document.currentScript;
   if (!script) return;
   const applicationBase = new URL("./", script.src);
+  // Une notification ouvre souvent directement une fiche, hors du périmètre
+  // du worker. Vérifier aussi sa mise à jour depuis ces rubriques et au retour
+  // de veille, sans recharger la page ni redemander une autorisation Push.
+  if ("serviceWorker" in navigator) {
+    let updatingPushWorker = false, lastPushWorkerCheck = 0;
+    const updatePushWorker = async () => {
+      if (document.hidden || updatingPushWorker || Date.now() - lastPushWorkerCheck < 60000) return;
+      updatingPushWorker = true;
+      try {
+        const existing = await navigator.serviceWorker.getRegistration(applicationBase.href);
+        if (!existing && !location.pathname.startsWith(applicationBase.pathname)) return;
+        const registration = await navigator.serviceWorker.register(new URL("sw.js", applicationBase).href, {
+          scope: applicationBase.href, updateViaCache: "none"
+        });
+        await registration.update();
+        lastPushWorkerCheck = Date.now();
+      } catch (_) { /* La prochaine ouverture réessaiera si le réseau est indisponible. */ }
+      finally { updatingPushWorker = false; }
+    };
+    document.addEventListener("visibilitychange", updatePushWorker);
+    window.addEventListener("pageshow", updatePushWorker);
+    window.addEventListener("online", updatePushWorker);
+    updatePushWorker();
+  }
   // En-tête Écurie Initial partagé par toutes les rubriques et fiches.
   const headerScript = document.createElement("script");
   headerScript.src = new URL("header.js?v=20261118etoile-affinee3", applicationBase).href;

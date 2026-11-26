@@ -169,7 +169,9 @@ async function init(){
     if(a?.actif&&['exterieur','presse'].includes(a.type_compte)){$('profile').textContent=(a.type_compte==='presse'?'Presse':'Membre extérieur')+' · '+a.nom_affiche;$('profileText').textContent='Notifications publiques des courses, résultats et annonces de l’Écurie. Les informations privées restent réservées aux propriétaires.';}
     if(isMember){$('profile').textContent='Espace associé · '+a.nom_affiche;$('profileText').hidden=true;$('scopeBox').hidden=false;$('guestChecks').hidden=true;$('memberChecks').hidden=false;if(a.administrateur){for(const id of ['myPhonePanel','diagnosticLink','diagnosticHelp'])$(id).hidden=false;}}
   }
-  registration=await navigator.serviceWorker.register('../sw.js');
+  registration=await navigator.serviceWorker.register('../sw.js',{updateViaCache:'none'});
+  // Le premier abonnement exige un worker actif, pas seulement installé.
+  if(!registration.active)registration=await navigator.serviceWorker.ready;
   subscription=await registration.pushManager.getSubscription();
   const res=await fetch(API,{headers:{apikey:KEY},cache:'no-store'});
   const config=await res.json().catch(()=>({}));

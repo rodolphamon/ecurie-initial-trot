@@ -1,9 +1,16 @@
 // Service Worker de l'application Écurie Initial.
 // Cache minimal ; aucun contenu privé conservé volontairement en cache.
-const CACHE='ei-app-shell-v15';
+const CACHE='ei-app-shell-v16';
 self.addEventListener('install',event=>{
-  event.waitUntil(caches.open(CACHE).then(c=>c.addAll(['./','manifest.webmanifest','icon-ei-192.png','notification-ei-badge.png','notification-transparent-192.png'])));
-  self.skipWaiting();
+  // Un échec du cache hors ligne ou d'une icône ne doit pas empêcher
+  // l'installation du correctif de réception Push.
+  event.waitUntil((async()=>{
+    try{
+      const cache=await caches.open(CACHE);
+      await Promise.allSettled(['./','manifest.webmanifest','icon-ei-192.png','notification-ei-badge.png','notification-transparent-192.png'].map(url=>cache.add(url)));
+    }catch(_){}
+    await self.skipWaiting();
+  })());
 });
 self.addEventListener('activate',event=>{
   event.waitUntil((async()=>{

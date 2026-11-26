@@ -674,16 +674,16 @@ async function run() {
         // Les notifications de courses et d'actualité doivent être prioritaires sur
         // les téléphones en veille : éviter les retards liés au mode économie d'énergie.
         // Les rappels 15 min expirent rapidement pour ne pas apparaître après la course.
-        const pushOptions=alert.categorie==="before15"?{urgency:"high" as const,ttl:900}:
-          ["daily","confirmed","results","withdrawn","private_news","general_news","public_news"].includes(alert.categorie)
-            ?{urgency:"high" as const}:{};
+        const remainingSeconds=Math.floor((Date.parse(alert.expires_at)-Date.now())/1000);
+        const pushOptions={urgency:"high" as const,
+          ttl:Math.max(1,Math.min(remainingSeconds,alert.categorie==="before15"?900:36*3600))};
         // Un identifiant aléatoire distinct par appareil et par tentative permet
         // de mesurer la réception réelle sans divulguer l'abonnement Push.
         const {data:receipt,error:receiptError}=await sb.from("ei_push_receipts")
           .insert({subscription_id:sub.id,alert_id:alert.id,category:alert.categorie})
           .select("id").single();
         if(receiptError)console.warn("Suivi Push indisponible",receiptError.code);
-        const measuredMessage=receipt?.id ? {...message,receipt_id:receipt.id}:message;
+        const measuredMessage={...message,tag:alert.id,...(receipt?.id?{receipt_id:receipt.id}:{})};
         // Contrôle final juste avant l'appel au fournisseur Push. Libérer la réservation
         // si l'heure de silence a commencé pendant les opérations en base.
         if(isSilentPeriodParis()){

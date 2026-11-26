@@ -47,6 +47,7 @@ jobs:
         run: |
           python scripts/verifier_application.py
           node scripts/valider_non_partants_push.mjs
+          node scripts/valider_reception_push.mjs
       - name: Installer Supabase CLI
         uses: supabase/setup-cli@v1
         with:

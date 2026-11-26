@@ -11,6 +11,7 @@ on:
       - 'supabase/migrations/**'
       - 'scripts/verifier_application.py'
       - 'scripts/valider_non_partants_push.mjs'
+      - 'scripts/valider_reception_push.mjs'
       - '.github/workflows/verifier-application.yml'
   pull_request:
     branches: [main]
@@ -37,3 +38,4 @@ jobs:
         run: |
           python scripts/verifier_application.py
           node scripts/valider_non_partants_push.mjs
+          node scripts/valider_reception_push.mjs

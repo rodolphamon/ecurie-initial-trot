@@ -318,7 +318,7 @@ Deno.serve(async (request) => {
     if (action === "status") {
       if (!validEndpoint(body.endpoint)) return respond({ error: "Abonnement invalide." }, 400, origin);
       const { data, error } = await db.from("ei_push_subscriptions")
-        .select("audience,scope,confirmed,daily,before15,results,withdrawn,private_news,general_news")
+        .select("audience,scope,confirmed,daily,before15,results,withdrawn,private_news,general_news,public_news")
         .eq("endpoint", body.endpoint).eq("token_hash", tokenHash).maybeSingle();
       if (error) throw error;
       return respond({ ok: true, active: !!data, preferences: data }, 200, origin);
@@ -328,7 +328,12 @@ Deno.serve(async (request) => {
       // N'insère aucune alerte globale en base : aucun autre appareil n'est contacté.
       if (!validEndpoint(body.endpoint)) return respond({ error: "Abonnement invalide." }, 400, origin);
       const user = await memberId(request);
-      if (!user) return respond({ error: "Connectez-vous à votre compte associé avant le test." }, 403, origin);
+      if (!user) return respond({ error: "Test réservé à l’administration." }, 403, origin);
+      const { data: admin, error: adminError } = await db.from("associes")
+        .select("administrateur").eq("user_id", user).eq("actif", true).maybeSingle();
+      if (adminError) throw adminError;
+      if (admin?.administrateur !== true)
+        return respond({ error: "Test réservé à l’administration." }, 403, origin);
       const { data: sub, error } = await db.from("ei_push_subscriptions")
         .select("endpoint,p256dh,auth_secret,user_id,audience")
         .eq("endpoint", body.endpoint).eq("token_hash", tokenHash).maybeSingle();
@@ -445,12 +450,13 @@ Deno.serve(async (request) => {
       scope: isAssociate && p.scope === "mine" ? "mine" : "all",
       confirmed: isAssociate && p.confirmed !== false,
       daily: p.daily !== false,
-      before15: isAssociate && p.before15 !== false,
+      before15: isAssociate ? p.before15 !== false : p.before15 === true,
       results: p.results !== false,
       withdrawn: isAssociate && p.withdrawn !== false,
       // Une actualité privée reste strictement limitée aux propriétaires.
       private_news: isAssociate && p.private_news === true,
       general_news: isAssociate && p.general_news !== false,
+      public_news: p.public_news !== false,
       updated_at: new Date().toISOString(),
       last_error: null,
     };

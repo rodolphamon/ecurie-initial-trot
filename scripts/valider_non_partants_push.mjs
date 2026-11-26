@@ -178,7 +178,7 @@ async function dispatchScenario({quiet=false}={}){
     console:{log(){},warn(){},error(){}},
     Deno:{env:{get:key=>key.includes('VAPID')?'test-only':''},serve(){}},
     createClient:()=>({from}),
-    sendPushNotification:async(sub,message)=>{sent.push({sub,message});return true;},
+    sendPushNotification:async(sub,message,_vapid,options)=>{sent.push({sub,message,options});return true;},
     fetch:async(url)=>{
       if(url.includes('editorial.json'))return {ok:true,json:async()=>structuredClone(editorial)};
       if(url.includes('chevaux.json'))return {ok:true,json:async()=>({horses:[{id:'moondance-okina',name:'MOONDANCE OKINA'}]})};
@@ -197,6 +197,10 @@ async function dispatchScenario({quiet=false}={}){
   assert.equal(sent[0].sub.endpoint,'https://push.example/owner','Seul le détenteur associé doit recevoir le Push');
   assert.match(sent[0].message.title,/Non-partant/);
   assert.match(sent[0].message.url,/cheval=moondance-okina.*statut=non-partant/);
+  assert.equal(sent[0].options.urgency,'high');
+  assert.equal(sent[0].message.tag,[...alerts.values()][0].id);
+  assert.equal(sent[0].options.ttl,Math.floor((Date.parse([...alerts.values()][0].expires_at)-clock)/1000),
+    'La notification doit expirer chez le fournisseur en même temps que l’alerte');
   await context.dispatch();
   assert.equal(sent.length,1,'Le même appareil ne doit pas recevoir de doublon');
 }
