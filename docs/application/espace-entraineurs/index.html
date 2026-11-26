@@ -14,7 +14,7 @@ textarea{min-height:110px;resize:vertical}
 button{border:0;border-radius:9px;padding:11px 15px;background:var(--orange);font-weight:bold;cursor:pointer}
 button:disabled{opacity:.55;cursor:wait}.muted{color:#666;font-size:13px}
 .hidden,[hidden]{display:none!important}.news{border-top:1px solid #eee;padding:13px 0}
-.news img,.news video{display:block;max-width:100%;max-height:360px;object-fit:contain;margin:8px 0;border-radius:7px}
+.news img,.news video{display:block;max-width:100%;max-height:360px;object-fit:contain;margin:8px 0;border-radius:7px}.news audio{display:block;width:100%;margin:12px 0}.voice-controls{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:9px 0}.voice-preview{max-width:100%;width:100%;margin:8px 0}.voice-timer{font-weight:bold;font-variant-numeric:tabular-nums}
 .row{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
 .error{color:#a41616}.success{color:#267040}.badge{display:inline-block;background:#fff0df;border-radius:7px;padding:3px 8px;font-size:12px}
 </style></head>
@@ -30,6 +30,16 @@ button:disabled{opacity:.55;cursor:wait}.muted{color:#666;font-size:13px}
 <label for="message">Information</label><textarea id="message" maxlength="5000" placeholder="Comment se porte le cheval ?"></textarea>
 <label for="visibility">Qui peut voir cette information ?</label><select id="visibility"><option value="associes">Associés du cheval</option><option value="public">Tous les membres de l'application (test)</option></select>
 <label for="media">Photo ou vidéo (facultative, 50 Mo maximum)</label><input id="media" type="file" accept="image/jpeg,image/png,image/webp,video/mp4,video/webm">
+<fieldset><legend>🎙️ Message vocal (facultatif, jusqu’à 2 minutes)</legend>
+<div class="voice-controls">
+<button type="button" id="startVoice">🎙️ Enregistrer</button>
+<button type="button" id="stopVoice" disabled>■ Terminer</button>
+<button type="button" id="clearVoice" hidden>Effacer le vocal</button>
+<span id="voiceTimer" class="voice-timer" aria-live="off">0:00 / 2:00</span>
+</div>
+<audio id="voicePreview" class="voice-preview" controls hidden></audio>
+<p id="voiceHelp" class="muted" role="status">Autorisez le microphone lorsque votre téléphone le demande. Réécoutez avant de publier. Un seul média par publication : photo, vidéo ou vocal.</p>
+</fieldset>
 <p class="muted">Les images et vidéos restent privées dans le stockage. La diffusion publique complète sera activée après validation du module.</p>
 <button id="send" type="submit">Publier maintenant</button><p id="feedback" role="status"></p></form></article>
 <article><h2>Mes publications</h2><div id="posts"></div></article>
@@ -41,6 +51,8 @@ const db=createClient('https://yeecwaaizmvrhwobukfa.supabase.co','sb_publishable
 const $=id=>document.getElementById(id);
 const bucket='ei-entraineurs-medias';
 let uid=null,trainer=null,horses=[];
+let recorder=null,recordedVoice=null,voiceStream=null,voiceUrl=null,voiceStarted=0,voiceWatch=null,voiceChunks=[];
+const MAX_VOICE_MS=120000,MAX_VOICE_BYTES=15*1024*1024;
 const write=(msg,cls='')=>{ $('feedback').textContent=msg;$('feedback').className=cls};
 function item(tag,value){const e=document.createElement(tag);if(value!=null)e.textContent=value;return e}
 async function initialize(){
@@ -88,9 +100,10 @@ async function loadPosts(){
   if(p.media_path&&p.media_type){
    const signed=await db.storage.from(bucket).createSignedUrl(p.media_path,600);
    if(signed.data?.signedUrl){
-    const media=document.createElement(p.media_type==='image'?'img':'video');
+    const media=document.createElement(p.media_type==='image'?'img':p.media_type==='audio'?'audio':'video');
     media.src=signed.data.signedUrl;
-    if(p.media_type==='video'){media.controls=true;media.preload='metadata'}
+    if(p.media_type==='audio'){media.controls=true;media.preload='none';media.setAttribute('aria-label','Écouter le débrief vocal')}
+    else if(p.media_type==='video'){media.controls=true;media.preload='metadata'}
     else{media.loading='lazy';media.alt='Illustration publiée par '+trainer.nom_entraineur}
     block.append(media);
    }
@@ -106,6 +119,59 @@ async function loadPosts(){
   block.append(del);host.append(block);
  }
 }
+function clearVoicePreview(){
+ if(voiceUrl){URL.revokeObjectURL(voiceUrl);voiceUrl=null}
+ recordedVoice=null;$('voicePreview').pause();$('voicePreview').removeAttribute('src');$('voicePreview').hidden=true;
+ $('clearVoice').hidden=true;$('voiceTimer').textContent='0:00 / 2:00';
+}
+function releaseVoiceStream(){
+ if(voiceWatch!==null){clearInterval(voiceWatch);voiceWatch=null}
+ if(voiceStream){voiceStream.getTracks().forEach(t=>t.stop());voiceStream=null}
+}
+function toggleVoiceButtons(recording){
+ $('startVoice').disabled=recording;$('stopVoice').disabled=!recording;
+ $('media').disabled=recording;$('send').disabled=recording||!horses.length;
+}
+$('startVoice').addEventListener('click',async()=>{
+ if(!navigator.mediaDevices?.getUserMedia||!window.MediaRecorder){$('voiceHelp').textContent='Enregistrement non pris en charge par ce navigateur. Essayez un navigateur récent.';return}
+ try{
+  if($('media').files.length){$('voiceHelp').textContent='Retirez d’abord la photo ou vidéo pour enregistrer un vocal.';return}
+  clearVoicePreview();
+  voiceStream=await navigator.mediaDevices.getUserMedia({audio:true});
+  const formats=['audio/webm;codecs=opus','audio/mp4','audio/webm','audio/ogg;codecs=opus'];
+  const mime=formats.find(t=>MediaRecorder.isTypeSupported(t));
+  recorder=new MediaRecorder(voiceStream,mime?{mimeType:mime}:undefined);
+  voiceChunks=[];
+  recorder.ondataavailable=e=>{if(e.data.size)voiceChunks.push(e.data)};
+  recorder.onerror=()=>{$('voiceHelp').textContent='Erreur d’enregistrement audio.';releaseVoiceStream();toggleVoiceButtons(false)};
+  recorder.onstop=()=>{
+   releaseVoiceStream();toggleVoiceButtons(false);
+   const fullType=(recorder.mimeType||voiceChunks[0]?.type||'audio/webm');
+   const type=fullType.split(';')[0];
+   const voice=new Blob(voiceChunks,{type});voiceChunks=[];
+   if(!voice.size){$('voiceHelp').textContent='Aucun son enregistré. Recommencez.';return}
+   if(voice.size>MAX_VOICE_BYTES){$('voiceHelp').textContent='Le vocal dépasse 15 Mo. Recommencez.';return}
+   recordedVoice=voice;
+   voiceUrl=URL.createObjectURL(voice);
+   $('voicePreview').src=voiceUrl;$('voicePreview').hidden=false;
+   $('clearVoice').hidden=false;
+   $('voiceHelp').textContent='Réécoutez votre vocal puis publiez, ou effacez-le pour recommencer.';
+  };
+  recorder.start(500);voiceStarted=Date.now();toggleVoiceButtons(true);
+  $('voiceHelp').textContent='Enregistrement en cours…';
+  voiceWatch=setInterval(()=>{
+   const elapsed=Math.min(MAX_VOICE_MS,Date.now()-voiceStarted);
+   const seconds=Math.floor(elapsed/1000);
+   $('voiceTimer').textContent=Math.floor(seconds/60)+':'+String(seconds%60).padStart(2,'0')+' / 2:00';
+   if(elapsed>=MAX_VOICE_MS&&recorder?.state==='recording')recorder.stop();
+  },250);
+ }catch(e){releaseVoiceStream();toggleVoiceButtons(false);$('voiceHelp').textContent=e.name==='NotAllowedError'?'Autorisation du microphone refusée. Activez le micro dans les réglages du navigateur.':'Microphone indisponible : '+(e.message||'erreur')}
+});
+$('stopVoice').addEventListener('click',()=>{if(recorder?.state==='recording')recorder.stop()});
+$('clearVoice').addEventListener('click',()=>{clearVoicePreview();$('voiceHelp').textContent='Vocal effacé. Vous pouvez recommencer.'});
+$('media').addEventListener('change',()=>{if($('media').files.length&&recordedVoice){clearVoicePreview();$('voiceHelp').textContent='Le média sélectionné remplace le vocal.'}});
+window.addEventListener('pagehide',releaseVoiceStream);
+
 $('publish').addEventListener('submit',async e=>{
  e.preventDefault();
  const horse=$('horse').value;
@@ -113,14 +179,16 @@ $('publish').addEventListener('submit',async e=>{
  $('send').disabled=true;write('Publication en cours…');
  let path=null,mediaType=null;
  try{
-  const file=$('media').files[0];
+  const file=$('media').files[0]||recordedVoice;
+  if(file&&recorder?.state==='recording')throw Error('Terminez d’abord l’enregistrement.');
   if(file){
-   if(file.size>50*1024*1024)throw Error('Fichier trop volumineux (50 Mo maximum).');
-   const allowed={'image/jpeg':'jpg','image/png':'png','image/webp':'webp','video/mp4':'mp4','video/webm':'webm'};
-   if(!allowed[file.type])throw Error('Format non accepté. Choisissez JPG, PNG, WebP, MP4 ou WebM.');
-   mediaType=file.type.startsWith('image/')?'image':'video';
-   path=uid+'/'+horse+'/'+crypto.randomUUID()+'.'+allowed[file.type];
-   const upl=await db.storage.from(bucket).upload(path,file,{contentType:file.type,upsert:false});
+   if(file.size>(recordedVoice===file?MAX_VOICE_BYTES:50*1024*1024))throw Error('Fichier trop volumineux.');
+   const allowed={'image/jpeg':'jpg','image/png':'png','image/webp':'webp','video/mp4':'mp4','video/webm':'webm','audio/webm':'webm','audio/mp4':'m4a','audio/ogg':'ogg','audio/mpeg':'mp3','audio/aac':'aac'};
+   const mime=(file.type||'').split(';')[0];
+   if(!allowed[mime])throw Error('Format non accepté.');
+   mediaType=mime.startsWith('image/')?'image':mime.startsWith('audio/')?'audio':'video';
+   path=uid+'/'+horse+'/'+crypto.randomUUID()+'.'+allowed[mime];
+   const upl=await db.storage.from(bucket).upload(path,file,{contentType:mime,upsert:false});
    if(upl.error)throw upl.error;
   }
   const result=await db.from('ei_entraineurs_publications').insert({
@@ -128,7 +196,7 @@ $('publish').addEventListener('submit',async e=>{
    visibilite:$('visibility').value,media_path:path,media_type:mediaType
   });
   if(result.error)throw result.error;
-  $('title').value='';$('message').value='';$('media').value='';
+  $('title').value='';$('message').value='';$('media').value='';clearVoicePreview();
   write('Publication enregistrée. Elle est visible dans cet espace de test.','success');
   await loadPosts();
  }catch(err){
