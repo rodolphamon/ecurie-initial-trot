@@ -79,17 +79,12 @@ main{max-width:770px;padding:13px 14px 105px}
 <section class="card"><h2>Autorisation sur cet appareil</h2>
 <p id="serviceState" class="muted">Vérification du service de notifications…</p>
 <button type="button" class="secondary" id="disable" hidden>Arrêter sur cet appareil</button>
-<button type="button" class="secondary" id="testRemote" hidden disabled>📨 Envoyer un test serveur sur ce téléphone</button>
 <p id="status" role="status" aria-live="polite"></p>
 <p class="muted">Sur iPhone, ajoutez d'abord Écurie Initial à l'écran d'accueil. Vous pourrez modifier vos choix ou désactiver les alertes à tout moment.</p>
 <p id="diagnosticLink" hidden><a href="../diagnostic-notifications/" style="display:inline-block;padding:12px 16px;border:1px solid #f47721;border-radius:9px;background:#fff7f0;color:#703109;text-decoration:none;font-weight:700">🔎 Diagnostic des notifications</a></p>
-<p id="diagnosticHelp" class="muted" hidden>Le diagnostic local vérifie l’affichage. Le bouton « Test serveur » envoie une vraie notification Push à ce téléphone uniquement, sans avertir les autres associés. Sur iPhone, ouvrez cette rubrique depuis l’application installée.</p></section>
+<p id="diagnosticHelp" class="muted" hidden>Consultez les informations de réception et d’affichage des notifications automatiques.</p></section>
 <section class="card" id="myPhonePanel" hidden>
-<h2>📱 Tester mon Samsung depuis l’ordinateur</h2>
-<p class="muted">Sur ton Samsung, clique une seule fois sur « Désigner cet appareil comme mon téléphone ». Ensuite, verrouille-le et clique sur « Envoyer le test au Samsung » depuis ton ordinateur. Aucun autre appareil ne recevra ce test.</p>
-<button type="button" class="secondary" id="markMyPhone">📱 Désigner cet appareil comme mon téléphone</button>
-<button type="button" id="sendMyPhone">🔔 Envoyer le test au Samsung</button>
-<p id="myPhoneStatus" role="status" aria-live="polite"></p>
+<h2>Suivi des notifications</h2>
 <div style="margin-top:14px;border-top:1px solid #ddd;padding-top:12px">
   <strong>📊 Délais des notifications (7 derniers jours)</strong>
   <p class="muted">Comparaison entre l'acceptation par le service Push, la réception dans l'application et la demande d'affichage Android.</p>
@@ -172,7 +167,7 @@ async function init(){
     isMember=!!a?.actif&&['associe','observateur'].includes(a.type_compte);
     if(isMember){accountScope=a.notification_scope==='all'?'all':'mine';chooseScope(accountScope);}
     if(a?.actif&&['exterieur','presse'].includes(a.type_compte)){$('profile').textContent=(a.type_compte==='presse'?'Presse':'Membre extérieur')+' · '+a.nom_affiche;$('profileText').textContent='Notifications publiques des courses, résultats et annonces de l’Écurie. Les informations privées restent réservées aux propriétaires.';}
-    if(isMember){$('profile').textContent='Espace associé · '+a.nom_affiche;$('profileText').hidden=true;$('scopeBox').hidden=false;$('guestChecks').hidden=true;$('memberChecks').hidden=false;if(a.administrateur){for(const id of ['myPhonePanel','testRemote','diagnosticLink','diagnosticHelp'])$(id).hidden=false;}}
+    if(isMember){$('profile').textContent='Espace associé · '+a.nom_affiche;$('profileText').hidden=true;$('scopeBox').hidden=false;$('guestChecks').hidden=true;$('memberChecks').hidden=false;if(a.administrateur){for(const id of ['myPhonePanel','diagnosticLink','diagnosticHelp'])$(id).hidden=false;}}
   }
   registration=await navigator.serviceWorker.register('../sw.js');
   subscription=await registration.pushManager.getSubscription();
@@ -205,7 +200,7 @@ async function init(){
       if(state.active && p){
         preferencesActive=Notification.permission==='granted';
         $('publicNews').checked=p.public_news!==false;
-        if(isMember)$('testRemote').disabled=false;
+        
         if(isMember){
           for(const [field,id] of Object.entries({confirmed:'confirmed',daily:'reminder10',before15:'before15',results:'resultMember',withdrawn:'withdrawn',private_news:'privateNews',general_news:'generalNews'}))
             $(id).checked=!!p[field];
@@ -262,7 +257,7 @@ async function activateFromChoice(){
    await savePreferences(prefs());
    preferencesActive=true;$('disable').hidden=false;
    $('serviceState').textContent='Les notifications sont activées sur cet appareil.';
-   if(isMember)$('testRemote').disabled=false;
+   
  }catch(e){clearAlertChoices();message(e.message||'Activation impossible.',true)}
  finally{activating=false}
 }
@@ -277,19 +272,10 @@ $('disable').onclick=async()=>{
    await subscription.unsubscribe();subscription=null;
    localStorage.removeItem(tokenKey);
    clearAlertChoices();
-   $('disable').hidden=true;$('testRemote').disabled=true;
+   $('disable').hidden=true;
    $('serviceState').textContent='Cochez une alerte pour réactiver les notifications sur cet appareil.';
    message('Notifications désactivées sur cet appareil.');
  }catch(e){preferencesActive=wasActive;message(e.message||'Désactivation impossible.',true)}finally{$('disable').disabled=false}
-};
-$('testRemote').onclick=async()=>{
- const btn=$('testRemote');btn.disabled=true;message('Demande envoyée au serveur…');
- try{
-   if(!subscription||!isMember)throw Error('Connectez-vous à votre compte et activez les notifications sur ce téléphone.');
-   await callServer({action:'test',deviceToken:deviceToken(),endpoint:subscription.endpoint});
-   message('Envoi accepté par le service Push. Vérifiez si une notification arrive, puis ouvrez « Diagnostic des notifications » pour voir si elle a été reçue et affichée.');
- }catch(e){message(e.message||'Le test distant a échoué.',true)}
- finally{btn.disabled=!subscription||!isMember}
 };
 $('pushLatencyReport').onclick=async()=>{
  const btn=$('pushLatencyReport'),out=$('pushLatencyResult');
@@ -307,26 +293,7 @@ $('pushLatencyReport').onclick=async()=>{
  }catch(e){out.textContent=e.message||'Mesures indisponibles.'}
  finally{btn.disabled=false}
 };
-$('markMyPhone').onclick=async()=>{
- const btn=$('markMyPhone'),out=$('myPhoneStatus');btn.disabled=true;out.textContent='Désignation du téléphone…';
- try{
-  if(!subscription)throw Error('Activez d’abord les notifications sur cet appareil.');
-  if(!confirm('Désigner cet appareil comme l’unique téléphone à tester depuis ton ordinateur ?')){out.textContent='Désignation annulée.';return;}
-  await callServer({action:'mark_my_phone',deviceToken:deviceToken(),endpoint:subscription.endpoint});
-  out.textContent='✅ Cet appareil est désigné. Verrouille ton Samsung, puis déclenche le test depuis ton ordinateur.';
- }catch(e){out.textContent=e.message||'Impossible de désigner cet appareil.'}
- finally{btn.disabled=false}
-};
-$('sendMyPhone').onclick=async()=>{
- const btn=$('sendMyPhone'),out=$('myPhoneStatus');
- if(!confirm('Envoyer une notification uniquement au Samsung désigné ?'))return;
- btn.disabled=true;out.textContent='Envoi ciblé au Samsung…';
- try{
-  const result=await callServer({action:'send_my_phone_test',confirm:true});
-  out.textContent=result.sent?'✅ Service Push : envoi accepté pour 1 téléphone. Vérifie l’écran verrouillé du Samsung, puis son diagnostic.':'Envoi non confirmé.';
- }catch(e){out.textContent=e.message||'Test impossible.'}
- finally{btn.disabled=false}
-};
+
 init();
 </script>
 <script defer src="../nav.js?v=20261121ouverturesfiables1"></script>
