@@ -1,6 +1,6 @@
 (function(){
 'use strict';
-const $=sel=>document.querySelector(sel),formatEuro=new Intl.NumberFormat('fr-FR'),base=document.body.dataset.page==='fiche'?'../':'./';
+const $=sel=>document.querySelector(sel),formatEuro=new Intl.NumberFormat('fr-FR'),base=['fiche','resultats'].includes(document.body.dataset.page)?'../':'./';
 const esc=v=>String(v===undefined||v===null?'':v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const absoluteUrl=u=>{try{let v=new URL(u);return v.protocol==='https:'?v.href:''}catch{return ''}};
 const dateFR=s=>{if(!/^\d{4}-\d{2}-\d{2}$/.test(s||''))return s||'';let [y,m,d]=s.split('-');return d+'/'+m+'/'+y};
@@ -272,7 +272,7 @@ function resultDetails(s,slug,row){
   }
   return out;
 }
-function latestResults(s){
+function latestResults(s,expanded=false){
   const today=currentParis().slice(0,10);
   const performances=[];
   for(const p of s.profiles){
@@ -310,14 +310,14 @@ function latestResults(s){
         ?'<a class="recent-action recent-action-result" href="'+esc(resultUrl)+'" target="_blank" rel="noopener noreferrer" aria-label="'+esc('Résultat de '+p.name+' du '+dateFR(result.date))+'">Résultat</a>'
         :'';
     return '<li class="recent-item">'
-      +'<div class="recent-content"><a class="recent-horse'+(p.name.length>=17?' recent-horse-long':'')+'" href="'+(p.newHorse?'fiche/?cheval='+encodeURIComponent(p.id):encodeURIComponent(p.id)+'/')+'#performances">'+esc(p.name)+'</a>'
+      +'<div class="recent-content"><a class="recent-horse'+(p.name.length>=17?' recent-horse-long':'')+'" href="'+base+(p.newHorse?'fiche/?cheval='+encodeURIComponent(p.id):encodeURIComponent(p.id)+'/')+'#performances">'+esc(p.name)+'</a>'
       +'<div class="recent-meta"><time datetime="'+esc(result.date)+'" title="'+esc(dateFR(result.date))+'">'+esc(dateFR(result.date).slice(0,6)+dateFR(result.date).slice(-2))+'</time> · '+esc(result.hippodrome||'Hippodrome non renseigné')+'</div></div>'
       +'<img class="recent-silk" src="'+esc(silk(p))+'" alt="Casaque de '+esc(p.name)+'" width="42" height="50" loading="lazy" decoding="async">'
       +'<div class="recent-side"><span class="recent-rank'+medal+(rank.length>4?' recent-rank-long':'')+'">'+esc(rank)+'</span>'+link+'</div>'
       +'</li>';
   }).join('');
   return '<section class="recent-results" aria-labelledby="recent-results-title">'
-    +'<div class="recent-heading"><h2 id="recent-results-title">🏁 Nos derniers résultats</h2>'+(performances.length>5?'<button type="button" id="recent-scroll-next" class="recent-scroll-hint" aria-controls="recent-scroll-list" aria-label="Faire défiler les résultats vers le bas"><span class="recent-scroll-arrow" aria-hidden="true">↓</span><span class="recent-scroll-label">Défiler</span></button>':'')+'</div>'
+    +'<div class="recent-heading"><h2 id="recent-results-title">🏁 Nos derniers résultats</h2>' +(!expanded&&performances.length>5?'<button type="button" id="recent-scroll-next" class="recent-scroll-hint" aria-controls="recent-scroll-list" aria-label="Faire défiler les résultats vers le bas"><span class="recent-scroll-arrow" aria-hidden="true">↓</span><span class="recent-scroll-label">Défiler</span></button>':'')+'</div>'
     +(rows?'<ol id="recent-scroll-list" class="recent-list" aria-label="Les 20 dernières performances, faire défiler pour les suivantes" tabindex="0">'+rows+'</ol>':'<p class="recent-empty">Aucun résultat récent enregistré pour le moment.</p>')
     +'</section>';
 }
@@ -352,6 +352,19 @@ function fitCatalogueHorseNames(){
       name.style.transform='scaleX('+Math.min(1,available/textWidth*0.99).toFixed(3)+')';
     }
   });
+}
+function resultsPage(s){
+  const host=$('#app');
+  const embedded=window.self!==window.top;
+  host.innerHTML=(embedded?'':header())+
+    '<main class="shell results-page">'+
+      (embedded?'':'<div class="breadcrumb"><a href="https://www.ecurie-initial.com/">Accueil</a> / Derniers résultats</div>')+
+      '<h1>Derniers résultats</h1><p class="results-intro">Les 20 dernières performances de l’Écurie Initial, au trot et au galop.</p>'+
+      latestResults(s,true)+'</main>'+(embedded?'':footer());
+  if(embedded){
+    // Les fiches s’ouvrent en dehors du cadre du site, sans imbriquer les pages.
+    host.querySelectorAll('.recent-horse').forEach(a=>{a.target='_blank';a.rel='noopener noreferrer'});
+  }
 }
 function catalog(s){
   const host=$('#app');
@@ -624,5 +637,5 @@ function watchFreshResults(state){
   window.addEventListener('online',()=>{void check(true)});
   setInterval(()=>{void check()},60000);
 }
-load().then(s=>{if(document.body.dataset.page==='fiche'){horse(s);initArrivalScroll();window.EICourseField?.init(document);if(location.hash==='#performances')$('#performances')?.scrollIntoView();}else catalog(s);watchFreshResults(s)}).catch(err=>{console.error(err);$('#app').innerHTML=header()+'<main class="shell"><div class="error"><h1>Informations temporairement indisponibles</h1><p>Le catalogue n’a pas pu être chargé. Réessayez en actualisant la page.</p><p><a href="https://www.ecurie-initial.com/">Retour au site officiel</a></p></div></main>'+footer()});
+load().then(s=>{if(document.body.dataset.page==='fiche'){horse(s);initArrivalScroll();window.EICourseField?.init(document);if(location.hash==='#performances')$('#performances')?.scrollIntoView();}else if(document.body.dataset.page==='resultats')resultsPage(s);else catalog(s);watchFreshResults(s)}).catch(err=>{console.error(err);$('#app').innerHTML=header()+'<main class="shell"><div class="error"><h1>Informations temporairement indisponibles</h1><p>Le catalogue n’a pas pu être chargé. Réessayez en actualisant la page.</p><p><a href="https://www.ecurie-initial.com/">Retour au site officiel</a></p></div></main>'+footer()});
 })();
