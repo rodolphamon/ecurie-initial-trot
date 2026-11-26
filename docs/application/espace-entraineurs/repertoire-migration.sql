@@ -23,7 +23,7 @@ CREATE POLICY repertoire_entraineurs_admin_read ON public.ei_entraineurs_reperto
 CREATE POLICY repertoire_entraineurs_chevaux_admin_read ON public.ei_entraineurs_repertoire_chevaux FOR SELECT TO authenticated
  USING(EXISTS(SELECT 1 FROM public.associes a WHERE a.user_id=(SELECT auth.uid()) AND a.actif AND a.administrateur));
 INSERT INTO public.ei_entraineurs_repertoire(entraineur_nom,compte_user_id,compte_attendu)
-VALUES ('A. RIPOLL RIGO',NULL,NULL),
+VALUES ('Antonio RIPOLL RIGO',NULL,NULL),
 ('Bruno MARIE',NULL,'Mathias LEGROS'),
 ('Charley HESLOUIN',NULL,NULL),
 ('Gilles PANNIER','1f57106c-ab48-4754-b246-5f2485070849',NULL),
@@ -58,7 +58,7 @@ VALUES ('Gilles PANNIER','andresy','ANDRESY'),
 ('Vincent HÉBERT','olano-de-la-vallee','OLANO DE LA VALLÉE'),
 ('Gilles PANNIER','on-lockdown','ON LOCKDOWN'),
 ('Laurent BARASSIN','palazzo-grassi','PALAZZO GRASSI'),
-('A. RIPOLL RIGO','phacelie-bilou','PHACÉLIE BILOU'),
+('Antonio RIPOLL RIGO','phacelie-bilou','PHACÉLIE BILOU'),
 ('Vincent HÉBERT','popstar-d-eri','POPSTAR D''ERI'),
 ('Laurent BARASSIN','prince-gio','PRINCE GIO'),
 ('Gilles PANNIER','rosa-mia','ROSA MIA'),
