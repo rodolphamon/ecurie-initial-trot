@@ -1,6 +1,6 @@
 {
   "schema": "ecurie-initial-profils-v1",
-  "updated_at": "2026-11-25",
+  "updated_at": "2026-11-26",
   "note": "Pour les performances : au maximum les cinq dernières sorties documentées, dont les sources sont conservées en interne pour contrôle. Les classements exacts n'ont été indiqués que lorsqu'ils étaient disponibles. Les jeunes chevaux inédits n'ont pas de performances inventées. Les engagements existants sont conservés ; les nouveaux engagements au trot du 13/11/2026 sont ajoutés sans reprendre les horaires. Résultats du 13/11/2026 (MONA LISA STARDUST 7e, VICTORIA SECRET non placée) communiqués par l'Écurie Initial.",
   "performances": {
     "memphis-belle": [
@@ -781,7 +781,16 @@
         "video_url": "https://www.equidia.fr/courses/2026-11-25/R4/C2",
         "video_source": "equidia_course",
         "driver": "David THOMAIN",
-        "numero": 4
+        "numero": 4,
+        "prix": "Prix de Bonnieux",
+        "type_course": "À réclamer · Autostart",
+        "distance": 2100,
+        "partants": 16,
+        "allocation": 18000,
+        "allocation_place": 1440,
+        "reduction_km": "1′13″7",
+        "ferrure": "PA",
+        "entraineur": "Laurent Barassin"
       },
       {
         "date": "2026-10-17",

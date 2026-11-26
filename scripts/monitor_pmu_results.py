@@ -143,18 +143,67 @@ def fetch_participants(day, code):
     return data["participants"]
 
 
-def verify_identity(day, code, bib, expected_name):
+def verified_participant(day, code, bib, expected_name):
     runners = fetch_participants(day, code)
     matches = [runner for runner in runners
                if isinstance(runner, dict) and number(runner.get("numPmu")) == bib]
     if len(matches) != 1:
-        return False, "N° de programme introuvable ou ambigu"
+        return None, "N° de programme introuvable ou ambigu"
     remote = normalize(matches[0].get("nom", ""))
     expected = normalize(expected_name)
     # La correspondance du nom est impérative : ne jamais déduire l'identité du seul dossard.
     if not remote or remote != expected:
-        return False, f"Nom différent pour le n° {bib} : PMU={remote}; écurie={expected}"
-    return True, None
+        return None, f"Nom différent pour le n° {bib} : PMU={remote}; écurie={expected}"
+    return matches[0], None
+
+
+def verify_identity(day, code, bib, expected_name):
+    runner, error = verified_participant(day, code, bib, expected_name)
+    return runner is not None, error
+
+
+def add_official_details(perf, race, runner, rank):
+    """Ajoute les données de cette arrivée, sans remplacer une valeur vérifiée."""
+    before = dict(perf)
+    ferrure = {
+        "FERRE": "F4", "DEFERRE_ANTERIEURS": "DA", "DEFERRE_POSTERIEURS": "DP",
+        "DEFERRE_ANTERIEURS_POSTERIEURS": "D4", "PROTEGE_ANTERIEURS": "PA",
+        "PROTEGE_POSTERIEURS": "PP", "PROTEGE_ANTERIEURS_POSTERIEURS": "P4",
+    }
+    type_course = {
+        "A RECLAMER": "À réclamer", "A RECLAMER AUTOSTART": "À réclamer · Autostart",
+        "HANDICAP": "Handicap", "HANDICAP DIVISE": "Handicap divisé", "AUTOSTART": "Autostart",
+    }
+    chrono = number(runner.get("reductionKilometrique"))
+    km = f"{chrono // 60000}′{chrono // 1000 % 60:02d}″{chrono // 100 % 10}" if chrono else None
+    starters = number(race.get("nombreDeclaresPartants"))
+    if starters is not None:
+        starters = starters if starters >= rank else None
+    # Le barème officiel à la place ne s'applique pas tel quel aux ex aequo.
+    suffix = {1: "1er", 2: "2eme", 3: "3eme", 4: "4eme", 5: "5eme"}.get(rank)
+    tied = any(isinstance(group, list) and len(group) > 1
+               and number(runner.get("numPmu")) in map(number, group) for group in race["ordreArrivee"])
+    values = {
+        "prix": label(race.get("libelle")).capitalize(),
+        "type": {"ATTELE": "Trot attelé", "MONTE": "Trot monté", "PLAT": "Plat",
+                 "HAIE": "Haies", "STEEPLE CHASE": "Steeple-chase",
+                 "CROSS": "Cross"}.get(normalize(race.get("discipline"))),
+        "type_course": type_course.get(normalize(race.get("categorieParticularite"))),
+        "distance": number(runner.get("handicapDistance")) or number(race.get("distance")),
+        "partants": starters,
+        "allocation": number(race.get("montantTotalOffert")) or number(race.get("montantPrix")),
+        "allocation_place": number(race.get("montantOffert" + suffix)) if suffix and not tied else None,
+        "reduction_km": km,
+        "ferrure": ferrure.get(runner.get("deferre")),
+        "entraineur": runner.get("entraineur"),
+    }
+    if not (perf.get("driver") or perf.get("jockey")):
+        key = "driver" if normalize(race.get("discipline")) in ("ATTELE", "MONTE") else "jockey"
+        values[key] = runner.get("driver")
+    for key, value in values.items():
+        if value and not perf.get(key):
+            perf[key] = value
+    return perf != before
 
 
 def equidia_course_url(day, code):
@@ -261,7 +310,16 @@ def apply(data, current, is_dry_run=False, probe=False, finalized=None):
     horses = json.loads(HORSES.read_text(encoding='utf-8')).get('horses', [])
     horse_names = {h['id']: h['name'] for h in horses if isinstance(h, dict) and h.get('id') and h.get('name')}
     events = due_events(data, current)
-    days = sorted({evt["date"] for _, evt, _ in events})
+    # Le moteur de notifications peut publier le résultat avant ce moniteur.
+    # Compléter aussi ces arrivées récentes, après les mêmes contrôles PMU.
+    yesterday = (current.date() - timedelta(days=1)).isoformat()
+    today = current.date().isoformat()
+    catchup = [(slug, row) for slug, rows in data.get("performances", {}).items()
+               for row in rows if isinstance(row, dict) and row.get("officiel") is True and not row.get("partants")
+               and yesterday <= row.get("date", "") <= today
+               and re.fullmatch(r"R\d+C\d+", str(row.get("course") or ""), re.I)
+               and number(row.get("numero")) and slug in horse_names]
+    days = sorted({evt["date"] for _, evt, _ in events} | {row["date"] for _, row in catchup})
     if probe and not days:
         days = [current.date().isoformat(), (current.date() + timedelta(days=1)).isoformat()]
     print(f"[PMU] Date Paris : {current.isoformat(timespec='minutes')} ; {len(events)} partant(s) à examiner")
@@ -321,11 +379,11 @@ def apply(data, current, is_dry_run=False, probe=False, finalized=None):
                 print(f"[PMU] {slug} : nom de cheval non présent dans notre effectif")
                 continue
             try:
-                valid, error = verify_identity(day, evt["course"], bib, expected_name)
+                runner, error = verified_participant(day, evt["course"], bib, expected_name)
             except (ValueError, OSError, urllib.error.URLError, TimeoutError) as exc:
                 print(f"[PMU] {slug} : identité non vérifiable : {type(exc).__name__} {str(exc)[:140]}", file=sys.stderr)
                 continue
-            if not valid:
+            if runner is None:
                 print(f"[PMU] {slug} : {error}")
                 continue
             val = ("1er" if rank == 1 else f"{rank}e")
@@ -347,6 +405,7 @@ def apply(data, current, is_dry_run=False, probe=False, finalized=None):
             # dont date + réunion/course + numéro + identité ont été contrôlés.
             # Pas de nom inventé si la déclaration ne l'indique pas.
             complete_performance(perf, evt)
+            add_official_details(perf, race, runner, rank)
             updates.append((slug, perf))
             print(f"[PMU] CONFIRMÉ : {slug}, {evt['course']}, n°{bib}, {val}")
         except (ValueError, TypeError, KeyError) as exc:
@@ -355,6 +414,22 @@ def apply(data, current, is_dry_run=False, probe=False, finalized=None):
         print(f"[PMU] Essai à blanc : {len(updates)} performance(s) repérée(s), aucune écriture")
         return False
     enriched = enrich_existing(data)
+    for slug, row in catchup:
+        if row["date"] not in cache:
+            continue
+        try:
+            race, err = find_race(cache[row["date"]][0], row["course"], row["hippodrome"])
+            if err:
+                continue
+            bib = number(row["numero"])
+            rank, _ = rank_in_arrival(race, bib)
+            if not rank or not re.fullmatch(fr"{rank}(?:er|re|e)?", str(row.get("rang", "")), re.I):
+                continue
+            runner, _ = verified_participant(row["date"], row["course"], bib, horse_names[slug])
+            if runner is not None:
+                enriched |= add_official_details(row, race, runner, rank)
+        except (ValueError, OSError, urllib.error.URLError) as exc:
+            print(f"[PMU] Détails indisponibles pour {slug} : {exc}", file=sys.stderr)
     if not updates and not enriched:
         print("[PMU] Aucune modification")
         return False

@@ -202,12 +202,14 @@ function searchScore(p,query){
 function resultDetails(s,slug,row){
   const candidates=(s.editor.engagements?.[slug]||[]).filter(e=>
     e&&e.date===row.date&&normalizeSearch(e.hippodrome)===normalizeSearch(row.hippodrome)
-    &&['partant','declare'].includes(String(e.statut||'').toLowerCase())
+    &&['engage','partant','declare'].includes(String(e.statut||'').toLowerCase())
     &&(!row.course||!e.course||String(row.course).toUpperCase()===String(e.course).toUpperCase())
     &&(!row.numero||!e.numero||Number(row.numero)===Number(e.numero)));
   if(candidates.length!==1)return row;
   const e=candidates[0],out={...row};
-  if(!out.driver&&!out.jockey){
+  for(const key of ['prix','type','type_course','distance','allocation','entraineur','ferrure','surface'])
+    if(!out[key]&&e[key])out[key]=e[key];
+  if(['partant','declare'].includes(String(e.statut||'').toLowerCase())&&!out.driver&&!out.jockey){
     if(e.driver)out.driver=e.driver;
     else if(e.jockey)out.jockey=e.jockey;
     else if(e.monte)out.driver=e.monte;
@@ -258,7 +260,7 @@ function latestResults(s){
         ?'<a class="recent-action recent-action-result" href="'+esc(resultUrl)+'" target="_blank" rel="noopener noreferrer" aria-label="'+esc('Résultat de '+p.name+' du '+dateFR(result.date))+'">Résultat</a>'
         :'';
     return '<li class="recent-item">'
-      +'<div class="recent-content"><a class="recent-horse'+(p.name.length>=17?' recent-horse-long':'')+'" href="'+encodeURIComponent(p.id)+'/">'+esc(p.name)+'</a>'
+      +'<div class="recent-content"><a class="recent-horse'+(p.name.length>=17?' recent-horse-long':'')+'" href="'+(p.newHorse?'fiche/?cheval='+encodeURIComponent(p.id):encodeURIComponent(p.id)+'/')+'#performances">'+esc(p.name)+'</a>'
       +'<div class="recent-meta"><time datetime="'+esc(result.date)+'" title="'+esc(dateFR(result.date))+'">'+esc(dateFR(result.date).slice(0,6)+dateFR(result.date).slice(-2))+'</time> · '+esc(result.hippodrome||'Hippodrome non renseigné')+'</div></div>'
       +'<img class="recent-silk" src="'+esc(silk(p))+'" alt="Casaque de '+esc(p.name)+'" width="42" height="50" loading="lazy" decoding="async">'
       +'<div class="recent-side"><span class="recent-rank'+medal+(rank.length>4?' recent-rank-long':'')+'">'+esc(rank)+'</span>'+link+'</div>'
@@ -400,7 +402,7 @@ function horse(s){
     && (engagementStatus(x,sex)?.kind!=='forfait'||x.date>twoDaysAhead)
   ).sort((a,b)=>(a.date+(a.heure||'23:59')).localeCompare(b.date+(b.heure||'23:59')));
   const tr=perf.length
-    ?'<div class="table-wrap"><table class="perf-table perf-results"><thead><tr><th>Date</th><th>Hippodrome</th><th>Rang</th><th>Driver / Jockey</th><th>Replay</th></tr></thead><tbody>'+perf.map(x=>{
+    ?'<ul class="ei-result-list">'+perf.map(x=>{
       const replay=s.replayIndex[x.date+'|'+normalizeSearch(p.name)];
       const course=absoluteUrl(x.course_url);
       const direct=absoluteUrl(x.video_url);
@@ -414,13 +416,42 @@ function horse(s){
       const link=isNonPartant?null:(autoEquidia||replay||(direct?{url:direct,kind:/dailymotion\.com|youtube\.com/i.test(direct)?'video':'course'}:null));
       // Libellé et style identiques pour toutes les courses (vidéo directe ou page
       // où le replay sera publié ultérieurement), sans changer la destination.
+      const replayAvailable=Boolean(link||course&&!isNonPartant);
       const video=link
         ?'<a class="ei-video-link" href="'+esc(link.url)+'" target="_blank" rel="noopener noreferrer" aria-label="'+esc('Replay de '+p.name+' du '+dateFR(x.date)+' — ouvre la page de course, vidéo selon disponibilité')+'">▶ Replay</a>'
         :course&&!isNonPartant
           ?'<a class="ei-video-link" href="'+esc(course)+'" target="_blank" rel="noopener noreferrer" aria-label="'+esc('Replay de '+p.name+' du '+dateFR(x.date)+' — page de course')+'">▶ Replay</a>'
           :'<span class="ei-no-video" aria-label="Aucun lien de course disponible">—</span>';
-      return '<tr><td>'+esc(dateFR(x.date))+'</td><td>'+esc(x.hippodrome)+'</td><td><span class="rank" title="'+esc(({'0':'Au-delà de la 9e place ou non placé (rang exact non renseigné)',DAI:'Disqualifié',ARR:'Arrêté',T:'Tombé'})[displayRank(x.rang)]||'Classement')+'">'+esc(displayRank(x.rang)||'—')+'</span></td><td>'+esc(x.driver||x.jockey||'—')+'</td><td>'+video+'</td></tr>';
-    }).join('')+'</tbody></table></div>'
+      const rank=displayRank(x.rang);
+      const rankText=/^[1-9]$/.test(rank)?rank+(rank==='1'?(p.sex==='F'?'re':'er'):'e'):rank;
+      const starters=/^[1-9]$/.test(rank)&&Number.isInteger(x.partants)&&x.partants>=Number(rank)
+        ?' <small>sur '+esc(x.partants)+' partants</small>':'';
+      const distance=Number.isFinite(x.distance)?formatEuro.format(x.distance)+' m':x.distance;
+      const specs=[x.type,distance,x.type_course,x.surface].filter(Boolean).join(' · ');
+      const people=[['Monte',x.driver||x.jockey],['Entraîneur',x.entraineur]];
+      const details=[
+        ['Réduction kilométrique',!isGalop&&x.reduction_km],
+        ['Allocation à la place',Number.isFinite(x.allocation_place)&&money(x.allocation_place)],
+        ['Ferrure',!isGalop&&x.ferrure],
+        ['Allocation de la course',Number.isFinite(x.allocation)&&money(x.allocation)]
+      ];
+      const fields=items=>items.filter(([,value])=>value).map(([label,value])=>
+        '<div><dt>'+esc(label)+'</dt><dd>'+esc(value)+'</dd></div>').join('');
+      const peopleMarkup=fields(people),detailMarkup=fields(details);
+      const raceCode=String(x.course||'').match(/^R(\d+)C(\d+)$/i);
+      const pmuArrival=raceCode&&x.officiel===true&&/^\d{4}-\d{2}-\d{2}$/.test(x.date)
+        ?'https://www.pmu.fr/turf/'+x.date.split('-').reverse().join('')+'/r'+raceCode[1]+'/c'+raceCode[2]+'/':'';
+      const arrival=absoluteUrl(x.arrivee_url)||pmuArrival||course;
+      const arrivalLink=arrival?'<a class="ei-result-arrival" href="'+esc(arrival)+'" target="_blank" rel="noopener noreferrer">Arrivée complète</a>':'';
+      return '<li class="ei-result-card"><div class="ei-result-top"><span class="ei-result-date">'+esc([dateFR(x.date),x.hippodrome].filter(Boolean).join(' · '))+'</span>'
+        +'<span class="ei-result-rank"'+(rank==='0'?' title="Au-delà de la 9e place ou rang exact non renseigné"':'')+'>'+esc(rankText||'—')+starters+'</span></div>'
+        +(x.prix?'<div class="ei-result-race">'+esc(x.prix)+'</div>':'')
+        +(specs?'<div class="ei-result-meta">'+esc(specs)+'</div>':'')
+        +(peopleMarkup?'<dl class="ei-result-fields">'+peopleMarkup+'</dl>':'')
+        +(detailMarkup?'<details class="ei-result-details"><summary>Détails de la course</summary><dl class="ei-result-fields">'+detailMarkup+'</dl></details>':'')
+        +((arrivalLink||replayAvailable)?'<div class="ei-result-actions">'+arrivalLink+(replayAvailable?video:'')+'</div>':'')
+        +'</li>';
+    }).join('')+'</ul>'
     :'<div class="empty">Aucune performance détaillée renseignée pour le moment.</div>';
   // La date et le statut partagent la première colonne : lisible même sur téléphone.
   const hasDeclared=eng.some(x=>['declare','partant'].includes(engagementStatus(x,sex)?.kind));
@@ -463,7 +494,7 @@ function horse(s){
         ?'<p style="font-size:12px;color:#76675d;margin-top:6px">Valeur historique non ventilée : '+esc(formatValue(p.value_historique_non_ventilee))+' (plat ou obstacle non précisé).</p>'
         :'')
       +(p.origines?'<section class="section"><h2 class="section-title">Origines</h2><div class="paper info-grid">'+(p.birth_year?info('Année de naissance',String(p.birth_year)):'')+info('Père',p.origines.pere)+info('Mère',p.origines.mere)+info('Père de mère',p.origines.pere_de_mere)+'</div></section>':'')
-      +'<section class="section">'
+      +'<section class="section" id="performances">'
         +'<h2 class="section-title">Dernières performances</h2>'
         +'<div class="paper">'+tr+'</div>'
       +'</section>'
@@ -509,5 +540,5 @@ function watchFreshResults(state){
   window.addEventListener('online',()=>{void check(true)});
   setInterval(()=>{void check()},60000);
 }
-load().then(s=>{if(document.body.dataset.page==='fiche')horse(s);else catalog(s);watchFreshResults(s)}).catch(err=>{console.error(err);$('#app').innerHTML=header()+'<main class="shell"><div class="error"><h1>Informations temporairement indisponibles</h1><p>Le catalogue n’a pas pu être chargé. Réessayez en actualisant la page.</p><p><a href="https://www.ecurie-initial.com/">Retour au site officiel</a></p></div></main>'+footer()});
+load().then(s=>{if(document.body.dataset.page==='fiche'){horse(s);if(location.hash==='#performances')$('#performances')?.scrollIntoView();}else catalog(s);watchFreshResults(s)}).catch(err=>{console.error(err);$('#app').innerHTML=header()+'<main class="shell"><div class="error"><h1>Informations temporairement indisponibles</h1><p>Le catalogue n’a pas pu être chargé. Réessayez en actualisant la page.</p><p><a href="https://www.ecurie-initial.com/">Retour au site officiel</a></p></div></main>'+footer()});
 })();

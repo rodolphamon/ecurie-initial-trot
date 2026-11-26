@@ -902,7 +902,7 @@ window.loadHomeDashboard=async function(force=false){
     rank.textContent=rankValue;
     rank.title=rankValue?({"0":"Au-delà de la 9e place ou non placé (rang exact non renseigné)",DAI:"Disqualifié",ARR:"Arrêté",T:"Tombé"}[rankValue]||"Classement : "+rankValue):"";
     rank.classList.toggle("is-long",rankValue.length>5);
-    get("dashResultLink").href=horses.find(h=>h.id===latest.slug)?.newHorse?"../chevaux/fiche/?cheval="+encodeURIComponent(latest.slug):"../chevaux/"+encodeURIComponent(latest.slug)+"/";
+    get("dashResultLink").href=(horses.find(h=>h.id===latest.slug)?.newHorse?"../chevaux/fiche/?cheval="+encodeURIComponent(latest.slug):"../chevaux/"+encodeURIComponent(latest.slug)+"/")+"#performances";
    }else{
     get("dashResultHorse").textContent="Aucun résultat";get("dashResultDetail").textContent="Voir les performances";get("dashResultRank").hidden=true;get("dashResultSilk").hidden=true;get("dashResultRider").hidden=true;get("dashResultTrainer").hidden=true;
    }

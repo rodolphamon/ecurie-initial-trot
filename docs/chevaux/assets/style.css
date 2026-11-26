@@ -448,3 +448,22 @@
   .recent-item{grid-template-columns:minmax(0,44%) 36px minmax(0,1fr)}
   .recent-side{grid-template-columns:minmax(0,1fr) 57px;gap:2px}
 }
+
+/* Performances : lecture sans défilement horizontal, détails à la demande. */
+#performances{scroll-margin-top:85px}
+.ei-result-list{list-style:none;margin:0;padding:0}
+.ei-result-card{padding:14px 16px}
+.ei-result-card+.ei-result-card{border-top:1px solid #eadfd7}
+.ei-result-top{display:flex;align-items:center;justify-content:space-between;gap:8px 12px;flex-wrap:wrap;margin-bottom:5px}
+.ei-result-date,.ei-result-meta{color:#66584e;font-size:13px}
+.ei-result-rank{padding:3px 9px;border-radius:8px;background:#fff0e2;color:#873900;font-weight:750;white-space:nowrap}
+.ei-result-rank small{font-weight:500}
+.ei-result-race{font-weight:750}
+.ei-result-fields{margin:7px 0 0;display:grid;gap:3px 18px;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));font-size:13px}
+.ei-result-fields div{display:flex;gap:6px;justify-content:space-between;align-items:baseline}
+.ei-result-fields dt{color:#66584e}
+.ei-result-fields dd{margin:0;font-weight:650;text-align:right}
+.ei-result-details{margin-top:8px;font-size:13px}
+.ei-result-details summary{padding:5px 0;color:#873900;font-weight:700;cursor:pointer}
+.ei-result-actions{display:flex;justify-content:flex-end;flex-wrap:wrap;align-items:center;gap:6px 12px;margin-top:9px}
+.ei-result-arrival{font-size:13px;font-weight:700;color:#873900;padding:6px 0;text-decoration:underline;text-underline-offset:2px}
