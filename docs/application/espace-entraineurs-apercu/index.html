@@ -1,0 +1,84 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#171717">
+<title>Aperçu privé · Espace Entraîneurs · Écurie Initial</title><style>
+:root{--o:#f47721;--ink:#171717}*{box-sizing:border-box}body{margin:0;background:#f6f4f1;color:#242424;font:15px/1.5 Arial,sans-serif}
+header{background:#171717;color:#fff;padding:19px 16px}header strong{font-size:21px}header em{color:var(--o);font-style:normal}
+main{max-width:760px;margin:auto;padding:17px 14px 80px}h1{font-size:25px;margin:0}h2{font-size:19px;margin:0 0 11px}p{margin:9px 0}
+a{color:#ae520d}.panel{background:#fff;border:1px solid #e8dfd7;border-radius:13px;padding:18px;margin:14px 0}
+label{display:block;font-weight:bold;margin:13px 0 5px}input,select,textarea{width:100%;padding:11px;border:1px solid #c9c4c0;border-radius:8px;font:inherit;background:white}
+textarea{min-height:110px}.button,button{background:var(--o);color:#171717;border:0;border-radius:9px;padding:11px 14px;font-weight:bold;cursor:pointer}
+button:disabled{opacity:.55;cursor:not-allowed}.row{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.tag{background:#fce5d1;padding:3px 8px;border-radius:7px;font-size:12px}.muted{color:#666;font-size:13px}
+#restricted{color:#a41616}[hidden]{display:none!important}.voice{border:1px solid #e6dad0;border-radius:10px;padding:12px;margin:15px 0}
+.controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.controls button{font-size:13px}
+#previewAudio{width:100%;margin:12px 0}.notice{border-left:4px solid var(--o);background:#fff4e8;padding:11px;margin:13px 0}
+</style></head><body><header><strong>ÉCURIE <em>INITIAL</em> · Entraîneurs</strong></header>
+<main><p><a href="../">← Retour à l'application</a></p>
+<div class="panel"><div class="row"><h1>Aperçu Espace Entraîneurs</h1><span class="tag">PRIVÉ · ADMIN</span></div>
+<p class="muted">Démonstration réservée à l'administrateur. Aucun message, photo ou vocal n'est envoyé.</p>
+<p id="status" role="status">Vérification du compte…</p></div>
+<section id="content" hidden>
+<div class="notice"><strong>Mode aperçu.</strong> Tu peux choisir un entraîneur et un cheval, tester le micro et réécouter un vocal. La publication réelle et les notifications restent désactivées.</div>
+<div class="panel"><h2>Choisir l'entraîneur à visualiser</h2><label for="trainer">Entraîneur</label>
+<select id="trainer"><option value="Gilles PANNIER">Gilles PANNIER</option><option value="Pierre-Louis DESAUNETTE">Pierre-Louis DESAUNETTE</option><option value="Laurent BARASSIN">Thibaut BARASSIN (fiches : Laurent)</option></select>
+<p id="count" class="muted"></p></div>
+<div class="panel"><h2>Publier une actualité</h2>
+<label for="horse">1. Sélectionnez le cheval</label><select id="horse"></select>
+<label for="titre">2. Ajoutez un titre</label><input id="titre" value="Débrief après-course" maxlength="150">
+<label for="message">3. Écrivez un petit message (facultatif)</label><textarea id="message" placeholder="Quelques nouvelles de votre pensionnaire…"></textarea>
+<label for="visibilite">4. Choisissez les destinataires</label><select id="visibilite"><option>Associés du cheval</option><option>Tous les membres de l'application</option></select>
+<label for="media">5. Ajoutez une photo ou vidéo</label><input type="file" id="media" accept="image/jpeg,image/png,image/webp,video/mp4,video/webm">
+<div class="voice"><strong>🎙️ Ou enregistrez un message vocal</strong>
+<p class="muted">Autorisez le microphone. Réécoutez votre vocal avant la publication.</p>
+<div class="controls"><button type="button" id="record">🎙️ Enregistrer</button><button type="button" id="stop" disabled>■ Terminer</button><button type="button" id="erase" hidden>Effacer</button><span id="timer">0:00 / 2:00</span></div>
+<audio id="previewAudio" controls hidden></audio><p id="voiceInfo" class="muted" role="status">Aucun vocal enregistré.</p></div>
+<button type="button" disabled>Publier maintenant (désactivé en aperçu)</button><p class="muted">Aucune notification ne sera envoyée depuis cette page.</p>
+</div>
+<div class="panel"><h2>Ce que verra l'associé</h2><p><strong id="cardHorse">Cheval</strong> · <span id="cardTrainer">Gilles PANNIER</span></p>
+<p class="muted">🎙️ Nouveau débrief de l'entraîneur · Accès réservé aux associés</p>
+<p>Après la publication réelle, le lecteur vocal apparaîtra sur la fiche du cheval.</p></div>
+</section></main>
+<script type="module">
+import {createClient} from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+const db=createClient('https://yeecwaaizmvrhwobukfa.supabase.co','sb_publishable_xUy2EJA3u3cKWl8BB4GNPQ_qhV9Pes3');
+const $=id=>document.getElementById(id);
+let recorder=null,stream=null,watch=null,started=0,url=null;
+const assigned={'Laurent BARASSIN':[['memphis-belle','MEMPHIS BELLE'],['nostalgie-dairpet','NOSTALGIE DAIRPET'],['palazzo-grassi','PALAZZO GRASSI'],['prince-gio','PRINCE GIO']]};
+async function setTrainer(){
+ const t=$('trainer').value;let horses=assigned[t];
+ if(!horses){const r=await db.from('ei_effectif_gestion').select('cheval_slug,nom').eq('entraineur',t).eq('actif',true).order('nom');horses=(r.data||[]).map(h=>[h.cheval_slug,h.nom]);}
+ $('horse').replaceChildren();for(const [slug,name] of horses){const opt=document.createElement('option');opt.value=slug;opt.textContent=name;$('horse').append(opt)}
+ $('count').textContent=horses.length+' chevaux à visualiser';syncCard();
+}
+function syncCard(){$('cardHorse').textContent=$('horse').selectedOptions[0]?.textContent||'Aucun cheval';$('cardTrainer').textContent=$('trainer').selectedOptions[0]?.textContent||''}
+$('trainer').addEventListener('change',setTrainer);$('horse').addEventListener('change',syncCard);
+async function start(){
+ try{
+  const {data:{user}}=await db.auth.getUser();
+  if(!user){$('status').textContent='Connectez-vous d’abord à votre compte Écurie Initial.';return}
+  const {data:member,error}=await db.from('associes').select('actif,administrateur,nom_affiche').eq('user_id',user.id).maybeSingle();
+  if(error||!member?.actif||!member.administrateur){$('status').textContent='Accès réservé à l’administrateur.';return}
+  $('status').textContent='Bienvenue '+member.nom_affiche+'. Votre aperçu privé est disponible.';
+  $('content').hidden=false;await setTrainer();
+ }catch(e){$('status').textContent='Accès impossible : '+e.message}
+}
+function clearVoice(){if(url)URL.revokeObjectURL(url);url=null;$('previewAudio').pause();$('previewAudio').removeAttribute('src');$('previewAudio').hidden=true;$('erase').hidden=true;$('timer').textContent='0:00 / 2:00'}
+function endStream(){if(watch!==null){clearInterval(watch);watch=null}if(stream){stream.getTracks().forEach(x=>x.stop());stream=null}}
+$('record').addEventListener('click',async()=>{
+ if(!navigator.mediaDevices?.getUserMedia||!window.MediaRecorder){$('voiceInfo').textContent='Microphone non disponible dans ce navigateur.';return}
+ try{
+ clearVoice();stream=await navigator.mediaDevices.getUserMedia({audio:true});
+ const types=['audio/webm;codecs=opus','audio/mp4','audio/webm'];
+ const type=types.find(x=>MediaRecorder.isTypeSupported(x));
+ recorder=new MediaRecorder(stream,type?{mimeType:type}:undefined);
+ const chunks=[];
+ recorder.ondataavailable=e=>{if(e.data.size)chunks.push(e.data)};
+ recorder.onstop=()=>{endStream();$('record').disabled=false;$('stop').disabled=true;const blob=new Blob(chunks,{type:recorder.mimeType||'audio/webm'});if(!blob.size){$('voiceInfo').textContent='Enregistrement vide.';return}url=URL.createObjectURL(blob);$('previewAudio').src=url;$('previewAudio').hidden=false;$('erase').hidden=false;$('voiceInfo').textContent='Réécoutez votre message. Il reste sur ce téléphone : aucun envoi.'};
+ recorder.start(500);started=Date.now();$('record').disabled=true;$('stop').disabled=false;$('voiceInfo').textContent='Enregistrement en cours…';
+ watch=setInterval(()=>{let n=Math.min(120,Math.floor((Date.now()-started)/1000));$('timer').textContent=Math.floor(n/60)+':'+String(n%60).padStart(2,'0')+' / 2:00';if(n>=120&&recorder?.state==='recording')recorder.stop()},250);
+ }catch(e){endStream();$('record').disabled=false;$('stop').disabled=true;$('voiceInfo').textContent=e.name==='NotAllowedError'?'Autorisez le microphone dans les réglages du navigateur.':'Impossible de démarrer le micro : '+e.message}
+});
+$('stop').addEventListener('click',()=>{if(recorder?.state==='recording')recorder.stop()});
+$('erase').addEventListener('click',()=>{clearVoice();$('voiceInfo').textContent='Vocal effacé.'});
+window.addEventListener('pagehide',endStream);
+start();
+</script></body></html>
