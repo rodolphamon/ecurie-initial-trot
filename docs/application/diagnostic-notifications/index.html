@@ -20,7 +20,7 @@ a{color:#a84f13}
 </style>
 <script defer src="../header.js?v=20261117universel1"></script>
 </head>
-<body><main>
+<body><main><p id="restricted">Diagnostic réservé à l’administration. <a href="../notifications/">Retour aux notifications</a></p><div id="diagnostic" hidden>
 <p><a href="../notifications/">← Retour aux notifications</a></p>
 <h1>🔔 Diagnostic des notifications</h1>
 <p>Cette page vérifie <strong>sur votre propre téléphone</strong> si l’application peut afficher une notification. Aucun message n’est envoyé à d’autres personnes.</p>
@@ -52,8 +52,15 @@ a{color:#a84f13}
 <p>Après le test serveur depuis « Notifications », rouvrez cette page. Les lignes « Dernier Push reçu du serveur » et « Dernier Push affiché » permettent de savoir si le Push est arrivé au navigateur puis a été affiché. Le test local ne compte pas comme une réception du serveur.</p>
 <p><small>Pour la confidentialité, seul l’état du diagnostic est conservé sur cet appareil ; ni le jeton ni l’adresse complète d’abonnement ne sont affichés.</small></p>
 </section>
-</main>
-<script>
+</div></main>
+<script type="module">
+import {createClient} from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+const db=createClient("https://yeecwaaizmvrhwobukfa.supabase.co","sb_publishable_xUy2EJA3u3cKWl8BB4GNPQ_qhV9Pes3");
+const {data:{user}}=await db.auth.getUser();
+const {data:account}=user ? await db.from("associes").select("actif,administrateur").eq("user_id",user.id).maybeSingle() : {data:null};
+if(account?.actif && account.administrateur===true){
+ document.getElementById("restricted").hidden=true;
+ document.getElementById("diagnostic").hidden=false;
 const el=id=>document.getElementById(id);
 function readLastPush(){
  return new Promise(resolve=>{
@@ -134,4 +141,5 @@ el('local').onclick=async()=>{
  finally{b.disabled=false;await check()}
 };
 check();
+}
 </script></body></html>
