@@ -9,9 +9,10 @@ on:
       - "docs/chevaux/data/editorial.json"
       - ".github/workflows/verifier-partants-pmu.yml"
   schedule:
-    # Plusieurs contrôles chaque jour (le cron GitHub peut être retardé).
+    # Actualisation des listes et des montes toutes les 15 minutes en journée.
+    # Le cron GitHub peut démarrer avec un léger retard.
     # Le contrôle vise les courses confirmées dans les 48 prochaines heures.
-    - cron: '12 5-21 * * *'
+    - cron: '*/15 5-22 * * *'
   workflow_dispatch:
 permissions:
   contents: write

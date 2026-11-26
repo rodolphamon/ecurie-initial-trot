@@ -24,7 +24,8 @@ def venue_key(value):
     value = pmu.normalize(value)
     return {"PARISLONGCHAMP": "LONGCHAMP", "PARIS LONGCHAMP": "LONGCHAMP",
             "DEAUVILLE CLAIREFONTAINE": "CLAIREFONTAINE",
-            "ROYAN ATLANTIQUE": "ROYAN LA PALMYRE"}.get(value, value)
+            "ROYAN ATLANTIQUE": "ROYAN LA PALMYRE", "TOULOUSE": "LA CEPIERE",
+            "TOULOUSE LA CEPIERE": "LA CEPIERE"}.get(value, value)
 
 
 def excluded(row):

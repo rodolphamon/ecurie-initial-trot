@@ -2,7 +2,7 @@
 'use strict';
 const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const norm=value=>String(value||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toUpperCase().replace(/[^A-Z0-9]+/g,' ').trim();
-const venue=value=>({'PARISLONGCHAMP':'LONGCHAMP','PARIS LONGCHAMP':'LONGCHAMP','DEAUVILLE CLAIREFONTAINE':'CLAIREFONTAINE','ROYAN ATLANTIQUE':'ROYAN LA PALMYRE'}[norm(value)]||norm(value));
+const venue=value=>({'PARISLONGCHAMP':'LONGCHAMP','PARIS LONGCHAMP':'LONGCHAMP','DEAUVILLE CLAIREFONTAINE':'CLAIREFONTAINE','ROYAN ATLANTIQUE':'ROYAN LA PALMYRE','TOULOUSE':'LA CEPIERE','TOULOUSE LA CEPIERE':'LA CEPIERE'}[norm(value)]||norm(value));
 function markup(event,horse,courses,id){
   if(!['declare','partant'].includes(event.statut)||event.reunion_annulee)return '';
   const matches=courses.filter(c=>c.cheval_slug===horse.id&&c.date===event.date

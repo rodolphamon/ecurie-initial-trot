@@ -1,0 +1,980 @@
+{
+  "checked_at": "2026-11-26",
+  "checked": 139,
+  "verified": 115,
+  "entries": [
+    {
+      "cheval": "andresy",
+      "date": "2026-08-11",
+      "hippodrome": "Deauville",
+      "statut": "verifie",
+      "detail": "R1C5"
+    },
+    {
+      "cheval": "andresy",
+      "date": "2026-08-23",
+      "hippodrome": "Deauville",
+      "statut": "verifie",
+      "detail": "R1C8"
+    },
+    {
+      "cheval": "andresy",
+      "date": "2026-09-20",
+      "hippodrome": "Sablé-sur-Sarthe",
+      "statut": "hippodrome_absent",
+      "detail": ""
+    },
+    {
+      "cheval": "andresy",
+      "date": "2026-10-23",
+      "hippodrome": "Clairefontaine",
+      "statut": "hippodrome_absent",
+      "detail": ""
+    },
+    {
+      "cheval": "andresy",
+      "date": "2026-11-05",
+      "hippodrome": "Chantilly",
+      "statut": "verifie",
+      "detail": "R3C5"
+    },
+    {
+      "cheval": "bailychka",
+      "date": "2026-08-03",
+      "hippodrome": "Vichy",
+      "statut": "verifie",
+      "detail": "R4C7"
+    },
+    {
+      "cheval": "bailychka",
+      "date": "2026-09-11",
+      "hippodrome": "Le Mans",
+      "statut": "verifie",
+      "detail": "R5C1"
+    },
+    {
+      "cheval": "bailychka",
+      "date": "2026-11-24",
+      "hippodrome": "Deauville",
+      "statut": "verifie",
+      "detail": "R1C3"
+    },
+    {
+      "cheval": "bobrovkha",
+      "date": "2026-03-04",
+      "hippodrome": "Le Mans",
+      "statut": "verifie",
+      "detail": "R2C6"
+    },
+    {
+      "cheval": "bobrovkha",
+      "date": "2026-03-31",
+      "hippodrome": "Nantes",
+      "statut": "verifie",
+      "detail": "R2C2"
+    },
+    {
+      "cheval": "bobrovkha",
+      "date": "2026-04-11",
+      "hippodrome": "Fontainebleau",
+      "statut": "verifie",
+      "detail": "R4C5"
+    },
+    {
+      "cheval": "bobrovkha",
+      "date": "2026-05-03",
+      "hippodrome": "ParisLongchamp",
+      "statut": "verifie",
+      "detail": "R1C7"
+    },
+    {
+      "cheval": "bobrovkha",
+      "date": "2026-05-29",
+      "hippodrome": "Nantes",
+      "statut": "verifie",
+      "detail": "R5C5"
+    },
+    {
+      "cheval": "douriann",
+      "date": "2026-06-22",
+      "hippodrome": "Lyon-Parilly",
+      "statut": "verifie",
+      "detail": "R1C8"
+    },
+    {
+      "cheval": "douriann",
+      "date": "2026-07-30",
+      "hippodrome": "Dieppe",
+      "statut": "verifie",
+      "detail": "R1C7"
+    },
+    {
+      "cheval": "douriann",
+      "date": "2026-08-18",
+      "hippodrome": "Deauville",
+      "statut": "verifie",
+      "detail": "R1C8"
+    },
+    {
+      "cheval": "douriann",
+      "date": "2026-09-29",
+      "hippodrome": "Chantilly",
+      "statut": "verifie",
+      "detail": "R1C1"
+    },
+    {
+      "cheval": "douriann",
+      "date": "2026-10-26",
+      "hippodrome": "Toulouse",
+      "statut": "classement_a_verifier",
+      "detail": "R4C5, rang PMU=None, saisi=7e"
+    },
+    {
+      "cheval": "douriann",
+      "date": "2026-11-19",
+      "hippodrome": "Saint-Cloud",
+      "statut": "verifie",
+      "detail": "R1C6"
+    },
+    {
+      "cheval": "giorgiana",
+      "date": "2026-07-03",
+      "hippodrome": "Tarbes",
+      "statut": "verifie",
+      "detail": "R5C1"
+    },
+    {
+      "cheval": "giorgiana",
+      "date": "2026-07-31",
+      "hippodrome": "Senonnes-Pouancé",
+      "statut": "verifie",
+      "detail": "R2C8"
+    },
+    {
+      "cheval": "giorgiana",
+      "date": "2026-09-01",
+      "hippodrome": "Deauville",
+      "statut": "verifie",
+      "detail": "R1C3"
+    },
+    {
+      "cheval": "giorgiana",
+      "date": "2026-10-01",
+      "hippodrome": "Argentan",
+      "statut": "verifie",
+      "detail": "R4C2"
+    },
+    {
+      "cheval": "giorgiana",
+      "date": "2026-10-26",
+      "hippodrome": "Toulouse",
+      "statut": "verifie",
+      "detail": "R4C4"
+    },
+    {
+      "cheval": "giorgiana",
+      "date": "2026-11-19",
+      "hippodrome": "Saint-Cloud",
+      "statut": "verifie",
+      "detail": "R1C5"
+    },
+    {
+      "cheval": "gonafoot",
+      "date": "2026-09-03",
+      "hippodrome": "Vichy",
+      "statut": "verifie",
+      "detail": "R2C3"
+    },
+    {
+      "cheval": "gonafoot",
+      "date": "2026-09-22",
+      "hippodrome": "Vichy",
+      "statut": "verifie",
+      "detail": "R4C1"
+    },
+    {
+      "cheval": "gonafoot",
+      "date": "2026-10-05",
+      "hippodrome": "Deauville",
+      "statut": "verifie",
+      "detail": "R4C6"
+    },
+    {
+      "cheval": "gonafoot",
+      "date": "2026-10-22",
+      "hippodrome": "Les Sables-d'Olonne",
+      "statut": "verifie",
+      "detail": "R2C1"
+    },
+    {
+      "cheval": "gonafoot",
+      "date": "2026-10-31",
+      "hippodrome": "Deauville",
+      "statut": "verifie",
+      "detail": "R1C2"
+    },
+    {
+      "cheval": "gonafoot",
+      "date": "2026-11-25",
+      "hippodrome": "Deauville",
+      "statut": "verifie",
+      "detail": "R1C2"
+    },
+    {
+      "cheval": "indice-deladou",
+      "date": "2026-01-25",
+      "hippodrome": "Vincennes",
+      "statut": "verifie",
+      "detail": "R1C2"
+    },
+    {
+      "cheval": "indice-deladou",
+      "date": "2026-02-20",
+      "hippodrome": "Vincennes",
+      "statut": "verifie",
+      "detail": "R1C4"
+    },
+    {
+      "cheval": "indice-deladou",
+      "date": "2026-03-06",
+      "hippodrome": "Enghien",
+      "statut": "verifie",
+      "detail": "R1C4"
+    },
+    {
+      "cheval": "indice-deladou",
+      "date": "2026-10-10",
+      "hippodrome": "Caen",
+      "statut": "verifie",
+      "detail": "R1C4"
+    },
+    {
+      "cheval": "indice-deladou",
+      "date": "2026-10-21",
+      "hippodrome": "Toulouse",
+      "statut": "verifie",
+      "detail": "R1C4"
+    },
+    {
+      "cheval": "isolee-du-bouillon",
+      "date": "2026-08-16",
+      "hippodrome": "Agon-Coutainville",
+      "statut": "hippodrome_absent",
+      "detail": ""
+    },
+    {
+      "cheval": "isolee-du-bouillon",
+      "date": "2026-09-12",
+      "hippodrome": "Vincennes",
+      "statut": "verifie",
+      "detail": "R1C9"
+    },
+    {
+      "cheval": "isolee-du-bouillon",
+      "date": "2026-09-27",
+      "hippodrome": "Vincennes",
+      "statut": "verifie",
+      "detail": "R1C7"
+    },
+    {
+      "cheval": "isolee-du-bouillon",
+      "date": "2026-10-15",
+      "hippodrome": "Enghien",
+      "statut": "verifie",
+      "detail": "R4C3"
+    },
+    {
+      "cheval": "isolee-du-bouillon",
+      "date": "2026-11-07",
+      "hippodrome": "Laval",
+      "statut": "verifie",
+      "detail": "R5C3"
+    },
+    {
+      "cheval": "le-roi-leon",
+      "date": "2026-08-27",
+      "hippodrome": "Deauville",
+      "statut": "verifie",
+      "detail": "R1C6"
+    },
+    {
+      "cheval": "le-roi-leon",
+      "date": "2026-09-13",
+      "hippodrome": "ParisLongchamp",
+      "statut": "verifie",
+      "detail": "R1C1"
+    },
+    {
+      "cheval": "le-roi-leon",
+      "date": "2026-09-25",
+      "hippodrome": "Saint-Cloud",
+      "statut": "verifie",
+      "detail": "R4C8"
+    },
+    {
+      "cheval": "le-roi-leon",
+      "date": "2026-10-23",
+      "hippodrome": "Clairefontaine",
+      "statut": "hippodrome_absent",
+      "detail": ""
+    },
+    {
+      "cheval": "le-roi-leon",
+      "date": "2026-10-28",
+      "hippodrome": "Le Mans",
+      "statut": "verifie",
+      "detail": "R2C5"
+    },
+    {
+      "cheval": "le-roi-leon",
+      "date": "2026-11-19",
+      "hippodrome": "Saint-Cloud",
+      "statut": "verifie",
+      "detail": "R1C7"
+    },
+    {
+      "cheval": "limpide",
+      "date": "2026-03-30",
+      "hippodrome": "Chantilly",
+      "statut": "verifie",
+      "detail": "R1C3"
+    },
+    {
+      "cheval": "limpide",
+      "date": "2026-04-04",
+      "hippodrome": "Le Croisé-Laroche",
+      "statut": "verifie",
+      "detail": "R4C8"
+    },
+    {
+      "cheval": "limpide",
+      "date": "2026-04-21",
+      "hippodrome": "Le Mans",
+      "statut": "verifie",
+      "detail": "R3C4"
+    },
+    {
+      "cheval": "limpide",
+      "date": "2026-05-05",
+      "hippodrome": "Saint-Cloud",
+      "statut": "verifie",
+      "detail": "R1C1"
+    },
+    {
+      "cheval": "limpide",
+      "date": "2026-05-17",
+      "hippodrome": "Le Croisé-Laroche",
+      "statut": "verifie",
+      "detail": "R6C1"
+    },
+    {
+      "cheval": "lord-on-way",
+      "date": "2026-08-20",
+      "hippodrome": "Divonne-les-Bains",
+      "statut": "verifie",
+      "detail": "R4C5"
+    },
+    {
+      "cheval": "lord-on-way",
+      "date": "2026-08-27",
+      "hippodrome": "Pornichet",
+      "statut": "verifie",
+      "detail": "R5C5"
+    },
+    {
+      "cheval": "lord-on-way",
+      "date": "2026-09-04",
+      "hippodrome": "Lyon-Parilly",
+      "statut": "verifie",
+      "detail": "R3C6"
+    },
+    {
+      "cheval": "lord-on-way",
+      "date": "2026-09-21",
+      "hippodrome": "La Capelle",
+      "statut": "verifie",
+      "detail": "R1C7"
+    },
+    {
+      "cheval": "lord-on-way",
+      "date": "2026-10-05",
+      "hippodrome": "Enghien",
+      "statut": "verifie",
+      "detail": "R1C1"
+    },
+    {
+      "cheval": "lucky-des-gaudines",
+      "date": "2026-08-24",
+      "hippodrome": "Castéra-Verduzan",
+      "statut": "cheval_introuvable",
+      "detail": ""
+    },
+    {
+      "cheval": "lucky-des-gaudines",
+      "date": "2026-09-18",
+      "hippodrome": "Toulouse",
+      "statut": "verifie",
+      "detail": "R5C2"
+    },
+    {
+      "cheval": "lucky-des-gaudines",
+      "date": "2026-10-03",
+      "hippodrome": "Beaumont-de-Lomagne",
+      "statut": "verifie",
+      "detail": "R10C4"
+    },
+    {
+      "cheval": "lucky-des-gaudines",
+      "date": "2026-10-25",
+      "hippodrome": "Montauban",
+      "statut": "hippodrome_absent",
+      "detail": ""
+    },
+    {
+      "cheval": "lucky-des-gaudines",
+      "date": "2026-10-30",
+      "hippodrome": "Toulouse",
+      "statut": "verifie",
+      "detail": "R5C5"
+    },
+    {
+      "cheval": "mandragora-fleury",
+      "date": "2026-08-03",
+      "hippodrome": "Rochefort-sur-Loire",
+      "statut": "hippodrome_absent",
+      "detail": ""
+    },
+    {
+      "cheval": "mandragora-fleury",
+      "date": "2026-08-15",
+      "hippodrome": "Carentan",
+      "statut": "hippodrome_absent",
+      "detail": ""
+    },
+    {
+      "cheval": "mandragora-fleury",
+      "date": "2026-08-28",
+      "hippodrome": "Cabourg",
+      "statut": "verifie",
+      "detail": "R1C3"
+    },
+    {
+      "cheval": "mandragora-fleury",
+      "date": "2026-09-11",
+      "hippodrome": "Vincennes",
+      "statut": "verifie",
+      "detail": "R1C8"
+    },
+    {
+      "cheval": "mandragora-fleury",
+      "date": "2026-09-28",
+      "hippodrome": "Craon",
+      "statut": "verifie",
+      "detail": "R2C7"
+    },
+    {
+      "cheval": "master-pat",
+      "date": "2026-08-20",
+      "hippodrome": "Deauville",
+      "statut": "verifie",
+      "detail": "R1C6"
+    },
+    {
+      "cheval": "master-pat",
+      "date": "2026-09-01",
+      "hippodrome": "Deauville",
+      "statut": "verifie",
+      "detail": "R1C7"
+    },
+    {
+      "cheval": "master-pat",
+      "date": "2026-09-14",
+      "hippodrome": "Chantilly",
+      "statut": "verifie",
+      "detail": "R4C6"
+    },
+    {
+      "cheval": "master-pat",
+      "date": "2026-10-09",
+      "hippodrome": "Compiègne",
+      "statut": "verifie",
+      "detail": "R4C9"
+    },
+    {
+      "cheval": "master-pat",
+      "date": "2026-10-21",
+      "hippodrome": "Deauville",
+      "statut": "verifie",
+      "detail": "R4C2"
+    },
+    {
+      "cheval": "master-pat",
+      "date": "2026-11-17",
+      "hippodrome": "Chantilly",
+      "statut": "verifie",
+      "detail": "R1C7"
+    },
+    {
+      "cheval": "memphis-belle",
+      "date": "2026-08-30",
+      "hippodrome": "Villeneuve-sur-Lot",
+      "statut": "hippodrome_absent",
+      "detail": ""
+    },
+    {
+      "cheval": "memphis-belle",
+      "date": "2026-09-13",
+      "hippodrome": "Villeneuve-sur-Lot",
+      "statut": "hippodrome_absent",
+      "detail": ""
+    },
+    {
+      "cheval": "memphis-belle",
+      "date": "2026-09-27",
+      "hippodrome": "Gournay-en-Bray",
+      "statut": "hippodrome_absent",
+      "detail": ""
+    },
+    {
+      "cheval": "memphis-belle",
+      "date": "2026-11-01",
+      "hippodrome": "Lisieux",
+      "statut": "verifie",
+      "detail": "R16C2"
+    },
+    {
+      "cheval": "memphis-belle",
+      "date": "2026-11-11",
+      "hippodrome": "Graignes",
+      "statut": "verifie",
+      "detail": "R13C1"
+    },
+    {
+      "cheval": "mona-lisa-stardust",
+      "date": "2026-09-05",
+      "hippodrome": "Valence-sur-Baïse",
+      "statut": "hippodrome_absent",
+      "detail": ""
+    },
+    {
+      "cheval": "mona-lisa-stardust",
+      "date": "2026-09-18",
+      "hippodrome": "Toulouse",
+      "statut": "verifie",
+      "detail": "R5C8"
+    },
+    {
+      "cheval": "mona-lisa-stardust",
+      "date": "2026-10-05",
+      "hippodrome": "Castéra-Verduzan",
+      "statut": "hippodrome_absent",
+      "detail": ""
+    },
+    {
+      "cheval": "mona-lisa-stardust",
+      "date": "2026-10-24",
+      "hippodrome": "Grenade-sur-Garonne",
+      "statut": "hippodrome_absent",
+      "detail": ""
+    },
+    {
+      "cheval": "mona-lisa-stardust",
+      "date": "2026-11-13",
+      "hippodrome": "Toulouse",
+      "statut": "verifie",
+      "detail": "R5C1"
+    },
+    {
+      "cheval": "moondance-okina",
+      "date": "2026-04-12",
+      "hippodrome": "Graignes",
+      "statut": "verifie",
+      "detail": "R5C6"
+    },
+    {
+      "cheval": "moondance-okina",
+      "date": "2026-04-30",
+      "hippodrome": "Saint-Brieuc",
+      "statut": "verifie",
+      "detail": "R4C8"
+    },
+    {
+      "cheval": "moondance-okina",
+      "date": "2026-05-26",
+      "hippodrome": "Vincennes",
+      "statut": "verifie",
+      "detail": "R1C3"
+    },
+    {
+      "cheval": "moondance-okina",
+      "date": "2026-06-02",
+      "hippodrome": "Vincennes",
+      "statut": "verifie",
+      "detail": "R5C4"
+    },
+    {
+      "cheval": "moondance-okina",
+      "date": "2026-06-16",
+      "hippodrome": "Vincennes",
+      "statut": "verifie",
+      "detail": "R5C4"
+    },
+    {
+      "cheval": "myrtille-marboula",
+      "date": "2026-07-28",
+      "hippodrome": "Meslay-du-Maine",
+      "statut": "verifie",
+      "detail": "R4C3"
+    },
+    {
+      "cheval": "myrtille-marboula",
+      "date": "2026-08-08",
+      "hippodrome": "Enghien",
+      "statut": "verifie",
+      "detail": "R3C1"
+    },
+    {
+      "cheval": "myrtille-marboula",
+      "date": "2026-08-26",
+      "hippodrome": "Vincennes",
+      "statut": "verifie",
+      "detail": "R2C6"
+    },
+    {
+      "cheval": "myrtille-marboula",
+      "date": "2026-09-22",
+      "hippodrome": "Vincennes",
+      "statut": "verifie",
+      "detail": "R3C6"
+    },
+    {
+      "cheval": "myrtille-marboula",
+      "date": "2026-10-06",
+      "hippodrome": "Vincennes",
+      "statut": "verifie",
+      "detail": "R4C1"
+    },
+    {
+      "cheval": "nebraska-fleury",
+      "date": "2026-05-24",
+      "hippodrome": "Royan-Atlantique",
+      "statut": "hippodrome_absent",
+      "detail": ""
+    },
+    {
+      "cheval": "nebraska-fleury",
+      "date": "2026-07-12",
+      "hippodrome": "Bernay",
+      "statut": "hippodrome_absent",
+      "detail": ""
+    },
+    {
+      "cheval": "nebraska-fleury",
+      "date": "2026-07-19",
+      "hippodrome": "Deauville-Clairefontaine",
+      "statut": "verifie",
+      "detail": "R11C5"
+    },
+    {
+      "cheval": "nebraska-fleury",
+      "date": "2026-08-02",
+      "hippodrome": "Aix-les-Bains",
+      "statut": "verifie",
+      "detail": "R9C2"
+    },
+    {
+      "cheval": "nebraska-fleury",
+      "date": "2026-08-25",
+      "hippodrome": "Cabourg",
+      "statut": "verifie",
+      "detail": "R5C5"
+    },
+    {
+      "cheval": "nelson-star",
+      "date": "2026-07-14",
+      "hippodrome": "Le Dorat",
+      "statut": "hippodrome_absent",
+      "detail": ""
+    },
+    {
+      "cheval": "nelson-star",
+      "date": "2026-08-02",
+      "hippodrome": "Eauze",
+      "statut": "hippodrome_absent",
+      "detail": ""
+    },
+    {
+      "cheval": "nelson-star",
+      "date": "2026-08-09",
+      "hippodrome": "Fleurance",
+      "statut": "hippodrome_absent",
+      "detail": ""
+    },
+    {
+      "cheval": "nelson-star",
+      "date": "2026-08-17",
+      "hippodrome": "Auch",
+      "statut": "hippodrome_absent",
+      "detail": ""
+    },
+    {
+      "cheval": "nelson-star",
+      "date": "2026-08-29",
+      "hippodrome": "Villeréal",
+      "statut": "hippodrome_absent",
+      "detail": ""
+    },
+    {
+      "cheval": "nostalgie-dairpet",
+      "date": "2026-08-04",
+      "hippodrome": "Cabourg",
+      "statut": "verifie",
+      "detail": "R6C4"
+    },
+    {
+      "cheval": "nostalgie-dairpet",
+      "date": "2026-08-28",
+      "hippodrome": "Les Sables-d’Olonne",
+      "statut": "verifie",
+      "detail": "R6C8"
+    },
+    {
+      "cheval": "nostalgie-dairpet",
+      "date": "2026-09-20",
+      "hippodrome": "Vire",
+      "statut": "verifie",
+      "detail": "R12C1"
+    },
+    {
+      "cheval": "nostalgie-dairpet",
+      "date": "2026-10-08",
+      "hippodrome": "Enghien",
+      "statut": "verifie",
+      "detail": "R4C7"
+    },
+    {
+      "cheval": "nostalgie-dairpet",
+      "date": "2026-10-17",
+      "hippodrome": "Enghien",
+      "statut": "verifie",
+      "detail": "R5C7"
+    },
+    {
+      "cheval": "nostalgie-dairpet",
+      "date": "2026-11-25",
+      "hippodrome": "Vincennes",
+      "statut": "verifie",
+      "detail": "R4C2"
+    },
+    {
+      "cheval": "on-lockdown",
+      "date": "2026-04-05",
+      "hippodrome": "ParisLongchamp",
+      "statut": "classement_a_verifier",
+      "detail": "R1C8, rang PMU=None, saisi=Non placé"
+    },
+    {
+      "cheval": "on-lockdown",
+      "date": "2026-09-04",
+      "hippodrome": "Le Lion-d'Angers",
+      "statut": "verifie",
+      "detail": "R5C7"
+    },
+    {
+      "cheval": "on-lockdown",
+      "date": "2026-10-09",
+      "hippodrome": "Compiègne",
+      "statut": "verifie",
+      "detail": "R4C8"
+    },
+    {
+      "cheval": "on-lockdown",
+      "date": "2026-10-28",
+      "hippodrome": "Le Mans",
+      "statut": "verifie",
+      "detail": "R2C3"
+    },
+    {
+      "cheval": "on-lockdown",
+      "date": "2026-11-16",
+      "hippodrome": "Le Mans",
+      "statut": "verifie",
+      "detail": "R3C8"
+    },
+    {
+      "cheval": "rosa-mia",
+      "date": "2026-07-02",
+      "hippodrome": "ParisLongchamp",
+      "statut": "verifie",
+      "detail": "R1C9"
+    },
+    {
+      "cheval": "rosa-mia",
+      "date": "2026-07-22",
+      "hippodrome": "Clairefontaine",
+      "statut": "verifie",
+      "detail": "R2C1"
+    },
+    {
+      "cheval": "rosa-mia",
+      "date": "2026-08-20",
+      "hippodrome": "Le Lion-d'Angers",
+      "statut": "verifie",
+      "detail": "R2C4"
+    },
+    {
+      "cheval": "rosa-mia",
+      "date": "2026-09-11",
+      "hippodrome": "Le Mans",
+      "statut": "verifie",
+      "detail": "R5C5"
+    },
+    {
+      "cheval": "rosa-mia",
+      "date": "2026-10-29",
+      "hippodrome": "Fontainebleau",
+      "statut": "verifie",
+      "detail": "R2C5"
+    },
+    {
+      "cheval": "saturday-night",
+      "date": "2026-07-19",
+      "hippodrome": "Chantilly",
+      "statut": "verifie",
+      "detail": "R1C8"
+    },
+    {
+      "cheval": "saturday-night",
+      "date": "2026-08-16",
+      "hippodrome": "Le Touquet",
+      "statut": "verifie",
+      "detail": "R4C5"
+    },
+    {
+      "cheval": "saturday-night",
+      "date": "2026-08-28",
+      "hippodrome": "Saint-Malo",
+      "statut": "verifie",
+      "detail": "R5C3"
+    },
+    {
+      "cheval": "saturday-night",
+      "date": "2026-09-29",
+      "hippodrome": "Chantilly",
+      "statut": "verifie",
+      "detail": "R1C7"
+    },
+    {
+      "cheval": "saturday-night",
+      "date": "2026-11-03",
+      "hippodrome": "Deauville",
+      "statut": "verifie",
+      "detail": "R4C5"
+    },
+    {
+      "cheval": "victoria-secret",
+      "date": "2026-08-03",
+      "hippodrome": "Clairefontaine",
+      "statut": "verifie",
+      "detail": "R1C2"
+    },
+    {
+      "cheval": "victoria-secret",
+      "date": "2026-08-24",
+      "hippodrome": "Dieppe",
+      "statut": "verifie",
+      "detail": "R4C4"
+    },
+    {
+      "cheval": "victoria-secret",
+      "date": "2026-08-31",
+      "hippodrome": "Saint-Cloud",
+      "statut": "verifie",
+      "detail": "R1C5"
+    },
+    {
+      "cheval": "victoria-secret",
+      "date": "2026-09-18",
+      "hippodrome": "Saint-Cloud",
+      "statut": "verifie",
+      "detail": "R4C7"
+    },
+    {
+      "cheval": "victoria-secret",
+      "date": "2026-11-13",
+      "hippodrome": "Saint-Cloud",
+      "statut": "verifie",
+      "detail": "R4C5"
+    },
+    {
+      "cheval": "vyborg",
+      "date": "2026-06-10",
+      "hippodrome": "Argentan",
+      "statut": "verifie",
+      "detail": "R3C6"
+    },
+    {
+      "cheval": "vyborg",
+      "date": "2026-06-25",
+      "hippodrome": "Deauville",
+      "statut": "hippodrome_absent",
+      "detail": ""
+    },
+    {
+      "cheval": "vyborg",
+      "date": "2026-07-26",
+      "hippodrome": "Le Touquet",
+      "statut": "verifie",
+      "detail": "R5C6"
+    },
+    {
+      "cheval": "vyborg",
+      "date": "2026-08-16",
+      "hippodrome": "Deauville",
+      "statut": "verifie",
+      "detail": "R1C9"
+    },
+    {
+      "cheval": "vyborg",
+      "date": "2026-08-31",
+      "hippodrome": "Saint-Cloud",
+      "statut": "verifie",
+      "detail": "R1C7"
+    },
+    {
+      "cheval": "zartop",
+      "date": "2026-07-18",
+      "hippodrome": "Dieppe",
+      "statut": "verifie",
+      "detail": "R4C6"
+    },
+    {
+      "cheval": "zartop",
+      "date": "2026-08-03",
+      "hippodrome": "Clairefontaine",
+      "statut": "verifie",
+      "detail": "R1C6"
+    },
+    {
+      "cheval": "zartop",
+      "date": "2026-08-24",
+      "hippodrome": "Dieppe",
+      "statut": "verifie",
+      "detail": "R4C6"
+    },
+    {
+      "cheval": "zartop",
+      "date": "2026-10-20",
+      "hippodrome": "Clairefontaine",
+      "statut": "verifie",
+      "detail": "R1C7"
+    },
+    {
+      "cheval": "zartop",
+      "date": "2026-11-16",
+      "hippodrome": "Le Mans",
+      "statut": "verifie",
+      "detail": "R3C6"
+    }
+  ]
+}
