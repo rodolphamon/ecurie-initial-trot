@@ -31,8 +31,9 @@ function mergeArrivalDetails(previous,incoming){
   if(!previous||previous.officiel!==true||incoming.officiel===false
     ||previous.date!==incoming.date
     ||normalizeSearch(previous.hippodrome)!==normalizeSearch(incoming.hippodrome)
-    ||normalizeSearch(previous.rang)!==normalizeSearch(incoming.rang)
+    ||displayRank(previous.rang)!==displayRank(incoming.rang)
     ||previous.course&&incoming.course&&previous.course.toUpperCase()!==incoming.course.toUpperCase()
+    ||previous.numero&&incoming.numero&&Number(previous.numero)!==Number(incoming.numero)
     ||!Array.isArray(previous.arrivee))return incoming;
   const key=row=>JSON.stringify([row.rang,row.numero,normalizeSearch(row.cheval)]);
   const known=new Map(previous.arrivee.map(row=>[key(row),row]));
@@ -68,6 +69,7 @@ async function freshPerformances(editor){
         const index=list.findIndex(p=>p.date===row.date&&normalizeSearch(p.hippodrome)===normalizeSearch(row.hippodrome));
         if(index<0)list.push(row);
         else if(list[index].officiel!==true&&list[index].statut!=='officiel')list[index]={...list[index],...row};
+        else list[index]=mergeArrivalDetails(row,list[index]);
       }
       merged[slug]=list.sort((a,b)=>b.date.localeCompare(a.date));
     }

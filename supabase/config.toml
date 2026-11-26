@@ -24,3 +24,7 @@ verify_jwt = false
 # push-receipt : accusés de réception des notifications ; contrôle côté code.
 [functions.push-receipt]
 verify_jwt = false
+
+# Lecture des seuls résultats publics déjà officialisés ; aucune donnée de compte.
+[functions.public-race-results]
+verify_jwt = false

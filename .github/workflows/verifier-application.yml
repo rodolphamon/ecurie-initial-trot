@@ -12,6 +12,8 @@ on:
       - 'scripts/verifier_application.py'
       - 'scripts/valider_non_partants_push.mjs'
       - 'scripts/valider_reception_push.mjs'
+      - 'scripts/valider_details_resultats.mjs'
+      - 'docs/chevaux/assets/app.js'
       - '.github/workflows/verifier-application.yml'
   pull_request:
     branches: [main]
@@ -39,3 +41,4 @@ jobs:
           python scripts/verifier_application.py
           node scripts/valider_non_partants_push.mjs
           node scripts/valider_reception_push.mjs
+          node scripts/valider_details_resultats.mjs

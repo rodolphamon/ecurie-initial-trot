@@ -4918,6 +4918,86 @@
     ],
     "moondance-okina": [
       {
+        "date": "2026-11-26",
+        "hippodrome": "Mauquenchy",
+        "rang": "9",
+        "officiel": true,
+        "statut": "officiel",
+        "course": "R4C4",
+        "numero": 12,
+        "arrivee": [
+          {
+            "rang": 1,
+            "numero": 14,
+            "cheval": "MAEVA DES BAUX",
+            "driver": "P.Y. VERVA"
+          },
+          {
+            "rang": 2,
+            "numero": 13,
+            "cheval": "MAFIA RINGEAT",
+            "driver": "TH.E. LONCKE"
+          },
+          {
+            "rang": 3,
+            "numero": 15,
+            "cheval": "MAJA D'OLMEN",
+            "driver": "B. ROUER"
+          },
+          {
+            "rang": 4,
+            "numero": 6,
+            "cheval": "MOON PONT VAUTIER",
+            "driver": "G. LESSIEU"
+          },
+          {
+            "rang": 5,
+            "numero": 11,
+            "cheval": "MELODIE BECO",
+            "driver": "L. LABBE"
+          },
+          {
+            "rang": 6,
+            "numero": 2,
+            "cheval": "MALOU DIESCHOOT",
+            "driver": "E. DE JESUS"
+          },
+          {
+            "rang": 7,
+            "numero": 4,
+            "cheval": "MIDINETTE DU VAL",
+            "driver": "LAURENT VERVA"
+          },
+          {
+            "rang": 8,
+            "numero": 3,
+            "cheval": "MADDY D'ALCI",
+            "driver": "ALEXANDRE BODIN"
+          },
+          {
+            "rang": 9,
+            "numero": 12,
+            "cheval": "MOONDANCE OKINA",
+            "driver": "Sébastien OLIVIER"
+          }
+        ],
+        "source_description": "PMU : arrivée définitive R4C4, cheval n°12",
+        "course_url": "https://www.equidia.fr/courses/2026-11-26/R4/C4",
+        "video_url": "https://www.equidia.fr/courses/2026-11-26/R4/C4",
+        "video_source": "equidia_course",
+        "prix": "PRIX LE BISTROT & L'ASSIETTE DE FORMERIE",
+        "type": "Trot attelé",
+        "type_course": "Course E",
+        "surface": "Sable",
+        "distance": 2875,
+        "partants": 15,
+        "allocation": 21000,
+        "entraineur": "B. MARIE",
+        "ferrure": "F4",
+        "driver": "Sébastien OLIVIER",
+        "reduction_km": "1′17″4"
+      },
+      {
         "date": "2026-06-16",
         "hippodrome": "Vincennes",
         "rang": "6e",

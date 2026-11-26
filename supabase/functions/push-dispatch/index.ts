@@ -2,6 +2,7 @@
 // Aucun envoi sans abonnement volontaire ; aucune notification de simple engagement.
 // Résultat officiel : exige "officiel": true sur la performance vérifiée.
 import { createClient } from "npm:@supabase/supabase-js@2";
+import { pmuPerformance } from "./pmu-performance.ts";
 import { sendPushNotification } from "npm:@mmmike/web-push/send";
 
 const env = (k: string) => Deno.env.get(k) || "";
@@ -147,9 +148,9 @@ async function pmuOfficialAlerts(
   for(const item of targets.slice(0,4)){
     try{
       const {data:exists,error:existsError}=await sb.from("ei_push_alerts")
-        .select("id").eq("id",item.id).maybeSingle();
+        .select("id,payload").eq("id",item.id).maybeSingle();
       if(existsError)throw existsError;
-      if(exists)continue;
+      if(exists?.payload?.performance?.arrivee?.length)continue;
       const day=item.event.date;
       let payload=programmeCache.get(day);
       if(!payload){
@@ -186,11 +187,18 @@ async function pmuOfficialAlerts(
         pmuNumber(p?.numPmu)===item.bib);
       if(horseMatches.length!==1 ||
          pmuText(horseMatches[0].nom)!==pmuText(horseNames[item.slug]))continue;
-      await saveAlert({id:item.id,categorie:"results",cheval_slug:item.slug,payload:{
+      const performance=pmuPerformance(item.event,race,participants.participants,item.bib,horseNames[item.slug]);
+      if(!performance)continue;
+      const alert:Alert={id:item.id,categorie:"results",cheval_slug:item.slug,payload:{
         nom:horseNames[item.slug],hippodrome:item.event.hippodrome,
         date:day,rang:displayRank(rank===1?"1er":rank+"e"),official:true,pilotTest:false,
-        source:"PMU - arrivée définitive",
-      },expires_at:iso(now+36*3600_000)});
+        source:"PMU - arrivée définitive",performance,
+      },expires_at:iso(now+36*3600_000)};
+      if(exists){
+        // Compléter l'alerte en place : son ID et ses livraisons restent identiques.
+        const {error}=await sb.from("ei_push_alerts").update({payload:alert.payload}).eq("id",item.id);
+        if(error)throw error;
+      }else await saveAlert(alert);
       console.log("[PMU-PUSH] Arrivée officielle vérifiée : "+item.slug+
         " R"+item.reunion+"C"+item.course+" n°"+item.bib+" "+rank+"e");
       added++;
@@ -478,7 +486,7 @@ async function run() {
       await saveAlert({id:"results:"+pKey,categorie:"results",cheval_slug:slug,payload:{
         nom:horseNames[slug]||slug.replace(/-/g," ").toUpperCase(),
         hippodrome:esc(p.hippodrome),rang:displayRank(p.rang||p.classement||"Résultat disponible"),date,
-        official,pilotTest:pilotValidated
+        official,pilotTest:pilotValidated,performance:official?p:undefined
       },expires_at:iso(now+36*3600_000)});counts.alerts++;
     }
   }

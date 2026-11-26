@@ -6,6 +6,7 @@ on:
     paths:
       - "supabase/functions/notifications/**"
       - "supabase/functions/push-dispatch/**"
+      - "supabase/functions/public-race-results/**"
       - ".github/workflows/deployer-notifications.yml"
 permissions:
   contents: read
@@ -22,9 +23,11 @@ jobs:
         run: |
           notifications=false
           push_dispatch=false
+          public_results=false
           if [ "$GITHUB_EVENT_NAME" = "workflow_dispatch" ]; then
             notifications=true
             push_dispatch=true
+            public_results=true
           else
             if ! git diff --quiet HEAD^ HEAD -- supabase/functions/notifications; then
               notifications=true
@@ -32,9 +35,13 @@ jobs:
             if ! git diff --quiet HEAD^ HEAD -- supabase/functions/push-dispatch; then
               push_dispatch=true
             fi
+            if ! git diff --quiet HEAD^ HEAD -- supabase/functions/public-race-results; then
+              public_results=true
+            fi
           fi
           echo "notifications=$notifications" >> "$GITHUB_OUTPUT"
           echo "push_dispatch=$push_dispatch" >> "$GITHUB_OUTPUT"
+          echo "public_results=$public_results" >> "$GITHUB_OUTPUT"
       - name: Installer Python pour les contrôles
         uses: actions/setup-python@v5
         with:
@@ -48,12 +55,13 @@ jobs:
           python scripts/verifier_application.py
           node scripts/valider_non_partants_push.mjs
           node scripts/valider_reception_push.mjs
+          node scripts/valider_details_resultats.mjs
       - name: Installer Supabase CLI
         uses: supabase/setup-cli@v1
         with:
           version: 3.1.0
       - name: Déployer les fonctions Push modifiées
-        if: steps.changed.outputs.notifications == 'true' || steps.changed.outputs.push_dispatch == 'true'
+        if: steps.changed.outputs.notifications == 'true' || steps.changed.outputs.push_dispatch == 'true' || steps.changed.outputs.public_results == 'true'
         env:
           SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
         run: |
@@ -69,6 +77,10 @@ jobs:
           fi
           if [ "${{ steps.changed.outputs.push_dispatch }}" = "true" ]; then
             supabase functions deploy push-dispatch --project-ref yeecwaaizmvrhwobukfa --no-verify-jwt --yes
+          fi
+          # Lecture publique limitée aux performances officialisées et filtrées.
+          if [ "${{ steps.changed.outputs.public_results }}" = "true" ]; then
+            supabase functions deploy public-race-results --project-ref yeecwaaizmvrhwobukfa --no-verify-jwt --yes
           fi
       - name: Étapes restantes
         run: |
