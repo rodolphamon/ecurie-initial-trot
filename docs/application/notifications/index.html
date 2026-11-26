@@ -61,24 +61,23 @@ main{max-width:770px;padding:13px 14px 105px}
 </div></section>
 <section class="card"><h2>Mes alertes</h2>
 <div id="guestChecks">
-<div class="row"><input type="checkbox" id="daily" checked><label for="daily"><strong>Rappel des partants du jour</strong><div class="muted">À 10 h, les chevaux de l’Écurie qui courent aujourd’hui.</div></label></div>
+<div class="row"><input type="checkbox" id="daily"><label for="daily"><strong>Rappel des partants du jour</strong><div class="muted">À 10 h, les chevaux de l’Écurie qui courent aujourd’hui.</div></label></div>
 <div class="row"><input type="checkbox" id="publicBefore15"><label for="publicBefore15"><strong>15 minutes avant le départ</strong><div class="muted">Un rappel avant les courses de l’Écurie.</div></label></div>
-<div class="row"><input type="checkbox" id="results" checked><label for="results"><strong>Résultats officiels</strong><div class="muted">Dès validation du résultat.</div></label></div>
+<div class="row"><input type="checkbox" id="results"><label for="results"><strong>Résultats officiels</strong><div class="muted">Dès validation du résultat.</div></label></div>
 </div>
-<div class="row"><input type="checkbox" id="publicNews" checked><label for="publicNews"><strong>📢 Annonces publiques de l’Écurie</strong><div class="muted">Messages officiels destinés à toute la communauté, y compris aux supporters sans cheval.</div></label></div>
+<div class="row"><input type="checkbox" id="publicNews"><label for="publicNews"><strong>📢 Annonces publiques de l’Écurie</strong><div class="muted">Messages officiels destinés à toute la communauté, y compris aux supporters sans cheval.</div></label></div>
 <div id="memberChecks" hidden>
-<div class="row"><input type="checkbox" id="confirmed" checked><label for="confirmed"><strong>Partant confirmé</strong><div class="muted">À la déclaration du partant.</div></label></div>
-<div class="row"><input type="checkbox" id="reminder10" checked><label for="reminder10"><strong>Rappel des partants du jour</strong><div class="muted">À 10 h les jours où un cheval de l’Écurie court.</div></label></div>
-<div class="row"><input type="checkbox" id="before15" checked><label for="before15"><strong>15 minutes avant le départ</strong></label></div>
-<div class="row"><input type="checkbox" id="resultMember" checked><label for="resultMember"><strong>Résultat officiel</strong></label></div>
-<div class="row"><input type="checkbox" id="withdrawn" checked><label for="withdrawn"><strong>Non-partant</strong></label></div>
-<div class="row"><input type="checkbox" id="generalNews" checked><label for="generalNews"><strong>🔒 Messages privés aux associés</strong><div class="muted">Annonces réservées aux associés. Le contenu reste dans votre espace privé.</div></label></div>
-<div class="row"><input type="checkbox" id="privateNews" checked><label for="privateNews"><strong>Nouvelles privées de mes chevaux</strong><div class="muted">Informations, photos et vidéos réservées aux propriétaires. Uniquement les chevaux dont je possède des parts.</div></label></div>
+<div class="row"><input type="checkbox" id="confirmed"><label for="confirmed"><strong>Partant confirmé</strong><div class="muted">À la déclaration du partant.</div></label></div>
+<div class="row"><input type="checkbox" id="reminder10"><label for="reminder10"><strong>Rappel des partants du jour</strong><div class="muted">À 10 h les jours où un cheval de l’Écurie court.</div></label></div>
+<div class="row"><input type="checkbox" id="before15"><label for="before15"><strong>15 minutes avant le départ</strong></label></div>
+<div class="row"><input type="checkbox" id="resultMember"><label for="resultMember"><strong>Résultat officiel</strong></label></div>
+<div class="row"><input type="checkbox" id="withdrawn"><label for="withdrawn"><strong>Non-partant</strong></label></div>
+<div class="row"><input type="checkbox" id="generalNews"><label for="generalNews"><strong>🔒 Messages privés aux associés</strong><div class="muted">Annonces réservées aux associés. Le contenu reste dans votre espace privé.</div></label></div>
+<div class="row"><input type="checkbox" id="privateNews"><label for="privateNews"><strong>Nouvelles privées de mes chevaux</strong><div class="muted">Informations, photos et vidéos réservées aux propriétaires. Uniquement les chevaux dont je possède des parts.</div></label></div>
 </div>
 </section>
 <section class="card"><h2>Autorisation sur cet appareil</h2>
 <p id="serviceState" class="muted">Vérification du service de notifications…</p>
-<button type="button" id="enable" disabled>Activer les notifications</button>
 <button type="button" class="secondary" id="disable" hidden>Arrêter sur cet appareil</button>
 <button type="button" class="secondary" id="testRemote" hidden disabled>📨 Envoyer un test serveur sur ce téléphone</button>
 <p id="status" role="status" aria-live="polite"></p>
@@ -108,7 +107,10 @@ const db=createClient('https://yeecwaaizmvrhwobukfa.supabase.co',KEY);
 const $=id=>document.getElementById(id);
 let isMember=false,publicKey=null,registration=null,subscription=null,accountScope=null;
 let lastAuthenticatedAccessToken=null;
-let preferencesActive=false, preferenceWrites=Promise.resolve();
+let preferencesActive=false, activating=false, preferenceWrites=Promise.resolve();
+function clearAlertChoices(){
+ for(const input of $('notificationOptions').querySelectorAll('input[type="checkbox"]'))input.checked=false;
+}
 db.auth.onAuthStateChange((event,session)=>{
  if(session?.access_token)lastAuthenticatedAccessToken=session.access_token;
  else if(event==='SIGNED_OUT')lastAuthenticatedAccessToken=null;
@@ -193,7 +195,7 @@ async function init(){
       }catch(_){/* Le retrait local reste possible si la demande serveur échoue. */}
       await subscription.unsubscribe();
       subscription=null;
-      message('La clé de notification de ce téléphone était ancienne. Cliquez sur « Activer les notifications » pour la renouveler.',true);
+      message('La clé de notification de ce téléphone était ancienne. Cochez une alerte pour la renouveler.',true);
     }
   }
   if(subscription && localStorage.getItem(tokenKey)){
@@ -217,9 +219,8 @@ async function init(){
       }
     }catch(_){/* La consultation des préférences n'empêche pas leur réenregistrement. */}
   }
-  $('serviceState').textContent=subscription?'Cet appareil possède déjà une autorisation Push.':'Prêt à demander votre autorisation.';
-  $('enable').disabled=false;
-  $('enable').hidden=preferencesActive;
+  if(!preferencesActive)clearAlertChoices();
+  $('serviceState').textContent=preferencesActive?'Les notifications sont activées sur cet appareil.':'Cochez une alerte pour activer les notifications sur cet appareil.';
   $('disable').hidden=!subscription;
  }catch(e){$('serviceState').textContent='Service en cours de configuration. Revenez prochainement.';}
 }
@@ -229,15 +230,25 @@ async function savePreferences(preferences){
  message('Préférences enregistrées.');
 }
 $('notificationOptions').addEventListener('change',event=>{
- if(!preferencesActive || !event.target.matches('input[type="checkbox"], input[name="scope"]'))return;
+ if(!event.target.matches('input[type="checkbox"], input[name="scope"]'))return;
+ if(!preferencesActive){
+   if(event.target.type==='checkbox' && event.target.checked && !activating){
+     if(publicKey && !$('disable').disabled)activateFromChoice();
+     else{
+       event.target.checked=false;
+       message('Service indisponible pour le moment. Réessayez dans un instant.',true);
+     }
+   }
+   return;
+ }
  const preferences=prefs();
  message('Enregistrement des préférences…');
  preferenceWrites=preferenceWrites.then(()=>savePreferences(preferences)).catch(()=>{
    message('Enregistrement impossible. Modifiez une option pour réessayer.',true);
  });
 });
-$('enable').onclick=async()=>{
- const btn=$('enable');btn.disabled=true;message('');
+async function activateFromChoice(){
+ activating=true;message('');
  try{
    // La demande d'autorisation est initiée directement par le geste de l'utilisateur.
    if(Notification.permission!=='granted'){
@@ -249,23 +260,27 @@ $('enable').onclick=async()=>{
        await registration.pushManager.subscribe({userVisibleOnly:true,applicationServerKey:base64ToBytes(publicKey)});
    }
    await savePreferences(prefs());
-   preferencesActive=true;btn.hidden=true;$('disable').hidden=false;
+   preferencesActive=true;$('disable').hidden=false;
    $('serviceState').textContent='Les notifications sont activées sur cet appareil.';
    if(isMember)$('testRemote').disabled=false;
- }catch(e){message(e.message||'Activation impossible.',true)}finally{btn.disabled=false}
-};
+ }catch(e){clearAlertChoices();message(e.message||'Activation impossible.',true)}
+ finally{activating=false}
+}
 $('disable').onclick=async()=>{
  if(!subscription)return;
+ if(activating)return;
+ const wasActive=preferencesActive;
  $('disable').disabled=true;preferencesActive=false;message('');
  await preferenceWrites;
  try{
    await callServer({action:'unsubscribe',deviceToken:deviceToken(),endpoint:subscription.endpoint});
    await subscription.unsubscribe();subscription=null;
    localStorage.removeItem(tokenKey);
-   $('disable').hidden=true;$('enable').hidden=false;$('testRemote').disabled=true;
-   $('serviceState').textContent='Vous pouvez réactiver les notifications sur cet appareil.';
+   clearAlertChoices();
+   $('disable').hidden=true;$('testRemote').disabled=true;
+   $('serviceState').textContent='Cochez une alerte pour réactiver les notifications sur cet appareil.';
    message('Notifications désactivées sur cet appareil.');
- }catch(e){preferencesActive=$('enable').hidden;message(e.message||'Désactivation impossible.',true)}finally{$('disable').disabled=false}
+ }catch(e){preferencesActive=wasActive;message(e.message||'Désactivation impossible.',true)}finally{$('disable').disabled=false}
 };
 $('testRemote').onclick=async()=>{
  const btn=$('testRemote');btn.disabled=true;message('Demande envoyée au serveur…');
