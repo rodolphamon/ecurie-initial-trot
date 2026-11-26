@@ -10,6 +10,7 @@ on:
       - 'supabase/config.toml'
       - 'supabase/migrations/**'
       - 'scripts/verifier_application.py'
+      - 'scripts/valider_non_partants_push.mjs'
       - '.github/workflows/verifier-application.yml'
   pull_request:
     branches: [main]
@@ -33,4 +34,6 @@ jobs:
         with:
           node-version: '22'
       - name: Vérifier pages, rôles, fonctions et données
-        run: python scripts/verifier_application.py
+        run: |
+          python scripts/verifier_application.py
+          node scripts/valider_non_partants_push.mjs

@@ -82,6 +82,9 @@ function resumePartants(partants:{nom:string;hippodrome?:string;heure?:string}[]
   return texte;
 }
 const key=(slug:string,e:Event)=>[slug,e.date,esc(e.hippodrome).normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase()].join("|");
+const withdrawalAlertId=(eventKey:string)=>"withdrawn:non-partant:"+eventKey;
+const withdrawalOwner=(member:boolean,associate:boolean,owned:ReadonlySet<string>,slug:string|null)=>
+  member&&associate&&!!slug&&owned.has(slug);
 async function saveAlert(row: Alert) {
   const {error}=await sb.from("ei_push_alerts").upsert(row,{onConflict:"id",ignoreDuplicates:true});
   if(error)throw error;
@@ -215,7 +218,7 @@ async function pmuPreflight(
   overrides:Record<string,any>[],now:number,
 ):Promise<number>{
   // Le cron tourne chaque minute, mais les fiches et listes PMU sont lues
-  // seulement toutes les 15 min jusqu'à 36 h avant la course.
+  // seulement toutes les 15 min, de H-36 h à H+15 min pour les retraits tardifs.
   if(new Date(now).getUTCMinutes()%15!==0)return 0;
   const targets:{slug:string;evt:Event & {numero?:unknown};departure:number;index:number}[]=[];
   for(const [slug,rows] of Object.entries(editorial.engagements||{})){
@@ -227,11 +230,20 @@ async function pmuPreflight(
       const departureString=parisDeparture(evt.date,evt.heure);
       if(!departureString)continue;
       const departure=Date.parse(departureString),before=departure-now;
-      if(before<10*60000 || before>36*3600000)continue;
+      // Inclure les retraits de dernière minute et leur confirmation juste après H.
+      if(before< -15*60000 || before>36*3600000)continue;
       targets.push({slug,evt,departure,index});
     }
   }
   const cache=new Map<string,any>();
+  const refreshContribution=async(slug:string)=>{
+    const {data,error}=await sb.from("ei_contributions_engagements")
+      .select("cheval_slug,engagements,updated_at").eq("cheval_slug",slug).maybeSingle();
+    if(error)throw error;
+    editorial.engagements[slug]=Array.isArray(data?.engagements)?data.engagements:[];
+    const index=overrides.findIndex(x=>x.cheval_slug===slug);
+    if(data){if(index>=0)overrides[index]=data;else overrides.push(data);}
+  };
   let confirmed=0;
   for(const item of targets.sort((a,b)=>a.departure-b.departure).slice(0,8)){
     const {slug,evt,departure,index}=item;
@@ -248,7 +260,7 @@ async function pmuPreflight(
       }
       const meetings=programme?.programme?.reunions??programme?.reunions;
       if(!Array.isArray(meetings))continue;
-      const matches:{code:string;bib:number;start:number|null}[]=[];
+      const matches:{code:string;bib:number;start:number|null;nonPartant:boolean}[]=[];
       const races:{code:string;race:Record<string,unknown>;start:number|null}[]=[];
       for(const meeting of meetings){
         const reunion=pmuNumber(meeting?.numOfficiel??meeting?.numReunion??meeting?.numOrdre);
@@ -283,6 +295,7 @@ async function pmuPreflight(
             pmuText(p?.nom)===targetName && pmuNumber(p?.numPmu)!==null);
           if(same.length===1)matches.push({
             code:candidate.code,bib:pmuNumber(same[0].numPmu)!,start:candidate.start,
+            nonPartant:same[0].statut==="NON_PARTANT",
           });
         }catch(err){
           console.warn("[AVANT-COURSE] Partants indisponibles "+slug+" "+candidate.code+" "
@@ -290,7 +303,7 @@ async function pmuPreflight(
         }
       }
       if(matches.length!==1){
-        if(remainingMinutes<=90){
+        if(remainingMinutes>=0&&remainingMinutes<=90){
           await saveAlert({id:"preflight:"+slug+"|"+day+"|"+pmuText(evt.hippodrome),
             categorie:"preflight_warning",cheval_slug:slug,
             payload:{nom:horseNames[slug],hippodrome:evt.hippodrome,date:day,
@@ -309,7 +322,11 @@ async function pmuPreflight(
         continue;
       }
       confirmed++;
-      if(match.code===expectedCode && match.bib===expectedBib)continue;
+      if(match.code===expectedCode && match.bib===expectedBib&&!match.nonPartant)continue;
+      const change={course:match.code,numero:match.bib,...(match.nonPartant?{
+        statut:"non-partant",non_partant_verifie_le:iso(now),
+        non_partant_source:PMU_PROGRAM+"/programme/"+ymd+"/"+match.code.replace("C","/C")+"/participants",
+      }:{})};
       const override=overrides.find((x:any)=>x.cheval_slug===slug);
       if(override && Array.isArray(override.engagements)){
         // Ne modifier que le partant précis et conserver tous les autres
@@ -317,17 +334,39 @@ async function pmuPreflight(
         const updated=override.engagements.map((e:any,i:number)=>{
           if(i!==index || e.date!==evt.date || e.heure!==evt.heure ||
               pmuText(e.hippodrome)!==pmuText(evt.hippodrome))return e;
-          return {...e,course:match.code,numero:match.bib};
+          return {...e,...change};
         });
-        const {error}=await sb.from("ei_contributions_engagements")
-          .update({engagements:updated}).eq("cheval_slug",slug);
+        let update=sb.from("ei_contributions_engagements")
+          .update({engagements:updated,updated_at:iso(now)}).eq("cheval_slug",slug);
+        if(override.updated_at)update=update.eq("updated_at",override.updated_at);
+        const {data:saved,error}=await update.select("updated_at");
         if(error)throw error;
+        if(!saved?.length){
+          console.warn("[AVANT-COURSE] Saisie concurrente conservée "+slug);
+          await refreshContribution(slug);
+          continue;
+        }
         override.engagements=updated;
+        override.updated_at=saved[0].updated_at;
         editorial.engagements[slug]=updated;
-        console.log("[AVANT-COURSE] CORRIGÉ Supabase "+slug+" "+
+        console.log("[AVANT-COURSE] "+(match.nonPartant?"NON-PARTANT PMU ":"CORRIGÉ Supabase ")+slug+" "+
           (expectedCode||"-")+" n°"+(expectedBib||"-")+" -> "+
           match.code+" n°"+match.bib);
       }else{
+        if(match.nonPartant){
+          const updated=editorial.engagements[slug].map((e:any,i:number)=>i===index?{...e,...change}:e);
+          const {error}=await sb.from("ei_contributions_engagements")
+            .insert({cheval_slug:slug,engagements:updated});
+          if(error?.code==="23505"){
+            await refreshContribution(slug);
+            continue;
+          }
+          if(error)throw error;
+          editorial.engagements[slug]=updated;
+          overrides.push({cheval_slug:slug,engagements:updated});
+          console.log("[AVANT-COURSE] NON-PARTANT PMU enregistré "+slug);
+          continue;
+        }
         // Le fichier GitHub sera corrigé par le précontrôle horaire.
         // Dans ce cycle, l'alerte officielle peut déjà utiliser le bon code.
         evt.course=match.code;
@@ -356,7 +395,7 @@ async function run() {
   // Les publications directes des contributeurs priment sur le relevé GitHub.
   // Un remplacement par [] retire les engagements de ce cheval du flux Push.
   const {data:overrides,error:overridesError}=await sb
-    .from("ei_contributions_engagements").select("cheval_slug,engagements");
+    .from("ei_contributions_engagements").select("cheval_slug,engagements,updated_at");
   if(overridesError)throw overridesError;
   ed.engagements=ed.engagements||{};
   for(const row of overrides||[]){
@@ -404,10 +443,10 @@ async function run() {
         if(old && row.date_course>=clock.date &&
            CONFIRMED.has(old.statut) && NON_PARTANT.has(row.statut)){
           await saveAlert({
-            id:"withdrawn:"+row.statut+":"+row.event_key,categorie:"withdrawn",
+            id:withdrawalAlertId(row.event_key),categorie:"withdrawn",
             cheval_slug:slug,
             payload:{...detail,statut:row.statut,event_key:row.event_key},
-            expires_at:iso(now+6*3600_000)
+            expires_at:iso(now+12*3600_000)
           });
           counts.alerts++;
         }
@@ -466,6 +505,7 @@ async function run() {
   if(subsErr)throw subsErr;
   const userIds=[...new Set((subs||[]).map(s=>s.user_id).filter(Boolean))];
   const active=new Set<string>();
+  const associates=new Set<string>();
   const pilots=new Set<string>();
   const admins=new Set<string>();
   const holdings=new Map<string,Set<string>>();
@@ -497,6 +537,7 @@ async function run() {
       for(const c of contributors||[])earlyContributors.add(c.user_id);
     }
     for(const m of members||[]){
+      if(m.type_compte==="associe")associates.add(m.user_id);
       // Les membres extérieurs utilisent exclusivement les abonnements publics.
       if(m.type_compte!=="exterieur" &&
          (launchOpen||pilots.has(m.user_id)||earlyContributors.has(m.user_id)))active.add(m.user_id);
@@ -536,7 +577,8 @@ async function run() {
       // comptes de la liste officielle des pilotes, jamais aux visiteurs
       // ni aux contributeurs admis uniquement pour travailler en préouverture.
       // Après le 1er décembre, les abonnés publics retrouvent leur accès normal.
-      if(prelaunch && (!member || (alert.categorie==="public_news" && !pilots.has(sub.user_id))))continue;
+      const exteriorPilotReminder=alert.categorie==="before15" && sub.audience==="visitor" && !!sub.user_id && pilots.has(sub.user_id);
+      if(prelaunch && !exteriorPilotReminder && (!member || (alert.categorie==="public_news" && !pilots.has(sub.user_id))))continue;
       // Anomalies avant course : exclusivement l'administrateur,
       // jamais les associés ordinaires ou les visiteurs.
       const adminWarning=alert.categorie==="preflight_warning";
@@ -554,10 +596,14 @@ async function run() {
         // Priorité absolue à la copropriété : aucune exception liée au choix "tous".
         // Ni visiteurs, ni associés d'un autre cheval ne doivent recevoir l'alerte.
         if(!member || !alert.cheval_slug || !owned.has(alert.cheval_slug))continue;
+      }else if(alert.categorie==="withdrawn"){
+        // Les retraits concernent uniquement les véritables détenteurs du cheval,
+        // même si l'abonné a choisi de suivre toutes les courses de l'écurie.
+        if(!withdrawalOwner(member,associates.has(sub.user_id),owned,alert.cheval_slug))continue;
       }else{
         const pilotResult=prelaunch && alert.categorie==="results" && alert.payload?.pilotTest===true;
         if(alert.cheval_slug && member && sub.scope==="mine" && !owned.has(alert.cheval_slug) && !pilotResult)continue;
-        if(alert.cheval_slug && !member && !["results"].includes(alert.categorie))continue;
+        if(alert.cheval_slug && !member && !["results","before15"].includes(alert.categorie))continue;
       }
       let message:{title:string,body:string,url:string}|null=null;
       const p=alert.payload||{};
@@ -582,7 +628,8 @@ async function run() {
         if(NON_PARTANT.has(status)){
           message={title:"🚫 Non-partant · "+esc(p.nom),
             body:esc(p.nom)+" ne prendra finalement pas le départ à "+venue+".",
-            url:APP+"/engagements/"};
+            url:APP+"/engagements/?cheval="+encodeURIComponent(alert.cheval_slug||"")
+              +"&date="+encodeURIComponent(esc(p.date))+"&statut=non-partant"};
         }
       }else if(alert.categorie==="before15"){
         message={title:"⏰ Départ imminent · "+esc(p.nom),body:esc(p.hippodrome)+" · environ "+esc(p.diff)+" min avant le départ.",url:APP+"/engagements/"};
