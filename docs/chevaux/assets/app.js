@@ -28,15 +28,16 @@ function photoMarkup(p,style){let img=p.photoUrl||base+'photos/'+p.id+'.jpg?v='+
 
 // Une copie GitHub encore en cache ne doit pas effacer les montes déjà vérifiées.
 function mergeArrivalDetails(previous,incoming){
-  if(!previous||previous.officiel!==true||incoming.officiel!==true
+  if(!previous||previous.officiel!==true||incoming.officiel===false
     ||previous.date!==incoming.date
     ||normalizeSearch(previous.hippodrome)!==normalizeSearch(incoming.hippodrome)
     ||normalizeSearch(previous.rang)!==normalizeSearch(incoming.rang)
     ||previous.course&&incoming.course&&previous.course.toUpperCase()!==incoming.course.toUpperCase()
-    ||!Array.isArray(previous.arrivee)||!Array.isArray(incoming.arrivee))return incoming;
+    ||!Array.isArray(previous.arrivee))return incoming;
   const key=row=>JSON.stringify([row.rang,row.numero,normalizeSearch(row.cheval)]);
   const known=new Map(previous.arrivee.map(row=>[key(row),row]));
-  return {...incoming,arrivee:incoming.arrivee.map(row=>({...known.get(key(row)),...row}))};
+  return {...previous,...incoming,arrivee:Array.isArray(incoming.arrivee)&&incoming.arrivee.length
+    ?incoming.arrivee.map(row=>({...known.get(key(row)),...row})):previous.arrivee};
 }
 
 // Résultats officiels déjà enregistrés par le moteur push, sans attendre GitHub Pages.
@@ -51,6 +52,8 @@ async function freshPerformances(editor){
         const previous=merged[slug]||[];
         merged[slug]=rows.map(row=>mergeArrivalDetails(previous.find(p=>p.date===row.date
           &&normalizeSearch(p.hippodrome)===normalizeSearch(row.hippodrome)),row));
+        for(const row of previous)if(!merged[slug].some(p=>p.date===row.date
+          &&normalizeSearch(p.hippodrome)===normalizeSearch(row.hippodrome)))merged[slug].push(row);
       }
     }
   }catch(e){console.info('Source GitHub directe indisponible',e)}

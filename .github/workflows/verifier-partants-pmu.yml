@@ -4,6 +4,8 @@ on:
     branches: [main]
     paths:
       - "scripts/verifier_partants_pmu.py"
+      - "scripts/completer_partants_courses.py"
+      - "scripts/completer_arrivees_historiques.py"
       - "docs/chevaux/data/editorial.json"
       - ".github/workflows/verifier-partants-pmu.yml"
   schedule:
@@ -29,7 +31,12 @@ jobs:
         with:
           python-version: '3.11'
       - name: Tester les règles de correspondance (sans réseau)
-        run: python scripts/verifier_partants_pmu.py --self-test
+        run: |
+          python scripts/verifier_partants_pmu.py --self-test
+          python scripts/completer_partants_courses.py --self-test
+      - name: Actualiser les listes officielles des courses à venir
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        run: python scripts/completer_partants_courses.py --apply
       - name: Vérifier la course, l'hippodrome, l'heure, le numéro et l'identité PMU
         run: |
           if [[ "${{ github.event_name }}" == "schedule" || "${{ github.event_name }}" == "workflow_dispatch" ]]; then
@@ -37,19 +44,19 @@ jobs:
           else
             python scripts/verifier_partants_pmu.py
           fi
-      - name: Enregistrer les codes vérifiés
+      - name: Enregistrer les codes et les listes vérifiés
         if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
         id: save
         run: |
-          if git diff --quiet -- docs/chevaux/data/editorial.json; then
+          if git diff --quiet -- docs/chevaux/data/editorial.json docs/chevaux/data/partants-courses.json; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
             echo "Aucun code PMU à corriger"
             exit 0
           fi
           git config user.name "Écurie Initial · précontrôle PMU"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add docs/chevaux/data/editorial.json
-          git commit -m "Précontrôle avant les courses : RnCm et dossards PMU confirmés"
+          git add docs/chevaux/data/editorial.json docs/chevaux/data/partants-courses.json
+          git commit -m "Partants des courses et codes PMU vérifiés"
           git pull --rebase origin main
           git push origin HEAD:main
           echo "changed=true" >> "$GITHUB_OUTPUT"

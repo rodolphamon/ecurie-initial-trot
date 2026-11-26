@@ -1,0 +1,90 @@
+{
+  "updated_at": "2026-11-26",
+  "courses": [
+    {
+      "date": "2026-11-26",
+      "hippodrome": "Mauquenchy",
+      "course": "R4C4",
+      "cheval_slug": "moondance-okina",
+      "partants": [
+        {
+          "numero": 1,
+          "cheval": "MAJESTE DAIRPET",
+          "driver": "ET. DELAUNAY"
+        },
+        {
+          "numero": 2,
+          "cheval": "MALOU DIESCHOOT",
+          "driver": "E. DE JESUS"
+        },
+        {
+          "numero": 3,
+          "cheval": "MADDY D'ALCI",
+          "driver": "ALEXANDRE BODIN"
+        },
+        {
+          "numero": 4,
+          "cheval": "MIDINETTE DU VAL",
+          "driver": "LAURENT VERVA"
+        },
+        {
+          "numero": 5,
+          "cheval": "MAYA DU BELLAY",
+          "driver": "Y. LEBOURGEOIS",
+          "non_partant": true
+        },
+        {
+          "numero": 6,
+          "cheval": "MOON PONT VAUTIER",
+          "driver": "G. LESSIEU"
+        },
+        {
+          "numero": 7,
+          "cheval": "MINIE DE TOUCHYVON",
+          "driver": "J.F. SENET"
+        },
+        {
+          "numero": 8,
+          "cheval": "MINTRA",
+          "driver": "M. LEGROS"
+        },
+        {
+          "numero": 9,
+          "cheval": "MADONE DES RACQUES",
+          "driver": "PH. DAUGEARD"
+        },
+        {
+          "numero": 10,
+          "cheval": "MY LADY DE CAHOT",
+          "driver": "F. LAGADEUC"
+        },
+        {
+          "numero": 11,
+          "cheval": "MELODIE BECO",
+          "driver": "L. LABBE"
+        },
+        {
+          "numero": 12,
+          "cheval": "MOONDANCE OKINA",
+          "driver": "S. OLIVIER"
+        },
+        {
+          "numero": 13,
+          "cheval": "MAFIA RINGEAT",
+          "driver": "TH.E. LONCKE"
+        },
+        {
+          "numero": 14,
+          "cheval": "MAEVA DES BAUX",
+          "driver": "P.Y. VERVA"
+        },
+        {
+          "numero": 15,
+          "cheval": "MAJA D'OLMEN",
+          "driver": "B. ROUER"
+        }
+      ],
+      "source_api": "https://online.turfinfo.api.pmu.fr/rest/client/1/programme/26112026/R4/C4/participants"
+    }
+  ]
+}
