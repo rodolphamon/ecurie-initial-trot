@@ -628,6 +628,7 @@ body.ei-assoc-view #appContent{padding-top:10px}
   </div>
   <nav class="assoc-links" aria-label="Rubriques des associés">
    <a class="assoc-link assoc-link-admin" id="assocAdminShortcut" href="administration/" hidden><span class="assoc-link-emoji" aria-hidden="true">🛠️</span><span class="assoc-link-text"><strong>Administration de l'Écurie</strong><small>Gestion de l'Écurie Initial</small></span><span class="assoc-link-arrow" aria-hidden="true">›</span></a>
+   <a class="assoc-link" id="assocTrainerShortcut" href="espace-entraineurs/" hidden><span class="assoc-link-emoji" aria-hidden="true">🎙️</span><span class="assoc-link-text"><strong>Entraîneurs</strong><small>Photos, vidéos et débriefs vocaux</small></span><span class="assoc-link-arrow" aria-hidden="true">›</span></a>
    <a class="assoc-link assoc-link-main" href="tribune/"><span class="assoc-link-emoji" aria-hidden="true">💬</span><span class="assoc-link-text"><strong>Tribune des supporters</strong><small>Échanges entre membres et passionnés</small></span><span class="assoc-link-arrow" aria-hidden="true">›</span></a>
    <a class="assoc-link" href="mes-chevaux/"><span class="assoc-link-emoji" aria-hidden="true">🐎</span><span class="assoc-link-text"><strong>Mes chevaux</strong><small>Suivi de vos participations</small></span><span class="assoc-link-arrow" aria-hidden="true">›</span></a>
    <a class="assoc-link" href="notifications/"><span class="assoc-link-emoji" aria-hidden="true">🔔</span><span class="assoc-link-text"><strong>Notifications</strong><small>Vos alertes et actualités</small></span><span class="assoc-link-arrow" aria-hidden="true">›</span></a>
@@ -655,11 +656,13 @@ async function refreshAssocAccess(){
  const action=document.getElementById('assocLogin');
  const logout=document.getElementById('assocLogout');
  const adminLink=document.getElementById('assocAdminShortcut');
+ const trainerLink=document.getElementById('assocTrainerShortcut');
  if(!panel||!note||!action||!logout||!adminLink)return;
  panel.classList.remove('is-connected');
  action.classList.remove('is-connected');
  logout.hidden=true;
  adminLink.hidden=true;
+ if(trainerLink)trainerLink.hidden=true;
  note.textContent='Connectez-vous pour accéder à votre espace.';
  action.innerHTML='Se connecter <span aria-hidden="true">→</span>';
  action.href='connexion/';
@@ -683,6 +686,13 @@ async function refreshAssocAccess(){
   action.classList.add('is-connected');
   panel.classList.add('is-connected');
   adminLink.hidden=member.administrateur!==true;
+  if(trainerLink){
+   if(member.administrateur){trainerLink.href='espace-entraineurs/gestion.html';trainerLink.hidden=false;}
+   else {
+    const {data:trainerRole,error:trainerError}=await assocAuth.from('ei_entraineurs').select('actif').eq('user_id',user.id).maybeSingle();
+    if(!trainerError&&trainerRole?.actif){trainerLink.href='espace-entraineurs/';trainerLink.hidden=false;}
+   }
+  }
  }catch(error){console.info('État de connexion indisponible',error?.message||error)}
 }
 document.getElementById('assocLogout')?.addEventListener('click',async()=>{
