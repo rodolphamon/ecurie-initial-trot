@@ -74,7 +74,31 @@ async function freshPerformances(editor){
   }catch(e){console.info('Résultats directs indisponibles, historique conservé',e)}
   return merged;
 }
+async function loadCourseFields(){
+  const local=base+'data/partants-courses.json';
+  const remote='https://raw.githubusercontent.com/rodolphamon/ecurie-initial-trot/main/docs/chevaux/data/partants-courses.json';
+  for(const url of [remote,local]){
+    try{
+      const response=await fetch(url+'?v='+Date.now(),{cache:'no-store',signal:AbortSignal.timeout(4500)});
+      if(response.ok){const data=await response.json();if(Array.isArray(data.courses))return data.courses;}
+    }catch(error){console.info('Liste des partants temporairement indisponible',error);}
+  }
+  return [];
+}
+function loadCourseFieldAssets(){
+  if(window.EICourseField)return Promise.resolve();
+  const css=document.createElement('link');
+  css.rel='stylesheet';css.href=base+'assets/course-field.css?v=20261126partants2';document.head.appendChild(css);
+  return new Promise((resolve,reject)=>{
+    const script=document.createElement('script');script.src=base+'assets/course-field.js?v=20261126partants2';
+    script.onload=resolve;script.onerror=reject;document.head.appendChild(script);
+  });
+}
 async function load(){let paths=[base+'data/chevaux.json',base+'data/editorial.json',base+'../data/effectif-trot.json',base+'../data/effectif-galop.json'];let requests=await Promise.all(paths.map(async p=>{let r=await fetch(p+(p.endsWith('/data/editorial.json')?'?v='+Date.now():''),{cache:'no-store'});if(!r.ok)throw Error('Impossible de charger '+p);return r.json()}));let [all,editor,trot,galop]=requests;editor.performances=await freshPerformances(editor);
+if(document.body.dataset.page==='fiche'){
+  editor.courseFields=await loadCourseFields();
+  try{await loadCourseFieldAssets();}catch(error){console.warn('Affichage de la liste des partants indisponible',error);}
+}
 try{const q=await fetch(base+'data/qualifications.json',{cache:'no-store'});if(q.ok){let videos=await q.json();editor.qualifications={...(editor.qualifications||{}),...(videos.qualifications||{})};}}catch(e){console.warn('Vidéos de qualification temporairement indisponibles',e)}let gallop=new Map((galop.horses||[]).map(h=>{
   if(/obstacle/i.test(h.discipline||'')){
     return [h.id,{...h,value_historique_non_ventilee:h.value??null,value_plat:h.value_plat??null,value_obstacle:h.value_obstacle??null}];
@@ -490,6 +514,12 @@ function horse(s){
         +(hasDeclared?'<td>'+esc(declared?(x.driver||x.jockey||x.monte||'—'):'—')+'</td>':'')+'</tr>';
     }).join('')+'</tbody></table></div>'
     :'<div class="empty">Aucun prochain engagement renseigné.</div>';
+  const courseFields=eng.map((x,index)=>{
+    if(!['declare','partant'].includes(engagementStatus(x,sex)?.kind)||x.reunion_annulee)return '';
+    const markup=window.EICourseField?.markup(x,p,s.editor.courseFields||[],'horse-field-'+index);
+    if(!markup)return '';
+    return '<div style="padding:10px 14px;border-top:1px solid #eadfd7"><strong>'+esc(dateFR(x.date)+' · '+x.hippodrome+(x.numero?' · N° '+x.numero:''))+'</strong>'+markup+'</div>';
+  }).join('');
   document.title=p.name+' | Écurie Initial';
   $('#app').innerHTML=header()
     +'<main class="shell">'
@@ -525,7 +555,7 @@ function horse(s){
         :'')
       +'<section class="section">'
         +'<h2 class="section-title">'+(eng.length===1?'Prochain engagement':'Prochains engagements')+'</h2>'
-        +'<div class="paper">'+te+'</div>'
+        +'<div class="paper">'+te+courseFields+'</div>'
       +'</section>'
       +'<div class="bottom-actions">'
         +'<a class="action primary" href="'+base+'index.html">← Tous nos chevaux</a>'
@@ -562,6 +592,9 @@ document.body.appendChild(eiNavScript);
 // En PWA, un écran conservé en mémoire ne doit pas garder les anciens résultats.
 function watchFreshResults(state){
   const initialResults=JSON.stringify(state.editor.performances||{});
+  const horseId=document.body.dataset.horse||new URLSearchParams(location.search).get('cheval');
+  const initialEngagements=JSON.stringify(state.editor.engagements?.[horseId]||[]);
+  const initialFields=JSON.stringify((state.editor.courseFields||[]).filter(c=>c.cheval_slug===horseId));
   let checking=false,lastChecked=Date.now();
   async function check(force=false){
     if(document.hidden||checking||(!force&&Date.now()-lastChecked<45000))return;
@@ -571,7 +604,15 @@ function watchFreshResults(state){
       if(!response.ok)throw Error('Contrôle des résultats indisponible');
       const fresh=await response.json();
       const latest=await freshPerformances(fresh);
-      if(JSON.stringify(latest)!==initialResults)location.reload();
+      if(JSON.stringify(latest)!==initialResults){location.reload();return;}
+      if(document.body.dataset.page==='fiche'&&horseId){
+        const {createClient}=await import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm');
+        const client=createClient('https://yeecwaaizmvrhwobukfa.supabase.co','sb_publishable_xUy2EJA3u3cKWl8BB4GNPQ_qhV9Pes3');
+        const {data,error}=await client.from('ei_contributions_engagements').select('engagements').eq('cheval_slug',horseId).maybeSingle();
+        if(!error&&JSON.stringify(data?.engagements||fresh.engagements?.[horseId]||[])!==initialEngagements){location.reload();return;}
+        const fields=await loadCourseFields();
+        if(fields.length&&JSON.stringify(fields.filter(c=>c.cheval_slug===horseId))!==initialFields)location.reload();
+      }
     }catch(error){console.info('Vérification des derniers résultats différée',error)}
     finally{checking=false}
   }
@@ -581,5 +622,5 @@ function watchFreshResults(state){
   window.addEventListener('online',()=>{void check(true)});
   setInterval(()=>{void check()},60000);
 }
-load().then(s=>{if(document.body.dataset.page==='fiche'){horse(s);initArrivalScroll();if(location.hash==='#performances')$('#performances')?.scrollIntoView();}else catalog(s);watchFreshResults(s)}).catch(err=>{console.error(err);$('#app').innerHTML=header()+'<main class="shell"><div class="error"><h1>Informations temporairement indisponibles</h1><p>Le catalogue n’a pas pu être chargé. Réessayez en actualisant la page.</p><p><a href="https://www.ecurie-initial.com/">Retour au site officiel</a></p></div></main>'+footer()});
+load().then(s=>{if(document.body.dataset.page==='fiche'){horse(s);initArrivalScroll();window.EICourseField?.init(document);if(location.hash==='#performances')$('#performances')?.scrollIntoView();}else catalog(s);watchFreshResults(s)}).catch(err=>{console.error(err);$('#app').innerHTML=header()+'<main class="shell"><div class="error"><h1>Informations temporairement indisponibles</h1><p>Le catalogue n’a pas pu être chargé. Réessayez en actualisant la page.</p><p><a href="https://www.ecurie-initial.com/">Retour au site officiel</a></p></div></main>'+footer()});
 })();
