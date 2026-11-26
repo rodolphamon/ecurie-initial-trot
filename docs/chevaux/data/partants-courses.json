@@ -85,6 +85,93 @@
         }
       ],
       "source_api": "https://online.turfinfo.api.pmu.fr/rest/client/1/programme/26112026/R4/C4/participants"
+    },
+    {
+      "date": "2026-11-29",
+      "hippodrome": "Reims",
+      "course": "C1",
+      "cheval_slug": "memphis-belle",
+      "partants": [
+        {
+          "numero": 1,
+          "cheval": "MEMPHIS BELLE",
+          "driver": "J. MAILLARD",
+          "ferrure": "D4"
+        },
+        {
+          "numero": 2,
+          "cheval": "MATRIARCHE RENKA",
+          "driver": "E. CALLIER",
+          "ferrure": "F4"
+        },
+        {
+          "numero": 3,
+          "cheval": "MINOS DE LA VALLEE",
+          "driver": "L. PITON",
+          "ferrure": "DP"
+        },
+        {
+          "numero": 4,
+          "cheval": "MALOU DE DIGEON",
+          "driver": "CL. VERVA",
+          "ferrure": "PADP"
+        },
+        {
+          "numero": 5,
+          "cheval": "MAESTRO GRIFF",
+          "driver": "J. FERRON",
+          "ferrure": "D4"
+        },
+        {
+          "numero": 6,
+          "cheval": "MILAN PRIMO",
+          "driver": "A. COLLETTE",
+          "ferrure": "PADP"
+        },
+        {
+          "numero": 7,
+          "cheval": "MON AMIRAL DU TAY",
+          "driver": "ANDREA ROUSSEL",
+          "ferrure": "DA"
+        },
+        {
+          "numero": 8,
+          "cheval": "MERCURY JIEL",
+          "driver": "P.Y. VERVA",
+          "ferrure": "P4"
+        },
+        {
+          "numero": 9,
+          "cheval": "MAGNOLIA NAY",
+          "driver": "M. LELIEVRE",
+          "ferrure": "DA"
+        },
+        {
+          "numero": 10,
+          "cheval": "MADO D'AVRIL",
+          "driver": "M. MOTTIER",
+          "ferrure": "PADP"
+        },
+        {
+          "numero": 11,
+          "cheval": "MIDI DE GUERINIERE",
+          "driver": "V. SAUSSAYE",
+          "ferrure": "D4"
+        },
+        {
+          "numero": 12,
+          "cheval": "MANGALYA",
+          "driver": "TH. DROMIGNY",
+          "ferrure": "F4"
+        },
+        {
+          "numero": 13,
+          "cheval": "MAYA DU CHEVREL",
+          "driver": "M. BEUDARD",
+          "ferrure": "D4"
+        }
+      ],
+      "source_description": "Liste des partants communiquée par le gérant le 26/11/2026 (capture Infonet LeTROT ; réunion PMU à confirmer)."
     }
   ]
 }
