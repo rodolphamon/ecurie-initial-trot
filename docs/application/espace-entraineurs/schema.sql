@@ -56,5 +56,5 @@ INSERT INTO public.ei_entraineurs(user_id,nom_entraineur)
 VALUES
  ('1f57106c-ab48-4754-b246-5f2485070849','Gilles PANNIER'),
  ('0c0d47a2-8d2f-4a53-b85f-6833a69b8dd9','Pierre-Louis DESAUNETTE'),
- ('4b1fb525-d27d-4ec4-ae9e-7647c6a57c69','Thibaut BARASSIN')
+ ('4b1fb525-d27d-4ec4-ae9e-7647c6a57c69','Laurent BARASSIN')
 ON CONFLICT(user_id) DO NOTHING;
