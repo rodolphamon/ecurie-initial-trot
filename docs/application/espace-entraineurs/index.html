@@ -52,9 +52,16 @@ async function initialize(){
  db.from('ei_entraineurs').select('user_id,nom_entraineur,actif').eq('user_id',uid).maybeSingle()]);
  if(account.error||role.error||!account.data?.actif||!role.data?.actif){$('status').textContent='Espace réservé aux entraîneurs autorisés.';return}
  trainer=role.data;
- const result=await db.from('ei_effectif_gestion').select('cheval_slug,nom').eq('entraineur',trainer.nom_entraineur).eq('actif',true).order('nom');
- if(result.error)throw result.error;
- horses=result.data||[];
+ const [links,legacy]=await Promise.all([
+ db.from('ei_entraineurs_chevaux').select('cheval_slug,cheval_nom').eq('entraineur_id',uid).order('cheval_nom'),
+ db.from('ei_effectif_gestion').select('cheval_slug,nom').eq('entraineur',trainer.nom_entraineur).eq('actif',true).order('nom')
+ ]);
+ if(links.error)throw links.error;
+ if(legacy.error)throw legacy.error;
+ const bySlug=new Map();
+ for(const h of legacy.data||[])bySlug.set(h.cheval_slug,{cheval_slug:h.cheval_slug,nom:h.nom});
+ for(const h of links.data||[])bySlug.set(h.cheval_slug,{cheval_slug:h.cheval_slug,nom:h.cheval_nom});
+ horses=[...bySlug.values()].sort((a,b)=>a.nom.localeCompare(b.nom,'fr'));
  $('trainerName').textContent='Bienvenue '+account.data.nom_affiche;
  $('horseCount').textContent=horses.length?horses.length+' cheval(aux) actuellement confié(s)':'Aucun cheval actif rattaché à votre nom. Vous pourrez publier dès qu’un cheval vous sera confié.';
  for(const h of horses){const opt=item('option',h.nom);opt.value=h.cheval_slug;$('horse').append(opt)}
