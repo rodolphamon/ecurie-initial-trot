@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#171717">
+<title>Espace entraîneurs · Écurie Initial (test)</title>
+<style>
+:root{--orange:#f47721;--ink:#171717}*{box-sizing:border-box}
+body{margin:0;background:#f6f4f1;color:#242424;font:15px/1.5 Arial,sans-serif}
+header{background:var(--ink);color:white;padding:18px}header strong{font-size:21px}header em{color:var(--orange);font-style:normal}
+main{max-width:760px;margin:auto;padding:20px 14px 80px}
+article{background:white;border:1px solid #e8dfd8;border-radius:14px;padding:20px;margin:15px 0}
+h1{font-size:25px;margin:0 0 5px}h2{font-size:19px;margin:4px 0 12px}
+a{color:#aa500f}label{display:block;font-weight:bold;margin:13px 0 5px}
+input,textarea,select{width:100%;font:inherit;border:1px solid #c9c4c0;border-radius:8px;padding:11px;background:white}
+textarea{min-height:110px;resize:vertical}
+button{border:0;border-radius:9px;padding:11px 15px;background:var(--orange);font-weight:bold;cursor:pointer}
+button:disabled{opacity:.55;cursor:wait}.muted{color:#666;font-size:13px}
+.hidden,[hidden]{display:none!important}.news{border-top:1px solid #eee;padding:13px 0}
+.news img,.news video{display:block;max-width:100%;max-height:360px;object-fit:contain;margin:8px 0;border-radius:7px}.news audio{display:block;width:100%;margin:12px 0}.voice-controls{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:9px 0}.voice-preview{max-width:100%;width:100%;margin:8px 0}.voice-timer{font-weight:bold;font-variant-numeric:tabular-nums}
+.row{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.error{color:#a41616}.success{color:#267040}.badge{display:inline-block;background:#fff0df;border-radius:7px;padding:3px 8px;font-size:12px}
+</style></head>
+<body><header><strong>ÉCURIE <em>INITIAL</em> · Entraîneurs</strong></header>
+<main><p><a href="../">← Accueil de l'application</a></p><p id="trainerAdminLink" hidden><a href="gestion.html">🛠️ Gérer les fiches et les comptes entraîneurs</a></p>
+<article><div class="row"><h1>Espace entraîneurs</h1><span class="badge">TEST — accès réservé</span></div>
+<p class="muted">Les publications sont directes, sans validation préalable. Seuls les chevaux actuellement confiés à l'entraîneur peuvent être sélectionnés. Les actualités restent dans cet espace de test pour le moment.</p>
+<p id="status" role="status">Vérification de vos accès…</p></article>
+<section id="workspace" hidden>
+<article><h2 id="trainerName">Mes chevaux</h2><p id="horseCount" class="muted"></p><form id="publish">
+<label for="horse">Cheval</label><select id="horse" required></select>
+<label for="title">Titre</label><input id="title" maxlength="150" minlength="3" required placeholder="Des nouvelles de l'entraînement">
+<label for="message">Information</label><textarea id="message" maxlength="5000" placeholder="Comment se porte le cheval ?"></textarea>
+<label for="visibility">Qui peut voir cette information ?</label><select id="visibility"><option value="associes">Associés du cheval</option><option value="public">Tous les membres de l'application (test)</option></select>
+<label for="media">Photo ou vidéo (facultative, 50 Mo maximum)</label><input id="media" type="file" accept="image/jpeg,image/png,image/webp,video/mp4,video/webm">
+<fieldset><legend>🎙️ Message vocal (facultatif, jusqu’à 2 minutes)</legend>
+<div class="voice-controls">
+<button type="button" id="startVoice">🎙️ Enregistrer</button>
+<button type="button" id="stopVoice" disabled>■ Terminer</button>
+<button type="button" id="clearVoice" hidden>Effacer le vocal</button>
+<span id="voiceTimer" class="voice-timer" aria-live="off">0:00 / 2:00</span>
+</div>
+<audio id="voicePreview" class="voice-preview" controls hidden></audio>
+<p id="voiceHelp" class="muted" role="status">Autorisez le microphone lorsque votre téléphone le demande. Réécoutez avant de publier. Un seul média par publication : photo, vidéo ou vocal.</p>
+</fieldset>
+<p class="muted">Les images et vidéos restent privées dans le stockage. La diffusion publique complète sera activée après validation du module.</p>
+<button id="send" type="submit">Publier maintenant</button><p id="feedback" role="status"></p></form></article>
+<article><h2>Mes publications</h2><div id="posts"></div></article>
+</section>
+</main>
+<script type="module">
+import {createClient} from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+const db=createClient('https://yeecwaaizmvrhwobukfa.supabase.co','sb_publishable_xUy2EJA3u3cKWl8BB4GNPQ_qhV9Pes3');
+const $=id=>document.getElementById(id);
+const bucket='ei-entraineurs-medias';
+let uid=null,trainer=null,horses=[];
+let recorder=null,recordedVoice=null,voiceStream=null,voiceUrl=null,voiceStarted=0,voiceWatch=null,voiceChunks=[];
+const MAX_VOICE_MS=120000,MAX_VOICE_BYTES=15*1024*1024;
+const write=(msg,cls='')=>{ $('feedback').textContent=msg;$('feedback').className=cls};
+function item(tag,value){const e=document.createElement(tag);if(value!=null)e.textContent=value;return e}
+async function initialize(){
+ try{
+ const auth=await db.auth.getUser();uid=auth.data.user?.id;
+ if(!uid){$('status').textContent='Veuillez vous connecter à votre compte Écurie Initial.';return}
+ const [account,role]=await Promise.all([
+ db.from('associes').select('actif,nom_affiche').eq('user_id',uid).maybeSingle(),
+ db.from('ei_entraineurs').select('user_id,nom_entraineur,actif').eq('user_id',uid).maybeSingle()]);
+ if(account.error||role.error||!account.data?.actif||!role.data?.actif){$('status').textContent='Espace réservé aux entraîneurs autorisés.';return}
+ trainer=role.data;
+ const [links,legacy]=await Promise.all([
+ db.from('ei_entraineurs_chevaux').select('cheval_slug,cheval_nom').eq('entraineur_id',uid).order('cheval_nom'),
+ db.from('ei_effectif_gestion').select('cheval_slug,nom').eq('entraineur',trainer.nom_entraineur).eq('actif',true).order('nom')
+ ]);
+ if(links.error)throw links.error;
+ if(legacy.error)throw legacy.error;
+ const bySlug=new Map();
+ for(const h of legacy.data||[])bySlug.set(h.cheval_slug,{cheval_slug:h.cheval_slug,nom:h.nom});
+ for(const h of links.data||[])bySlug.set(h.cheval_slug,{cheval_slug:h.cheval_slug,nom:h.cheval_nom});
+ horses=[...bySlug.values()].sort((a,b)=>a.nom.localeCompare(b.nom,'fr'));
+ $('trainerName').textContent='Bienvenue '+account.data.nom_affiche;
+ $('horseCount').textContent=horses.length?horses.length+' cheval(aux) actuellement confié(s)':'Aucun cheval actif rattaché à votre nom. Vous pourrez publier dès qu’un cheval vous sera confié.';
+ for(const h of horses){const opt=item('option',h.nom);opt.value=h.cheval_slug;$('horse').append(opt)}
+ $('send').disabled=!horses.length;
+ $('status').textContent='Votre accès entraîneur est actif.';
+ $('workspace').hidden=false;
+ await loadPosts();
+ }catch(e){$('status').textContent='Chargement impossible : '+(e.message||'erreur de connexion');}
+}
+async function loadPosts(){
+ const res=await db.from('ei_entraineurs_publications')
+ .select('id,cheval_slug,titre,contenu,visibilite,media_path,media_type,cree_le')
+ .eq('entraineur_id',uid).order('cree_le',{ascending:false}).limit(30);
+ const host=$('posts');host.replaceChildren();
+ if(res.error){host.append(item('p','Impossible de charger les publications.'));return}
+ if(!res.data?.length){host.append(item('p','Aucune publication pour le moment.'));return}
+ for(const p of res.data){
+  const block=item('div');block.className='news';
+  const date=new Date(p.cree_le).toLocaleString('fr-FR',{dateStyle:'short',timeStyle:'short'});
+  const name=horses.find(h=>h.cheval_slug===p.cheval_slug)?.nom||p.cheval_slug;
+  const heading=item('strong',name+' — '+p.titre);block.append(heading);
+  const meta=item('p',date+' · '+(p.visibilite==='public'?'Tous les membres':'Associés du cheval'));meta.className='muted';block.append(meta);
+  if(p.contenu)block.append(item('p',p.contenu));
+  if(p.media_path&&p.media_type){
+   const signed=await db.storage.from(bucket).createSignedUrl(p.media_path,600);
+   if(signed.data?.signedUrl){
+    const media=document.createElement(p.media_type==='image'?'img':p.media_type==='audio'?'audio':'video');
+    media.src=signed.data.signedUrl;
+    if(p.media_type==='audio'){media.controls=true;media.preload='none';media.setAttribute('aria-label','Écouter le débrief vocal')}
+    else if(p.media_type==='video'){media.controls=true;media.preload='metadata'}
+    else{media.loading='lazy';media.alt='Illustration publiée par '+trainer.nom_entraineur}
+    block.append(media);
+   }
+  }
+  const del=item('button','Supprimer');del.type='button';
+  del.addEventListener('click',async()=>{
+   if(!confirm('Supprimer cette publication ?'))return;
+   del.disabled=true;
+   const d=await db.from('ei_entraineurs_publications').delete().eq('id',p.id).eq('entraineur_id',uid);
+   if(d.error){write('Suppression impossible : '+d.error.message,'error');del.disabled=false}
+   else await loadPosts();
+  });
+  block.append(del);host.append(block);
+ }
+}
+function clearVoicePreview(){
+ if(voiceUrl){URL.revokeObjectURL(voiceUrl);voiceUrl=null}
+ recordedVoice=null;$('voicePreview').pause();$('voicePreview').removeAttribute('src');$('voicePreview').hidden=true;
+ $('clearVoice').hidden=true;$('voiceTimer').textContent='0:00 / 2:00';
+}
+function releaseVoiceStream(){
+ if(voiceWatch!==null){clearInterval(voiceWatch);voiceWatch=null}
+ if(voiceStream){voiceStream.getTracks().forEach(t=>t.stop());voiceStream=null}
+}
+function toggleVoiceButtons(recording){
+ $('startVoice').disabled=recording;$('stopVoice').disabled=!recording;
+ $('media').disabled=recording;$('send').disabled=recording||!horses.length;
+}
+$('startVoice').addEventListener('click',async()=>{
+ if(!navigator.mediaDevices?.getUserMedia||!window.MediaRecorder){$('voiceHelp').textContent='Enregistrement non pris en charge par ce navigateur. Essayez un navigateur récent.';return}
+ try{
+  if($('media').files.length){$('voiceHelp').textContent='Retirez d’abord la photo ou vidéo pour enregistrer un vocal.';return}
+  clearVoicePreview();
+  voiceStream=await navigator.mediaDevices.getUserMedia({audio:true});
+  const formats=['audio/webm;codecs=opus','audio/mp4','audio/webm','audio/ogg;codecs=opus'];
+  const mime=formats.find(t=>MediaRecorder.isTypeSupported(t));
+  recorder=new MediaRecorder(voiceStream,mime?{mimeType:mime}:undefined);
+  voiceChunks=[];
+  recorder.ondataavailable=e=>{if(e.data.size)voiceChunks.push(e.data)};
+  recorder.onerror=()=>{$('voiceHelp').textContent='Erreur d’enregistrement audio.';releaseVoiceStream();toggleVoiceButtons(false)};
+  recorder.onstop=()=>{
+   releaseVoiceStream();toggleVoiceButtons(false);
+   const fullType=(recorder.mimeType||voiceChunks[0]?.type||'audio/webm');
+   const type=fullType.split(';')[0];
+   const voice=new Blob(voiceChunks,{type});voiceChunks=[];
+   if(!voice.size){$('voiceHelp').textContent='Aucun son enregistré. Recommencez.';return}
+   if(voice.size>MAX_VOICE_BYTES){$('voiceHelp').textContent='Le vocal dépasse 15 Mo. Recommencez.';return}
+   recordedVoice=voice;
+   voiceUrl=URL.createObjectURL(voice);
+   $('voicePreview').src=voiceUrl;$('voicePreview').hidden=false;
+   $('clearVoice').hidden=false;
+   $('voiceHelp').textContent='Réécoutez votre vocal puis publiez, ou effacez-le pour recommencer.';
+  };
+  recorder.start(500);voiceStarted=Date.now();toggleVoiceButtons(true);
+  $('voiceHelp').textContent='Enregistrement en cours…';
+  voiceWatch=setInterval(()=>{
+   const elapsed=Math.min(MAX_VOICE_MS,Date.now()-voiceStarted);
+   const seconds=Math.floor(elapsed/1000);
+   $('voiceTimer').textContent=Math.floor(seconds/60)+':'+String(seconds%60).padStart(2,'0')+' / 2:00';
+   if(elapsed>=MAX_VOICE_MS&&recorder?.state==='recording')recorder.stop();
+  },250);
+ }catch(e){releaseVoiceStream();toggleVoiceButtons(false);$('voiceHelp').textContent=e.name==='NotAllowedError'?'Autorisation du microphone refusée. Activez le micro dans les réglages du navigateur.':'Microphone indisponible : '+(e.message||'erreur')}
+});
+$('stopVoice').addEventListener('click',()=>{if(recorder?.state==='recording')recorder.stop()});
+$('clearVoice').addEventListener('click',()=>{clearVoicePreview();$('voiceHelp').textContent='Vocal effacé. Vous pouvez recommencer.'});
+$('media').addEventListener('change',()=>{if($('media').files.length&&recordedVoice){clearVoicePreview();$('voiceHelp').textContent='Le média sélectionné remplace le vocal.'}});
+window.addEventListener('pagehide',releaseVoiceStream);
+
+$('publish').addEventListener('submit',async e=>{
+ e.preventDefault();
+ const horse=$('horse').value;
+ if(!horses.some(h=>h.cheval_slug===horse))return write('Ce cheval ne vous est pas confié.','error');
+ $('send').disabled=true;write('Publication en cours…');
+ let path=null,mediaType=null;
+ try{
+  const file=$('media').files[0]||recordedVoice;
+  if(file&&recorder?.state==='recording')throw Error('Terminez d’abord l’enregistrement.');
+  if(file){
+   if(file.size>(recordedVoice===file?MAX_VOICE_BYTES:50*1024*1024))throw Error('Fichier trop volumineux.');
+   const allowed={'image/jpeg':'jpg','image/png':'png','image/webp':'webp','video/mp4':'mp4','video/webm':'webm','audio/webm':'webm','audio/mp4':'m4a','audio/ogg':'ogg','audio/mpeg':'mp3','audio/aac':'aac'};
+   const mime=(file.type||'').split(';')[0];
+   if(!allowed[mime])throw Error('Format non accepté.');
+   mediaType=mime.startsWith('image/')?'image':mime.startsWith('audio/')?'audio':'video';
+   path=uid+'/'+horse+'/'+crypto.randomUUID()+'.'+allowed[mime];
+   const upl=await db.storage.from(bucket).upload(path,file,{contentType:mime,upsert:false});
+   if(upl.error)throw upl.error;
+  }
+  const result=await db.from('ei_entraineurs_publications').insert({
+   entraineur_id:uid,cheval_slug:horse,titre:$('title').value.trim(),contenu:$('message').value.trim(),
+   visibilite:$('visibility').value,media_path:path,media_type:mediaType
+  });
+  if(result.error)throw result.error;
+  $('title').value='';$('message').value='';$('media').value='';clearVoicePreview();
+  write('Publication enregistrée. Elle est visible dans cet espace de test.','success');
+  await loadPosts();
+ }catch(err){
+  if(path)await db.storage.from(bucket).remove([path]).catch(()=>{});
+  write('Publication impossible : '+(err.message||'erreur technique'),'error');
+ }finally{$('send').disabled=!horses.length;}
+});
+initialize();
+</script></body></html>
