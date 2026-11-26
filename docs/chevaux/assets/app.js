@@ -588,7 +588,7 @@ function initArrivalScroll(){
 
 /* Barre commune, conservée dans le catalogue et les fiches de tous les chevaux. */
 const eiNavScript=document.createElement('script');
-eiNavScript.src=base+'../application/nav.js?v=20261118resultatschevaux1';
+eiNavScript.src=base+'../application/nav.js?v=20261126push-device-v17';
 document.body.appendChild(eiNavScript);
 
 // En PWA, un écran conservé en mémoire ne doit pas garder les anciens résultats.

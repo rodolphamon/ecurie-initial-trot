@@ -5,25 +5,28 @@ import {stripTypeScriptTypes} from 'node:module';
 import vm from 'node:vm';
 
 const workerSource=readFileSync(new URL('../docs/application/sw.js',import.meta.url),'utf8');
-function worker({displayFails=false,cacheFails=false}={}){
+function worker({displayFails=false,displayHangs=false,cacheFails=false,cacheHangs=false}={}){
   const handlers={},shown=[],reports=[],timers=new Map();
+  const order=[];
   let sequence=0,skipped=false;
   const context={URL,Date,AbortController,Promise,console,
     setTimeout(fn,ms){const id=++sequence;timers.set(id,{fn,ms});return id;},
     clearTimeout(id){timers.delete(id);},
     indexedDB:{open(){return {}; /* Simule un stockage bloqué sans événement. */}},
-    fetch(_url,options){reports.push(JSON.parse(options.body));return new Promise(()=>{});},
-    caches:{async open(){if(cacheFails)throw Error('Cache indisponible');return {async add(){throw Error('Icône indisponible');}};}},
+    fetch(_url,options){order.push('report');reports.push(JSON.parse(options.body));return new Promise(()=>{});},
+    caches:{async open(){if(cacheHangs)return new Promise(()=>{});if(cacheFails)throw Error('Cache indisponible');return {async add(){throw Error('Icône indisponible');}};},async keys(){return [];}},
     self:{location:{origin:'https://fiches.ecurie-initial.com'},
       addEventListener(name,handler){handlers[name]=handler;},
       async skipWaiting(){skipped=true;},
+      clients:{async claim(){}},
       registration:{async showNotification(title,options){
-        shown.push({title,options});if(displayFails)throw new TypeError('Affichage refusé');
+        order.push('show');shown.push({title,options});if(displayFails)throw new TypeError('Affichage refusé');
+        if(displayHangs)return new Promise(()=>{});
       }},
     },
   };
   vm.runInNewContext(workerSource,context);
-  return {handlers,shown,reports,timers,get skipped(){return skipped;}};
+  return {handlers,shown,reports,timers,order,get skipped(){return skipped;}};
 }
 for(const displayFails of [false,true]){
   const r=worker({displayFails});let completion;
@@ -31,7 +34,7 @@ for(const displayFails of [false,true]){
     waitUntil(promise){completion=promise;}});
   // showNotification est appelé avant les premières opérations de diagnostic.
   assert.equal(r.shown.length,1);
-  assert.equal(r.reports.length,0);
+  assert.equal(r.order[0],'show');
   for(let i=0;i<10;i++)await Promise.resolve();
   assert.ok(r.reports.some(p=>p.status===(displayFails?'error':'shown')));
   const deadline=[...r.timers.values()].find(timer=>timer.ms===6000);
@@ -39,34 +42,66 @@ for(const displayFails of [false,true]){
   deadline.fn();
   await completion;
 }
+{
+  const r=worker({displayHangs:true});
+  r.handlers.push({data:{json(){return {receipt_id:'12345678-1234-4234-8234-123456789abc'};}},waitUntil(){}});
+  assert.equal(r.order[0],'show');
+  assert.ok(r.reports.some(p=>p.status==='received'),'La réception doit être signalée même si le système bloque l’affichage');
+  assert.ok(!r.reports.some(p=>p.status==='shown'),'Un affichage bloqué ne doit pas être annoncé comme réussi');
+}
 for(const cacheFails of [false,true]){
   const r=worker({cacheFails});let completion;
   r.handlers.install({waitUntil(promise){completion=promise;}});
   await completion;
   assert.equal(r.skipped,true,'Le cache ne doit pas empêcher le nouveau worker de prendre la relève');
 }
+{
+  const r=worker({cacheHangs:true});let completion;
+  r.handlers.install({waitUntil(promise){completion=promise;}});
+  for(let i=0;i<5;i++)await Promise.resolve();
+  const deadline=[...r.timers.values()].find(t=>t.ms===3000);
+  assert.ok(deadline);deadline.fn();await completion;
+  assert.equal(r.skipped,true);
+  let reply;r.handlers.message({data:{type:'ei-push-worker-info'},ports:[{postMessage(value){reply=value;}}]});
+  assert.ok(reply.version,'La version du worker actif doit pouvoir être identifiée');
+}
 console.log('[OK] Affichage immédiat avec stockage et télémétrie bloqués, erreur mesurée et installation possible sans cache');
 
 // Le même code partagé doit actualiser le worker depuis une fiche hors scope.
 const nav=readFileSync(new URL('../docs/application/nav.js',import.meta.url),'utf8');
 const updateCode=nav.slice(nav.indexOf('  if ("serviceWorker" in navigator)'),nav.indexOf('  // En-tête Écurie Initial partagé'));
-async function updateScenario({existing=true,path='/chevaux/moondance-okina/',failure=false}={}){
-  const listeners={},calls=[];let clock=1000000;
+async function updateScenario({existing=true,path='/chevaux/moondance-okina/',failure=false,heartbeat=false}={}){
+  const listeners={},calls=[],heartbeats=[];let clock=1000000;
+  class Channel{
+    constructor(){this.port1={close(){},onmessage:null};this.port2={close(){},reply:value=>this.port1.onmessage?.({data:value})};}
+  }
   const context={URL,location:{pathname:path},Date:{now:()=>clock},
+    MessageChannel:Channel,setTimeout,clearTimeout,AbortController,Notification:{permission:'granted'},
+    localStorage:{getItem(){return heartbeat?'a'.repeat(64):null;}},
+    async fetch(_url,options){heartbeats.push(JSON.parse(options.body));return {};},
     applicationBase:new URL('https://fiches.ecurie-initial.com/application/'),
     document:{hidden:false,addEventListener(name,fn){listeners[name]=fn;}},
     window:{addEventListener(name,fn){listeners[name]=fn;}},
     navigator:{serviceWorker:{
       async getRegistration(url){assert.equal(url,'https://fiches.ecurie-initial.com/application/');return existing?{}:undefined;},
-      async register(url,options){calls.push({url,options});if(failure)throw Error('Hors réseau');return {async update(){}};},
+      async register(url,options){calls.push({url,options});if(failure)throw Error('Hors réseau');return {async update(){},
+        active:{postMessage(_message,[port]){port.reply({version:'test-worker-v17'});}},
+        pushManager:{async getSubscription(){return {endpoint:'https://fcm.googleapis.com/test-device'};}},
+      };},
     }},
   };
   vm.runInNewContext(updateCode,context);
-  for(let i=0;i<8;i++)await Promise.resolve();
+  for(let i=0;i<40;i++)await Promise.resolve();
   if(!existing&&!path.startsWith('/application/')){assert.equal(calls.length,0);return;}
   assert.equal(calls.length,1);
   assert.equal(calls[0].options.updateViaCache,'none');
   assert.equal(calls[0].options.scope,'https://fiches.ecurie-initial.com/application/');
+  if(heartbeat){
+    assert.equal(heartbeats.length,1);
+    assert.equal(heartbeats[0].action,'heartbeat');
+    assert.equal(heartbeats[0].clientInfo.workerVersion,'test-worker-v17');
+    assert.equal(heartbeats[0].clientInfo.permission,'granted');
+  }else assert.equal(heartbeats.length,0,'Un visiteur non inscrit ne doit pas être suivi');
   await listeners.pageshow();
   assert.equal(calls.length,failure?2:1,'Les mises à jour réussies sont limitées, les échecs peuvent être retentés');
   const count=calls.length;
@@ -79,6 +114,7 @@ await updateScenario();
 await updateScenario({existing:false});
 await updateScenario({existing:false,path:'/application/mes-chevaux/'});
 await updateScenario({failure:true});
+await updateScenario({heartbeat:true});
 console.log('[OK] Mise à jour depuis une fiche et au retour de veille, sans inscription de visiteur ni rechargement');
 
 // Exécuter la vraie fonction d'inscription avec une base simulée.
@@ -87,8 +123,8 @@ const source=stripTypeScriptTypes(raw,{mode:'strip'});
 async function preferenceScenario({type='associe',authenticated=true}={}){
   const writes=[];let handler,stored=null,selected='';
   const db={auth:{async getUser(){return {data:{user:{id:'member'}},error:null};}},from(table){
-    let operation='select',values;
-    const query={select(fields){selected=fields;return query;},eq(){return query;},
+    let operation='select',values;const filters=[];
+    const query={select(fields){selected=fields;return query;},eq(key,value){filters.push([key,value]);return query;},
       maybeSingle(){return query;},update(v){operation='update';values=v;return query;},
       insert(v){operation='insert';values=v;return query;},
       then(resolve,reject){return Promise.resolve().then(()=>{
@@ -97,10 +133,12 @@ async function preferenceScenario({type='associe',authenticated=true}={}){
         if(table==='ei_push_subscriptions'){
           if(operation!=='select'){
             writes.push(values);
-            if(values.endpoint)stored={...values};
+            if(values.endpoint)stored={id:'current-subscription',...values};
+            else if(stored)stored={...stored,...values};
             return {error:null};
           }
-          return {data:stored?Object.fromEntries(selected.split(',').map(key=>[key,stored[key]])):null,error:null};
+          const matches=stored&&filters.every(([key,value])=>stored[key]===value);
+          return {data:matches?Object.fromEntries(selected.split(',').map(key=>[key,stored[key]])):null,error:null};
         }
         throw Error('Table inattendue '+table);
       }).then(resolve,reject);},
@@ -125,6 +163,19 @@ async function preferenceScenario({type='associe',authenticated=true}={}){
   assert.equal(saved.private_news,authenticated&&type==='associe','Les visiteurs ne reçoivent pas les publications privées');
   const status=await (await handler(request({action:'status',endpoint:body.subscription.endpoint,deviceToken:body.deviceToken}))).json();
   assert.equal(status.preferences.public_news,false,'Le refus doit être restitué au rechargement');
+  const beforeHeartbeat=writes.length;
+  const heartbeat=await handler(request({action:'heartbeat',endpoint:body.subscription.endpoint,deviceToken:body.deviceToken,
+    clientInfo:{standalone:true,permission:'granted',workerVersion:'test-worker-v17'}}));
+  assert.equal(heartbeat.status,200);
+  const recorded=writes.slice(beforeHeartbeat);
+  assert.equal(recorded.length,1);
+  assert.ok(recorded[0].last_seen_at);
+  assert.equal(recorded[0].client_info.worker_version,'test-worker-v17');
+  assert.equal(stored.public_news,false,'Le contrôle de l’appareil ne doit pas modifier les choix de notification');
+  const beforeInvalid=writes.length;
+  const invalid=await (await handler(request({action:'heartbeat',endpoint:body.subscription.endpoint,deviceToken:'d'.repeat(64)}))).json();
+  assert.equal(invalid.active,false);
+  assert.equal(writes.length,beforeInvalid,'Un mauvais jeton d’appareil ne peut pas modifier le diagnostic');
 }
 await preferenceScenario();
 await preferenceScenario({type:'exterieur'});

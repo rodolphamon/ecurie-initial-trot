@@ -13,6 +13,34 @@
   // de veille, sans recharger la page ni redemander une autorisation Push.
   if ("serviceWorker" in navigator) {
     let updatingPushWorker = false, lastPushWorkerCheck = 0;
+    const workerVersion = registration => new Promise(resolve => {
+      if (!registration.active || typeof MessageChannel !== "function") return resolve(null);
+      const channel = new MessageChannel();
+      const finish = version => { clearTimeout(timer); channel.port1.close(); channel.port2.close(); resolve(version); };
+      const timer = setTimeout(() => finish(null), 800);
+      channel.port1.onmessage = event => finish(event.data?.version || null);
+      try { registration.active.postMessage({type:"ei-push-worker-info"}, [channel.port2]); }
+      catch (_) { finish(null); }
+    });
+    const recordPushDevice = async registration => {
+      try {
+        const token = localStorage.getItem("ei-push-device-token-v1");
+        if (!token) return;
+        const subscription = await registration.pushManager.getSubscription();
+        if (!subscription) return;
+        const version = await workerVersion(registration);
+        const controller = new AbortController(), timer = setTimeout(() => controller.abort(), 5000);
+        try {
+          await fetch("https://yeecwaaizmvrhwobukfa.supabase.co/functions/v1/notifications", {
+            method:"POST", headers:{"Content-Type":"application/json",apikey:"sb_publishable_xUy2EJA3u3cKWl8BB4GNPQ_qhV9Pes3"},
+            body:JSON.stringify({action:"heartbeat",deviceToken:token,endpoint:subscription.endpoint,
+              clientInfo:{workerVersion:version,permission:typeof Notification!=="undefined"?Notification.permission:"unknown",
+                standalone:!!(window.matchMedia?.("(display-mode: standalone)")?.matches||navigator.standalone===true)}}),
+            cache:"no-store",signal:controller.signal
+          });
+        } finally { clearTimeout(timer); }
+      } catch (_) { /* Aucune modification des préférences ou de l'inscription. */ }
+    };
     const updatePushWorker = async () => {
       if (document.hidden || updatingPushWorker || Date.now() - lastPushWorkerCheck < 60000) return;
       updatingPushWorker = true;
@@ -22,7 +50,17 @@
         const registration = await navigator.serviceWorker.register(new URL("sw.js", applicationBase).href, {
           scope: applicationBase.href, updateViaCache: "none"
         });
-        await registration.update();
+        try {
+          await registration.update();
+          const worker = registration.installing || registration.waiting;
+          if (worker && !["activated","redundant"].includes(worker.state)) await new Promise(resolve => {
+            const done = () => { clearTimeout(timer); worker.removeEventListener("statechange", check); resolve(); };
+            const check = () => { if (["activated","redundant"].includes(worker.state)) done(); };
+            const timer = setTimeout(done, 4000);
+            worker.addEventListener("statechange", check);
+            check();
+          });
+        } finally { await recordPushDevice(registration); }
         lastPushWorkerCheck = Date.now();
       } catch (_) { /* La prochaine ouverture réessaiera si le réseau est indisponible. */ }
       finally { updatingPushWorker = false; }

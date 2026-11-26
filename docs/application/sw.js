@@ -1,22 +1,30 @@
 // Service Worker de l'application Écurie Initial.
 // Cache minimal ; aucun contenu privé conservé volontairement en cache.
-const CACHE='ei-app-shell-v16';
+const CACHE='ei-app-shell-v17';
+const WORKER_VERSION='20261126-push-v17';
+// Le cache facultatif ne doit pas laisser une mise à jour en installation
+// ou en activation indéfiniment si le stockage du navigateur se bloque.
+function optionalWork(work,ms=3000){
+  let timer;
+  return Promise.race([Promise.resolve().then(work).catch(()=>{}),
+    new Promise(resolve=>{timer=setTimeout(resolve,ms)})]).finally(()=>clearTimeout(timer));
+}
+self.addEventListener('message',event=>{
+  if(event.data?.type==='ei-push-worker-info'&&event.ports?.[0])
+    event.ports[0].postMessage({version:WORKER_VERSION});
+});
 self.addEventListener('install',event=>{
   // Un échec du cache hors ligne ou d'une icône ne doit pas empêcher
   // l'installation du correctif de réception Push.
-  event.waitUntil((async()=>{
-    try{
+  event.waitUntil(Promise.all([self.skipWaiting(),optionalWork(async()=>{
       const cache=await caches.open(CACHE);
       await Promise.allSettled(['./','manifest.webmanifest','icon-ei-192.png','notification-ei-badge.png','notification-transparent-192.png'].map(url=>cache.add(url)));
-    }catch(_){}
-    await self.skipWaiting();
-  })());
+  })]));
 });
 self.addEventListener('activate',event=>{
-  event.waitUntil((async()=>{
+  event.waitUntil(Promise.all([optionalWork(()=>self.clients.claim()),optionalWork(async()=>{
     for(const k of await caches.keys())if(k.startsWith('ei-app-')&&k!==CACHE)await caches.delete(k);
-    await self.clients.claim();
-  })());
+  })]));
 });
 self.addEventListener('fetch',event=>{
   if(event.request.method!=='GET'||new URL(event.request.url).origin!==self.location.origin)return;
@@ -83,27 +91,29 @@ self.addEventListener('push',event=>{
     const receiptId=typeof payload.receipt_id==='string'?payload.receipt_id:null;
     const receivedAt=new Date().toISOString();
     // Afficher en priorité : aucun accès au stockage ni au réseau avant showNotification.
-    let displayStatus='shown',displayError=null;
+    let displayTask;
     try{
-      await self.registration.showNotification(title,{
+      displayTask=Promise.resolve(self.registration.showNotification(title,{
         body,
         icon:'/application/notification-transparent-192.png', // L'icône système officielle reste à gauche, pas de second logo à droite.
         badge:'/application/notification-ei-badge.png',
         tag:typeof payload.tag==='string'?payload.tag:undefined,
         data:{url},renotify:false
-      });
-    }catch(e){
+      }));
+    }catch(e){displayTask=Promise.reject(e)}
+    // Ne pas attendre la résolution de showNotification pour constater la
+    // réception : l'affichage peut lui-même rester bloqué dans le système.
+    const receivedReport=reportPushReceipt(receiptId,'received',receivedAt);
+    const localReceived=recordPushStatus('received',null,{at:receivedAt,version:WORKER_VERSION});
+    let displayStatus='shown',displayError=null;
+    try{await displayTask}catch(e){
       displayStatus='error';displayError=e instanceof Error?e.name:'erreur d’affichage';
     }
     const displayAt=new Date().toISOString();
-    const local=(async()=>{
-      await recordPushStatus('received',null,{at:receivedAt});
-      await recordPushStatus(displayStatus,displayError,{at:displayAt});
-    })();
+    const local=recordPushStatus(displayStatus,displayError,{at:displayAt,version:WORKER_VERSION});
     let timer;
     try{
-      await Promise.race([Promise.allSettled([local,
-        reportPushReceipt(receiptId,'received',receivedAt),
+      await Promise.race([Promise.allSettled([localReceived,local,receivedReport,
         reportPushReceipt(receiptId,displayStatus,displayAt,displayError)]),
         new Promise(resolve=>{timer=setTimeout(resolve,6000)})]);
     }finally{clearTimeout(timer);}

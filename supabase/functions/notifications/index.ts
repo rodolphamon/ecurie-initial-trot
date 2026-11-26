@@ -310,6 +310,23 @@ Deno.serve(async (request) => {
     }
     if (!validToken(deviceToken)) return respond({ error: "Jeton d'appareil invalide." }, 400, origin);
     const tokenHash = await hash(deviceToken);
+    if(action==="heartbeat"){
+      if(!validEndpoint(body.endpoint))return respond({error:"Abonnement invalide."},400,origin);
+      const {data:sub,error:readError}=await db.from("ei_push_subscriptions").select("id")
+        .eq("endpoint",body.endpoint).eq("token_hash",tokenHash).maybeSingle();
+      if(readError)throw readError;
+      if(!sub)return respond({ok:true,active:false},200,origin);
+      const info=body.clientInfo||{};
+      const {error}=await db.from("ei_push_subscriptions").update({
+        last_seen_at:new Date().toISOString(),
+        client_info:{user_agent:(request.headers.get("user-agent")||"").slice(0,512),
+          standalone:info.standalone===true,
+          permission:["granted","denied","default"].includes(info.permission)?info.permission:"unknown",
+          worker_version:typeof info.workerVersion==="string"&&/^[a-z0-9-]{1,64}$/i.test(info.workerVersion)?info.workerVersion:null},
+      }).eq("id",sub.id).eq("token_hash",tokenHash);
+      if(error)throw error;
+      return respond({ok:true,active:true},200,origin);
+    }
     if (action === "status") {
       if (!validEndpoint(body.endpoint)) return respond({ error: "Abonnement invalide." }, 400, origin);
       const { data, error } = await db.from("ei_push_subscriptions")
