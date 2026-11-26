@@ -1,0 +1,376 @@
+{
+  "updated_at": "2026-11-26",
+  "note": "Fiches individuelles des chevaux du palmarès absents du catalogue courant. Correspondances vérifiées par nom ; priorité à la fiche interne dès que le cheval entre au catalogue. Les sources de course ne sont jamais utilisées comme fiches de cheval.",
+  "horses": [
+    {
+      "name": "ACTRICE DE CERISY",
+      "url": "https://www.zone-turf.fr/cheval/actrice-de-cerisy-208673/",
+      "source": "https://www.zone-turf.fr/jockey/rodolphe-hamon-22930/"
+    },
+    {
+      "name": "ADAMS",
+      "url": "https://www.zone-turf.fr/cheval/adams-221098/",
+      "source": "https://www.zone-turf.fr/jockey/rodolphe-hamon-22930/"
+    },
+    {
+      "name": "ALIOTA DE CABERT",
+      "url": "https://www.zone-turf.fr/cheval/aliota-de-cabert-237425/",
+      "source": "https://www.zone-turf.fr/proprietaire/ecurie-initial-81634/"
+    },
+    {
+      "name": "BEAUTE D'ONDEE",
+      "url": "https://www.zone-turf.fr/cheval/beaute-d-ondee-338634/",
+      "source": "https://www.zone-turf.fr/proprietaire/ecurie-initial-81634/"
+    },
+    {
+      "name": "CABALLO D'AURE",
+      "url": "https://www.zone-turf.fr/cheval/caballo-d-aure-450022/",
+      "source": "https://www.zone-turf.fr/proprietaire/ecurie-initial-81634/"
+    },
+    {
+      "name": "CAID DORE",
+      "url": "https://www.zone-turf.fr/cheval/caid-dore-452200/",
+      "source": "https://www.zone-turf.fr/proprietaire/ecurie-initial-81634/"
+    },
+    {
+      "name": "CALIE DE POMMERAYE",
+      "url": "https://www.zone-turf.fr/cheval/calie-de-pommeraye-401958/",
+      "source": "https://www.zone-turf.fr/proprietaire/ecurie-initial-81634/"
+    },
+    {
+      "name": "CRYSTAL GIRL",
+      "url": "https://www.zone-turf.fr/cheval/crystal-girl-455872/",
+      "source": "https://www.zone-turf.fr/jockey/rodolphe-hamon-22930/"
+    },
+    {
+      "name": "DARWIN LA MESANGE",
+      "url": "https://www.zone-turf.fr/cheval/darwin-la-mesange-533262/",
+      "source": "https://www.zone-turf.fr/proprietaire/ecurie-initial-81634/"
+    },
+    {
+      "name": "DJANGO DE MONGOCHY",
+      "url": "https://www.zone-turf.fr/cheval/django-de-mongochy-464954/",
+      "source": "Archives du palmarès : https://www.zone-turf.fr/cheval/django-de-mongochy-464954/archives-2.html"
+    },
+    {
+      "name": "ELFE ATOUT",
+      "url": "https://www.zone-turf.fr/cheval/elfe-atout-536780/",
+      "source": "https://www.zone-turf.fr/cheval/elfe-atout-536780/impressions/"
+    },
+    {
+      "name": "ETOILE DE MONGOCHY",
+      "url": "https://www.zone-turf.fr/cheval/etoile-de-mongochy-533832/",
+      "source": "https://www.zone-turf.fr/proprietaire/ecurie-initial-81634/"
+    },
+    {
+      "name": "FANTOMAS DU VAL",
+      "url": "https://www.zone-turf.fr/cheval/fantomas-du-val-720266/",
+      "source": "https://www.zone-turf.fr/cheval/isere-1614352/"
+    },
+    {
+      "name": "FAVORI DE L'ITON",
+      "url": "https://www.zone-turf.fr/cheval/favori-de-l-iton-665604/",
+      "source": "https://www.zone-turf.fr/proprietaire/ecurie-initial-81634/"
+    },
+    {
+      "name": "FEEL SO GOOD",
+      "url": "https://www.zone-turf.fr/cheval/feel-so-good-619644/",
+      "source": "https://www.zone-turf.fr/proprietaire/mme-nathalie-hamon-237284/"
+    },
+    {
+      "name": "FETICHE ATOUT",
+      "url": "https://www.zone-turf.fr/cheval/fetiche-atout-672520/",
+      "source": "Archives du palmarès : https://www.zone-turf.fr/cheval/fetiche-atout-672520/archives-2.html"
+    },
+    {
+      "name": "FIESTA TEJY",
+      "url": "https://www.zone-turf.fr/cheval/fiesta-tejy-655392/",
+      "source": "https://www.zone-turf.fr/proprietaire/ecurie-initial-81634/"
+    },
+    {
+      "name": "FLEUR VIVANCIERE",
+      "url": "https://www.zone-turf.fr/cheval/fleur-vivanciere-692598/",
+      "source": "Archives du palmarès : https://www.zone-turf.fr/cheval/fleur-vivanciere-692598/"
+    },
+    {
+      "name": "GINKO",
+      "url": "https://www.zone-turf.fr/cheval/ginko-753994/",
+      "source": "https://www.zone-turf.fr/proprietaire/ecurie-initial-81634/"
+    },
+    {
+      "name": "GOSPEL",
+      "url": "https://www.zone-turf.fr/cheval/gospel-767128/",
+      "source": "https://www.zone-turf.fr/proprietaire/ecurie-initial-81634/"
+    },
+    {
+      "name": "GREAT FIRE",
+      "url": "https://www.zone-turf.fr/cheval/great-fire-895606/",
+      "source": "https://www.zone-turf.fr/cheval/great-fire-895606/"
+    },
+    {
+      "name": "GUEPARD DE MONE",
+      "url": "https://www.zone-turf.fr/cheval/guepard-de-mone-751746/",
+      "source": "Archives du palmarès : https://www.zone-turf.fr/cheval/guepard-de-mone-751746/"
+    },
+    {
+      "name": "HAMPTON AMERICA",
+      "url": "https://www.zone-turf.fr/cheval/hampton-america-899332/",
+      "source": "https://www.zone-turf.fr/cheval/harrison-gede-812922/"
+    },
+    {
+      "name": "HANANE MONTAVAL",
+      "url": "https://www.zone-turf.fr/cheval/hanane-montaval-895528/",
+      "source": "https://www.zone-turf.fr/proprietaire/mme-nathalie-hamon-237284/"
+    },
+    {
+      "name": "HARRISON GEDE",
+      "url": "https://www.zone-turf.fr/cheval/harrison-gede-812922/",
+      "source": "https://www.zone-turf.fr/cheval/harrison-gede-812922/"
+    },
+    {
+      "name": "HELIOS BONBON",
+      "url": "https://www.zone-turf.fr/cheval/helios-bonbon-786992/",
+      "source": "https://www.zone-turf.fr/cheval/helios-bonbon-786992/"
+    },
+    {
+      "name": "HERMES DU FOSSE",
+      "url": "https://www.zone-turf.fr/cheval/hermes-du-fosse-931974/",
+      "source": "Archives du palmarès : https://www.zone-turf.fr/cheval/hermes-du-fosse-931974/"
+    },
+    {
+      "name": "HERMES DU PRESSOIR",
+      "url": "https://www.zone-turf.fr/cheval/hermes-du-pressoir-823786/",
+      "source": "https://www.zone-turf.fr/proprietaire/ecurie-initial-81634/"
+    },
+    {
+      "name": "HERMES PLANCHETTE",
+      "url": "https://www.zone-turf.fr/cheval/hermes-planchette-824842/",
+      "source": "https://www.zone-turf.fr/cheval/helios-bonbon-786992/"
+    },
+    {
+      "name": "HIP HOP JULRY",
+      "url": "https://www.zone-turf.fr/cheval/hip-hop-julry-909718/",
+      "source": "Archives du palmarès : https://www.zone-turf.fr/cheval/hip-hop-julry-909718/"
+    },
+    {
+      "name": "HOMA",
+      "url": "https://www.zone-turf.fr/cheval/homa-921660/",
+      "source": "https://www.zone-turf.fr/cheval/homa-921660/"
+    },
+    {
+      "name": "HOMAYA DU BOCAGE",
+      "url": "https://www.zone-turf.fr/cheval/homaya-du-bocage-788862/",
+      "source": "https://www.zone-turf.fr/proprietaire/ecurie-initial-81634/"
+    },
+    {
+      "name": "IBERIK DE MONGOCHY",
+      "url": "https://www.zone-turf.fr/cheval/iberik-de-mongochy-1482172/",
+      "source": "https://www.zone-turf.fr/proprietaire/ecurie-initial-81634/"
+    },
+    {
+      "name": "IDEE FLORALE",
+      "url": "https://www.zone-turf.fr/cheval/idee-florale-1608534/",
+      "source": "https://www.zone-turf.fr/cheval/isba-quick-1369022/"
+    },
+    {
+      "name": "ILLAM DE MONGOCHY",
+      "url": "https://www.zone-turf.fr/cheval/illam-de-mongochy-1007974/",
+      "source": "https://www.zone-turf.fr/cheval/iso-de-keryann-1125370/"
+    },
+    {
+      "name": "INTREPID ITALIAN",
+      "url": "https://france-sire.com/cheval-360033-intrepid_italian.php",
+      "source": "https://france-sire.com/cheval-360033-intrepid_italian.php"
+    },
+    {
+      "name": "ISBA QUICK",
+      "url": "https://www.zone-turf.fr/cheval/isba-quick-1369022/",
+      "source": "https://www.zone-turf.fr/cheval/july-du-guesne-1640794/"
+    },
+    {
+      "name": "IT'S EAGLE COGLAIS",
+      "url": "https://www.zone-turf.fr/cheval/it-s-eagle-coglais-953246/",
+      "source": "https://www.zone-turf.fr/cheval/iso-de-keryann-1125370/"
+    },
+    {
+      "name": "IVAN DRAGO",
+      "url": "https://www.zone-turf.fr/cheval/ivan-drago-1604830/",
+      "source": "https://www.zone-turf.fr/cheval/ivan-drago-1604830/"
+    },
+    {
+      "name": "JACKPOT DES BORDES",
+      "url": "https://www.zone-turf.fr/cheval/jackpot-des-bordes-1619368/",
+      "source": "https://www.zone-turf.fr/cheval/july-du-guesne-1640794/"
+    },
+    {
+      "name": "JAMAIS SANS ELLE",
+      "url": "https://www.zone-turf.fr/cheval/jamais-sans-elle-1872974/",
+      "source": "https://www.zone-turf.fr/proprietaire/ecurie-initial-81634/"
+    },
+    {
+      "name": "JAZZY WOOD",
+      "url": "https://www.zone-turf.fr/cheval/jazzy-wood-1310372/",
+      "source": "https://www.zone-turf.fr/cheval/jazzy-wood-1310372/"
+    },
+    {
+      "name": "JEHAN",
+      "url": "https://www.zone-turf.fr/cheval/jehan-1763108/",
+      "source": "https://www.zone-turf.fr/cheval/jehan-1763108/"
+    },
+    {
+      "name": "JERRY LOOK",
+      "url": "https://www.zone-turf.fr/cheval/jerry-look-1837542/",
+      "source": "https://www.zone-turf.fr/proprietaire/ecurie-initial-81634/"
+    },
+    {
+      "name": "JESSIE DES LANDES",
+      "url": "https://www.zone-turf.fr/cheval/jessie-des-landes-1787232/",
+      "source": "https://www.zone-turf.fr/proprietaire/ecurie-initial-81634/"
+    },
+    {
+      "name": "JETHAN DE MONGOCHY",
+      "url": "https://www.zone-turf.fr/cheval/jethan-de-mongochy-1749902/",
+      "source": "Archives du palmarès : https://www.zone-turf.fr/cheval/jethan-de-mongochy-1749902/"
+    },
+    {
+      "name": "JODEON",
+      "url": "https://www.zone-turf.fr/cheval/jodeon-1768032/",
+      "source": "https://www.zone-turf.fr/proprietaire/ecurie-initial-81634/"
+    },
+    {
+      "name": "JOHANNA ELEVEN",
+      "url": "https://www.zone-turf.fr/cheval/johanna-eleven-1665142/",
+      "source": "Archives du palmarès : https://www.zone-turf.fr/cheval/johanna-eleven-1665142/archives-1.html"
+    },
+    {
+      "name": "JULY DU GUESNE",
+      "url": "https://www.zone-turf.fr/cheval/july-du-guesne-1640794/",
+      "source": "https://www.zone-turf.fr/cheval/jehan-1763108/"
+    },
+    {
+      "name": "JUNINIO FLEURY",
+      "url": "https://www.zone-turf.fr/cheval/juninio-fleury-1622784/",
+      "source": "Archives du palmarès : https://www.zone-turf.fr/cheval/juninio-fleury-1622784/"
+    },
+    {
+      "name": "KEENNESS",
+      "url": "https://www.zone-turf.fr/cheval/keenness-1907630/",
+      "source": "https://www.zone-turf.fr/proprietaire/ecurie-initial-81634/"
+    },
+    {
+      "name": "KOBLENZA DAIRPET",
+      "url": "https://www.zone-turf.fr/cheval/koblenza-dairpet-1867046/",
+      "source": "Archives du palmarès : https://www.zone-turf.fr/cheval/koblenza-dairpet-1867046/"
+    },
+    {
+      "name": "LARGO DE JOUDES",
+      "url": "https://www.zone-turf.fr/cheval/largo-de-joudes-2003109/",
+      "source": "https://www.zone-turf.fr/cheval/listel-d-urzy-2033479/"
+    },
+    {
+      "name": "LARIFLETTE",
+      "url": "https://www.zone-turf.fr/cheval/lariflette-1922912/",
+      "source": "https://www.zone-turf.fr/cheval/listel-d-urzy-2033479/"
+    },
+    {
+      "name": "LARKY PERRINE",
+      "url": "https://www.zone-turf.fr/cheval/larky-perrine-1955670/",
+      "source": "https://www.zone-turf.fr/cheval/listel-d-urzy-2033479/"
+    },
+    {
+      "name": "L'ARTISTE DE GAGOU",
+      "url": "https://www.zone-turf.fr/cheval/l-artiste-de-gagou-1918292/",
+      "source": "https://www.zone-turf.fr/proprietaire/ecurie-initial-81634/"
+    },
+    {
+      "name": "LOVE ME MAZELI",
+      "url": "https://www.zone-turf.fr/cheval/love-me-mazeli-2022782/",
+      "source": "https://www.zone-turf.fr/cheval/listel-d-urzy-2033479/"
+    },
+    {
+      "name": "MACLANDER",
+      "url": "https://www.zone-turf.fr/cheval/maclander-2046354/",
+      "source": "https://www.zone-turf.fr/cheval/maclander-2046354/"
+    },
+    {
+      "name": "MOSCANTIDA PEAL",
+      "url": "https://www.zone-turf.fr/cheval/moscantida-peal-2052757/",
+      "source": "https://www.zone-turf.fr/cheval/maclander-2046354/"
+    },
+    {
+      "name": "MYMAP",
+      "url": "https://www.zone-turf.fr/cheval/mymap-1778168/",
+      "source": "https://www.zone-turf.fr/cheval/mymap-1778168/"
+    },
+    {
+      "name": "OLGA DE LA FONTE",
+      "url": "https://www.zone-turf.fr/cheval/olga-de-la-fonte-47870/",
+      "source": "Archives du palmarès : https://www.zone-turf.fr/cheval/olga-de-la-fonte-47870/"
+    },
+    {
+      "name": "QUALIMERO",
+      "url": "https://www.zone-turf.fr/cheval/qualimero-6279/",
+      "source": "Archives du palmarès : https://www.zone-turf.fr/cheval/qualimero-6279/"
+    },
+    {
+      "name": "RHEA SILVIA",
+      "url": "https://www.zone-turf.fr/cheval/rhea-silvia-43685/",
+      "source": "https://www.zone-turf.fr/jockey/rodolphe-hamon-22930/"
+    },
+    {
+      "name": "RHUM BARBES",
+      "url": "https://www.zone-turf.fr/cheval/rhum-barbes-45540/",
+      "source": "https://www.zone-turf.fr/jockey/rodolphe-hamon-22930/"
+    },
+    {
+      "name": "ROMEO LAP",
+      "url": "https://www.zone-turf.fr/cheval/romeo-lap-57627/",
+      "source": "Archives du palmarès : https://www.zone-turf.fr/cheval/romeo-lap-57627/"
+    },
+    {
+      "name": "SAMAPY",
+      "url": "https://www.zone-turf.fr/cheval/samapy-1713750/",
+      "source": "https://www.zone-turf.fr/cheval/samapy-1713750/"
+    },
+    {
+      "name": "SKY IS BLUE",
+      "url": "https://www.zone-turf.fr/cheval/sky-is-blue-46598/",
+      "source": "https://www.zone-turf.fr/cheval/surcouf-breizh-60001/"
+    },
+    {
+      "name": "SURCOUF BREIZH",
+      "url": "https://www.zone-turf.fr/cheval/surcouf-breizh-60001/",
+      "source": "https://www.zone-turf.fr/cheval/surcouf-breizh-60001/"
+    },
+    {
+      "name": "TENDRESSE DE RHISA",
+      "url": "https://www.zone-turf.fr/cheval/tendresse-de-rhisa-98401/",
+      "source": "https://www.zone-turf.fr/cheval/tendresse-mika-61246/"
+    },
+    {
+      "name": "TENOR DEBOUT",
+      "url": "https://www.zone-turf.fr/cheval/tenor-debout-120513/",
+      "source": "https://www.zone-turf.fr/cheval/tenor-debout-120513/"
+    },
+    {
+      "name": "TYCOZ DE LADY",
+      "url": "https://www.zone-turf.fr/cheval/tycoz-de-lady-133493/",
+      "source": "https://www.zone-turf.fr/cheval/tenor-debout-120513/"
+    },
+    {
+      "name": "UKAPI DE GODISSON",
+      "url": "https://www.zone-turf.fr/cheval/ukapi-de-godisson-197664/",
+      "source": "https://www.zone-turf.fr/cheval/tenor-debout-120513/"
+    },
+    {
+      "name": "URANUS DU COURS",
+      "url": "https://www.zone-turf.fr/cheval/uranus-du-cours-130297/",
+      "source": "https://www.zone-turf.fr/proprietaire/ecurie-initial-81634/"
+    },
+    {
+      "name": "VALMIN DE GUEUDE",
+      "url": "https://www.zone-turf.fr/cheval/valmin-de-gueude-187252/",
+      "source": "https://www.zone-turf.fr/jockey/rodolphe-hamon-22930/"
+    }
+  ]
+}

@@ -34,6 +34,9 @@ td:first-child,th:first-child{text-align:center;width:75px}td.date{white-space:n
 .replay-link{display:inline-flex;align-items:center;justify-content:center;gap:5px;padding:7px 10px;border:1px solid #e5ba92;border-radius:999px;background:#fff5ed;color:#9c4712;font-size:12px;font-weight:800;text-decoration:none;line-height:1;white-space:nowrap}
 .replay-link svg{width:21px;height:19px;flex-shrink:0}
 .replay-link:hover,.replay-link:focus-visible{background:#f9d8bf;color:#72310c}
+.horse-profile-link{color:inherit;text-decoration:underline;text-decoration-color:#efbf9c;text-underline-offset:3px}
+.horse-profile-link:hover{color:#a34c0e;text-decoration-color:currentColor}
+.horse-profile-link:focus-visible{outline:2px solid var(--orange);outline-offset:3px;border-radius:2px}
 .replay-unavailable{display:inline-block;padding:4px 2px;text-align:center;color:#8d8781;font-size:10px;font-weight:600;white-space:nowrap}
 .pal-card-replay{margin:0}.pal-card-actions{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;flex-shrink:0;align-self:start;margin-top:-28px;min-width:0;width:100%}.pal-card-actions .replay-link{padding:4px 6px;font-size:11px}.video-cell{text-align:center;width:94px}.video-cell .replay-link{padding:6px 9px}
 .pal-card-disc{display:inline-flex;align-items:center;justify-content:center;gap:2px;white-space:nowrap;padding:4px 3px;border-radius:20px;background:#fff5ec;border:1px solid #f5e5d7;color:#8f4517;font-size:11px;font-weight:800;max-width:100%}
@@ -251,6 +254,39 @@ function victoireAdmiseAuCompteur(r){
 const medaille=r=>({1:`<span class="medal medal-1" aria-hidden="true">1</span>`,2:`<span class="medal medal-2" aria-hidden="true">2</span>`,3:`<span class="medal medal-3" aria-hidden="true">3</span>`})[r.classement||1]||"—";
 const $=id=>document.getElementById(id);
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+// Les fiches de l'effectif sont prioritaires. Les anciens chevaux disposent
+// de liens individuels vérifiés, indépendants des sources de leurs courses.
+const horseProfiles=new Map();
+const horseProfileKey=name=>String(name||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toUpperCase().replace(/[^A-Z0-9]/g,'');
+function horseProfileLink(result){
+ const profile=horseProfiles.get(horseProfileKey(result.cheval));
+ if(!profile)return esc(result.cheval);
+ const title='Voir la fiche de '+result.cheval+(profile.external?' (site externe, nouvel onglet)':'');
+ return '<a class="horse-profile-link" href="'+esc(profile.url)+'"'+(profile.external?' target="_blank" rel="noopener noreferrer"':'')+' title="'+esc(title)+'" aria-label="'+esc(title)+'">'+esc(result.cheval)+'</a>';
+}
+async function loadHorseProfiles(){
+ const [current,archives]=await Promise.allSettled([
+  fetch('../chevaux/data/chevaux.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error();return r.json()}),
+  fetch('./fiches-chevaux.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error();return r.json()})
+ ]);
+ if(archives.status==='fulfilled')for(const profile of archives.value.horses||[]){
+  try{
+   const url=new URL(profile.url);
+   const host=url.hostname.replace(/^www\./,'');
+   const allowed=url.protocol==='https:'&&!url.username&&!url.password&&(
+    host==='zone-turf.fr'&&/^\/cheval\/[^/]+-\d+\/$/.test(url.pathname)||
+    host==='france-sire.com'&&/^\/cheval-\d+-[^/]+\.php$/.test(url.pathname)
+   );
+   if(profile.name&&allowed)horseProfiles.set(horseProfileKey(profile.name),{url:url.href,external:true});
+  }catch{}
+ }
+ if(current.status==='fulfilled')for(const horse of current.value.horses||[]){
+  if(horse.name&&typeof horse.id==='string'&&/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(horse.id)){
+   horseProfiles.set(horseProfileKey(horse.name),{url:'../chevaux/fiche/?cheval='+encodeURIComponent(horse.id),external:false});
+  }
+ }
+ render();
+}
 // Modèles officiels de casaques identiques à ceux employés sur les fiches chevaux.
 const silkFiles={galop_rodolphe:"../assets/casaque-galop-rodolphe.svg?v=20261114reference1",homa:"../assets/casaque-homa.svg?v=20261114c",julien:"../assets/casaque-florian-julien.svg?v=20261114b",hebert:"../assets/casaque-hebert.svg",blanche:"../assets/casaque-blanche.svg",olga_avant_saint_omer:"../assets/casaque-olga-avant-saint-omer.svg?v=20261115b",historique:"../assets/casaque-blanche.svg",galop:"../assets/casaque-galop.svg",nathalie:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFQAAABkCAMAAAAvz+deAAAAYFBMVEUAAAAbGBj4Zi5dKRmqTCoMAwICAQFgAACNOR6NiYrvbUViYWD67ub//wBzdHP7+Pj/AAB0dAeWlpbsrpatZlSHhIX1j2F3QCOMiouGiXz/fwD4ybVtbGyqVQCRf3//f3+H585vAAAAIHRSTlMB/P79/qBgAv75/v7/AQkCAQMK//6g//5X/gL/sQMOAvJ3e8sAAATaSURBVHjazZnpdvMoDEAtJDAhaZI23eab7f3fcgCbRWx1a8+c4UfbpPGNJLTCNG1fT9PRa3Y/FKj04pAlYV3yOCQSeSQKwoOwQEKsgqIQBIcwhRAY1Ld8s5v67JkEcQlP/XsfVWEuqBdV0D67PnlBRWI6q9ov2ak/cu29/kLsE1UR137RX8CuUJKihO7W/75AoYKSOnKfVug+o9bQsFPzkZIuUNi1UdSB7tl/lWWTDIr7kqACbSqo97Fd7s+RgIYOSNcldV1qZ/zLf4HZwB5UU1TGlWo6bim/pv/vur5cr/HvY8EvL3954stBwM+3t9Oy3j6v0+12RN2HU74+D9lyRDhb2G+B+rZf0mebpjw1Qk9/7NiuOeV+m0LOK/F8/nGIztHdpa9JRoPjnl2Wwh1xb+MSURNpsSwr7QnQFwL162dA9I/7laivqT7NP0gdaERaRCv07KHm++qrvLrnWBOgmjTi5kR1z/Mmp3qUa6QoWEXjxqSq6k4kX5md7Xrdkv9tjUee3kkMlsFNNUCSKah6AKVN1cr34TCgmssje5UXrHncimFZ5DPM++X3SvkvTLAACEZU01Def0j1a3Dd4HW3i3/EzkC/es5kh0WCTdTCSp0ZKGmyhapLE5mWAWT6zhaWTMebFqZ3mzLF3Cb8CF0ioWlQcWBQJPdfreq5huKzUGlXUsu4o8VtXOrgbq9jPwstx8pyoakMisv8pqo5Gd35QITWQZBkpeptC6WPsrN28aljjl/2umVY++575ciUBFD5LgF3wbblvAUul1bKwdf1RTnS1tDWdj0uWNvE+osooE+FoAnadAJoTD86qCV5xsudsOvknVDLTi56ghKIzVQdpfAhkLaKCWrcvwfB03Iy7/rLuL4eWa2HBLFAIgAM81HFNJikimdL7vSKays2Uus9COcVrtght6HYRqXKW9bzCr9Neb6kBtTgiKkxpy5HC/CKAFkv1oBmsrretMhayDIY8JZEh4/IQfW4XM7coIt7FEaVxTe7/kj3G4fzqZ2zUK8P+VQNH6U2y5HZsHbmT2j+0u8UGq6NexO2MAMGC6Gk91K+lxCOYjZElf+YlLzYeCg5g0QoTrep0h8H6YSU4lDwUAzZy/+22v9ZJu1RkrIPNKCl7zjx5Uam3Qp0MWk/k9ykAfXvKr2R6TKo7RnMmj3IZb9SqGgC3MxkioU8rRpOqSX0mEg19JYUQw/N/IdyE+iOnFXdUkxbs0h6j1vNks3iDY2u+vHgb058XzCUKQivbXcaye6PhpxV4Z/uz8DCRGaXGAGBvLJUmf7xztMr3xXKuhQfGmV7i53qwcJWFsWYML/EwaK1q4tzMxko5tM+oJ7q8ZG+ljP/RjUDq1R56z+nnr/DpHaOiYKuD2JjPME44hGOJ4nQ5kjnKL45WbW/lwMK9oaF3hwlnY/qrFWrR5RnBSysYotHvXFX+XoWIphvE7vLS7IEl6DuEM1va7A3TE4y2oD0cOh3McAuVhDldR7cPObe2D9IsAk9u/2z7dPwkEui7jFNNvrRAoXFTtV0VmHj+XPJtAkl70Zg7Wq13acvbmjm6Lml7iY7RnA1DkzMavD1bfW8WNeMzlBk5trfuKAdHveg78Twu0z71GCptb1zQXXcrXfKbt87+psHK50+TFUa2X/78V/cNPwDI6oth9g5PQwAAAAASUVORK5CYII=",orange:"../assets/casaque-orange.svg"};
 function casaquePourCourse(r){
@@ -550,13 +586,13 @@ function render(){
  const list=data.slice((state.page-1)*state.perPage,state.page*state.perPage);
  const dateFR=d=>d.split("-").reverse().join("/");
  // Affichage de la table sur ordinateur : colonnes classiques.
- $("rows").innerHTML=list.map(r=>'<tr><td>'+jersey(casaquePourCourse(r))+'</td><td class="rank-cell" aria-label="'+(r.classement||1)+'e place">'+medaille(r)+'</td><td class="date">'+esc(dateFR(r.date))+'</td><td class="place">'+esc(hippodromeUnifie(r.hippodrome))+'</td><td class="horse">'+esc(r.cheval)+'</td><td class="person">'+(r.jockey?esc(jockeyUnifie(r.jockey)):'—')+'<div class="table-trainer">Entraîneur : '+esc(entraineurUnifie(r.entraineur)||'—')+'</div></td><td class="discipline">'+disc(r.discipline)+'</td><td class="video-cell">'+replayButton(r,false)+'</td></tr>').join("");
+ $("rows").innerHTML=list.map(r=>'<tr><td>'+jersey(casaquePourCourse(r))+'</td><td class="rank-cell" aria-label="'+(r.classement||1)+'e place">'+medaille(r)+'</td><td class="date">'+esc(dateFR(r.date))+'</td><td class="place">'+esc(hippodromeUnifie(r.hippodrome))+'</td><td class="horse">'+horseProfileLink(r)+'</td><td class="person">'+(r.jockey?esc(jockeyUnifie(r.jockey)):'—')+'<div class="table-trainer">Entraîneur : '+esc(entraineurUnifie(r.entraineur)||'—')+'</div></td><td class="discipline">'+disc(r.discipline)+'</td><td class="video-cell">'+replayButton(r,false)+'</td></tr>').join("");
  // Sur mobile : vraies fiches sans défilement horizontal, ni texte coupé.
  $("cards").innerHTML=list.map(r=>{
   const label=(r.discipline==="galop"||r.discipline==="obstacle"||r.discipline==="monte")?"Jockey":r.discipline==="attele"?"Driver":"Jockey / Driver";
   const jockey=r.jockey?'<div class="pal-card-jockey"><span class="pal-card-jockey-label">'+label+' :</span>'+esc(jockeyUnifie(r.jockey))+'</div>':"";
   const trainer='<div class="pal-card-trainer"><span class="pal-card-trainer-label">Entraîneur :</span>'+esc(entraineurUnifie(r.entraineur)||"—")+'</div>';
-  return '<article class="pal-card"><time class="pal-card-date" datetime="'+esc(r.date)+'">'+esc(dateFR(r.date))+'</time><div class="pal-card-name">'+esc(r.cheval)+'</div><div class="pal-card-silk">'+jersey(casaquePourCourse(r))+'</div><div class="pal-card-main"><div class="pal-card-place">'+esc(hippodromeUnifie(r.hippodrome))+'</div>'+jockey+trainer+'</div><div class="pal-card-actions"><span class="pal-card-disc'+(r.discipline==="trot"?' is-unclassified':'')+'">'+disc(r.discipline)+'</span><span class="pal-card-medal medal medal-'+(r.classement||1)+'" aria-label="Classement : '+(r.classement||1)+'">'+({1:'1er',2:'2e',3:'3e'}[r.classement||1]||esc(String(r.classement||1)))+'</span>'+replayButton(r,true)+'</div></article>';
+  return '<article class="pal-card"><time class="pal-card-date" datetime="'+esc(r.date)+'">'+esc(dateFR(r.date))+'</time><div class="pal-card-name">'+horseProfileLink(r)+'</div><div class="pal-card-silk">'+jersey(casaquePourCourse(r))+'</div><div class="pal-card-main"><div class="pal-card-place">'+esc(hippodromeUnifie(r.hippodrome))+'</div>'+jockey+trainer+'</div><div class="pal-card-actions"><span class="pal-card-disc'+(r.discipline==="trot"?' is-unclassified':'')+'">'+disc(r.discipline)+'</span><span class="pal-card-medal medal medal-'+(r.classement||1)+'" aria-label="Classement : '+(r.classement||1)+'">'+({1:'1er',2:'2e',3:'3e'}[r.classement||1]||esc(String(r.classement||1)))+'</span>'+replayButton(r,true)+'</div></article>';
  }).join("");
  for(const button of $("legend").querySelectorAll("button[data-discipline]"))button.setAttribute("aria-pressed",button.dataset.discipline===state.discipline?"true":"false");
  $("empty").hidden=data.length>0;
@@ -675,5 +711,5 @@ document.querySelectorAll("[data-placing]").forEach(button=>button.addEventListe
  document.querySelectorAll("[data-placing]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.placing===state.placing)));
  render();
 }));
-render();fondTransparentCasaqueGalop();Promise.allSettled([loadPodiums(),loadNewVictories()]).then(loadReplays);window.addEventListener("load",postHeight);
+render();fondTransparentCasaqueGalop();Promise.allSettled([loadPodiums(),loadNewVictories(),loadHorseProfiles()]).then(loadReplays);window.addEventListener("load",postHeight);
 </script><script defer src="../application/nav.js?v=20261117tabsresultatspartants1"></script></body></html>
