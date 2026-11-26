@@ -14,8 +14,7 @@ h2{font-size:19px;margin:0 0 10px}
 .card{background:#fff;border:1px solid #e9e1d9;border-radius:15px;padding:19px;margin:15px 0}
 dl{display:grid;grid-template-columns:1fr auto;gap:10px;margin:0}
 dt{color:#666}dd{margin:0;text-align:right;font-weight:700;overflow-wrap:anywhere}
-button{border:0;border-radius:9px;background:var(--o);color:#171717;font-weight:700;font-size:15px;padding:12px 16px;cursor:pointer}
-button:disabled{opacity:.6}#result{white-space:pre-wrap;font-weight:700}small{color:#666}
+small{color:#666}
 a{color:#a84f13}
 </style>
 <script defer src="../header.js?v=20261117universel1"></script>
@@ -23,7 +22,7 @@ a{color:#a84f13}
 <body><main><p id="restricted">Diagnostic réservé à l’administration. <a href="../notifications/">Retour aux notifications</a></p><div id="diagnostic" hidden>
 <p><a href="../notifications/">← Retour aux notifications</a></p>
 <h1>🔔 Diagnostic des notifications</h1>
-<p>Cette page vérifie <strong>sur votre propre téléphone</strong> si l’application peut afficher une notification. Aucun message n’est envoyé à d’autres personnes.</p>
+<p>Cette page affiche les informations de réception des notifications sur cet appareil.</p>
 <section class="card">
 <h2>État de l’appareil</h2>
 <dl>
@@ -37,19 +36,8 @@ a{color:#a84f13}
 </dl>
 </section>
 <section class="card">
-<h2>Vérifier l’affichage sur ce téléphone</h2>
-<p style="display:flex;align-items:center;gap:12px"><img src="/application/icon-ei-192.png" width="68" height="68" alt="Logo officiel de l’application Écurie Initial" style="object-fit:contain;background:#fff;border:1px solid #ddd;border-radius:8px"> <span>Un seul logo officiel doit apparaître à gauche, sans pictogramme supplémentaire à droite. La petite icône Android de la barre d’état reste gérée séparément.</span></p>
-<p>Cliquez ici : une notification locale doit apparaître, sans passer par le serveur.</p>
-<button id="local" type="button">Tester le logo unique à gauche</button>
-<p style="margin-top:14px">Vérifier le clic sur une notification, sans prévenir d'autres associés :</p>
-<button id="testLink" type="button">🔗 Tester le lien vers la fiche ANDRESY</button>
-<p class="muted">Cliquez ensuite sur la notification reçue : la fiche d'ANDRESY doit s'ouvrir. Revenez sur cette page pour vérifier le résultat du clic.</p>
-<p id="result" role="status" aria-live="polite"></p>
-<small>Si ce test local fonctionne mais que les notifications automatiques n’arrivent pas, vérifiez « Dernier Push reçu » ci-dessus. Si le test local échoue, vérifiez les autorisations Android/iPhone et les notifications de l’application.</small>
-</section>
-<section class="card">
 <h2>Après un envoi automatique</h2>
-<p>Après le test serveur depuis « Notifications », rouvrez cette page. Les lignes « Dernier Push reçu du serveur » et « Dernier Push affiché » permettent de savoir si le Push est arrivé au navigateur puis a été affiché. Le test local ne compte pas comme une réception du serveur.</p>
+<p>Les lignes « Dernier Push reçu du serveur » et « Dernier Push affiché » permettent de vérifier la réception des notifications automatiques.</p>
 <p><small>Pour la confidentialité, seul l’état du diagnostic est conservé sur cet appareil ; ni le jeton ni l’adresse complète d’abonnement ne sont affichés.</small></p>
 </section>
 </div></main>
@@ -105,41 +93,7 @@ async function check(){
   ?(clicked.status==='click-opened'?'Ouverture demandée':'Échec du clic')+' le '+new Date(clicked.at).toLocaleString('fr-FR')+' : '+(clicked.route||'destination non précisée')+(clicked.error?' — '+clicked.error:'')
   :'Aucun clic encore enregistré';
 }
-el('testLink').onclick=async()=>{
- const btn=el('testLink');btn.disabled=true;el('result').textContent='';
- try{
-  if(!('Notification' in window)||Notification.permission!=='granted')throw Error('Notifications non autorisées sur ce téléphone.');
-  const registration=await navigator.serviceWorker.getRegistration('../');
-  if(!registration?.active)throw Error('Service worker indisponible.');
-  await registration.update();
-  await registration.showNotification('🔗 Test du lien · ANDRESY',{
-   body:'Appuyez ici pour ouvrir directement la fiche ANDRESY.',
-   icon:'/application/notification-transparent-192.png',
-   badge:'/application/notification-ei-badge.png',
-   tag:'ei-link-diagnostic-'+Date.now(),
-   data:{url:new URL('/chevaux/andresy/',location.origin).href}
-  });
-  el('result').textContent='Notification test créée. Appuyez dessus pour vérifier la redirection vers ANDRESY.';
- }catch(error){el('result').textContent='Erreur du test : '+(error?.message||String(error))}
- finally{btn.disabled=false}
-};
-el('local').onclick=async()=>{
- const b=el('local');b.disabled=true;el('result').textContent='';
- try{
-  if(!('Notification' in window))throw Error('Ce navigateur ne prend pas en charge les notifications.');
-  if(Notification.permission!=='granted')throw Error('Notifications non autorisées. Activez-les dans les réglages du navigateur.');
-  const r=await navigator.serviceWorker.getRegistration('../');
-  if(!r?.active)throw Error('Le service worker de l’application n’est pas actif sur cet appareil.');
-  await r.update().catch(()=>{});
-  for(const u of ['/application/notification-transparent-192.png','/application/notification-ei-badge.png']){
-    const res=await fetch(u,{cache:'no-store'});
-    if(!res.ok || !(res.headers.get('content-type')||'').includes('image/png'))throw Error('Icône indisponible ('+res.status+') : '+u+'. Réessayez après la publication.');
-  }
-  await r.showNotification('🔔 Écurie Initial · Test du logo unique',{body:'Le logo officiel doit apparaître uniquement à gauche.',icon:'/application/notification-transparent-192.png',badge:'/application/notification-ei-badge.png',tag:'ei-local-diagnostic-'+Date.now()});
-  el('result').textContent='La notification avec le seul logo officiel à gauche a été demandée. Vérifiez le volet des notifications.';
- }catch(e){el('result').textContent='Échec : '+(e?.message||String(e))}
- finally{b.disabled=false;await check()}
-};
+
 check();
 }
 </script></body></html>
