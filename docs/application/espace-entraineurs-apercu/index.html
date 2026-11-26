@@ -19,7 +19,7 @@ button:disabled{opacity:.55;cursor:not-allowed}.row{display:flex;align-items:cen
 <section id="content" hidden>
 <div class="notice"><strong>Mode aperçu.</strong> Tu peux choisir un entraîneur et un cheval, tester le micro et réécouter un vocal. La publication réelle et les notifications restent désactivées.</div>
 <div class="panel"><h2>Choisir l'entraîneur à visualiser</h2><label for="trainer">Entraîneur</label>
-<select id="trainer"><option value="Gilles PANNIER">Gilles PANNIER</option><option value="Pierre-Louis DESAUNETTE">Pierre-Louis DESAUNETTE</option><option value="Laurent BARASSIN">Thibaut BARASSIN (fiches : Laurent)</option></select>
+<select id="trainer"></select>
 <p id="count" class="muted"></p></div>
 <div class="panel"><h2>Publier une actualité</h2>
 <label for="horse">1. Sélectionnez le cheval</label><select id="horse"></select>
@@ -42,12 +42,38 @@ import {createClient} from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2
 const db=createClient('https://yeecwaaizmvrhwobukfa.supabase.co','sb_publishable_xUy2EJA3u3cKWl8BB4GNPQ_qhV9Pes3');
 const $=id=>document.getElementById(id);
 let recorder=null,stream=null,watch=null,started=0,url=null;
-const assigned={'Laurent BARASSIN':[['memphis-belle','MEMPHIS BELLE'],['nostalgie-dairpet','NOSTALGIE DAIRPET'],['palazzo-grassi','PALAZZO GRASSI'],['prince-gio','PRINCE GIO']]};
+let trainers=new Map(), horseRequest=0;
+async function loadTrainers(){
+ const r=await db.from('ei_entraineurs').select('user_id,nom_entraineur').eq('actif',true).order('nom_entraineur');
+ if(r.error)throw r.error;
+ trainers=new Map((r.data||[]).map(t=>[t.user_id,t]));
+ const previous=$('trainer').value;
+ $('trainer').replaceChildren();
+ for(const t of trainers.values()){
+  const opt=document.createElement('option');opt.value=t.user_id;
+  opt.textContent=t.nom_entraineur==='Laurent BARASSIN'?'Thibaut BARASSIN (fiches : Laurent)':t.nom_entraineur;
+  $('trainer').append(opt);
+ }
+ if(trainers.has(previous))$('trainer').value=previous;
+ await setTrainer();
+}
 async function setTrainer(){
- const t=$('trainer').value;let horses=assigned[t];
- if(!horses){const r=await db.from('ei_effectif_gestion').select('cheval_slug,nom').eq('entraineur',t).eq('actif',true).order('nom');horses=(r.data||[]).map(h=>[h.cheval_slug,h.nom]);}
- $('horse').replaceChildren();for(const [slug,name] of horses){const opt=document.createElement('option');opt.value=slug;opt.textContent=name;$('horse').append(opt)}
- $('count').textContent=horses.length+' chevaux à visualiser';syncCard();
+ const request=++horseRequest;
+ const t=trainers.get($('trainer').value);
+ $('horse').replaceChildren();$('count').textContent=t?'Chargement des chevaux…':'Aucun entraîneur actif';syncCard();
+ if(!t)return;
+ const [links,legacy]=await Promise.all([
+  db.from('ei_entraineurs_chevaux').select('cheval_slug,cheval_nom').eq('entraineur_id',t.user_id).order('cheval_nom'),
+  db.from('ei_effectif_gestion').select('cheval_slug,nom').eq('entraineur',t.nom_entraineur).eq('actif',true).order('nom')
+ ]);
+ if(request!==horseRequest)return;
+ if(links.error||legacy.error){$('count').textContent='Impossible de charger les chevaux. Actualisez la page.';return}
+ const bySlug=new Map();
+ for(const h of legacy.data||[])bySlug.set(h.cheval_slug,h.nom);
+ for(const h of links.data||[])bySlug.set(h.cheval_slug,h.cheval_nom);
+ const horses=[...bySlug].sort((a,b)=>a[1].localeCompare(b[1],'fr'));
+ for(const [slug,name] of horses){const opt=document.createElement('option');opt.value=slug;opt.textContent=name;$('horse').append(opt)}
+ $('count').textContent=horses.length+(horses.length===1?' cheval à visualiser':' chevaux à visualiser');syncCard();
 }
 function syncCard(){$('cardHorse').textContent=$('horse').selectedOptions[0]?.textContent||'Aucun cheval';$('cardTrainer').textContent=$('trainer').selectedOptions[0]?.textContent||''}
 $('trainer').addEventListener('change',setTrainer);$('horse').addEventListener('change',syncCard);
@@ -58,7 +84,7 @@ async function start(){
   const {data:member,error}=await db.from('associes').select('actif,administrateur,nom_affiche').eq('user_id',user.id).maybeSingle();
   if(error||!member?.actif||!member.administrateur){$('status').textContent='Accès réservé à l’administrateur.';return}
   $('status').textContent='Bienvenue '+member.nom_affiche+'. Votre aperçu privé est disponible.';
-  $('content').hidden=false;await setTrainer();
+  await loadTrainers();$('content').hidden=false;
  }catch(e){$('status').textContent='Accès impossible : '+e.message}
 }
 function clearVoice(){if(url)URL.revokeObjectURL(url);url=null;$('previewAudio').pause();$('previewAudio').removeAttribute('src');$('previewAudio').hidden=true;$('erase').hidden=true;$('timer').textContent='0:00 / 2:00'}
