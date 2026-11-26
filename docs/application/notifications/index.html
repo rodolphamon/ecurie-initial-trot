@@ -108,6 +108,7 @@ const db=createClient('https://yeecwaaizmvrhwobukfa.supabase.co',KEY);
 const $=id=>document.getElementById(id);
 let isMember=false,publicKey=null,registration=null,subscription=null,accountScope=null;
 let lastAuthenticatedAccessToken=null;
+let preferencesActive=false, preferenceWrites=Promise.resolve();
 db.auth.onAuthStateChange((event,session)=>{
  if(session?.access_token)lastAuthenticatedAccessToken=session.access_token;
  else if(event==='SIGNED_OUT')lastAuthenticatedAccessToken=null;
@@ -200,6 +201,7 @@ async function init(){
       const state=await callServer({action:'status',deviceToken:deviceToken(),endpoint:subscription.endpoint});
       const p=state.preferences;
       if(state.active && p){
+        preferencesActive=Notification.permission==='granted';
         $('publicNews').checked=p.public_news!==false;
         if(isMember)$('testRemote').disabled=false;
         if(isMember){
@@ -217,9 +219,23 @@ async function init(){
   }
   $('serviceState').textContent=subscription?'Cet appareil possède déjà une autorisation Push.':'Prêt à demander votre autorisation.';
   $('enable').disabled=false;
-  if(subscription){$('enable').textContent='Enregistrer mes préférences';$('disable').hidden=false;}
+  $('enable').hidden=preferencesActive;
+  $('disable').hidden=!subscription;
  }catch(e){$('serviceState').textContent='Service en cours de configuration. Revenez prochainement.';}
 }
+async function savePreferences(preferences){
+ const saved=await callServer({action:'subscribe',deviceToken:deviceToken(),subscription:subscription.toJSON(),preferences});
+ if(isMember)accountScope=saved.scope||preferences.scope;
+ message('Préférences enregistrées.');
+}
+$('notificationOptions').addEventListener('change',event=>{
+ if(!preferencesActive || !event.target.matches('input[type="checkbox"], input[name="scope"]'))return;
+ const preferences=prefs();
+ message('Enregistrement des préférences…');
+ preferenceWrites=preferenceWrites.then(()=>savePreferences(preferences)).catch(()=>{
+   message('Enregistrement impossible. Modifiez une option pour réessayer.',true);
+ });
+});
 $('enable').onclick=async()=>{
  const btn=$('enable');btn.disabled=true;message('');
  try{
@@ -232,23 +248,24 @@ $('enable').onclick=async()=>{
      subscription=await registration.pushManager.getSubscription()||
        await registration.pushManager.subscribe({userVisibleOnly:true,applicationServerKey:base64ToBytes(publicKey)});
    }
-   const preferences=prefs();
-   const saved=await callServer({action:'subscribe',deviceToken:deviceToken(),subscription:subscription.toJSON(),preferences});
-   if(isMember){accountScope=saved.scope||preferences.scope;chooseScope(accountScope);}
-   message(isMember?'Préférences enregistrées pour ton compte et tous tes appareils.':'Préférences enregistrées pour cet appareil.');
-   btn.textContent='Enregistrer mes préférences';$('disable').hidden=false;if(isMember)$('testRemote').disabled=false;
+   await savePreferences(prefs());
+   preferencesActive=true;btn.hidden=true;$('disable').hidden=false;
+   $('serviceState').textContent='Les notifications sont activées sur cet appareil.';
+   if(isMember)$('testRemote').disabled=false;
  }catch(e){message(e.message||'Activation impossible.',true)}finally{btn.disabled=false}
 };
 $('disable').onclick=async()=>{
  if(!subscription)return;
- $('disable').disabled=true;message('');
+ $('disable').disabled=true;preferencesActive=false;message('');
+ await preferenceWrites;
  try{
    await callServer({action:'unsubscribe',deviceToken:deviceToken(),endpoint:subscription.endpoint});
    await subscription.unsubscribe();subscription=null;
    localStorage.removeItem(tokenKey);
-   $('disable').hidden=true;$('enable').textContent='Activer les notifications';$('testRemote').disabled=true;
+   $('disable').hidden=true;$('enable').hidden=false;$('testRemote').disabled=true;
+   $('serviceState').textContent='Vous pouvez réactiver les notifications sur cet appareil.';
    message('Notifications désactivées sur cet appareil.');
- }catch(e){message(e.message||'Désactivation impossible.',true)}finally{$('disable').disabled=false}
+ }catch(e){preferencesActive=$('enable').hidden;message(e.message||'Désactivation impossible.',true)}finally{$('disable').disabled=false}
 };
 $('testRemote').onclick=async()=>{
  const btn=$('testRemote');btn.disabled=true;message('Demande envoyée au serveur…');
