@@ -1,6 +1,6 @@
 # Notifications Push — Écurie Initial
 
-## Fonctionnalités préparées
+## Fonctionnement
 - Visiteur non connecté : récapitulatif des **partants du jour à 10 h** (Europe/Paris), **résultats officiels** de tous les chevaux.
 - Associé connecté : **partant confirmé**, **rappel à 10 h**, **15 min avant**, **résultat officiel**, **non-partant / forfait** ; choix entre **mes chevaux** et **tout l'effectif**.
 - L'engagement seul ne déclenche **aucune notification**.
@@ -34,12 +34,26 @@ La présence des fichiers sur GitHub **ne suffit pas** à lancer les envois.
 
 ## Source des événements et vérification
 - Le moteur relit `/chevaux/data/editorial.json` et `/chevaux/data/chevaux.json`.
-- Statuts `partant` ou `declare` : rappels / confirmations.
-- Statuts `non-partant`, `forfait`, `elimine` : alerte d'annulation.
-- **Résultats officiels** : seules les performances dotées de `"officiel": true` (ou `"statut": "officiel"`) déclenchent une alerte. À ajouter **uniquement après vérification du classement officiel**. Aujourd'hui la source ne comporte pas ce drapeau par défaut ; les résultats ne partent donc pas automatiquement tant que le processus d'officialisation n'est pas raccordé.
+- Seul le statut `partant` déclenche les rappels et confirmations. Une déclaration de monte ne suffit pas.
+- Les retraits officiels `non-partant` / `np` sont limités aux associés détenant le cheval et annulent les rappels encore en attente.
+- **Résultats officiels** : vérifier les indicateurs `"officiel": true` ou `"statut": "officiel"` et le classement. Le moteur consulte aussi les arrivées définitives PMU ; les détails officiels sont joints à l'alerte avant la notification. Les essais administrateur sont explicitement signalés et ne créent pas de résultat de course public.
 - Première exécution : amorce l'état de référence pour éviter de notifier rétrospectivement tous les partants existants.
 - Contrôle d'idempotence en base : une alerte unique par événement et un journal d'envoi unique par appareil.
 - Heures des courses en fuseau Europe/Paris ; prise en compte des changements d'heure saisonniers.
+
+## Réparer une réception défaillante
+
+Dans l'application installée : **Notifications → actualiser → Réparer la réception sur ce téléphone**.
+
+- Le navigateur recrée sa connexion Push avec la même clé publique de l'Écurie et le même compte.
+- Les préférences sont lues avant toute modification, puis réenregistrées avec la nouvelle connexion.
+- L'ancienne inscription serveur n'est retirée qu'après enregistrement de la nouvelle, et seulement si son endpoint a changé. Aucune autre inscription n'est retirée.
+- Une nouvelle tentative reprend un enregistrement interrompu sans recréer en boucle une connexion déjà obtenue.
+- `last_seen_at` et `client_info` identifient l'inscription réellement utilisée, sa version de service worker et l'autorisation du navigateur. Ces données restent privées.
+- Un envoi accepté par le fournisseur Push ne prouve pas sa réception. Contrôler les accusés `received_at`, `shown_at` / `display_error`, puis la confirmation de la personne sur son téléphone verrouillé.
+- Les tests de l'administration passent par la vraie file des résultats, au moins 90 secondes après la demande. Ils sont strictement limités au compte sélectionné, respectent les préférences et le silence de 22 h 30 à 8 h.
+
+Contrôles sans envoi réel : `python scripts/verifier_application.py` et `node scripts/valider_reception_push.mjs`.
 
 ## Réserves avant production
 - Tester l'envoi réel sur Android et iPhone et la mise à jour de l'horaire d'une course.
