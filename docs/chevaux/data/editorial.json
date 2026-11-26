@@ -790,7 +790,79 @@
         "allocation_place": 1440,
         "reduction_km": "1′13″7",
         "ferrure": "PA",
-        "entraineur": "Laurent Barassin"
+        "entraineur": "Laurent Barassin",
+        "arrivee": [
+          {
+            "rang": 1,
+            "numero": 6,
+            "cheval": "NORTH OF STATE"
+          },
+          {
+            "rang": 2,
+            "numero": 11,
+            "cheval": "NOUCHKA ROYALE"
+          },
+          {
+            "rang": 3,
+            "numero": 2,
+            "cheval": "NOVELISTA"
+          },
+          {
+            "rang": 4,
+            "numero": 4,
+            "cheval": "NOSTALGIE DAIRPET"
+          },
+          {
+            "rang": 5,
+            "numero": 12,
+            "cheval": "NOTTINGHAM PLACE"
+          },
+          {
+            "rang": 6,
+            "numero": 16,
+            "cheval": "NARCISSE DE BLAY"
+          },
+          {
+            "rang": 7,
+            "numero": 10,
+            "cheval": "NEVERS DE BELLANDE"
+          },
+          {
+            "rang": 8,
+            "numero": 13,
+            "cheval": "NEURO BELLA"
+          },
+          {
+            "rang": 9,
+            "numero": 5,
+            "cheval": "NOBLE AVENUE"
+          },
+          {
+            "rang": 10,
+            "numero": 7,
+            "cheval": "NOGHERA COUNTESS"
+          },
+          {
+            "rang": 11,
+            "numero": 14,
+            "cheval": "NEWLIFE DE CAHOT"
+          },
+          {
+            "rang": 12,
+            "numero": 1,
+            "cheval": "NOUMEA DES BROUETS"
+          },
+          {
+            "rang": 13,
+            "numero": 9,
+            "cheval": "NAPOLI DU BOUFFEY"
+          },
+          {
+            "rang": 14,
+            "numero": 15,
+            "cheval": "NORTHFIELDS"
+          }
+        ]
       },
       {
         "date": "2026-10-17",

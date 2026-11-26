@@ -467,3 +467,7 @@
 .ei-result-details summary{padding:5px 0;color:#873900;font-weight:700;cursor:pointer}
 .ei-result-actions{display:flex;justify-content:flex-end;flex-wrap:wrap;align-items:center;gap:6px 12px;margin-top:9px}
 .ei-result-arrival{font-size:13px;font-weight:700;color:#873900;padding:6px 0;text-decoration:underline;text-underline-offset:2px}
+
+.ei-arrival-list{list-style:none;margin:6px 0 0;padding:0}
+.ei-arrival-list li{display:grid;grid-template-columns:2.5em 3.5em minmax(0,1fr);gap:5px;padding:4px 6px;border-top:1px solid #eadfd7}
+.ei-arrival-list .ei-arrival-current{background:#fff0e2;color:#873900;font-weight:750}

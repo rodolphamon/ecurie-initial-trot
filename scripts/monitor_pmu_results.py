@@ -154,7 +154,7 @@ def verified_participant(day, code, bib, expected_name):
     # La correspondance du nom est impérative : ne jamais déduire l'identité du seul dossard.
     if not remote or remote != expected:
         return None, f"Nom différent pour le n° {bib} : PMU={remote}; écurie={expected}"
-    return matches[0], None
+    return {**matches[0], "_participants": runners}, None
 
 
 def verify_identity(day, code, bib, expected_name):
@@ -183,7 +183,22 @@ def add_official_details(perf, race, runner, rank):
     suffix = {1: "1er", 2: "2eme", 3: "3eme", 4: "4eme", 5: "5eme"}.get(rank)
     tied = any(isinstance(group, list) and len(group) > 1
                and number(runner.get("numPmu")) in map(number, group) for group in race["ordreArrivee"])
+    names = {number(r.get("numPmu")): r.get("nom") for r in runner.get("_participants", [])
+             if isinstance(r, dict) and r.get("nom")}
+    arrival = []
+    for group in race["ordreArrivee"]:
+        group = group if isinstance(group, list) else [group]
+        place = len(arrival) + 1
+        for bib in map(number, group):
+            if bib not in names:
+                arrival = []
+                break
+            arrival.append({"rang": place, "numero": bib, "cheval": names[bib]})
+        else:
+            continue
+        break
     values = {
+        "arrivee": arrival,
         "prix": label(race.get("libelle")).capitalize(),
         "type": {"ATTELE": "Trot attelé", "MONTE": "Trot monté", "PLAT": "Plat",
                  "HAIE": "Haies", "STEEPLE CHASE": "Steeple-chase",
@@ -315,7 +330,7 @@ def apply(data, current, is_dry_run=False, probe=False, finalized=None):
     yesterday = (current.date() - timedelta(days=1)).isoformat()
     today = current.date().isoformat()
     catchup = [(slug, row) for slug, rows in data.get("performances", {}).items()
-               for row in rows if isinstance(row, dict) and row.get("officiel") is True and not row.get("partants")
+               for row in rows if isinstance(row, dict) and row.get("officiel") is True and not row.get("arrivee")
                and yesterday <= row.get("date", "") <= today
                and re.fullmatch(r"R\d+C\d+", str(row.get("course") or ""), re.I)
                and number(row.get("numero")) and slug in horse_names]

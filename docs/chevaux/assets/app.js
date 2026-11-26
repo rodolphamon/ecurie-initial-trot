@@ -402,7 +402,7 @@ function horse(s){
     && (engagementStatus(x,sex)?.kind!=='forfait'||x.date>twoDaysAhead)
   ).sort((a,b)=>(a.date+(a.heure||'23:59')).localeCompare(b.date+(b.heure||'23:59')));
   const tr=perf.length
-    ?'<ul class="ei-result-list">'+perf.map(x=>{
+    ?'<ul class="ei-result-list">'+perf.map((x,index)=>{
       const replay=s.replayIndex[x.date+'|'+normalizeSearch(p.name)];
       const course=absoluteUrl(x.course_url);
       const direct=absoluteUrl(x.video_url);
@@ -438,18 +438,16 @@ function horse(s){
       const fields=items=>items.filter(([,value])=>value).map(([label,value])=>
         '<div><dt>'+esc(label)+'</dt><dd>'+esc(value)+'</dd></div>').join('');
       const peopleMarkup=fields(people),detailMarkup=fields(details);
-      const raceCode=String(x.course||'').match(/^R(\d+)C(\d+)$/i);
-      const pmuArrival=raceCode&&x.officiel===true&&/^\d{4}-\d{2}-\d{2}$/.test(x.date)
-        ?'https://www.pmu.fr/turf/'+x.date.split('-').reverse().join('')+'/r'+raceCode[1]+'/c'+raceCode[2]+'/':'';
-      const arrival=absoluteUrl(x.arrivee_url)||pmuArrival||course;
-      const arrivalLink=arrival?'<a class="ei-result-arrival" href="'+esc(arrival)+'" target="_blank" rel="noopener noreferrer">Arrivée complète</a>':'';
+      const arrival=Array.isArray(x.arrivee)&&x.arrivee.length
+        ?'<details class="ei-result-details"><summary>Arrivée officielle</summary><p class="ei-result-meta">Chevaux classés</p><ol class="ei-arrival-list">'+x.arrivee.map(row=>
+          '<li'+(row.numero===x.numero?' class="ei-arrival-current"':'')+'><span>'+esc(row.rang)+(row.rang===1?'er':'e')+'</span><span>n° '+esc(row.numero)+'</span><span>'+esc(row.cheval)+'</span></li>').join('')+'</ol></details>':'';
       return '<li class="ei-result-card"><div class="ei-result-top"><span class="ei-result-date">'+esc([dateFR(x.date),x.hippodrome].filter(Boolean).join(' · '))+'</span>'
         +'<span class="ei-result-rank"'+(rank==='0'?' title="Au-delà de la 9e place ou rang exact non renseigné"':'')+'>'+esc(rankText||'—')+starters+'</span></div>'
         +(x.prix?'<div class="ei-result-race">'+esc(x.prix)+'</div>':'')
         +(specs?'<div class="ei-result-meta">'+esc(specs)+'</div>':'')
         +(peopleMarkup?'<dl class="ei-result-fields">'+peopleMarkup+'</dl>':'')
-        +(detailMarkup?'<details class="ei-result-details"><summary>Détails de la course</summary><dl class="ei-result-fields">'+detailMarkup+'</dl></details>':'')
-        +((arrivalLink||replayAvailable)?'<div class="ei-result-actions">'+arrivalLink+(replayAvailable?video:'')+'</div>':'')
+        +(detailMarkup?'<details class="ei-result-details"'+(index===0?' open':'')+'><summary>Détails de la course</summary><dl class="ei-result-fields">'+detailMarkup+'</dl></details>':'')
+        +arrival+(replayAvailable?'<div class="ei-result-actions">'+video+'</div>':'')
         +'</li>';
     }).join('')+'</ul>'
     :'<div class="empty">Aucune performance détaillée renseignée pour le moment.</div>';
