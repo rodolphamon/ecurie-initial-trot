@@ -3,6 +3,61 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {stripTypeScriptTypes} from 'node:module';
 import vm from 'node:vm';
+import {repairPushConnection} from '../docs/application/push-repair.js';
+
+function repairFixture({sameEndpoint=false,inactive=false,saveFailsOnce=false,cleanupFails=false}={}){
+  const order=[],requests=[];let localRemovals=0,browserSubscriptions=0,saveAttempts=0;
+  const preferences={audience:'associate',scope:'all',confirmed:true,daily:true,before15:true,results:true,
+    withdrawn:true,private_news:true,general_news:true,public_news:false};
+  const subscription={endpoint:'https://fcm.googleapis.com/old-current',async unsubscribe(){localRemovals++;order.push('local-unsubscribe');return true;}};
+  const replacement={endpoint:sameEndpoint?subscription.endpoint:'https://fcm.googleapis.com/new-current',toJSON(){return {endpoint:this.endpoint,keys:{p256dh:'test-key',auth:'test-auth'}};}};
+  const args={subscription,deviceToken:'test-device-token',applicationServerKey:new Uint8Array([1,2,3]),
+    registration:{pushManager:{async subscribe(options){
+      browserSubscriptions++;order.push('browser-subscribe');assert.equal(options.userVisibleOnly,true);return replacement;
+    }}},
+    async callServer(body){
+      requests.push(body);order.push(body.action);
+      if(body.action==='status')return {active:!inactive,preferences};
+      if(body.action==='subscribe'){
+        saveAttempts++;assert.deepEqual(body.preferences,preferences,'Tous les choix doivent être conservés');
+        assert.equal(body.subscription.endpoint,replacement.endpoint);
+        if(saveFailsOnce&&saveAttempts===1)throw Error('Réseau momentanément indisponible');
+        return {audience:'associate',scope:preferences.scope};
+      }
+      if(body.action==='unsubscribe'){
+        assert.equal(body.endpoint,subscription.endpoint,'Seule l’ancienne inscription de ce navigateur peut être retirée');
+        if(cleanupFails)throw Error('Nettoyage différé');
+        return {ok:true};
+      }
+      throw Error('Action inattendue');
+    },
+  };
+  return {args,order,requests,replacement,get localRemovals(){return localRemovals;},get browserSubscriptions(){return browserSubscriptions;}};
+}
+for(const options of [{},{sameEndpoint:true},{cleanupFails:true}]){
+  const f=repairFixture(options),result=await repairPushConnection(f.args);
+  assert.equal(result.subscription,f.replacement);
+  assert.equal(f.order[0],'status');
+  assert.equal(f.localRemovals,1);assert.equal(f.browserSubscriptions,1);
+  const cleanup=f.order.indexOf('unsubscribe');
+  assert.equal(cleanup>=0,!options.sameEndpoint);
+  if(cleanup>=0)assert.ok(f.order.indexOf('subscribe')<cleanup,'Enregistrer la nouvelle connexion avant de retirer l’ancienne');
+}
+{
+  const f=repairFixture({saveFailsOnce:true});let state;
+  try{await repairPushConnection(f.args);assert.fail('Le premier enregistrement doit échouer');}
+  catch(error){state=error.repairState;assert.ok(state);}
+  assert.equal(f.requests.some(r=>r.action==='unsubscribe'),false,'Ne pas retirer l’ancienne inscription serveur avant succès');
+  await repairPushConnection({...f.args,state});
+  assert.equal(f.browserSubscriptions,1,'Une reprise ne doit pas recréer la connexion en boucle');
+  assert.equal(f.localRemovals,1);
+}
+{
+  const f=repairFixture({inactive:true});
+  await assert.rejects(repairPushConnection(f.args),/plus enregistrée/);
+  assert.equal(f.localRemovals,0,'Une inscription non vérifiée ne doit pas être supprimée');
+}
+console.log('[OK] Réparation : choix conservés, connexion locale seule, enregistrement avant nettoyage et reprise sans double réinscription');
 
 const workerSource=readFileSync(new URL('../docs/application/sw.js',import.meta.url),'utf8');
 function worker({displayFails=false,displayHangs=false,cacheFails=false,cacheHangs=false}={}){
@@ -109,6 +164,10 @@ async function updateScenario({existing=true,path='/chevaux/moondance-okina/',fa
   await listeners.visibilitychange();assert.equal(calls.length,count);
   context.document.hidden=false;
   await listeners.visibilitychange();assert.equal(calls.length,count+1,'Le retour au premier plan doit vérifier le correctif');
+  const beforeRepair=calls.length;
+  listeners['ei-push-device-changed']();
+  for(let i=0;i<40;i++)await Promise.resolve();
+  assert.equal(calls.length,beforeRepair+1,'Une réparation doit identifier immédiatement la nouvelle inscription');
 }
 await updateScenario();
 await updateScenario({existing:false});

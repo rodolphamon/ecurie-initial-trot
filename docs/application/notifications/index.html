@@ -79,6 +79,7 @@ main{max-width:770px;padding:13px 14px 105px}
 <section class="card"><h2>Autorisation sur cet appareil</h2>
 <p id="serviceState" class="muted">Vérification du service de notifications…</p>
 <button type="button" class="secondary" id="disable" hidden>Arrêter sur cet appareil</button>
+<button type="button" class="secondary" id="repair" hidden>Réparer la réception sur ce téléphone</button>
 <p id="status" role="status" aria-live="polite"></p>
 <p class="muted">Sur iPhone, ajoutez d'abord Écurie Initial à l'écran d'accueil. Vous pourrez modifier vos choix ou désactiver les alertes à tout moment.</p>
 <p id="diagnosticLink" hidden><a href="../diagnostic-notifications/" style="display:inline-block;padding:12px 16px;border:1px solid #f47721;border-radius:9px;background:#fff7f0;color:#703109;text-decoration:none;font-weight:700">🔎 Diagnostic des notifications</a></p>
@@ -96,6 +97,7 @@ main{max-width:770px;padding:13px 14px 105px}
 </main>
 <script type="module">
 import {createClient} from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+import {repairPushConnection} from '../push-repair.js?v=20261126repair1';
 const API='https://yeecwaaizmvrhwobukfa.supabase.co/functions/v1/notifications';
 const KEY='sb_publishable_xUy2EJA3u3cKWl8BB4GNPQ_qhV9Pes3';
 const db=createClient('https://yeecwaaizmvrhwobukfa.supabase.co',KEY);
@@ -103,6 +105,7 @@ const $=id=>document.getElementById(id);
 let isMember=false,publicKey=null,registration=null,subscription=null,accountScope=null;
 let lastAuthenticatedAccessToken=null;
 let preferencesActive=false, activating=false, preferenceWrites=Promise.resolve();
+let repairState=null;
 function clearAlertChoices(){
  for(const input of $('notificationOptions').querySelectorAll('input[type="checkbox"]'))input.checked=false;
 }
@@ -219,6 +222,7 @@ async function init(){
   if(!preferencesActive)clearAlertChoices();
   $('serviceState').textContent=preferencesActive?'Les notifications sont activées sur cet appareil.':'Cochez une alerte pour activer les notifications sur cet appareil.';
   $('disable').hidden=!subscription;
+  $('repair').hidden=!preferencesActive;
  }catch(e){$('serviceState').textContent='Service en cours de configuration. Revenez prochainement.';}
 }
 async function savePreferences(preferences){
@@ -227,6 +231,7 @@ async function savePreferences(preferences){
  message('Préférences enregistrées.');
 }
 $('notificationOptions').addEventListener('change',event=>{
+ if(activating||repairState)return;
  if(!event.target.matches('input[type="checkbox"], input[name="scope"]'))return;
  if(!preferencesActive){
    if(event.target.type==='checkbox' && event.target.checked && !activating){
@@ -257,7 +262,7 @@ async function activateFromChoice(){
        await registration.pushManager.subscribe({userVisibleOnly:true,applicationServerKey:base64ToBytes(publicKey)});
    }
    await savePreferences(prefs());
-   preferencesActive=true;$('disable').hidden=false;
+   preferencesActive=true;$('disable').hidden=false;$('repair').hidden=false;
    $('serviceState').textContent='Les notifications sont activées sur cet appareil.';
    
  }catch(e){clearAlertChoices();message(e.message||'Activation impossible.',true)}
@@ -274,10 +279,39 @@ $('disable').onclick=async()=>{
    await subscription.unsubscribe();subscription=null;
    localStorage.removeItem(tokenKey);
    clearAlertChoices();
-   $('disable').hidden=true;
+   $('disable').hidden=true;$('repair').hidden=true;
    $('serviceState').textContent='Cochez une alerte pour réactiver les notifications sur cet appareil.';
    message('Notifications désactivées sur cet appareil.');
  }catch(e){preferencesActive=wasActive;message(e.message||'Désactivation impossible.',true)}finally{$('disable').disabled=false}
+};
+$('repair').onclick=async()=>{
+ if(activating||!registration||!publicKey||!subscription)return;
+ activating=true;$('repair').disabled=true;$('disable').disabled=true;
+ const inputs=[...$('notificationOptions').querySelectorAll('input')];
+ for(const input of inputs)input.disabled=true;
+ message('Réparation de la connexion de ce téléphone…');
+ try{
+   await preferenceWrites;
+   if(isMember){
+     const {data:{user},error}=await db.auth.getUser();
+     if(error||!user)throw Error('Reconnectez-vous à votre compte avant de réparer la réception.');
+   }
+   const repaired=await repairPushConnection({registration,subscription,
+     applicationServerKey:base64ToBytes(publicKey),deviceToken:deviceToken(),callServer,state:repairState});
+   subscription=repaired.subscription;repairState=null;preferencesActive=true;
+   if(isMember)accountScope=repaired.scope||repaired.preferences.scope;
+   $('serviceState').textContent='La connexion de notification de ce téléphone a été renouvelée.';
+   message('Connexion renouvelée. Vos choix sont conservés. La réception reste à vérifier.');
+   window.dispatchEvent(new Event('ei-push-device-changed'));
+ }catch(error){
+   repairState=error.repairState||repairState;
+   if(repairState?.subscription)subscription=repairState.subscription;
+   message(error.message||'Réparation impossible pour le moment.',true);
+ }finally{
+   activating=false;$('repair').disabled=false;$('disable').disabled=!!repairState;
+   $('repair').textContent=repairState?'Terminer la réparation':'Réparer la réception sur ce téléphone';
+   for(const input of inputs)input.disabled=!!repairState;
+ }
 };
 $('pushLatencyReport').onclick=async()=>{
  const btn=$('pushLatencyReport'),out=$('pushLatencyResult');
@@ -298,5 +332,5 @@ $('pushLatencyReport').onclick=async()=>{
 
 init();
 </script>
-<script defer src="../nav.js?v=20261126push-device-v17"></script>
+<script defer src="../nav.js?v=20261126push-repair1"></script>
 </body></html>

@@ -12,7 +12,7 @@
   // du worker. Vérifier aussi sa mise à jour depuis ces rubriques et au retour
   // de veille, sans recharger la page ni redemander une autorisation Push.
   if ("serviceWorker" in navigator) {
-    let updatingPushWorker = false, lastPushWorkerCheck = 0;
+    let updatingPushWorker = false, lastPushWorkerCheck = 0, pushDeviceChanged = false;
     const workerVersion = registration => new Promise(resolve => {
       if (!registration.active || typeof MessageChannel !== "function") return resolve(null);
       const channel = new MessageChannel();
@@ -63,11 +63,19 @@
         } finally { await recordPushDevice(registration); }
         lastPushWorkerCheck = Date.now();
       } catch (_) { /* La prochaine ouverture réessaiera si le réseau est indisponible. */ }
-      finally { updatingPushWorker = false; }
+      finally {
+        updatingPushWorker = false;
+        if(pushDeviceChanged){pushDeviceChanged=false;lastPushWorkerCheck=0;updatePushWorker();}
+      }
     };
     document.addEventListener("visibilitychange", updatePushWorker);
     window.addEventListener("pageshow", updatePushWorker);
     window.addEventListener("online", updatePushWorker);
+    window.addEventListener("ei-push-device-changed", () => {
+      lastPushWorkerCheck=0;
+      if(updatingPushWorker)pushDeviceChanged=true;
+      else updatePushWorker();
+    });
     updatePushWorker();
   }
   // En-tête Écurie Initial partagé par toutes les rubriques et fiches.
