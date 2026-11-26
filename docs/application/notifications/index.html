@@ -61,13 +61,14 @@ main{max-width:770px;padding:13px 14px 105px}
 </div></section>
 <section class="card"><h2>Mes alertes</h2>
 <div id="guestChecks">
-<div class="row"><input type="checkbox" id="daily" checked><label for="daily"><strong>Partants du jour à 10h00</strong><div class="muted">Une synthèse uniquement lorsqu'un cheval court.</div></label></div>
+<div class="row"><input type="checkbox" id="daily" checked><label for="daily"><strong>Rappel des partants du jour</strong><div class="muted">Une synthèse uniquement lorsqu'un cheval court.</div></label></div>
+<div class="row"><input type="checkbox" id="publicBefore15"><label for="publicBefore15"><strong>15 minutes avant le départ</strong><div class="muted">Un rappel avant les courses de l’Écurie.</div></label></div>
 <div class="row"><input type="checkbox" id="results" checked><label for="results"><strong>Résultats officiels</strong><div class="muted">Dès validation du résultat.</div></label></div>
 </div>
 <div class="row"><input type="checkbox" id="publicNews" checked><label for="publicNews"><strong>📢 Annonces publiques de l’Écurie</strong><div class="muted">Messages officiels destinés à toute la communauté, y compris aux supporters sans cheval.</div></label></div>
 <div id="memberChecks" hidden>
 <div class="row"><input type="checkbox" id="confirmed" checked><label for="confirmed"><strong>Partant confirmé</strong><div class="muted">À la déclaration du partant.</div></label></div>
-<div class="row"><input type="checkbox" id="reminder10" checked><label for="reminder10"><strong>Rappel à 10h00</strong><div class="muted">Le jour de la course.</div></label></div>
+<div class="row"><input type="checkbox" id="reminder10" checked><label for="reminder10"><strong>Rappel des partants du jour</strong><div class="muted">Le jour de la course.</div></label></div>
 <div class="row"><input type="checkbox" id="before15" checked><label for="before15"><strong>15 minutes avant le départ</strong></label></div>
 <div class="row"><input type="checkbox" id="resultMember" checked><label for="resultMember"><strong>Résultat officiel</strong></label></div>
 <div class="row"><input type="checkbox" id="withdrawn" checked><label for="withdrawn"><strong>Non-partant</strong></label></div>
@@ -122,7 +123,7 @@ function chooseScope(scope){
 function prefs(){return isMember?{
   scope:document.querySelector('input[name="scope"]:checked').value,
   confirmed:checked('confirmed'),daily:checked('reminder10'),before15:checked('before15'),results:checked('resultMember'),withdrawn:checked('withdrawn'),private_news:checked('privateNews'),general_news:checked('generalNews'),public_news:checked('publicNews')
-}:{scope:'all',confirmed:false,daily:checked('daily'),before15:false,results:checked('results'),withdrawn:false,private_news:false,general_news:false,public_news:checked('publicNews')}}
+}:{scope:'all',confirmed:false,daily:checked('daily'),before15:checked('publicBefore15'),results:checked('results'),withdrawn:false,private_news:false,general_news:false,public_news:checked('publicNews')}}
 function base64ToBytes(str){const padding='='.repeat((4-str.length%4)%4);const raw=atob((str+padding).replace(/-/g,'+').replace(/_/g,'/'));return Uint8Array.from(raw,c=>c.charCodeAt(0))}
 function deviceToken(){let t=localStorage.getItem(tokenKey);if(!t){t=Array.from(crypto.getRandomValues(new Uint8Array(32)),x=>x.toString(16).padStart(2,'0')).join('');localStorage.setItem(tokenKey,t)}return t}
 async function callServer(body){
@@ -208,6 +209,7 @@ async function init(){
           chooseScope(accountScope||p.scope);
         }else{
           $('daily').checked=!!p.daily;
+          $('publicBefore15').checked=p.before15===true;
           $('results').checked=!!p.results;
         }
       }
