@@ -26,12 +26,33 @@ const silkName=p=>p.casaque==='galop'?'casaque-galop.svg':p.casaque==='orange'?'
 const silk=p=>base+'../assets/'+silkName(p);
 function photoMarkup(p,style){let img=p.photoUrl||base+'photos/'+p.id+'.jpg?v='+encodeURIComponent(p.photoVersion||'1');return '<div class="'+(style==='hero'?'hero-photo':'horse-card-photo')+'">'+(style==='card'?'<span class="kind">'+esc(p.discipline)+'</span>':'')+'<img class="photo" src="'+img+'" alt="Photo de '+esc(p.name)+'" loading="lazy" onerror="this.hidden=true;this.nextElementSibling.hidden=false;this.parentNode.classList.add(\'no-photo\')" /><img class="silk" hidden src="'+silk(p)+'" alt="Casaque de l’Écurie Initial"/>'+(style==='hero'?'<span class="placeholder-tag" hidden>Photographie à venir</span>':'')+'</div>'}
 
+// Une copie GitHub encore en cache ne doit pas effacer les montes déjà vérifiées.
+function mergeArrivalDetails(previous,incoming){
+  if(!previous||previous.officiel!==true||incoming.officiel!==true
+    ||previous.date!==incoming.date
+    ||normalizeSearch(previous.hippodrome)!==normalizeSearch(incoming.hippodrome)
+    ||normalizeSearch(previous.rang)!==normalizeSearch(incoming.rang)
+    ||previous.course&&incoming.course&&previous.course.toUpperCase()!==incoming.course.toUpperCase()
+    ||!Array.isArray(previous.arrivee)||!Array.isArray(incoming.arrivee))return incoming;
+  const key=row=>JSON.stringify([row.rang,row.numero,normalizeSearch(row.cheval)]);
+  const known=new Map(previous.arrivee.map(row=>[key(row),row]));
+  return {...incoming,arrivee:incoming.arrivee.map(row=>({...known.get(key(row)),...row}))};
+}
+
 // Résultats officiels déjà enregistrés par le moteur push, sans attendre GitHub Pages.
 async function freshPerformances(editor){
   const merged={...(editor.performances||{})};
   try{
     const response=await fetch('https://raw.githubusercontent.com/rodolphamon/ecurie-initial-trot/main/docs/chevaux/data/editorial.json?v='+Date.now(),{cache:'no-store',signal:AbortSignal.timeout(4500)});
-    if(response.ok){const data=await response.json();Object.assign(merged,data.performances||{});}
+    if(response.ok){
+      const data=await response.json();
+      for(const [slug,rows] of Object.entries(data.performances||{})){
+        if(!Array.isArray(rows))continue;
+        const previous=merged[slug]||[];
+        merged[slug]=rows.map(row=>mergeArrivalDetails(previous.find(p=>p.date===row.date
+          &&normalizeSearch(p.hippodrome)===normalizeSearch(row.hippodrome)),row));
+      }
+    }
   }catch(e){console.info('Source GitHub directe indisponible',e)}
   try{
     const response=await fetch('https://yeecwaaizmvrhwobukfa.supabase.co/functions/v1/public-race-results',{cache:'no-store',signal:AbortSignal.timeout(4500)});
@@ -439,8 +460,8 @@ function horse(s){
         '<div><dt>'+esc(label)+'</dt><dd>'+esc(value)+'</dd></div>').join('');
       const peopleMarkup=fields(people),detailMarkup=fields(details);
       const arrival=Array.isArray(x.arrivee)&&x.arrivee.length
-        ?'<details class="ei-result-details"><summary>Arrivée officielle</summary><p class="ei-result-meta">Chevaux classés</p><ol class="ei-arrival-list">'+x.arrivee.map(row=>
-          '<li'+(row.numero===x.numero?' class="ei-arrival-current"':'')+'><span>'+esc(row.rang)+(row.rang===1?'er':'e')+'</span><span class="ei-arrival-horse">'+esc(row.cheval)+'</span><span class="ei-arrival-monte">'+esc(row.driver||row.jockey||row.monte||(row.numero===x.numero&&(x.driver||x.jockey))||'—')+'</span></li>').join('')+'</ol></details>':'';
+        ?'<details class="ei-result-details"><summary>Arrivée officielle</summary><p class="ei-result-meta">Chevaux classés</p><div class="ei-arrival-view"><div class="ei-arrival-scroll" id="ei-arrival-scroll-'+index+'" role="region" aria-label="Arrivée officielle, défilement horizontal" tabindex="0"><ol class="ei-arrival-list">'+x.arrivee.map(row=>
+          '<li'+(row.numero===x.numero?' class="ei-arrival-current"':'')+'><span>'+esc(row.rang)+(row.rang===1?'er':'e')+'</span><span class="ei-arrival-horse">'+esc(row.cheval)+'</span><span class="ei-arrival-monte">'+esc(row.driver||row.jockey||row.monte||(row.numero===x.numero&&(x.driver||x.jockey))||'—')+'</span></li>').join('')+'</ol></div><input class="ei-arrival-slider" type="range" min="0" max="100" step="any" value="0" aria-label="Faire défiler l’arrivée vers la droite ou la gauche" aria-controls="ei-arrival-scroll-'+index+'" hidden></div></details>':'';
       return '<li class="ei-result-card"><div class="ei-result-top"><span class="ei-result-date">'+esc([dateFR(x.date),x.hippodrome].filter(Boolean).join(' · '))+'</span>'
         +'<span class="ei-result-rank"'+(rank==='0'?' title="Au-delà de la 9e place ou rang exact non renseigné"':'')+'>'+esc(rankText||'—')+starters+'</span></div>'
         +(x.prix?'<div class="ei-result-race">'+esc(x.prix)+'</div>':'')
@@ -510,6 +531,25 @@ function horse(s){
     +'</main>'+footer();
 }
 
+function initArrivalScroll(){
+  for(const view of document.querySelectorAll('.ei-arrival-view')){
+    const scroller=view.querySelector('.ei-arrival-scroll');
+    const slider=view.querySelector('.ei-arrival-slider');
+    const sync=()=>{
+      const maximum=scroller.scrollWidth-scroller.clientWidth;
+      slider.hidden=maximum<=1;
+      slider.value=maximum>0?String(100*scroller.scrollLeft/maximum):'0';
+    };
+    scroller.addEventListener('scroll',sync,{passive:true});
+    slider.addEventListener('input',()=>{
+      scroller.scrollLeft=(scroller.scrollWidth-scroller.clientWidth)*Number(slider.value)/100;
+    });
+    view.closest('details')?.addEventListener('toggle',sync);
+    new ResizeObserver(sync).observe(scroller);
+    sync();
+  }
+}
+
 
 /* Barre commune, conservée dans le catalogue et les fiches de tous les chevaux. */
 const eiNavScript=document.createElement('script');
@@ -538,5 +578,5 @@ function watchFreshResults(state){
   window.addEventListener('online',()=>{void check(true)});
   setInterval(()=>{void check()},60000);
 }
-load().then(s=>{if(document.body.dataset.page==='fiche'){horse(s);if(location.hash==='#performances')$('#performances')?.scrollIntoView();}else catalog(s);watchFreshResults(s)}).catch(err=>{console.error(err);$('#app').innerHTML=header()+'<main class="shell"><div class="error"><h1>Informations temporairement indisponibles</h1><p>Le catalogue n’a pas pu être chargé. Réessayez en actualisant la page.</p><p><a href="https://www.ecurie-initial.com/">Retour au site officiel</a></p></div></main>'+footer()});
+load().then(s=>{if(document.body.dataset.page==='fiche'){horse(s);initArrivalScroll();if(location.hash==='#performances')$('#performances')?.scrollIntoView();}else catalog(s);watchFreshResults(s)}).catch(err=>{console.error(err);$('#app').innerHTML=header()+'<main class="shell"><div class="error"><h1>Informations temporairement indisponibles</h1><p>Le catalogue n’a pas pu être chargé. Réessayez en actualisant la page.</p><p><a href="https://www.ecurie-initial.com/">Retour au site officiel</a></p></div></main>'+footer()});
 })();
