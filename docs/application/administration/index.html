@@ -208,7 +208,15 @@ body[data-admin-view="actions"] #actions:not([hidden]){display:block!important}
 .member-type-filter button:focus-visible{outline:2px solid #9d470c;outline-offset:2px}
 @media(max-width:650px){.member-type-filter{gap:4px;margin:7px 0}.member-type-filter button{font-size:11px;padding:8px 3px;min-height:36px}}
 
-/* Indicateurs mobiles : quatre compteurs compacts, recalculés sur les membres visibles. */
+/* Recherche locale des membres, indépendante des droits d'accès. */
+.member-search{position:relative;display:flex;align-items:center;gap:8px;margin:9px 0 12px;padding:0 11px;background:#fff;border:1px solid #e7dfd6;border-radius:9px}
+.member-search:focus-within{border-color:#f47721;box-shadow:0 0 0 2px #f4772126}
+.member-search svg{flex:none;color:#76675d}
+.member-search input{width:100%;min-width:0;min-height:40px;margin:0;padding:8px 0;border:0;background:transparent;box-shadow:none;outline:none;font-size:16px;color:inherit}
+.member-search input:focus{outline:none;box-shadow:none}
+.member-search input::-webkit-search-cancel-button{cursor:pointer}
+#memberSearchEmpty{margin:10px 0;color:#625952;font-size:13px}
+ /* Indicateurs mobiles : quatre compteurs compacts, recalculés sur les membres visibles. */
 .access-summary{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;margin:10px 0 9px}
 .access-summary .metric-card{min-width:0;min-height:74px;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:8px 3px;background:#faf8f5;border:1px solid #e8ded3;border-radius:10px;text-align:center}
 .access-summary .metric-card strong{font-size:23px;line-height:1.12;color:#25211d;font-variant-numeric:tabular-nums}
@@ -245,7 +253,7 @@ body[data-admin-view="actions"] #actions:not([hidden]){display:block!important}
 <div class="metric-card"><strong id="summaryConnected">—</strong><span>Déjà connectés</span></div>
 <div class="metric-card"><strong id="summaryUsers">—</strong><span>Ont ouvert</span></div>
 <div class="metric-card highlight"><strong id="summaryOpenings">—</strong><span>Ouvertures</span></div>
-</div><div id="memberTypeFilter" class="member-type-filter" role="group" aria-label="Filtrer les comptes par type" data-active="tous"><button type="button" data-member-type="tous" aria-pressed="true">Tous</button><button type="button" data-member-type="associe" aria-pressed="false">Associés</button><button type="button" data-member-type="exterieur" aria-pressed="false">Extérieurs</button><button type="button" data-member-type="observateur" aria-pressed="false">Équipe</button><button type="button" data-member-type="presse" aria-pressed="false">Presse</button></div><p id="registrationTrackingError" class="warning" role="alert" hidden>Le suivi des inscriptions et des ouvertures est momentanément indisponible. Les données historiques ne sont pas effacées ; les statistiques ne peuvent pas être affichées pour le moment.</p><label id="archivedToggle" hidden><input type="checkbox" id="showArchivedAccounts"><span id="archivedToggleLabel">Afficher les anciennes invitations</span></label><div class="members-table-wrap"><table><thead><tr><th>Membre</th><th>Statut</th><th>Suivi des accès</th><th>Rôle</th><th>Gestion du compte</th></tr></thead><tbody id="members"></tbody></table></div><p class="muted" id="count"></p></div></div><div class="panel" id="registryPanel" hidden>
+</div><div id="memberTypeFilter" class="member-type-filter" role="group" aria-label="Filtrer les comptes par type" data-active="tous"><button type="button" data-member-type="tous" aria-pressed="true">Tous</button><button type="button" data-member-type="associe" aria-pressed="false">Associés</button><button type="button" data-member-type="exterieur" aria-pressed="false">Extérieurs</button><button type="button" data-member-type="observateur" aria-pressed="false">Équipe</button><button type="button" data-member-type="presse" aria-pressed="false">Presse</button></div><div class="member-search"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="m16 16 5 5"></path></svg><input type="search" id="memberSearch" aria-label="Rechercher un membre par nom ou prénom" placeholder="Rechercher un membre…" autocomplete="off" spellcheck="false"></div><p id="memberSearchEmpty" role="status" hidden>Aucun membre ne correspond à votre recherche.</p><p id="registrationTrackingError" class="warning" role="alert" hidden>Le suivi des inscriptions et des ouvertures est momentanément indisponible. Les données historiques ne sont pas effacées ; les statistiques ne peuvent pas être affichées pour le moment.</p><label id="archivedToggle" hidden><input type="checkbox" id="showArchivedAccounts"><span id="archivedToggleLabel">Afficher les anciennes invitations</span></label><div class="members-table-wrap"><table><thead><tr><th>Membre</th><th>Statut</th><th>Suivi des accès</th><th>Rôle</th><th>Gestion du compte</th></tr></thead><tbody id="members"></tbody></table></div><p class="muted" id="count"></p></div></div><div class="panel" id="registryPanel" hidden>
 <h2>📒 Répertoire des associés</h2>
 <p>Retrouvez ici les personnes de votre liste initiale, même si elles n'ont pas encore créé leur compte. Aucun e-mail n'est envoyé depuis cette liste.</p>
 <label for="registrySearch">Rechercher un associé déjà répertorié</label>
@@ -657,6 +665,7 @@ async function init(){
    const tr=make('tr');tr.classList.add('member-row');
    tr.dataset.memberType=['associe','exterieur','observateur','presse'].includes(m.type_compte)?m.type_compte:'associe';
    tr.dataset.teamMember=String(m.type_compte==='observateur'||teamTrainerIds.has(m.user_id));
+   tr.dataset.memberName=normName(m.nom_affiche);
    if(!m.actif && /\(ancienne invitation\)/i.test(m.nom_affiche)){
     tr.dataset.archived='true';
     tr.hidden=true;
@@ -782,17 +791,20 @@ async function init(){
   const updateMemberList=()=>{
    const selected=filterBar.dataset.active||'tous';
    const includeArchived=$('showArchivedAccounts').checked;
+   const terms=normName($('memberSearch').value).split(' ').filter(Boolean);
    let visible=0,connected=0,users=0,openings=0;
    for(const row of $('members').querySelectorAll('tr.member-row')){
     const matchingType=selected==='tous'||(selected==='observateur'?row.dataset.teamMember==='true':row.dataset.memberType===selected);
     const matchingArchive=row.dataset.archived!=='true'||includeArchived;
-    row.hidden=!(matchingType&&matchingArchive);
+    const matchingName=terms.every(term=>(row.dataset.memberName||'').includes(term));
+    row.hidden=!(matchingType&&matchingArchive&&matchingName);
     if(row.hidden)continue;
     visible++;
     if(row.dataset.hasConnection==='true')connected++;
     if(row.dataset.hasOpenings==='true')users++;
     openings+=Number(row.dataset.openings||0);
    }
+   $('memberSearchEmpty').hidden=!(terms.length&&visible===0);
    const trackingAvailable=Object.keys(registrationStatuses).length>0;
    $('summaryAccounts').textContent=String(visible);
    $('summaryConnected').textContent=trackingAvailable?String(connected):'—';
@@ -812,6 +824,7 @@ async function init(){
    $('archivedToggleLabel').textContent='Afficher les '+archivedCount+' ancienne(s) invitation(s) archivée(s)';
   }
   $('showArchivedAccounts').addEventListener('change',updateMemberList);
+  $('memberSearch').addEventListener('input',updateMemberList);
   updateMemberList();
 
   $('adminDashboard').hidden=false;$('content').hidden=false;$('actions').hidden=false;$('privateNewsPanel').hidden=false;$('contributorPanel').hidden=false;$('tribunePanel').hidden=false;
