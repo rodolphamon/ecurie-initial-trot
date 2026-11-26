@@ -647,12 +647,16 @@ async function init(){
 
   if(error)throw error;
   membersForReminders=members;
+  // Un même compte peut être associé/extérieur ET membre de l’équipe entraîneurs.
+  const {data:trainerAccounts,error:trainerAccountsError}=await db.from('ei_entraineurs').select('user_id').eq('actif',true);
+  const teamTrainerIds=new Set(trainerAccountsError?[]:(trainerAccounts||[]).map(r=>r.user_id));
    setupReminderPanel();
    registeredNames=new Set(members.filter(m=>!/\(ancienne invitation\)/i.test(m.nom_affiche)).map(m=>normName(m.nom_affiche)));
   let archivedCount=0;
   for(const m of members){
    const tr=make('tr');tr.classList.add('member-row');
    tr.dataset.memberType=['associe','exterieur','observateur','presse'].includes(m.type_compte)?m.type_compte:'associe';
+   tr.dataset.teamMember=String(m.type_compte==='observateur'||teamTrainerIds.has(m.user_id));
    if(!m.actif && /\(ancienne invitation\)/i.test(m.nom_affiche)){
     tr.dataset.archived='true';
     tr.hidden=true;
@@ -780,7 +784,7 @@ async function init(){
    const includeArchived=$('showArchivedAccounts').checked;
    let visible=0,connected=0,users=0,openings=0;
    for(const row of $('members').querySelectorAll('tr.member-row')){
-    const matchingType=selected==='tous'||row.dataset.memberType===selected;
+    const matchingType=selected==='tous'||(selected==='observateur'?row.dataset.teamMember==='true':row.dataset.memberType===selected);
     const matchingArchive=row.dataset.archived!=='true'||includeArchived;
     row.hidden=!(matchingType&&matchingArchive);
     if(row.hidden)continue;
