@@ -80,11 +80,11 @@ main{max-width:770px;padding:13px 14px 105px}
 <p id="serviceState" class="muted">Vérification du service de notifications…</p>
 <button type="button" id="enable" disabled>Activer les notifications</button>
 <button type="button" class="secondary" id="disable" hidden>Arrêter sur cet appareil</button>
-<button type="button" class="secondary" id="testRemote" disabled>📨 Envoyer un test serveur sur ce téléphone</button>
+<button type="button" class="secondary" id="testRemote" hidden disabled>📨 Envoyer un test serveur sur ce téléphone</button>
 <p id="status" role="status" aria-live="polite"></p>
 <p class="muted">Sur iPhone, ajoutez d'abord Écurie Initial à l'écran d'accueil. Vous pourrez modifier vos choix ou désactiver les alertes à tout moment.</p>
-<p><a href="../diagnostic-notifications/" style="display:inline-block;padding:12px 16px;border:1px solid #f47721;border-radius:9px;background:#fff7f0;color:#703109;text-decoration:none;font-weight:700">🔎 Diagnostic des notifications</a></p>
-<p class="muted">Le diagnostic local vérifie l’affichage. Le bouton « Test serveur » envoie une vraie notification Push à ce téléphone uniquement, sans avertir les autres associés. Sur iPhone, ouvrez cette rubrique depuis l’application installée.</p></section>
+<p id="diagnosticLink" hidden><a href="../diagnostic-notifications/" style="display:inline-block;padding:12px 16px;border:1px solid #f47721;border-radius:9px;background:#fff7f0;color:#703109;text-decoration:none;font-weight:700">🔎 Diagnostic des notifications</a></p>
+<p id="diagnosticHelp" class="muted" hidden>Le diagnostic local vérifie l’affichage. Le bouton « Test serveur » envoie une vraie notification Push à ce téléphone uniquement, sans avertir les autres associés. Sur iPhone, ouvrez cette rubrique depuis l’application installée.</p></section>
 <section class="card" id="myPhonePanel" hidden>
 <h2>📱 Tester mon Samsung depuis l’ordinateur</h2>
 <p class="muted">Sur ton Samsung, clique une seule fois sur « Désigner cet appareil comme mon téléphone ». Ensuite, verrouille-le et clique sur « Envoyer le test au Samsung » depuis ton ordinateur. Aucun autre appareil ne recevra ce test.</p>
@@ -170,7 +170,7 @@ async function init(){
     isMember=!!a?.actif&&['associe','observateur'].includes(a.type_compte);
     if(isMember){accountScope=a.notification_scope==='all'?'all':'mine';chooseScope(accountScope);}
     if(a?.actif&&['exterieur','presse'].includes(a.type_compte)){$('profile').textContent=(a.type_compte==='presse'?'Presse':'Membre extérieur')+' · '+a.nom_affiche;$('profileText').textContent='Notifications publiques des courses, résultats et annonces de l’Écurie. Les informations privées restent réservées aux propriétaires.';}
-    if(isMember){$('profile').textContent='Espace associé · '+a.nom_affiche;$('profileText').hidden=true;$('scopeBox').hidden=false;$('guestChecks').hidden=true;$('memberChecks').hidden=false;if(a.administrateur){$('myPhonePanel').hidden=false;}}
+    if(isMember){$('profile').textContent='Espace associé · '+a.nom_affiche;$('profileText').hidden=true;$('scopeBox').hidden=false;$('guestChecks').hidden=true;$('memberChecks').hidden=false;if(a.administrateur){for(const id of ['myPhonePanel','testRemote','diagnosticLink','diagnosticHelp'])$(id).hidden=false;}}
   }
   registration=await navigator.serviceWorker.register('../sw.js');
   subscription=await registration.pushManager.getSubscription();
