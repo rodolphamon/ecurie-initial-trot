@@ -89,89 +89,76 @@
     {
       "date": "2026-11-29",
       "hippodrome": "Reims",
-      "course": "C1",
+      "course": "R16C1",
       "cheval_slug": "memphis-belle",
       "partants": [
         {
           "numero": 1,
           "cheval": "MEMPHIS BELLE",
-          "driver": "J. MAILLARD",
-          "ferrure": "D4"
+          "jockey": "J. MAILLARD"
         },
         {
           "numero": 2,
           "cheval": "MATRIARCHE RENKA",
-          "driver": "E. CALLIER",
-          "ferrure": "F4"
+          "jockey": "Mlle E. CALLIER"
         },
         {
           "numero": 3,
           "cheval": "MINOS DE LA VALLEE",
-          "driver": "L. PITON",
-          "ferrure": "DP"
+          "jockey": "L. PITON"
         },
         {
           "numero": 4,
           "cheval": "MALOU DE DIGEON",
-          "driver": "CL. VERVA",
-          "ferrure": "PADP"
+          "jockey": "Mme CL. VERVA"
         },
         {
           "numero": 5,
           "cheval": "MAESTRO GRIFF",
-          "driver": "J. FERRON",
-          "ferrure": "D4"
+          "jockey": "J. FERRON"
         },
         {
           "numero": 6,
           "cheval": "MILAN PRIMO",
-          "driver": "A. COLLETTE",
-          "ferrure": "PADP"
+          "jockey": "A. COLLETTE"
         },
         {
           "numero": 7,
           "cheval": "MON AMIRAL DU TAY",
-          "driver": "ANDREA ROUSSEL",
-          "ferrure": "DA"
+          "jockey": "ANDREA ROUSSEL"
         },
         {
           "numero": 8,
           "cheval": "MERCURY JIEL",
-          "driver": "P.Y. VERVA",
-          "ferrure": "P4"
+          "jockey": "P.Y. VERVA"
         },
         {
           "numero": 9,
           "cheval": "MAGNOLIA NAY",
-          "driver": "M. LELIEVRE",
-          "ferrure": "DA"
+          "jockey": "M. LELIEVRE"
         },
         {
           "numero": 10,
           "cheval": "MADO D'AVRIL",
-          "driver": "M. MOTTIER",
-          "ferrure": "PADP"
+          "jockey": "M. MOTTIER"
         },
         {
           "numero": 11,
           "cheval": "MIDI DE GUERINIERE",
-          "driver": "V. SAUSSAYE",
-          "ferrure": "D4"
+          "jockey": "V. SAUSSAYE"
         },
         {
           "numero": 12,
           "cheval": "MANGALYA",
-          "driver": "TH. DROMIGNY",
-          "ferrure": "F4"
+          "jockey": "TH. DROMIGNY"
         },
         {
           "numero": 13,
           "cheval": "MAYA DU CHEVREL",
-          "driver": "M. BEUDARD",
-          "ferrure": "D4"
+          "jockey": "Mlle M. BEUDARD"
         }
       ],
-      "source_description": "Liste des partants communiquée par le gérant le 26/11/2026 (capture Infonet LeTROT ; réunion PMU à confirmer)."
+      "source_api": "https://online.turfinfo.api.pmu.fr/rest/client/1/programme/29112026/R16/C1/participants"
     }
   ]
 }
