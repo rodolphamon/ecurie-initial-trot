@@ -11410,7 +11410,8 @@
         "ferrure": "D4",
         "heure": "13:30",
         "surface": "Sable",
-        "type_course": "Course F"
+        "type_course": "Course F",
+        "course": "R16C1"
       },
       {
         "date": "2026-11-30",
