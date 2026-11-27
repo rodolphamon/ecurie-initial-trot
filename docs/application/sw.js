@@ -1,7 +1,7 @@
 // Service Worker de l'application Écurie Initial.
 // Cache minimal ; aucun contenu privé conservé volontairement en cache.
-const CACHE='ei-app-shell-v17';
-const WORKER_VERSION='20261126-push-v17';
+const CACHE='ei-app-shell-v18';
+const WORKER_VERSION='20261127-push-v18';
 // Le cache facultatif ne doit pas laisser une mise à jour en installation
 // ou en activation indéfiniment si le stockage du navigateur se bloque.
 function optionalWork(work,ms=3000){
@@ -63,20 +63,50 @@ function recordPushStatus(status,error,details){
 }
 // Accusés de réception facultatifs : un serveur indisponible ne doit jamais
 // empêcher l'affichage d'une notification.
-async function reportPushReceipt(id,status,at,error){
- if(typeof id!=='string'||!/^[0-9a-f-]{36}$/i.test(id))return;
+// Durable outbox: each receipt is independent, including received and shown.
+function receiptStore(mode, action){
+ return new Promise((resolve,reject)=>{
+  const req=indexedDB.open('ei-push-outbox-v1',1);
+  req.onupgradeneeded=()=>req.result.createObjectStore('receipts',{keyPath:'key'});
+  req.onerror=()=>reject(req.error); req.onblocked=()=>reject(new Error('blocked'));
+  req.onsuccess=()=>{
+   const db=req.result; let tx;
+   try{tx=db.transaction('receipts',mode); const op=action(tx.objectStore('receipts'));
+    tx.oncomplete=()=>{db.close();resolve(op.result)};
+    tx.onerror=tx.onabort=()=>{db.close();reject(tx.error)};
+   }catch(e){db.close();reject(e)}
+  };
+ });
+}
+async function transmitReceipt(entry){
  const controller=new AbortController();
  const timer=setTimeout(()=>controller.abort(),5000);
  try{
-  await fetch('https://yeecwaaizmvrhwobukfa.supabase.co/functions/v1/push-receipt',{
-   method:'POST',
-   headers:{'Content-Type':'application/json'},
-   body:JSON.stringify({id,status,at,error:error||null}),
+  const response=await fetch('https://yeecwaaizmvrhwobukfa.supabase.co/functions/v1/push-receipt',{
+   method:'POST',headers:{'Content-Type':'application/json'},
+   body:JSON.stringify({id:entry.id,status:entry.status,at:entry.at,error:entry.error}),
    cache:'no-store',signal:controller.signal
   });
- }catch(_){/* Échec télémétrie sans impact utilisateur. */}
- finally{clearTimeout(timer);}
+  if(response.ok)await optionalWork(()=>receiptStore('readwrite',s=>s.delete(entry.key)),1000);
+ }catch(_){}finally{clearTimeout(timer)}
 }
+async function reportPushReceipt(id,status,at,error){
+ if(typeof id!=='string'||!/^[0-9a-f-]{36}$/i.test(id))return;
+ const entry={key:id+':'+status,id,status,at,error:error||null};
+ await optionalWork(()=>receiptStore('readwrite',s=>s.put(entry)),800);
+ await transmitReceipt(entry);
+}
+async function flushReceipts(){
+ let entries=[];
+ await optionalWork(async()=>{entries=await receiptStore('readonly',s=>s.getAll())},800);
+ const cutoff=Date.now()-7*86400000;
+ const expired=entries.filter(e=>Date.parse(e.at)<cutoff);
+ await optionalWork(()=>Promise.all(expired.map(e=>receiptStore('readwrite',s=>s.delete(e.key)))),800);
+ await Promise.allSettled(entries.filter(e=>Date.parse(e.at)>=cutoff).slice(0,12).map(transmitReceipt));
+}
+self.addEventListener('message',event=>{
+ if(event.data?.type==='ei-push-worker-info')event.waitUntil(optionalWork(flushReceipts,6500));
+});
 self.addEventListener('push',event=>{
   event.waitUntil((async()=>{
     let payload={};
@@ -106,16 +136,17 @@ self.addEventListener('push',event=>{
     const receivedReport=reportPushReceipt(receiptId,'received',receivedAt);
     const localReceived=recordPushStatus('received',null,{at:receivedAt,version:WORKER_VERSION});
     let displayStatus='shown',displayError=null;
-    try{await displayTask}catch(e){
-      displayStatus='error';displayError=e instanceof Error?e.name:'erreur d’affichage';
-    }
+    let displayTimer;
+    try{await Promise.race([displayTask,new Promise((_,reject)=>{displayTimer=setTimeout(()=>reject(new Error('display-timeout')),12000)})])}catch(e){
+      displayStatus='error';displayError=e?.message==='display-timeout'?'display-timeout':e instanceof Error?e.name:'erreur d’affichage';
+    }finally{clearTimeout(displayTimer)}
     const displayAt=new Date().toISOString();
     const local=recordPushStatus(displayStatus,displayError,{at:displayAt,version:WORKER_VERSION});
     let timer;
     try{
       await Promise.race([Promise.allSettled([localReceived,local,receivedReport,
-        reportPushReceipt(receiptId,displayStatus,displayAt,displayError)]),
-        new Promise(resolve=>{timer=setTimeout(resolve,6000)})]);
+        reportPushReceipt(receiptId,displayStatus,displayAt,displayError),flushReceipts()]),
+        new Promise(resolve=>{timer=setTimeout(resolve,7500)})]);
     }finally{clearTimeout(timer);}
   })());
 });
