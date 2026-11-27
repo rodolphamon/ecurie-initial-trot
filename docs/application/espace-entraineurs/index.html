@@ -29,7 +29,7 @@ button:disabled{opacity:.55;cursor:wait}.muted{color:#666;font-size:13px}
 <label for="title">Titre</label><input id="title" maxlength="150" minlength="3" required placeholder="Des nouvelles de l'entraînement">
 <label for="message">Information</label><textarea id="message" maxlength="5000" placeholder="Comment se porte le cheval ?"></textarea>
 <label for="visibility">Qui peut voir cette information ?</label><select id="visibility"><option value="associes">Associés du cheval</option><option value="public">Tous les membres de l'application (test)</option></select>
-<label for="media">Photo ou vidéo (facultative, 50 Mo maximum)</label><input id="media" type="file" accept="image/jpeg,image/png,image/webp,video/mp4,video/webm">
+<label for="media">Photo ou vidéo (facultative, 50 Mo maximum)</label><input id="media" type="file" accept="image/jpeg,image/png,image/webp,image/heic,image/heif,.heic,.heif,video/mp4,video/webm">
 <fieldset><legend>🎙️ Message vocal (facultatif, jusqu’à 2 minutes)</legend>
 <div class="voice-controls">
 <button type="button" id="startVoice">🎙️ Enregistrer</button>
@@ -53,6 +53,28 @@ const bucket='ei-entraineurs-medias';
 let uid=null,trainer=null,horses=[];
 let recorder=null,recordedVoice=null,voiceStream=null,voiceUrl=null,voiceStarted=0,voiceWatch=null,voiceChunks=[];
 const MAX_VOICE_MS=120000,MAX_VOICE_BYTES=15*1024*1024;
+const isHeicFile=file=>/^(image\/(heic|heif)(-sequence)?)$/i.test((file.type||'').split(';')[0])||/\.(heic|heif)$/i.test(file.name||'');
+let heicLoader;
+function loadHeicConverter(){
+ if(typeof window.HeicTo==='function')return Promise.resolve(window.HeicTo);
+ if(!heicLoader)heicLoader=new Promise((resolve,reject)=>{
+  const script=document.createElement('script');
+  script.src='https://cdn.jsdelivr.net/npm/heic-to@1.6.7/dist/iife/heic-to.js';
+  script.crossOrigin='anonymous';
+  const fail=()=>{clearTimeout(timer);script.remove();reject(Error('Convertisseur photo indisponible. Réessayez avec une connexion Internet.'));};
+  const timer=setTimeout(fail,30000);
+  script.onload=()=>{clearTimeout(timer);if(typeof window.HeicTo==='function')resolve(window.HeicTo);else fail();};
+  script.onerror=fail;document.head.append(script);
+ }).catch(err=>{heicLoader=null;throw err;});
+ return heicLoader;
+}
+async function convertHeicPhoto(file){
+ const converter=await loadHeicConverter();
+ let jpeg;
+ try{jpeg=await converter({blob:file,type:'image/jpeg',quality:0.9});}catch(err){throw Error('Cette photo HEIC/HEIF n’a pas pu être convertie. Essayez une autre photo.');}
+ if(!(jpeg instanceof Blob)||jpeg.type!=='image/jpeg'||!jpeg.size)throw Error('Conversion JPEG impossible.');
+ return new File([jpeg],(file.name||'photo').replace(/\.(heic|heif)$/i,'')+'.jpg',{type:'image/jpeg'});
+}
 const write=(msg,cls='')=>{ $('feedback').textContent=msg;$('feedback').className=cls};
 function item(tag,value){const e=document.createElement(tag);if(value!=null)e.textContent=value;return e}
 async function initialize(){
@@ -179,13 +201,19 @@ $('publish').addEventListener('submit',async e=>{
  $('send').disabled=true;write('Publication en cours…');
  let path=null,mediaType=null;
  try{
-  const file=$('media').files[0]||recordedVoice;
-  if(file&&recorder?.state==='recording')throw Error('Terminez d’abord l’enregistrement.');
+  let file=$('media').files[0]||recordedVoice;
+  if(recorder?.state==='recording')throw Error('Terminez d’abord l’enregistrement.');
   if(file){
    if(file.size>(recordedVoice===file?MAX_VOICE_BYTES:50*1024*1024))throw Error('Fichier trop volumineux.');
+   if(file!==recordedVoice&&isHeicFile(file)){
+    write('Conversion de la photo en JPEG…');
+    file=await convertHeicPhoto(file);
+    if(file.size>50*1024*1024)throw Error('La photo convertie dépasse 50 Mo.');
+    write('Publication en cours…');
+   }
    const allowed={'image/jpeg':'jpg','image/png':'png','image/webp':'webp','video/mp4':'mp4','video/webm':'webm','audio/webm':'webm','audio/mp4':'m4a','audio/ogg':'ogg','audio/mpeg':'mp3','audio/aac':'aac'};
    const mime=(file.type||'').split(';')[0];
-   if(!allowed[mime])throw Error('Format non accepté.');
+   if(!allowed[mime])throw Error('Format non accepté. Choisissez une photo JPEG, PNG, WebP, HEIC/HEIF ou une vidéo MP4/WebM.');
    mediaType=mime.startsWith('image/')?'image':mime.startsWith('audio/')?'audio':'video';
    path=uid+'/'+horse+'/'+crypto.randomUUID()+'.'+allowed[mime];
    const upl=await db.storage.from(bucket).upload(path,file,{contentType:mime,upsert:false});
