@@ -127,6 +127,9 @@ const genderLabel=(status,horse,compact=false)=>{
  const female=String(horse.sex||"").trim().toUpperCase()==="F";
  if(status==="engage")return female?"Engagée":"Engagé";
  if(status==="declare")return compact?(female?"Déclarée":"Déclaré"):(female?"Déclarée partante":"Déclaré partant");
+ if(status==="partant")return female?"Partante":"Partant";
+ if(status==="non-partant")return female?"Non-partante":"Non-partant";
+ if(status==="elimine")return female?"Éliminée":"Éliminé";
  return (compact?shortLabels:labels)[status]||labels.engage;
 };
 const esc=v=>String(v==null?"":v).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
