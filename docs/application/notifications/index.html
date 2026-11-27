@@ -253,6 +253,7 @@ async function activateFromChoice(){
        await registration.pushManager.subscribe({userVisibleOnly:true,applicationServerKey:base64ToBytes(publicKey)});
    }
    await savePreferences(prefs());
+   try{localStorage.removeItem('ei-push-onboarding-choice-v1')}catch(_){}
    preferencesActive=true;$('disable').hidden=false;$('repair').hidden=false;
    $('serviceState').textContent='Les notifications sont activées sur cet appareil.';
    
@@ -269,6 +270,7 @@ $('disable').onclick=async()=>{
    await callServer({action:'unsubscribe',deviceToken:deviceToken(),endpoint:subscription.endpoint});
    await subscription.unsubscribe();subscription=null;
    localStorage.removeItem(tokenKey);
+   try{localStorage.setItem('ei-push-onboarding-choice-v1','off')}catch(_){}
    clearAlertChoices();
    $('disable').hidden=true;$('repair').hidden=true;
    $('serviceState').textContent='Cochez une alerte pour réactiver les notifications sur cet appareil.';
