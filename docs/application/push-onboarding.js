@@ -43,7 +43,7 @@ export async function offerPushOnboarding(db){
   const enable=dialog.querySelector('[data-enable]'),info=dialog.querySelector('[data-info]'),later=dialog.querySelector('[data-later]'),no=dialog.querySelector('[data-no]');
   const dismiss=value=>{write(CHOICE,value);dialog.remove();};
   later.onclick=()=>dismiss(String(Date.now()+3*86400000));
-  no.onclick=()=>dismiss('off');
+  no.onclick=()=>dismiss(String(Date.now()+30*86400000));
   if(ios&&!installed){
    enable.textContent='Installer l’application';
    info.textContent='Sur iPhone, les notifications nécessitent l’application ajoutée à l’écran d’accueil.';
