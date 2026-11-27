@@ -71,7 +71,7 @@ function worker({displayFails=false,displayHangs=false,cacheFails=false,cacheHan
     fetch(_url,options){order.push('report');reports.push(JSON.parse(options.body));return new Promise(()=>{});},
     caches:{async open(){if(cacheHangs)return new Promise(()=>{});if(cacheFails)throw Error('Cache indisponible');return {async add(){throw Error('Icône indisponible');}};},async keys(){return [];}},
     self:{location:{origin:'https://fiches.ecurie-initial.com'},
-      addEventListener(name,handler){handlers[name]=handler;},
+      addEventListener(name,handler){const previous=handlers[name];handlers[name]=previous?event=>{previous(event);handler(event);}:handler;},
       async skipWaiting(){skipped=true;},
       clients:{async claim(){}},
       registration:{async showNotification(title,options){
@@ -83,6 +83,10 @@ function worker({displayFails=false,displayHangs=false,cacheFails=false,cacheHan
   vm.runInNewContext(workerSource,context);
   return {handlers,shown,reports,timers,order,get skipped(){return skipped;}};
 }
+// Les accusés passent désormais par une outbox locale. Simuler explicitement
+// son délai de secours de 800 ms, sans désactiver le test d'affichage.
+async function drainMicrotasks(){for(let i=0;i<30;i++)await Promise.resolve();}
+async function releaseStorage(r){await drainMicrotasks();const pending=[...r.timers.values()].filter(t=>t.ms===800);assert.ok(pending.length,'Le stockage bloqué doit avoir un délai de secours');for(const timer of pending)timer.fn();await drainMicrotasks();}
 for(const displayFails of [false,true]){
   const r=worker({displayFails});let completion;
   r.handlers.push({data:{json(){return {title:'Course',receipt_id:'12345678-1234-4234-8234-123456789abc'};}},
@@ -90,9 +94,10 @@ for(const displayFails of [false,true]){
   // showNotification est appelé avant les premières opérations de diagnostic.
   assert.equal(r.shown.length,1);
   assert.equal(r.order[0],'show');
-  for(let i=0;i<10;i++)await Promise.resolve();
+  await releaseStorage(r);
+  assert.ok(r.reports.some(p=>p.status==='received'));
   assert.ok(r.reports.some(p=>p.status===(displayFails?'error':'shown')));
-  const deadline=[...r.timers.values()].find(timer=>timer.ms===6000);
+  const deadline=[...r.timers.values()].find(timer=>timer.ms===7500);
   assert.ok(deadline,'Le traitement Push doit avoir une échéance');
   deadline.fn();
   await completion;
@@ -101,7 +106,10 @@ for(const displayFails of [false,true]){
   const r=worker({displayHangs:true});
   r.handlers.push({data:{json(){return {receipt_id:'12345678-1234-4234-8234-123456789abc'};}},waitUntil(){}});
   assert.equal(r.order[0],'show');
+  await releaseStorage(r);
   assert.ok(r.reports.some(p=>p.status==='received'),'La réception doit être signalée même si le système bloque l’affichage');
+  const displayDeadline=[...r.timers.values()].find(t=>t.ms===12000);assert.ok(displayDeadline,'Un affichage bloqué doit être borné');displayDeadline.fn();await releaseStorage(r);
+  assert.ok(r.reports.some(p=>p.status==='error'&&p.error==='display-timeout'));
   assert.ok(!r.reports.some(p=>p.status==='shown'),'Un affichage bloqué ne doit pas être annoncé comme réussi');
 }
 for(const cacheFails of [false,true]){
@@ -117,7 +125,7 @@ for(const cacheFails of [false,true]){
   const deadline=[...r.timers.values()].find(t=>t.ms===3000);
   assert.ok(deadline);deadline.fn();await completion;
   assert.equal(r.skipped,true);
-  let reply;r.handlers.message({data:{type:'ei-push-worker-info'},ports:[{postMessage(value){reply=value;}}]});
+  let reply;r.handlers.message({data:{type:'ei-push-worker-info'},ports:[{postMessage(value){reply=value;}}],waitUntil(){}});
   assert.ok(reply.version,'La version du worker actif doit pouvoir être identifiée');
 }
 console.log('[OK] Affichage immédiat avec stockage et télémétrie bloqués, erreur mesurée et installation possible sans cache');
@@ -179,7 +187,7 @@ console.log('[OK] Mise à jour depuis une fiche et au retour de veille, sans ins
 // Exécuter la vraie fonction d'inscription avec une base simulée.
 const raw=readFileSync(new URL('../supabase/functions/notifications/index.ts',import.meta.url),'utf8').replace(/^import .*;\n/gm,'');
 const source=stripTypeScriptTypes(raw,{mode:'strip'});
-async function preferenceScenario({type='associe',authenticated=true}={}){
+async function preferenceScenario({type='associe',authenticated=true,trainer=false}={}){
   const writes=[];let handler,stored=null,selected='';
   const db={auth:{async getUser(){return {data:{user:{id:'member'}},error:null};}},from(table){
     let operation='select',values;const filters=[];
@@ -189,6 +197,7 @@ async function preferenceScenario({type='associe',authenticated=true}={}){
       then(resolve,reject){return Promise.resolve().then(()=>{
         if(table==='associes')return {data:{actif:true,type_compte:type},error:null};
         if(table==='ei_lancement_pilotes')return {data:{user_id:'member'},error:null};
+        if(table==='ei_entraineurs')return {data:trainer?{user_id:'member'}:null,error:null};
         if(table==='ei_push_subscriptions'){
           if(operation!=='select'){
             writes.push(values);
@@ -219,7 +228,8 @@ async function preferenceScenario({type='associe',authenticated=true}={}){
   const saved=writes.find(row=>row.endpoint);
   assert.equal(saved.public_news,false,'Le refus des annonces publiques doit être enregistré');
   assert.equal(saved.before15,true,'Le rappel explicitement choisi doit être enregistré');
-  assert.equal(saved.private_news,authenticated&&type==='associe','Les visiteurs ne reçoivent pas les publications privées');
+  assert.equal(saved.private_news,authenticated&&(type==='associe'||trainer),'Les visiteurs ordinaires ne reçoivent pas les publications privées ; un entraîneur peut choisir les réponses nominatives');
+  assert.equal(saved.audience,authenticated&&type==='associe'?'associate':'visitor');
   const status=await (await handler(request({action:'status',endpoint:body.subscription.endpoint,deviceToken:body.deviceToken}))).json();
   assert.equal(status.preferences.public_news,false,'Le refus doit être restitué au rechargement');
   const beforeHeartbeat=writes.length;
@@ -238,5 +248,6 @@ async function preferenceScenario({type='associe',authenticated=true}={}){
 }
 await preferenceScenario();
 await preferenceScenario({type:'exterieur'});
+await preferenceScenario({type:'exterieur',trainer:true});
 await preferenceScenario({authenticated:false});
 console.log('[OK] Préférences conservées après rechargement, rappel des membres extérieurs et droits privés respectés');

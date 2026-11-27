@@ -19,7 +19,7 @@ const NON_PARTANT = new Set(["non-partant", "np"]);
 // Seul le statut explicitement validé « Partant confirmé » déclenche les alertes.
 // « declare » peut résulter d’une simple déclaration de monte, sans partant officiel.
 const CONFIRMED = new Set(["partant"]);
-type Event = { date: string; hippodrome?: string; heure?: string; statut?: string; prix?: string; course?: string; reunion_annulee?: boolean };
+type Event = { numero?: unknown; partants?: any[]; date: string; hippodrome?: string; heure?: string; statut?: string; prix?: string; course?: string; reunion_annulee?: boolean };
 // La réunion d'Amiens du 18/11 est annulée. Le partant reste visible dans l'app,
 // mais ne doit jamais générer de rappel ni de recherche automatique de résultat.
 const cancelledRace = (slug: string, e: Event): boolean =>
@@ -221,12 +221,35 @@ function pmuRaceStart(race:Record<string,unknown>):number|null {
   }
   return null;
 }
+function projectField(rows:any[]):any[]|null {
+  if(!Array.isArray(rows)||rows.length<1||rows.length>100)return null;
+  const seen=new Set<number>();
+  const out:any[]=[];
+  for(const p of rows){
+    const numero=pmuNumber(p?.numPmu);
+    if(numero===null||numero<=0||seen.has(numero)||typeof p?.nom!=="string"||!p.nom.trim())return null;
+    seen.add(numero);
+    const row:Record<string,any>={numero,cheval:p.nom};
+    if(typeof p.driver==="string"&&p.driver.trim())row.driver=p.driver;
+    if(typeof p.jockey==="string"&&p.jockey.trim())row.jockey=p.jockey;
+    if(p.statut==="NON_PARTANT")row.non_partant=true;
+    out.push(row);
+  }
+  return out.sort((a,b)=>a.numero-b.numero);
+}
+function containsRunner(rows:unknown,name:string,bib:unknown):boolean{
+  if(!Array.isArray(rows)||!rows.length)return false;
+  const seen=new Set<number>();
+  if(!rows.every(p=>p&&typeof p.cheval==="string"&&p.cheval.trim()&&Number.isSafeInteger(p.numero)&&p.numero>0&&!seen.has(p.numero)&&seen.add(p.numero)))return false;
+  return rows.some(p=>pmuText(p.cheval)===pmuText(name)&&(!bib||Number(bib)===p.numero));
+}
+
 async function pmuPreflight(
   editorial:Record<string,any>,horseNames:Record<string,string>,
   overrides:Record<string,any>[],now:number,
 ):Promise<number>{
   // Le cron tourne chaque minute, mais les fiches et listes PMU sont lues
-  // seulement toutes les 15 min, de H-36 h à H+15 min pour les retraits tardifs.
+  // toutes les 15 min dès que le partant est confirmé, même sans heure connue.
   if(new Date(now).getUTCMinutes()%15!==0)return 0;
   const targets:{slug:string;evt:Event & {numero?:unknown};departure:number;index:number}[]=[];
   for(const [slug,rows] of Object.entries(editorial.engagements||{})){
@@ -236,10 +259,11 @@ async function pmuPreflight(
       if(!evt || cancelledRace(slug,evt) || !CONFIRMED.has(String(evt.statut||"").toLowerCase())
         || !/^\d{4}-\d{2}-\d{2}$/.test(evt.date||"") || !evt.hippodrome)continue;
       const departureString=parisDeparture(evt.date,evt.heure);
-      if(!departureString)continue;
-      const departure=Date.parse(departureString),before=departure-now;
-      // Inclure les retraits de dernière minute et leur confirmation juste après H.
-      if(before< -15*60000 || before>36*3600000)continue;
+      const day=parisNow(new Date(now)).date;
+      if(evt.date<day)continue;
+      // Pour un départ non renseigné, utiliser la date uniquement pour le tri.
+      const departure=departureString?Date.parse(departureString):Date.parse(evt.date+"T12:00:00Z");
+      if(departureString && departure<now-15*60000)continue;
       targets.push({slug,evt,departure,index});
     }
   }
@@ -253,12 +277,25 @@ async function pmuPreflight(
     if(data){if(index>=0)overrides[index]=data;else overrides.push(data);}
   };
   let confirmed=0;
-  for(const item of targets.sort((a,b)=>a.departure-b.departure).slice(0,8)){
+  // Les horaires manquants passent d'abord, puis rotation des lots pour éviter
+  // qu'un partant non couvert par PMU bloque les autres à chaque passage.
+  targets.sort((a,b)=>Number(!!a.evt.heure)-Number(!!b.evt.heure)||a.departure-b.departure);
+  const missing=targets.filter(t=>!t.evt.heure), known=targets.filter(t=>!!t.evt.heure);
+  const rotate=(list:typeof targets,n:number)=>{
+    if(!list.length)return [];
+    const offset=(Math.floor(now/900000)*n)%list.length;
+    return list.slice(offset).concat(list.slice(0,offset)).slice(0,n);
+  };
+  const batch=rotate(missing,known.length?4:8);
+  batch.push(...rotate(known,8-batch.length));
+  for(const item of batch){
     const {slug,evt,departure,index}=item;
     const targetName=pmuText(horseNames[slug]);
     const expectedCode=String(evt.course||"").toUpperCase();
     const expectedBib=pmuNumber(evt.numero);
-    const remainingMinutes=(departure-now)/60000;
+    const hasHour=!!parisDeparture(evt.date,evt.heure);
+    const expectedTitle=pmuText(evt.prix);
+    const remainingMinutes=hasHour?(departure-now)/60000:Infinity;
     try{
       const day=evt.date,ymd=day.slice(8,10)+day.slice(5,7)+day.slice(0,4);
       let programme=cache.get(day);
@@ -268,7 +305,7 @@ async function pmuPreflight(
       }
       const meetings=programme?.programme?.reunions??programme?.reunions;
       if(!Array.isArray(meetings))continue;
-      const matches:{code:string;bib:number;start:number|null;nonPartant:boolean}[]=[];
+      const matches:{code:string;bib:number;start:number|null;nonPartant:boolean;partants:any[]|null}[]=[];
       const races:{code:string;race:Record<string,unknown>;start:number|null}[]=[];
       for(const meeting of meetings){
         const reunion=pmuNumber(meeting?.numOfficiel??meeting?.numReunion??meeting?.numOrdre);
@@ -280,9 +317,14 @@ async function pmuPreflight(
           const number=pmuNumber(race?.numOrdre??race?.numCourse);
           if(!number)continue;
           const start=pmuRaceStart(race);
-          // Une course à une autre heure ne peut pas servir de correspondance.
-          if(start!==null && Math.abs(start-departure)>15*60000)continue;
-          races.push({code:"R"+reunion+"C"+number,race,start});
+          const code="R"+reunion+"C"+number;
+          const titleMatch=!!expectedTitle && [race.libelle,race.libelleCourt,race.libelleLong,race.nomPrix].some(v=>pmuText(v)===expectedTitle);
+          const codeMatch=code===expectedCode;
+          // Identité par intitulé ou code exact ; pour les anciens dossiers,
+          // proximité horaire seulement si une heure existe déjà.
+          const near=hasHour && start!==null && Math.abs(start-departure)<=15*60000;
+          if(!titleMatch && !codeMatch && !near)continue;
+          races.push({code,race,start});
         }
       }
       // Quand l'heure n'est pas connue dans la réponse PMU, privilégier
@@ -290,6 +332,8 @@ async function pmuPreflight(
       races.sort((a,b)=>{
         const aMatch=a.code===expectedCode?0:1,bMatch=b.code===expectedCode?0:1;
         if(aMatch!==bMatch)return aMatch-bMatch;
+        const titleMatch=(r:typeof a)=>!!expectedTitle && [r.race.libelle,r.race.libelleCourt,r.race.libelleLong,r.race.nomPrix].some(v=>pmuText(v)===expectedTitle);
+        if(titleMatch(a)!==titleMatch(b))return titleMatch(a)?-1:1;
         return (a.start===null?3600000:Math.abs(a.start-departure))
              -(b.start===null?3600000:Math.abs(b.start-departure));
       });
@@ -304,6 +348,7 @@ async function pmuPreflight(
           if(same.length===1)matches.push({
             code:candidate.code,bib:pmuNumber(same[0].numPmu)!,start:candidate.start,
             nonPartant:same[0].statut==="NON_PARTANT",
+            partants:projectField(participants.participants),
           });
         }catch(err){
           console.warn("[AVANT-COURSE] Partants indisponibles "+slug+" "+candidate.code+" "
@@ -325,13 +370,13 @@ async function pmuPreflight(
         continue;
       }
       const match=matches[0];
-      if(match.start!==null && Math.abs(match.start-departure)>5*60000){
-        console.warn("[AVANT-COURSE] Heure différente "+slug+" "+evt.heure);
-        continue;
-      }
+      const matchClock=match.start===null?null:parisNow(new Date(match.start));
+      const verifiedHour=matchClock?.date===day?String(matchClock.hour).padStart(2,"0")+":"+String(matchClock.minute).padStart(2,"0"):null;
       confirmed++;
-      if(match.code===expectedCode && match.bib===expectedBib&&!match.nonPartant)continue;
-      const change={course:match.code,numero:match.bib,...(match.nonPartant?{
+      const signature=(rows:any[]|undefined)=>JSON.stringify((rows||[]).map(p=>[p.numero,p.cheval,p.driver||"",p.jockey||"",!!p.non_partant]));
+      const fieldChanged=!!match.partants && signature(match.partants)!==signature(evt.partants);
+      if(match.code===expectedCode && match.bib===expectedBib&&!match.nonPartant&&(!verifiedHour||verifiedHour===evt.heure)&&!fieldChanged)continue;
+      const change={course:match.code,numero:match.bib,...(match.partants?{partants:match.partants,partants_source:PMU_PROGRAM+"/programme/"+ymd+"/"+match.code.replace("C","/C")+"/participants"}:{}),...(verifiedHour?{heure:verifiedHour,heure_source:PMU_PROGRAM+"/programme/"+ymd+"/"+match.code.replace("C","/C")} : {}),...(match.nonPartant?{
         statut:"non-partant",non_partant_verifie_le:iso(now),
         non_partant_source:PMU_PROGRAM+"/programme/"+ymd+"/"+match.code.replace("C","/C")+"/participants",
       }:{})};
@@ -361,7 +406,7 @@ async function pmuPreflight(
           (expectedCode||"-")+" n°"+(expectedBib||"-")+" -> "+
           match.code+" n°"+match.bib);
       }else{
-        if(match.nonPartant){
+        if(fieldChanged || match.nonPartant || (verifiedHour && verifiedHour!==evt.heure)){
           const updated=editorial.engagements[slug].map((e:any,i:number)=>i===index?{...e,...change}:e);
           const {error}=await sb.from("ei_contributions_engagements")
             .insert({cheval_slug:slug,engagements:updated});
@@ -372,7 +417,7 @@ async function pmuPreflight(
           if(error)throw error;
           editorial.engagements[slug]=updated;
           overrides.push({cheval_slug:slug,engagements:updated});
-          console.log("[AVANT-COURSE] NON-PARTANT PMU enregistré "+slug);
+          console.log("[AVANT-COURSE] "+(match.nonPartant?"NON-PARTANT":"HORAIRE PMU")+" enregistré "+slug);
           continue;
         }
         // Le fichier GitHub sera corrigé par le précontrôle horaire.
@@ -418,6 +463,21 @@ async function run() {
   if(countError)throw countError;
   const bootstrap=(count||0)===0;
   const races:Race[]=[];
+  let staticFields:any[]|null=null;
+  async function readyField(e:Event,slug:string,name:string):Promise<boolean>{
+    if(containsRunner(e.partants,name,e.numero))return true;
+    if(staticFields===null){
+      try{
+        const data=await getJSON(editorialUrl.replace("editorial.json","partants-courses.json"));
+        staticFields=Array.isArray(data.courses)?data.courses:[];
+      }catch{staticFields=[];}
+    }
+    const code=String(e.course||"").toUpperCase();
+    const matches=staticFields.filter(c=>c.cheval_slug===slug&&c.date===e.date&&pmuText(c.hippodrome)===pmuText(e.hippodrome)
+      &&(!code||code===c.course||(/^C\d+$/.test(c.course)&&code.endsWith(c.course)&&pmuText(c.prix)===pmuText(e.prix)))
+      &&containsRunner(c.partants,name,e.numero));
+    return matches.length===1;
+  }
   for (const [slug,events] of Object.entries(ed.engagements||{})) {
     if (!Array.isArray(events)) continue;
     for (const evt of events) {
@@ -434,6 +494,13 @@ async function run() {
       races.push(row);
       const {data:old,error}=await sb.from("ei_push_races").select("statut,depart").eq("event_key",row.event_key).maybeSingle();
       if(error)throw error;
+      // Garder la transition en attente tant que la liste n'est pas affichable.
+      // Ne pas écraser l'ancien statut : la prochaine exécution réessaiera.
+      if(!bootstrap&&CONFIRMED.has(row.statut)&&!CONFIRMED.has(old?.statut||"")&&row.date_course>=clock.date
+        &&!await readyField(e,slug,row.cheval_nom)){
+        console.warn("[PARTANTS] Confirmation en attente de la liste "+slug+" "+e.date);
+        continue;
+      }
       const {error:saveError}=await sb.from("ei_push_races").upsert(row,{onConflict:"event_key"});
       if(saveError)throw saveError;
       counts.races++;
@@ -578,6 +645,9 @@ async function run() {
     // compte destinataire. Un test incomplet ou mal formé ne doit jamais diffuser.
     const diagnostic=alert.id.startsWith("admin-test:");
     const diagnosticTarget=alert.payload?.diagnostic_target_user_id;
+    const targetedPartant=diagnostic && alert.payload?.diagnostic_partant===true;
+    const targetSub=alert.payload?.diagnostic_subscription_id;
+    if(targetedPartant && !["00a1571d-d18e-4793-a880-fd4c20124f82","6d94f16d-ae95-47f2-8667-4132fd892e59"].includes(targetSub))continue;
     if(diagnostic){
       const notBefore=Date.parse(String(alert.payload?.not_before||""));
       if(alert.categorie!=="results"||alert.cheval_slug!==null||
@@ -604,6 +674,7 @@ async function run() {
     }
     for(const sub of subs||[]){
       if(diagnostic&&sub.user_id!==diagnosticTarget)continue;
+      if(targetedPartant && sub.id!==targetSub)continue;
       if(Date.parse(sub.created_at)>Date.parse(alert.created_at))continue;
       const member=sub.audience==="associate" && !!sub.user_id && active.has(sub.user_id);
       if(isComment){
@@ -665,7 +736,7 @@ async function run() {
       }else if(alert.categorie==="confirmed"){
         message={title:"🐎 Prochain partant",
           body:annonceCourse(p.nom,p.hippodrome,p.heure,jourCourse(p.date,clock.date)),
-          url:APP+"/chevaux/"+alert.cheval_slug+"/"};
+          url:APP+"/chevaux/"+alert.cheval_slug+"/?partants="+encodeURIComponent(esc(p.date))};
       }else if(alert.categorie==="withdrawn"){
         const status=String(p.statut||"");
         const venue=esc(p.hippodrome);
@@ -694,23 +765,47 @@ async function run() {
           url:APP+"/application/mes-chevaux/?general="+encodeURIComponent(esc(p.id))+"#nouvelles-privees"
         };
       }else if(alert.categorie==="private_news"){
-        message={
-          title:"🔒 Nouvelle information · "+esc(p.nom),
-          body:"Une publication privée concernant ce cheval est disponible dans votre espace associé.",
-          url:APP+"/application/mes-chevaux/?info="+encodeURIComponent(esc(p.id))+"#nouvelles-privees"
-        };
+        if(alert.id.startsWith("trainer_news:")){
+          message={
+            title:"🐎 "+esc(p.nom),
+            body:"Votre entraîneur vous donne des nouvelles de votre cheval. "+(p.media_type==="video"?"🎥 Une vidéo est disponible.":p.media_type==="audio"?"🎙️ Un message vocal est disponible.":p.media_type==="image"?"📷 Une photo est disponible.":""),
+            url:APP+"/application/mes-chevaux/?entraineur="+encodeURIComponent(esc(p.id))+"#nouvelles-privees"
+          };
+        }else{
+          message={
+            title:"🔒 Nouvelle information · "+esc(p.nom),
+            body:"Une publication privée concernant ce cheval est disponible dans votre espace associé.",
+            url:APP+"/application/mes-chevaux/?info="+encodeURIComponent(esc(p.id))+"#nouvelles-privees"
+          };
+        }
       }
+      if(targetedPartant)message={title:"🧪 TEST · Prochain partant",body:annonceCourse("LUCKY DES GAUDINES","Beaumont-de-Lomagne","",jourCourse("2026-11-29",clock.date)),url:APP+"/chevaux/lucky-des-gaudines/?partants=2026-11-29"};
       if(!message)continue;
       // Le traitement peut chevaucher 22h30 : vérifier à nouveau avant chaque appareil.
       if(isSilentPeriodParis())return {...counts,quietHours:true};
       const {data:prev,error:prevErr}=await sb.from("ei_push_deliveries")
         .select("state,attempts,updated_at").eq("alert_id",alert.id).eq("subscription_id",sub.id).maybeSingle();
       if(prevErr)throw prevErr;
-      if(prev && (prev.state!=="failed"||prev.attempts>=3||Date.parse(prev.updated_at)>now-180000))continue;
+      // One bounded retry for recent race alerts accepted but not acknowledged.
+      // Never replay historical alerts or administrator diagnostics.
+      let retryUnacknowledged=false;
+      if(prev?.state==="sent" && prev.attempts===1 && !diagnostic &&
+         ["confirmed","daily","before15","results"].includes(alert.categorie) &&
+         Date.parse(alert.created_at)>=Date.parse("2026-11-27T17:30:00Z") &&
+         now-Date.parse(alert.created_at)<15*60000 &&
+         now-Date.parse(prev.updated_at)>=60000 &&
+         Date.parse(alert.expires_at)>Date.now()+30000){
+        const {data:acks,error:ackError}=await sb.from("ei_push_receipts")
+          .select("accepted_at,received_at,shown_at").eq("alert_id",alert.id).eq("subscription_id",sub.id);
+        if(ackError)throw ackError;
+        retryUnacknowledged=!!acks?.some(x=>x.accepted_at) && !acks?.some(x=>x.received_at||x.shown_at);
+      }
+      if(prev && !retryUnacknowledged && (prev.state!=="failed"||prev.attempts>=3||Date.parse(prev.updated_at)>now-180000))continue;
       if(prev){
-        const {error:e}=await sb.from("ei_push_deliveries").update({state:"sending",attempts:prev.attempts+1,updated_at:iso(now)})
-          .eq("alert_id",alert.id).eq("subscription_id",sub.id).eq("state","failed");
+        const {data:claimed,error:e}=await sb.from("ei_push_deliveries").update({state:"sending",attempts:prev.attempts+1,updated_at:iso(now)})
+          .eq("alert_id",alert.id).eq("subscription_id",sub.id).eq("state",prev.state).eq("attempts",prev.attempts).select("alert_id").maybeSingle();
         if(e)throw e;
+        if(!claimed)continue;
       }else{
         const {error:e}=await sb.from("ei_push_deliveries").insert({alert_id:alert.id,subscription_id:sub.id,state:"sending"});
         if(e){if(e.code==="23505")continue;throw e}
@@ -729,16 +824,16 @@ async function run() {
           .insert({subscription_id:sub.id,alert_id:alert.id,category:alert.categorie})
           .select("id").single();
         if(receiptError)console.warn("Suivi Push indisponible",receiptError.code);
-        const measuredMessage={...message,tag:alert.id,...(receipt?.id?{receipt_id:receipt.id}:{})};
+        const measuredMessage={...message,tag:targetedPartant?String(alert.payload.diagnostic_tag||alert.id):alert.id,...(receipt?.id?{receipt_id:receipt.id}:{})};
         // Contrôle final juste avant l'appel au fournisseur Push. Libérer la réservation
         // si l'heure de silence a commencé pendant les opérations en base.
-        if(isSilentPeriodParis()){
+        if(isSilentPeriodParis() || Date.parse(alert.expires_at)<=Date.now()){
           if(receipt?.id){
             const {error:receiptDeleteError}=await sb.from("ei_push_receipts").delete().eq("id",receipt.id);
             if(receiptDeleteError)throw receiptDeleteError;
           }
-          const {error:releaseError}=await sb.from("ei_push_deliveries").delete()
-            .eq("alert_id",alert.id).eq("subscription_id",sub.id).eq("state","sending");
+          const release=prev ? sb.from("ei_push_deliveries").update({state:prev.state,attempts:prev.attempts,updated_at:prev.updated_at}) : sb.from("ei_push_deliveries").delete();
+          const {error:releaseError}=await release.eq("alert_id",alert.id).eq("subscription_id",sub.id).eq("state","sending");
           if(releaseError)throw releaseError;
           counts.attempts--;
           return {...counts,quietHours:true};

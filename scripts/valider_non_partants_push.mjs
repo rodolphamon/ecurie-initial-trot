@@ -75,8 +75,11 @@ for(const entries of [
 ]){
   const r=runtime({entries}),f=fixture();
   await r.hooks.pmuPreflight(f.editorial,names,f.overrides,before);
-  assert.equal(r.writes.length,0);
+  // Une liste de partants peut maintenant être actualisée sans retrait.
+  const isOwn=entries.some(p=>p.nom===own.nom);
+  assert.equal(r.writes.length,isOwn?1:0);
   assert.equal(f.editorial.engagements['moondance-okina'][0].statut,'partant');
+  if(isOwn){assert.ok(f.editorial.engagements['moondance-okina'][0].partants.some(p=>p.cheval==='AUTRE CHEVAL'&&p.non_partant));}
 }
 for(const options of [{ambiguous:true},{conflict:true}]){
   const r=runtime(options),f=fixture();
@@ -119,13 +122,15 @@ console.log('[OK] Détenteurs associés uniquement, identifiant unique par cours
 
 // Exécuter aussi le vrai moteur complet avec une base et un fournisseur Push
 // entièrement simulés, pour contrôler le filtrage et la réservation anti-doublon.
-async function dispatchScenario({quiet=false,diagnostic=false,resultsEnabled=true,malformed=false}={}){
+async function dispatchScenario({quiet=false,diagnostic=false,resultsEnabled=true,malformed=false,comment=false,commentEnabled=true}={}){
   let clock=Date.parse(quiet?'2026-12-01T21:30:00Z':'2026-12-01T10:01:00Z');
   const date=quiet?'2026-12-02':'2026-12-01';
-  const editorial={engagements:{'moondance-okina':[{...event,date,statut:diagnostic?'engage':'non-partant'}]},performances:{}};
+  const editorial={engagements:{'moondance-okina':[{...event,date,statut:diagnostic||comment?'engage':'non-partant'}]},performances:{}};
   const alerts=new Map(),races=new Map(),deliveries=new Set(),sent=[];
   const ownerUser='11111111-1111-4111-8111-111111111111';
-  const userId=id=>id==='owner'?ownerUser:id;
+  const trainerUser='22222222-2222-4222-8222-222222222222';
+  const userId=id=>id==='owner'?ownerUser:id==='visitor'?trainerUser:id;
+  if(comment)alerts.set('private_comment:test',{id:'private_comment:test',categorie:'private_comment',cheval_slug:'moondance-okina',created_at:new Date(clock).toISOString(),expires_at:new Date(clock+48*3600000).toISOString(),payload:{target_user_id:malformed?'':trainerUser,kind:'trainer',post_id:1}});
   if(diagnostic)alerts.set('admin-test:11111111-1111-4111-8111-111111111111',{
     id:'admin-test:11111111-1111-4111-8111-111111111111',categorie:'results',cheval_slug:null,
     created_at:new Date(clock).toISOString(),expires_at:new Date(clock+360000).toISOString(),
@@ -133,7 +138,7 @@ async function dispatchScenario({quiet=false,diagnostic=false,resultsEnabled=tru
   });
   const ids=['owner','other','observer','visitor'];
   const subscriptions=ids.map(id=>({id,user_id:userId(id),audience:id==='visitor'?'visitor':'associate',
-    scope:'all',withdrawn:true,results:resultsEnabled,created_at:'2026-11-01T00:00:00Z',endpoint:'https://push.example/'+id}));
+    scope:'all',withdrawn:true,results:resultsEnabled,private_news:commentEnabled,created_at:'2026-11-01T00:00:00Z',endpoint:'https://push.example/'+id}));
   const members=ids.map(id=>({user_id:userId(id),type_compte:id==='observer'?'observateur':id==='visitor'?'exterieur':'associe'}));
   const participations=ids.map(id=>({user_id:userId(id),cheval_slug:id==='other'?'nostalgie-dairpet':'moondance-okina'}));
   class ClockDate extends Date{constructor(value){super(value??clock);}static now(){return clock;}}
@@ -167,6 +172,7 @@ async function dispatchScenario({quiet=false,diagnostic=false,resultsEnabled=tru
       }
       if(table==='ei_push_subscriptions')return {data:subscriptions,error:null};
       if(table==='associes')return {data:members,error:null};
+      if(table==='ei_entraineurs')return {data:[{user_id:trainerUser}],error:null};
       if(table==='participations_chevaux')return {data:participations,error:null};
       if(table==='ei_push_deliveries'){
         if(operation==='insert'){
@@ -184,7 +190,7 @@ async function dispatchScenario({quiet=false,diagnostic=false,resultsEnabled=tru
   const context={Date:ClockDate,Intl,Map,Set,URL,TextEncoder,Uint8Array,AbortSignal,Response,
     console:{log(){},warn(){},error(){}},
     Deno:{env:{get:key=>key.includes('VAPID')?'test-only':''},serve(){}},
-    createClient:()=>({from}),
+    createClient:()=>({from,rpc:async(name)=>{assert.equal(name,'ei_lancement_ouvert');return {data:true,error:null};}}),
     sendPushNotification:async(sub,message,_vapid,options)=>{sent.push({sub,message,options});return true;},
     fetch:async(url)=>{
       if(url.includes('editorial.json'))return {ok:true,json:async()=>structuredClone(editorial)};
@@ -195,6 +201,11 @@ async function dispatchScenario({quiet=false,diagnostic=false,resultsEnabled=tru
   vm.createContext(context);vm.runInContext(javascript+'\nthis.dispatch=run;',context);
   await context.dispatch();
   assert.equal(alerts.size,1);
+  if(comment){
+    assert.equal(sent.length,commentEnabled&&!malformed?1:0,'Seul le destinataire entraîneur actif ayant accepté les réponses doit recevoir le commentaire');
+    if(sent.length){assert.equal(sent[0].sub.endpoint,'https://push.example/visitor');assert.match(sent[0].message.title,/Nouveau commentaire/);assert.match(sent[0].message.url,/espace-entraineurs\/\?publication=1/);await context.dispatch();assert.equal(sent.length,1,'Pas de doublon de commentaire');}
+    return;
+  }
   if(diagnostic){
     assert.equal(sent.length,0,'Le test attend au moins 90 secondes');
     clock+=120000;
@@ -231,3 +242,7 @@ await dispatchScenario({diagnostic:true});
 await dispatchScenario({diagnostic:true,resultsEnabled:false});
 await dispatchScenario({diagnostic:true,malformed:true});
 console.log('[OK] Test par le vrai moteur : délai de 90 secondes, ciblage d’un seul compte, préférence respectée et aucun doublon');
+await dispatchScenario({comment:true});
+await dispatchScenario({comment:true,commentEnabled:false});
+await dispatchScenario({comment:true,malformed:true});
+console.log('[OK] Commentaires privés : ciblage nominatif entraîneur, refus respecté et aucun doublon');
