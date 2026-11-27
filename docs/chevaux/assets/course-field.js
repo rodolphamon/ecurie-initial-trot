@@ -19,6 +19,7 @@ function markup(event,horse,courses,id){
     ?(course.provisoire?'<p class="ei-field-waiting">Liste en cours de finalisation.</p>':'')+'<div class="ei-field-scroll" id="'+esc(id)+'" role="region" aria-label="Liste des partants, défilement horizontal" tabindex="0"><table class="ei-field-table"><thead class="ei-field-head"><tr><th>Numéro</th><th>Cheval</th><th>Monte</th></tr></thead><tbody>'+rows+'</tbody></table></div><input class="ei-field-slider" type="range" min="0" max="100" step="any" value="0" aria-label="Faire défiler les partants vers la droite ou la gauche" aria-controls="'+esc(id)+'" hidden>'
     :'<p class="ei-field-waiting">Liste officielle à venir.</p>')+'</details>';
 }
+let jumped=false;
 function init(root=document){
   for(const view of root.querySelectorAll('.ei-course-field')){
     if(view.dataset.initialized)continue;
@@ -31,6 +32,10 @@ function init(root=document){
     view.addEventListener('toggle',sync);
     new ResizeObserver(sync).observe(scroller);
     sync();
+    if(view.open&&new URLSearchParams(location.search).get('partants')&&!jumped){
+      jumped=true;
+      requestAnimationFrame(()=>view.scrollIntoView({block:'start'}));
+    }
   }
 }
 window.EICourseField={markup,init};
