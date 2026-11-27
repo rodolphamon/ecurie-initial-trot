@@ -1040,7 +1040,9 @@
         "course": "R1C2",
         "numero": 11,
         "details_source_api": "https://online.turfinfo.api.pmu.fr/rest/client/1/programme/25112026/R1/C2/participants",
-        "course_url": "https://www.equidia.fr/courses/2026-11-25/R1/C2"
+        "course_url": "https://www.equidia.fr/courses/2026-11-25/R1/C2",
+        "video_url": "https://www.equidia.fr/courses/2026-11-25/R1/C2",
+        "video_source": "equidia_course"
       }
     ],
     "zartop": [
