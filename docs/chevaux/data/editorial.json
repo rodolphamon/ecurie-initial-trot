@@ -11526,13 +11526,14 @@
         "hippodrome": "Beaumont-de-Lomagne",
         "type": "Attelé",
         "prix": "Prix Jean-François Maury",
-        "statut": "declare",
-        "source_description": "Capture engagements LeTROT transmise le 14/11/2026",
+        "statut": "partant",
+        "source_description": "Liste des partants en cours de finalisation transmise et validée par le gérant le 27/11/2026 ; horaire non communiqué",
         "driver": "Cyril GAZENGEL",
         "ferrure": "D4",
         "surface": "Sable",
         "distance": "2400m  Autostart",
-        "type_course": "Course F"
+        "type_course": "Course F",
+        "numero": "15"
       }
     ],
     "myrtille-marboula": [
