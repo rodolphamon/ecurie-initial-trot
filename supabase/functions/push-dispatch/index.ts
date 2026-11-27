@@ -514,6 +514,7 @@ async function run() {
   const userIds=[...new Set((subs||[]).map(s=>s.user_id).filter(Boolean))];
   const active=new Set<string>();
   const associates=new Set<string>();
+  const activeAccounts=new Set<string>();
   const pilots=new Set<string>();
   const admins=new Set<string>();
   const holdings=new Map<string,Set<string>>();
@@ -546,6 +547,7 @@ async function run() {
     }
     for(const m of members||[]){
       if(m.type_compte==="associe")associates.add(m.user_id);
+      if(m.type_compte!=="exterieur")activeAccounts.add(m.user_id);
       // Les membres extérieurs utilisent exclusivement les abonnements publics.
       if(m.type_compte!=="exterieur" &&
          (launchOpen||pilots.has(m.user_id)||earlyContributors.has(m.user_id)))active.add(m.user_id);
@@ -558,7 +560,14 @@ async function run() {
   const vapid={publicKey:env("PUSH_VAPID_PUBLIC_KEY"),privateKey:env("PUSH_VAPID_PRIVATE_KEY"),subject:"mailto:contact@ecurie-initial.com"};
   if(!vapid.publicKey||!vapid.privateKey)throw Error("VAPID absent");
   const currentRaceStates=new Map(races.map(x=>[x.event_key,x.statut]));
+  const commentAlerts=(alerts||[]).some(a=>a.categorie==="private_comment");
+  const launchForComments=commentAlerts?await sb.rpc("ei_lancement_ouvert"):null;
   for(const alert of alerts||[]){
+    const isComment=alert.categorie==="private_comment";
+    const commentTarget=alert.payload?.target_user_id;
+    const commentKind=alert.payload?.kind;
+    const commentPost=String(alert.payload?.post_id||"");
+    if(isComment && (!alert.id.startsWith("private_comment:") || typeof commentTarget!=="string" || !/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(commentTarget) || !["trainer","horse","general"].includes(String(commentKind)) || !/^\d+$/.test(commentPost)))continue;
     // Les tests administrateur suivent la vraie file de résultats, avec un seul
     // compte destinataire. Un test incomplet ou mal formé ne doit jamais diffuser.
     const diagnostic=alert.id.startsWith("admin-test:");
@@ -591,21 +600,27 @@ async function run() {
       if(diagnostic&&sub.user_id!==diagnosticTarget)continue;
       if(Date.parse(sub.created_at)>Date.parse(alert.created_at))continue;
       const member=sub.audience==="associate" && !!sub.user_id && active.has(sub.user_id);
-      if(sub.audience==="associate"&&!member && alert.categorie!=="public_news")continue;
+      if(isComment){
+        if(sub.audience!=="associate" || sub.user_id!==commentTarget || !(member || (launchForComments?.data===true && activeAccounts.has(sub.user_id))))continue;
+      }else if(sub.audience==="associate"&&!member && alert.categorie!=="public_news")continue;
       // Avant le lancement, les annonces publiques sont réservées aux seuls
       // comptes de la liste officielle des pilotes, jamais aux visiteurs
       // ni aux contributeurs admis uniquement pour travailler en préouverture.
       // Après le 1er décembre, les abonnés publics retrouvent leur accès normal.
       const exteriorPilotReminder=alert.categorie==="before15" && sub.audience==="visitor" && !!sub.user_id && pilots.has(sub.user_id);
-      if(prelaunch && !exteriorPilotReminder && (!member || (alert.categorie==="public_news" && !pilots.has(sub.user_id))))continue;
+      if(!isComment && prelaunch && !exteriorPilotReminder && (!member || (alert.categorie==="public_news" && !pilots.has(sub.user_id))))continue;
       // Anomalies avant course : exclusivement l'administrateur,
       // jamais les associés ordinaires ou les visiteurs.
       const adminWarning=alert.categorie==="preflight_warning";
-      if(adminWarning){
+      if(isComment){
+        if(commentKind==="general"?sub.general_news!==true:sub.private_news!==true)continue;
+      }else if(adminWarning){
         if(!member || !admins.has(sub.user_id) || sub.results!==true)continue;
       }else if(alert.categorie==="general_news" ? sub.general_news!==true : !sub[alert.categorie])continue;
       const owned=member ? holdings.get(sub.user_id)||new Set<string>() : new Set<string>();
-      if(adminWarning){
+      if(isComment){
+        // Destinataire nominatif déjà contrôlé, sans filtre de copropriété.
+      }else if(adminWarning){
         // Une alerte technique d'administration ne dépend pas de la
         // propriété du cheval ni du filtre « mes chevaux ».
       }else if(alert.categorie==="general_news"){
@@ -626,7 +641,9 @@ async function run() {
       }
       let message:{title:string,body:string,url:string}|null=null;
       const p=alert.payload||{};
-      if(alert.categorie==="preflight_warning"){
+      if(isComment){
+        message={title:"💬 Nouveau commentaire · Écurie Initial",body:"Une réponse à votre publication est disponible.",url:commentKind==="trainer"?APP+"/application/espace-entraineurs/?publication="+encodeURIComponent(commentPost):APP+"/application/mes-chevaux/?"+(commentKind==="general"?"general":"info")+"="+encodeURIComponent(commentPost)+"#nouvelles-privees"};
+      }else if(alert.categorie==="preflight_warning"){
         message={title:"⚠️ Partant à vérifier · "+esc(p.nom),
           body:esc(p.detail)+" : "+esc(p.hippodrome)+" à "+esc(p.heure),
           url:APP+"/application/administration/"};
