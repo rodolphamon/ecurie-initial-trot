@@ -645,7 +645,7 @@ if(window.matchMedia?.('(display-mode: standalone)')?.matches||navigator.standal
 </script>
 <script type="module">
 import {createClient} from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
-import {offerPushOnboarding} from './push-onboarding.js?v=20261127-onboarding1';
+import {offerPushOnboarding} from './push-onboarding.js?v=20261127-onboarding2';
 const app=document.getElementById('appContent'),waiting=document.getElementById('prelaunch');
 const OPEN=Date.parse('2026-11-30T23:00:00Z');
 const norm=s=>(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim().replace(/\s+/g,' ').toLowerCase();
