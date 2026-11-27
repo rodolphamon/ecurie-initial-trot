@@ -533,7 +533,9 @@ function horse(s){
     if(!['declare','partant'].includes(engagementStatus(x,sex)?.kind)||x.reunion_annulee)return '';
     const markup=window.EICourseField?.markup(x,p,s.editor.courseFields||[],'horse-field-'+index);
     if(!markup)return '';
-    return '<div style="padding:10px 14px;border-top:1px solid #eadfd7"><strong>'+esc(dateFR(x.date)+' · '+x.hippodrome+(x.numero?' · N° '+x.numero:''))+'</strong>'+markup+'</div>';
+    const multiple=eng.filter(e=>['declare','partant'].includes(engagementStatus(e,sex)?.kind)&&!e.reunion_annulee).length>1;
+    const label=[multiple?(x.prix||x.course||'Course '+(index+1)):'',x.numero?'N° '+x.numero:''].filter(Boolean).join(' · ');
+    return '<div style="padding:10px 14px;border-top:1px solid #eadfd7">'+(label?'<strong>'+esc(label)+'</strong>':'')+markup+'</div>';
   }).join('');
   document.title=p.name+' | Écurie Initial';
   $('#app').innerHTML=header()
