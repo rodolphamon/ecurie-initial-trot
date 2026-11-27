@@ -29,8 +29,8 @@ button:disabled{opacity:.55;cursor:wait}.muted{color:#666;font-size:13px}
 <label for="title">Titre</label><input id="title" maxlength="150" minlength="3" required placeholder="Des nouvelles de l'entraînement">
 <label for="message">Information</label><textarea id="message" maxlength="5000" placeholder="Comment se porte le cheval ?"></textarea>
 <label for="visibility">Qui peut voir cette information ?</label><select id="visibility"><option value="associes">Associés du cheval</option><option value="public">Tous les membres de l'application (test)</option></select>
-<label for="media">Photo ou vidéo (facultative, 50 Mo maximum)</label><input id="media" type="file" accept="image/jpeg,image/png,image/webp,image/heic,image/heif,.heic,.heif,video/mp4,video/webm">
-<fieldset><legend>🎙️ Message vocal (facultatif, jusqu’à 2 minutes)</legend>
+<label for="media">Photo ou vidéo (facultative, compression automatique si nécessaire)</label><input id="media" type="file" accept="image/jpeg,image/png,image/webp,image/heic,image/heif,.heic,.heif,video/mp4,video/webm">
+<p class="muted" id="mediaHelp">Les vidéos de plus de 50 Mo seront compressées sur votre téléphone avant l’envoi. Gardez cet écran ouvert pendant la compression.</p><fieldset><legend>🎙️ Message vocal (facultatif, jusqu’à 2 minutes)</legend>
 <div class="voice-controls">
 <button type="button" id="startVoice">🎙️ Enregistrer</button>
 <button type="button" id="stopVoice" disabled>■ Terminer</button>
@@ -68,6 +68,82 @@ function loadHeicConverter(){
  }).catch(err=>{heicLoader=null;throw err;});
  return heicLoader;
 }
+
+const MAX_MEDIA_BYTES=50*1024*1024;
+const VIDEO_TARGET_BYTES=40*1024*1024;
+const videoMime=file=>{const t=(file.type||'').split(';')[0].toLowerCase();return t==='video/mp4'||t==='video/webm'?t:!t||t==='application/octet-stream'?(/\.mp4$/i.test(file.name)?'video/mp4':/\.webm$/i.test(file.name)?'video/webm':''):'';};
+function videoSettings(width,height,duration){
+ const scale=Math.min(1,1280/Math.max(width,height),720/Math.min(width,height));
+ return {width:Math.max(2,Math.floor(width*scale/2)*2),height:Math.max(2,Math.floor(height*scale/2)*2),bitrate:Math.min(1800000,Math.floor(VIDEO_TARGET_BYTES*8/duration)-96000)};
+}
+async function compressTrainerVideo(file){
+ const Audio=window.AudioContext||window.webkitAudioContext;
+ const canvas=document.createElement('canvas');
+ if(!Audio||!window.MediaRecorder||!canvas.captureStream)throw Error('Compression vidéo non disponible sur ce navigateur. Ouvrez l’application dans Chrome ou Safari à jour, ou envoyez une vidéo de moins de 50 Mo.');
+ if(file.size>500*1024*1024)throw Error('Vidéo source de plus de 500 Mo. Réduisez sa définition avant l’envoi.');
+ const video=document.createElement('video');video.playsInline=true;video.preload='auto';
+ video.style.cssText='position:fixed;left:-10px;top:0;width:2px;height:2px;opacity:0.01;pointer-events:none';
+ const url=URL.createObjectURL(file);let audio,stream,rec,raf,timer,metadataTimer,source,dest,interrupt;
+ document.body.append(video);
+ try{
+  audio=new Audio();
+  // Démarrer l'audio dans le geste utilisateur et conserver la piste sonore.
+  const resumed=audio.resume();resumed.catch(()=>{});
+  video.src=url;
+  await Promise.race([new Promise((resolve,reject)=>{
+   if(video.readyState>=2)return resolve();
+   video.addEventListener('loadeddata',resolve,{once:true});
+   video.addEventListener('error',()=>reject(Error('Vidéo illisible sur cet appareil.')),{once:true});
+  }),new Promise((_,reject)=>{metadataTimer=setTimeout(()=>reject(Error('Impossible de lire la vidéo.')),20000)})]);
+  clearTimeout(metadataTimer);
+  const duration=video.duration;
+  if(!Number.isFinite(duration)||duration<=0||!video.videoWidth||!video.videoHeight)throw Error('Durée ou dimensions vidéo inconnues.');
+  if(duration>600)throw Error('Pour une vidéo de plus de 10 minutes, envoyez plusieurs séquences.');
+  const settings=videoSettings(video.videoWidth,video.videoHeight,duration);
+  canvas.width=settings.width;canvas.height=settings.height;
+  const ctx=canvas.getContext('2d',{alpha:false});
+  if(!ctx)throw Error('Compression vidéo indisponible.');
+  ctx.drawImage(video,0,0,canvas.width,canvas.height);
+  stream=canvas.captureStream(25);
+  await Promise.race([resumed,new Promise((_,reject)=>{metadataTimer=setTimeout(()=>reject(Error('Son indisponible. Réessayez sans quitter cet écran.')),5000)})]);clearTimeout(metadataTimer);
+  if(audio.state!=='running')throw Error('Son indisponible. Réessayez sans quitter cet écran.');
+  source=audio.createMediaElementSource(video);dest=audio.createMediaStreamDestination();source.connect(dest);
+  for(const track of dest.stream.getAudioTracks())stream.addTrack(track);
+  const formats=['video/mp4;codecs=avc1.42001E,mp4a.40.2','video/mp4','video/webm;codecs=vp8,opus','video/webm'];
+  for(const mimeType of formats){if(!MediaRecorder.isTypeSupported(mimeType))continue;try{rec=new MediaRecorder(stream,{mimeType,videoBitsPerSecond:settings.bitrate,audioBitsPerSecond:96000});break}catch(_){}}
+  if(!rec)throw Error('Aucun format vidéo compatible avec cet appareil.');
+  const chunks=[];let total=0,completed=false;
+  const result=await new Promise((resolve,reject)=>{
+   let settled=false;
+   const fail=msg=>{if(settled)return;settled=true;reject(Error(msg));};
+   interrupt=()=>{if(document.hidden)fail('Compression interrompue : gardez l’application ouverte et réessayez.');};
+   document.addEventListener('visibilitychange',interrupt);
+   rec.ondataavailable=e=>{if(e.data.size){chunks.push(e.data);total+=e.data.size;}if(total>MAX_MEDIA_BYTES)fail('Vidéo encore trop lourde après compression. Réduisez sa définition.');};
+   rec.onerror=()=>fail('Compression vidéo impossible sur cet appareil.');
+   rec.onstop=()=>{
+    if(settled)return;
+    if(!completed)return fail('Compression interrompue. Réessayez.');
+    const mime=(rec.mimeType||chunks[0]?.type||'').split(';')[0];
+    if(!['video/mp4','video/webm'].includes(mime)||!total||total>MAX_MEDIA_BYTES)return fail('Vidéo compressée invalide ou trop lourde.');
+    settled=true;resolve(new File(chunks,(file.name||'video').replace(/\.[^.]+$/,'')+(mime==='video/mp4'?'.mp4':'.webm'),{type:mime}));
+   };
+   video.addEventListener('ended',()=>{completed=true;ctx.drawImage(video,0,0,canvas.width,canvas.height);if(rec.state==='recording')rec.stop();},{once:true});
+   video.addEventListener('error',()=>fail('Lecture vidéo interrompue.'),{once:true});
+   function draw(){if(settled||completed)return;try{ctx.drawImage(video,0,0,canvas.width,canvas.height);write('Compression vidéo : '+Math.min(99,Math.round(video.currentTime/duration*100))+' % — gardez cet écran ouvert.');raf=requestAnimationFrame(draw);}catch(_){fail('Compression vidéo impossible.');}}
+   timer=setTimeout(()=>fail('Compression trop longue ou interrompue. Réessayez avec l’écran allumé.'),(duration+45)*1000);
+   try{rec.start(1000);video.play().then(draw).catch(()=>fail('Lecture vidéo bloquée. Réessayez.'));}catch(_){fail('Impossible de démarrer la compression.');}
+  });
+  return result;
+ }finally{
+  clearTimeout(timer);clearTimeout(metadataTimer);cancelAnimationFrame(raf);
+  if(interrupt)document.removeEventListener('visibilitychange',interrupt);
+  if(rec&&rec.state!=='inactive'){try{rec.stop()}catch(_){}}
+  video.pause();stream?.getTracks().forEach(t=>t.stop());dest?.stream.getTracks().forEach(t=>t.stop());source?.disconnect();
+  if(audio&&audio.state!=='closed')audio.close().catch(()=>{});
+  video.removeAttribute('src');video.load();video.remove();URL.revokeObjectURL(url);
+ }
+}
+
 async function convertHeicPhoto(file){
  const converter=await loadHeicConverter();
  let jpeg;
@@ -204,7 +280,15 @@ $('publish').addEventListener('submit',async e=>{
   let file=$('media').files[0]||recordedVoice;
   if(recorder?.state==='recording')throw Error('Terminez d’abord l’enregistrement.');
   if(file){
-   if(file.size>(recordedVoice===file?MAX_VOICE_BYTES:50*1024*1024))throw Error('Fichier trop volumineux.');
+   const vm=videoMime(file);
+   if(file!==recordedVoice&&vm){
+    if(file.size>MAX_MEDIA_BYTES){
+     write('Préparation de la compression vidéo…');
+     file=await compressTrainerVideo(file);
+     write('Vidéo compressée. Envoi en cours…');
+    }else if(file.type!==vm){file=new File([file],file.name,{type:vm});}
+   }
+   if(file.size>(recordedVoice===file?MAX_VOICE_BYTES:MAX_MEDIA_BYTES))throw Error('Fichier trop volumineux (50 Mo maximum après compression).');
    if(file!==recordedVoice&&isHeicFile(file)){
     write('Conversion de la photo en JPEG…');
     file=await convertHeicPhoto(file);
