@@ -183,9 +183,10 @@ async function initialize(){
  }catch(e){$('status').textContent='Chargement impossible : '+(e.message||'erreur de connexion');}
 }
 async function loadPosts(){
- const res=await db.from('ei_entraineurs_publications')
- .select('id,cheval_slug,titre,contenu,visibilite,media_path,media_type,cree_le')
- .eq('entraineur_id',uid).order('cree_le',{ascending:false}).limit(30);
+ const postId=new URLSearchParams(location.search).get('publication');
+ let query=db.from('ei_entraineurs_publications').select('id,cheval_slug,titre,contenu,visibilite,media_path,media_type,cree_le').eq('entraineur_id',uid).order('cree_le',{ascending:false}).limit(30);
+ if(/^\d+$/.test(postId||''))query=query.eq('id',postId);
+ const res=await query;
  const host=$('posts');host.replaceChildren();
  if(res.error){host.append(item('p','Impossible de charger les publications.'));return}
  if(!res.data?.length){host.append(item('p','Aucune publication pour le moment.'));return}
@@ -218,6 +219,7 @@ async function loadPosts(){
   block.append(del);
   attachPrivateNewsReactions(block,db,{column:'trainer_post_id',postId:p.id,userId:uid});
   host.append(block);
+  if(String(p.id)===postId){block.querySelector('.ei-news-reaction-actions button:nth-child(2)')?.click();block.scrollIntoView({block:'start'});}
  }
 }
 function clearVoicePreview(){
