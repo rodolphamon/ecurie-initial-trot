@@ -515,6 +515,7 @@ async function run() {
   const active=new Set<string>();
   const associates=new Set<string>();
   const activeAccounts=new Set<string>();
+  const activeTrainers=new Set<string>();
   const pilots=new Set<string>();
   const admins=new Set<string>();
   const holdings=new Map<string,Set<string>>();
@@ -522,6 +523,11 @@ async function run() {
     const {data:members,error:memErr}=await sb.from("associes")
       .select("user_id,nom_affiche,administrateur,type_compte").eq("actif",true).in("user_id",userIds);
     if(memErr)throw memErr;
+    if((alerts||[]).some(a=>a.categorie==="private_comment")){
+      const {data:trainers,error:trainerError}=await sb.from("ei_entraineurs").select("user_id").eq("actif",true).in("user_id",userIds);
+      if(trainerError)console.warn("Contrôle des entraîneurs indisponible",trainerError.code);
+      else for(const t of trainers||[])if((members||[]).some(m=>m.user_id===t.user_id))activeTrainers.add(t.user_id);
+    }
     const launchOpen=!prelaunch;
     if(!launchOpen){
       const {data:rows,error:pilotError}=await sb.from("ei_lancement_pilotes")
@@ -601,7 +607,9 @@ async function run() {
       if(Date.parse(sub.created_at)>Date.parse(alert.created_at))continue;
       const member=sub.audience==="associate" && !!sub.user_id && active.has(sub.user_id);
       if(isComment){
-        if(sub.audience!=="associate" || sub.user_id!==commentTarget || !(member || (launchForComments?.data===true && activeAccounts.has(sub.user_id))))continue;
+        if(sub.user_id!==commentTarget)continue;
+        if(commentKind==="trainer"){if(!activeTrainers.has(sub.user_id))continue;}
+        else if(sub.audience!=="associate" || !(member || (launchForComments?.data===true && activeAccounts.has(sub.user_id))))continue;
       }else if(sub.audience==="associate"&&!member && alert.categorie!=="public_news")continue;
       // Avant le lancement, les annonces publiques sont réservées aux seuls
       // comptes de la liste officielle des pilotes, jamais aux visiteurs
