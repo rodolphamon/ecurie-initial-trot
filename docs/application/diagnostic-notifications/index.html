@@ -15,12 +15,12 @@ h2{font-size:19px;margin:0 0 10px}
 dl{display:grid;grid-template-columns:1fr auto;gap:10px;margin:0}
 dt{color:#666}dd{margin:0;text-align:right;font-weight:700;overflow-wrap:anywhere}
 small{color:#666}
-a{color:#a84f13}
+a{color:#a84f13}button{background:#f47721;color:#171717;border:0;border-radius:9px;padding:11px 15px;font:700 14px Arial,sans-serif;cursor:pointer}button:disabled{opacity:.5}
 </style>
 <script defer src="../header.js?v=20261117universel1"></script>
 </head>
-<body><main><p id="restricted">Diagnostic réservé à l’administration. <a href="../notifications/">Retour aux notifications</a></p><div id="diagnostic" hidden>
-<p><a href="../notifications/">← Retour aux notifications</a></p>
+<body><main><p id="restricted">Diagnostic réservé à l’administration. <a href="../administration/">Retour à l’administration</a></p><div id="diagnostic" hidden>
+<p><a href="../administration/">← Administration</a></p>
 <h1>🔔 Diagnostic des notifications</h1>
 <p>Cette page affiche les informations de réception des notifications sur cet appareil.</p>
 <section class="card">
@@ -40,6 +40,7 @@ a{color:#a84f13}
 <p>Les lignes « Dernier Push reçu du serveur » et « Dernier Push affiché » permettent de vérifier la réception des notifications automatiques.</p>
 <p><small>Pour la confidentialité, seul l’état du diagnostic est conservé sur cet appareil ; ni le jeton ni l’adresse complète d’abonnement ne sont affichés.</small></p>
 </section>
+<section class="card"><h2>📊 Délais des notifications (7 derniers jours)</h2><p>Comparaison entre l’acceptation par le service Push, la réception et la demande d’affichage. Une demande d’affichage ne garantit pas que l’utilisateur a vu la notification.</p><button type="button" id="pushLatencyReport">Actualiser les délais</button><div id="pushLatencyResult" role="status" aria-live="polite" style="white-space:pre-line;margin-top:12px;overflow-wrap:anywhere;font-size:13px"></div></section>
 </div></main>
 <script type="module">
 import {createClient} from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
@@ -95,5 +96,20 @@ async function check(){
 }
 
 check();
+el('pushLatencyReport').onclick=async()=>{
+ const btn=el('pushLatencyReport'),out=el('pushLatencyResult');
+ btn.disabled=true;out.textContent='Chargement des mesures…';
+ try{
+  const {data:{session}}=await db.auth.getSession();
+  if(!session?.access_token)throw Error('Reconnectez-vous avec votre compte administrateur.');
+  const response=await fetch('https://yeecwaaizmvrhwobukfa.supabase.co/functions/v1/push-latency-report',{method:'POST',headers:{'Content-Type':'application/json',apikey:'sb_publishable_xUy2EJA3u3cKWl8BB4GNPQ_qhV9Pes3',Authorization:'Bearer '+session.access_token},body:'{}'});
+  const result=await response.json().catch(()=>({}));
+  if(!response.ok)throw Error(result.error||result.message||'Rapport indisponible ('+response.status+').');
+  const format=t=>t?new Date(t).toLocaleString('fr-FR',{timeZone:'Europe/Paris',day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit'}):'—';
+  const rows=result.rows||[];
+  out.textContent=rows.length?rows.map(r=>[format(r.accepted_at),r.account+' · '+r.device,r.category,r.received_at?(r.latency_seconds==null?'Réception confirmée':'Reçu après '+r.latency_seconds+' s'):'Réception non confirmée',r.shown_at?'Affichage demandé '+format(r.shown_at):(r.display_error||'Affichage non confirmé')].join(' | ')).join('\n\n'):'Aucune mesure disponible pour le moment.';
+ }catch(e){out.textContent=e.message||'Mesures indisponibles.'}
+ finally{btn.disabled=false}
+};
 }
 </script></body></html>
