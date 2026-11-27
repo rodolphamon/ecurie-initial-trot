@@ -96,6 +96,10 @@ async function allowedMember(id: string): Promise<boolean> {
     .select("actif,administrateur,nom_affiche").eq("user_id", id).maybeSingle();
   if (error || !a?.actif) return false;
   if (launchOpen()) return true;
+  const {data:open}=await db.rpc("ei_lancement_ouvert");
+  if(open===true)return true;
+  const {data:trainer}=await db.from("ei_entraineurs").select("user_id").eq("user_id",id).eq("actif",true).maybeSingle();
+  if(trainer)return true;
   const { data: pilot, error: pilotError } = await db.from("ei_lancement_pilotes")
     .select("user_id").eq("user_id", id).maybeSingle();
   if (!pilotError) {
@@ -440,6 +444,8 @@ Deno.serve(async (request) => {
       :{data:null,error:null};
     if(accountError)throw accountError;
     const isAssociate=member && account?.type_compte!=="exterieur";
+    const {data:trainer,error:trainerError}=user?await db.from("ei_entraineurs").select("user_id").eq("user_id",user).eq("actif",true).maybeSingle():{data:null,error:null};
+    if(trainerError)throw trainerError;
     // Un invité connecté en préinscription ne peut pas contourner
     // la date d'ouverture en créant un abonnement de visiteur.
     if (!member) {
@@ -466,7 +472,7 @@ Deno.serve(async (request) => {
       results: p.results !== false,
       withdrawn: isAssociate && p.withdrawn !== false,
       // Une actualité privée reste strictement limitée aux propriétaires.
-      private_news: isAssociate && p.private_news === true,
+      private_news: (isAssociate || !!trainer) && p.private_news === true,
       general_news: isAssociate && p.general_news !== false,
       public_news: p.public_news !== false,
       updated_at: new Date().toISOString(),
