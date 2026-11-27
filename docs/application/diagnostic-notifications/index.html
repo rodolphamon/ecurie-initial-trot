@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#171717">
-<title>Diagnostic des notifications · Écurie Initial</title>
+<title>Notifications · Écurie Initial</title>
 <style>
 :root{--o:#f47721}*{box-sizing:border-box}
 body{margin:0;background:#f6f4f1;color:#222;font:16px/1.5 Arial,Helvetica,sans-serif}
@@ -16,13 +16,18 @@ dl{display:grid;grid-template-columns:1fr auto;gap:10px;margin:0}
 dt{color:#666}dd{margin:0;text-align:right;font-weight:700;overflow-wrap:anywhere}
 small{color:#666}
 a{color:#a84f13}button{background:#f47721;color:#171717;border:0;border-radius:9px;padding:11px 15px;font:700 14px Arial,sans-serif;cursor:pointer}button:disabled{opacity:.5}
+
+#notificationTest label{display:block;font-weight:bold;margin-top:18px}#notificationTest select,#notificationTest button{width:100%;padding:12px;margin-top:8px;font:inherit;border-radius:8px}#notificationTest select{border:1px solid #aaa;background:white;color:#222}#notificationTest button{font-weight:bold}#notificationTest button.secondary{background:#eee}#notificationTest #status,#notificationTest #follow{white-space:pre-line}#notificationTest [hidden]{display:none!important}
 </style>
 <script defer src="../header.js?v=20261117universel1"></script>
 </head>
 <body><main><p id="restricted">Diagnostic réservé à l’administration. <a href="../administration/">Retour à l’administration</a></p><div id="diagnostic" hidden>
 <p><a href="../administration/">← Administration</a></p>
-<h1>🔔 Diagnostic des notifications</h1>
-<p>Cette page affiche les informations de réception des notifications sur cet appareil.</p>
+<h1>🔔 Notifications</h1>
+<p>Diagnostic, suivi des réceptions, délais et tests individuels.</p>
+<section class="card" id="notificationTest"><h2>📲 Notification test</h2><p>Choisissez une seule personne. Le test passe par le traitement automatique des résultats, au moins 90 secondes après la demande. Il concerne uniquement les inscriptions de cette personne.</p><p id="status" role="status" aria-live="polite">Vérification des droits…</p><div id="controls" hidden><label for="recipient">Destinataire</label><select id="recipient"><option value="">Choisir une personne</option></select><small id="details"></small><button id="send" disabled>Envoyer la notification test</button><button class="secondary" id="reload">Actualiser les destinataires</button><p>Demandez à la personne de verrouiller son téléphone, sans forcer l’arrêt de l’application.</p><div id="tracking" hidden><button class="secondary" id="check">Vérifier la réception</button><p id="follow" role="status" aria-live="polite"></p></div><small>Aucun envoi de 22h30 à 08h00. Deux minutes minimum entre les tests d’un même appareil.</small></div></section>
+<h2>Diagnostic des notifications</h2>
+<p>Informations de réception sur cet appareil.</p>
 <section class="card">
 <h2>État de l’appareil</h2>
 <dl>
@@ -111,5 +116,46 @@ el('pushLatencyReport').onclick=async()=>{
  }catch(e){out.textContent=e.message||'Mesures indisponibles.'}
  finally{btn.disabled=false}
 };
+{
+const url='https://yeecwaaizmvrhwobukfa.supabase.co';
+const key='sb_publishable_xUy2EJA3u3cKWl8BB4GNPQ_qhV9Pes3';
+const $=id=>document.getElementById(id);
+let recipients=[],testId=null,busy=false;
+async function call(body){
+ const {data:{session}}=await db.auth.getSession();
+ if(!session?.access_token)throw Error('Connectez-vous avec votre compte administrateur.');
+ const res=await fetch(url+'/functions/v1/notifications',{method:'POST',headers:{'Content-Type':'application/json',apikey:key,Authorization:'Bearer '+session.access_token},body:JSON.stringify(body)});
+ const result=await res.json().catch(()=>({}));
+ if(!res.ok)throw Error(result.error||'Service indisponible ('+res.status+').');
+ return result;
+}
+function choice(){return recipients.find(r=>r.id===$('recipient').value)}
+function sync(){const r=choice();$('send').disabled=busy||!r;$('reload').disabled=busy;$('recipient').disabled=busy;$('details').textContent=r?r.devices+' inscription(s) aux notifications':''}
+async function load(){
+ if(busy)return;busy=true;sync();$('status').textContent='Chargement des destinataires…';
+ try{const result=await call({action:'admin_test_recipients'});recipients=result.recipients||[];const selected=$('recipient').value;
+ $('recipient').replaceChildren(new Option('Choisir une personne',''));for(const r of recipients)$('recipient').add(new Option(r.name+' ('+r.devices+' inscription'+(r.devices===1?'':'s')+')',r.id));
+ if(recipients.some(r=>r.id===selected))$('recipient').value=selected;
+ $('controls').hidden=false;$('status').textContent=recipients.length?recipients.length+' destinataire(s) disponible(s).':'Aucun appareil inscrit aux notifications.';
+ }catch(e){$('controls').hidden=true;$('status').textContent=e.message}finally{busy=false;sync()}
+}
+$('recipient').onchange=sync;$('reload').onclick=load;
+$('send').onclick=async()=>{
+ const r=choice();if(busy||!r)return;
+ if(!confirm('Programmer un test automatique uniquement pour '+r.name+' ?'))return;
+ busy=true;sync();$('tracking').hidden=true;testId=null;$('status').textContent='Envoi en cours…';
+ try{const result=await call({action:'admin_send_test',userId:r.id,confirm:true});
+ testId=result.testId;$('status').textContent=result.queued?result.name+' : test automatique programmé à partir de '+new Date(result.notBefore).toLocaleTimeString('fr-FR',{timeZone:'Europe/Paris'})+'. Verrouillez le téléphone.':result.name+' : '+result.accepted+' envoi(s) accepté(s). La réception reste à confirmer.';
+ $('tracking').hidden=!testId;$('follow').textContent='';
+ }catch(e){$('status').textContent=e.message}finally{busy=false;sync()}
+};
+$('check').onclick=async()=>{
+ if(!testId)return;$('check').disabled=true;
+ try{const result=await call({action:'admin_test_status',testId});$('follow').textContent='Acceptés par le service Push : '+result.accepted+'\nReçus par l’application : '+result.received+'\nAffichage demandé : '+result.shown+(result.displayErrors?'\nErreurs d’affichage : '+result.displayErrors:'')+'\nLa confirmation du destinataire reste nécessaire.';
+ }catch(e){$('follow').textContent=e.message}finally{$('check').disabled=false}
+};
+load();
+
+}
 }
 </script></body></html>
