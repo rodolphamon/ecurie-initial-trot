@@ -7,12 +7,13 @@ a{color:#a44907}.panel{background:white;border:1px solid #e8dfd8;border-radius:1
 .action{display:block;color:#171717;text-decoration:none;background:#fff2e5;border:1px solid #f47721;border-radius:9px;padding:12px 14px;font-weight:bold;margin:10px 0}
 .muted{color:#666;font-size:13px}[hidden]{display:none!important}</style></head>
 <body><header><strong>ÉCURIE <em>INITIAL</em> · Équipe</strong></header>
-<main><p><a href="../">← Accueil de l'application</a></p>
-<div class="panel"><h1>👥 Équipe Initial</h1><p>Un seul espace pour les entraîneurs et l'équipe de l'Écurie Initial.</p><p id="status" role="status">Vérification de vos accès…</p></div>
+<main><p><a id="teamBack" href="../">← Accueil de l'application</a></p>
+<div class="panel"><h1>👥 Équipe Initial</h1><p>Entraîneurs, communication et contributions sportives : un seul espace pour l'équipe de l'Écurie Initial.</p><p id="status" role="status">Vérification de vos accès…</p></div>
 <section id="space" hidden>
 <div id="trainer" class="panel" hidden><h2>🐎 Espace entraîneurs</h2><p>Photos, vidéos, actualités et débriefings vocaux des chevaux confiés à l'entraîneur.</p><a class="action" href="../espace-entraineurs/">🎙️ Ouvrir mes chevaux et publications</a></div>
 <div id="communication" class="panel" hidden><h2>📣 Communication</h2><p>Consultez les actualités et fiches des chevaux avec vos droits habituels, sans modification des données.</p><a class="action" href="../mes-chevaux/">🐎 Consulter les chevaux</a><a class="action" href="../tribune/">💬 Tribune</a></div>
-<div id="management" class="panel" hidden><h2>🛠️ Administration de l'équipe</h2><p>Gérer les fiches entraîneurs et rattacher un compte existant à un entraîneur.</p><a class="action" href="../espace-entraineurs/gestion.html">Gérer les entraîneurs et les comptes</a><a class="action" href="../espace-entraineurs-apercu/">👁️ Aperçu du module entraîneurs</a><a class="action" href="../administration/">Administration générale</a></div>
+<div id="management" class="panel" hidden><h2>🐎 Entraîneurs</h2><p>Gérer les fiches entraîneurs et rattacher un compte existant à un entraîneur.</p><a class="action" href="../espace-entraineurs/gestion.html">Gérer les entraîneurs et les comptes</a><a class="action" href="../espace-entraineurs-apercu/">👁️ Aperçu du module entraîneurs</a></div>
+<div id="teamManagement" class="panel" hidden><h2>🤝 Communication et contributeurs sportifs</h2><p>Gérer les membres de la Team Initial, leurs missions et leurs accès.</p><a class="action" href="../administration/contributeurs/">Gérer la communication et les contributeurs</a></div>
 </section>
 </main><script type="module">
 import {createClient} from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
@@ -30,6 +31,8 @@ async function boot(){
   if(!admin&&!observer&&!trainer){status.textContent='Rubrique réservée à l’équipe habilitée.';return}
   status.textContent='Bienvenue '+member.nom_affiche+'.';
   document.getElementById('management').hidden=!admin;
+  document.getElementById('teamManagement').hidden=!admin;
+  if(admin){const back=document.getElementById('teamBack');back.href='../administration/';back.textContent='← Administration';}
   document.getElementById('trainer').hidden=!(trainer&&!admin);
   document.getElementById('communication').hidden=!observer;
   document.getElementById('space').hidden=false;
