@@ -81,17 +81,7 @@ main{max-width:770px;padding:13px 14px 105px}
 <button type="button" class="secondary" id="disable" hidden>Arrêter sur cet appareil</button>
 <button type="button" class="secondary" id="repair" hidden>Réparer la réception sur ce téléphone</button>
 <p id="status" role="status" aria-live="polite"></p>
-<p class="muted">Sur iPhone, ajoutez d'abord Écurie Initial à l'écran d'accueil. Vous pourrez modifier vos choix ou désactiver les alertes à tout moment.</p>
-<p id="diagnosticLink" hidden><a href="../diagnostic-notifications/" style="display:inline-block;padding:12px 16px;border:1px solid #f47721;border-radius:9px;background:#fff7f0;color:#703109;text-decoration:none;font-weight:700">🔎 Diagnostic des notifications</a></p>
-<p id="diagnosticHelp" class="muted" hidden>Consultez les informations de réception et d’affichage des notifications automatiques.</p></section>
-<section class="card" id="myPhonePanel" hidden>
-<h2>Suivi des notifications</h2>
-<div style="margin-top:14px;border-top:1px solid #ddd;padding-top:12px">
-  <strong>📊 Délais des notifications (7 derniers jours)</strong>
-  <p class="muted">Comparaison entre l'acceptation par le service Push, la réception dans l'application et la demande d'affichage Android.</p>
-  <button type="button" class="secondary" id="pushLatencyReport">Actualiser les délais</button>
-  <div id="pushLatencyResult" role="status" aria-live="polite" style="white-space:pre-line;margin-top:10px;font-size:.9em"></div>
-</div>
+<p class="muted" id="iosHelp" hidden>Sur iPhone, ajoutez d’abord Écurie Initial à l’écran d’accueil.</p>
 </section>
 </div><section class="card" id="prelaunchHold" hidden><h2>🔒 Ouverture le 1er décembre 2026</h2><p>Vous pouvez confirmer votre inscription dès aujourd’hui, mais les notifications de l’application sont réservées jusqu’au 1er décembre aux personnes bénéficiant d’un accès anticipé.</p><a href="../connexion/">Confirmer mon invitation ou me connecter</a></section>
 </main>
@@ -145,6 +135,7 @@ async function callServer(body){
 }
 async function init(){
  try{
+  $('iosHelp').hidden=!(/iPhone|iPod|iPad/i.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1));
   if(!('serviceWorker' in navigator)||!('PushManager' in window)||!('Notification' in window)){
     $('serviceState').textContent='Ce navigateur ne prend pas en charge les notifications Push. Sur iPhone, utilisez l’application installée.';return;
   }
@@ -170,7 +161,7 @@ async function init(){
     isMember=!!a?.actif&&['associe','observateur'].includes(a.type_compte);
     if(isMember){accountScope=a.notification_scope==='all'?'all':'mine';chooseScope(accountScope);}
     if(a?.actif&&['exterieur','presse'].includes(a.type_compte)){$('profile').textContent=(a.type_compte==='presse'?'Presse':'Membre extérieur')+' · '+a.nom_affiche;$('profileText').textContent='Notifications publiques des courses, résultats et annonces de l’Écurie. Les informations privées restent réservées aux propriétaires.';}
-    if(isMember){$('profile').textContent='Espace associé · '+a.nom_affiche;$('profileText').hidden=true;$('scopeBox').hidden=false;$('guestChecks').hidden=true;$('memberChecks').hidden=false;if(a.administrateur){for(const id of ['myPhonePanel','diagnosticLink','diagnosticHelp'])$(id).hidden=false;}}
+    if(isMember){$('profile').textContent='Espace associé · '+a.nom_affiche;$('profileText').hidden=true;$('scopeBox').hidden=false;$('guestChecks').hidden=true;$('memberChecks').hidden=false;}
   }
   registration=await navigator.serviceWorker.register('../sw.js',{updateViaCache:'none'});
   // Le premier abonnement exige un worker actif, pas seulement installé.
@@ -313,22 +304,7 @@ $('repair').onclick=async()=>{
    for(const input of inputs)input.disabled=!!repairState;
  }
 };
-$('pushLatencyReport').onclick=async()=>{
- const btn=$('pushLatencyReport'),out=$('pushLatencyResult');
- btn.disabled=true;out.textContent='Chargement des mesures…';
- try{
-  const result=await callServer({action:'push_latency_report'});
-  const format=t=>t?new Date(t).toLocaleString('fr-FR',{timeZone:'Europe/Paris',day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit'}):'—';
-  const rows=result.rows||[];
-  out.textContent=rows.length?rows.slice(0,35).map(r=>
-    [format(r.accepted_at),r.account+' · '+r.device,
-    r.category,
-    r.latency_seconds==null?'Réception non confirmée':('Reçu après '+r.latency_seconds+' s'),
-    r.shown_at?'Affichage demandé '+format(r.shown_at):(r.display_error?'Erreur '+r.display_error:'Affichage non confirmé')].join(' | ')
-  ).join('\n\n'):'Aucune mesure disponible pour le moment. Les prochains envois seront suivis.';
- }catch(e){out.textContent=e.message||'Mesures indisponibles.'}
- finally{btn.disabled=false}
-};
+
 
 init();
 </script>
