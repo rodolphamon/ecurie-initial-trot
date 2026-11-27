@@ -46,6 +46,7 @@ button:disabled{opacity:.55;cursor:wait}.muted{color:#666;font-size:13px}
 </section>
 </main>
 <script type="module">
+import {attachPrivateNewsReactions} from "../private-news-reactions.js?v=1";
 import {createClient} from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
 const db=createClient('https://yeecwaaizmvrhwobukfa.supabase.co','sb_publishable_xUy2EJA3u3cKWl8BB4GNPQ_qhV9Pes3');
 const $=id=>document.getElementById(id);
@@ -214,7 +215,9 @@ async function loadPosts(){
    if(d.error){write('Suppression impossible : '+d.error.message,'error');del.disabled=false}
    else await loadPosts();
   });
-  block.append(del);host.append(block);
+  block.append(del);
+  attachPrivateNewsReactions(block,db,{column:'trainer_post_id',postId:p.id,userId:uid});
+  host.append(block);
  }
 }
 function clearVoicePreview(){
