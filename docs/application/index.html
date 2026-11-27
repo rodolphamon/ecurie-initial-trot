@@ -71,6 +71,9 @@ body.ei-prelaunch{padding-bottom:0!important}
 #appContent .home-install-link{display:block;border-radius:12px;padding:13px 15px;margin:6px 0 14px;background:#fff2e7;border:2px solid #f47721;text-decoration:none;color:#171717;font-weight:800;text-align:center;font-size:17px}
 #appContent .home-install-link:focus-visible{outline:3px solid #171717;outline-offset:3px}
 #appContent .home-install-link span{display:block;font-size:13px;font-weight:500;margin-top:3px}
+#appContent #homeTrainerShortcut{background:#171717;color:#fff;border-color:#f47721}
+#appContent #homeTrainerShortcut span{color:#fff2e7}
+#appContent #homeTrainerShortcut[hidden]{display:none!important}
 @media(max-width:600px){#prelaunch .prelaunch-box{padding:24px 15px}#prelaunch .install-spot{padding:14px}#prelaunch .install-spot h2{font-size:21px}}
 
 /* Accueil expérimental : affichage compact et actualités dynamiques */
@@ -593,6 +596,7 @@ body.ei-assoc-view #appContent{padding-top:10px}
 </style><link rel="apple-touch-icon" href="icon-ei-192.png"></head><body class="ei-prelaunch"><header><div class="brand"><img src="icon-ei-192.png" alt="Emblème officiel Écurie Initial"><div class="brand-copy"><strong>ÉCURIE <span class="brand-initial"><span class="brand-initial-i">I</span>NITIAL</span></strong></div><p class="brand-slogan"><span class="brand-slogan-line">PARTAGEONS NOTRE PASSION</span><span class="brand-slogan-date">DEPUIS 2011</span></p></div></header><div id="prelaunch" hidden><div class="prelaunch-box"><h1>🐎 Bientôt votre espace Écurie Initial</h1><p><strong>Ouverture officielle le mardi 1er décembre 2026.</strong></p><p>Vous pouvez installer l’application dès aujourd’hui. Les invités peuvent confirmer leur compte et les visiteurs extérieurs peuvent demander leur inscription sans invitation. L’accès privé reste soumis à validation, avec ouverture générale le 1er décembre.</p><p>Jusqu’à cette date, les cinq comptes pilotes et les contributeurs expressément autorisés assurent les derniers essais.</p><div class="install-spot"><h2>📲 Installez l'application sur votre téléphone</h2><p>Retrouvez facilement l'Écurie Initial depuis votre écran d'accueil.</p><a href="installation/">📲 Installer l'application — voir les étapes</a><p style="font-size:15px;margin:10px 0 0">Android ou iPhone : suivez les instructions en gros caractères.</p></div><p class="access-spot">Pour accéder à votre compte :</p><a href="connexion/">🔑 Me connecter ou activer mon invitation</a> <a href="inscription/" style="margin-left:8px">Créer mon compte</a></div><p class="prelaunch-hint">Notre site public reste accessible sur <a href="https://www.ecurie-initial.com/" style="background:none;color:#a54c0b;padding:0;font:inherit;text-decoration:underline">www.ecurie-initial.com</a>.</p></div><main id="appContent" hidden>
 <div class="home-welcome" role="note">La vie de l’Écurie, course après course.</div>
 <a id="homeInstallLink" class="home-install-link" href="installation/">📲 Installer l'application sur mon téléphone<span>Un guide simple pour Android et iPhone</span></a>
+<a id="homeTrainerShortcut" class="home-install-link" href="espace-entraineurs/" hidden>🐎 Mon espace entraîneur<span>Mes chevaux, actualités et débriefings</span></a>
 <div id="publicArea">
 <h2 class="home-title"><span class="orange-dot" aria-hidden="true"></span>En ce moment</h2>
 <div class="home-dashboard" aria-label="Actualité de l'écurie">
@@ -658,12 +662,14 @@ async function refreshAssocAccess(){
  const logout=document.getElementById('assocLogout');
  const adminLink=document.getElementById('assocAdminShortcut');
  const trainerLink=document.getElementById('assocTrainerShortcut');
+ const homeTrainerLink=document.getElementById('homeTrainerShortcut');
  if(!panel||!note||!action||!logout||!adminLink)return;
  panel.classList.remove('is-connected');
  action.classList.remove('is-connected');
  logout.hidden=true;
  adminLink.hidden=true;
  if(trainerLink)trainerLink.hidden=true;
+ if(homeTrainerLink)homeTrainerLink.hidden=true;
  note.textContent='Connectez-vous pour accéder à votre espace.';
  action.innerHTML='Se connecter <span aria-hidden="true">→</span>';
  action.href='connexion/';
@@ -687,13 +693,17 @@ async function refreshAssocAccess(){
   action.classList.add('is-connected');
   panel.classList.add('is-connected');
   adminLink.hidden=member.administrateur!==true;
-  // Les administrateurs accèdent à Équipe depuis le tableau de bord Administration.
-  if(trainerLink&&member.administrateur!==true){
-   if(member.type_compte==='observateur'){
+  // L'accès entraîneur dépend exclusivement du rôle actif vérifié dans Supabase.
+  // Le raccourci d'accueil est visible uniquement après cette vérification.
+  if(trainerLink||homeTrainerLink){
+   if(trainerLink&&member.administrateur!==true&&member.type_compte==='observateur'){
     trainerLink.href='equipe/';trainerLink.hidden=false;
-   } else {
-    const {data:trainerRole,error:trainerError}=await assocAuth.from('ei_entraineurs').select('actif').eq('user_id',user.id).maybeSingle();
-    if(!trainerError&&trainerRole?.actif){trainerLink.href='equipe/';trainerLink.hidden=false;}
+   }
+   const {data:trainerRole,error:trainerError}=await assocAuth.from('ei_entraineurs').select('actif').eq('user_id',user.id).maybeSingle();
+   if(!trainerError&&trainerRole?.actif===true){
+    if(homeTrainerLink)homeTrainerLink.hidden=false;
+    note.textContent='Votre accès entraîneur est actif.';
+    if(trainerLink&&member.administrateur!==true){trainerLink.href='equipe/';trainerLink.hidden=false;}
    }
   }
  }catch(error){console.info('État de connexion indisponible',error?.message||error)}
