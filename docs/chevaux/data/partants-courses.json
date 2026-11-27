@@ -74,6 +74,113 @@
         }
       ],
       "source_api": "https://online.turfinfo.api.pmu.fr/rest/client/1/programme/29112026/R16/C1/participants"
+    },
+    {
+      "date": "2026-11-29",
+      "hippodrome": "Beaumont-de-Lomagne",
+      "course": "C5",
+      "prix": "Prix Jean-François Maury",
+      "cheval_slug": "lucky-des-gaudines",
+      "partants": [
+        {
+          "numero": 1,
+          "cheval": "LOVE QUEEN",
+          "driver": "TH. DUCOS",
+          "ferrure": "DP"
+        },
+        {
+          "numero": 2,
+          "cheval": "LE WINNER AS",
+          "driver": "PIERRICK LE MOEL",
+          "ferrure": "D4"
+        },
+        {
+          "numero": 3,
+          "cheval": "LEXINGTON DU BOURG",
+          "driver": "T. VLAEMYNCK DE…",
+          "ferrure": "D4"
+        },
+        {
+          "numero": 4,
+          "cheval": "LETOILE AMERICAINE",
+          "driver": "S. STEFANO",
+          "ferrure": "D4"
+        },
+        {
+          "numero": 5,
+          "cheval": "LEADER DE CHOISEL",
+          "driver": "M. GRASSET",
+          "ferrure": "D4"
+        },
+        {
+          "numero": 6,
+          "cheval": "LICORNE QUICK",
+          "driver": "P. GESRET",
+          "ferrure": "F4"
+        },
+        {
+          "numero": 7,
+          "cheval": "LE PREMIER ORTHON",
+          "driver": "Y. LACOMBE",
+          "ferrure": "D4"
+        },
+        {
+          "numero": 8,
+          "cheval": "LANCELOT DE BEYLEV",
+          "driver": "I.P. BLANCHON",
+          "ferrure": "DA"
+        },
+        {
+          "numero": 9,
+          "cheval": "L'INDIEN PEARL",
+          "driver": "Y. VIDAL",
+          "ferrure": "P4"
+        },
+        {
+          "numero": 10,
+          "cheval": "LICORNE D'OURVILLE",
+          "driver": "L. LALANDE",
+          "ferrure": "D4"
+        },
+        {
+          "numero": 11,
+          "cheval": "LORETTE UP STAR",
+          "driver": "V. CABOS",
+          "ferrure": "D4"
+        },
+        {
+          "numero": 12,
+          "cheval": "LEWIS DE BLARY",
+          "driver": "F. MARTY",
+          "ferrure": "F4"
+        },
+        {
+          "numero": 13,
+          "cheval": "LEAVING NEW YORK",
+          "driver": "TH. PRUDHON",
+          "ferrure": "DP"
+        },
+        {
+          "numero": 14,
+          "cheval": "L'AMETHYSTE",
+          "driver": "M. GERGOUIL",
+          "ferrure": "DA"
+        },
+        {
+          "numero": 15,
+          "cheval": "LUCKY DES GAUDINES",
+          "driver": "Cyril GAZENGEL",
+          "ferrure": "D4"
+        },
+        {
+          "numero": 16,
+          "cheval": "LASCO DES LUCAS",
+          "driver": "A. HONORE",
+          "ferrure": "F4"
+        }
+      ],
+      "source_description": "Capture de la liste en cours de finalisation validée par le gérant le 27/11/2026",
+      "provisoire": true
     }
   ]
 }
