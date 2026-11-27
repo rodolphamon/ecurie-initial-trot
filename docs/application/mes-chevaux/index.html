@@ -140,6 +140,8 @@ async function setup(){
     if(!r.ok)throw Error('Données publiques indisponibles');
     return r.json();
   }));
+  const trainerId=new URLSearchParams(location.search).get('entraineur');
+  const isTrainerId=/^[0-9]{1,18}$/.test(trainerId||'');
   const infoId=new URLSearchParams(location.search).get('info');
   const isInfoId=/^[0-9]{1,18}$/.test(infoId||'');
   const generalId=new URLSearchParams(location.search).get('general');
@@ -155,7 +157,10 @@ async function setup(){
   if(isInfoId)privateQuery=privateQuery.eq('id',infoId);
   const privatePromise=mine.length&&!isGeneralId?privateQuery:Promise.resolve({data:[],error:null});
   const generalPromise=isInfoId?Promise.resolve({data:[],error:null}):generalQuery;
-  const [pubResult,privResult,genResult]=await Promise.allSettled([publicPromise,privatePromise,generalPromise]);
+  let trainerQuery=db.from('ei_entraineurs_publications').select('id,cheval_slug,titre,contenu,media_path,media_type,cree_le').in('cheval_slug',mine.map(p=>p.cheval_slug)).order('cree_le',{ascending:false}).limit(30);
+  if(isTrainerId)trainerQuery=trainerQuery.eq('id',trainerId);
+  const trainerPromise=mine.length&&!isInfoId&&!isGeneralId?trainerQuery:Promise.resolve({data:[],error:null});
+  const [pubResult,privResult,genResult,trainerResult]=await Promise.allSettled([publicPromise,isTrainerId?Promise.resolve({data:[],error:null}):privatePromise,isTrainerId?Promise.resolve({data:[],error:null}):generalPromise,trainerPromise]);
   let editorial=null,profiles=null;
   if(pubResult.status==='fulfilled'){
     [editorial,profiles]=pubResult.value;
@@ -217,20 +222,22 @@ async function setup(){
   const generalNews=genResult.status==='fulfilled'&&!genResult.value.error?(genResult.value.data||[]):[];
   if(privResult.status==='rejected'||privResult.value?.error||genResult.status==='rejected'||genResult.value?.error)
     console.warn('Une partie des informations privées est indisponible.');
-  const news=[...horseNews.map(n=>({...n,isGeneral:false})),
+  const trainerNews=trainerResult.status==='fulfilled'&&!trainerResult.value.error?(trainerResult.value.data||[]):[];
+  if(trainerResult.status==='rejected'||trainerResult.value?.error)console.warn('Publications entraîneurs indisponibles.');
+  const news=[...trainerNews.map(n=>({...n,created_at:n.cree_le,isTrainer:true,isGeneral:false})),...horseNews.map(n=>({...n,isGeneral:false})),
     ...generalNews.map(n=>({...n,isGeneral:true}))]
     .sort((a,b)=>b.created_at.localeCompare(a.created_at)).slice(0,40);
   for(const n of news){
     if(!n.isGeneral&&!bySlug.has(n.cheval_slug))continue;
     const box=el('article',undefined,'news'+(n.isGeneral?' general-news':''));
-    box.append(el('strong',n.isGeneral?'📣 Écurie Initial · '+n.titre:(bySlug.get(n.cheval_slug)?.cheval_nom||'Cheval')+' · '+n.titre));
+    box.append(el('strong',n.isGeneral?'📣 Écurie Initial · '+n.titre:(bySlug.get(n.cheval_slug)?.cheval_nom||'Cheval')+' · '+(n.isTrainer?'🐎 Entraîneur · ':'')+n.titre));
     if(n.contenu)box.append(el('p',n.contenu));
-    const bucket=n.isGeneral?'ei-generales-privees':'ei-chevaux-prives';
-    if(n.media_path&&['image','video'].includes(n.media_type)){
+    const bucket=n.isTrainer?'ei-entraineurs-medias':n.isGeneral?'ei-generales-privees':'ei-chevaux-prives';
+    if(n.media_path&&['image','video','audio'].includes(n.media_type)){
       const {data:media,error:mediaError}=await db.storage.from(bucket)
         .createSignedUrl(n.media_path,3600);
       if(!mediaError&&media?.signedUrl){
-        const element=el(n.media_type==='image'?'img':'video');
+        const element=el(n.media_type==='image'?'img':n.media_type==='audio'?'audio':'video');
         element.src=media.signedUrl;
         if(n.media_type==='image'){element.alt='Photo privée : '+n.titre;element.loading='lazy'}
         else{element.controls=true;element.preload='metadata';element.playsInline=true}
@@ -238,7 +245,7 @@ async function setup(){
       }else box.append(el('p','Média privé indisponible pour le moment.','muted'));
     }
     box.append(el('small',formatDate(n.created_at)));
-    if(member.administrateur){
+    if(member.administrateur&&!n.isTrainer){
       const remove=el('button','🗑 Supprimer cette publication','news-delete');
       remove.type='button';
       remove.setAttribute('aria-label','Supprimer '+n.titre+(n.isGeneral?' pour tous les associés':' du cheval '+(bySlug.get(n.cheval_slug)?.cheval_nom||n.cheval_slug)));
