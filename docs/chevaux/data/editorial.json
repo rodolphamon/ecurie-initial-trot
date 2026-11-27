@@ -11113,10 +11113,13 @@
       {
         "date": "2026-12-07",
         "hippodrome": "Bordeaux",
-        "type": "Trot attelé",
+        "type": "Attelé",
         "prix": "Prix de Margaux",
         "statut": "engage",
-        "source_description": "Capture engagements LeTROT transmise le 14/11/2026"
+        "source_description": "Capture engagements LeTROT transmise le 14/11/2026",
+        "surface": "Sable",
+        "distance": "2550m Autostart",
+        "type_course": "Réclamer"
       }
     ],
     "victoria-secret": [
@@ -11124,7 +11127,7 @@
         "date": "2026-12-02",
         "hippodrome": "Deauville",
         "type": "Plat",
-        "statut": "engage",
+        "statut": "forfait",
         "prix": "Prix du Manoir de la Salamandre",
         "allocation": 50900,
         "distance": "1900 m",
@@ -11160,45 +11163,57 @@
       {
         "date": "2026-11-25",
         "hippodrome": "Vincennes",
-        "type": "Trot attelé",
-        "statut": "engage",
-        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026",
-        "prix": "Prix de Bonnieux"
+        "type": "Attelé",
+        "statut": "partant",
+        "source_description": "Capture des engagements Trot transmise le 13/11/2026 (horaires non retenus)",
+        "prix": "Prix de Bonnieux",
+        "heure": "15:22",
+        "course": "R4C2",
+        "driver": "David THOMAIN",
+        "numero": "4",
+        "ferrure": "PA",
+        "surface": "Sable",
+        "distance": "2100m G.P. Autostart",
+        "type_course": "Réclamer"
       },
       {
         "date": "2026-12-03",
         "hippodrome": "Vincennes",
-        "type": "Trot monté",
+        "type": "Monté",
         "statut": "engage",
-        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026",
-        "prix": "Prix de Chamalières"
+        "source_description": "Capture des engagements Trot transmise le 13/11/2026 (horaires non retenus)",
+        "prix": "Prix de Chamalières",
+        "ferrure": "F4",
+        "surface": "Sable",
+        "distance": "2175m G.P.",
+        "type_course": "Course D"
       },
       {
         "date": "2026-12-07",
         "hippodrome": "Bordeaux",
-        "type": "Trot attelé",
+        "type": "Attelé",
         "statut": "engage",
-        "source_description": "Capture des engagements Infonet LeTROT transmise par l'Écurie Initial le 27/11/2026",
+        "source_description": "Capture transmise par Écurie Initial le 26/11/2026",
         "prix": "Prix Une de Mai",
-        "type_course": "À réclamer"
+        "type_course": "Réclamer"
       },
       {
         "date": "2027-01-06",
         "hippodrome": "Vincennes",
-        "type": "Trot attelé",
+        "type": "Attelé",
         "statut": "engage",
-        "source_description": "Capture des engagements Infonet LeTROT transmise par l'Écurie Initial le 27/11/2026",
+        "source_description": "Capture transmise par Écurie Initial le 26/11/2026",
         "prix": "Prix de Montfort",
-        "type_course": "À réclamer"
+        "type_course": "Réclamer"
       },
       {
         "date": "2027-01-25",
         "hippodrome": "Vincennes",
-        "type": "Trot attelé",
+        "type": "Attelé",
         "statut": "engage",
-        "source_description": "Capture des engagements Infonet LeTROT transmise par l'Écurie Initial le 27/11/2026",
+        "source_description": "Capture transmise par Écurie Initial le 26/11/2026",
         "prix": "Prix de Courbevoie",
-        "type_course": "À réclamer"
+        "type_course": "Réclamer"
       }
     ],
     "andresy": [
@@ -11220,11 +11235,13 @@
         "source_url": "https://pro.france-galop.com/EspacePro/Course/CourseDetailsPage?anneeCourse=2026&specialite=P&numProgramme=6508",
         "code_programme": "6508",
         "part": "A (20 %)",
-        "numero": 4,
+        "numero": "4",
         "reunion_annulee": true,
         "mention": "RÉUNION ANNULÉE",
         "motif_annulation": "Réunion d'Amiens du 18 novembre 2026 annulée",
-        "notifier_partant": false
+        "notifier_partant": false,
+        "surface": "Gazon",
+        "type_course": "Course à conditions"
       }
     ],
     "giorgiana": [
@@ -11237,14 +11254,16 @@
         "allocation": 22100,
         "distance": "1200 m",
         "statut": "partant",
-        "source_description": "Déclarations France Galop transmises par le gérant le 17/11/2026 ; horaire confirmé par le gérant. ",
+        "source_description": "Déclarations France Galop transmises par le gérant le 17/11/2026 ; horaire confirmé par le gérant.",
         "code_programme": "1193",
         "part": "A (25 %)",
         "jockey": "César BELMONT",
         "entraineur": "Gilles PANNIER",
         "course": "R1C5",
         "numero": 14,
-        "corde": 1
+        "corde": 1,
+        "surface": "Gazon",
+        "type_course": "Handicap"
       }
     ],
     "le-roi-leon": [
@@ -11257,14 +11276,16 @@
         "allocation": 21100,
         "distance": "2000 m",
         "statut": "partant",
-        "source_description": "Déclarations France Galop transmises par le gérant le 17/11/2026 ; horaire confirmé par le gérant. ",
+        "source_description": "Déclarations France Galop transmises par le gérant le 17/11/2026 ; horaire confirmé par le gérant.",
         "code_programme": "11197",
         "part": "R (16 %)",
         "jockey": "Antoine HAMELIN",
         "entraineur": "Gilles PANNIER",
         "course": "R1C7",
         "numero": 5,
-        "corde": 1
+        "corde": 1,
+        "surface": "Gazon",
+        "type_course": "Classe 3"
       }
     ],
     "douriann": [
@@ -11284,179 +11305,206 @@
         "entraineur": "Gilles PANNIER",
         "quinte_plus": true,
         "course": "R1C6",
-        "numero": 13,
-        "corde": 4
+        "numero": "13",
+        "corde": 4,
+        "surface": "Gazon",
+        "type_course": "Classe 2"
       }
     ],
     "moondance-okina": [
       {
         "date": "2026-11-26",
         "hippodrome": "Mauquenchy",
-        "type": "Trot attelé",
-        "statut": "engage",
-        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026",
-        "prix": "Prix le Bistrot & l'Assiette de Formerie"
+        "type": "Attelé",
+        "statut": "partant",
+        "source_description": "Capture des engagements Trot transmise le 13/11/2026 (horaires non retenus)",
+        "prix": "Prix le Bistrot & l'Assiette de Formerie",
+        "heure": "18:55",
+        "course": "R4C4",
+        "driver": "Sébastien OLIVIER ",
+        "numero": "12",
+        "ferrure": "F4",
+        "surface": "Sable",
+        "distance": "2850m",
+        "type_course": "Course E"
       },
       {
         "date": "2026-12-04",
         "hippodrome": "Saint-Brieuc",
-        "type": "Trot attelé",
+        "type": "Attelé",
         "statut": "engage",
-        "source_description": "Capture des engagements Infonet LeTROT transmise par l'Écurie Initial le 27/11/2026",
+        "source_description": "Capture Infonet LeTROT transmise par Écurie Initial le 27/11/2026",
         "prix": "Prix Sas Mtm"
       },
       {
         "date": "2026-12-09",
         "hippodrome": "Lyon (La Soie)",
-        "type": "Trot attelé",
+        "type": "Attelé",
         "statut": "engage",
-        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026",
-        "prix": "Prix de Champagne-Ardenne"
+        "source_description": "Capture des engagements Trot transmise le 13/11/2026 (horaires non retenus)",
+        "prix": "Prix de Champagne-Ardenne",
+        "ferrure": "F4",
+        "distance": "2050m Autostart",
+        "type_course": "Course E"
       },
       {
         "date": "2026-12-18",
         "hippodrome": "Cabourg",
-        "type": "Trot attelé",
+        "type": "Attelé",
         "statut": "engage",
-        "source_description": "Capture des engagements Infonet LeTROT transmise par l'Écurie Initial le 27/11/2026",
+        "source_description": "Capture Infonet LeTROT transmise par Écurie Initial le 27/11/2026",
         "prix": "Prix des Orties"
       },
       {
         "date": "2026-12-21",
         "hippodrome": "Cagnes-sur-Mer",
-        "type": "Trot attelé",
+        "type": "Attelé",
         "statut": "engage",
-        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026",
-        "prix": "Prix de la Napoule"
+        "source_description": "Capture des engagements Trot transmise le 13/11/2026 (horaires non retenus)",
+        "prix": "Prix de la Napoule",
+        "ferrure": "F4",
+        "surface": "Sable",
+        "distance": "2925m",
+        "type_course": "Course E"
       },
       {
         "date": "2026-12-27",
         "hippodrome": "Vincennes",
-        "type": "Trot attelé",
+        "type": "Attelé",
         "statut": "engage",
-        "source_description": "Capture des engagements Infonet LeTROT transmise par l'Écurie Initial le 27/11/2026",
+        "source_description": "Capture Infonet LeTROT transmise par Écurie Initial le 27/11/2026",
         "prix": "Prix de la Drôme"
       },
       {
         "date": "2027-01-08",
         "hippodrome": "Cabourg",
-        "type": "Trot attelé",
+        "type": "Attelé",
         "statut": "engage",
-        "source_description": "Capture des engagements Infonet LeTROT transmise par l'Écurie Initial le 27/11/2026",
+        "source_description": "Capture Infonet LeTROT transmise par Écurie Initial le 27/11/2026",
         "prix": "Prix de Colombières"
       }
     ],
     "memphis-belle": [
       {
-        "date": "2026-11-27",
-        "hippodrome": "Toulouse",
-        "type": "Trot monté",
-        "prix": "Prix de Cazaux-Saves",
-        "statut": "engage",
-        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026"
-      },
-      {
-        "date": "2026-11-28",
-        "hippodrome": "Le Croisé-Laroche",
-        "type": "Trot attelé",
-        "prix": "Prix Pan de la Vaudere",
-        "statut": "engage",
-        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026"
-      },
-      {
         "date": "2026-11-29",
         "hippodrome": "Châteaubriant",
-        "type": "Trot attelé",
+        "type": "Attelé",
         "prix": "Prix du Bois Hamon",
-        "statut": "engage",
-        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026"
+        "statut": "forfait",
+        "source_description": "Capture Infonet LeTROT transmise le 21/11/2026 (sans horaires ni déclaration de partant)",
+        "ferrure": "F4"
       },
       {
         "date": "2026-11-29",
         "hippodrome": "Reims",
-        "type": "Trot monté",
+        "type": "Monté",
         "statut": "partant",
-        "source_description": "Liste des partants communiquée par le gérant le 26/11/2026 (capture Infonet LeTROT, course 1 ; horaire et code réunion PMU à confirmer).",
+        "source_description": "Partants communiqués par le gérant le 26/11/2026 ; départ 13h30 confirmé par Zone-Turf et calendrier Hippodrome de Reims le 26/11/2026",
         "prix": "Prix de Bjerke",
         "numero": 1,
-        "driver": "J. MAILLARD",
+        "driver": "Justin MAILLARD",
         "entraineur": "L. BARASSIN",
-        "distance": "2550 m",
-        "ferrure": "D4"
+        "distance": "2550m",
+        "ferrure": "D4",
+        "heure": "13:30",
+        "surface": "Sable",
+        "type_course": "Course F"
       },
       {
         "date": "2026-11-30",
         "hippodrome": "Vincennes",
-        "type": "Trot monté",
+        "type": "Monté",
         "prix": "Prix de Nonant le Pin",
-        "statut": "engage",
-        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026"
+        "statut": "forfait",
+        "source_description": "Capture Infonet LeTROT transmise le 21/11/2026 (sans horaires ni déclaration de partant)",
+        "ferrure": "F4"
       },
       {
         "date": "2026-12-13",
         "hippodrome": "Cherbourg",
-        "type": "Trot attelé",
+        "type": "Attelé",
         "statut": "engage",
-        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026",
-        "prix": "Prix Une Tempête Dans Ma Tête"
+        "source_description": "Capture des engagements Trot transmise le 13/11/2026 (horaires non retenus)",
+        "prix": "Prix Une Tempête Dans Ma Tête",
+        "ferrure": "F4",
+        "surface": "Sable",
+        "distance": "2625m",
+        "type_course": "Course G"
       }
     ],
     "isolee-du-bouillon": [
       {
         "date": "2026-11-30",
         "hippodrome": "Vincennes",
-        "type": "Trot attelé",
-        "statut": "engage",
-        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026",
-        "prix": "Prix de Meslay du Maine"
+        "type": "Attelé",
+        "statut": "declare",
+        "source_description": "Capture des engagements Trot transmise le 13/11/2026 (horaires non retenus)",
+        "prix": "Prix de Meslay du Maine",
+        "driver": "Bruno MARIE ",
+        "ferrure": "F4",
+        "surface": "Sable",
+        "distance": "2700m",
+        "type_course": "Course C"
       },
       {
         "date": "2026-12-04",
         "hippodrome": "Mauquenchy",
-        "type": "Trot attelé",
+        "type": "Attelé",
         "statut": "engage",
-        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026",
-        "prix": "Prix Levasseur Réceptions"
+        "source_description": "Capture des engagements Trot transmise le 13/11/2026 (horaires non retenus)",
+        "prix": "Prix Levasseur Réceptions",
+        "ferrure": "F4",
+        "surface": "Sable",
+        "distance": "2850m",
+        "type_course": "Course D"
       },
       {
         "date": "2026-12-07",
         "hippodrome": "Vincennes",
-        "type": "Trot attelé",
+        "type": "Attelé",
         "statut": "engage",
-        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026",
-        "prix": "Prix des Alpes"
+        "source_description": "Capture des engagements Trot transmise le 13/11/2026 (horaires non retenus)",
+        "prix": "Prix des Alpes",
+        "ferrure": "F4",
+        "surface": "Sable",
+        "distance": "2100m G.P. Auto",
+        "type_course": "Course D"
       },
       {
         "date": "2026-12-10",
         "hippodrome": "Vincennes",
-        "type": "Trot attelé",
+        "type": "Attelé",
         "statut": "engage",
-        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026",
-        "prix": "Prix de Murat"
+        "source_description": "Capture des engagements Trot transmise le 13/11/2026 (horaires non retenus)",
+        "prix": "Prix de Murat",
+        "ferrure": "F4"
       },
       {
         "date": "2026-12-24",
         "hippodrome": "Vincennes",
-        "type": "Trot attelé",
+        "type": "Attelé",
         "statut": "engage",
-        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026",
-        "prix": "Prix d'Amboise"
+        "source_description": "Capture des engagements Trot transmise le 13/11/2026 (horaires non retenus)",
+        "prix": "Prix d'Amboise",
+        "ferrure": "F4"
       },
       {
         "date": "2026-12-25",
         "hippodrome": "Vincennes",
-        "type": "Trot attelé",
+        "type": "Attelé",
         "statut": "engage",
-        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026",
-        "prix": "Prix du Gard"
+        "source_description": "Capture des engagements Trot transmise le 13/11/2026 (horaires non retenus)",
+        "prix": "Prix du Gard",
+        "ferrure": "F4"
       },
       {
         "date": "2027-01-02",
         "hippodrome": "Vincennes",
-        "type": "Trot attelé",
+        "type": "Attelé",
         "statut": "engage",
-        "source_description": "Infonet LeTROT, consultation directe du 21/11/2026",
-        "prix": "Prix de Nozay"
+        "source_description": "Capture des engagements Trot transmise le 13/11/2026 (horaires non retenus)",
+        "prix": "Prix de Nozay",
+        "ferrure": "F4"
       }
     ],
     "lord-on-way": [
@@ -11465,44 +11513,48 @@
         "hippodrome": "Vincennes",
         "type": "Trot attelé",
         "prix": "Prix Florentina",
-        "statut": "engage",
-        "source_description": "Capture LeTROT des engagements communiquée par le gérant le 16/11/2026"
+        "statut": "forfait",
+        "source_description": "Capture LeTROT des engagements communiquée par le gérant le 16/11/2026",
+        "distance": "2700m G.P."
       }
     ],
     "lucky-des-gaudines": [
       {
-        "date": "2026-11-27",
-        "hippodrome": "Toulouse",
-        "type": "Trot attelé",
-        "prix": "Prix de la Rhune",
-        "statut": "engage",
-        "source_description": "Capture LeTROT des engagements communiquée par le gérant le 16/11/2026"
-      },
-      {
         "date": "2026-11-29",
         "hippodrome": "Beaumont-de-Lomagne",
-        "type": "Trot attelé",
+        "type": "Attelé",
         "prix": "Prix Jean-François Maury",
-        "statut": "engage",
-        "source_description": "Capture engagements LeTROT transmise le 14/11/2026"
+        "statut": "declare",
+        "source_description": "Capture engagements LeTROT transmise le 14/11/2026",
+        "driver": "Cyril GAZENGEL",
+        "ferrure": "D4",
+        "surface": "Sable",
+        "distance": "2400m  Autostart",
+        "type_course": "Course F"
       }
     ],
     "myrtille-marboula": [
       {
         "date": "2026-12-12",
         "hippodrome": "Cagnes-sur-Mer",
-        "type": "Trot attelé",
+        "type": "Attelé",
         "prix": "Prix Fortunato II",
         "statut": "engage",
-        "source_description": "Capture engagements LeTROT transmise le 14/11/2026"
+        "source_description": "Capture engagements LeTROT transmise le 14/11/2026",
+        "surface": "Sable",
+        "distance": "2150m Autostart",
+        "type_course": "Course D"
       },
       {
         "date": "2026-12-27",
         "hippodrome": "Cagnes-sur-Mer",
-        "type": "Trot attelé",
+        "type": "Attelé",
         "prix": "Prix Valmiki",
         "statut": "engage",
-        "source_description": "Capture engagements LeTROT transmise le 14/11/2026"
+        "source_description": "Capture engagements LeTROT transmise le 14/11/2026",
+        "surface": "Sable",
+        "distance": "2925m",
+        "type_course": "Course C"
       }
     ],
     "bailychka": [
@@ -11516,10 +11568,10 @@
         "distance": "1900 m",
         "code_programme": "1215",
         "part": "R (16 %)",
-        "source_description": "France Galop Espace Pro — capture des engagements valides du 24/11/2026 à 12h02 (état DP-P pour les partants, VA-P pour les engagements). Horaire, numéro et corde conservés des données précédentes.",
+        "source_description": "Liste France Galop communiquée le 16/11/2026 ; horaires et statut partant confirmés séparément lorsque disponibles",
         "heure": "15:05",
         "course": "R1C3",
-        "numero": 3,
+        "numero": "3",
         "corde": 3,
         "surface": "PSF",
         "type_course": "Maiden",
@@ -11538,14 +11590,40 @@
         "allocation": 25900,
         "distance": "1300 m",
         "code_programme": "1222",
-        "source_description": "France Galop Espace Pro — capture des engagements valides du 24/11/2026 à 12h02 (état DP-P pour les partants, VA-P pour les engagements). Corde conservée des données précédentes ; horaire et numéro non fournis par cette capture.",
+        "source_description": "Capture des engagements France Galop transmise par le gérant le 17/11/2026 ; horaires et jockeys non connus au stade des engagements",
         "jockey": "Augustin MADAMET",
         "entraineur": "Gilles PANNIER",
         "part": "R (16 %)",
-        "type_course": "Handicap"
+        "type_course": "Handicap",
+        "heure": "14:30",
+        "course": "R1C2",
+        "numero": "11",
+        "surface": "PSF"
+      },
+      {
+        "date": "2026-11-28",
+        "prix": "Prix de la forêt d'Andaigne",
+        "statut": "forfait",
+        "surface": "PSF",
+        "distance": "1300m",
+        "hippodrome": "Deauville",
+        "type_course": "Maiden"
       }
     ],
     "saturday-night": [
+      {
+        "date": "2026-11-25",
+        "prix": "Finale HD CH.",
+        "type": "Plat",
+        "statut": "forfait",
+        "surface": "PSF",
+        "distance": "1900 m",
+        "allocation": 17400,
+        "hippodrome": "Deauville",
+        "type_course": "Course à conditions",
+        "code_programme": "1224",
+        "source_description": "Capture des engagements France Galop transmise par le gérant le 17/11/2026 ; horaires et jockeys non connus au stade des engagements"
+      },
       {
         "date": "2026-12-02",
         "hippodrome": "Deauville",
