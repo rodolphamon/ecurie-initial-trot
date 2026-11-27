@@ -1,6 +1,6 @@
 {
   "schema": "ecurie-initial-profils-v1",
-  "updated_at": "2026-11-26",
+  "updated_at": "2026-11-27",
   "note": "Pour les performances : au maximum les cinq dernières sorties documentées, dont les sources sont conservées en interne pour contrôle. Les classements exacts n'ont été indiqués que lorsqu'ils étaient disponibles. Les jeunes chevaux inédits n'ont pas de performances inventées. Les engagements existants sont conservés ; les nouveaux engagements au trot du 13/11/2026 sont ajoutés sans reprendre les horaires. Résultats du 13/11/2026 (MONA LISA STARDUST 7e, VICTORIA SECRET non placée) communiqués par l'Écurie Initial.",
   "performances": {
     "memphis-belle": [
@@ -11172,6 +11172,33 @@
         "statut": "engage",
         "source_description": "Infonet LeTROT, consultation directe du 21/11/2026",
         "prix": "Prix de Chamalières"
+      },
+      {
+        "date": "2026-12-07",
+        "hippodrome": "Bordeaux",
+        "type": "Trot attelé",
+        "statut": "engage",
+        "source_description": "Capture des engagements Infonet LeTROT transmise par l'Écurie Initial le 27/11/2026",
+        "prix": "Prix Une de Mai",
+        "type_course": "À réclamer"
+      },
+      {
+        "date": "2027-01-06",
+        "hippodrome": "Vincennes",
+        "type": "Trot attelé",
+        "statut": "engage",
+        "source_description": "Capture des engagements Infonet LeTROT transmise par l'Écurie Initial le 27/11/2026",
+        "prix": "Prix de Montfort",
+        "type_course": "À réclamer"
+      },
+      {
+        "date": "2027-01-25",
+        "hippodrome": "Vincennes",
+        "type": "Trot attelé",
+        "statut": "engage",
+        "source_description": "Capture des engagements Infonet LeTROT transmise par l'Écurie Initial le 27/11/2026",
+        "prix": "Prix de Courbevoie",
+        "type_course": "À réclamer"
       }
     ],
     "andresy": [
@@ -11271,6 +11298,14 @@
         "prix": "Prix le Bistrot & l'Assiette de Formerie"
       },
       {
+        "date": "2026-12-04",
+        "hippodrome": "Saint-Brieuc",
+        "type": "Trot attelé",
+        "statut": "engage",
+        "source_description": "Capture des engagements Infonet LeTROT transmise par l'Écurie Initial le 27/11/2026",
+        "prix": "Prix Sas Mtm"
+      },
+      {
         "date": "2026-12-09",
         "hippodrome": "Lyon (La Soie)",
         "type": "Trot attelé",
@@ -11279,12 +11314,36 @@
         "prix": "Prix de Champagne-Ardenne"
       },
       {
+        "date": "2026-12-18",
+        "hippodrome": "Cabourg",
+        "type": "Trot attelé",
+        "statut": "engage",
+        "source_description": "Capture des engagements Infonet LeTROT transmise par l'Écurie Initial le 27/11/2026",
+        "prix": "Prix des Orties"
+      },
+      {
         "date": "2026-12-21",
         "hippodrome": "Cagnes-sur-Mer",
         "type": "Trot attelé",
         "statut": "engage",
         "source_description": "Infonet LeTROT, consultation directe du 21/11/2026",
         "prix": "Prix de la Napoule"
+      },
+      {
+        "date": "2026-12-27",
+        "hippodrome": "Vincennes",
+        "type": "Trot attelé",
+        "statut": "engage",
+        "source_description": "Capture des engagements Infonet LeTROT transmise par l'Écurie Initial le 27/11/2026",
+        "prix": "Prix de la Drôme"
+      },
+      {
+        "date": "2027-01-08",
+        "hippodrome": "Cabourg",
+        "type": "Trot attelé",
+        "statut": "engage",
+        "source_description": "Capture des engagements Infonet LeTROT transmise par l'Écurie Initial le 27/11/2026",
+        "prix": "Prix de Colombières"
       }
     ],
     "memphis-belle": [
