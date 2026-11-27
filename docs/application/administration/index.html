@@ -242,8 +242,7 @@ body[data-admin-view="actions"] #actions:not([hidden]){display:block!important}
   <a class="admin-hub-link" href="effectif/"><strong>🏇 Gestion de l’effectif</strong><small>Achats, ventes, entraîneurs</small></a>
   <a class="admin-hub-link" href="tribune/"><strong>🛡️ Tribune</strong><small>Modérer les publications</small></a>
   <a class="admin-hub-link" href="actualites/"><strong>📣 Messages</strong><small>Communications aux associés</small></a>
-  <a class="admin-hub-link" href="../equipe/"><strong>🎙️ Équipe</strong><small>Entraîneurs et communication</small></a>
-  <a class="admin-hub-link" href="contributeurs/"><strong>🤝 Team Initial</strong><small>Communication et contributeurs sportifs</small></a>
+  <a class="admin-hub-link" href="../equipe/"><strong>🤝 Équipe</strong><small>Entraîneurs, communication et contributeurs sportifs</small></a>
   <a class="admin-hub-link" href="../diagnostic-notifications/"><strong>🔔 Notifications</strong><small>Vérifier les alertes sur votre appareil</small></a>
   <a class="admin-hub-link" href="test-notifications/"><strong>📲 Notification test</strong><small>Tester un destinataire et vérifier la réception</small></a>
   <a class="admin-hub-link" href="../team-initial/?boite=1"><strong>📥 Mes messages</strong><small>Consulter ma boîte privée</small></a>
@@ -291,10 +290,10 @@ body[data-admin-view="actions"] #actions:not([hidden]){display:block!important}
   </div>
 </div>
 <div class="panel admin-tool" id="contributorPanel" hidden>
-  <div class="admin-tool-title"><span class="admin-tool-icon">📝</span><h2>Team Initial</h2></div>
+  <div class="admin-tool-title"><span class="admin-tool-icon">📝</span><h2>Équipe</h2></div>
   <p>Retrouvez Émilie MARECHAL (communication), Arnaud PUSKAS et Nicolas BARRÉ (gestion sportive).</p>
   <div class="admin-tool-actions">
-    <a class="tool-button primary" href="contributeurs/">Ouvrir Team Initial</a>
+    <a class="tool-button primary" href="../equipe/">Ouvrir Équipe</a>
   </div>
 </div>
 </div><div class="panel" id="actions" hidden><h2>Invitations et gestion des accès</h2><p class="warning"><strong>Préouverture jusqu’au 1er décembre 2026.</strong> Les personnes invitées peuvent créer leur mot de passe dès maintenant. Jusqu’au lancement officiel, l’accès aux espaces réservés reste limité aux personnes individuellement autorisées et aux testeurs habilités.</p><p>Les invitations sont individuelles et les droits d’accès restent contrôlés côté Supabase.</p><form id="inviteForm"><p id="prefillNotice" class="muted">Pour une personne déjà connue, utilisez « Préparer l’invitation » dans le répertoire ci-dessus : ses chevaux seront cochés automatiquement.</p><label for="nom">Nom affiché</label><input id="nom" maxlength="100" required placeholder="Prénom NOM"><label for="email">Adresse e-mail</label><input id="email" type="email" required placeholder="membre@exemple.fr"><label for="inviteType">Statut du compte</label><select id="inviteType" class="small-select"><option value="associe">Associé propriétaire</option><option value="exterieur">Membre extérieur · Tribune et notifications publiques</option><option value="presse">Presse · consultation des informations publiques uniquement</option></select><fieldset class="invite-horses" id="inviteHorsesBox"><legend>🐎 Chevaux de cet associé</legend><p class="muted">Cochez ses chevaux pour les rattacher dès la création du compte. Vous pourrez modifier cette liste ensuite.</p><input type="search" id="inviteHorseFilter" placeholder="Rechercher un cheval…" aria-label="Rechercher un cheval à attribuer"><div id="inviteHorseChoices" class="invite-roster"></div><p id="inviteHorseCount" class="invite-roster-state" role="status">Chargement des chevaux…</p></fieldset><button type="submit">Créer le compte et envoyer l'invitation</button></form><p id="actionStatus" role="status"></p><p class="muted">Les invitations sont individuelles. Aucun mot de passe ne doit être communiqué.</p><p class="muted">Pour corriger une adresse existante ou rattacher un cheval, choisissez le compte dans le tableau « Gestion des associés ».</p></div></main><script type="module">
