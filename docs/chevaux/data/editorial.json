@@ -11534,7 +11534,9 @@
         "surface": "Sable",
         "distance": "2400m  Autostart",
         "type_course": "Course F",
-        "numero": "15"
+        "numero": "15",
+        "heure": "13:05",
+        "course": "R5C5"
       }
     ],
     "myrtille-marboula": [
