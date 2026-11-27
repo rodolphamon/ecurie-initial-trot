@@ -5,15 +5,18 @@ const norm=value=>String(value||'').normalize('NFD').replace(/[\u0300-\u036f]/g,
 const venue=value=>({'PARISLONGCHAMP':'LONGCHAMP','PARIS LONGCHAMP':'LONGCHAMP','DEAUVILLE CLAIREFONTAINE':'CLAIREFONTAINE','ROYAN ATLANTIQUE':'ROYAN LA PALMYRE','TOULOUSE':'LA CEPIERE','TOULOUSE LA CEPIERE':'LA CEPIERE'}[norm(value)]||norm(value));
 function markup(event,horse,courses,id){
   if(!['declare','partant'].includes(event.statut)||event.reunion_annulee)return '';
+  const includesHorse=rows=>Array.isArray(rows)&&rows.length>0&&rows.some(p=>norm(p.cheval)===norm(horse.name)
+    &&(!event.numero||Number(event.numero)===Number(p.numero)));
   const matches=courses.filter(c=>c.cheval_slug===horse.id&&c.date===event.date
     &&venue(c.hippodrome)===venue(event.hippodrome)
-    &&(!event.course||String(event.course).toUpperCase()===c.course)
-    &&Array.isArray(c.partants)&&c.partants.some(p=>norm(p.cheval)===norm(horse.name)
-      &&(!event.numero||Number(event.numero)===p.numero)));
-  const course=matches.length===1?matches[0]:null;
+    &&(!event.course||String(event.course).toUpperCase()===c.course||
+      (/^C\d+$/.test(c.course)&&String(event.course).toUpperCase().endsWith(c.course)&&norm(c.prix)===norm(event.prix)))
+    &&includesHorse(c.partants));
+  const course=includesHorse(event.partants)?{partants:event.partants,provisoire:false}:matches.length===1?matches[0]:null;
+  const opened=new URLSearchParams(location.search).get('partants')===event.date;
   const rows=course?course.partants.map(p=>'<tr'+(norm(p.cheval)===norm(horse.name)?' class="ei-field-current"':p.non_partant?' class="ei-field-non-partant"':'')+'><td>'+esc(p.numero)+'</td><td>'+esc(p.cheval)+(p.non_partant?' · Non partant':'')+'</td><td>'+esc(p.driver||p.jockey||'—')+'</td></tr>').join(''):'';
-  return '<details class="ei-course-field"><summary>Partants de la course</summary>'+(course
-    ?'<div class="ei-field-scroll" id="'+esc(id)+'" role="region" aria-label="Liste des partants, défilement horizontal" tabindex="0"><table class="ei-field-table"><thead class="ei-field-head"><tr><th>Numéro</th><th>Cheval</th><th>Monte</th></tr></thead><tbody>'+rows+'</tbody></table></div><input class="ei-field-slider" type="range" min="0" max="100" step="any" value="0" aria-label="Faire défiler les partants vers la droite ou la gauche" aria-controls="'+esc(id)+'" hidden>'
+  return '<details class="ei-course-field"'+(opened?' open':'')+'><summary>Partants de la course</summary>'+(course
+    ?(course.provisoire?'<p class="ei-field-waiting">Liste en cours de finalisation.</p>':'')+'<div class="ei-field-scroll" id="'+esc(id)+'" role="region" aria-label="Liste des partants, défilement horizontal" tabindex="0"><table class="ei-field-table"><thead class="ei-field-head"><tr><th>Numéro</th><th>Cheval</th><th>Monte</th></tr></thead><tbody>'+rows+'</tbody></table></div><input class="ei-field-slider" type="range" min="0" max="100" step="any" value="0" aria-label="Faire défiler les partants vers la droite ou la gauche" aria-controls="'+esc(id)+'" hidden>'
     :'<p class="ei-field-waiting">Liste officielle à venir.</p>')+'</details>';
 }
 function init(root=document){
