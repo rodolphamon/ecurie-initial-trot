@@ -686,8 +686,9 @@ async function refreshAssocAccess(){
   action.classList.add('is-connected');
   panel.classList.add('is-connected');
   adminLink.hidden=member.administrateur!==true;
-  if(trainerLink){
-   if(member.administrateur||member.type_compte==='observateur'){
+  // Les administrateurs accèdent à Équipe depuis le tableau de bord Administration.
+  if(trainerLink&&member.administrateur!==true){
+   if(member.type_compte==='observateur'){
     trainerLink.href='equipe/';trainerLink.hidden=false;
    } else {
     const {data:trainerRole,error:trainerError}=await assocAuth.from('ei_entraineurs').select('actif').eq('user_id',user.id).maybeSingle();
