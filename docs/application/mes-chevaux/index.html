@@ -67,6 +67,7 @@
 </div>
 <p id="status" role="status" aria-live="polite"></p></main>
 <script type="module">
+import {attachPrivateNewsReactions} from "../private-news-reactions.js?v=1";
 import{createClient}from'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
 const db=createClient('https://yeecwaaizmvrhwobukfa.supabase.co','sb_publishable_xUy2EJA3u3cKWl8BB4GNPQ_qhV9Pes3');
 const $=id=>document.getElementById(id);
@@ -152,14 +153,15 @@ async function setup(){
   if(isGeneralId)generalQuery=generalQuery.eq('id',generalId);
   let privateQuery=db.from('actualites_chevaux_privees')
     .select('id,cheval_slug,titre,contenu,media_path,media_type,created_at')
-    .in('cheval_slug',mine.map(p=>p.cheval_slug))
     .order('created_at',{ascending:false}).limit(30);
+  if(!member.administrateur)privateQuery=privateQuery.in('cheval_slug',mine.map(p=>p.cheval_slug));
   if(isInfoId)privateQuery=privateQuery.eq('id',infoId);
-  const privatePromise=mine.length&&!isGeneralId?privateQuery:Promise.resolve({data:[],error:null});
+  const privatePromise=(member.administrateur||mine.length)&&!isGeneralId?privateQuery:Promise.resolve({data:[],error:null});
   const generalPromise=isInfoId?Promise.resolve({data:[],error:null}):generalQuery;
-  let trainerQuery=db.from('ei_entraineurs_publications').select('id,cheval_slug,titre,contenu,media_path,media_type,cree_le').in('cheval_slug',mine.map(p=>p.cheval_slug)).order('cree_le',{ascending:false}).limit(30);
+  let trainerQuery=db.from('ei_entraineurs_publications').select('id,cheval_slug,titre,contenu,media_path,media_type,cree_le').order('cree_le',{ascending:false}).limit(30);
+  if(!member.administrateur)trainerQuery=trainerQuery.in('cheval_slug',mine.map(p=>p.cheval_slug));
   if(isTrainerId)trainerQuery=trainerQuery.eq('id',trainerId);
-  const trainerPromise=mine.length&&!isInfoId&&!isGeneralId?trainerQuery:Promise.resolve({data:[],error:null});
+  const trainerPromise=(member.administrateur||mine.length)&&!isInfoId&&!isGeneralId?trainerQuery:Promise.resolve({data:[],error:null});
   const [pubResult,privResult,genResult,trainerResult]=await Promise.allSettled([publicPromise,isTrainerId?Promise.resolve({data:[],error:null}):privatePromise,isTrainerId?Promise.resolve({data:[],error:null}):generalPromise,trainerPromise]);
   let editorial=null,profiles=null;
   if(pubResult.status==='fulfilled'){
@@ -228,9 +230,9 @@ async function setup(){
     ...generalNews.map(n=>({...n,isGeneral:true}))]
     .sort((a,b)=>b.created_at.localeCompare(a.created_at)).slice(0,40);
   for(const n of news){
-    if(!n.isGeneral&&!bySlug.has(n.cheval_slug))continue;
+    if(!n.isGeneral&&!member.administrateur&&!bySlug.has(n.cheval_slug))continue;
     const box=el('article',undefined,'news'+(n.isGeneral?' general-news':''));
-    box.append(el('strong',n.isGeneral?'📣 Écurie Initial · '+n.titre:(bySlug.get(n.cheval_slug)?.cheval_nom||'Cheval')+' · '+(n.isTrainer?'🐎 Entraîneur · ':'')+n.titre));
+    box.append(el('strong',n.isGeneral?'📣 Écurie Initial · '+n.titre:(bySlug.get(n.cheval_slug)?.cheval_nom||management.get(n.cheval_slug)?.nom||n.cheval_slug)+' · '+(n.isTrainer?'🐎 Entraîneur · ':'')+n.titre));
     if(n.contenu)box.append(el('p',n.contenu));
     const bucket=n.isTrainer?'ei-entraineurs-medias':n.isGeneral?'ei-generales-privees':'ei-chevaux-prives';
     if(n.media_path&&['image','video','audio'].includes(n.media_type)){
@@ -272,6 +274,7 @@ async function setup(){
       };
       box.append(remove);
     }
+    if(!observer)attachPrivateNewsReactions(box,db,{column:n.isTrainer?'trainer_post_id':n.isGeneral?'general_post_id':'horse_post_id',postId:n.id,userId:user.id,admin:member.administrateur});
     $('private-news').append(box);
     $('newsSection').hidden=false;
   }
