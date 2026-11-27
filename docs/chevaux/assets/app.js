@@ -92,7 +92,7 @@ function loadCourseFieldAssets(){
   const css=document.createElement('link');
   css.rel='stylesheet';css.href=base+'assets/course-field.css?v=20261126partants2';document.head.appendChild(css);
   return new Promise((resolve,reject)=>{
-    const script=document.createElement('script');script.src=base+'assets/course-field.js?v=20261126partants2';
+    const script=document.createElement('script');script.src=base+'assets/course-field.js?v=20261127partants3';
     script.onload=resolve;script.onerror=reject;document.head.appendChild(script);
   });
 }
