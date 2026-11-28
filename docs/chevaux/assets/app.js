@@ -193,7 +193,7 @@ if(url&&replay.date&&replay.cheval){
 }}}}catch(error){console.warn('Liens vidéo temporairement indisponibles',error)}return {profiles:all.horses.map(p=>({...p,...(gallop.get(p.id)||{}),trainer:p.trainer,sex:p.sex||gallop.get(p.id)?.sex||null,active:p.active,newHorse:p.newHorse,dateSortie:p.dateSortie})),editor,trot:trot.horses||{},gallop,replayIndex,updates:{trot:trot.updated_at,galop:galop.updated_at}}}
 const installedApp = window.matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
 if(installedApp) document.documentElement.classList.add('ei-app-installed');
-function header(){return '<header class="top"><div class="shell top-inner"><a class="wordmark" href="'+base+'index.html"><img class="wordmark-logo" src="'+base+'assets/embleme-ei.png?v=20261112h" alt="Écurie Initial" width="46" height="46"><span class="wordmark-copy"><span class="wordmark-title">ÉCURIE <span class="wordmark-initial"><span class="wordmark-initial-i">'+(installedApp?'ı':'I')+'</span>NITIAL</span></span><small>PARTAGEONS NOTRE PASSION DEPUIS 2011</small></span></a>'+(installedApp?'<span class="wordmark-slogan"><span class="wordmark-slogan-line">PARTAGEONS NOTRE PASSION</span><span class="wordmark-slogan-date">DEPUIS 2011</span></span>':'<nav class="top-nav"><a href="'+base+'index.html">Nos chevaux</a><a href="https://www.ecurie-initial.com/nos-chevaux/trotteurs/" target="_blank" rel="noopener noreferrer">Trot</a><a href="https://www.ecurie-initial.com/nos-chevaux/galopeurs/" target="_blank" rel="noopener noreferrer">Galop</a><a href="https://www.ecurie-initial.com/" target="_blank" rel="noopener noreferrer">Site officiel</a></nav>')+'</div></header>'}
+function header(){return '<header class="top"><div class="shell top-inner"><a class="wordmark" href="'+base+'index.html"><img class="wordmark-logo" src="'+base+'assets/embleme-ei.png?v=20261112h" alt="Écurie Initial" width="46" height="46"><span class="wordmark-copy"><span class="wordmark-title">ÉCURIE <span class="wordmark-initial"><span class="wordmark-initial-i">'+(installedApp?'ı':'I')+'</span>NITIAL</span></span><small>PARTAGEONS NOTRE PASSION DEPUIS 2011</small></span></a>'+(installedApp?'<span class="wordmark-slogan"><span class="wordmark-slogan-line">PARTAGEONS NOTRE PASSION</span><span class="wordmark-slogan-date">DEPUIS 2011</span></span>':'<nav class="top-nav"><a href="'+base+'index.html">Nos chevaux</a><a href="'+base+'entraineurs.html">Nos entraîneurs</a><a href="https://www.ecurie-initial.com/nos-chevaux/trotteurs/" target="_blank" rel="noopener noreferrer">Trot</a><a href="https://www.ecurie-initial.com/nos-chevaux/galopeurs/" target="_blank" rel="noopener noreferrer">Galop</a><a href="https://www.ecurie-initial.com/" target="_blank" rel="noopener noreferrer">Site officiel</a></nav>')+'</div></header>'}
 function footer(){return '<footer class="footer"><div class="shell">© Écurie Initial · Des chevaux, des associés, une passion commune.</div></footer>'}
 function metric(p,data){
  if(p.casaque!=='galop')return data.record||'—';
@@ -581,6 +581,26 @@ function horse(s){
     +'</main>'+footer();
 }
 
+function trainersPage(s){
+ const groups=new Map();
+ for(const p of s.profiles.filter(p=>p.active!==false&&p.trainer)){if(!groups.has(p.trainer))groups.set(p.trainer,[]);groups.get(p.trainer).push(p);}
+ const names=[...groups.keys()].sort((a,b)=>a.localeCompare(b,'fr'));
+ const selected=new URLSearchParams(location.search).get('entraineur');
+ const link=p=>base+(p.newHorse?'fiche/?cheval='+encodeURIComponent(p.id):encodeURIComponent(p.id)+'/');
+ const trainerLink=n=>base+'entraineurs.html?entraineur='+encodeURIComponent(n);
+ const cards=names.map(n=>'<a class="paper" style="display:block;padding:18px;color:inherit;text-decoration:none;border-left:4px solid #f58220" href="'+esc(trainerLink(n))+'"><strong>'+esc(n)+'</strong><p>'+esc([...new Set(groups.get(n).map(p=>p.discipline))].join(' · '))+' · '+groups.get(n).length+' cheval(aux)</p></a>').join('');
+ let detail='';
+ if(groups.has(selected)){
+ const horses=groups.get(selected).sort((a,b)=>a.name.localeCompare(b.name,'fr'));
+ const rows=(key)=>horses.flatMap(p=>(s.editor[key]?.[p.id]||[]).map(x=>({p,x})));
+ const upcoming=rows('engagements').filter(({x})=>x.date>=currentParis().slice(0,10)&&!['forfait','elimine','eliminee','nonpartant'].includes(normalizeSearch(x.statut||x.status||'').replace(/\s+/g,''))).sort((a,b)=>a.x.date.localeCompare(b.x.date));
+ const recent=rows('performances').filter(({x})=>x.entraineur&&normalizeSearch(x.entraineur)===normalizeSearch(selected)).sort((a,b)=>b.x.date.localeCompare(a.x.date)).slice(0,10);
+ const raceRows=(items,result)=>items.length?items.map(({p,x})=>'<p style="padding:10px 14px;margin:0;border-bottom:1px solid #ddd"><a href="'+esc(link(p))+'"><strong>'+esc(p.name)+'</strong></a> · '+esc(dateFR(x.date))+' · '+esc(x.hippodrome)+' · '+esc(result?x.rang:(engagementStatus(x,p.sex)?.label||x.statut||''))+'</p>').join(''):'<p style="padding:14px">Aucune donnée vérifiée disponible.</p>';
+ detail='<p><a href="'+base+'entraineurs.html">← Tous les entraîneurs</a></p><h1>'+esc(selected)+'</h1><p>'+esc([...new Set(horses.map(p=>p.discipline))].join(' · '))+'</p><h2 class="section-title">Chevaux de l’Écurie Initial</h2><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:12px">'+horses.map(p=>'<a class="horse-card" href="'+esc(link(p))+'">'+photoMarkup(p,'card')+'<div style="padding:12px"><strong>'+esc(p.name)+'</strong></div></a>').join('')+'</div><h2 class="section-title">Prochains engagements</h2><div class="paper">'+raceRows(upcoming,false)+'</div><h2 class="section-title">Derniers résultats attribués à cet entraîneur</h2><div class="paper">'+raceRows(recent,true)+'</div>';
+ }
+ $('#app').innerHTML=header()+'<main class="shell" style="padding-top:24px;padding-bottom:32px">'+(detail||'<h1>Nos entraîneurs</h1><p>Les professionnels qui accompagnent les chevaux de l’Écurie Initial.</p><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px">'+cards+'</div>')+'</main>'+footer();
+}
+
 function initArrivalScroll(){
   for(const view of document.querySelectorAll('.ei-arrival-view')){
     const scroller=view.querySelector('.ei-arrival-scroll');
@@ -639,5 +659,5 @@ function watchFreshResults(state){
   window.addEventListener('online',()=>{void check(true)});
   setInterval(()=>{void check()},60000);
 }
-load().then(s=>{if(document.body.dataset.page==='fiche'){horse(s);initArrivalScroll();window.EICourseField?.init(document);if(location.hash==='#performances')$('#performances')?.scrollIntoView();}else if(document.body.dataset.page==='resultats')resultsPage(s);else catalog(s);watchFreshResults(s)}).catch(err=>{console.error(err);$('#app').innerHTML=header()+'<main class="shell"><div class="error"><h1>Informations temporairement indisponibles</h1><p>Le catalogue n’a pas pu être chargé. Réessayez en actualisant la page.</p><p><a href="https://www.ecurie-initial.com/">Retour au site officiel</a></p></div></main>'+footer()});
+load().then(s=>{if(document.body.dataset.page==='fiche'){horse(s);initArrivalScroll();window.EICourseField?.init(document);if(location.hash==='#performances')$('#performances')?.scrollIntoView();}else if(document.body.dataset.page==='resultats')resultsPage(s);else if(document.body.dataset.page==='entraineurs')trainersPage(s);else catalog(s);watchFreshResults(s)}).catch(err=>{console.error(err);$('#app').innerHTML=header()+'<main class="shell"><div class="error"><h1>Informations temporairement indisponibles</h1><p>Le catalogue n’a pas pu être chargé. Réessayez en actualisant la page.</p><p><a href="https://www.ecurie-initial.com/">Retour au site officiel</a></p></div></main>'+footer()});
 })();
