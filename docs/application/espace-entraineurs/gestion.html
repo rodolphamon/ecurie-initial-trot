@@ -29,17 +29,23 @@ const $=id=>document.getElementById(id);
 let profiles=[],members=[],horses=[],harasRoster=[];
 function el(tag,txt){let e=document.createElement(tag);e.textContent=txt;return e}
 async function load(){
- const [p,m,h]=await Promise.all([
+ const [p,m,h,t,hc]=await Promise.all([
  db.from('ei_entraineurs_repertoire').select('entraineur_nom,compte_user_id,compte_attendu').order('entraineur_nom'),
  db.from('associes').select('user_id,nom_affiche,actif').eq('actif',true).order('nom_affiche'),
- db.from('ei_entraineurs_repertoire_chevaux').select('entraineur_nom,cheval_slug,cheval_nom').order('cheval_nom')]);
- if(p.error||m.error||h.error)throw (p.error||m.error||h.error);
+ db.from('ei_entraineurs_repertoire_chevaux').select('entraineur_nom,cheval_slug,cheval_nom').order('cheval_nom'),
+ db.from('ei_entraineurs').select('user_id,nom_entraineur,actif').eq('actif',true),
+ db.from('ei_haras_chevaux').select('cheval_slug')]);
+ if(p.error||m.error||h.error||t.error||hc.error)throw (p.error||m.error||h.error||t.error||hc.error);
  profiles=p.data;members=m.data;horses=h.data;
  $('list').replaceChildren();$('trainer').replaceChildren();$('account').replaceChildren();
  for(const x of profiles){
   let row=document.createElement('tr');let owner=members.find(z=>z.user_id===x.compte_user_id)?.nom_affiche;
-  row.append(el('td',x.entraineur_nom),el('td',String(horses.filter(z=>z.entraineur_nom===x.entraineur_nom).length)),
-  el('td',owner?'✓ '+owner:x.compte_attendu?'En attente : '+x.compte_attendu:'Non rattaché'));
+  const linked=el('td','');
+  const team=(t.data||[]).filter(z=>z.nom_entraineur===x.entraineur_nom&&z.user_id!==x.compte_user_id).map(z=>members.find(m=>m.user_id===z.user_id)?.nom_affiche).filter(Boolean);
+  linked.append(el('div',owner?'✓ '+owner:x.compte_attendu?'En attente : '+x.compte_attendu:'Non rattaché'));
+  for(const name of team)linked.append(el('div','✓ '+name+' · équipe'));
+  const count=x.entraineur_nom.startsWith('Haras de la Cour Fleury — ')?(hc.data||[]).length:horses.filter(z=>z.entraineur_nom===x.entraineur_nom).length;
+  row.append(el('td',x.entraineur_nom),el('td',String(count)),linked);
   $('list').append(row);
   if(!x.compte_user_id){const o=el('option',x.entraineur_nom);o.value=x.entraineur_nom;$('trainer').append(o)}
  }
@@ -57,9 +63,9 @@ async function loadHaras(){
  $('harasHorse').replaceChildren();const blank=el('option','— Choisir un cheval —');blank.value='';$('harasHorse').append(blank);
  for(const [id,name] of harasRoster){const o=el('option',name);o.value=id;$('harasHorse').append(o)}
  $('harasList').replaceChildren();
- for(const h of assigned.data||[]){const li=el('li',h.cheval_nom+' '),b=el('button','Retirer');b.type='button';b.onclick=async()=>{if(!confirm('Retirer '+h.cheval_nom+' du haras ?'))return;b.disabled=true;const r=await db.from('ei_haras_chevaux').delete().eq('cheval_slug',h.cheval_slug);if(r.error){$('harasFeedback').textContent=r.error.message;b.disabled=false}else await loadHaras()};li.append(b);$('harasList').append(li)}
+ for(const h of assigned.data||[]){const li=el('li',h.cheval_nom+' '),b=el('button','Retirer');b.type='button';b.onclick=async()=>{if(!confirm('Retirer '+h.cheval_nom+' du haras ?'))return;b.disabled=true;const r=await db.from('ei_haras_chevaux').delete().eq('cheval_slug',h.cheval_slug);if(r.error){$('harasFeedback').textContent=r.error.message;b.disabled=false}else {await loadHaras();await load()}};li.append(b);$('harasList').append(li)}
 }
-$('harasAdd').onclick=async()=>{const h=harasRoster.find(x=>x[0]===$('harasHorse').value);if(!h)return;$('harasAdd').disabled=true;try{const r=await db.from('ei_haras_chevaux').insert({cheval_slug:h[0],cheval_nom:h[1]});if(r.error)throw r.error;await loadHaras();$('harasFeedback').textContent=h[1]+' ajouté.'}catch(e){$('harasFeedback').textContent=e.message}finally{$('harasAdd').disabled=false}};
+$('harasAdd').onclick=async()=>{const h=harasRoster.find(x=>x[0]===$('harasHorse').value);if(!h)return;$('harasAdd').disabled=true;try{const r=await db.from('ei_haras_chevaux').insert({cheval_slug:h[0],cheval_nom:h[1]});if(r.error)throw r.error;await loadHaras();await load();$('harasFeedback').textContent=h[1]+' ajouté.'}catch(e){$('harasFeedback').textContent=e.message}finally{$('harasAdd').disabled=false}};
 async function start(){
  try{
  const auth=await db.auth.getUser();
