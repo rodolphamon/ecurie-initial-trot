@@ -696,7 +696,7 @@ async function refreshAssocAccess(){
   adminLink.hidden=member.administrateur!==true;
  const profileAccess=await assocAuth.rpc('ei_gestion_fiches_autorisee');
  const ownProfile=await assocAuth.from('ei_entraineurs_repertoire').select('entraineur_nom').eq('compte_user_id',user.id).limit(1);
- document.getElementById('homeTrainerProfiles').hidden=!(profileAccess.data===true||ownProfile.data?.length);
+ document.getElementById('homeTrainerProfiles').hidden=member.administrateur===true||!(profileAccess.data===true||ownProfile.data?.length);
   // L'accès entraîneur dépend exclusivement du rôle actif vérifié dans Supabase.
   // Le raccourci d'accueil est visible uniquement après cette vérification.
   if(trainerLink||homeTrainerLink){
