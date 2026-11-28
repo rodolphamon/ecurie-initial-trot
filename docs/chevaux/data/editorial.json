@@ -11182,10 +11182,11 @@
         "date": "2026-12-03",
         "hippodrome": "Vincennes",
         "type": "Monté",
-        "statut": "engage",
+        "statut": "declare",
         "source_description": "Capture des engagements Trot transmise le 13/11/2026 (horaires non retenus)",
         "prix": "Prix de Chamalières",
-        "ferrure": "F4",
+        "ferrure": "PA",
+        "driver": "Adrien LAMY",
         "surface": "Sable",
         "distance": "2175m G.P.",
         "type_course": "Course D"
@@ -11194,7 +11195,7 @@
         "date": "2026-12-07",
         "hippodrome": "Bordeaux",
         "type": "Attelé",
-        "statut": "engage",
+        "statut": "forfait",
         "source_description": "Capture transmise par Écurie Initial le 26/11/2026",
         "prix": "Prix Une de Mai",
         "type_course": "Réclamer"
