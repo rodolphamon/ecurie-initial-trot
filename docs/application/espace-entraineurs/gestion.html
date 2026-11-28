@@ -47,7 +47,7 @@ async function load(){
   const count=x.entraineur_nom.startsWith('Haras de la Cour Fleury — ')?(hc.data||[]).length:horses.filter(z=>z.entraineur_nom===x.entraineur_nom).length;
   row.append(el('td',x.entraineur_nom),el('td',String(count)),linked);
   $('list').append(row);
-  if(!x.compte_user_id){const o=el('option',x.entraineur_nom);o.value=x.entraineur_nom;$('trainer').append(o)}
+  {const o=el('option',x.entraineur_nom+(x.compte_user_id?' · équipe existante':''));o.value=x.entraineur_nom;$('trainer').append(o)}
  }
  const placeholder=el('option','— Choisir un compte —');placeholder.value='';$('account').append(placeholder);
  for(const m of members){const opt=el('option',m.nom_affiche);opt.value=m.user_id;$('account').append(opt)}
