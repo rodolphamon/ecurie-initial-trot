@@ -262,10 +262,10 @@ body[data-admin-view="actions"] #actions:not([hidden]){display:block!important}
 <p class="muted">Cliquez sur « Préparer l'invitation » pour retrouver automatiquement ses chevaux dans le formulaire ci-dessous. Vous n'aurez plus qu'à saisir son e-mail et vérifier les chevaux avant l'envoi. Les personnes ayant déjà un compte utilisent « Lien d'accès » dans le tableau ci-dessus.</p>
 </div><div class="panel" id="horsePanel" hidden>
 <h2>🐎 Chevaux de <span id="horseMemberName"></span></h2>
-<p class="warning">Ne rattacher que les chevaux dont cette personne est réellement copropriétaire. Exclure les locataires et respecter les groupes de propriété propres à chaque cheval. Les chevaux déjà rattachés sont conservés.</p>
+<section id="professionalHorseSection" hidden><h3 id="professionalHorseTitle">Chevaux confiés</h3><p class="muted">Accès professionnel : ces chevaux ne constituent pas des participations de propriété.</p><p id="professionalHorseStatus" role="status"></p><div id="professionalHorseList"></div><p><a href="../espace-entraineurs/gestion.html">Gérer les rattachements professionnels et les chevaux du haras</a></p></section><section id="ownerHorseSection"><h3>Participations de propriété</h3><p class="warning">Ne rattacher que les chevaux dont cette personne est réellement copropriétaire. Exclure les locataires et respecter les groupes de propriété propres à chaque cheval. Les chevaux déjà rattachés sont conservés.</p>
 <p id="horseStatus" class="status" role="status" aria-live="polite"></p>
 <div id="horseList"></div>
-<form id="horseForm" hidden><label for="horseSelect">Ajouter un cheval à cet associé</label><select id="horseSelect" class="small-select" required></select><button type="submit">Ajouter ce cheval</button></form>
+<form id="horseForm" hidden><label for="horseSelect">Ajouter un cheval à cet associé</label><select id="horseSelect" class="small-select" required></select><button type="submit">Ajouter ce cheval</button></form></section>
 </div>
 <div class="panel" id="emailPanel" hidden>
 <h2>✉️ Corriger l'e-mail de <span id="emailMemberName"></span></h2>
@@ -498,12 +498,43 @@ async function renderHorses(member){
   if(!rosterLoaded)status('horseStatus','Participations affichées, mais la liste des chevaux est indisponible : ajout désactivé.');
  }catch(e){status('horseStatus',e.message)}
 }
-async function selectHorses(member){
+async function renderProfessionalHorses(member,trainer){
+ const host=$('professionalHorseList');host.replaceChildren();
+ status('professionalHorseStatus','Chargement des chevaux confiés…');
+ const haras=trainer.nom_entraineur.startsWith('Haras de la Cour Fleury — ');
+ $('professionalHorseTitle').textContent=haras?'Chevaux confiés au Haras de la Cour Fleury':'Chevaux confiés · '+trainer.nom_entraineur;
+ try{
+  const map=new Map();
+  if(haras){
+   const r=await db.from('ei_haras_chevaux').select('cheval_slug,cheval_nom');
+   if(r.error)throw r.error;
+   for(const h of r.data||[])map.set(h.cheval_slug,h.cheval_nom);
+  }else{
+   const team=await db.from('ei_entraineurs').select('user_id').eq('nom_entraineur',trainer.nom_entraineur).eq('actif',true);
+   if(team.error)throw team.error;
+   const [linked,managed]=await Promise.all([
+    db.from('ei_entraineurs_chevaux').select('cheval_slug,cheval_nom').in('entraineur_id',(team.data||[]).map(t=>t.user_id)),
+    db.from('ei_effectif_gestion').select('cheval_slug,nom').eq('entraineur',trainer.nom_entraineur).eq('actif',true)
+   ]);
+   if(linked.error||managed.error)throw linked.error||managed.error;
+   for(const h of managed.data||[])map.set(h.cheval_slug,h.nom);
+   for(const h of linked.data||[])map.set(h.cheval_slug,h.cheval_nom);
+  }
+  if(selectedMember?.user_id!==member.user_id)return;
+  status('professionalHorseStatus',map.size+' cheval(aux) accessible(s) en tant que professionnel.');
+  for(const name of [...map.values()].sort(sortFr)){const row=make('div');row.className='horse-item';row.append(make('strong',name));host.append(row);}
+  if(!map.size)host.append(make('p','Aucun cheval confié pour le moment.'));
+ }catch(e){if(selectedMember?.user_id===member.user_id)status('professionalHorseStatus','Liste indisponible : '+e.message);}
+}
+async function selectHorses(member,trainer=null){
  selectedMember=member;
  $('horseMemberName').textContent=member.nom_affiche;
+ $('professionalHorseSection').hidden=!trainer;
+ $('ownerHorseSection').hidden=member.type_compte!=='associe';
+ $('horseForm').hidden=true;
  $('horsePanel').hidden=false;
  openAdminView('horsePanel');
- await renderHorses(member);
+ await Promise.all([trainer?renderProfessionalHorses(member,trainer):Promise.resolve(),member.type_compte==='associe'?renderHorses(member):Promise.resolve()]);
 }
 $('horseForm').onsubmit=async e=>{
  e.preventDefault();if(!selectedMember)return;
@@ -656,8 +687,9 @@ async function init(){
   if(error)throw error;
   membersForReminders=members;
   // Un même compte peut être associé/extérieur ET membre de l’équipe entraîneurs.
-  const {data:trainerAccounts,error:trainerAccountsError}=await db.from('ei_entraineurs').select('user_id').eq('actif',true);
+  const {data:trainerAccounts,error:trainerAccountsError}=await db.from('ei_entraineurs').select('user_id,nom_entraineur').eq('actif',true);
   const teamTrainerIds=new Set(trainerAccountsError?[]:(trainerAccounts||[]).map(r=>r.user_id));
+  const trainersById=new Map(trainerAccountsError?[]:(trainerAccounts||[]).map(r=>[r.user_id,r]));
    setupReminderPanel();
    registeredNames=new Set(members.filter(m=>!/\(ancienne invitation\)/i.test(m.nom_affiche)).map(m=>normName(m.nom_affiche)));
   let archivedCount=0;
@@ -708,7 +740,9 @@ async function init(){
      dateLine('Dernière ouverture',registration.derniere_ouverture);
    }
    tr.append(registrationCell);
-   const roleLabel=m.administrateur?'Administrateur':teamTrainerIds.has(m.user_id)?(m.type_compte==='associe'?'Entraîneur · Associé':'Entraîneur'):m.type_compte==='observateur'?'Communication · lecture seule':m.type_compte==='exterieur'?'Membre extérieur':m.type_compte==='presse'?'Presse':'Associé';
+   const trainer=trainersById.get(m.user_id);
+   const professionalLabel=trainer?(trainer.nom_entraineur.startsWith('Haras de la Cour Fleury — ')?'Haras · Cour Fleury':normName(m.nom_affiche)===normName(trainer.nom_entraineur)?'Entraîneur'+(m.type_compte==='associe'?' · Associé':''):(normName(m.nom_affiche)==='maya'?'Collaboratrice':'Collaborateur')+' · '+trainer.nom_entraineur):'';
+   const roleLabel=m.administrateur?'Administrateur':trainer?professionalLabel:m.type_compte==='observateur'?'Communication · lecture seule':m.type_compte==='exterieur'?'Membre extérieur':m.type_compte==='presse'?'Presse':'Associé';
    const mobileRegistration=make('small',roleLabel+' · '+(state==='connecte'||state==='email_confirme'?'✓ Inscrit':state==='invitation_en_attente'?'⏳ Invitation en attente':'Inscription à vérifier')+' · '+(!registration?'📱 Stat. indisponibles':openings>0?'📱 '+openings+' ouverture'+(openings>1?'s':''):'📱 0 ouverture'));
    mobileRegistration.className='registration-mobile registration-'+state;
    tr.firstElementChild.append(mobileRegistration);
@@ -750,8 +784,9 @@ async function init(){
      catch(e){status('actionStatus',e.message);suspendBtn.disabled=false}
     };
    }
-   const horsesBtn=make('button','🐎 Chevaux');horsesBtn.type='button';horsesBtn.disabled=m.type_compte!=='associe';
-   horsesBtn.onclick=()=>selectHorses(m);
+   const horsesBtn=make('button','🐎 Chevaux');horsesBtn.type='button';horsesBtn.disabled=m.type_compte!=='associe'&&!trainer;
+   horsesBtn.title=trainer?'Voir les chevaux confiés et les éventuelles participations':'Voir les participations de propriété';
+   horsesBtn.onclick=()=>selectHorses(m,trainer);
    const emailBtn=make('button','✉️ E-mail');emailBtn.type='button';emailBtn.className='secondary';
    emailBtn.onclick=()=>selectEmail(m);
    const accessBtn=make('button','✉️ Lien d’accès');accessBtn.type='button';accessBtn.className='secondary';
