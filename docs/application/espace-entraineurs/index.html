@@ -166,7 +166,7 @@ async function initialize(){
  const isHaras=trainer.nom_entraineur.startsWith('Haras de la Cour Fleury — ');
  const {data:team,error:teamError}=await db.from('ei_entraineurs').select('user_id').eq('nom_entraineur',trainer.nom_entraineur).eq('actif',true);
  if(teamError)throw teamError;
- if(isHaras){document.querySelector('h1').textContent='Haras de la Cour Fleury';document.title='Haras de la Cour Fleury · Écurie Initial';document.querySelector('header strong').textContent='ÉCURIE INITIAL · Haras';}
+ if(isHaras){document.querySelector('h1').textContent='Haras de la Cour Fleury';document.querySelector('h1').closest('article').querySelector('p.muted').textContent='Repos, convalescence et élevage : photos, vidéos et nouvelles des chevaux confiés au haras.';document.title='Haras de la Cour Fleury · Écurie Initial';document.querySelector('header strong').textContent='ÉCURIE INITIAL · Haras';}
  const [links,legacy]=await Promise.all([
  isHaras?db.from('ei_haras_chevaux').select('cheval_slug,cheval_nom').order('cheval_nom'):db.from('ei_entraineurs_chevaux').select('cheval_slug,cheval_nom').in('entraineur_id',(team||[]).map(t=>t.user_id)).order('cheval_nom'),
  db.from('ei_effectif_gestion').select('cheval_slug,nom').eq('entraineur',trainer.nom_entraineur).eq('actif',true).order('nom')
