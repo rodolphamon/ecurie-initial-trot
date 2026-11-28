@@ -696,7 +696,9 @@ async function refreshAssocAccess(){
   adminLink.hidden=member.administrateur!==true;
  const profileAccess=await assocAuth.rpc('ei_gestion_fiches_autorisee');
  const ownProfile=await assocAuth.from('ei_entraineurs_repertoire').select('entraineur_nom').eq('compte_user_id',user.id).limit(1);
- document.getElementById('homeTrainerProfiles').hidden=member.administrateur===true||!(profileAccess.data===true||ownProfile.data?.length);
+ const managementLink=document.getElementById('homeTrainerProfiles');
+ managementLink.hidden=member.administrateur===true||!(profileAccess.data===true||ownProfile.data?.length);
+ if(profileAccess.data===true&&!member.administrateur){managementLink.href='gestion-ecurie.html';managementLink.innerHTML='Gestion de l’Écurie<span>Gestion sportive et fiches entraîneurs</span>';}else{managementLink.href='fiches-entraineurs.html';managementLink.innerHTML='Fiches entraîneurs<span>Compléter et gérer les fiches</span>';}
   // L'accès entraîneur dépend exclusivement du rôle actif vérifié dans Supabase.
   // Le raccourci d'accueil est visible uniquement après cette vérification.
   if(trainerLink||homeTrainerLink){
