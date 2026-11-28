@@ -829,7 +829,7 @@ async function init(){
    const terms=normName($('memberSearch').value).split(' ').filter(Boolean);
    let visible=0,connected=0,users=0,openings=0;
    for(const row of $('members').querySelectorAll('tr.member-row')){
-    const matchingType=selected==='tous'||(selected==='observateur'?row.dataset.teamMember==='true':row.dataset.memberType===selected);
+    const matchingType=selected==='tous'||(selected==='observateur'?row.dataset.teamMember==='true':selected==='exterieur'?row.dataset.memberType==='exterieur'&&row.dataset.teamMember!=='true':row.dataset.memberType===selected);
     const matchingArchive=row.dataset.archived!=='true'||includeArchived;
     const matchingName=terms.every(term=>(row.dataset.memberName||'').includes(term));
     row.hidden=!(matchingType&&matchingArchive&&matchingName);
