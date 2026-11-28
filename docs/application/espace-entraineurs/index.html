@@ -163,8 +163,12 @@ async function initialize(){
  db.from('ei_entraineurs').select('user_id,nom_entraineur,actif').eq('user_id',uid).maybeSingle()]);
  if(account.error||role.error||!account.data?.actif||!role.data?.actif){$('status').textContent='Espace réservé aux entraîneurs autorisés.';return}
  trainer=role.data;
+ const isHaras=trainer.nom_entraineur.startsWith('Haras de la Cour Fleury — ');
+ const {data:team,error:teamError}=await db.from('ei_entraineurs').select('user_id').eq('nom_entraineur',trainer.nom_entraineur).eq('actif',true);
+ if(teamError)throw teamError;
+ if(isHaras){document.querySelector('h1').textContent='Haras de la Cour Fleury';document.title='Haras de la Cour Fleury · Écurie Initial';document.querySelector('header strong').textContent='ÉCURIE INITIAL · Haras';}
  const [links,legacy]=await Promise.all([
- db.from('ei_entraineurs_chevaux').select('cheval_slug,cheval_nom').eq('entraineur_id',uid).order('cheval_nom'),
+ isHaras?db.from('ei_haras_chevaux').select('cheval_slug,cheval_nom').order('cheval_nom'):db.from('ei_entraineurs_chevaux').select('cheval_slug,cheval_nom').in('entraineur_id',(team||[]).map(t=>t.user_id)).order('cheval_nom'),
  db.from('ei_effectif_gestion').select('cheval_slug,nom').eq('entraineur',trainer.nom_entraineur).eq('actif',true).order('nom')
  ]);
  if(links.error)throw links.error;
@@ -177,7 +181,7 @@ async function initialize(){
  $('horseCount').textContent=horses.length?horses.length+' cheval(aux) actuellement confié(s)':'Aucun cheval actif rattaché à votre nom. Vous pourrez publier dès qu’un cheval vous sera confié.';
  for(const h of horses){const opt=item('option',h.nom);opt.value=h.cheval_slug;$('horse').append(opt)}
  $('send').disabled=!horses.length;
- $('status').textContent='Votre accès entraîneur est actif.';
+ $('status').textContent=isHaras?'Votre accès Haras est actif.':'Votre accès professionnel est actif · '+trainer.nom_entraineur+'.';
  $('workspace').hidden=false;
  await loadPosts();
  }catch(e){$('status').textContent='Chargement impossible : '+(e.message||'erreur de connexion');}
