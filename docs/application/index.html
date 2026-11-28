@@ -632,7 +632,7 @@ body.ei-assoc-view #appContent{padding-top:10px}
   </div>
   <nav class="assoc-links" aria-label="Rubriques des associés">
    <a class="assoc-link assoc-link-admin" id="assocAdminShortcut" href="administration/" hidden><span class="assoc-link-emoji" aria-hidden="true">🛠️</span><span class="assoc-link-text"><strong>Administration de l'Écurie</strong><small>Gestion de l'Écurie Initial</small></span><span class="assoc-link-arrow" aria-hidden="true">›</span></a>
-   <a class="assoc-link" id="assocTrainerShortcut" href="equipe/" hidden><span class="assoc-link-emoji" aria-hidden="true">🎙️</span><span class="assoc-link-text"><strong>Équipe</strong><small>Entraîneurs et communication</small></span><span class="assoc-link-arrow" aria-hidden="true">›</span></a>
+   <a class="assoc-link" id="assocTrainerShortcut" href="equipe/" hidden><span class="assoc-link-emoji" aria-hidden="true">🎙️</span><span class="assoc-link-text"><strong>Équipe</strong><small>Nos entraîneurs et les professionnels de l’Écurie</small></span><span class="assoc-link-arrow" aria-hidden="true">›</span></a>
    <a class="assoc-link assoc-link-main" href="tribune/"><span class="assoc-link-emoji" aria-hidden="true">💬</span><span class="assoc-link-text"><strong>Tribune des supporters</strong><small>Échanges entre membres et passionnés</small></span><span class="assoc-link-arrow" aria-hidden="true">›</span></a>
    <a class="assoc-link" href="mes-chevaux/"><span class="assoc-link-emoji" aria-hidden="true">🐎</span><span class="assoc-link-text"><strong>Mes chevaux</strong><small>Suivi de vos participations</small></span><span class="assoc-link-arrow" aria-hidden="true">›</span></a>
    <a class="assoc-link" href="notifications/"><span class="assoc-link-emoji" aria-hidden="true">🔔</span><span class="assoc-link-text"><strong>Notifications</strong><small>Vos alertes et actualités</small></span><span class="assoc-link-arrow" aria-hidden="true">›</span></a>
@@ -694,6 +694,7 @@ async function refreshAssocAccess(){
   action.classList.add('is-connected');
   panel.classList.add('is-connected');
   adminLink.hidden=member.administrateur!==true;
+ if(trainerLink){trainerLink.href='equipe/';trainerLink.hidden=false;}
  const profileAccess=await assocAuth.rpc('ei_gestion_fiches_autorisee');
  const ownProfile=await assocAuth.from('ei_entraineurs_repertoire').select('entraineur_nom').eq('compte_user_id',user.id).limit(1);
  const managementLink=document.getElementById('homeTrainerProfiles');
