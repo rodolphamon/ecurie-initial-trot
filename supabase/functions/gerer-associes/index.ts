@@ -291,7 +291,7 @@ serve(async (req) => {
         const {data:trainer,error:trainerError}=await caller.from("ei_entraineurs_repertoire").select("entraineur_nom,compte_user_id").eq("entraineur_nom",trainerName).maybeSingle();
         if (trainerError) { console.error("invite.trainer_lookup", {code:trainerError.code,message:trainerError.message}); return reply(503,{error:"Répertoire professionnel inaccessible. Aucun e-mail envoyé."}); }
         if (!trainer) return reply(404,{error:"Fiche professionnelle inconnue. Aucun e-mail envoyé."});
-        if (trainer.compte_user_id) return reply(409,{error:"Fiche professionnelle déjà rattachée. Aucun e-mail envoyé."});
+        // Une fiche peut accueillir plusieurs comptes professionnels distincts.
       }
       if (!["associe", "exterieur", "presse"].includes(accountType)) return reply(400, { error: "Type de compte invalide." });
       // Les chevaux sélectionnés sont attachés au compte créé ; ils ne vont jamais dans le dépôt public.
