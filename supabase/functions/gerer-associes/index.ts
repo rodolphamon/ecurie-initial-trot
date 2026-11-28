@@ -282,7 +282,14 @@ serve(async (req) => {
       const email = String(body.email || "").trim().toLowerCase();
       const nom = String(body.nom || "").trim();
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || nom.length < 2 || nom.length > 100) return reply(400, { error: "Nom ou e-mail invalide." });
-      const accountType = String(body.type_compte || "associe");
+      const requestedType = String(body.type_compte || "associe");
+      const isTrainer = requestedType === "entraineur";
+      const accountType = isTrainer ? "exterieur" : requestedType;
+      const trainerName = String(body.entraineur_nom || "").trim();
+      if (isTrainer) {
+        const {data:trainer,error:trainerError}=await admin.from("ei_entraineurs_repertoire").select("entraineur_nom,compte_user_id").eq("entraineur_nom",trainerName).maybeSingle();
+        if (trainerError || !trainer || trainer.compte_user_id) return reply(409,{error:"Fiche entraîneur inconnue ou déjà rattachée. Vérifiez le répertoire."});
+      }
       if (!["associe", "exterieur", "presse"].includes(accountType)) return reply(400, { error: "Type de compte invalide." });
       // Les chevaux sélectionnés sont attachés au compte créé ; ils ne vont jamais dans le dépôt public.
       const requested = body.horses ?? [];
@@ -304,6 +311,15 @@ serve(async (req) => {
       if (error || !data.user) return reply(400, { error: error?.message || "Invitation impossible." });
       const { error: saveError } = await admin.from("associes").insert({ user_id: data.user.id, nom_affiche: nom, actif: true, administrateur: false, type_compte: accountType });
       if (saveError) return reply(500, { error: "L'invitation a été envoyée, mais l'accès n'a pas pu être activé. Vérifiez ce compte dans Supabase ; ne réinvitez pas automatiquement." });
+      if (isTrainer) {
+        // Le compte reste extérieur : aucun droit de propriétaire. Le RPC vérifie l’administrateur et le rattachement.
+        const caller = createClient(url, anon, {global:{headers:{Authorization:`Bearer ${token}`}},auth:{persistSession:false,autoRefreshToken:false}});
+        const {error:linkError}=await caller.rpc("ei_rattacher_compte_entraineur",{p_entraineur_nom:trainerName,p_user_id:data.user.id});
+        if (linkError) return reply(409,{error:"Invitation envoyée, mais rattachement entraîneur refusé. Utilisez la gestion des entraîneurs sans renvoyer d’invitation."});
+        const {error:pilotError}=await admin.from("ei_lancement_pilotes").upsert({user_id:data.user.id},{onConflict:"user_id",ignoreDuplicates:true});
+        if (pilotError) return reply(500,{error:"Compte entraîneur rattaché ; accès anticipé non enregistré. Vérifiez les autorisations sans réinviter."});
+        return reply(200,{ok:true,message:"Invitation entraîneur envoyée : "+trainerName+". Chevaux rattachés depuis le répertoire et accès anticipé activé."});
+      }
       if (horses.length) {
         const rows = horses.map((h) => ({ ...h, user_id: data.user.id }));
         const { error: attachError } = await admin.from("participations_chevaux").insert(rows);
