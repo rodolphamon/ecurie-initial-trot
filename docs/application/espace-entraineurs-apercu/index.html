@@ -18,7 +18,7 @@ button:disabled{opacity:.55;cursor:not-allowed}.row{display:flex;align-items:cen
 <p id="status" role="status">Vérification du compte…</p></div>
 <section id="content" hidden>
 <div class="notice"><strong>Mode aperçu.</strong> Tu peux choisir un entraîneur et un cheval, tester le micro et réécouter un vocal. La publication réelle et les notifications restent désactivées.</div>
-<div class="panel"><h2>Choisir l'entraîneur à visualiser</h2><label for="trainer">Entraîneur</label>
+<div class="panel"><h2>Choisir l'équipe à visualiser</h2><label for="trainer">Entraîneur ou haras</label>
 <select id="trainer"></select>
 <p id="count" class="muted"></p></div>
 <div class="panel"><h2>Publier une actualité</h2>
@@ -44,15 +44,18 @@ const $=id=>document.getElementById(id);
 let recorder=null,stream=null,watch=null,started=0,url=null;
 let trainers=new Map(), horseRequest=0;
 async function loadTrainers(){
- const r=await db.from('ei_entraineurs').select('user_id,nom_entraineur').eq('actif',true).order('nom_entraineur');
- if(r.error)throw r.error;
- trainers=new Map((r.data||[]).map(t=>[t.user_id,t]));
+ const [r,p]=await Promise.all([
+  db.from('ei_entraineurs').select('user_id,nom_entraineur').eq('actif',true).order('nom_entraineur'),
+  db.from('ei_entraineurs_repertoire').select('entraineur_nom').order('entraineur_nom')
+ ]);
+ if(r.error||p.error)throw r.error||p.error;
+ trainers=new Map();
+ for(const x of p.data||[]){const name=x.entraineur_nom.startsWith('Haras de la Cour Fleury — ')?'Haras de la Cour Fleury':x.entraineur_nom;trainers.set(name,{nom_entraineur:name,ids:[]});}
+ for(const t of r.data||[]){const name=t.nom_entraineur.startsWith('Haras de la Cour Fleury — ')?'Haras de la Cour Fleury':t.nom_entraineur;if(!trainers.has(name))trainers.set(name,{nom_entraineur:name,ids:[]});trainers.get(name).ids.push(t.user_id);}
  const previous=$('trainer').value;
  $('trainer').replaceChildren();
- for(const t of trainers.values()){
-  const opt=document.createElement('option');opt.value=t.user_id;
-  opt.textContent=t.nom_entraineur==='Laurent BARASSIN'?'Thibaut BARASSIN (fiches : Laurent)':t.nom_entraineur;
-  $('trainer').append(opt);
+ for(const t of [...trainers.values()].sort((a,b)=>a.nom_entraineur.localeCompare(b.nom_entraineur,'fr'))){
+  const opt=document.createElement('option');opt.value=t.nom_entraineur;opt.textContent=t.nom_entraineur;$('trainer').append(opt);
  }
  if(trainers.has(previous))$('trainer').value=previous;
  await setTrainer();
@@ -60,20 +63,30 @@ async function loadTrainers(){
 async function setTrainer(){
  const request=++horseRequest;
  const t=trainers.get($('trainer').value);
- $('horse').replaceChildren();$('count').textContent=t?'Chargement des chevaux…':'Aucun entraîneur actif';syncCard();
+ $('horse').replaceChildren();$('count').textContent=t?'Chargement des chevaux…':'Aucune fiche professionnelle';syncCard();
  if(!t)return;
- const [links,legacy]=await Promise.all([
-  db.from('ei_entraineurs_chevaux').select('cheval_slug,cheval_nom').eq('entraineur_id',t.user_id).order('cheval_nom'),
-  db.from('ei_effectif_gestion').select('cheval_slug,nom').eq('entraineur',t.nom_entraineur).eq('actif',true).order('nom')
- ]);
- if(request!==horseRequest)return;
- if(links.error||legacy.error){$('count').textContent='Impossible de charger les chevaux. Actualisez la page.';return}
+ const haras=t.nom_entraineur==='Haras de la Cour Fleury';
+ try{
  const bySlug=new Map();
- for(const h of legacy.data||[])bySlug.set(h.cheval_slug,h.nom);
- for(const h of links.data||[])bySlug.set(h.cheval_slug,h.cheval_nom);
+ if(haras){
+  const r=await db.from('ei_haras_chevaux').select('cheval_slug,cheval_nom');
+  if(r.error)throw r.error;
+  for(const h of r.data||[])bySlug.set(h.cheval_slug,h.cheval_nom);
+ }else{
+  const [links,legacy,registry]=await Promise.all([
+   t.ids.length?db.from('ei_entraineurs_chevaux').select('cheval_slug,cheval_nom').in('entraineur_id',t.ids):Promise.resolve({data:[]}),
+   db.from('ei_effectif_gestion').select('cheval_slug,nom').eq('entraineur',t.nom_entraineur).eq('actif',true),
+   t.ids.length?Promise.resolve({data:[]}):db.from('ei_entraineurs_repertoire_chevaux').select('cheval_slug,cheval_nom').eq('entraineur_nom',t.nom_entraineur)
+  ]);
+  if(links.error||legacy.error||registry.error)throw links.error||legacy.error||registry.error;
+  for(const h of legacy.data||[])bySlug.set(h.cheval_slug,h.nom);
+  for(const h of [...(registry.data||[]),...(links.data||[])])bySlug.set(h.cheval_slug,h.cheval_nom);
+ }
+ if(request!==horseRequest)return;
  const horses=[...bySlug].sort((a,b)=>a[1].localeCompare(b[1],'fr'));
  for(const [slug,name] of horses){const opt=document.createElement('option');opt.value=slug;opt.textContent=name;$('horse').append(opt)}
  $('count').textContent=horses.length+(horses.length===1?' cheval à visualiser':' chevaux à visualiser');syncCard();
+ }catch(e){if(request===horseRequest)$('count').textContent='Impossible de charger les chevaux : '+e.message;}
 }
 function syncCard(){$('cardHorse').textContent=$('horse').selectedOptions[0]?.textContent||'Aucun cheval';$('cardTrainer').textContent=$('trainer').selectedOptions[0]?.textContent||''}
 $('trainer').addEventListener('change',setTrainer);$('horse').addEventListener('change',syncCard);
