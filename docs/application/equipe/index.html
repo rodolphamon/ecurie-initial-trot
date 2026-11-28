@@ -8,7 +8,8 @@ a{color:#a44907}.panel{background:white;border:1px solid #e8dfd8;border-radius:1
 .muted{color:#666;font-size:13px}[hidden]{display:none!important}</style></head>
 <body><header><strong>ÉCURIE <em>INITIAL</em> · Équipe</strong></header>
 <main><p><a id="teamBack" href="../">← Accueil de l'application</a></p>
-<div class="panel"><h1>👥 Équipe Initial</h1><p>Entraîneurs, communication et contributions sportives : un seul espace pour l'équipe de l'Écurie Initial.</p><p id="status" role="status">Vérification de vos accès…</p></div>
+<div class="panel"><h1>👥 Équipe Initial</h1><p>Découvrez les professionnels qui accompagnent l’Écurie Initial. Les espaces de gestion restent réservés aux personnes habilitées.</p><p id="status" role="status">Vérification de vos accès…</p></div>
+<div class="panel"><h2>🐎 Nos entraîneurs</h2><p>Découvrez leur parcours, leurs installations, leurs chevaux et leurs résultats.</p><a class="action" href="../../chevaux/entraineurs.html">Consulter les fiches entraîneurs →</a></div>
 <section id="space" hidden>
 <div id="trainer" class="panel" hidden><h2>🐎 Espace entraîneurs</h2><p>Photos, vidéos, actualités et débriefings vocaux des chevaux confiés à l'entraîneur.</p><a class="action" href="../espace-entraineurs/">🎙️ Ouvrir mes chevaux et publications</a></div>
 <div id="communication" class="panel" hidden><h2>📣 Communication</h2><p>Consultez les actualités et fiches des chevaux avec vos droits habituels, sans modification des données.</p><a class="action" href="../mes-chevaux/">🐎 Consulter les chevaux</a><a class="action" href="../tribune/">💬 Tribune</a></div>
@@ -22,13 +23,13 @@ async function boot(){
  const status=document.getElementById('status');
  try{
   const {data:{user},error}=await db.auth.getUser();
-  if(error||!user){status.textContent='Connectez-vous à l’application pour accéder à cette rubrique.';return}
+  if(error||!user){status.textContent='Les fiches entraîneurs sont accessibles à tous. Connectez-vous pour vos accès professionnels.';return}
   const {data:member,error:err}=await db.from('associes').select('actif,administrateur,type_compte,nom_affiche').eq('user_id',user.id).maybeSingle();
   if(err||!member?.actif){status.textContent='Accès non autorisé.';return}
   const admin=member.administrateur===true,observer=member.type_compte==='observateur';
   const role=await db.from('ei_entraineurs').select('actif,nom_entraineur').eq('user_id',user.id).maybeSingle();
   const trainer=!role.error&&role.data?.actif===true;
-  if(!admin&&!observer&&!trainer){status.textContent='Rubrique réservée à l’équipe habilitée.';return}
+  if(!admin&&!observer&&!trainer){status.textContent='Consultez les fiches publiques de nos entraîneurs.';return}
   status.textContent='Bienvenue '+member.nom_affiche+'.';
   document.getElementById('management').hidden=!admin;
   document.getElementById('teamManagement').hidden=!admin;
