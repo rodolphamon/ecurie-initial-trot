@@ -12,7 +12,7 @@ a{color:#a44907}.panel{background:white;border:1px solid #e8dfd8;border-radius:1
 <section id="space" hidden>
 <div id="trainer" class="panel" hidden><h2>🐎 Espace entraîneurs</h2><p>Photos, vidéos, actualités et débriefings vocaux des chevaux confiés à l'entraîneur.</p><a class="action" href="../espace-entraineurs/">🎙️ Ouvrir mes chevaux et publications</a></div>
 <div id="communication" class="panel" hidden><h2>📣 Communication</h2><p>Consultez les actualités et fiches des chevaux avec vos droits habituels, sans modification des données.</p><a class="action" href="../mes-chevaux/">🐎 Consulter les chevaux</a><a class="action" href="../tribune/">💬 Tribune</a></div>
-<div id="management" class="panel" hidden><h2>🐎 Entraîneurs</h2><p>Gérer les fiches entraîneurs et rattacher un compte existant à un entraîneur.</p><a class="action" href="../espace-entraineurs/gestion.html">Gérer les entraîneurs et les comptes</a><a class="action" href="../espace-entraineurs-apercu/">👁️ Aperçu du module entraîneurs</a></div>
+<div id="management" class="panel" hidden><h2>🐎 Entraîneurs et haras</h2><p>Gérer les fiches professionnelles, les comptes et les chevaux confiés au haras.</p><a class="action" href="../espace-entraineurs/gestion.html">Gérer les entraîneurs et les comptes</a><a class="action" href="../espace-entraineurs-apercu/">👁️ Aperçu du module entraîneurs</a></div>
 <div id="teamManagement" class="panel" hidden><h2>🤝 Communication et contributeurs sportifs</h2><p>Gérer les membres de la Team Initial, leurs missions et leurs accès.</p><a class="action" href="../administration/contributeurs/">Gérer la communication et les contributeurs</a></div>
 </section>
 </main><script type="module">
@@ -26,7 +26,7 @@ async function boot(){
   const {data:member,error:err}=await db.from('associes').select('actif,administrateur,type_compte,nom_affiche').eq('user_id',user.id).maybeSingle();
   if(err||!member?.actif){status.textContent='Accès non autorisé.';return}
   const admin=member.administrateur===true,observer=member.type_compte==='observateur';
-  const role=await db.from('ei_entraineurs').select('actif').eq('user_id',user.id).maybeSingle();
+  const role=await db.from('ei_entraineurs').select('actif,nom_entraineur').eq('user_id',user.id).maybeSingle();
   const trainer=!role.error&&role.data?.actif===true;
   if(!admin&&!observer&&!trainer){status.textContent='Rubrique réservée à l’équipe habilitée.';return}
   status.textContent='Bienvenue '+member.nom_affiche+'.';
@@ -34,6 +34,7 @@ async function boot(){
   document.getElementById('teamManagement').hidden=!admin;
   if(admin){const back=document.getElementById('teamBack');back.href='../administration/';back.textContent='← Administration';}
   document.getElementById('trainer').hidden=!(trainer&&!admin);
+  if(trainer&&role.data.nom_entraineur.startsWith('Haras de la Cour Fleury — ')){const panel=document.getElementById('trainer');panel.querySelector('h2').textContent='🌿 Haras de la Cour Fleury';panel.querySelector('p').textContent='Photos, vidéos et nouvelles des chevaux au repos ou en convalescence.';}
   document.getElementById('communication').hidden=!observer;
   document.getElementById('space').hidden=false;
  }catch(e){status.textContent='Impossible de vérifier les accès : '+(e.message||'erreur')}
