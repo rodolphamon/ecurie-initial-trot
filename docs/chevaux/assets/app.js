@@ -581,9 +581,13 @@ function horse(s){
     +'</main>'+footer();
 }
 
-function trainersPage(s){
+async function trainersPage(s){
+ let published=[];try{const {createClient}=await import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm');const db=createClient('https://yeecwaaizmvrhwobukfa.supabase.co','sb_publishable_xUy2EJA3u3cKWl8BB4GNPQ_qhV9Pes3');const {data}=await db.from('ei_fiches_entraineurs_publiques').select('entraineur_nom,contenu');published=data||[];}catch(e){console.warn(e)}
+ const safeUrl=v=>{try{const u=new URL(v);return u.protocol==='https:'?u.href:''}catch{return ''}};
+ const profile=n=>{const p=published.find(x=>x.entraineur_nom===n)?.contenu||{};return '<div class="paper" style="padding:16px">'+(safeUrl(p.portrait)?'<img style="max-width:220px;width:100%;border-radius:10px" src="'+esc(safeUrl(p.portrait))+'" alt="Portrait">':'')+['localisation','annee','presentation','collaborateurs'].map(k=>p[k]?'<p style="white-space:pre-wrap">'+esc(({localisation:'Localisation : ',annee:'Installé depuis : ',presentation:'',collaborateurs:'Collaborateurs : '})[k]+p[k])+'</p>':'').join('')+[p.site,...String(p.reseaux||'').split(/\\n/)].filter(safeUrl).map(u=>'<p><a href="'+esc(safeUrl(u))+'" rel="noopener noreferrer">'+esc(u)+'</a></p>').join('')+String(p.photos||'').split(/\\n/).filter(safeUrl).map(u=>'<img style="max-width:100%;width:300px" src="'+esc(safeUrl(u))+'" alt="Installations">').join('')+'</div>';};
  const groups=new Map();
  for(const p of s.profiles.filter(p=>p.active!==false&&p.trainer)){if(!groups.has(p.trainer))groups.set(p.trainer,[]);groups.get(p.trainer).push(p);}
+ for(const row of published)if(!groups.has(row.entraineur_nom))groups.set(row.entraineur_nom,[]);
  const names=[...groups.keys()].sort((a,b)=>a.localeCompare(b,'fr'));
  const selected=new URLSearchParams(location.search).get('entraineur');
  const link=p=>base+(p.newHorse?'fiche/?cheval='+encodeURIComponent(p.id):encodeURIComponent(p.id)+'/');
@@ -596,7 +600,7 @@ function trainersPage(s){
  const upcoming=rows('engagements').filter(({x})=>x.date>=currentParis().slice(0,10)&&!['forfait','elimine','eliminee','nonpartant'].includes(normalizeSearch(x.statut||x.status||'').replace(/\s+/g,''))).sort((a,b)=>a.x.date.localeCompare(b.x.date));
  const recent=rows('performances').filter(({x})=>x.entraineur&&normalizeSearch(x.entraineur)===normalizeSearch(selected)).sort((a,b)=>b.x.date.localeCompare(a.x.date)).slice(0,10);
  const raceRows=(items,result)=>items.length?items.map(({p,x})=>'<p style="padding:10px 14px;margin:0;border-bottom:1px solid #ddd"><a href="'+esc(link(p))+'"><strong>'+esc(p.name)+'</strong></a> · '+esc(dateFR(x.date))+' · '+esc(x.hippodrome)+' · '+esc(result?x.rang:(engagementStatus(x,p.sex)?.label||x.statut||''))+'</p>').join(''):'<p style="padding:14px">Aucune donnée vérifiée disponible.</p>';
- detail='<p><a href="'+base+'entraineurs.html">← Tous les entraîneurs</a></p><h1>'+esc(selected)+'</h1><p>'+esc([...new Set(horses.map(p=>p.discipline))].join(' · '))+'</p><h2 class="section-title">Chevaux de l’Écurie Initial</h2><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:12px">'+horses.map(p=>'<a class="horse-card" href="'+esc(link(p))+'">'+photoMarkup(p,'card')+'<div style="padding:12px"><strong>'+esc(p.name)+'</strong></div></a>').join('')+'</div><h2 class="section-title">Prochains engagements</h2><div class="paper">'+raceRows(upcoming,false)+'</div><h2 class="section-title">Derniers résultats attribués à cet entraîneur</h2><div class="paper">'+raceRows(recent,true)+'</div>';
+ detail='<p><a href="'+base+'entraineurs.html">← Tous les entraîneurs</a></p><h1>'+esc(selected)+'</h1>'+profile(selected)+'<p>'+esc([...new Set(horses.map(p=>p.discipline))].join(' · '))+'</p><h2 class="section-title">Chevaux de l’Écurie Initial</h2><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:12px">'+horses.map(p=>'<a class="horse-card" href="'+esc(link(p))+'">'+photoMarkup(p,'card')+'<div style="padding:12px"><strong>'+esc(p.name)+'</strong></div></a>').join('')+'</div><h2 class="section-title">Prochains engagements</h2><div class="paper">'+raceRows(upcoming,false)+'</div><h2 class="section-title">Derniers résultats attribués à cet entraîneur</h2><div class="paper">'+raceRows(recent,true)+'</div>';
  }
  $('#app').innerHTML=header()+'<main class="shell" style="padding-top:24px;padding-bottom:32px">'+(detail||'<h1>Nos entraîneurs</h1><p>Les professionnels qui accompagnent les chevaux de l’Écurie Initial.</p><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px">'+cards+'</div>')+'</main>'+footer();
 }
