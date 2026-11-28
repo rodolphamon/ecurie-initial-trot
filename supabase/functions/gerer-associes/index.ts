@@ -286,9 +286,12 @@ serve(async (req) => {
       const isTrainer = requestedType === "entraineur";
       const accountType = isTrainer ? "exterieur" : requestedType;
       const trainerName = String(body.entraineur_nom || "").trim();
+      const caller = createClient(url, anon, {global:{headers:{Authorization:`Bearer ${token}`}},auth:{persistSession:false,autoRefreshToken:false}});
       if (isTrainer) {
-        const {data:trainer,error:trainerError}=await admin.from("ei_entraineurs_repertoire").select("entraineur_nom,compte_user_id").eq("entraineur_nom",trainerName).maybeSingle();
-        if (trainerError || !trainer || trainer.compte_user_id) return reply(409,{error:"Fiche entraîneur inconnue ou déjà rattachée. Vérifiez le répertoire."});
+        const {data:trainer,error:trainerError}=await caller.from("ei_entraineurs_repertoire").select("entraineur_nom,compte_user_id").eq("entraineur_nom",trainerName).maybeSingle();
+        if (trainerError) { console.error("invite.trainer_lookup", {code:trainerError.code,message:trainerError.message}); return reply(503,{error:"Répertoire professionnel inaccessible. Aucun e-mail envoyé."}); }
+        if (!trainer) return reply(404,{error:"Fiche professionnelle inconnue. Aucun e-mail envoyé."});
+        if (trainer.compte_user_id) return reply(409,{error:"Fiche professionnelle déjà rattachée. Aucun e-mail envoyé."});
       }
       if (!["associe", "exterieur", "presse"].includes(accountType)) return reply(400, { error: "Type de compte invalide." });
       // Les chevaux sélectionnés sont attachés au compte créé ; ils ne vont jamais dans le dépôt public.
@@ -313,9 +316,8 @@ serve(async (req) => {
       if (saveError) return reply(500, { error: "L'invitation a été envoyée, mais l'accès n'a pas pu être activé. Vérifiez ce compte dans Supabase ; ne réinvitez pas automatiquement." });
       if (isTrainer) {
         // Le compte reste extérieur : aucun droit de propriétaire. Le RPC vérifie l’administrateur et le rattachement.
-        const caller = createClient(url, anon, {global:{headers:{Authorization:`Bearer ${token}`}},auth:{persistSession:false,autoRefreshToken:false}});
         const {error:linkError}=await caller.rpc("ei_rattacher_compte_entraineur",{p_entraineur_nom:trainerName,p_user_id:data.user.id});
-        if (linkError) return reply(409,{error:"Invitation envoyée, mais rattachement entraîneur refusé. Utilisez la gestion des entraîneurs sans renvoyer d’invitation."});
+        if (linkError) { console.error("invite.trainer_link",{code:linkError.code,message:linkError.message}); return reply(409,{error:"Invitation envoyée, mais rattachement professionnel refusé. Utilisez la gestion des entraîneurs sans renvoyer d’invitation."}); }
         const {error:pilotError}=await admin.from("ei_lancement_pilotes").upsert({user_id:data.user.id},{onConflict:"user_id",ignoreDuplicates:true});
         if (pilotError) return reply(500,{error:"Compte entraîneur rattaché ; accès anticipé non enregistré. Vérifiez les autorisations sans réinviter."});
         return reply(200,{ok:true,message:"Invitation entraîneur envoyée : "+trainerName+". Chevaux rattachés depuis le répertoire et accès anticipé activé."});
