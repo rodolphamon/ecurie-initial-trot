@@ -844,18 +844,18 @@ let inviteTrainers=[],inviteTrainerHorses=[];
   ]);
   if(p.error||h.error){status('inviteTrainerSummary','Répertoire indisponible : actualisez avant toute invitation entraîneur.');return;}
   const haras=$('inviteType').value==='haras';
-  inviteTrainers=(p.data||[]).filter(t=>!t.compte_user_id&&t.entraineur_nom.startsWith('Haras de la Cour Fleury — ')===haras);
+  inviteTrainers=(p.data||[]).filter(t=>t.entraineur_nom.startsWith('Haras de la Cour Fleury — ')===haras);
   inviteTrainerHorses=h.data||[];
   select.replaceChildren();
   const placeholder=make('option','— Sélectionner un entraîneur —');placeholder.value='';select.append(placeholder);
-  for(const t of inviteTrainers){const o=make('option',t.entraineur_nom+(t.compte_attendu?' · '+t.compte_attendu:''));o.value=t.entraineur_nom;select.append(o);}
+  for(const t of inviteTrainers){const o=make('option',t.entraineur_nom+(t.compte_user_id?' · équipe existante':t.compte_attendu?' · '+t.compte_attendu:''));o.value=t.entraineur_nom;select.append(o);}
   select.disabled=!['entraineur','haras'].includes($('inviteType').value)||!inviteTrainers.length;
-  if(!inviteTrainers.length)status('inviteTrainerSummary','Toutes les fiches sont déjà rattachées.');
+  if(!inviteTrainers.length)status('inviteTrainerSummary','Aucune fiche professionnelle disponible.');
  }
  $('inviteTrainer').onchange=()=>{
   const t=inviteTrainers.find(x=>x.entraineur_nom===$('inviteTrainer').value);
   if(!t){status('inviteTrainerSummary','');return;}
-  $('nom').value=t.compte_attendu||t.entraineur_nom;
+  $('nom').value=t.compte_user_id?(t.entraineur_nom.startsWith('Haras de la Cour Fleury — ')?t.compte_attendu||'':t.entraineur_nom):(t.compte_attendu||t.entraineur_nom);
   if(t.entraineur_nom.startsWith('Haras de la Cour Fleury — ')){status('inviteTrainerSummary','Liste commune des chevaux confiés au haras, à gérer depuis Équipe.');return;}
   const horses=inviteTrainerHorses.filter(x=>x.entraineur_nom===t.entraineur_nom).map(x=>x.cheval_nom);
   status('inviteTrainerSummary',horses.length+' cheval(aux) : '+(horses.join(', ')||'aucun')+'. Rattachement professionnel automatique.');
