@@ -588,7 +588,7 @@ function trainersPage(s){
  const selected=new URLSearchParams(location.search).get('entraineur');
  const link=p=>base+(p.newHorse?'fiche/?cheval='+encodeURIComponent(p.id):encodeURIComponent(p.id)+'/');
  const trainerLink=n=>base+'entraineurs.html?entraineur='+encodeURIComponent(n);
- const cards=names.map(n=>'<a class="paper" style="display:block;padding:18px;color:inherit;text-decoration:none;border-left:4px solid #f58220" href="'+esc(trainerLink(n))+'"><strong>'+esc(n)+'</strong><p>'+esc([...new Set(groups.get(n).map(p=>p.discipline))].join(' · '))+' · '+groups.get(n).length+' cheval(aux)</p></a>').join('');
+ const cards=names.map(n=>'<a class="paper" style="display:block;padding:18px;color:inherit;text-decoration:none;border-left:4px solid #f58220" href="'+esc(trainerLink(n))+'"><strong>'+esc(n)+'</strong><p>'+esc([...new Set(groups.get(n).map(p=>p.discipline))].join(' · '))+' · '+groups.get(n).length+(groups.get(n).length===1?' cheval':' chevaux')+'</p></a>').join('');
  let detail='';
  if(groups.has(selected)){
  const horses=groups.get(selected).sort((a,b)=>a.name.localeCompare(b.name,'fr'));
