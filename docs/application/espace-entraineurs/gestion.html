@@ -13,19 +13,20 @@ button:disabled{opacity:.5;cursor:not-allowed}.muted{color:#666;font-size:13px}[
 </style></head><body>
 <header><strong>ÉCURIE <em>INITIAL</em> · Administration</strong></header>
 <main><p><a href="../">← Accueil de l’application</a> · <a href="../espace-entraineurs-apercu/">👁️ Voir l’aperçu entraîneur</a></p>
-<section><h1>Répertoire des entraîneurs</h1><p class="muted">Préparation interne · Comptes à associer manuellement après inscription. Les rôles existants (associé, extérieur…) sont conservés.</p><p id="status">Vérification administrateur…</p></section>
+<section><h1>Répertoire des professionnels</h1><p class="muted">Préparation interne · Comptes à associer manuellement après inscription. Les rôles existants (associé, extérieur…) sont conservés.</p><p id="status">Vérification administrateur…</p></section>
 <div id="inside" hidden>
-<section><h2>Fiches existantes</h2><div style="overflow:auto"><table><thead><tr><th>Entraîneur sur les fiches</th><th>Chevaux</th><th>Compte lié ou attendu</th></tr></thead><tbody id="list"></tbody></table></div></section>
+<section><h2>Fiches existantes</h2><div style="overflow:auto"><table><thead><tr><th>Entraîneur ou haras</th><th>Chevaux</th><th>Compte lié ou attendu</th></tr></thead><tbody id="list"></tbody></table></div></section>
 <section><h2>Rattacher un compte existant</h2><p class="muted">Cette opération active immédiatement l'accès entraîneur pour le compte sélectionné. Vérifiez soigneusement son identité et ses chevaux avant de valider.</p>
 <label for="trainer">Fiche entraîneur</label><select id="trainer"></select>
 <label for="account">Compte utilisateur inscrit et actif</label><select id="account"></select>
 <button id="link">Rattacher le compte</button><p id="feedback" role="status"></p></section>
+<section><h2>🌿 Haras de la Cour Fleury</h2><p>Chevaux réellement confiés à Guillaume et Carole pour repos ou convalescence. Cette liste commune ne modifie pas leur entraîneur habituel.</p><label for="harasHorse">Ajouter un cheval au haras</label><select id="harasHorse"></select><button id="harasAdd" type="button">Ajouter</button><ul id="harasList"></ul><p id="harasFeedback" role="status"></p></section>
 </div></main>
 <script type="module">
 import {createClient} from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
 const db=createClient('https://yeecwaaizmvrhwobukfa.supabase.co','sb_publishable_xUy2EJA3u3cKWl8BB4GNPQ_qhV9Pes3');
 const $=id=>document.getElementById(id);
-let profiles=[],members=[],horses=[];
+let profiles=[],members=[],horses=[],harasRoster=[];
 function el(tag,txt){let e=document.createElement(tag);e.textContent=txt;return e}
 async function load(){
  const [p,m,h]=await Promise.all([
@@ -46,13 +47,26 @@ async function load(){
  for(const m of members){const opt=el('option',m.nom_affiche);opt.value=m.user_id;$('account').append(opt)}
  $('link').disabled=!$('trainer').options.length;
 }
+async function loadHaras(){
+ const [r,managed,assigned]=await Promise.all([fetch('../../chevaux/data/chevaux.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Effectif indisponible');return r.json()}),db.from('ei_effectif_gestion').select('cheval_slug,nom,actif'),db.from('ei_haras_chevaux').select('cheval_slug,cheval_nom').order('cheval_nom')]);
+ if(managed.error||assigned.error)throw(managed.error||assigned.error);
+ const map=new Map((r.horses||[]).map(h=>[h.id,h.name]));
+ for(const h of managed.data||[]){if(h.actif)map.set(h.cheval_slug,h.nom);else map.delete(h.cheval_slug)}
+ const current=new Set((assigned.data||[]).map(h=>h.cheval_slug));
+ harasRoster=[...map].filter(([id,name])=>id&&name&&!current.has(id)).sort((a,b)=>a[1].localeCompare(b[1],'fr'));
+ $('harasHorse').replaceChildren();const blank=el('option','— Choisir un cheval —');blank.value='';$('harasHorse').append(blank);
+ for(const [id,name] of harasRoster){const o=el('option',name);o.value=id;$('harasHorse').append(o)}
+ $('harasList').replaceChildren();
+ for(const h of assigned.data||[]){const li=el('li',h.cheval_nom+' '),b=el('button','Retirer');b.type='button';b.onclick=async()=>{if(!confirm('Retirer '+h.cheval_nom+' du haras ?'))return;b.disabled=true;const r=await db.from('ei_haras_chevaux').delete().eq('cheval_slug',h.cheval_slug);if(r.error){$('harasFeedback').textContent=r.error.message;b.disabled=false}else await loadHaras()};li.append(b);$('harasList').append(li)}
+}
+$('harasAdd').onclick=async()=>{const h=harasRoster.find(x=>x[0]===$('harasHorse').value);if(!h)return;$('harasAdd').disabled=true;try{const r=await db.from('ei_haras_chevaux').insert({cheval_slug:h[0],cheval_nom:h[1]});if(r.error)throw r.error;await loadHaras();$('harasFeedback').textContent=h[1]+' ajouté.'}catch(e){$('harasFeedback').textContent=e.message}finally{$('harasAdd').disabled=false}};
 async function start(){
  try{
  const auth=await db.auth.getUser();
  if(!auth.data.user){$('status').textContent='Veuillez vous connecter à votre compte Écurie Initial.';return}
  const a=await db.from('associes').select('administrateur,actif').eq('user_id',auth.data.user.id).maybeSingle();
  if(a.error||!a.data?.actif||!a.data.administrateur){$('status').textContent='Accès réservé à l’administrateur.';return}
- $('inside').hidden=false;$('status').textContent='Accès administrateur vérifié.';await load();
+ $('inside').hidden=false;$('status').textContent='Accès administrateur vérifié.';await load();await loadHaras();
  }catch(e){$('status').textContent='Chargement impossible : '+e.message}
 }
 $('link').addEventListener('click',async()=>{
