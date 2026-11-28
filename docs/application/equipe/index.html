@@ -34,7 +34,7 @@ async function boot(){
   document.getElementById('teamManagement').hidden=!admin;
   if(admin){const back=document.getElementById('teamBack');back.href='../administration/';back.textContent='← Administration';}
   document.getElementById('trainer').hidden=!(trainer&&!admin);
-  if(trainer&&role.data.nom_entraineur.startsWith('Haras de la Cour Fleury — ')){const panel=document.getElementById('trainer');panel.querySelector('h2').textContent='🌿 Haras de la Cour Fleury';panel.querySelector('p').textContent='Photos, vidéos et nouvelles des chevaux au repos ou en convalescence.';}
+  if(trainer&&role.data.nom_entraineur.startsWith('Haras de la Cour Fleury — ')){const panel=document.getElementById('trainer');panel.querySelector('h2').textContent='🌿 Haras de la Cour Fleury';panel.querySelector('p').textContent='Photos, vidéos et nouvelles des chevaux au repos, en convalescence ou à l’élevage.';}
   document.getElementById('communication').hidden=!observer;
   document.getElementById('space').hidden=false;
  }catch(e){status.textContent='Impossible de vérifier les accès : '+(e.message||'erreur')}
